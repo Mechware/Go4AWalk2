@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92ed46357c010e84ea5a3394f3ad888d, type: 3}
+  m_Name: DeathClaw
+  m_EditorClassIdentifier: 
+  baseHealth: 10
+  healthCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1.5
+      outSlope: 1.5
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 20
+      value: 30
+      inSlope: 1.5
+      outSlope: 1.5
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  armor: 0
+  armorCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  element: 0
+  spells:
+  - spell: {fileID: 11400000, guid: 18daea0036adb8a4ea8b11a85fdaa186, type: 2}
+    unlockLevel: 2
+  - spell: {fileID: 11400000, guid: c18ea889dbc57504aa428dabd2ab671c, type: 2}
+    unlockLevel: 5
