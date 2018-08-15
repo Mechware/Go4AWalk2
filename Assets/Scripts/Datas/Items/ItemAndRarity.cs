@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using DropSystem;
-using UnityEngine;
+using System;
 
 
-namespace DropSystem
+namespace G4AW2.DropSystem
 {
     [Serializable]
     public class ItemAndRarity {

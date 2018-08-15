@@ -1,8 +1,8 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Combat
+namespace G4AW2.Combat
 {
     [CreateAssetMenu(fileName = "Spell")]
     public class SpellData : ScriptableObject

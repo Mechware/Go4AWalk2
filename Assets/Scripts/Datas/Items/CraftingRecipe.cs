@@ -1,9 +1,9 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
-using DropSystem;
+using G4AW2.DropSystem;
 using UnityEngine;
 
-namespace Crafting
+namespace G4AW2.Crafting
 {
     [CreateAssetMenu(fileName = "Crafting Recipe")]
     public class CraftingRecipe : ScriptableObject

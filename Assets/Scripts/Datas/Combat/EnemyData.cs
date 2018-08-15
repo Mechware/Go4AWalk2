@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Sprites;
 using UnityEngine;
 
-namespace Combat
+namespace G4AW2.Combat
 {
     public enum Element
     {

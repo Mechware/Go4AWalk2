@@ -1,8 +1,8 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Utils
+namespace G4AW2.Utils
 {
     public static class RandomUtils {
 
