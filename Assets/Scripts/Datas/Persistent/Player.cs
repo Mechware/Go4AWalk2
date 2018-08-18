@@ -18,4 +18,12 @@ public class Player : ScriptableObject {
 	public void HeavyAttack(EnemyDisplay e, Vector3[] points) {
 		e.CurrentEnemy.ApplyDamage(Damage);
 	}
+
+	public void TestFloatChanged(float testFloat) {
+		Debug.Log("Test float changed! value: " + testFloat);
+	}
+
+	public void TestFloatChange(object testFloat) {
+		Debug.Log("Fuck " + testFloat);
+	}
 }

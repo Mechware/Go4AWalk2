@@ -4,15 +4,14 @@ using UnityEngine;
 
 namespace G4AW2.Variables {
 
+	[CreateAssetMenu(menuName = "Variable/Float")]
 	public class FloatVariable : SOVariable<float> {
-
-		public override void ApplyChange(float amount) {
-			Value += amount;
+#if UNITY_EDITOR
+		[ContextMenu("Raise Event")]
+		public void RaiseChangedEvent() {
+			OnChange.Invoke(Value);
 		}
-
-		public override void ApplyChange(SOReference<float> amount) {
-			Value += amount;
-		}
+#endif
 	}
 }
 
