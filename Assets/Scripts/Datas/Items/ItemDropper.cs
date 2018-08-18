@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace G4AW2.DropSystem
+namespace G4AW2.Data.DropSystem
 {
-    [CreateAssetMenu(fileName = "Item Dropper")]
+    [CreateAssetMenu(menuName = "Data/Item Dropper")]
     public class ItemDropper : ScriptableObject
     {
         public List<ItemAndRarity> Items;

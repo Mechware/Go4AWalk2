@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace G4AW2.Combat
+namespace G4AW2.Data.Combat
 {
-    [CreateAssetMenu(fileName = "Spell")]
+    [CreateAssetMenu(menuName = "Data/Spell")]
     public class SpellData : ScriptableObject
     {
         public string description;

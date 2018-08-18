@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace G4AW2.DropSystem
+namespace G4AW2.Data.DropSystem
 {
     public enum Rarity
     {
@@ -14,7 +14,7 @@ namespace G4AW2.DropSystem
         AMAZING = 5
     }
 
-    [CreateAssetMenu(fileName = "DropSystem/Item")]
+    [CreateAssetMenu(menuName = "Data/DropSystem/Item")]
     public class Item : ScriptableObject {
         public Sprite image;
         public float value;

@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 namespace G4AW2.Utils {
 	/// <summary>
@@ -30,7 +31,9 @@ namespace G4AW2.Utils {
 	/// </code>
 	/// </remarks>
 
+	[Serializable]
 	public class ObservedValue<T> {
+		[SerializeField]
 		private T currentValue;
 
 		/// <summary>

@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System;
+using G4AW2.Events;
 using G4AW2.Utils;
 
 namespace G4AW2.GPS
@@ -21,6 +22,8 @@ namespace G4AW2.GPS
 		public float desiredAccuracyInMeters = 1f;
 		public float updateDistanceInMeters = 0f;
 		public float timeBetweenChecks = 1f;
+
+		public GameEvent GPSUpdated;
 
 		[HideInInspector]
 		// Approximate radius of the earth (in kilometers)

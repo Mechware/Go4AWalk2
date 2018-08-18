@@ -1,7 +1,7 @@
 using System;
 
 
-namespace G4AW2.DropSystem
+namespace G4AW2.Data.DropSystem
 {
     [Serializable]
     public class ItemAndRarity {

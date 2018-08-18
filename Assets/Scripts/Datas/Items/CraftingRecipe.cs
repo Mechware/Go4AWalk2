@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
-using G4AW2.DropSystem;
+using G4AW2.Data.DropSystem;
 using UnityEngine;
 
-namespace G4AW2.Crafting
+namespace G4AW2.Data.Crafting
 {
-    [CreateAssetMenu(fileName = "Crafting Recipe")]
+    [CreateAssetMenu(menuName = "Data/Crafting Recipe")]
     public class CraftingRecipe : ScriptableObject
     {
         public List<Item> components;
