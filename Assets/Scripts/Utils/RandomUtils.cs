@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace G4AW2.Utils
 {
@@ -11,6 +13,14 @@ namespace G4AW2.Utils
             float minf = min - 0.5f;
             float maxf = max + 0.5f;
             return Mathf.RoundToInt(Random.value * (maxf - minf) + minf);
+        }
+
+        public static T GetRandom<T>(this List<T> list) {
+            if (list.Count == 0) {
+                throw new Exception("Tried to get random value from empty list");
+            }
+
+            return list[GetValueInRange(0, list.Count - 1)];
         }
 
         public static void RunGetValueInRangeTests()

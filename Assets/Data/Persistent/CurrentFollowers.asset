@@ -8,7 +8,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe28381dc1f903a4a80caba2471126ea, type: 3}
-  m_Name: Player
+  m_Script: {fileID: 11500000, guid: fc83c0039decb4c46856bdc4ec6d2f6d, type: 3}
+  m_Name: CurrentFollowers
   m_EditorClassIdentifier: 
-  Damage: 1
+  DeveloperDescription: 
+  Value: []

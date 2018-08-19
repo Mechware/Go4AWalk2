@@ -1,30 +1,41 @@
 using System.Collections;
 using System.Collections.Generic;
 using G4AW2.Data;
+using G4AW2.Variables;
+using Sirenix.OdinInspector;
+using Sirenix.Utilities;
 using UnityEngine;
 using UnityEngine.Events;
 
 namespace G4AW2.Followers {
 
 	public class FollowerDisplayController : MonoBehaviour {
-		private FollowerDisplay DisplayPrefab;
-		private Dictionary<FollowerData, FollowerDisplay> AllFollowers;
+	    public FollowerDataListVariable ListOfCurrentFollowers;
 
-		public void AddFollower(FollowerData data) {
-			print("Adding follower");
-			FollowerDisplay display = Instantiate(DisplayPrefab, transform);
-			AllFollowers.Add(data, display);
-		}
+	    public FollowerDisplay DisplayPrefab;
+		private List<FollowerDisplay> AllFollowers = new List<FollowerDisplay>();
 
-		public void RemoveFollower(FollowerData data) {
-			print("Removing follower");
-			if (!AllFollowers.ContainsKey(data)) {
-				Debug.LogError("Tried to remove a follower who does not exist in the follower list.");
-				return;
-			}
-			Destroy(AllFollowers[data]);
-			AllFollowers.Remove(data);
-		}
+	    public void FollowersChanged(List<FollowerData> d) {
+            print("Followers changed");
+
+            // Should really re use these
+	        AllFollowers.ForEach(kvp => { Destroy(kvp.gameObject); });
+            AllFollowers.Clear();
+
+	        foreach (var follower in ListOfCurrentFollowers.Value) {
+	            FollowerDisplay display = Instantiate(DisplayPrefab, transform);
+	            display.SetData(follower);
+	            AllFollowers.Add(display);
+            }
+	    }
+
+	    void OnEnable() {
+            ListOfCurrentFollowers.OnChange.AddListener(FollowersChanged);
+	    }
+
+	    void OnDisable() {
+            ListOfCurrentFollowers.OnChange.RemoveListener(FollowersChanged);
+	    }
 	}
 }
 

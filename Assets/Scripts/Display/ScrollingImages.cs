@@ -69,7 +69,7 @@ public class ScrollingImages : MonoBehaviour {
 	[ContextMenu("Clear and Add Images")]
 	private void AddImages() {
 		ClearImages();
-		for (int i = 0; i < NumberRepeats; i++) {
+        for (int i = 0; i < NumberRepeats; i++) {
 			Images.Add(Instantiate(ImagePrefab, transform));
 		}
 	}
@@ -83,6 +83,14 @@ public class ScrollingImages : MonoBehaviour {
 		Images.Clear();
 	}
 
+    [ContextMenu("Center Images")]
+    private void CenterImages() {
+        imageWidth = (int)ImagePrefab.rectTransform.rect.width;
+        Vector3 v = transform.localPosition;
+        v.x = -1 * (imageWidth * Images.Count) / 2f;
+        v.x = Mathf.Round(v.x);
+        transform.localPosition = v;
+    }
 #endif
 
 }

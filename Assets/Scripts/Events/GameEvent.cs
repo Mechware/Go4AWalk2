@@ -1,13 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace G4AW2.Events {
 
-	[CreateAssetMenu]
+	[Serializable][CreateAssetMenu]
 	public class GameEvent : ScriptableObject {
 
-		private List<GameEventListener> listeners = new List<GameEventListener>();
+		private readonly List<GameEventListener> listeners = new List<GameEventListener>();
 
 		public void Raise() {
 			foreach (GameEventListener listener in listeners) {

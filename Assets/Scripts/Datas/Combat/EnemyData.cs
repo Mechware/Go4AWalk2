@@ -15,7 +15,7 @@ namespace G4AW2.Data.Combat
     }
 
     [CreateAssetMenu(menuName = "Data/Enemy")]
-    public class EnemyData : ScriptableObject
+    public class EnemyData : FollowerData
     {
         public int baseHealth;
         public int baseArmor;
