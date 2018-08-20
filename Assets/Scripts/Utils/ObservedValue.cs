@@ -31,7 +31,6 @@ namespace G4AW2.Utils {
 	/// </code>
 	/// </remarks>
 
-	[Serializable]
 	public class ObservedValue<T> {
 		[SerializeField]
 		private T currentValue;
@@ -40,7 +39,7 @@ namespace G4AW2.Utils {
 		/// Subscribe to this event to get notified when the value changes.
 		/// </summary>
 #pragma warning disable 0067
-		public event Action OnValueChange;
+		public event Action<T> OnValueChange;
 #pragma warning restore 0067
 
 		public ObservedValue( T initialValue ) {
@@ -55,7 +54,7 @@ namespace G4AW2.Utils {
 					currentValue = value;
 
 					if (OnValueChange != null)
-						OnValueChange();
+						OnValueChange(value);
 				}
 			}
 		}
@@ -67,5 +66,18 @@ namespace G4AW2.Utils {
 		public void SetSilently( T value ) {
 			currentValue = value;
 		}
+
+	    public static implicit operator T(ObservedValue<T> val) {
+	        return val.Value;
+	    }
 	}
+
+    [Serializable] public class ObservableInt : ObservedValue<int> {
+        public ObservableInt(int initialValue) : base(initialValue) { }
+    }
+
+    [Serializable]
+    public class ObservableFloat : ObservedValue<float> {
+        public ObservableFloat(float initialValue) : base(initialValue) { }
+    }
 }

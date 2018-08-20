@@ -11,38 +11,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92ed46357c010e84ea5a3394f3ad888d, type: 3}
   m_Name: DeathClaw
   m_EditorClassIdentifier: 
+  SittingAnimation: {fileID: 0}
   baseHealth: 10
-  healthCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 1.5
-      outSlope: 1.5
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 20
-      value: 30
-      inSlope: 1.5
-      outSlope: 1.5
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  armor: 0
-  armorCurve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
+  baseArmor: 0
+  baseAttackSpeed: 1
+  baseDamage: 1
   element: 0
   spells:
   - spell: {fileID: 11400000, guid: 18daea0036adb8a4ea8b11a85fdaa186, type: 2}

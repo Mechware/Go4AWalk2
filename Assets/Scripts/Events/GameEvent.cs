@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace G4AW2.Events {
 
-	[Serializable][CreateAssetMenu]
+	[Serializable][CreateAssetMenu(menuName = "Events/None")]
 	public class GameEvent : ScriptableObject {
 
 		private readonly List<GameEventListener> listeners = new List<GameEventListener>();

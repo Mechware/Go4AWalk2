@@ -17,38 +17,27 @@ namespace G4AW2.Data.Combat
     [CreateAssetMenu(menuName = "Data/Enemy")]
     public class EnemyData : FollowerData
     {
-        public int baseHealth;
-        public int baseArmor;
-	    public int baseAttackSpeed;
-	    public int baseDamage;
-
-        public Element element;
-        public List<SpellUnlock> spells;
+        public int BaseHealth;
+        public int BaseArmor;
+	    public int BaseAttackSpeed;
+	    public int BaseDamage;
 
 	    public int GetHealth(int level) {
-		    return baseHealth;
+		    return BaseHealth;
 	    }
 
 	    public int GetArmor( int level ) {
-		    return baseArmor;
+		    return BaseArmor;
 	    }
 
 	    public int GetAttackSpeed( int level ) {
-		    return baseAttackSpeed;
+		    return BaseAttackSpeed;
 	    }
 
 	    public int GetDamage(int level) {
-		    return baseDamage;
+		    return BaseDamage;
 	    }
 	}
-
-
-    [Serializable]
-    public class SpellUnlock
-    {
-        public SpellData spell;
-        public int unlockLevel;
-    }
 }
 
 

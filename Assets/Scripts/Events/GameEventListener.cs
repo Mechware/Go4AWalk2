@@ -24,6 +24,4 @@ namespace G4AW2.Events {
 			Response.Invoke();
 		}
 	}
-
-
 }

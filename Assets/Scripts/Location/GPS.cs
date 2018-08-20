@@ -67,8 +67,8 @@ namespace G4AW2.GPS
 		}
 
 		IEnumerator Start() {
-			state.OnValueChange += () => {
-				if (state.Value != LocationState.Enabled && state.Value != LocationState.Initializing) {
+			state.OnValueChange += (state) => {
+				if (state != LocationState.Enabled && state != LocationState.Initializing) {
 					print("Could not connect to GPS!");
 					//PopUp.instance.showPopUp("Could not connect to GPS!", new string[] { "Okay" });
 				}

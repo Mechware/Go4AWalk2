@@ -12,6 +12,7 @@ namespace G4AW2.Followers {
 		public void SetData(FollowerData data) {
 			Data = data;
 			print("Setting data");
+            print(Data.name);
 			// Do things.
 		}
 	}

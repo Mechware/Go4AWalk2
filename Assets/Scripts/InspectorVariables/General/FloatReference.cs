@@ -1,11 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using G4AW2.Variables;
-using UnityEngine;
-using UnityEngine.Events;
+﻿using G4AW2.Events;
 
 namespace G4AW2.Variables {
-    public class FloatReference : SOReference<float, FloatVariable, FloatChangeEvent> {
-	}
+    public class FloatReference : SOReference<float, FloatVariable, UnityEventFloat> { }
 }
-

@@ -1,8 +1,8 @@
+﻿using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using G4AW2.Events;
 
 namespace G4AW2.Variables {
-	public class ListSOReference : ListReference<ScriptableObject, ListSOVariable, ListSOChangedEvent> {
-	}
+    public class ListSOReference : ListReference<ScriptableObject, ListSOVariable, UnityEventListSO> {
+    }
 }

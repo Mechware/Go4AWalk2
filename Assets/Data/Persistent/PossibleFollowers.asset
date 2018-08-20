@@ -8,10 +8,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc83c0039decb4c46856bdc4ec6d2f6d, type: 3}
+  m_Script: {fileID: 11500000, guid: 05b226978ee5c854480b536f74b2b4f3, type: 3}
   m_Name: PossibleFollowers
   m_EditorClassIdentifier: 
-  DeveloperDescription: A list of all the possible followers
-  Value:
-  - {fileID: 11400000, guid: 5f3657d9e1ca86f4f9f31075294cfcc9, type: 2}
-  - {fileID: 11400000, guid: cef5d58fb3df1724499eeb4dc1a78de3, type: 2}
+  DeveloperDescription: 
+  Value: []
+  OnChange:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: G4AW2.Events.UnityEventListFollowerData, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null

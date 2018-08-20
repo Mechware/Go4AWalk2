@@ -121,7 +121,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 119704799}
-  - component: {fileID: 119704798}
   m_Layer: 0
   m_Name: Spawn Timer
   m_TagString: Untagged
@@ -129,33 +128,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &119704798
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 119704797}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa6dc42dbe3476643a2ea590754fbef5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TestEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 119704798}
-        m_MethodName: test
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 1
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!4 &119704799
 Transform:
   m_ObjectHideFlags: 0
@@ -317,6 +289,8 @@ GameObject:
   - component: {fileID: 300978732}
   - component: {fileID: 300978733}
   - component: {fileID: 300978734}
+  - component: {fileID: 300978736}
+  - component: {fileID: 300978735}
   m_Layer: 5
   m_Name: Followers
   m_TagString: Untagged
@@ -376,8 +350,55 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a976aeb5b70e3845b80312c50b51513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ListOfCurrentFollowers: {fileID: 11400000, guid: d9764a15526dace4899689a1b14b9b44,
+    type: 2}
   DisplayPrefab: {fileID: 114761404654441882, guid: c4b89bcf0d64ec943b62810409cd0aaa,
     type: 2}
+--- !u!114 &300978735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 300978731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9120f38d11b464c4c9e63a154d1042b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MinTime: 10
+  MaxTime: 20
+  OnFinish:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 300978736}
+        m_MethodName: AddFollower
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  ThrowTime: 0
+  CurrentTime: 0
+--- !u!114 &300978736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 300978731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c194123519c7ae440900526a95d41a24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AllPossibleFollowers: {fileID: 11400000, guid: 1cf2b6ea178b5804db5d25c80532eb48,
+    type: 2}
+  CurrentFollowers: {fileID: 11400000, guid: d9764a15526dace4899689a1b14b9b44, type: 2}
 --- !u!1 &302137431
 GameObject:
   m_ObjectHideFlags: 0
@@ -1905,7 +1926,7 @@ MonoBehaviour:
   MoveY: 0
   MaxBounds: {x: 324, y: 0}
   MinBounds: {x: 0, y: 0}
-  ScaleFactor: 0
+  ScaleFactor: 0.1
   OnDragEvent:
     m_PersistentCalls:
       m_Calls:
