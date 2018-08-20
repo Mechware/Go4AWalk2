@@ -12,13 +12,7 @@ MonoBehaviour:
   m_Name: DeathClaw
   m_EditorClassIdentifier: 
   SittingAnimation: {fileID: 0}
-  baseHealth: 10
-  baseArmor: 0
-  baseAttackSpeed: 1
-  baseDamage: 1
-  element: 0
-  spells:
-  - spell: {fileID: 11400000, guid: 18daea0036adb8a4ea8b11a85fdaa186, type: 2}
-    unlockLevel: 2
-  - spell: {fileID: 11400000, guid: c18ea889dbc57504aa428dabd2ab671c, type: 2}
-    unlockLevel: 5
+  BaseHealth: 100
+  BaseArmor: 0
+  BaseAttackSpeed: 1
+  BaseDamage: 1

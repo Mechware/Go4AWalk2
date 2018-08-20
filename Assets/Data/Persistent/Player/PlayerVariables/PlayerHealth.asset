@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: PlayerHealth
   m_EditorClassIdentifier: 
   DeveloperDescription: 
-  ConstantValue: 10
+  ConstantValue: 0
   OnChange:
     m_PersistentCalls:
       m_Calls:

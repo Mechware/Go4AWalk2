@@ -11,6 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe28381dc1f903a4a80caba2471126ea, type: 3}
   m_Name: Player
   m_EditorClassIdentifier: 
+  MaxHealth: 100
   Health: {fileID: 11400000, guid: f98c0dae92606424ead1fe09dd8181ed, type: 2}
   Crit: {fileID: 11400000, guid: 195838a3e41d6bf45bd1308ba62d1659, type: 2}
-  Damage: 10
+  Damage: 1
