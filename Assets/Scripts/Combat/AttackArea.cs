@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using CustomEvents;
 using G4AW2.Combat;
-using G4AW2.Events;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class AttackArea : Graphic, IPointerClickHandler, IPointerDownHandler, IPointerUpHandler, IBeginDragHandler, IEndDragHandler, IDragHandler {
 
     public GameEvent OnTap;
-    public GameEventVector3Arr OnSwipe;
+    public GameEventVector3Array OnSwipe;
 
 	public LineRenderer LineRenderer;
 

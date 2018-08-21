@@ -1,18 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
-using G4AW2.Combat;
-using G4AW2.Utils;
-using G4AW2.Variables;
+using CustomEvents;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Data/Player")]
 public class Player : ScriptableObject {
 
-    public int MaxHealth;
+    public IntReference MaxHealth;
 
-    public IntVariable Health;
-    public IntVariable Crit;
-    public int Damage;
+    public IntReference Health;
+    public IntReference Crit;
+    public IntReference Damage;
 
     public int GetLightDamage() {
         int crit = Crit;

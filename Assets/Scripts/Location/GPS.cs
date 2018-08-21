@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System;
-using G4AW2.Events;
+using CustomEvents;
 using G4AW2.Utils;
 
 namespace G4AW2.GPS

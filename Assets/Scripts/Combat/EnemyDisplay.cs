@@ -1,6 +1,6 @@
 using G4AW2.Data.Combat;
 using System;
-using G4AW2.Events;
+using CustomEvents;
 using UnityEngine;
 using UnityEngine.Events;
 

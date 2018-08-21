@@ -1,12 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using G4AW2.Events;
+using CustomEvents;
 using UnityEngine;
 using UnityEngine.Events;
 
 #if UNITY_EDITOR
 namespace G4AW2.Testing {
-    public class EventTester : MonoBehaviour {
+	public class EventTester : MonoBehaviour {
         public UnityEvent TestEvent;
         public GameEvent TestGameEvent;
 
