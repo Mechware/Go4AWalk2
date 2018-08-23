@@ -1,71 +1,78 @@
 using G4AW2.Data.Combat;
 using System;
+using System.Collections;
 using CustomEvents;
+using G4AW2.Combat.Swiping;
 using UnityEngine;
 using UnityEngine.Events;
 
 namespace G4AW2.Combat {
     public class EnemyDisplay : MonoBehaviour {
 
-		public EnemyInstance CurrentEnemy;
+		public EnemyData Enemy;
+	    public IntReference Level;
 
-        public UnityEventInt OnAttack;
+		public IntReference MaxHealth;
+	    public IntReference CurrentHealth;
 
-		public UnityEvent OnDeath;
-        public UnityEventInt OnHealthChanged;
-	    public UnityEventInt OnMaxHealthChanged;
+	    public IntReference CurrentCrit;
 
-	    public UnityEventInt OnCritChanged;
+	    public FloatReference AttackSpeed;
+	    public IntReference Damage;
 
-        private float timeToNextAttack = 5;
+		// Events
+	    public UnityEventInt OnAttack;
+	    public UnityEvent OnDeath;
+	    public UnityEventSwipe OnSwipe;
 
-	    public void Start() {
-	        if (CurrentEnemy != null) {
-	            CurrentEnemy.SetLevel(1);
-                SetEnemyInstance(CurrentEnemy);
-	        }
+		private bool isDead = false;
+
+	    void Start() {
+		    if (Enemy != null) {
+			    SetEnemy(Enemy, Level);
+		    }
 	    }
 
-        void Update() {
-            timeToNextAttack -= Time.deltaTime;
-            if (timeToNextAttack <= 0) {
-                OnAttack.Invoke(CurrentEnemy.CurrentDamage);
-                timeToNextAttack = 1f / CurrentEnemy.CurrentAttackSpeed;
-            }
-        }
-
-        public void SetEnemyInstance( EnemyInstance e ) {
-            if (CurrentEnemy != null) {
-                CurrentEnemy.OnDeath -= OnDeath.Invoke;
-                CurrentEnemy.CurrentHealth.OnValueChange -= OnHealthChanged.Invoke;
-            }
-
-			CurrentEnemy = e;
-			e.OnDeath += OnDeath.Invoke;
-            e.CurrentHealth.OnValueChange += OnHealthChanged.Invoke;
-
-            OnMaxHealthChanged.Invoke(CurrentEnemy.MaxHealth);
-            OnHealthChanged.Invoke(CurrentEnemy.CurrentHealth);
-            OnCritChanged.Invoke(CurrentEnemy.CurrentCrit);
-            timeToNextAttack = 1f / CurrentEnemy.CurrentAttackSpeed;
-        }
-
-#if UNITY_EDITOR
-		[Header("TESTING")]
-		public EnemyData TestEnemy;
-
-		[ContextMenu("Reload Level")]
-		public void ReloadLevel() {
-			CurrentEnemy.SetLevel(CurrentEnemy.Level);
+	    public IEnumerator Attack() {
+		    for (;;) {
+				yield return new WaitForSeconds(1f / AttackSpeed);
+			    OnAttack.Invoke(Damage);
+			}
 		}
 
-		[ContextMenu("Set Test Enemy")]
-		public void SetTestEnemy() {
-			CurrentEnemy = ScriptableObject.CreateInstance<EnemyInstance>();
-            CurrentEnemy.Data = TestEnemy;
-			CurrentEnemy.SetLevel(1);
+	    public void DoSwipingAttack() {
+		    Swipe swipe = Enemy.Swipes.GetSwipe(Level);
+		    OnSwipe.Invoke(swipe);
+	    }
 
-            SetEnemyInstance(CurrentEnemy);
+	    public void SetEnemy(EnemyData data, int level) {
+		    Enemy = data;
+		    Level.Value = level;
+
+		    MaxHealth.Value = data.GetHealth(level);
+		    CurrentHealth.Value = MaxHealth;
+		    Damage.Value = data.GetDamage(level);
+		    AttackSpeed.Value = data.GetAttackSpeed(level);
+
+		    CurrentCrit.Value = 0;
+			StopCoroutine("Attack");
+		    StartCoroutine(Attack());
+	    }
+
+	    public void ApplyDamage(int amount) {
+		    if (isDead) return;
+		    CurrentHealth.Value -= amount;
+		    if (CurrentHealth.Value <= 0) {
+				print("Dying");
+			    isDead = true;
+				OnDeath.Invoke();
+		    }
+	    }
+
+#if UNITY_EDITOR
+		[ContextMenu("Reload Enemy")]
+		public void ReloadLevel() {
+			SetEnemy(Enemy, Level);
 		}
 #endif
 	}

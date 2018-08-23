@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using G4AW2.Combat;
 using UnityEngine;
@@ -9,12 +9,12 @@ public class PlayerAttackEnemy : MonoBehaviour {
 
     public void OnScreenTap() {
         print("Attacking enemy");
-        Enemy.CurrentEnemy.ApplyDamage(Player.GetLightDamage());
+        Enemy.ApplyDamage(Player.GetLightDamage());
     }
 
     public void OnScreenSwipe(Vector3[] points) {
         print("Swiping enemy");
-        Enemy.CurrentEnemy.ApplyDamage(Player.GetHeavyDamage(points));
+        Enemy.ApplyDamage(Player.GetHeavyDamage(points));
     }
 
     public void AttackPlayer(int damage) {

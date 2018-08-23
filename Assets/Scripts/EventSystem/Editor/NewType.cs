@@ -93,7 +93,7 @@ namespace {1} {{
 
 		private string UsingsString {
 			get { string usingsString = "";
-				Usings.ForEach(s => usingsString = usingsString + "using " + s + ";\n");
+				if(Usings != null) Usings.ForEach(s => usingsString = usingsString + "using " + s + ";\n");
 				return usingsString;
 			}
 		}

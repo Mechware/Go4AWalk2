@@ -1,42 +1,54 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
+using CustomEvents;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ProgressBarController : MonoBehaviour {
 
     [Header("Values")]
-    public int Max;
-    public int Min;
-
-    public int Current;
+    public IntReference Max;
+    public IntReference Current;
 
     [Header("UI")]
     public Image ProgressBarFill;
 
-    public void SetMax( int Max ) {
-        this.Max = Max;
-        UpdateUI();
-    }
+	void OnEnable() {
+		if(!Max.UseConstant) Max.Variable.OnChange.AddListener(UpdateUI);
+		if(!Current.UseConstant) Current.Variable.OnChange.AddListener(UpdateUI);
+	}
 
-    public void SetMin( int Min ) {
-        this.Min = Min;
+	void OnDisable() {
+		if (!Max.UseConstant)
+			Max.Variable.OnChange.RemoveListener(UpdateUI);
+		if (!Current.UseConstant)
+			Current.Variable.OnChange.RemoveListener(UpdateUI);
+	}
+
+	void Start() {
+		UpdateUI();
+	}
+
+	private void UpdateUI(int i ) { UpdateUI();}
+
+    public void SetMax( int Max ) {
+        this.Max.Value = Max;
         UpdateUI();
     }
 
     public void SetCurrent( int Current ) {
-        this.Current = Current;
+        this.Current.Value = Current;
         UpdateUI();
     }
 
     [ContextMenu("Update")]
     public void UpdateUI() {
         Vector3 scale = ProgressBarFill.rectTransform.localScale;
-        if (Max - Min == 0) {
+        if (Max == 0) {
             Debug.LogWarning("Max - min is zero. Object: " + name);
             return;
         }
-        scale.x = Mathf.Clamp01((float)(Current - Min) / (Max - Min));
+        scale.x = Mathf.Clamp01((float)Current / Max);
         ProgressBarFill.rectTransform.localScale = scale;
     }
 }

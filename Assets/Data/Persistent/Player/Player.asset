@@ -12,18 +12,18 @@ MonoBehaviour:
   m_Name: Player
   m_EditorClassIdentifier: 
   MaxHealth:
-    UseConstant: 1
+    UseConstant: 0
     ConstantValue: 0
-    Variable: {fileID: 0}
+    Variable: {fileID: 11400000, guid: 5a119c1659773204eb31d934c2ccdf1c, type: 2}
   Health:
     UseConstant: 0
     ConstantValue: 0
-    Variable: {fileID: 0}
+    Variable: {fileID: 11400000, guid: f98c0dae92606424ead1fe09dd8181ed, type: 2}
   Crit:
-    UseConstant: 1
-    ConstantValue: 0
-    Variable: {fileID: 0}
-  Damage:
     UseConstant: 0
     ConstantValue: 0
-    Variable: {fileID: 0}
+    Variable: {fileID: 11400000, guid: 195838a3e41d6bf45bd1308ba62d1659, type: 2}
+  Damage:
+    UseConstant: 1
+    ConstantValue: 1
+    Variable: {fileID: 11400000, guid: 195838a3e41d6bf45bd1308ba62d1659, type: 2}

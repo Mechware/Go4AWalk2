@@ -21,7 +21,6 @@ namespace CustomEvents {
 			get { return UseConstant ? ConstantValue : Variable.Value; }
 			set {
 				if (UseConstant) {
-					Debug.LogWarning("Setting a constant value on scriptable object");
 					ConstantValue = value;
 				}
 				else {

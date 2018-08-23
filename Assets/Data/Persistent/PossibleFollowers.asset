@@ -8,13 +8,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05b226978ee5c854480b536f74b2b4f3, type: 3}
+  m_Script: {fileID: 11500000, guid: 28cb7fca454a77941a47ba6f84aa153a, type: 3}
   m_Name: PossibleFollowers
   m_EditorClassIdentifier: 
-  DeveloperDescription: 
-  Value: []
+  OnAdd:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: CustomEvents.UnityEventFollowerData, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnRemove:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: CustomEvents.UnityEventFollowerData, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   OnChange:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: G4AW2.Events.UnityEventListFollowerData, Assembly-CSharp, Version=0.0.0.0,
+    m_TypeName: CustomEvents.UnityEventFollowerData, Assembly-CSharp, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null

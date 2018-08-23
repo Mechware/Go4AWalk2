@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 using Sirenix.Utilities;
 using UnityEngine;
 using UnityEngine.Events;
@@ -13,7 +14,7 @@ namespace CustomEvents {
 		[Multiline]
 		public string DeveloperDescription = "";
 #endif
-        private T _value;
+        [ShowInInspector] private T _value;
 
         public T Value {
             get { return _value; }
@@ -22,8 +23,6 @@ namespace CustomEvents {
                 OnChange.Invoke(Value);
             }
         }
-
-        public T ConstantValue;
 
         void OnEnable() {
             _value = Value;

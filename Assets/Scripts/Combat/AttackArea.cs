@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using CustomEvents;
 using G4AW2.Combat;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class AttackArea : Graphic, IPointerClickHandler, IPointerDownHandler, IPointerUpHandler, IBeginDragHandler, IEndDragHandler, IDragHandler {
 
-    public GameEvent OnTap;
-    public GameEventVector3Array OnSwipe;
+    public UnityEvent OnTap;
+    public UnityEventVector3Array OnSwipe;
 
+	public float SimplifyAmount = 20;
 	public LineRenderer LineRenderer;
 
 	protected override void Awake() {
@@ -19,7 +21,7 @@ public class AttackArea : Graphic, IPointerClickHandler, IPointerDownHandler, IP
 
 	public void OnPointerClick(PointerEventData eventData) {
 		if (dragging) return;
-		OnTap.Raise();
+		OnTap.Invoke();
         eventData.Use();
 	}
 
@@ -32,10 +34,10 @@ public class AttackArea : Graphic, IPointerClickHandler, IPointerDownHandler, IP
 
 	public void OnEndDrag(PointerEventData eventData) {
 		dragging = false;
-		LineRenderer.Simplify(20);
+		LineRenderer.Simplify(SimplifyAmount);
 		Vector3[] points = new Vector3[LineRenderer.positionCount];
 		LineRenderer.GetPositions(points);
-	    OnSwipe.Raise(points);
+	    OnSwipe.Invoke(points);
         LineRenderer.positionCount = 0;
 		eventData.Use();
 	}
@@ -44,6 +46,7 @@ public class AttackArea : Graphic, IPointerClickHandler, IPointerDownHandler, IP
 		LineRenderer.positionCount++;
 		Vector3 pos = Camera.main.ScreenToWorldPoint(eventData.position);
 		pos.z = 10;
+
 		LineRenderer.SetPosition(LineRenderer.positionCount-1, pos);
 		
 		eventData.Use();
