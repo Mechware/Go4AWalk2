@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -289,7 +289,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20b2244f9f892f54b81b2220849b83e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Swipe: {fileID: 11400000, guid: 740884a5ce6535a4991fbb6451af6146, type: 2}
+  Swipe: {fileID: 11400000, guid: 0c61c646c5abd8c45813c910447afc3e, type: 2}
   RecordSwipe: 1
 --- !u!114 &101943458
 MonoBehaviour:
@@ -310,6 +310,11 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  OnSwipeStart:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   OnSwipe:
     m_PersistentCalls:
       m_Calls:
@@ -324,6 +329,11 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 1
+    m_TypeName: CustomEvents.UnityEventVector3Array, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnSwipingDistanceChange:
+    m_PersistentCalls:
+      m_Calls: []
     m_TypeName: CustomEvents.UnityEventVector3Array, Assembly-CSharp, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   SimplifyAmount: 20
@@ -384,6 +394,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PixelsPerSecond: 0
   Swipe: {fileID: 0}
+  lr: {fileID: 0}
+  IsAnimating: 0
 --- !u!114 &318955235
 MonoBehaviour:
   m_ObjectHideFlags: 0

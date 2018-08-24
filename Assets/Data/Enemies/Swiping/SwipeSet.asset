@@ -63,7 +63,7 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
   - LevelUnlocked: 1
-    PointList: {fileID: 11400000, guid: 740884a5ce6535a4991fbb6451af6146, type: 2}
+    PointList: {fileID: 11400000, guid: 0c61c646c5abd8c45813c910447afc3e, type: 2}
     MinSpeedCurve:
       serializedVersion: 2
       m_Curve:
