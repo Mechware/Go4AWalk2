@@ -29,14 +29,22 @@ namespace G4AW2.Followers {
 			aoc = new AnimatorOverrideController(BaseController);
 			Animator.runtimeAnimatorController = aoc;
 
-			aoc["Sitting"] = Data.SittingAnimation;
-			if(Data.HasRandomAnimation) aoc["Random"] = Data.RandomAnimation;
+			if (Data != null) {
+				aoc["Idle"] = Data.SittingAnimation;
+				if (Data.HasRandomAnimation)
+					aoc["Random"] = Data.RandomAnimation;
+			}
+			
 		}
 
 		void Update() {
 			if (Data.HasRandomAnimation) {
 				currentTime += Time.deltaTime;
-				if(currentTime > )
+				if (currentTime > doRandomTime) {
+					currentTime = 0;
+					Animator.SetTrigger("Random");
+					doRandomTime = Random.Range(Data.MinTimeBetweenRandomAnims, Data.MaxTimeBetweenRandomAnims);
+				}
 			}
 		}
 
@@ -44,10 +52,10 @@ namespace G4AW2.Followers {
 			Data = data;
 			print("Setting data: " + Data.name);
 
-			aoc["Sitting"] = Data.SittingAnimation;
+			aoc["Idle"] = Data.SittingAnimation;
 			if (Data.HasRandomAnimation) {
 				aoc["Random"] = Data.RandomAnimation;
-				doRandomTime = Random.Range(Data.MinTimeBetweenRandomAnims, data.MaxTimeBetweenRandomAnims);
+				doRandomTime = Random.Range(Data.MinTimeBetweenRandomAnims, Data.MaxTimeBetweenRandomAnims);
 			}
 		}
 

@@ -15,7 +15,14 @@ namespace G4AW2.Followers {
 	        if (CurrentFollowers.Value.Count >= 10) return;
             CurrentFollowers.Add(AllPossibleFollowers.Value.GetRandom());
         }
-    }
+
+#if UNITY_EDITOR
+	    [ContextMenu("Clear Followers")]
+	    void ClearFollowers() {
+		    CurrentFollowers.Value.Clear();
+	    }
+#endif
+	}
 }
 
 

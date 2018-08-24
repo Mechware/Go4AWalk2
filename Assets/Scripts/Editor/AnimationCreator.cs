@@ -12,6 +12,7 @@ public class AnimationCreator : EditorWindow {
 	public string SaveDest = "";
 	public string Name = "";
 	public int FramesPerSecond = 8;
+	public bool Loop = true;
 
 	private string SaveLocation { get { return Path.Combine(SaveDest, Name + ".anim"); } }
 
@@ -49,7 +50,7 @@ public class AnimationCreator : EditorWindow {
 		Name = EditorGUILayout.TextField("Animation Name", Name);
 		EditorGUILayout.TextField("Save Location", SaveLocation);
 		FramesPerSecond = EditorGUILayout.IntField("Frames Per Second", FramesPerSecond);
-
+		Loop = EditorGUILayout.Toggle("Should Loop?", Loop);
 
 		if (GUILayout.Button("Create Animation")) {
 			if (Sprites.Length == 0) {
@@ -58,6 +59,10 @@ public class AnimationCreator : EditorWindow {
 
 			AnimationClip clip = new AnimationClip();
 			clip.frameRate = FramesPerSecond;
+			if (Loop) {
+				Debug.LogWarning("Go to the LOOP button and click it TO MAKE IT FUCKING LOOP.");
+				clip.wrapMode = WrapMode.Loop; // BECAUSE THIS DOESN'T WORK.
+			}
 
 			EditorCurveBinding curveBinding = new EditorCurveBinding();
 			
@@ -73,6 +78,7 @@ public class AnimationCreator : EditorWindow {
 			}
 			
 			AnimationUtility.SetObjectReferenceCurve(clip, curveBinding, keyframes);
+			clip.wrapMode = WrapMode.Loop;
 
 
 			AssetDatabase.CreateAsset(clip, SaveLocation);

@@ -9,8 +9,8 @@ public class FollowerPopulator : MonoBehaviour {
 	public RuntimeSetFollowerData To;
 
 	void Awake() {
-		if(To.Value == null) 
-		To.Value.Clear();
+		if (To.Value == null)
+			To.Value.Clear();
 		To.Value.AddRange(From.List);
 	}
 }

@@ -5,7 +5,7 @@ AnimationClip:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: PlayerWalking
+  m_Name: GoblinKingSideRand
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -19,21 +19,21 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: 5df9f3187b2080243a12024270ef37b1, type: 3}
+      value: {fileID: 21300046, guid: fab3d851a44d4de449052d4d4d9309ed, type: 3}
     - time: 0.125
-      value: {fileID: 21300002, guid: 5df9f3187b2080243a12024270ef37b1, type: 3}
+      value: {fileID: 21300048, guid: fab3d851a44d4de449052d4d4d9309ed, type: 3}
     - time: 0.25
-      value: {fileID: 21300004, guid: 5df9f3187b2080243a12024270ef37b1, type: 3}
+      value: {fileID: 21300050, guid: fab3d851a44d4de449052d4d4d9309ed, type: 3}
     - time: 0.375
-      value: {fileID: 21300006, guid: 5df9f3187b2080243a12024270ef37b1, type: 3}
+      value: {fileID: 21300052, guid: fab3d851a44d4de449052d4d4d9309ed, type: 3}
     - time: 0.5
-      value: {fileID: 21300008, guid: 5df9f3187b2080243a12024270ef37b1, type: 3}
+      value: {fileID: 21300054, guid: fab3d851a44d4de449052d4d4d9309ed, type: 3}
     - time: 0.625
-      value: {fileID: 21300010, guid: 5df9f3187b2080243a12024270ef37b1, type: 3}
+      value: {fileID: 21300056, guid: fab3d851a44d4de449052d4d4d9309ed, type: 3}
     - time: 0.75
-      value: {fileID: 21300012, guid: 5df9f3187b2080243a12024270ef37b1, type: 3}
+      value: {fileID: 21300058, guid: fab3d851a44d4de449052d4d4d9309ed, type: 3}
     - time: 0.875
-      value: {fileID: 21300014, guid: 5df9f3187b2080243a12024270ef37b1, type: 3}
+      value: {fileID: 21300060, guid: fab3d851a44d4de449052d4d4d9309ed, type: 3}
     attribute: m_Sprite
     path: 
     classID: 114
@@ -53,14 +53,14 @@ AnimationClip:
       customType: 0
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300000, guid: 5df9f3187b2080243a12024270ef37b1, type: 3}
-    - {fileID: 21300002, guid: 5df9f3187b2080243a12024270ef37b1, type: 3}
-    - {fileID: 21300004, guid: 5df9f3187b2080243a12024270ef37b1, type: 3}
-    - {fileID: 21300006, guid: 5df9f3187b2080243a12024270ef37b1, type: 3}
-    - {fileID: 21300008, guid: 5df9f3187b2080243a12024270ef37b1, type: 3}
-    - {fileID: 21300010, guid: 5df9f3187b2080243a12024270ef37b1, type: 3}
-    - {fileID: 21300012, guid: 5df9f3187b2080243a12024270ef37b1, type: 3}
-    - {fileID: 21300014, guid: 5df9f3187b2080243a12024270ef37b1, type: 3}
+    - {fileID: 21300046, guid: fab3d851a44d4de449052d4d4d9309ed, type: 3}
+    - {fileID: 21300048, guid: fab3d851a44d4de449052d4d4d9309ed, type: 3}
+    - {fileID: 21300050, guid: fab3d851a44d4de449052d4d4d9309ed, type: 3}
+    - {fileID: 21300052, guid: fab3d851a44d4de449052d4d4d9309ed, type: 3}
+    - {fileID: 21300054, guid: fab3d851a44d4de449052d4d4d9309ed, type: 3}
+    - {fileID: 21300056, guid: fab3d851a44d4de449052d4d4d9309ed, type: 3}
+    - {fileID: 21300058, guid: fab3d851a44d4de449052d4d4d9309ed, type: 3}
+    - {fileID: 21300060, guid: fab3d851a44d4de449052d4d4d9309ed, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
@@ -71,7 +71,7 @@ AnimationClip:
     m_Level: 0
     m_CycleOffset: 0
     m_HasAdditiveReferencePose: 0
-    m_LoopTime: 1
+    m_LoopTime: 0
     m_LoopBlend: 0
     m_LoopBlendOrientation: 0
     m_LoopBlendPositionY: 0

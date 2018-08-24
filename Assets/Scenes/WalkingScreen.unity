@@ -1059,7 +1059,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e9812ec7a224b74ba640935883ff6e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Async: 0
+  LoadMode: 0
 --- !u!1 &708668011
 GameObject:
   m_ObjectHideFlags: 0
@@ -2337,7 +2337,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 64, y: 64}
+  m_SizeDelta: {x: 32, y: 32}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &1550784723
 Animator:
@@ -2376,7 +2376,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: a702f0fcbc3977f4e904b3a7deda4903, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5df9f3187b2080243a12024270ef37b1, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
