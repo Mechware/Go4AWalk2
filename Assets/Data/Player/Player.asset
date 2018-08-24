@@ -26,4 +26,14 @@ MonoBehaviour:
   Damage:
     UseConstant: 1
     ConstantValue: 1
-    Variable: {fileID: 11400000, guid: 195838a3e41d6bf45bd1308ba62d1659, type: 2}
+    Variable: {fileID: 0}
+  CritResetModifier:
+    UseConstant: 1
+    ConstantValue: 1
+    Variable: {fileID: 0}
+  CritPerHit:
+    UseConstant: 1
+    ConstantValue: 4
+    Variable: {fileID: 0}
+  CritResetStart: 0.3
+  ResetScale: 16000

@@ -17,7 +17,8 @@ namespace G4AW2.Combat {
 
 	    public IntReference CurrentCrit;
 
-	    public FloatReference AttackSpeed;
+		public FloatReference AttackSpeed;
+	    public FloatReference HeavyAttackSpeed;
 	    public IntReference Damage;
 
 		// Events
@@ -36,13 +37,28 @@ namespace G4AW2.Combat {
 	    public IEnumerator Attack() {
 		    for (;;) {
 				yield return new WaitForSeconds(1f / AttackSpeed);
+				if(isDead)
+					break;
 			    OnAttack.Invoke(Damage);
 			}
 		}
 
-	    public void DoSwipingAttack() {
-		    Swipe swipe = Enemy.Swipes.GetSwipe(Level);
-		    OnSwipe.Invoke(swipe);
+	    public IEnumerator DoSwipingAttack() {
+		    for (;;) {
+			    yield return new WaitForSeconds(1f / HeavyAttackSpeed);
+			    if (isDead)
+				    break;
+				Swipe swipe = Enemy.Swipes.GetSwipe(Level);
+			    OnSwipe.Invoke(swipe);
+			}
+	    }
+
+	    public void SwipeCompleted(Swipe s) {
+		    OnAttack.Invoke(Damage * CurrentCrit);
+	    }
+
+	    public void SwipeBroken(Swipe s) {
+		    // ?
 	    }
 
 	    public void SetEnemy(EnemyData data, int level) {
@@ -53,17 +69,18 @@ namespace G4AW2.Combat {
 		    CurrentHealth.Value = MaxHealth;
 		    Damage.Value = data.GetDamage(level);
 		    AttackSpeed.Value = data.GetAttackSpeed(level);
+			HeavyAttackSpeed.Value = data.GetHeavyAttackSpeed(level);
 
 		    CurrentCrit.Value = 0;
-			StopCoroutine("Attack");
+			StopAllCoroutines();
 		    StartCoroutine(Attack());
+		    StartCoroutine(DoSwipingAttack());
 	    }
 
 	    public void ApplyDamage(int amount) {
 		    if (isDead) return;
 		    CurrentHealth.Value -= amount;
 		    if (CurrentHealth.Value <= 0) {
-				print("Dying");
 			    isDead = true;
 				OnDeath.Invoke();
 		    }

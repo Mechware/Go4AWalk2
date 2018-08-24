@@ -10,14 +10,17 @@ namespace G4AW2.Combat.Swiping {
 	public class Vector3Drawer : MonoBehaviour {
 
 		public float PixelsPerSecond;
-		public Vector3ArrayVariable Swipe;
-		private LineRenderer lr;
+		public PersistentSetVector3 Swipe;
+		public LineRenderer lr;
 
 		void Awake() {
 			lr = GetComponent<LineRenderer>();
 		}
 
+		public bool IsAnimating = false;
 		public IEnumerator DoSwipe( Vector3[] array, float speed) {
+			IsAnimating = true;
+
 			float maxTime = LineUtils.GetLengthOfLine(array) * (1f / speed);
 			Vector3[] points = new Vector3[array.Length];
 			lr.positionCount = array.Length;
@@ -27,6 +30,14 @@ namespace G4AW2.Combat.Swiping {
 				lr.SetPositions(points);
 				yield return null;
 			}
+
+			lr.positionCount = 0;
+			IsAnimating = false;
+		}
+
+		public void Clear() {
+			StopAllCoroutines();
+			lr.positionCount = 0;
 		}
 
 		public void AnimateSwipe(Vector3[] array, float speed) {
@@ -42,13 +53,13 @@ namespace G4AW2.Combat.Swiping {
 		[ContextMenu("Animate Line")]
 		public void AnimateSwipe() {
 			StopAllCoroutines();
-			StartCoroutine(DoSwipe(Swipe, PixelsPerSecond));
+			StartCoroutine(DoSwipe(Swipe.GetList().ToArray(), PixelsPerSecond));
 		}
 
 		[ContextMenu("Show Line")]
 		public void ShowSwipe() {
-			lr.positionCount = Swipe.Value.Length;
-			lr.SetPositions(Swipe.Value);
+			lr.positionCount = Swipe.GetList().Count;
+			lr.SetPositions(Swipe.GetList().ToArray());
 		}
 	}
 }

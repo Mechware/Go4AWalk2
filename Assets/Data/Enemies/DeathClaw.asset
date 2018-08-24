@@ -15,4 +15,6 @@ MonoBehaviour:
   BaseHealth: 100
   BaseArmor: 0
   BaseAttackSpeed: 1
+  BaseHeavyAttackSpeed: 0.5
   BaseDamage: 1
+  Swipes: {fileID: 11400000, guid: 5ae2e0eda78248e4e8d0eb4f1b19a2f0, type: 2}

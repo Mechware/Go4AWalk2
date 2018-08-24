@@ -1,18 +1,14 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using G4AW2.Combat.Swiping;
-using UnityEditor.Sprites;
 using UnityEngine;
 
-namespace G4AW2.Data.Combat
-{
-    [CreateAssetMenu(menuName = "Data/Enemy")]
+namespace G4AW2.Data.Combat {
+	[CreateAssetMenu(menuName = "Data/Enemy")]
     public class EnemyData : FollowerData
     {
         public int BaseHealth;
         public int BaseArmor;
 	    [Tooltip("Attacks per second")] public float BaseAttackSpeed;
+	    public float BaseHeavyAttackSpeed;
 	    public int BaseDamage;
 	    public SwipeSet Swipes;
 
@@ -26,6 +22,10 @@ namespace G4AW2.Data.Combat
 
 	    public float GetAttackSpeed( int level ) {
 		    return BaseAttackSpeed;
+	    }
+
+	    public float GetHeavyAttackSpeed(int level) {
+		    return BaseHeavyAttackSpeed;
 	    }
 
 	    public int GetDamage(int level) {

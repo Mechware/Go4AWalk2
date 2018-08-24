@@ -9,6 +9,10 @@ namespace G4AW2.Combat.Swiping {
 		public Vector3Drawer drawer;
 		public Swipe Swipe;
 
+		public void AnimateSwipe(Swipe s) {
+			drawer.AnimateSwipe(s.Points, s.PixelsPerSecond);
+		}
+
 		[ContextMenu("Animate Swipe")]
 		public void AnimateSwipe() {
 			drawer.AnimateSwipe(Swipe.Points, Swipe.PixelsPerSecond);

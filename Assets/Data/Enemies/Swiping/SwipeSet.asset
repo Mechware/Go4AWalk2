@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LeveldSwipes:
   - LevelUnlocked: 1
-    PointList: {fileID: 11400000, guid: cb2426df5c5b8f64e917037b8f39ea57, type: 2}
+    PointList: {fileID: 11400000, guid: 740884a5ce6535a4991fbb6451af6146, type: 2}
     MinSpeedCurve:
       serializedVersion: 2
       m_Curve:
@@ -63,7 +63,7 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
   - LevelUnlocked: 1
-    PointList: {fileID: 11400000, guid: d4890027c976da94da88315dbe3d8d5f, type: 2}
+    PointList: {fileID: 11400000, guid: 740884a5ce6535a4991fbb6451af6146, type: 2}
     MinSpeedCurve:
       serializedVersion: 2
       m_Curve:
@@ -113,7 +113,7 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
   - LevelUnlocked: 0
-    PointList: {fileID: 11400000, guid: 092b537ff1b610641a76db25b44c3ea6, type: 2}
+    PointList: {fileID: 11400000, guid: 740884a5ce6535a4991fbb6451af6146, type: 2}
     MinSpeedCurve:
       serializedVersion: 2
       m_Curve:
@@ -155,6 +155,56 @@ MonoBehaviour:
         value: 5000
         inSlope: 1000
         outSlope: 1000
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  - LevelUnlocked: 0
+    PointList: {fileID: 11400000, guid: 740884a5ce6535a4991fbb6451af6146, type: 2}
+    MinSpeedCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1000
+        inSlope: 800
+        outSlope: 800
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 5
+        value: 5000
+        inSlope: 800
+        outSlope: 800
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    MaxSpeedCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1500
+        inSlope: 1700
+        outSlope: 1700
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 5
+        value: 10000
+        inSlope: 1700
+        outSlope: 1700
         tangentMode: 34
         weightedMode: 0
         inWeight: 0.33333334

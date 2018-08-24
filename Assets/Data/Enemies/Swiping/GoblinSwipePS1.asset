@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 272de9356b227474ebb7e2627f493a67, type: 3}
+  m_Name: GoblinSwipePS1
+  m_EditorClassIdentifier: 
+  list:
+  - {x: -247.3846, y: 746.84607, z: 10}
+  - {x: 22.153826, y: 691.4615, z: 10}
+  - {x: 236.30768, y: 569.61536, z: 10}
+  - {x: 339.6923, y: 407.15378, z: 10}
+  - {x: 406.15384, y: 37.9231, z: 10}
+  - {x: 398.76923, y: -172.53842, z: 10}
+  - {x: 269.53845, y: -456.8461, z: 10}
+  - {x: 48.000008, y: -641.4615, z: 10}
+  - {x: -155.0769, y: -696.8461, z: 10}
+  OnAdd:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: CustomEvents.UnityEventVector3, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnRemove:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: CustomEvents.UnityEventVector3, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnChange:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: CustomEvents.UnityEventVector3, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null

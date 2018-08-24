@@ -12,7 +12,7 @@ namespace G4AW2.Combat.Swiping {
 		[System.Serializable]
 		public class LeveledSwipe {
 			public int LevelUnlocked;
-			public Vector3ArrayVariable PointList;
+			public PersistentSetVector3 PointList;
 			public AnimationCurve MinSpeedCurve;
 			public AnimationCurve MaxSpeedCurve;
 		}
@@ -23,7 +23,7 @@ namespace G4AW2.Combat.Swiping {
 			Swipe s= new Swipe();
 			LeveledSwipe ls = LeveldSwipes.Where(swipe => swipe.LevelUnlocked <= level).ToList().GetRandom();
 
-			s.Points = ls.PointList.Value;
+			s.Points = ls.PointList.GetList().ToArray();
 			s.PixelsPerSecond = Random.Range(ls.MinSpeedCurve.Evaluate(level), ls.MaxSpeedCurve.Evaluate(level));
 
 			return s;

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using CustomEvents;
+using G4AW2.Combat;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Data/Player")]
@@ -9,8 +10,11 @@ public class Player : ScriptableObject {
     public IntReference MaxHealth;
 
     public IntReference Health;
-    public IntReference Crit;
+    public FloatReference Crit;
     public IntReference Damage;
+
+	public FloatReference CritResetModifier;
+	public FloatReference CritPerHit;
 
 	public void OnEnable() {
 		MaxHealth.Value = PlayerPrefs.GetInt("PlayerMaxHealth", 100);
@@ -22,29 +26,35 @@ public class Player : ScriptableObject {
 	public void OnDisable() {
 		PlayerPrefs.SetInt("PlayerMaxHealth", MaxHealth.Value);
 		PlayerPrefs.SetInt("PlayerHealth", Health.Value);
-		PlayerPrefs.SetInt("PlayerCrit", Crit.Value);
+		PlayerPrefs.SetFloat("PlayerCrit", Crit.Value);
 		PlayerPrefs.SetInt("PlayerDamage", Damage.Value);
 	}
 
     public int GetLightDamage() {
-        int crit = Crit;
-        crit = crit > Random.Range(0, 100) ? 0 : Mathf.Min(crit + 5, 100);
-        Crit.Value = crit;
-        return Damage;
+		SetCritValue();
+		return Damage;
     }
 
-    public int GetHeavyDamage( Vector3[] points ) {
-        int temp_crit = Crit;
-        Crit.Value = 0;
-        return Damage * temp_crit / 10;
+    public int GetHeavyDamage( float totalCritUsed ) {
+        return Damage * Mathf.CeilToInt(totalCritUsed / 10);
     }
 
     public void Hit(int damage) {
         Health.Value -= damage;
     }
 
+	private void SetCritValue() {
+		Crit.Value = ShouldReset() ? 0 : Mathf.Min(CritPerHit + Crit, 100);
+	}
+
+	public float CritResetStart = 0.3f;
+	public float ResetScale = 16000f;
+	private bool ShouldReset() {
+		return Random.Range(CritResetStart, 1 + CritResetStart) * CritResetModifier <= (Crit * Crit / ResetScale);
+	}
+
 #if UNITY_EDITOR
-    [ContextMenu("Restore Health")]
+	[ContextMenu("Restore Health")]
     private void ResetHealth() {
         Health.Value = MaxHealth;
     }

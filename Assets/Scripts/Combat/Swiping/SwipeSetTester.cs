@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using CustomEvents;
 using UnityEngine;
 
 namespace G4AW2.Combat.Swiping {
