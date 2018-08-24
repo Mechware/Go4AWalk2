@@ -7,7 +7,7 @@ using UnityEngine.Events;
 namespace CustomEvents {
 	public class RuntimeSetGeneric<T, TEvent> : ScriptableObject where TEvent : UnityEvent<T> {
 		public List<T> Value { get { return list; } }
-		[ShowInInspector][ReadOnly] private List<T> list;
+		[ShowInInspector][ReadOnly] private List<T> list = new List<T>();
 
 		public TEvent OnAdd, OnRemove, OnChange;
 

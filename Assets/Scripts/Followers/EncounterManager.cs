@@ -4,6 +4,7 @@ using CustomEvents;
 using G4AW2.Combat;
 using G4AW2.Data.Combat;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EncounterManager : MonoBehaviour {
 	public EnemyDisplay Display;
@@ -15,5 +16,9 @@ public class EncounterManager : MonoBehaviour {
 			Display.Enemy = (EnemyData) CurrentFollowers.Value[0];
 			CurrentFollowers.Value.RemoveAt(0);
 		}	
+	}
+
+	void EncounterOver() {
+		SceneManager.LoadScene("WalkingScreen");
 	}
 }

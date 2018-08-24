@@ -87,6 +87,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c22f4076bf549e4b833da11ba0e5b10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FollowerClicked:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 61e1fe40559fc8b4b9991dc7ad0f53ce, type: 2}
+        m_MethodName: Raise
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: CustomEvents.UnityEventFollowerData, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!114 &114851802544374054
 MonoBehaviour:
   m_ObjectHideFlags: 1
