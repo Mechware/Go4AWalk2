@@ -12,7 +12,7 @@ public class ScrollingImages : MonoBehaviour {
 	public Image ImagePrefab;
 	public int NumberRepeats;
 	public bool Playing = true;
-
+	public bool ForceInt = false;
 
 	public List<Image> Images = new List<Image>();
 
@@ -56,7 +56,7 @@ public class ScrollingImages : MonoBehaviour {
 		}
 
 		roundedPosition = position;
-		roundedPosition.x = Mathf.RoundToInt(position.x);
+		if(ForceInt) roundedPosition.x = Mathf.RoundToInt(position.x);
 
 		rt.localPosition = roundedPosition;
 	}

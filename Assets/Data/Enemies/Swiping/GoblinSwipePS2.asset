@@ -11,10 +11,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 272de9356b227474ebb7e2627f493a67, type: 3}
   m_Name: GoblinSwipePS2
   m_EditorClassIdentifier: 
-  list:
-  - {x: -364.2515, y: 431.98447, z: 10}
-  - {x: -80.63587, y: -96.31912, z: 10}
-  - {x: 397.61798, y: -652.42816, z: 10}
+  List:
+  - {x: -313.84616, y: 344.38464, z: 10}
+  - {x: -354.46152, y: 1, z: 10}
+  - {x: -354.46152, y: -530.69226, z: 10}
   OnAdd:
     m_PersistentCalls:
       m_Calls: []

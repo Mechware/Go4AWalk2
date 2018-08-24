@@ -1,5 +1,6 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -12,9 +13,8 @@ namespace G4AW2.Utils {
         public UnityEvent OnFinish;
 
         // TODO: Make this actually read only through an editor script
-        [Header("Read Only")] 
-        public float ThrowTime;
-        public float CurrentTime;
+        [ReadOnly] public float ThrowTime;
+		[ReadOnly] public float CurrentTime;
 
         // Use this for initialization
         void Start() {

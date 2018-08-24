@@ -23,7 +23,7 @@ namespace G4AW2.Combat.Swiping {
 			Swipe s= new Swipe();
 			LeveledSwipe ls = LeveldSwipes.Where(swipe => swipe.LevelUnlocked <= level).ToList().GetRandom();
 
-			s.Points = ls.PointList.GetList().ToArray();
+			s.Points = ls.PointList.List.ToArray();
 			s.PixelsPerSecond = Random.Range(ls.MinSpeedCurve.Evaluate(level), ls.MaxSpeedCurve.Evaluate(level));
 
 			return s;

@@ -10,9 +10,9 @@ namespace G4AW2.Followers {
         public RuntimeSetFollowerData AllPossibleFollowers;
         public RuntimeSetFollowerData CurrentFollowers;
 
-        
         public void AddFollower() {
             // randomly choose a follower!
+	        if (CurrentFollowers.Value.Count >= 10) return;
             CurrentFollowers.Add(AllPossibleFollowers.Value.GetRandom());
         }
     }

@@ -8,24 +8,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 272de9356b227474ebb7e2627f493a67, type: 3}
-  m_Name: GoblinSwipePS1
+  m_Script: {fileID: 11500000, guid: 713e87baa4110a74fa28d2f3344de130, type: 3}
+  m_Name: TestFollowerSet
   m_EditorClassIdentifier: 
   List:
-  - {x: 306.46152, y: 480.99997, z: 10}
-  - {x: 317.53845, y: -320.23077, z: 10}
+  - {fileID: 11400000, guid: 5f3657d9e1ca86f4f9f31075294cfcc9, type: 2}
   OnAdd:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: CustomEvents.UnityEventVector3, Assembly-CSharp, Version=0.0.0.0,
+    m_TypeName: CustomEvents.UnityEventFollowerData, Assembly-CSharp, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   OnRemove:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: CustomEvents.UnityEventVector3, Assembly-CSharp, Version=0.0.0.0,
+    m_TypeName: CustomEvents.UnityEventFollowerData, Assembly-CSharp, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   OnChange:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: CustomEvents.UnityEventVector3, Assembly-CSharp, Version=0.0.0.0,
+    m_TypeName: CustomEvents.UnityEventFollowerData, Assembly-CSharp, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null

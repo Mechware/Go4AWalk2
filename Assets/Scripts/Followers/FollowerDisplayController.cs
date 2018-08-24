@@ -15,8 +15,11 @@ namespace G4AW2.Followers {
 	    public FollowerDisplay DisplayPrefab;
 		private List<FollowerDisplay> AllFollowers = new List<FollowerDisplay>();
 
+		void Start() {
+			FollowersChanged(null);
+		}
+
 	    public void FollowersChanged(FollowerData d) {
-            print("Followers changed");
 
             // Should really re use these
 	        AllFollowers.ForEach(kvp => { Destroy(kvp.gameObject); });
