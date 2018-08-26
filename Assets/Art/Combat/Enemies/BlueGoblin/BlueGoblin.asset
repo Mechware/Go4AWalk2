@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92ed46357c010e84ea5a3394f3ad888d, type: 3}
+  m_Name: BlueGoblin
+  m_EditorClassIdentifier: 
+  SideIdleAnimation: {fileID: 7400000, guid: 62a485c23053823458623139150d45b1, type: 2}
+  RandomAnimation: {fileID: 7400000, guid: bfabafed0d27c544f822a78e9e7e34a0, type: 2}
+  MinTimeBetweenRandomAnims: 10
+  MaxTimeBetweenRandomAnims: 20
+  Idle: {fileID: 7400000, guid: eb21a9b6f2b065d49ad671fb4d3333bd, type: 2}
+  Flinch: {fileID: 7400000, guid: 14efa9dd78134ea488a7fe43063eb149, type: 2}
+  Attack: {fileID: 7400000, guid: 8107c8c83f6c11b448910a22b3c6534d, type: 2}
+  HeavyAttack: {fileID: 7400000, guid: 8107c8c83f6c11b448910a22b3c6534d, type: 2}
+  Death: {fileID: 7400000, guid: a4c05cc8e086d1140a51c737c39582eb, type: 2}
+  Dead: {fileID: 7400000, guid: 52d2386ab3747ea43b89705d65471247, type: 2}
+  BaseHealth: 50
+  BaseArmor: 0
+  BaseAttackSpeed: 0.2
+  BaseHeavyAttackSpeed: 0.1
+  BaseDamage: 1
+  Swipes: {fileID: 11400000, guid: 5ae2e0eda78248e4e8d0eb4f1b19a2f0, type: 2}

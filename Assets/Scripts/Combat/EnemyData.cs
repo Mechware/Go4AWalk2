@@ -3,9 +3,16 @@ using UnityEngine;
 
 namespace G4AW2.Data.Combat {
 	[CreateAssetMenu(menuName = "Data/Enemy")]
-    public class EnemyData : FollowerData
-    {
-        public int BaseHealth;
+    public class EnemyData : FollowerData {
+
+		public AnimationClip Idle;
+		public AnimationClip Flinch;
+		public AnimationClip Attack;
+		public AnimationClip HeavyAttack;
+		public AnimationClip Death;
+		public AnimationClip Dead;
+
+		public int BaseHealth;
         public int BaseArmor;
 	    [Tooltip("Attacks per second")] public float BaseAttackSpeed;
 	    public float BaseHeavyAttackSpeed;

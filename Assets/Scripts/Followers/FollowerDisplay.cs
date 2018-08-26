@@ -30,7 +30,7 @@ namespace G4AW2.Followers {
 			Animator.runtimeAnimatorController = aoc;
 
 			if (Data != null) {
-				aoc["Idle"] = Data.SittingAnimation;
+				aoc["Idle"] = Data.SideIdleAnimation;
 				if (Data.HasRandomAnimation)
 					aoc["Random"] = Data.RandomAnimation;
 			}
@@ -52,7 +52,7 @@ namespace G4AW2.Followers {
 			Data = data;
 			print("Setting data: " + Data.name);
 
-			aoc["Idle"] = Data.SittingAnimation;
+			aoc["Idle"] = Data.SideIdleAnimation;
 			if (Data.HasRandomAnimation) {
 				aoc["Random"] = Data.RandomAnimation;
 				doRandomTime = Random.Range(Data.MinTimeBetweenRandomAnims, Data.MaxTimeBetweenRandomAnims);

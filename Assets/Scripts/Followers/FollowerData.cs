@@ -6,7 +6,7 @@ namespace G4AW2.Data {
 
 	public abstract class FollowerData : ScriptableObject {
 
-		public AnimationClip SittingAnimation;
+		public AnimationClip SideIdleAnimation;
 		public AnimationClip RandomAnimation;
 		public bool HasRandomAnimation { get { return RandomAnimation != null; } }
 

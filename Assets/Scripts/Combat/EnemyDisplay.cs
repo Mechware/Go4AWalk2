@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 namespace G4AW2.Combat {
+	[RequireComponent(typeof(Animator))]
     public class EnemyDisplay : MonoBehaviour {
 
 		public EnemyData Enemy;
@@ -25,6 +26,7 @@ namespace G4AW2.Combat {
 	    public UnityEventInt OnAttack;
 	    public UnityEvent OnDeath;
 	    public UnityEventSwipe OnSwipe;
+	    public UnityEventInt OnHit;
 
 		private bool isDead = false;
 
@@ -75,16 +77,28 @@ namespace G4AW2.Combat {
 			StopAllCoroutines();
 		    StartCoroutine(Attack());
 		    StartCoroutine(DoSwipingAttack());
-	    }
+
+		    AnimatorOverrideController aoc = (AnimatorOverrideController) GetComponent<Animator>().runtimeAnimatorController;
+		    aoc["Death"] = Enemy.Death;
+		    aoc["Dead"] = Enemy.Dead;
+			aoc["Flinch"] = Enemy.Flinch;
+		    aoc["HeavyAttack"] = Enemy.HeavyAttack;
+		    aoc["Idle"] = Enemy.Idle;
+		    aoc["LightAttack"] = Enemy.Attack;
+		}
 
 	    public void ApplyDamage(int amount) {
 		    if (isDead) return;
-		    CurrentHealth.Value -= amount;
+
+			CurrentHealth.Value -= amount;
 		    if (CurrentHealth.Value <= 0) {
 			    isDead = true;
-				OnDeath.Invoke();
+			    OnDeath.Invoke();
 		    }
-	    }
+		    else {
+				OnHit.Invoke(amount);
+			}
+		}
 
 #if UNITY_EDITOR
 		[ContextMenu("Reload Enemy")]
