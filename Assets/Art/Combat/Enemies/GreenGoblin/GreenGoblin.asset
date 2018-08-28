@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92ed46357c010e84ea5a3394f3ad888d, type: 3}
+  m_Name: GreenGoblin
+  m_EditorClassIdentifier: 
+  SideIdleAnimation: {fileID: 7400000, guid: 4a67940ef3d0c684d84eca9814d5c5f7, type: 2}
+  RandomAnimation: {fileID: 7400000, guid: 970f69169b76f9244b1a0f4f8bd46789, type: 2}
+  MinTimeBetweenRandomAnims: 30
+  MaxTimeBetweenRandomAnims: 180
+  Idle: {fileID: 7400000, guid: 9cb0e690ea8179d4cb666208c6ef2de7, type: 2}
+  Flinch: {fileID: 7400000, guid: e135ca2035d24204d961c34aa7c738fc, type: 2}
+  Attack: {fileID: 7400000, guid: 14434a7af4c54c445b10eebecd1b08c7, type: 2}
+  HeavyAttack: {fileID: 7400000, guid: 14434a7af4c54c445b10eebecd1b08c7, type: 2}
+  Death: {fileID: 7400000, guid: 8506f87f1499db04f9623698cd35cfd1, type: 2}
+  Dead: {fileID: 7400000, guid: 1df5577d6344553418ad332125ed9f0f, type: 2}
+  BaseHealth: 0
+  BaseArmor: 0
+  BaseAttackSpeed: 0
+  BaseHeavyAttackSpeed: 0
+  BaseDamage: 0
+  Swipes: {fileID: 0}
