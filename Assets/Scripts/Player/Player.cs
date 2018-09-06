@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using CustomEvents;
-using G4AW2.Combat;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Data/Player")]
@@ -10,7 +7,7 @@ public class Player : ScriptableObject {
     public IntReference MaxHealth;
 
     public IntReference Health;
-    public FloatReference Crit;
+    public FloatReference Power;
     public IntReference Damage;
 
 	public FloatReference CritResetModifier;
@@ -19,14 +16,14 @@ public class Player : ScriptableObject {
 	public void OnEnable() {
 		MaxHealth.Value = PlayerPrefs.GetInt("PlayerMaxHealth", 100);
 		Health.Value = PlayerPrefs.GetInt("PlayerHealth", 100);
-		Crit.Value = PlayerPrefs.GetInt("PlayerCrit", 0);
+		Power.Value = PlayerPrefs.GetInt("PlayerPower", 0);
 		Damage.Value = PlayerPrefs.GetInt("PlayerDamage", 1);
 	}
 
 	public void OnDisable() {
 		PlayerPrefs.SetInt("PlayerMaxHealth", MaxHealth.Value);
 		PlayerPrefs.SetInt("PlayerHealth", Health.Value);
-		PlayerPrefs.SetFloat("PlayerCrit", Crit.Value);
+		PlayerPrefs.SetFloat("PlayerPower", Power.Value);
 		PlayerPrefs.SetInt("PlayerDamage", Damage.Value);
 	}
 
@@ -44,13 +41,13 @@ public class Player : ScriptableObject {
     }
 
 	private void SetCritValue() {
-		Crit.Value = ShouldReset() ? 0 : Mathf.Min(CritPerHit + Crit, 100);
+		Power.Value = ShouldReset() ? 0 : Mathf.Min(CritPerHit + Power, 100);
 	}
 
 	public float CritResetStart = 0.3f;
 	public float ResetScale = 16000f;
 	private bool ShouldReset() {
-		return Random.Range(CritResetStart, 1 + CritResetStart) * CritResetModifier <= (Crit * Crit / ResetScale);
+		return Random.Range(CritResetStart, 1 + CritResetStart) * CritResetModifier <= (Power * Power / ResetScale);
 	}
 
 #if UNITY_EDITOR

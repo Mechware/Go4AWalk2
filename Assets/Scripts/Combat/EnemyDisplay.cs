@@ -16,16 +16,17 @@ namespace G4AW2.Combat {
 		public IntReference MaxHealth;
 	    public IntReference CurrentHealth;
 
-	    public IntReference CurrentCrit;
+        public FloatReference TimeToCounter;
+		public FloatReference TimeBetweenLightAttacks;
+	    public FloatReference TimeBetweenHeavyAttacks;
+	    public IntReference HeavyDamage;
 
-		public FloatReference AttackSpeed;
-	    public FloatReference HeavyAttackSpeed;
-	    public IntReference Damage;
-
-		// Events
-	    public UnityEventInt OnAttack;
+        // Events
+        public UnityEventSwipe OnSwipe;
+        public UnityEvent OnSwipeBreak;
+        public UnityEventFloat OnSwipeHit;
+	    public UnityEventInt OnLightAttack;
 	    public UnityEvent OnDeath;
-	    public UnityEventSwipe OnSwipe;
 	    public UnityEventInt OnHit;
 
 		private bool isDead = false;
@@ -38,29 +39,26 @@ namespace G4AW2.Combat {
 
 	    public IEnumerator Attack() {
 		    for (;;) {
-				yield return new WaitForSeconds(1f / AttackSpeed);
+				yield return new WaitForSeconds(1f / TimeBetweenLightAttacks);
 				if(isDead)
 					break;
-			    OnAttack.Invoke(Damage);
+                OnLightAttack.Invoke(HeavyDamage);
 			}
 		}
 
 	    public IEnumerator DoSwipingAttack() {
 		    for (;;) {
-			    yield return new WaitForSeconds(1f / HeavyAttackSpeed);
+			    yield return new WaitForSeconds(1f / TimeBetweenHeavyAttacks);
 			    if (isDead)
 				    break;
 				Swipe swipe = Enemy.Swipes.GetSwipe(Level);
 			    OnSwipe.Invoke(swipe);
-			}
-	    }
+                yield return new WaitForSeconds(swipe.GetEntireSwipeTime());
+            }
+        }
 
 	    public void SwipeCompleted(Swipe s) {
-		    OnAttack.Invoke(Damage * CurrentCrit);
-	    }
-
-	    public void SwipeBroken(Swipe s) {
-		    // ?
+            OnSwipeHit.Invoke(HeavyDamage);
 	    }
 
 	    public void SetEnemy(EnemyData data, int level) {
@@ -69,22 +67,22 @@ namespace G4AW2.Combat {
 
 		    MaxHealth.Value = data.GetHealth(level);
 		    CurrentHealth.Value = MaxHealth;
-		    Damage.Value = data.GetDamage(level);
-		    AttackSpeed.Value = data.GetAttackSpeed(level);
-			HeavyAttackSpeed.Value = data.GetHeavyAttackSpeed(level);
+		    HeavyDamage.Value = data.GetHeavyDamage(level);
+		    TimeBetweenLightAttacks.Value = data.GetTimeBetweenLightAttacks(level);
+			TimeBetweenHeavyAttacks.Value = data.GetTimeBetweenHeavyAttacks(level);
 
-		    CurrentCrit.Value = 0;
 			StopAllCoroutines();
-		    StartCoroutine(Attack());
+		    //StartCoroutine(Attack());
 		    StartCoroutine(DoSwipingAttack());
 
 		    AnimatorOverrideController aoc = (AnimatorOverrideController) GetComponent<Animator>().runtimeAnimatorController;
 		    aoc["Death"] = Enemy.Death;
 		    aoc["Dead"] = Enemy.Dead;
 			aoc["Flinch"] = Enemy.Flinch;
-		    aoc["HeavyAttack"] = Enemy.HeavyAttack;
+            aoc["LightAttack"] = Enemy.LightAttack;
+            aoc["BeforeSwipeAttack"] = Enemy.BeforeSwipeAttack;
+		    aoc["SwipeAttack"] = Enemy.SwipeAttack;
 		    aoc["Idle"] = Enemy.Idle;
-		    aoc["LightAttack"] = Enemy.Attack;
 		}
 
 	    public void ApplyDamage(int amount) {

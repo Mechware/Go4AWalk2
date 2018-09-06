@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using G4AW2.Data.Combat;
@@ -37,8 +38,10 @@ namespace G4AW2.Tools {
 		public Anim[] animations = {
 			new Anim("Idle", 0, 500),
 			new Anim("Flinch", 0, 125),
-			new Anim("Attack", 0, 125),
-			new Anim("Death", 0, 250),
+			new Anim("SwipeAttack", 0, 125),
+			new Anim("BeforeSwipeAttack", 0, 125),
+			new Anim("LightAttack", 0, 125),
+            new Anim("Death", 0, 250),
 			new Anim("SideIdle", 0, 125),
 			new Anim("SideRandom", 0, 125)
 		};
@@ -123,6 +126,7 @@ namespace G4AW2.Tools {
 				}
 
 				Sprite[] spriteSheet = AssetDatabase.LoadAllAssetsAtPath(path).OfType<Sprite>().ToArray();
+                spriteSheet = spriteSheet.OrderBy(l => l.name, new NaturalComparer()).ToArray();
 
 				List<Anim> anims = new List<Anim>();
 				int totalFrameCount = 0; 
@@ -153,10 +157,6 @@ namespace G4AW2.Tools {
 				totalFrameCount = 0;
 				for (int i = 0; i < anims.Count; i++) {
 					AnimationClip ac = CreateAnimation(anims[i], spriteSheet.Skip(totalFrameCount).Take(anims[i].frameCount).ToArray(), EnemyName, path);
-					// If this is the death animation then create a dead animation that is just the last frame of the death animation
-					if (anims[i].name.Equals("Death")) {
-						enemyScriptableObject.Dead = CreateAnimation(new Anim("Dead", 1, 1000), new [] {spriteSheet[totalFrameCount + anims[i].frameCount-1]}, EnemyName, path);
-					}
 
 					switch (anims[i].name) {
 						case "Idle":
@@ -165,13 +165,20 @@ namespace G4AW2.Tools {
 						case "Flinch":
 							enemyScriptableObject.Flinch = ac;
 							break;
-						case "Attack":
-							enemyScriptableObject.Attack = ac;
-							enemyScriptableObject.HeavyAttack = ac;
+						case "SwipeAttack":
+							enemyScriptableObject.SwipeAttack = ac;
 							break;
+                        case "BeforeSwipeAttack":
+                            enemyScriptableObject.BeforeSwipeAttack = ac;
+                            break;
+                        case "LightAttack":
+                            enemyScriptableObject.LightAttack = ac;
+                            break;
 						case "Death":
 							enemyScriptableObject.Death = ac;
-							break;
+                            // If this is the death animation then create a dead animation that is just the last frame of the death animation
+                            enemyScriptableObject.Dead = CreateAnimation(new Anim("Dead", 1, 1000), new[] { spriteSheet[totalFrameCount + anims[i].frameCount - 1] }, EnemyName, path);
+                            break;
 						case "SideIdle":
 							enemyScriptableObject.SideIdleAnimation = ac;
 							break;
@@ -216,6 +223,65 @@ namespace G4AW2.Tools {
 
 			return clip;
 		}
-	}
+
+        private class NaturalComparer : IComparer<string> {
+            private readonly CultureInfo _CultureInfo = CultureInfo.CurrentCulture;
+
+            public int Compare( string x, string y ) {
+                // simple cases
+                if (x == y) // also handles null
+                    return 0;
+                if (x == null)
+                    return -1;
+                if (y == null)
+                    return +1;
+
+                int ix = 0;
+                int iy = 0;
+                while (ix < x.Length && iy < y.Length) {
+                    if (Char.IsDigit(x[ix]) && Char.IsDigit(y[iy])) {
+                        // We found numbers, so grab both numbers
+                        int ix1 = ix++;
+                        int iy1 = iy++;
+                        while (ix < x.Length && Char.IsDigit(x[ix]))
+                            ix++;
+                        while (iy < y.Length && Char.IsDigit(y[iy]))
+                            iy++;
+                        string numberFromX = x.Substring(ix1, ix - ix1);
+                        string numberFromY = y.Substring(iy1, iy - iy1);
+
+                        // Pad them with 0's to have the same length
+                        int maxLength = Math.Max(
+                            numberFromX.Length,
+                            numberFromY.Length);
+                        numberFromX = numberFromX.PadLeft(maxLength, '0');
+                        numberFromY = numberFromY.PadLeft(maxLength, '0');
+
+                        int comparison = _CultureInfo
+                            .CompareInfo.Compare(numberFromX, numberFromY);
+                        if (comparison != 0)
+                            return comparison;
+                    } else {
+                        int comparison = _CultureInfo
+                            .CompareInfo.Compare(x, ix, 1, y, iy, 1);
+                        if (comparison != 0)
+                            return comparison;
+                        ix++;
+                        iy++;
+                    }
+                }
+
+                // we should not be here with no parts left, they're equal
+                Debug.Assert(ix < x.Length || iy < y.Length);
+
+                // we still got parts of x left, y comes first
+                if (ix < x.Length)
+                    return +1;
+
+                // we still got parts of y left, x comes first
+                return -1;
+            }
+        }
+    }
 }
 

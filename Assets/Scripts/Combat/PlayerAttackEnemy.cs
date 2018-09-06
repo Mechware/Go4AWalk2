@@ -39,9 +39,7 @@ public class PlayerAttackEnemy : MonoBehaviour {
     }
 
     public void OnScreenSwipe(Vector3[] points) {
-        Enemy.ApplyDamage(Player.GetHeavyDamage(totalCritUsed));
-	    totalCritUsed = 0;
-	    swiping = false;
+        
     }
 
     public void AttackPlayer(int damage) {
@@ -66,13 +64,7 @@ public class PlayerAttackEnemy : MonoBehaviour {
 
 		float distanceChange = (line[0] - line[1]).magnitude;
 		distanceChange = Mathf.Max(distanceChange, 200f*Time.deltaTime);
-		float critUsed = distanceChange * CritPerPixel;
-		totalCritUsed += critUsed;
-		Player.Crit.Value -= critUsed;
-		Player.Crit.Value = Mathf.Max(0, Player.Crit);
-		if (Player.Crit < 1) {
-			SwipingDone.Invoke();
-		}
+		
 	}
 
 	/// <summary>
