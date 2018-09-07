@@ -19,7 +19,7 @@ MonoBehaviour:
     UseConstant: 0
     ConstantValue: 0
     Variable: {fileID: 11400000, guid: f98c0dae92606424ead1fe09dd8181ed, type: 2}
-  Crit:
+  Power:
     UseConstant: 0
     ConstantValue: 0
     Variable: {fileID: 11400000, guid: 195838a3e41d6bf45bd1308ba62d1659, type: 2}
@@ -27,13 +27,8 @@ MonoBehaviour:
     UseConstant: 1
     ConstantValue: 1
     Variable: {fileID: 0}
-  CritResetModifier:
+  PowerPerBlock:
     UseConstant: 1
-    ConstantValue: 1
+    ConstantValue: 60
     Variable: {fileID: 0}
-  CritPerHit:
-    UseConstant: 1
-    ConstantValue: 4
-    Variable: {fileID: 0}
-  CritResetStart: 0.3
-  ResetScale: 16000
+  OnPowerMax: {fileID: 11400000, guid: 676de03edee86cf42b032f719f4c487c, type: 2}

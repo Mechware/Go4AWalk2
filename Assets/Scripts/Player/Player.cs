@@ -1,59 +1,56 @@
 using CustomEvents;
+using G4AW2.Combat.Swiping;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Data/Player")]
-public class Player : ScriptableObject {
+namespace G4AW2.Combat {
 
-    public IntReference MaxHealth;
+	[CreateAssetMenu(menuName = "Data/Player")]
+	public class Player : ScriptableObject {
 
-    public IntReference Health;
-    public FloatReference Power;
-    public IntReference Damage;
+		public IntReference MaxHealth;
 
-	public FloatReference CritResetModifier;
-	public FloatReference CritPerHit;
+		public IntReference Health;
+		public FloatReference Power;
+		public IntReference Damage;
 
-	public void OnEnable() {
-		MaxHealth.Value = PlayerPrefs.GetInt("PlayerMaxHealth", 100);
-		Health.Value = PlayerPrefs.GetInt("PlayerHealth", 100);
-		Power.Value = PlayerPrefs.GetInt("PlayerPower", 0);
-		Damage.Value = PlayerPrefs.GetInt("PlayerDamage", 1);
-	}
+		public FloatReference PowerPerBlock;
+		public GameEvent OnPowerMax;
 
-	public void OnDisable() {
-		PlayerPrefs.SetInt("PlayerMaxHealth", MaxHealth.Value);
-		PlayerPrefs.SetInt("PlayerHealth", Health.Value);
-		PlayerPrefs.SetFloat("PlayerPower", Power.Value);
-		PlayerPrefs.SetInt("PlayerDamage", Damage.Value);
-	}
+		public void OnEnable() {
+			MaxHealth.Value = PlayerPrefs.GetInt("PlayerMaxHealth", 100);
+			Health.Value = PlayerPrefs.GetInt("PlayerHealth", 100);
+			Power.Value = PlayerPrefs.GetInt("PlayerPower", 0);
+			Damage.Value = PlayerPrefs.GetInt("PlayerDamage", 1);
+		}
 
-    public int GetLightDamage() {
-		SetCritValue();
-		return Damage;
-    }
+		public void OnDisable() {
+			PlayerPrefs.SetInt("PlayerMaxHealth", MaxHealth.Value);
+			PlayerPrefs.SetInt("PlayerHealth", Health.Value);
+			PlayerPrefs.SetFloat("PlayerPower", Power.Value);
+			PlayerPrefs.SetInt("PlayerDamage", Damage.Value);
+		}
 
-    public int GetHeavyDamage( float totalCritUsed ) {
-        return Damage * Mathf.CeilToInt(totalCritUsed / 10);
-    }
+		public int GetLightDamage() {
+			return Damage;
+		}
 
-    public void Hit(int damage) {
-        Health.Value -= damage;
-    }
+		public void Hit( int damage ) {
+			Health.Value -= damage;
+		}
 
-	private void SetCritValue() {
-		Power.Value = ShouldReset() ? 0 : Mathf.Min(CritPerHit + Power, 100);
-	}
-
-	public float CritResetStart = 0.3f;
-	public float ResetScale = 16000f;
-	private bool ShouldReset() {
-		return Random.Range(CritResetStart, 1 + CritResetStart) * CritResetModifier <= (Power * Power / ResetScale);
-	}
+		public void Block( Swipe s ) {
+			Power.Value = Mathf.Min(Power.Value + PowerPerBlock, 100f);
+			if (Power.Value == 100f) {
+				OnPowerMax.Raise();
+			}
+		}
 
 #if UNITY_EDITOR
-	[ContextMenu("Restore Health")]
-    private void ResetHealth() {
-        Health.Value = MaxHealth;
-    }
+		[ContextMenu("Restore Health")]
+		private void ResetHealth() {
+			Health.Value = MaxHealth;
+		}
 #endif
+	}
+
 }
