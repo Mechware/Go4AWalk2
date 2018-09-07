@@ -56,8 +56,6 @@ namespace G4AW2.Tools {
 		}
 
 		void OnEnable() {
-			Debug.Log("Enabled");
-
 			var ob = new SerializedObject(this);
 			AnimationOrder = new ReorderableList(ob, ob.FindProperty("animations"), true, false, false, false);
 			AnimationOrder.drawElementCallback = (rect, index, active, focused) => {
