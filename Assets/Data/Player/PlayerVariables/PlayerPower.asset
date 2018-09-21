@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 78231fd036c122f49852bd51f9ba02f5, type: 3}
-  m_Name: PlayerCrit
+  m_Name: PlayerPower
   m_EditorClassIdentifier: 
   DeveloperDescription: 
   OnChange:

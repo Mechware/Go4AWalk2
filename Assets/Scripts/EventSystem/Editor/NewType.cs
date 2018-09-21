@@ -12,7 +12,7 @@ namespace G4AW2.Events.Editor {
 		private static readonly string UnityEventScript = @"
 {0}
 namespace {1} {{
-	[System.Serializable] public class UnityEvent{3} : UnityEngine.Events.UnityEvent<{2}> {{ }}
+	[System.Serializable] public class UnityEvent{3} : GenericUnityEvent<{2}> {{ }}
 }}
 ";
 		private static readonly string GameEventScript = @"

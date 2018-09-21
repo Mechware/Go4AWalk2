@@ -43,6 +43,33 @@ namespace G4AW2.Utils {
 			}
 			return len;
 		}
+
+		/// <summary>
+		/// Checks if the line renderer intersects with the line between p0 and p1.
+		/// </summary>
+		/// <param name="lr"></param>
+		/// <param name="p0"></param>
+		/// <param name="p1"></param>
+		/// <returns></returns>
+		public static bool IsLineBetweenPoints( LineRenderer lr, Vector2 p0, Vector2 p1 ) {
+
+			for (int i = 1; i < lr.positionCount; i++) {
+				Vector2 p2 = lr.GetPosition(i - 1);
+				Vector2 p3 = lr.GetPosition(i);
+
+				Vector2 s1 = p1 - p0;
+				Vector2 s2 = p3 - p2;
+
+				// lel wtf
+				float s = (-s1.y * (p0.x - p2.x) + s1.x * (p0.y - p2.y)) / (-s2.x * s1.y + s1.x * s2.y);
+				float t = (s2.x * (p0.y - p2.y) - s2.y * (p0.x - p2.x)) / (-s2.x * s1.y + s1.x * s2.y);
+
+				if (s >= 0f && s <= 1f && t >= 0f && t <= 1f) {
+					return true;
+				}
+			}
+			return false;
+		}
 	}
 }
 
