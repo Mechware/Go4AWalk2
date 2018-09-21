@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -784,7 +784,7 @@ Prefab:
     - target: {fileID: 224434675059027854, guid: cad741b036ad304469e73e93754ccc7f,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224434675059027854, guid: cad741b036ad304469e73e93754ccc7f,
         type: 2}
@@ -1228,7 +1228,6 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: CustomEvents.UnityEventVector3Array, Assembly-CSharp, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-    Debugging: 1
   OnSwipingDistanceChange:
     m_PersistentCalls:
       m_Calls:
@@ -1245,7 +1244,6 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: CustomEvents.UnityEventVector3Array, Assembly-CSharp, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-    Debugging: 1
   SimplifyAmount: 20
   LineRenderer: {fileID: 16079077}
 --- !u!114 &1332214070
@@ -1317,7 +1315,6 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: CustomEvents.UnityEventSwipe, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
-    Debugging: 1
 --- !u!222 &1332214071
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1748,7 +1745,6 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: CustomEvents.UnityEventSwipe, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
-    Debugging: 1
   OnSwipeHit:
     m_PersistentCalls:
       m_Calls:
@@ -1776,7 +1772,6 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: CustomEvents.UnityEventInt, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
-    Debugging: 1
   OnAttackBroken:
     m_PersistentCalls:
       m_Calls:
@@ -1809,7 +1804,6 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: CustomEvents.UnityEventInt, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
-    Debugging: 1
   OnDeath:
     m_PersistentCalls:
       m_Calls:
@@ -1822,6 +1816,17 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: Death
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 826056237}
+        m_MethodName: ChangeScene
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: WalkingScreen
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
@@ -1874,7 +1879,6 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: CustomEvents.UnityEventInt, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
-    Debugging: 1
 --- !u!95 &1745320719
 Animator:
   serializedVersion: 3

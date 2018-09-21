@@ -1,17 +1,17 @@
 fileFormatVersion: 2
-guid: 5df9f3187b2080243a12024270ef37b1
+guid: d33f0bfd982a2544993a68a7e932e951
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Character-Wallking32_0
-    21300002: Character-Wallking32_1
-    21300004: Character-Wallking32_2
-    21300006: Character-Wallking32_3
-    21300008: Character-Wallking32_4
-    21300010: Character-Wallking32_5
-    21300012: Character-Wallking32_6
-    21300014: Character-Wallking32_7
-    21300016: Character-Wallking32_8
-    21300018: Character-Wallking32_9
+    21300000: RapierWalk_0
+    21300002: RapierWalk_1
+    21300004: RapierWalk_2
+    21300006: RapierWalk_3
+    21300008: RapierWalk_4
+    21300010: RapierWalk_5
+    21300012: RapierWalk_6
+    21300014: RapierWalk_7
+    21300016: RapierWalk_8
+    21300018: RapierWalk_9
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -90,22 +90,11 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-  - serializedVersion: 2
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Character-Wallking32_0
+      name: RapierWalk_0
       rect:
         serializedVersion: 2
         x: 0
@@ -113,19 +102,19 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: e9bc537e026c1694b8a0c6988325d5b0
+      spriteID: 11d5a03fdf112f945b0d1a67c0480865
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character-Wallking32_1
+      name: RapierWalk_1
       rect:
         serializedVersion: 2
         x: 32
@@ -133,19 +122,19 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 5968f84f4669cd54988bd10a1e9c918a
+      spriteID: e4f4b9d4043e5024ba68207b35db391f
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character-Wallking32_2
+      name: RapierWalk_2
       rect:
         serializedVersion: 2
         x: 64
@@ -153,19 +142,19 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: e938472698f6b4b48b8c7493387ba6b6
+      spriteID: 96adcef8fd59e124bb1ef9b645cf242a
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character-Wallking32_3
+      name: RapierWalk_3
       rect:
         serializedVersion: 2
         x: 96
@@ -173,19 +162,19 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 0374e0987d8db954aaf01bcc223b051b
+      spriteID: 7b510e9bcbd3e6141bb679f14582a2a8
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character-Wallking32_4
+      name: RapierWalk_4
       rect:
         serializedVersion: 2
         x: 128
@@ -193,19 +182,19 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 4b40971fffd5d2c449f857871db580f4
+      spriteID: 2799f2330bbcb2b478ae59896e8c8192
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character-Wallking32_5
+      name: RapierWalk_5
       rect:
         serializedVersion: 2
         x: 160
@@ -213,19 +202,19 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 8e223aab28a604c4d906b89d9f32bd55
+      spriteID: ca7e6aebe0605dc488a8c5c5be00af41
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character-Wallking32_6
+      name: RapierWalk_6
       rect:
         serializedVersion: 2
         x: 192
@@ -233,19 +222,19 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 754990a7ca733c945a96298651cd445f
+      spriteID: d4b6ef8a0a4657b47b0933b432ba08fa
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character-Wallking32_7
+      name: RapierWalk_7
       rect:
         serializedVersion: 2
         x: 224
@@ -253,19 +242,19 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 390a71351339ebc4fbe7de045dbc3ba9
+      spriteID: adbb70dd8e980344981f9253ad546ce1
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character-Wallking32_8
+      name: RapierWalk_8
       rect:
         serializedVersion: 2
         x: 0
@@ -273,19 +262,19 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 0f45143695a30314caeda96626562a0e
+      spriteID: 4a9f28c3c1e6a0e4f8617b137cc3db34
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character-Wallking32_9
+      name: RapierWalk_9
       rect:
         serializedVersion: 2
         x: 32
@@ -293,13 +282,13 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 6d66a4997e7a05940ab11562089784c9
+      spriteID: 7159e2b8fdfcf2546863baadc2f1d932
       vertices: []
       indices: 
       edges: []
@@ -307,7 +296,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 00e65c11684db0b44a293524cc788ad0
+    spriteID: 7575cb107660ba24abd2c819175895fe
     vertices: []
     indices: 
     edges: []

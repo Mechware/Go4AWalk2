@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
-using CustomeEvents;
+using CustomEvents;
 
 [CustomEditor(typeof(GameEvent))]
 public class GameEventEditor : Editor {

@@ -11,7 +11,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 537e80b66e507d44c9c2c4286ef354b4, type: 3}
   m_Name: DopePotion
   m_EditorClassIdentifier: 
+  Walking: {fileID: 0}
   image: {fileID: 0}
   value: 1000
   description: This is a dope potion
   rarity: 0
+  type: 1
