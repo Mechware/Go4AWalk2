@@ -45,7 +45,7 @@ namespace G4AW2.Tools
         public Rarity rarity;           //Item rarity
         public ItemType type;           //Item type
 
-        public Anim animation = new Anim("Walking", 10, 500);    //Animation
+        public Anim animation = new Anim("Walking", 10, 100);    //Animation
 
         public bool skipImportStep = false;
 
