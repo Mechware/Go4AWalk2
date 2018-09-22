@@ -1,17 +1,15 @@
 fileFormatVersion: 2
-guid: d33f0bfd982a2544993a68a7e932e951
+guid: 4697dd53a3131b341bec7b026f2a3eaa
 TextureImporter:
   fileIDToRecycleName:
-    21300000: RapierWalk_0
-    21300002: RapierWalk_1
-    21300004: RapierWalk_2
-    21300006: RapierWalk_3
-    21300008: RapierWalk_4
-    21300010: RapierWalk_5
-    21300012: RapierWalk_6
-    21300014: RapierWalk_7
-    21300016: RapierWalk_8
-    21300018: RapierWalk_9
+    21300000: Saber-BronzeWalking_0
+    21300002: Saber-BronzeWalking_1
+    21300004: Saber-BronzeWalking_2
+    21300006: Saber-BronzeWalking_3
+    21300008: Saber-BronzeWalking_4
+    21300010: Saber-BronzeWalking_5
+    21300012: Saber-BronzeWalking_6
+    21300014: Saber-BronzeWalking_7
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -79,22 +77,11 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-  - serializedVersion: 2
-    buildTarget: Standalone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: RapierWalk_0
+      name: Saber-BronzeWalking_0
       rect:
         serializedVersion: 2
         x: 0
@@ -108,13 +95,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3a5f2d7477ebb6743b68b3a61a043f2b
+      spriteID: 3dc0042f565273a4f9f6458cb1528c76
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RapierWalk_1
+      name: Saber-BronzeWalking_1
       rect:
         serializedVersion: 2
         x: 32
@@ -128,13 +115,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 06246c8950479384cb63f470828f9485
+      spriteID: 1500971e52c49784e982f8a1affe53da
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RapierWalk_2
+      name: Saber-BronzeWalking_2
       rect:
         serializedVersion: 2
         x: 64
@@ -148,13 +135,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8fa1e10b122b6154a9a9d890eaede543
+      spriteID: d05f14f07d39c8e498020e8dc2650c8b
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RapierWalk_3
+      name: Saber-BronzeWalking_3
       rect:
         serializedVersion: 2
         x: 96
@@ -168,13 +155,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 44f59027d3b3bf7499b0d9893e048a77
+      spriteID: bad3ae1b8f7a6a9489ed308357048820
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RapierWalk_4
+      name: Saber-BronzeWalking_4
       rect:
         serializedVersion: 2
         x: 128
@@ -188,13 +175,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e649c8ffd496932429db01c0e97fff0b
+      spriteID: 3ad22c82e5f88ee41bfa71f2aa7c94f6
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RapierWalk_5
+      name: Saber-BronzeWalking_5
       rect:
         serializedVersion: 2
         x: 160
@@ -208,13 +195,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4206dd3527b65f144b3cd5a9b8691640
+      spriteID: 458eba6c6ce879f47be9fcf76c8df2a5
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RapierWalk_6
+      name: Saber-BronzeWalking_6
       rect:
         serializedVersion: 2
         x: 192
@@ -228,13 +215,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 087332235336abd4e8428b161636d8f1
+      spriteID: 902b3b587fcf5a3449bd8cb7f4b0adba
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RapierWalk_7
+      name: Saber-BronzeWalking_7
       rect:
         serializedVersion: 2
         x: 224
@@ -248,7 +235,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 86e17f325b6d9a44da2c3bb34da15f95
+      spriteID: 1b79644ca59c23a43b626b58a8fa1d1e
       vertices: []
       indices: 
       edges: []
@@ -256,7 +243,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 7575cb107660ba24abd2c819175895fe
+    spriteID: 
     vertices: []
     indices: 
     edges: []

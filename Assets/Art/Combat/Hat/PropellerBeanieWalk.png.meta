@@ -1,17 +1,15 @@
 fileFormatVersion: 2
-guid: d33f0bfd982a2544993a68a7e932e951
+guid: ef0b3dafce7fc7547877ae0d9a097b6d
 TextureImporter:
   fileIDToRecycleName:
-    21300000: RapierWalk_0
-    21300002: RapierWalk_1
-    21300004: RapierWalk_2
-    21300006: RapierWalk_3
-    21300008: RapierWalk_4
-    21300010: RapierWalk_5
-    21300012: RapierWalk_6
-    21300014: RapierWalk_7
-    21300016: RapierWalk_8
-    21300018: RapierWalk_9
+    21300000: PropellerBeanieWalk_0
+    21300002: PropellerBeanieWalk_1
+    21300004: PropellerBeanieWalk_2
+    21300006: PropellerBeanieWalk_3
+    21300008: PropellerBeanieWalk_4
+    21300010: PropellerBeanieWalk_5
+    21300012: PropellerBeanieWalk_6
+    21300014: PropellerBeanieWalk_7
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -79,22 +77,11 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-  - serializedVersion: 2
-    buildTarget: Standalone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: RapierWalk_0
+      name: PropellerBeanieWalk_0
       rect:
         serializedVersion: 2
         x: 0
@@ -108,13 +95,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3a5f2d7477ebb6743b68b3a61a043f2b
+      spriteID: bc068e59a4f10c446aa69b792991f56f
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RapierWalk_1
+      name: PropellerBeanieWalk_1
       rect:
         serializedVersion: 2
         x: 32
@@ -128,13 +115,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 06246c8950479384cb63f470828f9485
+      spriteID: fea78e2ad956bbe4682ea73e339d7568
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RapierWalk_2
+      name: PropellerBeanieWalk_2
       rect:
         serializedVersion: 2
         x: 64
@@ -148,13 +135,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8fa1e10b122b6154a9a9d890eaede543
+      spriteID: 5671192b400cf8c49917455988de8b05
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RapierWalk_3
+      name: PropellerBeanieWalk_3
       rect:
         serializedVersion: 2
         x: 96
@@ -168,13 +155,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 44f59027d3b3bf7499b0d9893e048a77
+      spriteID: 76e84f50c8c11d94383f26f3e32a03f8
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RapierWalk_4
+      name: PropellerBeanieWalk_4
       rect:
         serializedVersion: 2
         x: 128
@@ -188,13 +175,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e649c8ffd496932429db01c0e97fff0b
+      spriteID: f7de9dee530afb7459d64896c83238ac
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RapierWalk_5
+      name: PropellerBeanieWalk_5
       rect:
         serializedVersion: 2
         x: 160
@@ -208,13 +195,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4206dd3527b65f144b3cd5a9b8691640
+      spriteID: 9f876c92202a4d44b86db2fbca32ef42
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RapierWalk_6
+      name: PropellerBeanieWalk_6
       rect:
         serializedVersion: 2
         x: 192
@@ -228,13 +215,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 087332235336abd4e8428b161636d8f1
+      spriteID: 2a4da2e680e3adf49852c3cf0fdc7e8e
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RapierWalk_7
+      name: PropellerBeanieWalk_7
       rect:
         serializedVersion: 2
         x: 224
@@ -248,7 +235,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 86e17f325b6d9a44da2c3bb34da15f95
+      spriteID: fc01970786068e241b892603ab62b5c3
       vertices: []
       indices: 
       edges: []
@@ -256,7 +243,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 7575cb107660ba24abd2c819175895fe
+    spriteID: 
     vertices: []
     indices: 
     edges: []

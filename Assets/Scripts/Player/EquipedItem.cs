@@ -46,6 +46,7 @@ namespace G4AW2.Data.Inventory
             aoc["PlayerWalking"] = clip;
 
             GetComponent<Animator>().SetTrigger("PlayerWalking");
+            GetComponentInParent<Animator>().SetTrigger("PlayerWalking");
 
 
         }
