@@ -108,7 +108,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8fbff540963bd394d85f8d77e829debc
+      spriteID: 76816ff3f3178b6478ea8a8dbadfb7d2
       vertices: []
       indices: 
       edges: []
@@ -128,7 +128,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e754a74b620110545adfe5cf042a8c94
+      spriteID: 3764dc608b2c13c4085a6133772ad169
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c711f15347ab9ed47ac249d9be6edb2a
+      spriteID: 633ef3dbd6bdcbf4bb82a0707ff00ddd
       vertices: []
       indices: 
       edges: []
@@ -168,7 +168,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2c9e095a416892a4197aaa590a8bea1f
+      spriteID: 49ad38014f7aafb48a2a398fe6da32b1
       vertices: []
       indices: 
       edges: []
@@ -188,7 +188,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7d1b2706fe7e2644eab04be9f1e1ea1c
+      spriteID: 595d3938a72e8fa4aa915f4f907b7c8d
       vertices: []
       indices: 
       edges: []
@@ -208,7 +208,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 55c43256fd0e1fd489bde32405a931c6
+      spriteID: 42ffc7e96334001468ba7ac336bb8a94
       vertices: []
       indices: 
       edges: []
@@ -228,7 +228,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1499674155b7c45479c2fddb53840a64
+      spriteID: d460d1ac20a1122489321598cf6f6ebf
       vertices: []
       indices: 
       edges: []
@@ -248,47 +248,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9e4a3239f85c8b54395ea46b070dddd4
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: RapierWalk_8
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 18c3bb3629e2f7e4b85cea28f1efb454
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: RapierWalk_9
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c6d474a1d41f57348926170656eeb4f2
+      spriteID: f3be84d2caeb8844791f931a321c2d98
       vertices: []
       indices: 
       edges: []

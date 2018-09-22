@@ -45,7 +45,7 @@ namespace G4AW2.Tools
         public Rarity rarity;           //Item rarity
         public ItemType type;           //Item type
 
-        public Anim animation = new Anim("Walking", 10, 100);    //Animation
+        public Anim animation = new Anim("Walking", 8, 100);    //Animation
 
         public bool skipImportStep = false;
 
@@ -205,9 +205,12 @@ namespace G4AW2.Tools
             AnimationUtility.SetObjectReferenceCurve(clip, curveBinding, keyframes);
             clip.wrapMode = WrapMode.Loop;
 
+            AnimationClipSettings clipSettings = AnimationUtility.GetAnimationClipSettings(clip);
+            clipSettings.loopTime = true;
+
             string saveLocation = Path.Combine(Path.GetDirectoryName(pngPath), itemName + a.name + ".anim");
 
-            AssetDatabase.CreateAsset(clip, saveLocation);
+            AssetDatabase.CreateAsset(clip, saveLocation);        
 
             return clip;
         }
