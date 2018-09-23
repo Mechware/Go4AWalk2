@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using G4AW2.Data.Inventory;
 
 namespace G4AW2.Data.DropSystem
 {
@@ -32,7 +33,14 @@ namespace G4AW2.Data.DropSystem
         public float value;
         public string description;
         public Rarity rarity;
-        public ItemType type; 
+        public ItemType type;
+        public InventoryList list;
+
+        public void addToInventory()
+        {         
+            list.getItem(this);
+        }
+
 
     }
 

@@ -40,8 +40,19 @@ public class DragObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 		deltaPosition.y = !MoveY ? 0 : Mathf.RoundToInt(deltaPosition.y) * ScaleFactor;
 		deltaPosition.z = 0; // Just in case.
 
-		position = rt.localPosition;
-		position += deltaPosition;
+        if(rt.localPosition.x > 0)
+            deltaPosition.y = 0;
+
+        if(rt.localPosition.y < 0)
+            deltaPosition.x = 0;
+
+        if (rt.localPosition.x > 0 && rt.localPosition.y < 0)
+             position.y = 0;        
+        else
+        {
+            position = rt.localPosition;
+            position += deltaPosition;
+        }
 
 		position = position.BoundVector3(MinBounds, MaxBounds);
 		rt.localPosition = position;
@@ -50,7 +61,7 @@ public class DragObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 	}
 
 	public void OnEndDrag(PointerEventData eventData) {
-	    if (rt.localPosition.Equals(MinBounds)) {
+	    if (rt.localPosition.x.Equals(MinBounds.x) && rt.localPosition.y.Equals(MaxBounds.y)) {
             OnReset.Invoke();
 	    }
 		eventData.Use();

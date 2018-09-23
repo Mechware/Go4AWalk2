@@ -17,3 +17,4 @@ MonoBehaviour:
   description: It has a little propeller on top
   rarity: 5
   type: 3
+  list: {fileID: 11400000, guid: d0fd09527a66e9748be16ba73538f66e, type: 2}

@@ -9,6 +9,7 @@ using System.IO;
 using System.Linq;
 using System.Globalization;
 using UnityEngine.UI;
+using G4AW2.Data.Inventory;
 
 namespace G4AW2.Tools
 {
@@ -83,6 +84,7 @@ namespace G4AW2.Tools
                 case ItemType.Boots:
                     EditorGUILayout.PropertyField(animProperty, true);              //select animation spritesheet
                     SpriteSizes = EditorGUILayout.IntField("Sprite Size (32/64)", SpriteSizes);     //Choose spritesize
+                    EditorGUILayout.LabelField("Don't forget to loop the animation!");
                     path = "Assets/Data/Items/Boots";
                     break;
                 case ItemType.Consumable:
@@ -91,6 +93,7 @@ namespace G4AW2.Tools
                 case ItemType.Hat:
                     EditorGUILayout.PropertyField(animProperty, true);
                     SpriteSizes = EditorGUILayout.IntField("Sprite Size (32/64)", SpriteSizes);
+                    EditorGUILayout.LabelField("Don't forget to loop the animation!");
                     path = "Assets/Data/Items/Hats";
                     break;
                 case ItemType.Material:
@@ -99,18 +102,20 @@ namespace G4AW2.Tools
                 case ItemType.Torso:
                     EditorGUILayout.PropertyField(animProperty, true);
                     SpriteSizes = EditorGUILayout.IntField("Sprite Size (32/64)", SpriteSizes);
+                    EditorGUILayout.LabelField("Don't forget to loop the animation!");
                     path = "Assets/Data/Items/Armors";
                     break;
                 case ItemType.Weapon:
                     EditorGUILayout.PropertyField(animProperty, true);
                     SpriteSizes = EditorGUILayout.IntField("Sprite Size (32/64)", SpriteSizes);
+                    EditorGUILayout.LabelField("Don't forget to loop the animation!");
                     path = "Assets/Data/Items/Weapons";
                     break;
             }
 
-            so.ApplyModifiedProperties();
+            so.ApplyModifiedProperties();           
 
-            skipImportStep = EditorGUILayout.Toggle("Skip Import Step?", skipImportStep);
+            //skipImportStep = EditorGUILayout.Toggle("Skip Import Step?", skipImportStep);
 
             if (GUILayout.Button("Create Item"))
             {
@@ -168,6 +173,7 @@ namespace G4AW2.Tools
                 itemScriptableObject.value = value;
                 itemScriptableObject.description = description;
                 itemScriptableObject.image = SpritePNG;
+                itemScriptableObject.list = (InventoryList)AssetDatabase.LoadAssetAtPath("Assets/Data/Inventory/Inventory.asset",typeof(InventoryList));
 
                 AnimationClip ac = CreateAnimation(animation, spriteSheet, ItemName, animPath);
 
