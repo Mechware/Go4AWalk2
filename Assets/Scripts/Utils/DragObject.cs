@@ -39,7 +39,9 @@ public class DragObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 		deltaPosition.x = !MoveX ? 0 : Mathf.RoundToInt(deltaPosition.x) * ScaleFactor;
 		deltaPosition.y = !MoveY ? 0 : Mathf.RoundToInt(deltaPosition.y) * ScaleFactor;
 		deltaPosition.z = 0; // Just in case.
+        
 
+        //Screen drag stuff
         if(rt.localPosition.x > 0)
             deltaPosition.y = 0;
 
@@ -53,7 +55,7 @@ public class DragObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
             position = rt.localPosition;
             position += deltaPosition;
         }
-
+        
 		position = position.BoundVector3(MinBounds, MaxBounds);
 		rt.localPosition = position;
 
@@ -61,7 +63,7 @@ public class DragObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 	}
 
 	public void OnEndDrag(PointerEventData eventData) {
-	    if (rt.localPosition.x.Equals(MinBounds.x) && rt.localPosition.y.Equals(MaxBounds.y)) {
+	    if (rt.localPosition.x.Equals(MinBounds.x) && rt.localPosition.y.Equals(MaxBounds.y)) { // make sure both are in the bottom corner 
             OnReset.Invoke();
 	    }
 		eventData.Use();
