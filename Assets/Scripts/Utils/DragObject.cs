@@ -46,7 +46,7 @@ public class DragObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 		deltaPosition.x = !MoveX ? 0 : Mathf.RoundToInt(deltaPosition.x) * ScaleFactor;
 		deltaPosition.y = !MoveY ? 0 : Mathf.RoundToInt(deltaPosition.y) * ScaleFactor;
 		deltaPosition.z = 0; // Just in case.
-        //onMove();
+
         
 
         //Screen drag stuff
@@ -82,17 +82,9 @@ public class DragObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 	    if (rt.localPosition.x.Equals(MinBounds.x) && rt.localPosition.y.Equals(MaxBounds.y)) { // make sure both are in the bottom corner 
             OnReset.Invoke();
 	    }
-       // notMoving();
+
 		eventData.Use();
 	}
 
-    /*public void onMove()
-    {
-        moving.Raise();
-    }
 
-    public void notMoving()
-    {
-        stopped.Raise();
-    }*/
 }
