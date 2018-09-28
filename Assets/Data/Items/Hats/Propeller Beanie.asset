@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: Propeller Beanie
   m_EditorClassIdentifier: 
   Walking: {fileID: 7400000, guid: d32961d80914dd84a81af624cd29fe56, type: 2}
-  image: {fileID: 21300000, guid: 472ee8c9fede6924faa36a15042831a7, type: 3}
+  image: {fileID: 21300000, guid: 9c0567ea9bb3bd0419cbb7097e72b1e6, type: 3}
   value: 0
   description: It has a little propeller on top
   rarity: 5

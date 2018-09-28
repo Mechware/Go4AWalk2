@@ -11,8 +11,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a553465d252bef64d9480cad62502509, type: 3}
   m_Name: Inventory
   m_EditorClassIdentifier: 
-  weaponList: []
-  hatList: []
+  weaponList:
+  - {fileID: 11400000, guid: 6aa310ad3ac3a0c4cb6ab065138454e4, type: 2}
+  - {fileID: 11400000, guid: 04e8930abf499fa408b4309b3d6fa1df, type: 2}
+  - {fileID: 11400000, guid: 6aa310ad3ac3a0c4cb6ab065138454e4, type: 2}
+  hatList:
+  - {fileID: 11400000, guid: 2c97392347b4d1746ae4ac185c0520a7, type: 2}
+  - {fileID: 11400000, guid: 2c97392347b4d1746ae4ac185c0520a7, type: 2}
+  - {fileID: 11400000, guid: 2c97392347b4d1746ae4ac185c0520a7, type: 2}
   armorList: []
   bootsList: []
   materialList: []

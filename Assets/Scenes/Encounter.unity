@@ -1693,7 +1693,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e867138000182e84abd90819f3968476, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Enemy: {fileID: 11400000, guid: ff7eb37824fb51d49b8e7d54e43010c6, type: 2}
+  Enemy: {fileID: 0}
   Level:
     UseConstant: 1
     ConstantValue: 2

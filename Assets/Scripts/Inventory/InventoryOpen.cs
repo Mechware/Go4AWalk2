@@ -16,6 +16,8 @@ public class InventoryOpen : MonoBehaviour {
     public GameObject inventoryScreen;
     public GameObject dragScreen;
 
+    public GameObject equipScreen;
+
     public GameObject clouds1, clouds2, trees;
 
     private RectTransform inventoryTransform, screenTransform;
@@ -32,6 +34,7 @@ public class InventoryOpen : MonoBehaviour {
         screenTransform = dragScreen.GetComponent<RectTransform>();
         deltaPosition = new Vector2(0, moveDistance);
         deltaInventoryPosition = Vector2.Scale(deltaPosition, new Vector2(0, (InventoryMaxBounds.y-InventoryMinBounds.y)/MinBounds.y));
+        equipScreen.SetActive(false);
 	}
 
 
@@ -69,6 +72,7 @@ public class InventoryOpen : MonoBehaviour {
                 if (inventoryTransform.localPosition.y == InventoryMaxBounds.y)
                 {
                     open = false;
+                    equipScreen.SetActive(false);
                     isMoving = false;
                     GetComponentInChildren<Text>().text= "V"; // *********REMOVE THIS ONCE YOU CHANGE THE BUTTON
                     clouds1.GetComponent<ScrollingImages>().Play();
@@ -86,6 +90,7 @@ public class InventoryOpen : MonoBehaviour {
         if (!isMoving)
         {
             isMoving = true;
+            equipScreen.SetActive(true);
             clouds1.GetComponent<ScrollingImages>().Pause();
             clouds2.GetComponent<ScrollingImages>().Pause();
             trees.GetComponent<ScrollingImages>().Pause();
