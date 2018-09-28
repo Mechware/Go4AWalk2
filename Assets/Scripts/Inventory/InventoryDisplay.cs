@@ -18,7 +18,8 @@ namespace G4AW2.Data.Inventory
 
     public class InventoryDisplay : MonoBehaviour
     {
-
+        public Camera cam;
+        public RectTransform inventoryScreen;
         public GameObject itemPrefab;
         public InventoryList inventory;
         public Type itemType;
@@ -65,7 +66,7 @@ namespace G4AW2.Data.Inventory
             switch (itemType)
             {
                 case Type.Equipment:
-                    print("I want to make an equipment list");
+                    /*print("I want to make an equipment list");
                     for (int i = 0 ; i < inventory.weaponList.Count ; i++)
                     {
                         print("checking weapon slot " + i);
@@ -91,7 +92,14 @@ namespace G4AW2.Data.Inventory
                         print("checking accessory slot " + i);
                         DisplayItem(inventory.accessoryList[i]);
                     }
-                    print("Created Equipment List, its got " + itemList.Count + " items");
+                    print("Created Equipment List, its got " + itemList.Count + " items");*/
+
+                    for (int i = 0 ; i < inventory.equipmentList.Count ; i++)
+                    {
+                        print("checking accessory slot " + i);
+                        DisplayItem(inventory.equipmentList[i]);
+                    }
+
                     break;
                 case Type.Consumable:
                     for (int i = 0 ; i < inventory.consumableList.Count ; i++)
@@ -123,6 +131,8 @@ namespace G4AW2.Data.Inventory
         {
             GameObject display = Instantiate(itemPrefab,transform);
             display.GetComponentInChildren<ItemDisplay>().SetData(item);
+            display.GetComponent<DragItem>().cam = cam;
+            display.GetComponent<DragItem>().inventory = inventoryScreen;
             itemList.Add(display);
         }
 

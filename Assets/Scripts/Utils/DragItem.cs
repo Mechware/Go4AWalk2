@@ -11,9 +11,9 @@ using G4AW2.Utils;
 public class DragItem : MonoBehaviour, IDragHandler,IEndDragHandler {
 
     private RectTransform _rt;
-    //public RectTransform inventory;
+    public RectTransform inventory;
     private Vector2 startPosition, position;
-    //public Camera cam;
+    public Camera cam;
  
 
     private RectTransform rt
@@ -34,8 +34,8 @@ public class DragItem : MonoBehaviour, IDragHandler,IEndDragHandler {
     public void OnDrag(PointerEventData eventData)
       {
         position = eventData.position;
-        position = Camera.main.ScreenToWorldPoint(eventData.position);
-        position = TransformToCanvas.Transform(position, transform.parent.parent.GetComponent<RectTransform>());
+        position = cam.ScreenToWorldPoint(eventData.position);
+        position = TransformToCanvas.Transform(position, inventory);
         rt.GetComponent<Canvas>().sortingOrder = 1;
         rt.anchoredPosition = position;
         eventData.Use();

@@ -8,26 +8,30 @@ namespace G4AW2.Data.Inventory
     [CreateAssetMenu(menuName = "Data/Inventory")]
     public class InventoryList : ScriptableObject
     {
-        public List<Item> weaponList;
-        public List<Item> hatList;
-        public List<Item> armorList;
-        public List<Item> bootsList;
+        //public List<Item> weaponList;
+        //public List<Item> hatList;
+        //public List<Item> armorList;
+        //public List<Item> bootsList;
         public List<Item> materialList;
         public List<Item> consumableList;
-        public List<Item> accessoryList;
+        //public List<Item> accessoryList;
+        public List<Item> equipmentList; //just one list to make inventory management easier
 
         public void getItem(Item item)
         {
             switch (item.type)
             {
                 case ItemType.Accessory:
-                    accessoryList.Add(item);
+                    //accessoryList.Add(item);
+                    equipmentList.Add(item);
                     break;
                 case ItemType.Hat:
-                    hatList.Add(item);
+                    //hatList.Add(item);
+                    equipmentList.Add(item);
                     break;
                 case ItemType.Boots:
-                    bootsList.Add(item);
+                    //bootsList.Add(item);
+                    equipmentList.Add(item);
                     break;
                 case ItemType.Consumable:
                     consumableList.Add(item);
@@ -36,10 +40,12 @@ namespace G4AW2.Data.Inventory
                     materialList.Add(item);
                     break;
                 case ItemType.Torso:
-                    armorList.Add(item);
+                    //armorList.Add(item);
+                    equipmentList.Add(item);
                     break;
                 case ItemType.Weapon:
-                    weaponList.Add(item);
+                    //weaponList.Add(item);
+                    equipmentList.Add(item);
                     break;
             }
         }
