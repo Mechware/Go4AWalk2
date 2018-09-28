@@ -595,7 +595,6 @@ MonoBehaviour:
   itemPrefab: {fileID: 1723508632050310, guid: 3aaf713c090d83d4c99b533ddaaaa09b, type: 2}
   inventory: {fileID: 11400000, guid: d0fd09527a66e9748be16ba73538f66e, type: 2}
   itemType: 0
-  widthOfItem: {fileID: 11400000, guid: f96351a2e7756414489b1222a8dd23cb, type: 2}
   itemWidth: 32
   columns: 4
   rows: 4
@@ -1300,7 +1299,7 @@ GameObject:
   - component: {fileID: 752922132}
   m_Layer: 0
   m_Name: Main Camera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

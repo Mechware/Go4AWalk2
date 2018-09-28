@@ -159,9 +159,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c09c0c79fbb21049a57a2f27f37ab46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventory: {fileID: 0}
-  itemWidth: {fileID: 11400000, guid: f96351a2e7756414489b1222a8dd23cb, type: 2}
-  cam: {fileID: 0}
 --- !u!222 &222103974647647868
 CanvasRenderer:
   m_ObjectHideFlags: 1

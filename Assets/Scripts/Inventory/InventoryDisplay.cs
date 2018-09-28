@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using G4AW2.Data.DropSystem;
 using UnityEngine.UI;
-using CustomEvents;
+
 
 
 
@@ -26,7 +26,6 @@ namespace G4AW2.Data.Inventory
         private RectTransform size;
         private Vector2 location;
 
-        public FloatVariable widthOfItem;
         public float itemWidth;
         private float scaleFactor;
 
@@ -41,7 +40,7 @@ namespace G4AW2.Data.Inventory
         {
 
             scaleFactor = itemPrefab.GetComponent<RectTransform>().localScale.x;
-            itemWidth = widthOfItem*scaleFactor;
+            itemWidth = itemWidth*scaleFactor;
             size = GetComponent<RectTransform>();
             float width = size.rect.width;
             float height = size.rect.height;
