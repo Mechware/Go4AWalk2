@@ -18,6 +18,7 @@ public class InventoryOpen : MonoBehaviour {
 
     public GameObject equipScreen;
 
+
     public GameObject clouds1, clouds2, trees;
 
     private RectTransform inventoryTransform, screenTransform;

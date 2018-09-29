@@ -8,13 +8,19 @@ namespace G4AW2.Data.Inventory
 {
     public class ItemDisplay : MonoBehaviour
     {
-        private Item itemData;
+
+        private Item item;
 
         public void SetData(Item data)
         {
-            itemData = data;
-            GetComponent<Image>().sprite = data.image;
+            item = data;
+            GetComponent<Image>().sprite = item.image;
         }
 
+
+        public Item getItem()
+        {
+            return item;
+        }
     }
 }

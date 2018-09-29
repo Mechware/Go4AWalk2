@@ -9,7 +9,6 @@ namespace G4AW2.Utils
 
         private static Vector2 WorldBottomLeft(RectTransform rt)
         {
-            Vector2 center = new Vector2(0, 0);
             Vector3[] corners = new Vector3[4];
             rt.GetWorldCorners(corners);
             return corners[0];
@@ -17,7 +16,6 @@ namespace G4AW2.Utils
 
         private static Vector2 LocalBottomLeft(RectTransform rt)
         {
-            Vector2 center = new Vector2(0, 0);
             Vector3[] corners = new Vector3[4];
             rt.GetLocalCorners(corners);
             return corners[0];
@@ -54,6 +52,21 @@ namespace G4AW2.Utils
 
             return result;
         }
+
+       /* public static Rect BoundingRectangle(RectTransform localRt, RectTransform rt)
+        {
+            Vector3[] corners = new Vector3[4];
+            Vector3[] rtCorners = new Vector3[4];
+            rt.GetWorldCorners(rtCorners);
+            for(int i = 0 ; i < rtCorners.Length ; i++)
+            {
+                corners[i] = Transform(rtCorners[i], localRt);
+            }
+
+            Rect rect = new Rect((corners[0].x+corners[2].x)/2, (corners[0].y+corners[1].y)/2, corners[2].x-corners[0].x, corners[1].y-corners[0].y);
+
+            return rect;
+        }*/
 
 
     }

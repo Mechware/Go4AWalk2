@@ -38,7 +38,7 @@ namespace G4AW2.Data.DropSystem
 
         public void addToInventory()
         {         
-            list.getItem(this);
+            list.addItem(this);
         }
 
 
