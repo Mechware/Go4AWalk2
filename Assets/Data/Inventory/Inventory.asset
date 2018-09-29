@@ -15,5 +15,9 @@ MonoBehaviour:
   consumableList: []
   equipmentList:
   - {fileID: 11400000, guid: 04e8930abf499fa408b4309b3d6fa1df, type: 2}
+  - {fileID: 11400000, guid: 6aa310ad3ac3a0c4cb6ab065138454e4, type: 2}
+  - {fileID: 11400000, guid: 2c97392347b4d1746ae4ac185c0520a7, type: 2}
+  - {fileID: 11400000, guid: 6aa310ad3ac3a0c4cb6ab065138454e4, type: 2}
+  - {fileID: 11400000, guid: 2c97392347b4d1746ae4ac185c0520a7, type: 2}
   lastItemAdded: {fileID: 11400000, guid: 2c97392347b4d1746ae4ac185c0520a7, type: 2}
   itemAdded: {fileID: 11400000, guid: 436a641c5ec2ebf40995f2493c8cdd3a, type: 2}

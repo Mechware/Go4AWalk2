@@ -53,21 +53,46 @@ namespace G4AW2.Utils
             return result;
         }
 
-       /* public static Rect BoundingRectangle(RectTransform localRt, RectTransform rt)
-        {
-            Vector3[] corners = new Vector3[4];
-            Vector3[] rtCorners = new Vector3[4];
-            rt.GetWorldCorners(rtCorners);
-            for(int i = 0 ; i < rtCorners.Length ; i++)
-            {
-                corners[i] = Transform(rtCorners[i], localRt);
-            }
+         private static Rect BoundingRectangle(RectTransform localRt, RectTransform rt)
+         {
+             Vector3[] corners = new Vector3[4];
+             Vector3[] rtCorners = new Vector3[4];
+             rt.GetWorldCorners(rtCorners);
+             for(int i = 0 ; i < rtCorners.Length ; i++)
+             {
+                 corners[i] = Transform(rtCorners[i], localRt);
+             }
 
-            Rect rect = new Rect((corners[0].x+corners[2].x)/2, (corners[0].y+corners[1].y)/2, corners[2].x-corners[0].x, corners[1].y-corners[0].y);
+            Rect rect = new Rect();
+            rect.xMin = corners[0].x;
+            rect.xMax = corners[2].x;
+            rect.yMin = corners[0].y;
+            rect.yMax = corners[1].y;
+
 
             return rect;
-        }*/
+         }
 
+        public static bool isBounded( Vector3 vec, Rect rect)
+         {
+             if (vec.x > rect.xMin && vec.x < rect.xMax && vec.y > rect.yMin && vec.y < rect.yMax) return true;
+             else return false;
+         }
+
+        public static bool isBounded(Vector3 vec, RectTransform local, RectTransform rt)
+        {
+            Rect rect = BoundingRectangle(local, rt);
+            if (vec.x > rect.xMin && vec.x < rect.xMax && vec.y > rect.yMin && vec.y < rect.yMax) return true;
+            else return false;
+        }
+
+
+        public static string convert(Rect rect)
+        {
+            string str = "";
+            str = "Xmin: " + rect.xMin + "    :    xMax: " +rect.xMax + "    :    yMin: " +rect.yMin + "    :    yMax: " +rect.yMax;
+            return str;
+        }
 
     }
 }

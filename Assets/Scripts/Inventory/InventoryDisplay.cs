@@ -24,7 +24,7 @@ namespace G4AW2.Data.Inventory
         public GameObject itemPrefab;
         public InventoryList inventory;
         public Type itemType;
-        private Vector2 startLocation, addRight, addDown; //possible to make addRight and addDown automatically made based on columns and rows, but im too lazy. Did it its fine.
+        private Vector2 startLocation, add; //possible to make addRight and addDown automatically made based on columns and rows, but im too lazy. Did it its fine.
         private RectTransform size;
         private Vector2 location;
 
@@ -51,8 +51,8 @@ namespace G4AW2.Data.Inventory
             height = (height - 30 - itemWidth*rows)/(rows+1);
 
             startLocation = new Vector2(-50+width+itemWidth/2, 35);
-            addRight = new Vector2(width+itemWidth, 0);
-            addDown = new Vector2(0, -height - itemWidth);
+            add.x = width+itemWidth;
+            add.y = -height - itemWidth;
 
             ResetItems();
 
@@ -68,37 +68,12 @@ namespace G4AW2.Data.Inventory
             switch (itemType)
             {
                 case Type.Equipment:
-                    /*print("I want to make an equipment list");
-                    for (int i = 0 ; i < inventory.weaponList.Count ; i++)
-                    {
-                        print("checking weapon slot " + i);
-                        DisplayItem(inventory.weaponList[i]);
-                    }
-                    for (int i = 0 ; i < inventory.hatList.Count ; i++)
-                    {
-                        print("checking hat slot " + i);
-                        DisplayItem(inventory.hatList[i]);
-                    }
-                    for (int i = 0 ; i < inventory.armorList.Count ; i++)
-                    {
-                        print("checking armor slot " + i);
-                        DisplayItem(inventory.armorList[i]);
-                    }
-                    for (int i = 0 ; i < inventory.bootsList.Count ; i++)
-                    {
-                        print("checking boot slot " + i);
-                        DisplayItem(inventory.bootsList[i]);
-                    }
-                    for (int i = 0 ; i < inventory.accessoryList.Count ; i++)
-                    {
-                        print("checking accessory slot " + i);
-                        DisplayItem(inventory.accessoryList[i]);
-                    }
-                    print("Created Equipment List, its got " + itemList.Count + " items");*/
 
                     for (int i = 0 ; i < inventory.equipmentList.Count ; i++)
                     {
-                        print("checking accessory slot " + i);
+                        /*GameObject item = inventory.equipmentList[i];
+                        item.GetComponent<Transform>().parent=transform;
+                        itemList.Add(item);*/
                         DisplayItem(inventory.equipmentList[i],-1);
                     }
 
@@ -106,12 +81,18 @@ namespace G4AW2.Data.Inventory
                 case Type.Consumable:
                     for (int i = 0 ; i < inventory.consumableList.Count ; i++)
                     {
+                        /*GameObject item = inventory.consumableList[i];
+                        item.GetComponent<Transform>().parent=transform;
+                        itemList.Add(item);*/
                         DisplayItem(inventory.consumableList[i],-1);
                     }
                     break;
                 case Type.Material:
                     for (int i = 0 ; i < inventory.materialList.Count ; i++)
                     {
+                        /*GameObject item = inventory.materialList[i];
+                        item.GetComponent<Transform>().parent=transform;
+                        itemList.Add(item);*/
                         DisplayItem(inventory.materialList[i],-1);
                     }
                     break;
@@ -136,8 +117,8 @@ namespace G4AW2.Data.Inventory
             for (int i = startingIndex ; i < list.Count ; i++)
             {
 
-                location.x = startLocation.x + addRight.x * (i - Mathf.Floor(i/columns) * columns);
-                location.y = startLocation.y + addDown.y * Mathf.Floor(i/columns);
+                location.x = startLocation.x + add.x * (i - Mathf.Floor(i/columns) * columns);
+                location.y = startLocation.y + add.y * Mathf.Floor(i/columns);
 
                 //itemList[i].transform.localPosition = location;
                 list[i].GetComponent<RectTransform>().anchoredPosition=location;
@@ -154,8 +135,18 @@ namespace G4AW2.Data.Inventory
             display.GetComponent<DragItem>().cam = cam;
             display.GetComponent<DragItem>().inventory = inventoryScreen;
             display.GetComponent<DragItem>().playerReference=playerReference;
+            display.GetComponent<DragItem>().assignGrid(startLocation, add);
             if (itemIndex == -1) itemList.Add(display);
             else itemList.Insert(itemIndex,display);
+        }
+
+        void DisplayItem(GameObject item, int itemIndex, int itemCurrentIndex)
+        {
+            itemList.Insert(itemIndex, item);
+            
+            if (itemCurrentIndex < itemIndex) itemIndex = itemCurrentIndex;
+            ChangePositions(itemList, itemIndex);
+
         }
 
        /* someList.Add(x)        // Adds x to the end of the list
@@ -182,10 +173,12 @@ namespace G4AW2.Data.Inventory
             //inventory.lastItemAdded;
         }
 
+
         public void removeItem(GameObject item, List<GameObject> list)
         {
             int index = list.FindIndex(itemObject => itemObject == item);
             inventory.removeItem(list[index].GetComponentInChildren<ItemDisplay>().getItem());
+            
             list.Remove(item);
             Destroy(item);
             ChangePositions(list, index);
@@ -195,11 +188,27 @@ namespace G4AW2.Data.Inventory
         {
             int index = itemList.FindIndex(itemObject => itemObject == item);
             inventory.removeItem(itemList[index].GetComponentInChildren<ItemDisplay>().getItem());
+            
             itemList.Remove(item);
             Destroy(item);
             ChangePositions(itemList, index);
         }
 
+
+        public void moveItem(GameObject item, int index)
+        {
+            if (index == -1) return;
+            if (index >= itemList.Count) index = itemList.Count-1;
+
+            int currentIndex = itemList.FindIndex(itemObject => itemObject == item);
+
+            itemList.Remove(item);
+            inventory.removeItem(item.GetComponentInChildren<ItemDisplay>().getItem(),currentIndex);
+            inventory.insertItem(item.GetComponentInChildren<ItemDisplay>().getItem(), index);
+            DisplayItem(item, index, currentIndex);
+
+
+        }
 
 
 

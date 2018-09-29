@@ -8,11 +8,11 @@ using CustomEvents;
 using G4AW2.Utils;
 using G4AW2.Data.Inventory;
 
-public class DragItem : MonoBehaviour, IDragHandler,IEndDragHandler {
+public class DragItem : MonoBehaviour, IDragHandler,IEndDragHandler,IBeginDragHandler {
 
     private RectTransform _rt;
     public RectTransform inventory,playerReference;
-    private Vector2 startPosition, position;
+    private Vector2 startPosition, position, gridStart, deltaGrid;
     public Camera cam;
     private bool onPlayer;
  
@@ -25,24 +25,30 @@ public class DragItem : MonoBehaviour, IDragHandler,IEndDragHandler {
             {
                 _rt = GetComponent<RectTransform>();
 
-                startPosition = _rt.anchoredPosition;
+               // startPosition = _rt.anchoredPosition;
 
             }
             return _rt;
         }
     }
 
+    public void OnBeginDrag(PointerEventData eventData)
+    {
+        startPosition = rt.anchoredPosition;
+    }
+
     public void OnDrag(PointerEventData eventData)
       {
+
         position = eventData.position;
         position = cam.ScreenToWorldPoint(eventData.position);
         position = TransformToCanvas.Transform(position, inventory);
         rt.GetComponent<Canvas>().sortingOrder = 1;
         rt.anchoredPosition = position;
         eventData.Use();
-
-       // Debug.Log("Position: " + position + "    :    is bounded?: " + VectorUtils.isBounded(position, TransformToCanvas.BoundingRectangle(inventory, playerReference)) +
-       //     "\nRect: " + TransformToCanvas.BoundingRectangle(inventory, playerReference));
+        Debug.Log("index: " + nearestGridIndex(position));
+       /* Debug.Log("Position: " + position + "    :    is bounded?: " + TransformToCanvas.isBounded(position, TransformToCanvas.BoundingRectangle(inventory, playerReference)) +
+            "\nRect: " + TransformToCanvas.convert(TransformToCanvas.BoundingRectangle(inventory, playerReference)));*/
 
       }
 
@@ -52,38 +58,64 @@ public class DragItem : MonoBehaviour, IDragHandler,IEndDragHandler {
         rt.GetComponent<Canvas>().sortingOrder = 0;
         eventData.Use();
 
+        GetComponentInParent<InventoryDisplay>().moveItem(gameObject, nearestGridIndex(position));
 
-
+        if (TransformToCanvas.isBounded(position, inventory, playerReference)) Debug.Log("equipped");
 
         //testing itemremove
-        //if (VectorUtils.isBounded(position, TransformToCanvas.BoundingRectangle(inventory, playerReference)))
-        if(onPlayer)
-        GetComponentInParent<InventoryDisplay>().removeItem(gameObject);
+        
+        //if(onPlayer)
+       // GetComponentInParent<InventoryDisplay>().removeItem(gameObject);
 
       }
 
 
-    void OnTriggerEnter2D(Collider2D col)
+    private int nearestGridIndex(Vector3 pos)
     {
-        if (col.tag == "Player")
+        Vector3 grid = new Vector3();
+        if (TransformToCanvas.isBounded(position, inventory.rect))
         {
-            onPlayer=true;
-            Debug.Log("overlapping player");
-        }
+            grid = position - gridStart;
+            grid.x = grid.x/deltaGrid.x;
+            grid.y = grid.y/deltaGrid.y;
+
+            int x = Mathf.RoundToInt(grid.x);
+            int y = Mathf.RoundToInt(grid.y);
+
+            return y*GetComponentInParent<InventoryDisplay>().columns + x;
+        } else return -1;
 
     }
 
-    void OnTriggerExit2D(Collider2D col)
+    public void assignGrid(Vector3 start, Vector3 add)
     {
-        if (col.tag == "Player")
-        {
-            onPlayer = false;
-            Debug.Log("not overlapping player");
-        }
-
+        gridStart = start;
+        deltaGrid = add;
     }
 
-    
+
+
+    /* void OnTriggerEnter2D(Collider2D col)
+     {
+         if (col.tag == "Player")
+         {
+             onPlayer=true;
+             Debug.Log("overlapping player");
+         }
+
+     }
+
+     void OnTriggerExit2D(Collider2D col)
+     {
+         if (col.tag == "Player")
+         {
+             onPlayer = false;
+             Debug.Log("not overlapping player");
+         }
+
+     }*/
+
+
 
 
 

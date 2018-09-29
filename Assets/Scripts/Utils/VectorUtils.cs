@@ -22,11 +22,7 @@ namespace G4AW2.Utils {
 			return vec;
 		}
 
-       /* public static bool isBounded( Vector3 vec, Rect rect)
-        {
-            if (vec.x > rect.xMin && vec.x < rect.xMax && vec.y > rect.yMin && vec.y < rect.yMax) return true;
-            else return false;
-        }*/
+
 	}
 }
 
