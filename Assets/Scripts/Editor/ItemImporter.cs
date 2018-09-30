@@ -39,7 +39,7 @@ namespace G4AW2.Tools
 
         public string ItemName;         //Name of item
 
-        public float value;             //Value of item
+        public int value;             //Value of item
 
         public string description;      //Item description
 
@@ -63,7 +63,7 @@ namespace G4AW2.Tools
         {
 
             ItemName = EditorGUILayout.TextField("Item Name", ItemName);            //Enter item name
-            value = EditorGUILayout.FloatField("Value", value);                     //Enter item value
+            value = EditorGUILayout.IntField("Value", value);                     //Enter item value
             description = EditorGUILayout.TextField("Description", description);    //Enter item description    
 
             rarity = (Rarity) EditorGUILayout.EnumPopup("Rarity", rarity);          //Select item rarity

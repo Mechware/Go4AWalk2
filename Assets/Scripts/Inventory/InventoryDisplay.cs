@@ -177,7 +177,7 @@ namespace G4AW2.Data.Inventory
         public void removeItem(GameObject item, List<GameObject> list)
         {
             int index = list.FindIndex(itemObject => itemObject == item);
-            inventory.removeItem(list[index].GetComponentInChildren<ItemDisplay>().getItem());
+            inventory.removeItem(list[index].GetComponentInChildren<ItemDisplay>().getItem(),index);
             
             list.Remove(item);
             Destroy(item);
@@ -187,7 +187,7 @@ namespace G4AW2.Data.Inventory
         public void removeItem(GameObject item)
         {
             int index = itemList.FindIndex(itemObject => itemObject == item);
-            inventory.removeItem(itemList[index].GetComponentInChildren<ItemDisplay>().getItem());
+            inventory.removeItem(itemList[index].GetComponentInChildren<ItemDisplay>().getItem(),index);
             
             itemList.Remove(item);
             Destroy(item);

@@ -1,6 +1,7 @@
 using CustomEvents;
 using G4AW2.Combat.Swiping;
 using UnityEngine;
+using G4AW2.Data.DropSystem;
 
 namespace G4AW2.Combat {
 
@@ -11,10 +12,13 @@ namespace G4AW2.Combat {
 
 		public IntReference Health;
 		public FloatReference Power;
+        public FloatReference Armor;
 		public IntReference Damage;
 
 		public FloatReference PowerPerBlock;
 		public GameEvent OnPowerMax;
+
+        public Item hat, armor, weapon, boots, accessory;
 
 		public void OnEnable() {
 			MaxHealth.Value = PlayerPrefs.GetInt("PlayerMaxHealth", 100);
@@ -35,7 +39,7 @@ namespace G4AW2.Combat {
 		}
 
 		public void Hit( int damage ) {
-			Health.Value -= damage;
+			Health.Value -= Mathf.RoundToInt(damage*Armor/100);
 		}
 
 		public void Block( Swipe s ) {

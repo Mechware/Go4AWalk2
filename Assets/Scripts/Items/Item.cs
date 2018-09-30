@@ -30,7 +30,7 @@ namespace G4AW2.Data.DropSystem
     public class Item : ScriptableObject {
         public AnimationClip Walking;
         public Sprite image;
-        public float value;
+        public int value;
         public string description;
         public Rarity rarity;
         public ItemType type;

@@ -4,6 +4,7 @@ using UnityEngine;
 using G4AW2.Data.DropSystem;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using G4AW2.Combat;
 
 namespace G4AW2.Data.Inventory
 {
@@ -12,6 +13,8 @@ namespace G4AW2.Data.Inventory
     {
 
         public Item item;
+        public Player player;
+        public ItemType type;
 
        // public UnityEvent OnAwake;
         
@@ -19,7 +22,21 @@ namespace G4AW2.Data.Inventory
         // Use this for initialization
         void Start()
         {
-
+            switch (type)
+            {
+                case (ItemType.Boots):
+                    if (player.boots != null) item = player.boots;
+                    break;
+                case (ItemType.Hat):
+                    if (player.hat != null) item = player.hat;
+                    break;
+                case (ItemType.Weapon):
+                    if (player.weapon != null) item = player.weapon;
+                    break;
+                case (ItemType.Torso):
+                    if (player.armor != null) item = player.armor;
+                    break;
+            }
 
             GetComponent<Image>().enabled = false;
             if (item != null)

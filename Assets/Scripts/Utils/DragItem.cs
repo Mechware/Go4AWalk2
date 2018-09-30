@@ -60,7 +60,7 @@ public class DragItem : MonoBehaviour, IDragHandler,IEndDragHandler,IBeginDragHa
 
         GetComponentInParent<InventoryDisplay>().moveItem(gameObject, nearestGridIndex(position));
 
-        if (TransformToCanvas.isBounded(position, inventory, playerReference)) Debug.Log("equipped");
+        if (TransformToCanvas.isBounded(position, inventory, playerReference)) playerReference.GetComponent<EquipDisplay>().EquipItem(gameObject);
 
         //testing itemremove
         
