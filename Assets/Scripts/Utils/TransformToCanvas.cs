@@ -86,6 +86,14 @@ namespace G4AW2.Utils
             else return false;
         }
 
+        public static bool isBounded(Vector3 vec, RectTransform local, RectTransform rt, float offset)
+        {
+
+            Rect rect = BoundingRectangle(local, rt);
+            if (vec.x > rect.xMin && vec.x < rect.xMax && vec.y > rect.yMin+offset && vec.y < rect.yMax+offset) return true;
+            else return false;
+        }
+
 
         public static string convert(Rect rect)
         {
@@ -93,6 +101,8 @@ namespace G4AW2.Utils
             str = "Xmin: " + rect.xMin + "    :    xMax: " +rect.xMax + "    :    yMin: " +rect.yMin + "    :    yMax: " +rect.yMax;
             return str;
         }
+
+
 
     }
 }

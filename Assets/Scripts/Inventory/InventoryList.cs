@@ -20,9 +20,8 @@ namespace G4AW2.Data.Inventory
         public List<Item> consumableList;
         //public List<Item> accessoryList;
         public List<Item> equipmentList; //just one list to make inventory management easier
-        public Item lastItemAdded;
 
-        public GameEvent itemAdded;
+        public GameEventItem itemAdded,itemRemoved;
 
         public void addItem(Item item)
         {
@@ -55,9 +54,8 @@ namespace G4AW2.Data.Inventory
                     equipmentList.Add(item);
                     break;
             }
-
-            lastItemAdded = item;
-            itemAdded.Raise();
+     
+            itemAdded.Raise(item);
         }
 
         public void insertItem(Item item, int index)

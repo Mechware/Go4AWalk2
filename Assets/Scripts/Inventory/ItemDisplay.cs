@@ -13,8 +13,17 @@ namespace G4AW2.Data.Inventory
 
         public void SetData(Item data)
         {
-            item = data;
-            GetComponent<Image>().sprite = item.image;
+
+                item = data;
+            if(item != null)
+                GetComponent<Image>().sprite = item.image;
+            
+
+        }
+
+        public void setImage(Sprite image)
+        {
+            GetComponent<Image>().sprite = image;
         }
 
 

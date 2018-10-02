@@ -162,6 +162,9 @@ MonoBehaviour:
   inventory: {fileID: 0}
   playerReference: {fileID: 0}
   cam: {fileID: 0}
+  unEquip: {fileID: 11400000, guid: c60100712eb5144449f7cffa61d1d420, type: 2}
+  Equip: {fileID: 11400000, guid: 11201e3b5d3b4144ca79a654500c2ff4, type: 2}
+  inventoryType: 0
 --- !u!222 &222103974647647868
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -209,7 +212,7 @@ Canvas:
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
-  m_OverrideSorting: 1
+  m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0

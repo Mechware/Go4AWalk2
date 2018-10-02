@@ -9,5 +9,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2161ecdd0e795724cb65e35f1128479c, type: 3}
-  m_Name: ItemAddedToInventory
+  m_Name: Unequip
   m_EditorClassIdentifier: 

@@ -57,10 +57,13 @@ public class DragObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         {
             deltaPosition.x = 0;
 
-            Vector3 deltaInventoryPosition = Vector3.Scale(deltaPosition, new Vector3(1, ((InventoryMaxBounds.y-InventoryMinBounds.y)/MinBounds.y), 1));
-            Vector3 inventoryPosition = inventoryScreen.GetComponent<RectTransform>().localPosition - deltaInventoryPosition;
-            inventoryPosition = inventoryPosition.BoundVector3(InventoryMinBounds, InventoryMaxBounds);
-            inventoryScreen.GetComponent<RectTransform>().localPosition = inventoryPosition;
+            if (inventoryScreen != null)
+            {
+                Vector3 deltaInventoryPosition = Vector3.Scale(deltaPosition, new Vector3(1, ((InventoryMaxBounds.y-InventoryMinBounds.y)/MinBounds.y), 1));
+                Vector3 inventoryPosition = inventoryScreen.GetComponent<RectTransform>().localPosition - deltaInventoryPosition;
+                inventoryPosition = inventoryPosition.BoundVector3(InventoryMinBounds, InventoryMaxBounds);
+                inventoryScreen.GetComponent<RectTransform>().localPosition = inventoryPosition;
+            }
 
         }
 

@@ -15,13 +15,17 @@ namespace G4AW2.Data.Inventory
         public Item item;
         public Player player;
         public ItemType type;
+        public GameObject currentEquip, equipDisplay;
+        public Sprite background;
 
-       // public UnityEvent OnAwake;
-        
+        // public UnityEvent OnAwake;
+
 
         // Use this for initialization
         void Start()
         {
+            setSprite();
+            currentEquip.SetActive(false);
             switch (type)
             {
                 case (ItemType.Boots):
@@ -40,17 +44,47 @@ namespace G4AW2.Data.Inventory
 
             GetComponent<Image>().enabled = false;
             if (item != null)
-                SetItem(item);
+                SetItemStart(item);
         }
 
 
         public void SetItem(Item itemToSet)
         {
+            if (itemToSet.type == type)
+            {
+
+                setAnimation(itemToSet);
+
+                player.removeItem(type);
+                equipDisplay.GetComponentInChildren<ItemDisplay>().SetData(item);
+                player.setItem(itemToSet);
+                setSprite();
+            }
+
+        }
+
+        public void SetItemStart(Item itemToSet)
+        {
+            if (itemToSet.type == type)
+            {
+
+                setAnimation(itemToSet);
+
+                //player.removeItem(type);
+                equipDisplay.GetComponentInChildren<ItemDisplay>().SetData(item);
+                player.setItem(itemToSet);
+                setSprite();
+            }
+
+        }
+
+        private void setAnimation(Item itemToSet)
+        {
             item = itemToSet;
 
             AnimationClip clip = item.Walking;
 
-            if(clip == null)
+            if (clip == null)
             {
                 print("clip is null");
             }
@@ -64,6 +98,32 @@ namespace G4AW2.Data.Inventory
 
             GetComponent<Animator>().SetTrigger("PlayerWalking");
             GetComponentInParent<Animator>().SetTrigger("PlayerWalking");
+        }
+
+        private void setSprite()
+        {
+            if (player.returnItem(type) != null)
+            {
+               // equipDisplay.GetComponentInChildren<Image>().sprite = player.returnItem(type).image;
+                equipDisplay.GetComponent<GraphicRaycaster>().enabled = true;
+            } else
+            {
+                equipDisplay.GetComponentInChildren<ItemDisplay>().setImage(background);
+                equipDisplay.GetComponent<GraphicRaycaster>().enabled = false;
+            }
+        }
+
+        public void unEquip(Item itemToUnequip)
+        {
+            if (itemToUnequip == item && item != null)
+            {
+                item = null;
+                player.removeItem(itemToUnequip.type);
+                equipDisplay.GetComponentInChildren<ItemDisplay>().SetData(item);
+                setSprite();
+                GetComponent<Image>().enabled = false;
+
+            }
 
 
         }

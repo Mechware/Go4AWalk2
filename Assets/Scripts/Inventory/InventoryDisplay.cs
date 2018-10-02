@@ -27,6 +27,7 @@ namespace G4AW2.Data.Inventory
         private Vector2 startLocation, add; //possible to make addRight and addDown automatically made based on columns and rows, but im too lazy. Did it its fine.
         private RectTransform size;
         private Vector2 location;
+        private Vector2 startCenterLocation;
 
         public float itemWidth;
         private float scaleFactor;
@@ -40,19 +41,23 @@ namespace G4AW2.Data.Inventory
 
         void Start()
         {
-
+            startCenterLocation = GetComponent<RectTransform>().anchoredPosition;
             scaleFactor = itemPrefab.GetComponent<RectTransform>().localScale.x;
             itemWidth = itemWidth*scaleFactor;
-            size = GetComponent<RectTransform>();
+            //size = GetComponent<RectTransform>();
+            size = inventoryScreen;
             float width = size.rect.width;
             float height = size.rect.height;
 
             width = (width - itemWidth*columns)/(columns+1);
             height = (height - 30 - itemWidth*rows)/(rows+1);
 
-            startLocation = new Vector2(-50+width+itemWidth/2, 35);
+            print(size.rect.height);
+            startLocation = new Vector2(-50+width+itemWidth/2, size.rect.height/2-30);
             add.x = width+itemWidth;
             add.y = -height - itemWidth;
+
+            
 
             ResetItems();
 
@@ -114,16 +119,54 @@ namespace G4AW2.Data.Inventory
 
         private void ChangePositions(List<GameObject> list, int startingIndex)
         {
+            bool changedSize = false;
+
+            if ((Mathf.Floor(itemList.Count/columns)*-add.y+15 )> 130)
+            {
+                GetComponent<RectTransform>().offsetMin = new Vector2(GetComponent<RectTransform>().offsetMin.x, Mathf.Floor(itemList.Count/columns)*add.y);
+                startLocation.y = GetComponent<RectTransform>().rect.yMax-30;
+                changedSize = true;
+            }
+
+            if (changedSize) startingIndex = 0;
             for (int i = startingIndex ; i < list.Count ; i++)
             {
-
                 location.x = startLocation.x + add.x * (i - Mathf.Floor(i/columns) * columns);
                 location.y = startLocation.y + add.y * Mathf.Floor(i/columns);
 
                 //itemList[i].transform.localPosition = location;
                 list[i].GetComponent<RectTransform>().anchoredPosition=location;
 
+                
+
+                /*if (Mathf.Floor(i/columns)*add.y > GetComponent<RectTransform>().rect.height-add.)
+                {
+                    float increaseSize = Mathf.Floor(i/columns);
+                    Vector2 currentLocation = GetComponent<RectTransform>().anchoredPosition;
+                    GetComponent<RectTransform>().offsetMin -= new Vector2(0, increaseSize);
+                    startCenterLocation = GetComponent<RectTransform>().anchoredPosition;
+                    /* if (currentLocation != startCenterLocation)
+                     {
+                         Vector2 offset = startCenterLocation-currentLocation;
+                         GetComponent<RectTransform>().anchoredPosition = startCenterLocation;
+                         GetComponent<RectTransform>().offsetMin -= new Vector2(0,increaseSize);
+                         startCenterLocation = GetComponent<RectTransform>().anchoredPosition;
+                         GetComponent<RectTransform>().anchoredPosition += offset;
+
+                     } else
+                     {
+                         GetComponent<RectTransform>().offsetMin -= new Vector2(0, increaseSize);
+                         startCenterLocation = GetComponent<RectTransform>().anchoredPosition;
+                     }*//*
+                    GetComponent<RectTransform>().offsetMin -= new Vector2(0, increaseSize*add.y);
+                    startCenterLocation = GetComponent<RectTransform>().anchoredPosition;
+                }*/
             }
+            
+
+
+
+
 
         }
 
@@ -136,8 +179,10 @@ namespace G4AW2.Data.Inventory
             display.GetComponent<DragItem>().inventory = inventoryScreen;
             display.GetComponent<DragItem>().playerReference=playerReference;
             display.GetComponent<DragItem>().assignGrid(startLocation, add);
+            display.GetComponent<DragItem>().dragScreen = GetComponent<RectTransform>();
             if (itemIndex == -1) itemList.Add(display);
             else itemList.Insert(itemIndex,display);
+            if (GetComponentInChildren<GraphicRaycaster>().enabled == false) equipOpen();
         }
 
         void DisplayItem(GameObject item, int itemIndex, int itemCurrentIndex)
@@ -149,15 +194,10 @@ namespace G4AW2.Data.Inventory
 
         }
 
-       /* someList.Add(x)        // Adds x to the end of the list
-          someList.Insert(0, x)  // Adds x at the given index
-          someList.Remove(x)     // Removes the first x observed
-          someList.RemoveAt(0)   // Removes the item at the given index
-          someList.Count()       // Always good to know how many elements you have!*/
 
-        public void addItem(InventoryList inventory)
+        public void addItem(Item item)
         {
-            Item item = inventory.lastItemAdded;
+            //Item item = inventory.lastItemAdded;
             if(itemType == Type.Equipment && (item.type == ItemType.Accessory || item.type == ItemType.Boots || item.type == ItemType.Weapon || item.type == ItemType.Hat || item.type == ItemType.Torso))       
                 DisplayItem(item, -1);
 
@@ -197,7 +237,7 @@ namespace G4AW2.Data.Inventory
 
         public void moveItem(GameObject item, int index)
         {
-            if (index == -1) return;
+            if (index <= -1) return;
             if (index >= itemList.Count) index = itemList.Count-1;
 
             int currentIndex = itemList.FindIndex(itemObject => itemObject == item);
@@ -206,10 +246,28 @@ namespace G4AW2.Data.Inventory
             inventory.removeItem(item.GetComponentInChildren<ItemDisplay>().getItem(),currentIndex);
             inventory.insertItem(item.GetComponentInChildren<ItemDisplay>().getItem(), index);
             DisplayItem(item, index, currentIndex);
+        }
 
+        public void equipOpen()
+        {
+            Component[] rays = GetComponentsInChildren(typeof(GraphicRaycaster));
+            foreach(GraphicRaycaster ray in rays)
+                ray.enabled=false;
 
         }
 
+        public void equipClose()
+        {
+            Component[] rays = GetComponentsInChildren(typeof(GraphicRaycaster));
+            foreach (GraphicRaycaster ray in rays)
+                ray.enabled=true;
+        }
+
+
+        public Vector3 startCenter()
+        {
+            return startCenterLocation;
+        }
 
 
 

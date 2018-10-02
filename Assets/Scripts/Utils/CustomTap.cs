@@ -4,24 +4,28 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using CustomEvents;
+using G4AW2.Combat;
+using G4AW2.Data.DropSystem;
 
-public class CustomTap : MonoBehaviour, IPointerClickHandler, IPointerDownHandler, IPointerUpHandler {
+
+
+public class CustomTap : MonoBehaviour, IPointerClickHandler {
 
     public GameEvent clickEvent;
+    public GameEventItem itemEvent;
+    public Player player;
+    public ItemType type;
+
 
     public void OnPointerClick(PointerEventData pointerEventData)
     {
-        Debug.Log(name + " Game Object Clicked!");
-        clickEvent.Raise();
-    }
-
-    public void OnPointerDown(PointerEventData pointerEventData)
-    {
-
-    }
-
-    public void OnPointerUp(PointerEventData pointerEventData)
-    {
-        clickEvent.Raise();
+        if (clickEvent != null)
+            clickEvent.Raise();
+        else if (itemEvent != null)
+        {
+            if (player.returnItem(type) != null)
+                itemEvent.Raise(player.returnItem(type));
+                
+        }
     }
 }

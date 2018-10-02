@@ -2,6 +2,7 @@ using CustomEvents;
 using G4AW2.Combat.Swiping;
 using UnityEngine;
 using G4AW2.Data.DropSystem;
+using G4AW2.Data.Inventory; 
 
 namespace G4AW2.Combat {
 
@@ -18,6 +19,8 @@ namespace G4AW2.Combat {
 		public FloatReference PowerPerBlock;
 		public GameEvent OnPowerMax;
 
+        public InventoryList inventory;
+
         public Item hat, armor, weapon, boots, accessory;
 
 		public void OnEnable() {
@@ -25,6 +28,8 @@ namespace G4AW2.Combat {
 			Health.Value = PlayerPrefs.GetInt("PlayerHealth", 100);
 			Power.Value = PlayerPrefs.GetInt("PlayerPower", 0);
 			Damage.Value = PlayerPrefs.GetInt("PlayerDamage", 1);
+
+            if (weapon != null) Damage.Value = weapon.value;
 		}
 
 		public void OnDisable() {
@@ -48,6 +53,85 @@ namespace G4AW2.Combat {
 				OnPowerMax.Raise();
 			}
 		}
+        public void setItem(Item item)
+        {
+            //removeItem(item.type);
+            switch (item.type)
+            {
+                case (ItemType.Weapon):
+                    Damage.Value = item.value;
+                    weapon = item;
+                    break;
+                case (ItemType.Torso):
+                    Armor.Value = Armor.Value+item.value;
+                    armor = item;
+                    break;
+                case (ItemType.Hat):
+                    Armor.Value = Armor.Value+item.value;
+                    hat = item;
+                    break;
+                case (ItemType.Boots):
+                    Armor.Value = Armor.Value+item.value;
+                    boots = item;
+                    break;
+            }
+        }
+        public void removeItem(ItemType type)
+        {
+            switch (type)
+            {
+                case (ItemType.Weapon):
+                    if (weapon!=null)
+                    {
+                        Damage.Value = 1;
+                        inventory.addItem(weapon);
+                        weapon = null;
+                    }
+                    break;
+                case (ItemType.Torso):
+                    if (armor != null)
+                    {
+                        Armor.Value = Armor.Value-armor.value;
+                        inventory.addItem(armor);
+                        armor = null;
+                    }
+                    break;
+                case (ItemType.Hat):
+                    if (hat != null)
+                    {
+                        Armor.Value = Armor.Value-hat.value;
+                        inventory.addItem(hat);
+                        hat = null;
+                    }
+                    break;
+                case (ItemType.Boots):
+                    if (boots != null)
+                    {
+                        Armor.Value = Armor.Value-boots.value;
+                        inventory.addItem(boots);
+                        boots = null;
+                    }
+                    break;
+            }
+        }
+
+        public Item returnItem(ItemType type)
+        {            
+            switch (type)
+            {
+                case (ItemType.Weapon):
+                    return weapon;
+                case (ItemType.Torso):
+                    return armor;
+                case (ItemType.Hat):
+                    return hat;
+                case (ItemType.Boots):
+                    return boots;
+                    
+            }
+            return null;
+        }
+
 
 #if UNITY_EDITOR
 		[ContextMenu("Restore Health")]
