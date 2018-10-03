@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: DopePotion
   m_EditorClassIdentifier: 
   Walking: {fileID: 0}
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 929ef90786cdc744b93fc7060c324ca1, type: 3}
   value: 1000
   description: This is a dope potion
   rarity: 0

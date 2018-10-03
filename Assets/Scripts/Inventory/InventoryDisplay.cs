@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using G4AW2.Data.DropSystem;
 using UnityEngine.UI;
-
-
-
+using G4AW2.Utils;
 
 namespace G4AW2.Data.Inventory
 {
@@ -24,10 +22,11 @@ namespace G4AW2.Data.Inventory
         public GameObject itemPrefab;
         public InventoryList inventory;
         public Type itemType;
-        private Vector2 startLocation, add; //possible to make addRight and addDown automatically made based on columns and rows, but im too lazy. Did it its fine.
+        private Vector2 startLocation, add;
         private RectTransform size;
         private Vector2 location;
         private Vector2 startCenterLocation;
+        public GameObject[] buttons; //depending on if we change the buttons, this will change.
 
         public float itemWidth;
         private float scaleFactor;
@@ -35,50 +34,53 @@ namespace G4AW2.Data.Inventory
         public int columns, rows;
 
         private List<GameObject> itemList = new List<GameObject>();
-        
 
+        private float height;
 
 
         void Start()
         {
-            startCenterLocation = GetComponent<RectTransform>().anchoredPosition;
-            scaleFactor = itemPrefab.GetComponent<RectTransform>().localScale.x;
-            itemWidth = itemWidth*scaleFactor;
-            //size = GetComponent<RectTransform>();
-            size = inventoryScreen;
-            float width = size.rect.width;
-            float height = size.rect.height;
+            startCenterLocation = GetComponent<RectTransform>().anchoredPosition; // get starting location
+            scaleFactor = itemPrefab.GetComponent<RectTransform>().localScale.x; //scale of items in scene
+            itemWidth = itemWidth*scaleFactor; //make sure the width is the proper scale
+            size = inventoryScreen; 
+            float width = size.rect.width; // assign height and width of inventoryScreen rectTransform. height is global because fuck you
+            height = size.rect.height;
 
-            width = (width - itemWidth*columns)/(columns+1);
-            height = (height - 30 - itemWidth*rows)/(rows+1);
+            width = (width - 15 - itemWidth*columns)/(columns+1); //fun math to find the spacing required between items
+            height = (height - 25 - itemWidth*rows)/(rows+1); // the 15 and the 25 are tweaks
 
             print(size.rect.height);
-            startLocation = new Vector2(-50+width+itemWidth/2, size.rect.height/2-30);
-            add.x = width+itemWidth;
+            startLocation = new Vector2(-50+width+itemWidth/2, size.rect.height/2-30); // make the startLocation of items the top left
+            add.x = width+itemWidth; //this is how much we move the items in the display
             add.y = -height - itemWidth;
 
             
 
-            ResetItems();
+            ResetItems(); // reset it just because something might have changed
 
             
         }
 
 
+        public void resetTop()
+        {
+            GetComponent<RectTransform>().anchoredPosition = inventoryScreen.rect.center-new Vector2(0, GetComponent<RectTransform>().rect.height/2)+new Vector2(0, inventoryScreen.rect.height/2+10); // the inventory will display the top when opened. If I didn't do this it does weird stuff
+            GetComponent<DragObject>().slider.GetComponent<RectTransform>().localPosition = GetComponent<DragObject>().sliderMaxBounds;
+        }
+
+
         private void ResetItems()
         {
-            itemList.ForEach(kvp => { Destroy(kvp.gameObject); });
+            itemList.ForEach(kvp => { Destroy(kvp.gameObject); }); //**KILL_THEM_ALL**??//##
             itemList.Clear();
             print("Cleared List");
             switch (itemType)
             {
-                case Type.Equipment:
+                case Type.Equipment: // display items in the inventory if it matches
 
                     for (int i = 0 ; i < inventory.equipmentList.Count ; i++)
                     {
-                        /*GameObject item = inventory.equipmentList[i];
-                        item.GetComponent<Transform>().parent=transform;
-                        itemList.Add(item);*/
                         DisplayItem(inventory.equipmentList[i],-1);
                     }
 
@@ -86,86 +88,52 @@ namespace G4AW2.Data.Inventory
                 case Type.Consumable:
                     for (int i = 0 ; i < inventory.consumableList.Count ; i++)
                     {
-                        /*GameObject item = inventory.consumableList[i];
-                        item.GetComponent<Transform>().parent=transform;
-                        itemList.Add(item);*/
                         DisplayItem(inventory.consumableList[i],-1);
                     }
                     break;
                 case Type.Material:
                     for (int i = 0 ; i < inventory.materialList.Count ; i++)
                     {
-                        /*GameObject item = inventory.materialList[i];
-                        item.GetComponent<Transform>().parent=transform;
-                        itemList.Add(item);*/
                         DisplayItem(inventory.materialList[i],-1);
                     }
                     break;
             }
 
-            ChangePositions(itemList,0);
+            ChangePositions(itemList,0); // make sure the list looks all nice and proper
 
-           /* for (int i = 0 ; i < itemList.Count ; i++)
-            {
-
-                location.x = startLocation.x + addRight.x * (i - Mathf.Floor(i/columns) * columns);
-                location.y = startLocation.y + addDown.y * Mathf.Floor(i/columns);
-
-                //itemList[i].transform.localPosition = location;
-                itemList[i].GetComponent<RectTransform>().anchoredPosition=location;
-               
-            }*/
         }
 
         private void ChangePositions(List<GameObject> list, int startingIndex)
         {
+            //changes position of items if you move them around
+            RectTransform rt = GetComponent<RectTransform>();
+
             bool changedSize = false;
 
-            if ((Mathf.Floor(itemList.Count/columns)*-add.y+15 )> 130)
-            {
-                GetComponent<RectTransform>().offsetMin = new Vector2(GetComponent<RectTransform>().offsetMin.x, Mathf.Floor(itemList.Count/columns)*add.y);
-                startLocation.y = GetComponent<RectTransform>().rect.yMax-30;
-                changedSize = true;
-            }
+            int changedRows = (int)Mathf.Floor(itemList.Count/columns)+1; // how many rows should we have now?
+            if (changedRows < rows) changedRows = rows;
+            rt.sizeDelta = new Vector2(rt.rect.width, changedRows*(itemWidth+height)+30); //change the height based on the rows please
+            startLocation.y = rt.rect.yMax-30; // now you gotta change the start
+            GetComponent<DragObject>().MaxBounds = new Vector2(0, inventoryScreen.rect.center.y+GetComponent<RectTransform>().rect.height/2-inventoryScreen.rect.height/2); //make drag screen bounds all nice and friendly 
+            GetComponent<DragObject>().MinBounds = new Vector2(0, inventoryScreen.rect.center.y-GetComponent<RectTransform>().rect.height/2+inventoryScreen.rect.height/2+10);// that plus 10 is because im lazy
+
+            if(itemList.Count - Mathf.Floor((itemList.Count)/columns) * columns == 0) // some weird indexing issue happening here. seems to be extending the rect before I want it to. not a big deal though
+                changedSize = true; // just so we don't rebuild the whole list every time
+
+            print(changedSize);
+
+
 
             if (changedSize) startingIndex = 0;
             for (int i = startingIndex ; i < list.Count ; i++)
             {
-                location.x = startLocation.x + add.x * (i - Mathf.Floor(i/columns) * columns);
-                location.y = startLocation.y + add.y * Mathf.Floor(i/columns);
+                location.x = startLocation.x + add.x * (i - Mathf.Floor(i/columns) * columns); // returns 0,1,2,3 ... for x position of item
+                location.y = startLocation.y + add.y * Mathf.Floor(i/columns); // "" for y position of item
 
-                //itemList[i].transform.localPosition = location;
-                list[i].GetComponent<RectTransform>().anchoredPosition=location;
+                list[i].GetComponent<RectTransform>().anchoredPosition=location; // move the item there~
 
-                
 
-                /*if (Mathf.Floor(i/columns)*add.y > GetComponent<RectTransform>().rect.height-add.)
-                {
-                    float increaseSize = Mathf.Floor(i/columns);
-                    Vector2 currentLocation = GetComponent<RectTransform>().anchoredPosition;
-                    GetComponent<RectTransform>().offsetMin -= new Vector2(0, increaseSize);
-                    startCenterLocation = GetComponent<RectTransform>().anchoredPosition;
-                    /* if (currentLocation != startCenterLocation)
-                     {
-                         Vector2 offset = startCenterLocation-currentLocation;
-                         GetComponent<RectTransform>().anchoredPosition = startCenterLocation;
-                         GetComponent<RectTransform>().offsetMin -= new Vector2(0,increaseSize);
-                         startCenterLocation = GetComponent<RectTransform>().anchoredPosition;
-                         GetComponent<RectTransform>().anchoredPosition += offset;
-
-                     } else
-                     {
-                         GetComponent<RectTransform>().offsetMin -= new Vector2(0, increaseSize);
-                         startCenterLocation = GetComponent<RectTransform>().anchoredPosition;
-                     }*//*
-                    GetComponent<RectTransform>().offsetMin -= new Vector2(0, increaseSize*add.y);
-                    startCenterLocation = GetComponent<RectTransform>().anchoredPosition;
-                }*/
             }
-            
-
-
-
 
 
         }
@@ -173,19 +141,27 @@ namespace G4AW2.Data.Inventory
 
         void DisplayItem(Item item, int itemIndex)
         {
-            GameObject display = Instantiate(itemPrefab,transform);
-            display.GetComponentInChildren<ItemDisplay>().SetData(item);
-            display.GetComponent<DragItem>().cam = cam;
-            display.GetComponent<DragItem>().inventory = inventoryScreen;
-            display.GetComponent<DragItem>().playerReference=playerReference;
-            display.GetComponent<DragItem>().assignGrid(startLocation, add);
-            display.GetComponent<DragItem>().dragScreen = GetComponent<RectTransform>();
-            if (itemIndex == -1) itemList.Add(display);
+            GameObject display = Instantiate(itemPrefab,transform); //instantiate as parent
+            display.GetComponentInChildren<ItemDisplay>().SetData(item); //set the item
+            display.GetComponent<DragItem>().cam = cam; // set the camera
+            display.GetComponent<DragItem>().inventory = inventoryScreen; //set the inventory reference
+            display.GetComponent<DragItem>().playerReference=playerReference; // set the player reference
+            display.GetComponent<DragItem>().dragScreen = GetComponent<RectTransform>(); //set the reference for this rectTransform
+            if (itemIndex == -1) itemList.Add(display); //because I didn't want to make an overload for this
             else itemList.Insert(itemIndex,display);
-            if (GetComponentInChildren<GraphicRaycaster>().enabled == false) equipOpen();
+            if (GetComponentInChildren<GraphicRaycaster>().enabled == false) disableRaycasts(null);
+ 
         }
 
-        void DisplayItem(GameObject item, int itemIndex, int itemCurrentIndex)
+        public Vector3[] getGrid() // gets the start location and the amount we move the items. 
+        {
+            Vector3[] array = new Vector3[2];
+            array[0] = startLocation;
+            array[1] = add;
+            return array;
+        }
+
+        void DisplayItem(GameObject item, int itemIndex, int itemCurrentIndex) // I made an overload anyway. This is if the item moves to a spot infront of where it was
         {
             itemList.Insert(itemIndex, item);
             
@@ -235,6 +211,17 @@ namespace G4AW2.Data.Inventory
         }
 
 
+        //for testing only
+        public void removeItem()
+        {
+            GameObject obj = itemList[itemList.Count-1];
+            itemList.RemoveAt(itemList.Count-1);
+            Destroy(obj);
+            ChangePositions(itemList, 0);
+        }
+        //End for testing only
+
+
         public void moveItem(GameObject item, int index)
         {
             if (index <= -1) return;
@@ -248,20 +235,33 @@ namespace G4AW2.Data.Inventory
             DisplayItem(item, index, currentIndex);
         }
 
-        public void equipOpen()
+        public void disableRaycasts(GameObject ignore)
         {
             Component[] rays = GetComponentsInChildren(typeof(GraphicRaycaster));
             foreach(GraphicRaycaster ray in rays)
                 ray.enabled=false;
+            if(ignore != null)
+            {
+                ignore.GetComponent<GraphicRaycaster>().enabled= true;
+            }
 
         }
+        public void disableRaycasts()
+        {
+            Component[] rays = GetComponentsInChildren(typeof(GraphicRaycaster));
+            foreach (GraphicRaycaster ray in rays)
+                ray.enabled=false;
+            foreach (GameObject obj in buttons) obj.GetComponent<GraphicRaycaster>().enabled=false; //might change depends on buttons
+        }
 
-        public void equipClose()
+        public void enableRaycasts()
         {
             Component[] rays = GetComponentsInChildren(typeof(GraphicRaycaster));
             foreach (GraphicRaycaster ray in rays)
                 ray.enabled=true;
+            foreach (GameObject obj in buttons) obj.GetComponent<GraphicRaycaster>().enabled=true; //might change depends on buttons
         }
+
 
 
         public Vector3 startCenter()

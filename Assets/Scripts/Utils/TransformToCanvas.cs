@@ -103,6 +103,11 @@ namespace G4AW2.Utils
         }
 
 
+        public static Vector2 alignTopCorner(Rect alignTo, Rect toAlign)
+        {
+            return new Vector2(0,alignTo.yMax - toAlign.yMax);
+        }
+
 
     }
 }

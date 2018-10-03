@@ -161,6 +161,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventory: {fileID: 0}
   playerReference: {fileID: 0}
+  dragScreen: {fileID: 0}
   cam: {fileID: 0}
   unEquip: {fileID: 11400000, guid: c60100712eb5144449f7cffa61d1d420, type: 2}
   Equip: {fileID: 11400000, guid: 11201e3b5d3b4144ca79a654500c2ff4, type: 2}
@@ -245,7 +246,7 @@ RectTransform:
   m_GameObject: {fileID: 1723508632050310}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -1472.3483}
-  m_LocalScale: {x: 0.75, y: 0.75, z: 267.63077}
+  m_LocalScale: {x: 0.625, y: 0.625, z: 267.63077}
   m_Children:
   - {fileID: 224778684710504262}
   m_Father: {fileID: 0}

@@ -7,6 +7,7 @@ using UnityEngine.EventSystems;
 using CustomEvents;
 using G4AW2.Utils;
 using G4AW2.Data.Inventory;
+using G4AW2.Data.DropSystem;
 
 public enum InventoryType
 {
@@ -90,13 +91,11 @@ public class DragItem : MonoBehaviour, IDragHandler,IEndDragHandler,IBeginDragHa
 
             GetComponentInParent<InventoryDisplay>().moveItem(gameObject, nearestGridIndex(position));
            
-            if (TransformToCanvas.isBounded(position, inventory, playerReference,dragOffset.y))
+            if (TransformToCanvas.isBounded(position, inventory, playerReference,dragOffset.y) && gameObject.GetComponentInChildren<ItemDisplay>().getItem().type != ItemType.Consumable && gameObject.GetComponentInChildren<ItemDisplay>().getItem().type != ItemType.Material)
             {
                 Equip.Raise(gameObject.GetComponentInChildren<ItemDisplay>().getItem());
                 unEquip.Raise(gameObject);
-
-                //playerReference.GetComponent<EquipDisplay>().EquipItem(gameObject);
-            }
+            } //Add case for using consumable objects the same way as equipping something later
         } else
         {
             if (!TransformToCanvas.isBounded(position, inventory.rect))
@@ -105,18 +104,15 @@ public class DragItem : MonoBehaviour, IDragHandler,IEndDragHandler,IBeginDragHa
             }
         }
 
-        //testing itemremove
-        
-        //if(onPlayer)
-       // GetComponentInParent<InventoryDisplay>().removeItem(gameObject);
-
       }
 
 
     private int nearestGridIndex(Vector3 pos)
     {
+        gridStart = dragScreen.GetComponent<InventoryDisplay>().getGrid()[0];
+        deltaGrid = dragScreen.GetComponent<InventoryDisplay>().getGrid()[1];
         Vector3 grid = new Vector3();
-        if (TransformToCanvas.isBounded(position, inventory.rect))
+        if (TransformToCanvas.isBounded(position, dragScreen.rect))
         {
             grid = position - gridStart;
             grid.x = grid.x/deltaGrid.x;
@@ -129,37 +125,6 @@ public class DragItem : MonoBehaviour, IDragHandler,IEndDragHandler,IBeginDragHa
         } else return -1;
 
     }
-
-    public void assignGrid(Vector3 start, Vector3 add)
-    {
-        gridStart = start;
-        deltaGrid = add;
-    }
-
-
-
-    /* void OnTriggerEnter2D(Collider2D col)
-     {
-         if (col.tag == "Player")
-         {
-             onPlayer=true;
-             Debug.Log("overlapping player");
-         }
-
-     }
-
-     void OnTriggerExit2D(Collider2D col)
-     {
-         if (col.tag == "Player")
-         {
-             onPlayer = false;
-             Debug.Log("not overlapping player");
-         }
-
-     }*/
-
-
-
 
 
 }

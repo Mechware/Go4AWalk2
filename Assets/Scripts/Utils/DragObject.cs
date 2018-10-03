@@ -5,6 +5,8 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using CustomEvents;
+using G4AW2.Data.Inventory;
+using UnityEngine.UI;
 
 public class DragObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler {
 
@@ -13,14 +15,14 @@ public class DragObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 
 	public Vector2 MaxBounds;
 	public Vector2 MinBounds;
-    public Vector2 InventoryMaxBounds;
-    public Vector2 InventoryMinBounds;
+    public Vector2 sliderMaxBounds;
+    public Vector2 sliderMinBounds;
 
     public float ScaleFactor;
 
     public UnityEvent OnDragEvent;
     public UnityEvent OnReset;
-    public GameObject inventoryScreen;
+    public GameObject slider;
 
    // public GameEvent moving;
    // public GameEvent stopped;
@@ -42,7 +44,11 @@ public class DragObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 	}
 
 	public void OnDrag(PointerEventData eventData) {
-		deltaPosition = eventData.delta;
+
+ 
+
+
+        deltaPosition = eventData.delta;
 		deltaPosition.x = !MoveX ? 0 : Mathf.RoundToInt(deltaPosition.x) * ScaleFactor;
 		deltaPosition.y = !MoveY ? 0 : Mathf.RoundToInt(deltaPosition.y) * ScaleFactor;
 		deltaPosition.z = 0; // Just in case.
@@ -53,18 +59,15 @@ public class DragObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         if(rt.localPosition.x > 0)
             deltaPosition.y = 0;
 
-        if (rt.localPosition.y < 0)
+        if (MoveY)
         {
             deltaPosition.x = 0;
-
-            if (inventoryScreen != null)
+            // deltaPosition.y = -deltaPosition.y; // this line inverses the drag
+            if (slider != null)
             {
-                Vector3 deltaInventoryPosition = Vector3.Scale(deltaPosition, new Vector3(1, ((InventoryMaxBounds.y-InventoryMinBounds.y)/MinBounds.y), 1));
-                Vector3 inventoryPosition = inventoryScreen.GetComponent<RectTransform>().localPosition - deltaInventoryPosition;
-                inventoryPosition = inventoryPosition.BoundVector3(InventoryMinBounds, InventoryMaxBounds);
-                inventoryScreen.GetComponent<RectTransform>().localPosition = inventoryPosition;
+                float relativeLocation = (rt.localPosition.y - MinBounds.y)/(MaxBounds.y-MinBounds.y); //percentage of inventory through drag
+                slider.GetComponent<RectTransform>().localPosition = new Vector2 (slider.GetComponent<RectTransform>().localPosition.x,relativeLocation*(sliderMinBounds.y-sliderMaxBounds.y)+sliderMaxBounds.y);
             }
-
         }
 
         if (rt.localPosition.x > 0 && rt.localPosition.y < 0)
@@ -85,6 +88,7 @@ public class DragObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 	    if (rt.localPosition.x.Equals(MinBounds.x) && rt.localPosition.y.Equals(MaxBounds.y)) { // make sure both are in the bottom corner 
             OnReset.Invoke();
 	    }
+        if (MoveY) OnReset.Invoke();
 
 		eventData.Use();
 	}
