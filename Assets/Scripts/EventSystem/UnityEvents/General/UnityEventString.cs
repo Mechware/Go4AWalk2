@@ -1,5 +1,5 @@
 
 
 namespace CustomEvents {
-	[System.Serializable] public class UnityEventString : UnityEngine.Events.UnityEvent<string> { }
+	[System.Serializable] public class UnityEventString : GenericUnityEvent<string> { }
 }

@@ -26,6 +26,11 @@ namespace CustomEvents {
 		public static implicit operator List<T>(RuntimeSetGeneric<T, TEvent> val) {
 			return val.list;
 		}
+
+		public T this[int i] {
+			get { return list[i]; }
+			set { list[i] = value; }
+		}
 	}
 }
 

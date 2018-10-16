@@ -3,14 +3,23 @@ using UnityEngine;
 
 namespace G4AW2.Data.Combat {
 	[CreateAssetMenu(menuName = "Data/Enemy")]
-    public class EnemyData : FollowerData
-    {
-        public int BaseHealth;
+    public class EnemyData : FollowerData {
+
+		public AnimationClip Idle;
+		public AnimationClip Flinch;
+		public AnimationClip LightAttack;
+        public AnimationClip BeforeSwipeAttack;
+		public AnimationClip SwipeAttack;
+		public AnimationClip Death;
+		public AnimationClip Dead;
+
+		public int BaseHealth;
         public int BaseArmor;
-	    [Tooltip("Attacks per second")] public float BaseAttackSpeed;
-	    public float BaseHeavyAttackSpeed;
-	    public int BaseDamage;
-	    public SwipeSet Swipes;
+	    public float TimeBetweenLightAttacks;
+	    public float TimeBetweenHeavyAttacks;
+	    public int BaseLightDamage;
+	    public int BaseHeavyDamage;
+        public SwipeSet Swipes;
 
 	    public int GetHealth(int level) {
 		    return BaseHealth;
@@ -20,18 +29,22 @@ namespace G4AW2.Data.Combat {
 		    return BaseArmor;
 	    }
 
-	    public float GetAttackSpeed( int level ) {
-		    return BaseAttackSpeed;
+	    public float GetTimeBetweenLightAttacks( int level ) {
+		    return TimeBetweenLightAttacks;
 	    }
 
-	    public float GetHeavyAttackSpeed(int level) {
-		    return BaseHeavyAttackSpeed;
+	    public float GetTimeBetweenHeavyAttacks(int level) {
+		    return TimeBetweenHeavyAttacks;
 	    }
 
-	    public int GetDamage(int level) {
-		    return BaseDamage;
+	    public int GetLightDamage(int level) {
+		    return BaseLightDamage;
 	    }
-	}
+
+        public int GetHeavyDamage( int level ) {
+            return BaseHeavyDamage;
+        }
+    }
 }
 
 

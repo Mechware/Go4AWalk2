@@ -2,5 +2,5 @@
 using UnityEngine;
 
 namespace CustomEvents {
-	[System.Serializable] public class UnityEventVector3 : UnityEngine.Events.UnityEvent<Vector3> { }
+	[System.Serializable] public class UnityEventVector3 : GenericUnityEvent<Vector3> { }
 }

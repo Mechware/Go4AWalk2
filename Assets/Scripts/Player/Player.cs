@@ -1,62 +1,144 @@
-using System.Collections;
-using System.Collections.Generic;
 using CustomEvents;
-using G4AW2.Combat;
+using G4AW2.Combat.Swiping;
 using UnityEngine;
+using G4AW2.Data.DropSystem;
+using G4AW2.Data.Inventory; 
 
-[CreateAssetMenu(menuName = "Data/Player")]
-public class Player : ScriptableObject {
+namespace G4AW2.Combat {
 
-    public IntReference MaxHealth;
+	[CreateAssetMenu(menuName = "Data/Player")]
+	public class Player : ScriptableObject {
 
-    public IntReference Health;
-    public FloatReference Crit;
-    public IntReference Damage;
+		public IntReference MaxHealth;
 
-	public FloatReference CritResetModifier;
-	public FloatReference CritPerHit;
+		public IntReference Health;
+		public FloatReference Power;
+        public FloatReference Armor;
+		public IntReference Damage;
 
-	public void OnEnable() {
-		MaxHealth.Value = PlayerPrefs.GetInt("PlayerMaxHealth", 100);
-		Health.Value = PlayerPrefs.GetInt("PlayerHealth", 100);
-		Crit.Value = PlayerPrefs.GetInt("PlayerCrit", 0);
-		Damage.Value = PlayerPrefs.GetInt("PlayerDamage", 1);
-	}
+		public FloatReference PowerPerBlock;
+		public GameEvent OnPowerMax;
 
-	public void OnDisable() {
-		PlayerPrefs.SetInt("PlayerMaxHealth", MaxHealth.Value);
-		PlayerPrefs.SetInt("PlayerHealth", Health.Value);
-		PlayerPrefs.SetFloat("PlayerCrit", Crit.Value);
-		PlayerPrefs.SetInt("PlayerDamage", Damage.Value);
-	}
+        public InventoryList inventory;
 
-    public int GetLightDamage() {
-		SetCritValue();
-		return Damage;
-    }
+        public Item hat, armor, weapon, boots, accessory;
 
-    public int GetHeavyDamage( float totalCritUsed ) {
-        return Damage * Mathf.CeilToInt(totalCritUsed / 10);
-    }
+		public void OnEnable() {
+			MaxHealth.Value = PlayerPrefs.GetInt("PlayerMaxHealth", 100);
+			Health.Value = PlayerPrefs.GetInt("PlayerHealth", 100);
+			Power.Value = PlayerPrefs.GetInt("PlayerPower", 0);
+			Damage.Value = PlayerPrefs.GetInt("PlayerDamage", 1);
 
-    public void Hit(int damage) {
-        Health.Value -= damage;
-    }
+            if (weapon != null) Damage.Value = weapon.value;
+		}
 
-	private void SetCritValue() {
-		Crit.Value = ShouldReset() ? 0 : Mathf.Min(CritPerHit + Crit, 100);
-	}
+		public void OnDisable() {
+			PlayerPrefs.SetInt("PlayerMaxHealth", MaxHealth.Value);
+			PlayerPrefs.SetInt("PlayerHealth", Health.Value);
+			PlayerPrefs.SetFloat("PlayerPower", Power.Value);
+			PlayerPrefs.SetInt("PlayerDamage", Damage.Value);
+		}
 
-	public float CritResetStart = 0.3f;
-	public float ResetScale = 16000f;
-	private bool ShouldReset() {
-		return Random.Range(CritResetStart, 1 + CritResetStart) * CritResetModifier <= (Crit * Crit / ResetScale);
-	}
+		public int GetLightDamage() {
+			return Damage;
+		}
+
+		public void Hit( int damage ) {
+			Health.Value -= Mathf.RoundToInt(damage*Armor/100);
+		}
+
+		public void Block( Swipe s ) {
+			Power.Value = Mathf.Min(Power.Value + PowerPerBlock, 100f);
+			if (Power.Value == 100f) {
+				OnPowerMax.Raise();
+			}
+		}
+        public void setItem(Item item)
+        {
+            //removeItem(item.type);
+            switch (item.type)
+            {
+                case (ItemType.Weapon):
+                    Damage.Value = item.value;
+                    weapon = item;
+                    break;
+                case (ItemType.Torso):
+                    Armor.Value = Armor.Value+item.value;
+                    armor = item;
+                    break;
+                case (ItemType.Hat):
+                    Armor.Value = Armor.Value+item.value;
+                    hat = item;
+                    break;
+                case (ItemType.Boots):
+                    Armor.Value = Armor.Value+item.value;
+                    boots = item;
+                    break;
+            }
+        }
+        public void removeItem(ItemType type)
+        {
+            switch (type)
+            {
+                case (ItemType.Weapon):
+                    if (weapon!=null)
+                    {
+                        Damage.Value = 1;
+                        inventory.addItem(weapon);
+                        weapon = null;
+                    }
+                    break;
+                case (ItemType.Torso):
+                    if (armor != null)
+                    {
+                        Armor.Value = Armor.Value-armor.value;
+                        inventory.addItem(armor);
+                        armor = null;
+                    }
+                    break;
+                case (ItemType.Hat):
+                    if (hat != null)
+                    {
+                        Armor.Value = Armor.Value-hat.value;
+                        inventory.addItem(hat);
+                        hat = null;
+                    }
+                    break;
+                case (ItemType.Boots):
+                    if (boots != null)
+                    {
+                        Armor.Value = Armor.Value-boots.value;
+                        inventory.addItem(boots);
+                        boots = null;
+                    }
+                    break;
+            }
+        }
+
+        public Item returnItem(ItemType type)
+        {            
+            switch (type)
+            {
+                case (ItemType.Weapon):
+                    return weapon;
+                case (ItemType.Torso):
+                    return armor;
+                case (ItemType.Hat):
+                    return hat;
+                case (ItemType.Boots):
+                    return boots;
+                    
+            }
+            return null;
+        }
+
 
 #if UNITY_EDITOR
-	[ContextMenu("Restore Health")]
-    private void ResetHealth() {
-        Health.Value = MaxHealth;
-    }
+		[ContextMenu("Restore Health")]
+		private void ResetHealth() {
+			Health.Value = MaxHealth;
+		}
 #endif
+	}
+
 }

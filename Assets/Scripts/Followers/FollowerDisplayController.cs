@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using CustomEvents;
 using G4AW2.Data;
 using Sirenix.OdinInspector;
@@ -16,29 +17,44 @@ namespace G4AW2.Followers {
 		private List<FollowerDisplay> AllFollowers = new List<FollowerDisplay>();
 
 		void Start() {
-			FollowersChanged(null);
+			ResetFollowers();
 		}
 
-	    public void FollowersChanged(FollowerData d) {
+		private void ResetFollowers() {
+			// Should really re use these
+			AllFollowers.ForEach(kvp => { Destroy(kvp.gameObject); });
+			AllFollowers.Clear();
 
-            // Should really re use these
-	        AllFollowers.ForEach(kvp => { Destroy(kvp.gameObject); });
-            AllFollowers.Clear();
+			for (int i = 0; i < ListOfCurrentFollowers.Value.Count; i++) {
+				FollowerData fd = ListOfCurrentFollowers[i];
+				FollowerDisplay display = Instantiate(DisplayPrefab, transform);
+				display.transform.SetAsFirstSibling();
+				display.SetData(fd);
+				AllFollowers.Add(display);
+			}
+		}
 
-	        foreach (var follower in ListOfCurrentFollowers.Value) {
-	            FollowerDisplay display = Instantiate(DisplayPrefab, transform);
-	            display.SetData(follower);
-	            AllFollowers.Add(display);
-            }
-	    }
+	    public void FollowerAdded(FollowerData d) {
+			FollowerData fd = ListOfCurrentFollowers.Value.Last();
+			FollowerDisplay display = Instantiate(DisplayPrefab, transform);
+		    display.transform.SetAsFirstSibling();
+		    display.SetData(fd);
+		    AllFollowers.Add(display);
+		}
+
+		public void FollowerRemoved(FollowerData d) {
+			ResetFollowers();
+		}
 
 	    void OnEnable() {
-            ListOfCurrentFollowers.OnChange.AddListener(FollowersChanged);
-	    }
+            ListOfCurrentFollowers.OnAdd.AddListener(FollowerAdded);
+            ListOfCurrentFollowers.OnRemove.AddListener(FollowerRemoved);
+		}
 
 	    void OnDisable() {
-            ListOfCurrentFollowers.OnChange.RemoveListener(FollowersChanged);
-	    }
+            ListOfCurrentFollowers.OnAdd.RemoveListener(FollowerAdded);
+		    ListOfCurrentFollowers.OnRemove.RemoveListener(FollowerRemoved);
+		}
 	}
 }
 

@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92ed46357c010e84ea5a3394f3ad888d, type: 3}
+  m_Name: GoblinKing
+  m_EditorClassIdentifier: 
+  SideIdleAnimation: {fileID: 7400000, guid: bcb78853180d83c48b2e7759d6a6aede, type: 2}
+  RandomAnimation: {fileID: 7400000, guid: a8b22fb64065c7144a3baed2b1a74107, type: 2}
+  MinTimeBetweenRandomAnims: 5
+  MaxTimeBetweenRandomAnims: 10
+  Idle: {fileID: 7400000, guid: cd60ae1025ed89b42bd13d4888e15f5d, type: 2}
+  Flinch: {fileID: 7400000, guid: 5db252a49bf7e574bb2d17847a924bf2, type: 2}
+  Attack: {fileID: 7400000, guid: 504ad296ba81a8a47b8ee0d9a27cc1f4, type: 2}
+  HeavyAttack: {fileID: 7400000, guid: 504ad296ba81a8a47b8ee0d9a27cc1f4, type: 2}
+  Death: {fileID: 7400000, guid: 971f09d8bba633748a49ae4ef81ef8ea, type: 2}
+  Dead: {fileID: 7400000, guid: a3fab8dc58d98fe4fa86e661f80a1d78, type: 2}
+  BaseHealth: 100
+  BaseArmor: 0
+  BaseAttackSpeed: 0.3
+  BaseHeavyAttackSpeed: 0.5
+  BaseDamage: 1
+  Swipes: {fileID: 11400000, guid: 5ae2e0eda78248e4e8d0eb4f1b19a2f0, type: 2}

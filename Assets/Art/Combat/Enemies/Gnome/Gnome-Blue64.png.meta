@@ -21,6 +21,16 @@ TextureImporter:
     21300032: Gnome-Blue64_16
     21300034: Gnome-Blue64_17
     21300036: Gnome-Blue64_18
+    21300038: Gnome-Blue64_19
+    21300040: Gnome-Blue64_20
+    21300042: Gnome-Blue64_21
+    21300044: Gnome-Blue64_22
+    21300046: Gnome-Blue64_23
+    21300048: Gnome-Blue64_24
+    21300050: Gnome-Blue64_25
+    21300052: Gnome-Blue64_26
+    21300054: Gnome-Blue64_27
+    21300056: Gnome-Blue64_28
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -55,7 +65,7 @@ TextureImporter:
     mipBias: -100
     wrapU: 1
     wrapV: 1
-    wrapW: -1
+    wrapW: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -118,7 +128,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 256
+        y: 320
         width: 64
         height: 64
       alignment: 0
@@ -126,9 +136,9 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 68a7a660bdbffb849a5129b61de5916f
+      spriteID: 0250420de26718043b26b8ab22894fed
       vertices: []
       indices: 
       edges: []
@@ -138,7 +148,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 64
-        y: 256
+        y: 320
         width: 64
         height: 64
       alignment: 0
@@ -146,9 +156,9 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 178328acaf01e1f49a50d279759593ce
+      spriteID: d664c7d2a2b303d429feee81efc815f9
       vertices: []
       indices: 
       edges: []
@@ -158,7 +168,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 192
+        y: 256
         width: 64
         height: 64
       alignment: 0
@@ -166,9 +176,9 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: baaa8249c20704a46a41e1c20ce4ca40
+      spriteID: 4d0ce91c22b22d940b61eaf48978ee1c
       vertices: []
       indices: 
       edges: []
@@ -178,7 +188,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 64
-        y: 192
+        y: 256
         width: 64
         height: 64
       alignment: 0
@@ -186,9 +196,9 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 89a8da5a372abf64a8040e433e777a43
+      spriteID: c58f96e9d6db5a942bad110794fba4f0
       vertices: []
       indices: 
       edges: []
@@ -198,7 +208,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 320
-        y: 192
+        y: 256
         width: 64
         height: 64
       alignment: 0
@@ -206,9 +216,9 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 63dd7418edd3c5d4bb463efe31408f2a
+      spriteID: 99558d7827b009b4eb1ec196aab2374e
       vertices: []
       indices: 
       edges: []
@@ -218,7 +228,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 128
+        y: 192
         width: 64
         height: 64
       alignment: 0
@@ -226,9 +236,9 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 72eb2d8008d33a34eade6b04e2a061d9
+      spriteID: 8d8851fdeadd81d4e9a3346a8f09a915
       vertices: []
       indices: 
       edges: []
@@ -238,7 +248,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 64
-        y: 128
+        y: 192
         width: 64
         height: 64
       alignment: 0
@@ -246,9 +256,9 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 64e57d11d96d92f44b2b743a74477aa2
+      spriteID: 17021d62893761b4f804bddbd53f4458
       vertices: []
       indices: 
       edges: []
@@ -258,6 +268,86 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 128
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a6568e8f25b89f4baeda207bec9232f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gnome-Blue64_8
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7abec15da29bd7b4eb8d7fa133612eb5
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gnome-Blue64_9
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22acb71cfab326043811bd411d5ec539
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gnome-Blue64_10
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5aaa984aa1cd7d441b8e9f62c0dd675c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gnome-Blue64_11
+      rect:
+        serializedVersion: 2
+        x: 0
         y: 128
         width: 64
         height: 64
@@ -266,15 +356,55 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: cb3e004b4d98cae4fa76f54dc016ebd2
+      spriteID: 19d02ac45ef77e048ad583a2fc7b8f00
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Gnome-Blue64_8
+      name: Gnome-Blue64_12
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 49e146f121f5a0b4a93000d973d285ef
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gnome-Blue64_13
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 12bb0649c49a11846820f9c37ee54859
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gnome-Blue64_14
       rect:
         serializedVersion: 2
         x: 192
@@ -286,15 +416,15 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 0c428fc2272db0d4990ae9dedff51b6a
+      spriteID: 45ee478f5f8f5ff4eb6f9a87151cc03f
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Gnome-Blue64_9
+      name: Gnome-Blue64_15
       rect:
         serializedVersion: 2
         x: 256
@@ -306,15 +436,15 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 8cf6afb4133b1b0459314fb9149cace6
+      spriteID: d405f98e2b0fb6b4b83da2d7753aa3c7
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Gnome-Blue64_10
+      name: Gnome-Blue64_16
       rect:
         serializedVersion: 2
         x: 320
@@ -326,15 +456,15 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: f46c66f979a41ae4f839ab6d516450a1
+      spriteID: 1eb36f89462058d49ac253e464ce1edb
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Gnome-Blue64_11
+      name: Gnome-Blue64_17
       rect:
         serializedVersion: 2
         x: 0
@@ -346,15 +476,15 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 58ec7b770640ea04d8e25cb49c612f88
+      spriteID: ed7582fdcf5802c4bbc956a71f3125ab
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Gnome-Blue64_12
+      name: Gnome-Blue64_18
       rect:
         serializedVersion: 2
         x: 64
@@ -366,15 +496,15 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 6d84b3953eed5b8428d7eadca8d9ceaf
+      spriteID: f2c17e1610837b848887fe75cb17e45b
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Gnome-Blue64_13
+      name: Gnome-Blue64_19
       rect:
         serializedVersion: 2
         x: 128
@@ -386,15 +516,15 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: c44a39ae3208c1f4a917e5bd22c960b4
+      spriteID: 07586ce9f3cb7794a813046f11421813
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Gnome-Blue64_14
+      name: Gnome-Blue64_20
       rect:
         serializedVersion: 2
         x: 192
@@ -406,15 +536,15 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 906cf7a4fe594f1459096dfc4bd4203d
+      spriteID: 7bd5878a19796834588802e16a866edb
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Gnome-Blue64_15
+      name: Gnome-Blue64_21
       rect:
         serializedVersion: 2
         x: 256
@@ -426,15 +556,15 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 6896e81030bfc4c4d88a56cf2a0415d7
+      spriteID: ff20e54f83db8af46a5fd37995b0a8bb
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Gnome-Blue64_16
+      name: Gnome-Blue64_22
       rect:
         serializedVersion: 2
         x: 320
@@ -446,15 +576,15 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 1d2f0b28b43d23748b6763666a8442c1
+      spriteID: 5227a8323fa1aad44bb8ccc17f953d11
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Gnome-Blue64_17
+      name: Gnome-Blue64_23
       rect:
         serializedVersion: 2
         x: 0
@@ -466,15 +596,15 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 07528cdcd7c85824fafa7bc9dba7e0b9
+      spriteID: 87da35d7c913002429e7e04c8e1db998
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Gnome-Blue64_18
+      name: Gnome-Blue64_24
       rect:
         serializedVersion: 2
         x: 64
@@ -486,9 +616,89 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 81fabc30c20670f4bacbbed557400d18
+      spriteID: cdda2bfd44cd58943b10227a39e19f08
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gnome-Blue64_25
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f15a93e9e26ebb54cbe331e9f7363877
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gnome-Blue64_26
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b608ab08892eeaa4187edd946d59c73f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gnome-Blue64_27
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3da6d5cf2e2c60a46a5b7dd67526703c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gnome-Blue64_28
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba65be88ee9a1ac43b971e7171c9d58f
       vertices: []
       indices: 
       edges: []

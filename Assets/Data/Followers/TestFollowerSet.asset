@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Name: TestFollowerSet
   m_EditorClassIdentifier: 
   List:
-  - {fileID: 11400000, guid: e75340b3bcfa1db4bae6e3c12eb51d0b, type: 2}
+  - {fileID: 11400000, guid: ff7eb37824fb51d49b8e7d54e43010c6, type: 2}
+  - {fileID: 11400000, guid: e2753df0922c7be4bbd9352c043f5d57, type: 2}
   OnAdd:
     m_PersistentCalls:
       m_Calls: []
