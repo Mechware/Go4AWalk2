@@ -3,6 +3,8 @@ using System.Collections;
 using System;
 using CustomEvents;
 using G4AW2.Utils;
+using Sirenix.OdinInspector;
+using UnityEngine.Events;
 
 namespace G4AW2.GPS
 {
@@ -16,187 +18,125 @@ namespace G4AW2.GPS
 	}
 
 	public class GPS : MonoBehaviour {
-		public static GPS gpsObject;
 
-		public int GPSUpdatesBeforeAverage = 5;
 		public float desiredAccuracyInMeters = 1f;
 		public float updateDistanceInMeters = 0f;
 		public float timeBetweenChecks = 1f;
+		public int maxInitializationTime = 15;
 
-		public GameEvent GPSUpdated;
+		public UnityEvent GPSUpdated;
+		public UnityEventString GPSTextUpdate;
+		public UnityEvent StatusUpdated;
+		public GPSStrategy GpsStrategy;
 
-		[HideInInspector]
+
 		// Approximate radius of the earth (in kilometers)
-		public ObservedValue<LocationState> state;
-
-		// Position on earth (in degrees)
-		public float latitude;
-		public float longitude;
-
-		// Distance walked (in meters) since last update 
-		public ObservedValue<float> deltaDistance;
-		public float deltaTime;
-
-		// Amount of times GPS has updated
-		private int gpsUpdates = 1;
+		[ReadOnly] public LocationState state = LocationState.Initializing;
 
 		// Timestamp of last data
 		private double timestamp;
 
-		// Total lat and long for averaging
-		private float totalLat = 0;
-		private float totalLong = 0;
-
-		// Previous average lat and long
-		private float prevLatitude, prevLongitude;
-		public double timeOfLastDistanceUpdate;
-
-		private const float EARTH_RADIUS = 6371;
-
 		private bool initialized = false;
-		private bool started = false;
 
 		// Use this for initialization
-		void Awake() {
-			gpsObject = this;
-			deltaDistance = new ObservedValue<float>(0);
-			timeOfLastDistanceUpdate = DateTime.UtcNow.Second;
-			state = new ObservedValue<LocationState>(LocationState.Initializing);
-			latitude = 0f;
-			longitude = 0f;
+		private void Awake() {
+			state = LocationState.Initializing;
 		}
 
-		IEnumerator Start() {
-			state.OnValueChange += (state) => {
-				if (state != LocationState.Enabled && state != LocationState.Initializing) {
-					print("Could not connect to GPS!");
-					//PopUp.instance.showPopUp("Could not connect to GPS!", new string[] { "Okay" });
-				}
-			};
-
-			yield return 0; // Delay for a frame so state.OnValueChange isn't called right away.
-			yield return StartCoroutine(initializeGPS());
-
-			if (state.Value == LocationState.Enabled) {
-				initializeVariables();
-			}
-			started = true;
+		private IEnumerator Start() {
+			yield return 0; // Delay for a frame so OnStateChange isn't called right away.
+			yield return StartCoroutine(InitializeGPS());
 		}
 
-		void initializeVariables() {
-			gpsUpdates = 1;
-			timestamp = Input.location.lastData.timestamp;
-			latitude = Input.location.lastData.latitude;
-			longitude = Input.location.lastData.longitude;
-			prevLatitude = latitude;
-			prevLongitude = longitude;
-			totalLong = prevLongitude;
-			totalLat = prevLatitude;
-			DateTime epochStart = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
-			timeOfLastDistanceUpdate = (int)(DateTime.UtcNow - epochStart).TotalSeconds;
-		}
-
-		void OnApplicationPause( bool pauseState ) {
-			if (!started)
-				return;
-
-			if (pauseState) {
-				initialized = false;
-				Input.location.Stop();
-				state.Value = LocationState.Initializing;
-			} else {
-				StartCoroutine(initializeGPS());
-			}
-		}
-
-		IEnumerator initializeGPS() {
+		private IEnumerator InitializeGPS() {
 			if (initialized) {
+				state = LocationState.Enabled;
+				GpsStrategy.Initialize();
+				StartCoroutine(CheckForUpdates());
 				yield break;
 			}
 
 			if (!Input.location.isEnabledByUser) {
-				state.Value = LocationState.Disabled;
+				state = LocationState.Disabled;
+				OnStateUpdate();
 				initialized = true;
 				yield break;
 			}
 
 			Input.location.Start(desiredAccuracyInMeters, updateDistanceInMeters);
 
-			int waitTime = 15;
-
-			while (Input.location.status == LocationServiceStatus.Initializing && waitTime > 0) {
-				yield return new WaitForSeconds(1);
-				waitTime--;
+			while (Input.location.status == LocationServiceStatus.Initializing && maxInitializationTime > 0) {
+				yield return new WaitForSecondsRealtime(1);
+				maxInitializationTime--;
 			}
 
-			if (waitTime == 0) {
-				state.Value = LocationState.TimedOut;
+			if (maxInitializationTime == 0) {
+				state = LocationState.TimedOut;
 			} else if (Input.location.status == LocationServiceStatus.Failed) {
-				state.Value = LocationState.Failed;
+				state = LocationState.Failed;
 			} else {
-				state.Value = LocationState.Enabled;
-				StartCoroutine(checkForUpdates());
+				state = LocationState.Enabled;
+				GpsStrategy.Initialize();
+				StartCoroutine(CheckForUpdates());
 			}
+			OnStateUpdate();
 			initialized = true;
 		}
 
-		// The Haversine formula
-		// Veness, C. (2014). Calculate distance, bearing and more between
-		//  Latitude/Longitude points. Movable Type Scripts. Retrieved from
-		//  http://www.movable-type.co.uk/scripts/latlong.html
-		float Haversine( float lastLongitude, float lastLatitude, float currLongitude, float currLatitude ) {
-			float deltaLatitude = (currLatitude - lastLatitude) * Mathf.Deg2Rad;
-			float deltaLongitude = (currLongitude - lastLongitude) * Mathf.Deg2Rad;
-			float a = Mathf.Pow(Mathf.Sin(deltaLatitude / 2), 2) +
-			          Mathf.Cos(lastLatitude * Mathf.Deg2Rad) * Mathf.Cos(currLatitude * Mathf.Deg2Rad) *
-			          Mathf.Pow(Mathf.Sin(deltaLongitude / 2), 2);
-			float c = 2 * Mathf.Atan2(Mathf.Sqrt(a), Mathf.Sqrt(1 - a));
-			return EARTH_RADIUS * c;
+		private void OnStateUpdate() {
+			if (state != LocationState.Enabled && state != LocationState.Initializing) {
+				print("Could not connect to GPS!");
+				//PopUp.instance.showPopUp("Could not connect to GPS!", new string[] { "Okay" });
+			}
+			StatusUpdated.Invoke();
 		}
 
-		IEnumerator checkForUpdates() {
-			while (state.Value == LocationState.Enabled) {
+		private void OnApplicationPause( bool pauseState ) {
+			if (state != LocationState.Enabled)
+				return;
+
+			StopAllCoroutines();
+
+			if (!pauseState) {
+				initialized = false;
+				Input.location.Stop();
+				state = LocationState.Stopped;
+			} else {
+				state = LocationState.Initializing;
+				StartCoroutine(InitializeGPS());
+			}
+		}
+
+		private string lastString = "";
+		void Update() {
+			string s = GetGpsData();
+			if (lastString != s) {
+				lastString = s;
+				GPSTextUpdate.Invoke(s);
+			}
+		}
+
+		private IEnumerator CheckForUpdates() {
+			timestamp = Input.location.lastData.timestamp;
+			while (state == LocationState.Enabled) {
 				if (timestamp == Input.location.lastData.timestamp) {
 					yield return new WaitForSecondsRealtime(timeBetweenChecks);
 					continue;
 				}
-				print("Update!");
-				totalLat += Input.location.lastData.latitude;
-				totalLong += Input.location.lastData.longitude;
 				timestamp = Input.location.lastData.timestamp;
-				gpsUpdates++;
 
-				if (gpsUpdates == GPSUpdatesBeforeAverage) {
-					longitude = totalLong / GPSUpdatesBeforeAverage;
-					latitude = totalLat / GPSUpdatesBeforeAverage;
-
-					updateChangeInTime();
-					deltaDistance.Value = Haversine(prevLongitude, prevLatitude, longitude, latitude) * 1000f;
-
-					prevLongitude = longitude;
-					prevLatitude = latitude;
-
-					gpsUpdates = 1;
-					totalLong = Input.location.lastData.longitude;
-					totalLat = Input.location.lastData.latitude;
-				}
-
-				latitude = Input.location.lastData.latitude;
-				longitude = Input.location.lastData.longitude;
+				GpsStrategy.GPSUpdated(OnStrategyUpdate);
 			}
 		}
 
-		private void updateChangeInTime() {
-			DateTime epochStart = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
-			double currentTime = (DateTime.UtcNow - epochStart).TotalSeconds;
-			deltaTime = (float)(currentTime - timeOfLastDistanceUpdate);
-			timeOfLastDistanceUpdate = currentTime;
+		private void OnStrategyUpdate(float distanceMoved, float timeTaken) {
+			GPSUpdated.Invoke();
 		}
 
-		public string getGPSData() {
+		private string GetGpsData() {
 
 			string text;
-			switch (state.Value) {
+			switch (state) {
 				case LocationState.Enabled:
 					DateTime epochStart = new DateTime(1970, 1, 1, 0, 0, 0,
 						DateTimeKind.Utc);
@@ -205,14 +145,8 @@ namespace G4AW2.GPS
 					float timeChanged = (float)(curTime - timestamp);
 					int timeChange = Mathf.CeilToInt(timeChanged);
 
-
 					text = "Time since last update: " + timeChange + "\n" +
-					       "Previous Latitude: " + prevLatitude + "\n" +
-					       "Previous Longitude: " + prevLongitude + "\n" +
-					       "Current Latitude: " + latitude + "\n" +
-					       "Current Longitude: " + longitude + "\n" +
-					       "Delta Distance: " + deltaDistance.Value + "\n" +
-					       "GPS updates: " + gpsUpdates;
+					       GpsStrategy.GetTextUpdate();
 
 					break;
 				case LocationState.Disabled:
@@ -233,12 +167,10 @@ namespace G4AW2.GPS
 				default:
 					text = "GPS error occurred";
 					break;
-			} // Switch stmt
+			}
 
 			return text;
-
-		} //getGPSData
-
-	} // class
+		}
+	}
 
 }

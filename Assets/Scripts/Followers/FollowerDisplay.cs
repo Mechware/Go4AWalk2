@@ -1,11 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using CustomEvents;
 using G4AW2.Data;
-using G4AW2.Data.Combat;
-using UnityEditor.Animations;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
 namespace G4AW2.Followers {
@@ -14,7 +9,7 @@ namespace G4AW2.Followers {
 	public class FollowerDisplay : MonoBehaviour, IPointerClickHandler {
 		private FollowerData Data;
 
-		public AnimatorController BaseController;
+		public AnimatorOverrideController BaseController;
 
 		public UnityEventFollowerData FollowerClicked;
 		private Animator Animator;

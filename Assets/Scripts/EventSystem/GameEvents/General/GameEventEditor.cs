@@ -1,9 +1,10 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using CustomEvents;
 
+#if UNITY_EDITOR
 [CustomEditor(typeof(GameEvent))]
 public class GameEventEditor : Editor {
 
@@ -19,3 +20,4 @@ public class GameEventEditor : Editor {
     }
 
 }
+#endif
