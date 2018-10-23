@@ -24,7 +24,7 @@ namespace G4AW2.GPS
 		public float timeBetweenChecks = 1f;
 		public int maxInitializationTime = 15;
 
-		public UnityEvent GPSUpdated;
+		public UnityEventFloat GPSUpdated;
 		public UnityEventString GPSTextUpdate;
 		public UnityEvent StatusUpdated;
 		public GPSStrategy GpsStrategy;
@@ -130,7 +130,7 @@ namespace G4AW2.GPS
 		}
 
 		private void OnStrategyUpdate(float distanceMoved, float timeTaken) {
-			GPSUpdated.Invoke();
+			GPSUpdated.Invoke(distanceMoved);
 		}
 
 		private string GetGpsData() {
