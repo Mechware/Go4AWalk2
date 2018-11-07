@@ -407,7 +407,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 300978731}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9120f38d11b464c4c9e63a154d1042b0, type: 3}
   m_Name: 
@@ -443,8 +443,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c194123519c7ae440900526a95d41a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AllPossibleFollowers: {fileID: 11400000, guid: 1cf2b6ea178b5804db5d25c80532eb48,
-    type: 2}
+  DropData: {fileID: 0}
   CurrentFollowers: {fileID: 11400000, guid: d9764a15526dace4899689a1b14b9b44, type: 2}
 --- !u!1 &302137431
 GameObject:
@@ -1925,10 +1924,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 701840140}
-  - component: {fileID: 701840139}
   - component: {fileID: 701840142}
   - component: {fileID: 701840141}
   - component: {fileID: 701840143}
+  - component: {fileID: 701840139}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -1944,11 +1943,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 701840138}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d62c3855f379fd34e829f981c56253f5, type: 3}
+  m_Script: {fileID: 11500000, guid: 90838cfabbff90647a593e9cd76f988b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  From: {fileID: 11400000, guid: a01fa225979c61c449bd7cdb4accca7c, type: 2}
-  To: {fileID: 11400000, guid: 1cf2b6ea178b5804db5d25c80532eb48, type: 2}
+  Area: {fileID: 11400000, guid: 5e4d1ba5949749b44bc3427231ca82f2, type: 2}
+  backgrounds: {fileID: 2094348963}
+  clouds1: {fileID: 1112439896}
+  clouds2: {fileID: 471963650}
+  SkyImages:
+  - {fileID: 206570941}
+  - {fileID: 1395125819}
+  - {fileID: 547478150}
+  - {fileID: 1214435378}
+  - {fileID: 743468792}
+  - {fileID: 1089084261}
+  UpperSky: {fileID: 1523102970}
+  UpperCloud: {fileID: 1935267776}
+  FollowerSpawner: {fileID: 0}
 --- !u!4 &701840140
 Transform:
   m_ObjectHideFlags: 0
@@ -2020,8 +2031,8 @@ MonoBehaviour:
   GPSUpdated:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
+    m_TypeName: CustomEvents.UnityEventFloat, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
   GPSTextUpdate:
     m_PersistentCalls:
       m_Calls:

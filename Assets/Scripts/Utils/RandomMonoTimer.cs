@@ -19,6 +19,7 @@ namespace G4AW2.Utils {
         // Use this for initialization
         void Start() {
             CurrentTime = 0;
+	        ThrowTime = Random.Range(MinTime, MaxTime);
         }
 
         // Update is called once per frame

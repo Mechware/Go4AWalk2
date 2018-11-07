@@ -12,7 +12,6 @@ namespace G4AW2.Data {
 
 		public float MinTimeBetweenRandomAnims = 30;
 		public float MaxTimeBetweenRandomAnims = 180;
-
 	}
 
 }

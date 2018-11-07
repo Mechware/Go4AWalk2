@@ -17,13 +17,15 @@ MonoBehaviour:
   MaxTimeBetweenRandomAnims: 180
   Idle: {fileID: 7400000, guid: 9cb0e690ea8179d4cb666208c6ef2de7, type: 2}
   Flinch: {fileID: 7400000, guid: e135ca2035d24204d961c34aa7c738fc, type: 2}
-  Attack: {fileID: 7400000, guid: 14434a7af4c54c445b10eebecd1b08c7, type: 2}
-  HeavyAttack: {fileID: 7400000, guid: 14434a7af4c54c445b10eebecd1b08c7, type: 2}
+  LightAttack: {fileID: 0}
+  BeforeSwipeAttack: {fileID: 0}
+  SwipeAttack: {fileID: 0}
   Death: {fileID: 7400000, guid: 8506f87f1499db04f9623698cd35cfd1, type: 2}
   Dead: {fileID: 7400000, guid: 1df5577d6344553418ad332125ed9f0f, type: 2}
   BaseHealth: 0
   BaseArmor: 0
-  BaseAttackSpeed: 0
-  BaseHeavyAttackSpeed: 0
-  BaseDamage: 0
+  TimeBetweenLightAttacks: 0
+  TimeBetweenHeavyAttacks: 0
+  BaseLightDamage: 0
+  BaseHeavyDamage: 0
   Swipes: {fileID: 0}
