@@ -1,15 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Management.Instrumentation;
 using UnityEngine;
 
-public class Quest : ScriptableObject {
+namespace G4AW2.Questing {
+	public class Quest : ScriptableObject {
 
-	public virtual void Start() {
-		
-	}
+		public string DisplayName;
+		public bool Completed;
 
-	public virtual void Resume() {
+		public virtual void Start() {
 
+		}
+
+		public virtual void Clicked() {
+			
+		}
+
+		public virtual void GPSUpdate(float distance) {
+			
+		}
 	}
 }
+
+

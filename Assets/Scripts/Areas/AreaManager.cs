@@ -25,7 +25,7 @@ namespace G4AW2.UI.Areas {
 			SetArea(Area);
 		}
 
-		void SetArea( Area area ) {
+		public void SetArea( Area area ) {
 			this.Area = area;
 
 			backgrounds.Images.ForEach(i => i.sprite = area.Background);

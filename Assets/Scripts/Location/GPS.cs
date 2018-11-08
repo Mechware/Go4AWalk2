@@ -119,7 +119,7 @@ namespace G4AW2.GPS
 		private IEnumerator CheckForUpdates() {
 			timestamp = Input.location.lastData.timestamp;
 			while (state == LocationState.Enabled) {
-				if (timestamp == Input.location.lastData.timestamp) {
+				if (timestamp <= Input.location.lastData.timestamp) {
 					yield return new WaitForSecondsRealtime(timeBetweenChecks);
 					continue;
 				}

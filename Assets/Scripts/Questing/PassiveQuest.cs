@@ -1,16 +1,12 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PassiveQuest : MonoBehaviour {
+namespace G4AW2.Questing {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+	[CreateAssetMenu(menuName = "Data/Questing/Passive")]
+	public class PassiveQuest : Quest {
+
 	}
 }
+

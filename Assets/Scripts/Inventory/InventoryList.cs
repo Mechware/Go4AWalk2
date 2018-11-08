@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using G4AW2.Data.DropSystem;
@@ -23,7 +23,9 @@ namespace G4AW2.Data.Inventory
 
         public GameEventItem itemAdded,itemRemoved;
 
-        public void addItem(Item item)
+
+
+		public void addItem(Item item)
         {
             switch (item.type)
             {
