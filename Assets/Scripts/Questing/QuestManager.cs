@@ -27,6 +27,7 @@ public class QuestManager : MonoBehaviour {
 
 	void Start() {
 		AreaManager.SetArea(CurrentAreaQuest.Area);
+		CurrentAreaQuest.Active = true;
 #if UNITY_EDITOR
 		AllQuestsTest.List.ForEach(AllQuests.Add);
 #endif
@@ -54,7 +55,7 @@ public class QuestManager : MonoBehaviour {
 	}
 
 	public void GPSUpdate(float distanceMoved) {
-		AllQuests.Value.Where(q => q.Completed == false).ForEach(q => q.GPSUpdate(distanceMoved));
+		AllQuests.Value.Where(q => q.Active).ForEach(q => q.GPSUpdate(distanceMoved));
 	}
 
 	public void QuestClicked(Quest q) {

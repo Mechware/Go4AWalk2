@@ -20,11 +20,6 @@ namespace G4AW2.UI.Areas {
 
 		public FollowerSpawner FollowerSpawner;
 
-		// Use this for initialization
-		void Start() {
-			SetArea(Area);
-		}
-
 		public void SetArea( Area area ) {
 			this.Area = area;
 

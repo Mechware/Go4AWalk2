@@ -5,6 +5,8 @@ namespace G4AW2.Questing {
 
 		public string DisplayName;
 		public bool Completed;
+		public bool Active;
+
 
 		public virtual void Start() {
 
