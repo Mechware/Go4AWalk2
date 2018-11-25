@@ -35,7 +35,7 @@ namespace G4AW2.Combat {
 		}
 
 		public void Hit( int damage ) {
-			Health.Value -= Mathf.RoundToInt(damage*Armor/100);
+			Health.Value -= Mathf.RoundToInt(damage - Armor);
 		}
 
 		public void Block( Swipe s ) {

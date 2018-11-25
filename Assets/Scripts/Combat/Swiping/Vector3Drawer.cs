@@ -53,13 +53,13 @@ namespace G4AW2.Combat.Swiping {
 		[ContextMenu("Animate Line")]
 		public void AnimateSwipe() {
 			StopAllCoroutines();
-			StartCoroutine(DoSwipe(Swipe.Value.ToArray(), PixelsPerSecond));
+			StartCoroutine(DoSwipe(Swipe.ToArray(), PixelsPerSecond));
 		}
 
 		[ContextMenu("Show Line")]
 		public void ShowSwipe() {
-			lr.positionCount = Swipe.Value.Count;
-			lr.SetPositions(Swipe.Value.ToArray());
+			lr.positionCount = Swipe.Count;
+			lr.SetPositions(Swipe.ToArray());
 		}
 	}
 }

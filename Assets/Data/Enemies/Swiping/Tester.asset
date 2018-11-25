@@ -9,12 +9,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 272de9356b227474ebb7e2627f493a67, type: 3}
-  m_Name: GoblinSwipePS1
+  m_Name: Tester
   m_EditorClassIdentifier: 
   Value:
-  - {x: 242.61829, y: 681.7273, z: 10}
-  - {x: 239.12741, y: -243.36362, z: 10}
-  - {x: 204.21825, y: -784.4545, z: 10}
+  - {x: 0, y: 0, z: 0}
+  - {x: 1, y: 0, z: 0}
+  - {x: 2, y: 0, z: 0}
+  - {x: 3, y: 0, z: 0}
   OnAdd:
     m_PersistentCalls:
       m_Calls: []

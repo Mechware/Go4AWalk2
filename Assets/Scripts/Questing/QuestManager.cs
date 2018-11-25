@@ -39,7 +39,7 @@ public class QuestManager : MonoBehaviour {
 	public void OpenQuestMenu() {
 		OnMenuOpen.Invoke();
 		QuestList.Clear();
-		AllQuests.Value.ForEach(QuestList.AddItem);
+		AllQuests.ForEach(QuestList.AddItem);
 	}
 
 	public void CloseQuestMenu() {

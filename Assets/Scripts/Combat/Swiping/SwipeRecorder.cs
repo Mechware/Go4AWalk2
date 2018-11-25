@@ -13,8 +13,8 @@ namespace G4AW2.Combat.Swiping {
 
 		public void OnSwipe(Vector3[] var) {
 			if (RecordSwipe) {
-				Swipe.Value.Clear();
-				Swipe.Value.AddRange(var);
+				Swipe.Clear();
+				Swipe.AddRange(var);
 #if UNITY_EDITOR
 				EditorUtility.SetDirty(Swipe);
 #endif

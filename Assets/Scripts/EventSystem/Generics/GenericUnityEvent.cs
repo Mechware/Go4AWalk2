@@ -1,4 +1,4 @@
-﻿using Sirenix.OdinInspector;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -6,7 +6,7 @@ namespace CustomEvents {
     public class GenericUnityEvent<T> : UnityEvent<T> {
 
 #if UNITY_EDITOR
-        public static bool Debugging = true;
+        public static bool Debugging = false;
 #else
         public static bool Debugging = false;
 #endif
