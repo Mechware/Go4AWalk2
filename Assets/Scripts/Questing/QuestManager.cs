@@ -59,6 +59,15 @@ public class QuestManager : MonoBehaviour {
 		}
 	}
 
+	public void AdvanceQuest() {
+		if (CurrentQuest.NextQuest == null) {
+			//NANI?
+			return;
+		}
+
+		SetCurrentQuest(CurrentQuest.NextQuest);
+	}
+
 	public void QuestClicked(Quest q) {
 		print("Quest clicked: " + q);
 	}

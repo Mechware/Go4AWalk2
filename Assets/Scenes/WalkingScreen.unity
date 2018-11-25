@@ -3432,7 +3432,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AllQuests: {fileID: 11400000, guid: 4ce95383b6b97674dbe5113af1ad007d, type: 2}
-  CurrentAreaQuest: {fileID: 0}
+  CurrentQuest: {fileID: 11400000, guid: 771974687dfc4b44b90a19a3480b81b4, type: 2}
+  QuestCompleted:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: CustomEvents.UnityEventQuest, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
   OnMenuOpen:
     m_PersistentCalls:
       m_Calls:

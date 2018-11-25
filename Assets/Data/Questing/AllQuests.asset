@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Name: AllQuests
   m_EditorClassIdentifier: 
   Value:
-  - {fileID: 11400000, guid: 04ac21c802d678445b99df4561dff168, type: 2}
-  - {fileID: 11400000, guid: bc92760ffa787d549abdcdaa5d2e647f, type: 2}
+  - {fileID: 11400000, guid: 771974687dfc4b44b90a19a3480b81b4, type: 2}
+  - {fileID: 11400000, guid: 7772697f7dd01f34b9f246fc0cdf5cbd, type: 2}
   OnAdd:
     m_PersistentCalls:
       m_Calls: []

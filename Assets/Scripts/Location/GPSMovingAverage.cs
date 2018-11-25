@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Moving Average")]
+[CreateAssetMenu(menuName = "GPSStrategies/Moving Average")]
 public class GPSMovingAverage : GPSStrategy {
 
 	private struct GPSUpdate {

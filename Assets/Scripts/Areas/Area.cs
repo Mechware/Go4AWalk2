@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 namespace G4AW2.Data.Area {
-	[CreateAssetMenu(menuName = "Area")]
+	[CreateAssetMenu(menuName = "Data/Area")]
 	public class Area : ScriptableObject {
 		public FollowerDropData Enemies;
 		public Sprite Background;

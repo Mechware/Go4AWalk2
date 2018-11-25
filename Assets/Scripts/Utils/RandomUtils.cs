@@ -54,7 +54,7 @@ namespace G4AW2.Utils
         public static void PrintDictionary<T1, T2>(Dictionary<T1, T2> d)
         {
             foreach (var kvp in d) {
-                Debug.Log(string.Format("Key: {0}, Value: {1}", kvp.Key, kvp.Value));
+                Debug.Log($"Key: {kvp.Key}, Value: {kvp.Value}");
             }
         }
     }
