@@ -8,9 +8,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3b77944b8900364caaa9a1de4a7a255, type: 3}
+  m_Script: {fileID: 11500000, guid: 8725b3d8a22da7c468cc5300ecb4c147, type: 3}
   m_Name: AllQuests
   m_EditorClassIdentifier: 
+  Value:
+  - {fileID: 11400000, guid: 04ac21c802d678445b99df4561dff168, type: 2}
+  - {fileID: 11400000, guid: bc92760ffa787d549abdcdaa5d2e647f, type: 2}
   OnAdd:
     m_PersistentCalls:
       m_Calls: []

@@ -6,31 +6,23 @@ using G4AW2.UI.Areas;
 using UnityEngine;
 using UnityEngine.Events;
 
-[RequireComponent(typeof(QuestListUI))]
 public class QuestManager : MonoBehaviour {
 
-#if UNITY_EDITOR
-	public PersistentSetQuest AllQuestsTest;
-#endif
-
-	public RuntimeSetQuest AllQuests;
-	public AreaQuest CurrentAreaQuest;
+	public PersistentSetQuest AllQuests;
+	public Quest CurrentQuest;
+	public UnityEventQuest QuestCompleted;
 	public UnityEvent OnMenuOpen;
 	public UnityEvent OnMenuClose;
-	public AreaManager AreaManager;
+	public UnityEventQuest AreaQuestChanged;
 
-	private QuestListUI QuestList;
+	public QuestListUI QuestList;
 
 	void Awake() {
-		QuestList = GetComponent<QuestListUI>();
 	}
 
 	void Start() {
-		AreaManager.SetArea(CurrentAreaQuest.Area);
-		CurrentAreaQuest.Active = true;
-#if UNITY_EDITOR
-		AllQuestsTest.List.ForEach(AllQuests.Add);
-#endif
+		// Load Current Area Quest...
+		SetCurrentQuest(CurrentQuest);
 	}
 
 	private bool open = false;
@@ -54,12 +46,25 @@ public class QuestManager : MonoBehaviour {
 		OnMenuClose.Invoke();
 	}
 
+	private float DistanceWalked;
+
 	public void GPSUpdate(float distanceMoved) {
-		AllQuests.Value.Where(q => q.Active).ForEach(q => q.GPSUpdate(distanceMoved));
+		DistanceWalked += distanceMoved;
+
+		if (CurrentQuest.TotalDistanceToWalk == -1)
+			return; // YOU CAN NEVER FINISH MWHAHHAAHA
+
+		if (DistanceWalked >= CurrentQuest.TotalDistanceToWalk) {
+			QuestCompleted.Invoke(CurrentQuest);
+		}
 	}
 
 	public void QuestClicked(Quest q) {
 		print("Quest clicked: " + q);
 	}
 
+	public void SetCurrentQuest(Quest q) {
+		CurrentQuest = q;
+		AreaQuestChanged.Invoke(q);
+	}
 }

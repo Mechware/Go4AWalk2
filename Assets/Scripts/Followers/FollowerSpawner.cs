@@ -10,6 +10,47 @@ namespace G4AW2.Followers {
         public FollowerDropData DropData;
         public RuntimeSetFollowerData CurrentFollowers;
 
+		public float RandomTimeMin;
+		public float RandomTimeMax;
+		public float RandomDistanceMin;
+		public float RandomDistanceMax;
+
+		private float currentTimeToReach;
+		private float currentDistanceToReach;
+
+		private float currentTime;
+		private float currentDistance;
+
+		void Start() {
+			currentTimeToReach = Random.Range(RandomTimeMin, RandomTimeMax);
+			currentDistanceToReach = Random.Range(RandomDistanceMin, RandomDistanceMax);
+		}
+
+		void Update() {
+			currentTime += Time.deltaTime;
+			CheckSpawns();
+		}
+
+		public void UpdateDistance(float travelled) {
+			currentDistance += travelled;
+			CheckSpawns();
+		}
+
+		private void CheckSpawns() {
+			if (currentTime > currentTimeToReach) {
+				currentTime -= currentTimeToReach;
+				currentTimeToReach = Random.Range(RandomTimeMin, RandomTimeMax);
+				AddFollower();
+				CheckSpawns();
+			}
+			if (currentDistance > currentDistanceToReach) {
+				currentDistance -= currentDistanceToReach;
+				currentDistanceToReach = Random.Range(RandomDistanceMin, RandomDistanceMax);
+				AddFollower();
+				CheckSpawns();
+			}
+		}
+
 	    [ContextMenu("Add Follower")]
 		public void AddFollower() {
             // randomly choose a follower!

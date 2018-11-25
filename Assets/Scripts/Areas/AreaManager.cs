@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using CustomEvents;
 using G4AW2.Data.Area;
 using G4AW2.Followers;
+using G4AW2.Questing;
 using Sirenix.Utilities;
 using UnityEngine;
 using UnityEngine.UI;
@@ -31,6 +32,11 @@ namespace G4AW2.UI.Areas {
 
 			FollowerSpawner.DropData = area.Enemies;
 			UpperCloud.sprite = area.Clouds2;
+		}
+
+		// Must do this due to Unity events... Is there a better way to do this?
+		public void SetAreaFromQuest(Quest quest) {
+			SetArea(quest.Area);
 		}
 
 		// Update is called once per frame
