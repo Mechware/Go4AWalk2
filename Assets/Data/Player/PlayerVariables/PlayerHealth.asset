@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Name: PlayerHealth
   m_EditorClassIdentifier: 
   DeveloperDescription: 
-  InitialValue: 0
-  _value: 0
+  InitialValue: 100
+  _value: 100
