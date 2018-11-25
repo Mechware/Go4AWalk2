@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using CustomEvents;
 using G4AW2.Utils;
+using Sirenix.Serialization;
 using UnityEngine;
 
 namespace G4AW2.Saving {
@@ -11,42 +12,63 @@ namespace G4AW2.Saving {
 
 		private readonly string saveString = "Save";
 
-		public List<ScriptableObject> ObjectsToSave;
+		public List<VariableBase> ObjectsToSave;
 
+		[ContextMenu("Save")]
 		public void Save() {
 			var saveData = GetSaveData();
-			PlayerPrefs.SetString(saveString, JsonUtility.ToJson(saveData));
+			PlayerPrefs.SetString(saveString + name, JsonUtility.ToJson(saveData));
 		}
 
+		[ContextMenu("Load")]
 		public void Load() {
-			if (!PlayerPrefs.HasKey(saveString))
+			if (!PlayerPrefs.HasKey(saveString + name))
 				return;
 
-			Dictionary<string, string> saveData = JsonUtility.FromJson<Dictionary<string, string>>(PlayerPrefs.GetString(saveString));
-			foreach (var kvp in saveData) {
-				var soToOverwrite = ObjectsToSave.First(so => so.name.Equals(kvp.Key));
+			var saveData = JsonUtility.FromJson<SaveObject>(PlayerPrefs.GetString(saveString + name));
+			foreach (var kvp in saveData.PretendDictionary) {
+				VariableBase soToOverwrite = ObjectsToSave.First(so => so.name.Equals(kvp.Key));
+
 				if (soToOverwrite == null) {
 					// Removed a variable?
 					Debug.LogWarning("Could not find scriptable object matching name: " + kvp.Key);
 					continue;
 				}
 
-				JsonUtility.FromJsonOverwrite(kvp.Value, soToOverwrite);
+				VariableBase emptySO = (VariableBase) ScriptableObject.CreateInstance(soToOverwrite.GetType());
+				JsonUtility.FromJsonOverwrite(kvp.Value, emptySO);
+
+				soToOverwrite.CopyValue(emptySO);
 			}
 		}
 
-		private Dictionary<string, string> GetSaveData() {
-			Dictionary<string, string> saveDict = new Dictionary<string, string>();
+		private SaveObject GetSaveData() {
+			var saveDict = new List<KeyValuePairStringString>();
 			foreach (var so in ObjectsToSave) {
-				saveDict.Add(so.name, JsonUtility.ToJson(so));
+				saveDict.Add(new KeyValuePairStringString(so.name, JsonUtility.ToJson(so)));
 			}
-			return saveDict;
+
+			return new SaveObject {PretendDictionary = saveDict};
+		}
+
+		[System.Serializable]
+		private struct KeyValuePairStringString {
+			public string Key;
+			public string Value;
+			public KeyValuePairStringString(string key, string value) {
+				Key = key;
+				Value = value;
+			}
+		}
+
+		private struct SaveObject {
+			public List<KeyValuePairStringString> PretendDictionary;
 		}
 
 #if UNITY_EDITOR
 		[ContextMenu("Print Save String")]
 		void PrintSaveString() {
-			DebugUtils.PrintDictionary(GetSaveData());
+			Debug.Log(JsonUtility.ToJson(GetSaveData()));
 		}
 #endif
 	}

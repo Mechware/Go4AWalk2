@@ -24,19 +24,10 @@ namespace G4AW2.Combat {
         public Item hat, armor, weapon, boots, accessory;
 
 		public void OnEnable() {
-			MaxHealth.Value = PlayerPrefs.GetInt("PlayerMaxHealth", 100);
-			Health.Value = PlayerPrefs.GetInt("PlayerHealth", 100);
-			Power.Value = PlayerPrefs.GetInt("PlayerPower", 0);
-			Damage.Value = PlayerPrefs.GetInt("PlayerDamage", 1);
-
             if (weapon != null) Damage.Value = weapon.value;
 		}
 
 		public void OnDisable() {
-			PlayerPrefs.SetInt("PlayerMaxHealth", MaxHealth.Value);
-			PlayerPrefs.SetInt("PlayerHealth", Health.Value);
-			PlayerPrefs.SetFloat("PlayerPower", Power.Value);
-			PlayerPrefs.SetInt("PlayerDamage", Damage.Value);
 		}
 
 		public int GetLightDamage() {

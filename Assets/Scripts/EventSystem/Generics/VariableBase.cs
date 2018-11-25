@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class VariableBase : ScriptableObject {
-
-	public object GetValue() {
-		return null;
+	public virtual void CopyValue(VariableBase other) {
+		
 	}
 }
