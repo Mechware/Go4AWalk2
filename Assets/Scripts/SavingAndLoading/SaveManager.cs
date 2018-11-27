@@ -57,8 +57,9 @@ namespace G4AW2.Saving {
 					Debug.LogWarning("Currently have an enemy following that doesn't have a valid id. ID: " + followerId);
 					continue;
 				}
-				CurrentFollowers.Add(follower);
+				CurrentFollowers.Add(follower, true);
 			}
+			CurrentFollowers.OnChange.Invoke(null);
 
 			Quest[] allQuestsArray = AllQuests.ToArray();
 			OpenQuests.Clear();
@@ -68,8 +69,9 @@ namespace G4AW2.Saving {
 					Debug.LogWarning("Currently have an open quest that doesn't have a valid id. ID: " + questId);
 					continue;
 				}
-				OpenQuests.Add(quest);
+				OpenQuests.Add(quest, true);
 			}
+			OpenQuests.OnChange.Invoke(null);
 		}
 
 		private SaveObject GetSaveData() {

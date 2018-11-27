@@ -27,23 +27,32 @@ namespace G4AW2.Data.DropSystem
     }
 
     [CreateAssetMenu(menuName = "Data/DropSystem/Item")]
-    public class Item : ScriptableObject {
+    public class Item : ScriptableObject, IID {
+	    public int ID;
         public AnimationClip Walking;
         public Sprite image;
         public int value;
         public string description;
         public Rarity rarity;
         public ItemType type;
-        public InventoryList list;
 
-        public void addToInventory()
-        {         
-            list.addItem(this);
-        }
+	    public int GetID() {
+		    return ID;
+	    }
+
+#if UNITY_EDITOR
+	    [ContextMenu("Pick ID")]
+	    public void PickID() {
+		    ID = IDUtils.PickID<FollowerData>();
+	    }
+
+	    void OnEnable() {
+		    if (ID == 0)
+			    PickID();
+	    }
+#endif
+	}
 
 
-    }
-
-  
 }
 

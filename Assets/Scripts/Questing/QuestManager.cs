@@ -79,6 +79,12 @@ public class QuestManager : MonoBehaviour {
 	}
 
 	public void QuestClicked(Quest q) {
+
+		if (q == CurrentQuest) {
+			PopUp.SetPopUp("This is your current quest.", new[] {"Cool", "Nice."}, new Action[] {() => { }, () => { }});
+			return;
+		}
+
 		PopUp.SetPopUp("Are you sure you want to switch quests? You will lose all progress in this one.",
 			new[] {"Yep", "Nope"}, new Action[] {
 				() => {

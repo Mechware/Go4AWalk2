@@ -14,3 +14,5 @@ MonoBehaviour:
   Drops:
   - Follower: {fileID: 11400000, guid: 2e192900fc69cce47bbdd742701c4d63, type: 2}
     DropChance: 1
+  - Follower: {fileID: 11400000, guid: e2753df0922c7be4bbd9352c043f5d57, type: 2}
+    DropChance: 10

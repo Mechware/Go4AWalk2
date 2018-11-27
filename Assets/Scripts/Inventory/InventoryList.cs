@@ -16,10 +16,10 @@ namespace G4AW2.Data.Inventory
        // public GameObject itemPrefab;
         //public Camera cam;
        // public RectTransform inventoryScreen, playerReference;
-        public List<Item> materialList;
-        public List<Item> consumableList;
+        public RuntimeSetItem materialList;
+        public RuntimeSetItem consumableList;
         //public List<Item> accessoryList;
-        public List<Item> equipmentList; //just one list to make inventory management easier
+        public RuntimeSetItem equipmentList; //just one list to make inventory management easier
 
         public GameEventItem itemAdded,itemRemoved;
 
@@ -169,7 +169,8 @@ namespace G4AW2.Data.Inventory
                     equipmentList.RemoveAt(index);
                     break;
             }
-        }
+	        itemRemoved.Raise(item);
+		}
 
 
     }

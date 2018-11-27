@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
@@ -173,7 +173,6 @@ namespace G4AW2.Tools
                 itemScriptableObject.value = value;
                 itemScriptableObject.description = description;
                 itemScriptableObject.image = SpritePNG;
-                itemScriptableObject.list = (InventoryList)AssetDatabase.LoadAssetAtPath("Assets/Data/Inventory/Inventory.asset",typeof(InventoryList));
 
                 AnimationClip ac = CreateAnimation(animation, spriteSheet, ItemName, animPath);
 
