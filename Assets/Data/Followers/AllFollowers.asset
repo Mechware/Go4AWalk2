@@ -9,11 +9,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 713e87baa4110a74fa28d2f3344de130, type: 3}
-  m_Name: TestFollowerSet
+  m_Name: AllFollowers
   m_EditorClassIdentifier: 
-  List:
-  - {fileID: 11400000, guid: ff7eb37824fb51d49b8e7d54e43010c6, type: 2}
-  - {fileID: 11400000, guid: e2753df0922c7be4bbd9352c043f5d57, type: 2}
+  Value: []
   OnAdd:
     m_PersistentCalls:
       m_Calls: []

@@ -14,7 +14,7 @@ using UnityEditor;
 namespace G4AW2.Questing {
 
 	[CreateAssetMenu(menuName = "Data/Quest")]
-	public class Quest : ScriptableObject {
+	public class Quest : ScriptableObject, IID {
 
 		public int ID;
 
@@ -30,26 +30,16 @@ namespace G4AW2.Questing {
 #if UNITY_EDITOR
 		[ContextMenu("Pick ID")]
 		public void PickID() {
-			string[] paths = AssetDatabase.FindAssets("t:Quest");
-			for (int i = 0; i < paths.Length; i++) {
-				paths[i] = AssetDatabase.GUIDToAssetPath(paths[i]);
-			}
-
-			List<int> ids = paths.Select(AssetDatabase.LoadAssetAtPath<Quest>).Select(q => q.ID).ToList();
-
-			for (int i = 1; i < paths.Length + 1; i++) {
-				if (!ids.Contains(i)) {
-					ID = i;
-					return;
-				}
-			}
-			Debug.Log("How is that possible?");
+			ID = IDUtils.PickID<Quest>();
 		}
 
 		void OnEnable() {
 			if(ID == 0) PickID();
 		}
 #endif
+		public int GetID() {
+			return ID;
+		}
 	}
 }
 

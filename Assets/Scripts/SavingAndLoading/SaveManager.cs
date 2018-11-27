@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using CustomEvents;
+using G4AW2.Data;
+using G4AW2.Questing;
 using G4AW2.Utils;
 using Sirenix.Serialization;
 using UnityEngine;
@@ -13,6 +15,12 @@ namespace G4AW2.Saving {
 		private readonly string saveString = "Save";
 
 		public List<VariableBase> ObjectsToSave;
+
+		public PersistentSetFollowerData AllFollowers; // For ID look ups
+		public PersistentSetQuest AllQuests; // For ID look ups.
+
+		public RuntimeSetFollowerData Followers;
+		public RuntimeSetQuest OpenQuests;
 
 		[ContextMenu("Save")]
 		public void Save() {
@@ -40,6 +48,26 @@ namespace G4AW2.Saving {
 
 				soToOverwrite.CopyValue(emptySO);
 			}
+
+			FollowerData[] allFollowersArray = AllFollowers.ToArray();
+			foreach (int followerId in saveData.Followers) {
+				FollowerData follower = allFollowersArray.FirstOrDefault(f => f.ID == followerId);
+				if (follower == null) {
+					Debug.LogWarning("Currently have an enemy following that doesn't have a valid id. ID: " + followerId);
+					continue;
+				}
+				Followers.Add(follower);
+			}
+
+			Quest[] allQuestsArray = AllQuests.ToArray();
+			foreach (int questId in saveData.Quests) {
+				Quest quest = allQuestsArray.FirstOrDefault(f => f.ID == questId);
+				if (quest == null) {
+					Debug.LogWarning("Currently have an open quest that doesn't have a valid id. ID: " + questId);
+					continue;
+				}
+				OpenQuests.Add(quest);
+			}
 		}
 
 		private SaveObject GetSaveData() {
@@ -48,7 +76,11 @@ namespace G4AW2.Saving {
 				saveDict.Add(new KeyValuePairStringString(so.name, JsonUtility.ToJson(so)));
 			}
 
-			return new SaveObject {PretendDictionary = saveDict};
+			List<int> followers = Followers.Value.Select(f => f.GetID()).ToList();
+			List<int> quests = OpenQuests.Value.Select(q => q.GetID()).ToList();
+
+
+			return new SaveObject {PretendDictionary = saveDict, Followers = followers, Quests = quests};
 		}
 
 		[System.Serializable]
@@ -63,6 +95,8 @@ namespace G4AW2.Saving {
 
 		private struct SaveObject {
 			public List<KeyValuePairStringString> PretendDictionary;
+			public List<int> Followers;
+			public List<int> Quests;
 		}
 
 #if UNITY_EDITOR
