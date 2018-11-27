@@ -19,7 +19,7 @@ namespace G4AW2.Saving {
 		public PersistentSetFollowerData AllFollowers; // For ID look ups
 		public PersistentSetQuest AllQuests; // For ID look ups.
 
-		public RuntimeSetFollowerData Followers;
+		public RuntimeSetFollowerData CurrentFollowers;
 		public RuntimeSetQuest OpenQuests;
 
 		[ContextMenu("Save")]
@@ -50,16 +50,18 @@ namespace G4AW2.Saving {
 			}
 
 			FollowerData[] allFollowersArray = AllFollowers.ToArray();
+			CurrentFollowers.Clear();
 			foreach (int followerId in saveData.Followers) {
 				FollowerData follower = allFollowersArray.FirstOrDefault(f => f.ID == followerId);
 				if (follower == null) {
 					Debug.LogWarning("Currently have an enemy following that doesn't have a valid id. ID: " + followerId);
 					continue;
 				}
-				Followers.Add(follower);
+				CurrentFollowers.Add(follower);
 			}
 
 			Quest[] allQuestsArray = AllQuests.ToArray();
+			OpenQuests.Clear();
 			foreach (int questId in saveData.Quests) {
 				Quest quest = allQuestsArray.FirstOrDefault(f => f.ID == questId);
 				if (quest == null) {
@@ -76,7 +78,7 @@ namespace G4AW2.Saving {
 				saveDict.Add(new KeyValuePairStringString(so.name, JsonUtility.ToJson(so)));
 			}
 
-			List<int> followers = Followers.Value.Select(f => f.GetID()).ToList();
+			List<int> followers = CurrentFollowers.Value.Select(f => f.GetID()).ToList();
 			List<int> quests = OpenQuests.Value.Select(q => q.GetID()).ToList();
 
 
@@ -103,6 +105,13 @@ namespace G4AW2.Saving {
 		[ContextMenu("Print Save String")]
 		void PrintSaveString() {
 			Debug.Log(JsonUtility.ToJson(GetSaveData()));
+		}
+
+		[ContextMenu("Clear all save data")]
+		void ClearSaveData() {
+			PlayerPrefs.DeleteAll();
+			CurrentFollowers.Clear();
+			OpenQuests.Clear();
 		}
 #endif
 	}

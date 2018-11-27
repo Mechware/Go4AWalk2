@@ -1,8 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using CustomEvents;
 using G4AW2.Data;
+using G4AW2.Data.Combat;
+using G4AW2.Dialogue;
 using Sirenix.OdinInspector;
 using Sirenix.Utilities;
 using UnityEngine;
@@ -12,9 +15,12 @@ namespace G4AW2.Followers {
 
 	public class FollowerDisplayController : MonoBehaviour {
 	    public RuntimeSetFollowerData ListOfCurrentFollowers;
+		public RuntimeSetQuest ListOfOpenQuests;
 
 	    public FollowerDisplay DisplayPrefab;
 		private List<FollowerDisplay> AllFollowers = new List<FollowerDisplay>();
+
+		public UnityEvent FightFollower;
 
 		void Start() {
 			ResetFollowers();
@@ -55,6 +61,25 @@ namespace G4AW2.Followers {
 	    void OnDisable() {
             ListOfCurrentFollowers.OnAdd.RemoveListener(FollowerAdded);
 		    ListOfCurrentFollowers.OnRemove.RemoveListener(FollowerRemoved);
+		}
+
+		public void FollowerClicked(FollowerData fd) {
+			// Show some info on them.
+			
+			if (ListOfCurrentFollowers[0] == fd) {
+				if (fd is EnemyData) {
+					//EnemyData ed = (EnemyData) fd;
+					// TODO: Include stats
+					PopUp.SetPopUp("Fight follower?", new[] {"Yes", "No"}, new Action[] { FightFollower.Invoke, () => { }});
+				} else if (fd is QuestGiver) {
+					QuestGiver qg = (QuestGiver) fd;
+					PopUp.SetPopUp("Accept quest from quest giver? Title: " + qg.QuestToGive.DisplayName, new[] { "Yes", "No" }, new Action[] {
+						() => {
+							ListOfOpenQuests.Add(qg.QuestToGive);
+							ListOfCurrentFollowers.Remove(fd);
+						}, () => { } });
+				}
+			} 
 		}
 	}
 }

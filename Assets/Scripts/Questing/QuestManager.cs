@@ -16,15 +16,18 @@ public class QuestManager : MonoBehaviour {
 	public QuestListUI QuestList;
 	public FloatReference DistanceWalkedInQuest;
 	public Dialogue QuestDialogUI;
+	public RuntimeSetQuest CurrentQuests;
 
 	[Header("Events")]
-	public UnityEventQuest QuestCompleted;
 	public UnityEvent OnMenuOpen;
 	public UnityEvent OnMenuClose;
 	public UnityEventQuest AreaQuestChanged;
+	public UnityEvent ResetQuestState;
 
 	public void LoadQuestFromID() {
 		SetCurrentQuest(AllQuests.ToList().First(q => q.ID == CurrentQuestId));
+
+		
 	}
 
 	private bool open = false;
@@ -41,18 +44,14 @@ public class QuestManager : MonoBehaviour {
 	public void OpenQuestMenu() {
 		OnMenuOpen.Invoke();
 		QuestList.Clear();
-		AllQuests.ForEach(QuestList.AddItem);
+		CurrentQuests.Value.ForEach(QuestList.AddItem);
 	}
 
 	public void CloseQuestMenu() {
 		OnMenuClose.Invoke();
 	}
 
-	private bool completed = false;
-
 	public void PlayerMoved(float distanceMoved) {
-		if (completed) return;
-
 		DistanceWalkedInQuest.Value += distanceMoved;
 
 		if (CurrentQuest.TotalDistanceToWalk == -1)
@@ -64,27 +63,44 @@ public class QuestManager : MonoBehaviour {
 	}
 
 	public void AdvanceQuest() {
+		CurrentQuests.Remove(CurrentQuest);
+
 		if (CurrentQuest.NextQuest == null) {
-			//NANI?
+			PopUp.SetPopUp(
+				"You finished the quest! You may either continue in this area or switch quests using the quest book on your screen.",
+				new[] {"ok"}, new Action[] {
+					() => { }
+				});
 			return;
 		}
 
-		DistanceWalkedInQuest.Value = 0;
-		completed = false;
+		ResetQuestState.Invoke();
 		SetCurrentQuest(CurrentQuest.NextQuest);
-		QuestCompleted.Invoke(CurrentQuest);
 	}
 
 	public void QuestClicked(Quest q) {
-		print("Quest clicked: " + q);
+		PopUp.SetPopUp("Are you sure you want to switch quests? You will lose all progress in this one.",
+			new[] {"Yep", "Nope"}, new Action[] {
+				() => {
+					ResetQuestState.Invoke();
+					//DistanceWalkedInQuest.Value = 0;
+					SetCurrentQuest(q);
+				},
+				() => { }
+			});
 	}
 
-	public void SetCurrentQuest(Quest q) {
-		CurrentQuest = q;
-		CurrentQuestId.Value = q.ID;
-		AreaQuestChanged.Invoke(q);
+	public void SetCurrentQuest(Quest quest) {
+
+		if (CurrentQuests.Value.FirstOrDefault(q => q.ID == quest.ID) == null) {
+			CurrentQuests.Add(quest);
+		}
+
+		CurrentQuest = quest;
+		CurrentQuestId.Value = quest.ID;
+		AreaQuestChanged.Invoke(quest);
 		if (DistanceWalkedInQuest <= 0) {
-			QuestDialogUI.SetConversation(q.StartConversation, () => { });
+			QuestDialogUI.SetConversation(quest.StartConversation, () => { });
 		}
 
 		PlayerMoved(0);

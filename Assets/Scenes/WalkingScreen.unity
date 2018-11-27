@@ -122,7 +122,6 @@ GameObject:
   m_Component:
   - component: {fileID: 17406149}
   - component: {fileID: 17406151}
-  - component: {fileID: 17406152}
   m_Layer: 5
   m_Name: Quest Screen
   m_TagString: Untagged
@@ -165,7 +164,7 @@ MonoBehaviour:
   QuestClicked:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 701840145}
         m_MethodName: QuestClicked
         m_Mode: 0
         m_Arguments:
@@ -181,34 +180,6 @@ MonoBehaviour:
   ListItemPrefab: {fileID: 1015030544596834, guid: d99bdc69af1586944a7a3531d3cf1a56,
     type: 2}
   ListParent: {fileID: 898273072}
---- !u!114 &17406152
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 17406148}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f6711a5f179d1c49aae7516cbd8ddba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 3fdd5a6c8a10f1b4788f59dd71e8931b, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 701840145}
-        m_MethodName: SetCurrentQuest
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: CustomEvents.UnityEventQuest, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
 --- !u!1 &38939721
 GameObject:
   m_ObjectHideFlags: 0
@@ -1429,6 +1400,7 @@ GameObject:
   - component: {fileID: 300978734}
   - component: {fileID: 300978736}
   - component: {fileID: 300978737}
+  - component: {fileID: 300978735}
   m_Layer: 5
   m_Name: Followers
   m_TagString: Untagged
@@ -1490,8 +1462,53 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ListOfCurrentFollowers: {fileID: 11400000, guid: d9764a15526dace4899689a1b14b9b44,
     type: 2}
+  ListOfOpenQuests: {fileID: 11400000, guid: f271c820c327d174a9ff1c5439efe06e, type: 2}
   DisplayPrefab: {fileID: 114761404654441882, guid: c4b89bcf0d64ec943b62810409cd0aaa,
     type: 2}
+  FightFollower:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 701840142}
+        m_MethodName: ChangeScene
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Encounter
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!114 &300978735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 300978731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fabdf8e42c3dca48893ea393e1b0135, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 61e1fe40559fc8b4b9991dc7ad0f53ce, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 300978734}
+        m_MethodName: FollowerClicked
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: CustomEvents.UnityEventFollowerData, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!114 &300978736
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3586,7 +3603,6 @@ GameObject:
   m_Component:
   - component: {fileID: 701840140}
   - component: {fileID: 701840142}
-  - component: {fileID: 701840141}
   - component: {fileID: 701840143}
   - component: {fileID: 701840139}
   - component: {fileID: 701840144}
@@ -3637,34 +3653,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &701840141
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 701840138}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9fabdf8e42c3dca48893ea393e1b0135, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 61e1fe40559fc8b4b9991dc7ad0f53ce, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 701840142}
-        m_MethodName: ChangeScene
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Encounter
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: CustomEvents.UnityEventFollowerData, Assembly-CSharp, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &701840142
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3783,33 +3771,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AllQuests: {fileID: 11400000, guid: 4ce95383b6b97674dbe5113af1ad007d, type: 2}
   CurrentQuest: {fileID: 11400000, guid: 771974687dfc4b44b90a19a3480b81b4, type: 2}
-  QuestCompleted:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 860766377}
-        m_MethodName: PrintString
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Quest Completed
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 11400000, guid: d9764a15526dace4899689a1b14b9b44, type: 2}
-        m_MethodName: Clear
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: CustomEvents.UnityEventQuest, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
+  CurrentQuestId:
+    UseConstant: 0
+    ConstantValue: 0
+    Variable: {fileID: 11400000, guid: e2d8c0b54b2455f4d8da6fc93413f26a, type: 2}
+  QuestList: {fileID: 17406151}
+  DistanceWalkedInQuest:
+    UseConstant: 0
+    ConstantValue: 0
+    Variable: {fileID: 11400000, guid: 645a038b5a22bf84cbeedfc19fd7c44a, type: 2}
+  QuestDialogUI: {fileID: 1907137927}
+  CurrentQuests: {fileID: 11400000, guid: f271c820c327d174a9ff1c5439efe06e, type: 2}
   OnMenuOpen:
     m_PersistentCalls:
       m_Calls:
@@ -3880,12 +3852,33 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: CustomEvents.UnityEventQuest, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
-  QuestList: {fileID: 17406151}
-  DistanceWalkedInQuest:
-    UseConstant: 0
-    ConstantValue: 0
-    Variable: {fileID: 11400000, guid: 645a038b5a22bf84cbeedfc19fd7c44a, type: 2}
-  QuestDialogUI: {fileID: 1907137927}
+  ResetQuestState:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 645a038b5a22bf84cbeedfc19fd7c44a, type: 2}
+        m_MethodName: set_Value
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: d9764a15526dace4899689a1b14b9b44, type: 2}
+        m_MethodName: Clear
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!114 &701840146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3947,6 +3940,108 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: On Awake
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 701840145}
+        m_MethodName: LoadQuestFromID
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnFocus:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 860766377}
+        m_MethodName: PrintString
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: On Focus
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnUnFocus:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 860766377}
+        m_MethodName: PrintString
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: On Unfocus
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnPause:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 860766377}
+        m_MethodName: PrintString
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: On Pause
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnPlay:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 860766377}
+        m_MethodName: PrintString
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: On Play
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnQuit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 8d66d4105827e4747ba9e6ec24980aca, type: 2}
+        m_MethodName: Save
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 860766377}
+        m_MethodName: PrintString
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: On Quit
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
@@ -6189,7 +6284,7 @@ RectTransform:
   - {fileID: 1324188855}
   - {fileID: 17406149}
   - {fileID: 1907137926}
-  - {fileID: 2019024949}
+  - {fileID: 1589775612}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -10060,6 +10155,62 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbbe25824616ba2488a3562cd3e113d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1589775611
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1589775612}
+  - component: {fileID: 1589775613}
+  m_Layer: 5
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1589775612
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1589775611}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 2019024949}
+  m_Father: {fileID: 951186433}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1589775613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1589775611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45ae2e9df1c544444be169cc567d7fd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Text: {fileID: 1621105005}
+  SingleResponseButton: {fileID: 639865396}
+  TwoResponseButtons:
+  - {fileID: 938662720}
+  - {fileID: 2091496646}
+  ThreeResponseButtons:
+  - {fileID: 1441656258}
+  - {fileID: 91897028}
+  - {fileID: 149810749}
+  container: {fileID: 2019024948}
 --- !u!1 &1600980676
 GameObject:
   m_ObjectHideFlags: 0
@@ -10349,7 +10500,7 @@ MonoBehaviour:
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -11911,7 +12062,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2019024949}
-  - component: {fileID: 2019024950}
   m_Layer: 5
   m_Name: PopUp
   m_TagString: Untagged
@@ -11925,7 +12075,7 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2019024948}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -11934,34 +12084,14 @@ RectTransform:
   - {fileID: 120162020}
   - {fileID: 1474691341}
   - {fileID: 679165206}
-  m_Father: {fileID: 951186433}
-  m_RootOrder: 3
+  m_Father: {fileID: 1589775612}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2019024950
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2019024948}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45ae2e9df1c544444be169cc567d7fd7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Text: {fileID: 1621105005}
-  SingleResponseButton: {fileID: 639865396}
-  TwoResponseButtons:
-  - {fileID: 938662720}
-  - {fileID: 2091496646}
-  ThreeResponseButtons:
-  - {fileID: 1441656258}
-  - {fileID: 91897028}
-  - {fileID: 149810749}
 --- !u!1 &2030058396
 GameObject:
   m_ObjectHideFlags: 0

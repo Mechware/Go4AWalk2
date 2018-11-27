@@ -11,7 +11,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 713e87baa4110a74fa28d2f3344de130, type: 3}
   m_Name: AllFollowers
   m_EditorClassIdentifier: 
-  Value: []
+  Value:
+  - {fileID: 11400000, guid: ff7eb37824fb51d49b8e7d54e43010c6, type: 2}
+  - {fileID: 11400000, guid: f9cb20d3635f5ec40935188217f021cd, type: 2}
+  - {fileID: 11400000, guid: e2753df0922c7be4bbd9352c043f5d57, type: 2}
+  - {fileID: 11400000, guid: 83a82c4d831cd0e4ea76b4e193b6f359, type: 2}
+  - {fileID: 11400000, guid: e75340b3bcfa1db4bae6e3c12eb51d0b, type: 2}
+  - {fileID: 11400000, guid: 51d3cce514427d448a622c4b31127522, type: 2}
+  - {fileID: 11400000, guid: 581f3693b61c6534881558b338b2fc3f, type: 2}
+  - {fileID: 11400000, guid: 2e192900fc69cce47bbdd742701c4d63, type: 2}
   OnAdd:
     m_PersistentCalls:
       m_Calls: []

@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Name: CurrentQuestID
   m_EditorClassIdentifier: 
   DeveloperDescription: 
-  InitialValue: 0
+  InitialValue: 1
   OnChange:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: CustomEvents.UnityEventInt, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
-  _value: 0
+  _value: 3

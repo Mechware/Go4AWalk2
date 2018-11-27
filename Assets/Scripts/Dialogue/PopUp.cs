@@ -14,11 +14,12 @@ namespace G4AW2.Dialogue {
 		public Button[] TwoResponseButtons;
 		public Button[] ThreeResponseButtons;
 
+		public GameObject container;
 
 		private static PopUp singleton;
 		private bool inUse = false;
 
-		void Awake() {
+		void Start() {
 			singleton = this;
 		}
 
@@ -28,6 +29,8 @@ namespace G4AW2.Dialogue {
 		}
 
 		private bool SetPopUpPriv(string text, string[] options, Action[] responses) {
+
+			container.SetActive(true);
 
 			if (inUse)
 				return false;
@@ -51,12 +54,17 @@ namespace G4AW2.Dialogue {
 
 			for (int i = 0; i < options.Length; i++) {
 				response[i].gameObject.SetActive(true);
-				response[i].GetComponentInChildren<Text>().text = options[i];
+				response[i].GetComponentInChildren<TextMeshProUGUI>().text = options[i];
 				response[i].onClick.RemoveAllListeners();
-				response[i].onClick.AddListener(() => responses[i]());
+				AddListener(response[i], i, responses);
 			}
 
 			return true;
+		}
+
+		private void AddListener(Button b, int i, Action[] responses) {
+			b.onClick.AddListener(() => responses[i]());
+			b.onClick.AddListener(() => container.SetActive(false));
 		}
 
 	}

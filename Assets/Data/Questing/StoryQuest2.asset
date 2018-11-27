@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: StoryQuest2
   m_EditorClassIdentifier: 
   ID: 3
-  DisplayName: What's going on here??
+  DisplayName: End of the game
   NextQuest: {fileID: 0}
   Area: {fileID: 11400000, guid: 952fe4e430290d94997d1062d0ad9a2a, type: 2}
   StartConversation:
