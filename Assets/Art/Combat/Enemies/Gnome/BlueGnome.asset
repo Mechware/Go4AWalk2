@@ -25,7 +25,7 @@ MonoBehaviour:
   BaseHealth: 50
   BaseArmor: 0
   TimeBetweenLightAttacks: 4
-  TimeBetweenHeavyAttacks: 10
+  TimeBetweenHeavyAttacks: 3
   BaseLightDamage: 1
   BaseHeavyDamage: 5
   Swipes: {fileID: 11400000, guid: 5ae2e0eda78248e4e8d0eb4f1b19a2f0, type: 2}

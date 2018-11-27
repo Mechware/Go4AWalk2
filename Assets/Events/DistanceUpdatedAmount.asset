@@ -8,6 +8,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e05711849e8d1044a3e8cccefa51814, type: 3}
-  m_Name: GPSMoved
+  m_Script: {fileID: 11500000, guid: cb13c28a3e072d940893dde46ad85673, type: 3}
+  m_Name: DistanceUpdatedAmount
   m_EditorClassIdentifier: 

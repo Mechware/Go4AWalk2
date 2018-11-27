@@ -15,7 +15,7 @@ namespace CustomEvents {
 		public string DeveloperDescription = "";
 #endif
 	    public T InitialValue;
-	    [NonSerialized] public TEvent OnChange = new TEvent();
+	    public TEvent OnChange = new TEvent();
 
 		[ReadOnly] [SerializeField] private T _value;
 
@@ -32,11 +32,10 @@ namespace CustomEvents {
         }
 
 		public override void CopyValue( VariableBase other ) {
-			_value = ((Variable<T, TEvent>) other)._value;
+			Value = ((Variable<T, TEvent>) other)._value;
 		}
 
 	    public void OnEnable() {
-			Debug.Log("Enabled");
 		    _value = InitialValue;
 		}
 

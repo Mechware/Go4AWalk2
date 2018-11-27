@@ -49,6 +49,7 @@ namespace G4AW2.Followers {
 	    void OnEnable() {
             ListOfCurrentFollowers.OnAdd.AddListener(FollowerAdded);
             ListOfCurrentFollowers.OnRemove.AddListener(FollowerRemoved);
+            ListOfCurrentFollowers.OnChange.AddListener(FollowerRemoved);
 		}
 
 	    void OnDisable() {

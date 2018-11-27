@@ -11,7 +11,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87affdc055474c44b934b6b45b96fc3f, type: 3}
   m_Name: StoryQuest2
   m_EditorClassIdentifier: 
+  ID: 3
   DisplayName: What's going on here??
   NextQuest: {fileID: 0}
   Area: {fileID: 11400000, guid: 952fe4e430290d94997d1062d0ad9a2a, type: 2}
-  TotalDistanceToWalk: 1000
+  StartConversation:
+    Text: You beat the game! Congrats :D
+    Speaker: {fileID: 21300000, guid: 9468193b853eb2c4aa10ed54ed27a3eb, type: 3}
+  EndConversation:
+    Text: You beat the game.. again? How did this happen.... DEVS! FIX THIS!
+    Speaker: {fileID: 21300000, guid: 9468193b853eb2c4aa10ed54ed27a3eb, type: 3}
+  TotalDistanceToWalk: -1

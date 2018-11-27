@@ -23,6 +23,11 @@ namespace CustomEvents {
 			OnRemove.Invoke(item);
 		}
 
+		public void Clear() {
+			list.Clear();
+			OnChange.Invoke(default(T));
+		}
+
 		public static implicit operator List<T>(RuntimeSetGeneric<T, TEvent> val) {
 			return val.list;
 		}

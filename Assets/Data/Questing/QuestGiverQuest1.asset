@@ -9,16 +9,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 87affdc055474c44b934b6b45b96fc3f, type: 3}
-  m_Name: StoryQuest1
+  m_Name: QuestGiverQuest1
   m_EditorClassIdentifier: 
-  ID: 1
-  DisplayName: Wandering in the Forest
-  NextQuest: {fileID: 11400000, guid: 7772697f7dd01f34b9f246fc0cdf5cbd, type: 2}
+  ID: 2
+  DisplayName: The fuckening
+  NextQuest: {fileID: 0}
   Area: {fileID: 11400000, guid: 5e4d1ba5949749b44bc3427231ca82f2, type: 2}
   StartConversation:
-    Text: Haha! You can't catch me!
-    Speaker: {fileID: 21300000, guid: cb5bad34af4fa8249bd1c7bc6381285a, type: 3}
+    Text: 
+    Speaker: {fileID: 0}
   EndConversation:
-    Text: Dang it, you caught me!
-    Speaker: {fileID: 21300000, guid: cb5bad34af4fa8249bd1c7bc6381285a, type: 3}
-  TotalDistanceToWalk: 100
+    Text: 
+    Speaker: {fileID: 0}
+  TotalDistanceToWalk: 500

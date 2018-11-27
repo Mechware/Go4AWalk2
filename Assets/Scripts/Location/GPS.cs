@@ -29,7 +29,6 @@ namespace G4AW2.GPS
 		public UnityEvent StatusUpdated;
 		public GPSStrategy GpsStrategy;
 
-
 		// Approximate radius of the earth (in kilometers)
 		[ReadOnly] public LocationState state = LocationState.Initializing;
 

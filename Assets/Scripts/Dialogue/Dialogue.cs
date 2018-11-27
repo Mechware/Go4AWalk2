@@ -11,34 +11,45 @@ namespace G4AW2.Dialogue {
 		public Image Person;
 		public TextMeshProUGUI Text;
 		private bool playingConversation = false;
-		private DialogueData currentConversation;
-		private Queue<DialogueData> dialogueQueue = new Queue<DialogueData>();
+		private ConvoWithReturn currentConversation;
+		private Queue<ConvoWithReturn> dialogueQueue = new Queue<ConvoWithReturn>();
 
 		public void AdvanceConversation() {
 			if (currentConversation == null) {
 				Debug.LogError("Tried to advance a non-existent conversation");
 				return;
 			}
-			currentConversation.OnReturn.Invoke();
+			currentConversation.OnReturn();
 			playingConversation = false;
 			ProcessQueue();
 		}
 
-		public void SetConversation( DialogueData convo ) {
-			dialogueQueue.Enqueue(convo);
+		public void SetConversation( Conversation convo, Action onReturn ) {
+			dialogueQueue.Enqueue(new ConvoWithReturn {convo = convo, OnReturn = onReturn});
 			ProcessQueue();
 		}
 
 		private void ProcessQueue() {
-			if (playingConversation || dialogueQueue.Count == 0) {
+			if (playingConversation) {
+				return;
+			}
+			if (dialogueQueue.Count == 0) {
+				gameObject.SetActive(false);
 				return;
 			}
 
 			playingConversation = true;
 			currentConversation = dialogueQueue.Dequeue();
 
-			Person.sprite = currentConversation.Speaker;
-			Text.text = currentConversation.Text;
+			Person.sprite = currentConversation.convo.Speaker;
+			Text.text = currentConversation.convo.Text;
+
+			gameObject.SetActive(true);
+		}
+
+		private class ConvoWithReturn {
+			public Conversation convo;
+			public Action OnReturn;
 		}
 	}
 }

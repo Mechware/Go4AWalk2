@@ -35,6 +35,7 @@ public class PersistentSetGeneric<T, TEvent> : ScriptableObject where TEvent : U
 		Value.AddRange(range);
 	}
 
+	[ContextMenu("Clear")]
 	public void Clear() {
 		Value.Clear();
 	}
