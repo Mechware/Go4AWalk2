@@ -43,7 +43,7 @@ namespace G4AW2.Data.DropSystem
 #if UNITY_EDITOR
 	    [ContextMenu("Pick ID")]
 	    public void PickID() {
-		    ID = IDUtils.PickID<FollowerData>();
+		    ID = IDUtils.PickID<Item>();
 	    }
 
 	    void OnEnable() {

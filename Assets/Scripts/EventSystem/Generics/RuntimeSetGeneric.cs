@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 namespace CustomEvents {
-	public class RuntimeSetGeneric<T, TEvent> : ScriptableObject where TEvent : UnityEvent<T> {
+	public class RuntimeSetGeneric<T, TEvent> : RuntimeSetBase where TEvent : UnityEvent<T> {
 		public List<T> Value { get { return list; } }
 		[ShowInInspector][ReadOnly] private List<T> list = new List<T>();
 
@@ -60,6 +60,8 @@ namespace CustomEvents {
 			Clear();
 		}
 	}
+
+	public class RuntimeSetBase : ScriptableObject { }
 }
 
 

@@ -7,6 +7,7 @@ using G4AW2.Questing;
 using G4AW2.Utils;
 using Sirenix.Serialization;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace G4AW2.Saving {
 	[CreateAssetMenu(menuName = "Save Manager")]
@@ -15,12 +16,19 @@ namespace G4AW2.Saving {
 		private readonly string saveString = "Save";
 
 		public List<VariableBase> ObjectsToSave;
+		public List<RuntimeSetBase> RuntimeSetsToSave;
+
 
 		public PersistentSetFollowerData AllFollowers; // For ID look ups
 		public PersistentSetQuest AllQuests; // For ID look ups.
+		public PersistentSetItem AllItems;
 
 		public RuntimeSetFollowerData CurrentFollowers;
 		public RuntimeSetQuest OpenQuests;
+
+		public RuntimeSetItem Consumables; 
+		public RuntimeSetItem Equipment; 
+		public RuntimeSetItem Materials;
 
 		[ContextMenu("Save")]
 		public void Save() {
@@ -49,29 +57,28 @@ namespace G4AW2.Saving {
 				soToOverwrite.CopyValue(emptySO);
 			}
 
-			FollowerData[] allFollowersArray = AllFollowers.ToArray();
-			CurrentFollowers.Clear();
-			foreach (int followerId in saveData.Followers) {
-				FollowerData follower = allFollowersArray.FirstOrDefault(f => f.ID == followerId);
-				if (follower == null) {
-					Debug.LogWarning("Currently have an enemy following that doesn't have a valid id. ID: " + followerId);
-					continue;
-				}
-				CurrentFollowers.Add(follower, true);
-			}
-			CurrentFollowers.OnChange.Invoke(null);
+			LoadIID(CurrentFollowers, AllFollowers.ToArray(), saveData.Followers);
+			LoadIID(OpenQuests, AllQuests.ToArray(), saveData.Quests);
+			LoadIID(Consumables, AllItems.ToArray(), saveData.Consumables);
+			LoadIID(Equipment, AllItems.ToArray(), saveData.Equipment);
+			LoadIID(Materials, AllItems.ToArray(), saveData.Materials);
 
-			Quest[] allQuestsArray = AllQuests.ToArray();
-			OpenQuests.Clear();
-			foreach (int questId in saveData.Quests) {
-				Quest quest = allQuestsArray.FirstOrDefault(f => f.ID == questId);
-				if (quest == null) {
-					Debug.LogWarning("Currently have an open quest that doesn't have a valid id. ID: " + questId);
+		}
+
+		// If you don't know C# well, IGNORE THIS.
+		private static void LoadIID<T, TEvent>(RuntimeSetGeneric<T, TEvent> seto, T[] allArray, List<int> ids) where T : IID where TEvent : UnityEvent<T> {
+			var set = (RuntimeSetGeneric<T, TEvent>) seto;
+			set.Clear();
+			foreach (int id in ids) {
+				T thing = allArray.FirstOrDefault(f => f.GetID() == id);
+				if (thing == null) {
+					Debug.LogWarning("Currently laoding a " + typeof(T).Name + " that doesn't have a valid id. ID: " + id);
 					continue;
 				}
-				OpenQuests.Add(quest, true);
+				set.Add(thing, true);
 			}
-			OpenQuests.OnChange.Invoke(null);
+			set.OnChange.Invoke(default(T));
+
 		}
 
 		private SaveObject GetSaveData() {
@@ -82,9 +89,18 @@ namespace G4AW2.Saving {
 
 			List<int> followers = CurrentFollowers.Value.Select(f => f.GetID()).ToList();
 			List<int> quests = OpenQuests.Value.Select(q => q.GetID()).ToList();
+			List<int> equipment = Equipment.Value.Select(q => q.GetID()).ToList();
+			List<int> consumables = Consumables.Value.Select(q => q.GetID()).ToList();
+			List<int> materials = Materials.Value.Select(q => q.GetID()).ToList();
 
-
-			return new SaveObject {PretendDictionary = saveDict, Followers = followers, Quests = quests};
+			return new SaveObject {
+				PretendDictionary = saveDict,
+				Followers = followers,
+				Quests = quests,
+				Equipment = equipment,
+				Consumables = consumables,
+				Materials = materials
+			};
 		}
 
 		[System.Serializable]
@@ -101,6 +117,9 @@ namespace G4AW2.Saving {
 			public List<KeyValuePairStringString> PretendDictionary;
 			public List<int> Followers;
 			public List<int> Quests;
+			public List<int> Consumables;
+			public List<int> Equipment;
+			public List<int> Materials;
 		}
 
 #if UNITY_EDITOR
