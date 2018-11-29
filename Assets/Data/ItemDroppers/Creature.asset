@@ -13,6 +13,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Items:
   - item: {fileID: 11400000, guid: 181345e8493002944bc2b80e13afc03c, type: 2}
-    dropChance: 0.5
+    dropChance: 1
   - item: {fileID: 11400000, guid: 9289bb1359441744d8b7158b705f8ea1, type: 2}
-    dropChance: 0.01
+    dropChance: 0.7
+  - item: {fileID: 11400000, guid: 181345e8493002944bc2b80e13afc03c, type: 2}
+    dropChance: 0.9
+  - item: {fileID: 11400000, guid: 181345e8493002944bc2b80e13afc03c, type: 2}
+    dropChance: 0.8
+  - item: {fileID: 11400000, guid: 181345e8493002944bc2b80e13afc03c, type: 2}
+    dropChance: 0.5
+  - item: {fileID: 11400000, guid: 181345e8493002944bc2b80e13afc03c, type: 2}
+    dropChance: 0.1
+  - item: {fileID: 11400000, guid: 181345e8493002944bc2b80e13afc03c, type: 2}
+    dropChance: 1
