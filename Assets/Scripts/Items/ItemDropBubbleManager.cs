@@ -42,9 +42,8 @@ public class ItemDropBubbleManager : MonoBehaviour {
 		}
 	}
 
-#if UNITY_EDITOR
 	[Header("Debug")] public ItemDropper Dropper;
-
+#if UNITY_EDITOR
 	[ContextMenu("Drop Items")]
 	public void DropItems() {
 		AddItems(Dropper.GetItems());

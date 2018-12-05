@@ -10,10 +10,8 @@ namespace CustomEvents {
 
     [Serializable]
 	public abstract class Variable<T, TEvent> : VariableBase where TEvent : UnityEvent<T>, ISerializationCallbackReceiver, new() {
-#if UNITY_EDITOR
 		[Multiline]
 		public string DeveloperDescription = "";
-#endif
 	    public T InitialValue;
 	    public TEvent OnChange = new TEvent();
 
