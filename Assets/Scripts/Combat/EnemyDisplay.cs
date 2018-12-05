@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using CustomEvents;
 using G4AW2.Combat.Swiping;
+using G4AW2.Events;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -26,7 +27,8 @@ namespace G4AW2.Combat {
 		public UnityEvent OnAttackBroken;
 	    public UnityEventInt OnLightAttack;
 	    public UnityEvent OnDeath;
-	    public UnityEvent OnStun;
+	    public UnityEventIEnumerableLoot OnDropLoot;
+		public UnityEvent OnStun;
 	    public UnityEvent OnUnStun;
 		public UnityEventInt OnHit;
 
@@ -114,6 +116,7 @@ namespace G4AW2.Combat {
 			if (CurrentHealth.Value <= 0) {
 				isDead = true;
 				OnDeath.Invoke();
+				OnDropLoot.Invoke(Enemy.Drops.GetItems());
 			} else {
 				OnHit.Invoke(amount);
 			}

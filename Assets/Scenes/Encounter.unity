@@ -669,7 +669,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 114174548617117370, guid: 1c1c5654baf9b674d98643e199750762,
         type: 2}
-      propertyPath: OnItemClick.m_PersistentCalls.m_Calls.Array.size
+      propertyPath: OnFinished.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224465032064407226, guid: 1c1c5654baf9b674d98643e199750762,
@@ -764,38 +764,43 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114174548617117370, guid: 1c1c5654baf9b674d98643e199750762,
         type: 2}
-      propertyPath: OnItemClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      propertyPath: OnFinished.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114174548617117370, guid: 1c1c5654baf9b674d98643e199750762,
+        type: 2}
+      propertyPath: OnFinished.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114174548617117370, guid: 1c1c5654baf9b674d98643e199750762,
+        type: 2}
+      propertyPath: OnFinished.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 11400000, guid: d0fd09527a66e9748be16ba73538f66e,
-        type: 2}
+      objectReference: {fileID: 826056237}
     - target: {fileID: 114174548617117370, guid: 1c1c5654baf9b674d98643e199750762,
         type: 2}
-      propertyPath: OnItemClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: addItem
+      propertyPath: OnFinished.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ChangeScene
       objectReference: {fileID: 0}
     - target: {fileID: 114174548617117370, guid: 1c1c5654baf9b674d98643e199750762,
         type: 2}
-      propertyPath: OnItemClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114174548617117370, guid: 1c1c5654baf9b674d98643e199750762,
-        type: 2}
-      propertyPath: OnItemClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      propertyPath: OnFinished.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 114174548617117370, guid: 1c1c5654baf9b674d98643e199750762,
         type: 2}
-      propertyPath: OnItemClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114174548617117370, guid: 1c1c5654baf9b674d98643e199750762,
-        type: 2}
-      propertyPath: OnItemClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
+      propertyPath: OnFinished.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: WalkingScreen
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1c1c5654baf9b674d98643e199750762, type: 2}
   m_IsPrefabAsset: 0
+--- !u!114 &853766531 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114174548617117370, guid: 1c1c5654baf9b674d98643e199750762,
+    type: 2}
+  m_PrefabInternal: {fileID: 853766530}
+  m_Script: {fileID: 11500000, guid: 3e308143f58c2ae44afa2ab9e3baab82, type: 3}
 --- !u!1 &884322607
 GameObject:
   m_ObjectHideFlags: 0
@@ -2001,18 +2006,34 @@ MonoBehaviour:
           m_StringArgument: Death
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 826056237}
-        m_MethodName: ChangeScene
-        m_Mode: 5
+      - m_Target: {fileID: 853766531}
+        m_MethodName: DropItems
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: WalkingScreen
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnDropLoot:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 853766531}
+        m_MethodName: AddItems
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: G4AW2.Events.UnityEventIEnumerableLoot, Assembly-CSharp, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   OnStun:
     m_PersistentCalls:
