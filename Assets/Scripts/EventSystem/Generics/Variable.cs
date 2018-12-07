@@ -29,10 +29,6 @@ namespace CustomEvents {
             return val.Value;
         }
 
-		public override void CopyValue( VariableBase other ) {
-			Value = ((Variable<T, TEvent>) other)._value;
-		}
-
 	    public void OnEnable() {
 		    _value = InitialValue;
 		}

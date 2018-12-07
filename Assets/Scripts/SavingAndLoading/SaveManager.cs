@@ -1,48 +1,47 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using CustomEvents;
-using G4AW2.Data;
-using G4AW2.Questing;
-using G4AW2.Utils;
-using Sirenix.Serialization;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace G4AW2.Saving {
 	[CreateAssetMenu(menuName = "Save Manager")]
 	public class SaveManager : ScriptableObject {
 
-		private readonly string saveString = "Save";
+		private string saveFile;
+		private string backUpFile;
 
 		public List<VariableBase> ObjectsToSave;
-		public List<RuntimeSetBase> RuntimeSetsToSave;
+		public List<KeyValuePairSaveableSetAndAllIdsList> RuntimeSetsAndAllIdsSets;
 
-
-		public PersistentSetFollowerData AllFollowers; // For ID look ups
-		public PersistentSetQuest AllQuests; // For ID look ups.
-		public PersistentSetItem AllItems;
-
-		public RuntimeSetFollowerData CurrentFollowers;
-		public RuntimeSetQuest OpenQuests;
-
-		public RuntimeSetItem Consumables; 
-		public RuntimeSetItem Equipment; 
-		public RuntimeSetItem Materials;
+		void OnEnable() {
+			saveFile = Path.Combine(Application.persistentDataPath, "Saves", "G4AW2_" + name + ".save");
+			backUpFile = saveFile + "_Backup";
+		}
 
 		[ContextMenu("Save")]
 		public void Save() {
-			var saveData = GetSaveData();
-			PlayerPrefs.SetString(saveString + name, JsonUtility.ToJson(saveData));
+			if (File.Exists(saveFile)) {
+				if (File.Exists(backUpFile)) {
+					File.Delete(backUpFile);
+				}
+
+				File.Copy(saveFile, backUpFile);
+				File.Delete(saveFile);
+			}
+
+			Directory.CreateDirectory(Path.GetDirectoryName(saveFile));
+
+			File.WriteAllText(saveFile, GetSaveString());
 		}
 
 		[ContextMenu("Load")]
 		public void Load() {
-			if (!PlayerPrefs.HasKey(saveString + name))
+			if (!File.Exists(saveFile))
 				return;
 
-			var saveData = JsonUtility.FromJson<SaveObject>(PlayerPrefs.GetString(saveString + name));
-			foreach (var kvp in saveData.PretendDictionary) {
+			SaveObject saveData = JsonUtility.FromJson<SaveObject>(File.ReadAllText(saveFile));
+			foreach (KeyValuePairStringString kvp in saveData.VariableDictionary) {
 				VariableBase soToOverwrite = ObjectsToSave.First(so => so.name.Equals(kvp.Key));
 
 				if (soToOverwrite == null) {
@@ -51,55 +50,31 @@ namespace G4AW2.Saving {
 					continue;
 				}
 
-				VariableBase emptySO = (VariableBase) ScriptableObject.CreateInstance(soToOverwrite.GetType());
-				JsonUtility.FromJsonOverwrite(kvp.Value, emptySO);
-
-				soToOverwrite.CopyValue(emptySO);
+				soToOverwrite.LoadString(kvp.Value);
 			}
 
-			LoadIID(CurrentFollowers, AllFollowers.ToArray(), saveData.Followers);
-			LoadIID(OpenQuests, AllQuests.ToArray(), saveData.Quests);
-			LoadIID(Consumables, AllItems.ToArray(), saveData.Consumables);
-			LoadIID(Equipment, AllItems.ToArray(), saveData.Equipment);
-			LoadIID(Materials, AllItems.ToArray(), saveData.Materials);
-
-		}
-
-		// If you don't know C# well, IGNORE THIS.
-		private static void LoadIID<T, TEvent>(RuntimeSetGeneric<T, TEvent> seto, T[] allArray, List<int> ids) where T : IID where TEvent : UnityEvent<T> {
-			var set = (RuntimeSetGeneric<T, TEvent>) seto;
-			set.Clear();
-			foreach (int id in ids) {
-				T thing = allArray.FirstOrDefault(f => f.GetID() == id);
-				if (thing == null) {
-					Debug.LogWarning("Currently laoding a " + typeof(T).Name + " that doesn't have a valid id. ID: " + id);
+			foreach (KeyValuePairStringString kvp in saveData.RuntimeSetDictionary) {
+				KeyValuePairSaveableSetAndAllIdsList set2 = RuntimeSetsAndAllIdsSets.FirstOrDefault(set => set.Key.name.Equals(kvp.Key));
+				if (set2.Equals(default(KeyValuePairSaveableSetAndAllIdsList))) {
+					Debug.LogWarning("Could not find runtime set matching name: " + kvp.Key);
 					continue;
 				}
-				set.Add(thing, true);
+				set2.Key.SetData(kvp.Value, set2.Value);
 			}
-			set.OnChange.Invoke(default(T));
+		}
 
+		private string GetSaveString() {
+			return JsonUtility.ToJson(GetSaveData());
 		}
 
 		private SaveObject GetSaveData() {
-			var saveDict = new List<KeyValuePairStringString>();
-			foreach (var so in ObjectsToSave) {
-				saveDict.Add(new KeyValuePairStringString(so.name, JsonUtility.ToJson(so)));
-			}
+			List<KeyValuePairStringString> saveDictForVariables = ObjectsToSave.Select(so => new KeyValuePairStringString(so.name, so.GetSaveData())).ToList();
 
-			List<int> followers = CurrentFollowers.Value.Select(f => f.GetID()).ToList();
-			List<int> quests = OpenQuests.Value.Select(q => q.GetID()).ToList();
-			List<int> equipment = Equipment.Value.Select(q => q.GetID()).ToList();
-			List<int> consumables = Consumables.Value.Select(q => q.GetID()).ToList();
-			List<int> materials = Materials.Value.Select(q => q.GetID()).ToList();
+			List<KeyValuePairStringString> saveDictForRuntimeSets = RuntimeSetsAndAllIdsSets.Select(kvp => new KeyValuePairStringString(kvp.Key.name, kvp.Key.GetSaveString())).ToList();
 
 			return new SaveObject {
-				PretendDictionary = saveDict,
-				Followers = followers,
-				Quests = quests,
-				Equipment = equipment,
-				Consumables = consumables,
-				Materials = materials
+				VariableDictionary = saveDictForVariables,
+				RuntimeSetDictionary = saveDictForRuntimeSets
 			};
 		}
 
@@ -113,26 +88,26 @@ namespace G4AW2.Saving {
 			}
 		}
 
+		[System.Serializable]
+		public struct KeyValuePairSaveableSetAndAllIdsList {
+			public SaveableScriptableObject Key;
+			public ScriptableObject Value; // Persistent Runtime Set
+		}
+
 		private struct SaveObject {
-			public List<KeyValuePairStringString> PretendDictionary;
-			public List<int> Followers;
-			public List<int> Quests;
-			public List<int> Consumables;
-			public List<int> Equipment;
-			public List<int> Materials;
+			public List<KeyValuePairStringString> VariableDictionary;
+			public List<KeyValuePairStringString> RuntimeSetDictionary;
+		}
+
+		[ContextMenu("Clear all save data")]
+		void ClearSaveData() {
+			File.Delete(saveFile);
 		}
 
 #if UNITY_EDITOR
 		[ContextMenu("Print Save String")]
 		void PrintSaveString() {
-			Debug.Log(JsonUtility.ToJson(GetSaveData()));
-		}
-
-		[ContextMenu("Clear all save data")]
-		void ClearSaveData() {
-			PlayerPrefs.DeleteAll();
-			CurrentFollowers.Clear();
-			OpenQuests.Clear();
+			Debug.Log(GetSaveString());
 		}
 #endif
 	}

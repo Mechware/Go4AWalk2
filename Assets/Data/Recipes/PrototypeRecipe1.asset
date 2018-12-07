@@ -8,6 +8,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e05711849e8d1044a3e8cccefa51814, type: 3}
-  m_Name: InventoryButtonPressed
+  m_Script: {fileID: 11500000, guid: a97f1898c302cd44b8adfe51accc35cd, type: 3}
+  m_Name: PrototypeRecipe1
   m_EditorClassIdentifier: 
+  components: []
+  result: {fileID: 0}

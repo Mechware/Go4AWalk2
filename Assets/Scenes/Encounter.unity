@@ -615,6 +615,7 @@ GameObject:
   - component: {fileID: 826056236}
   - component: {fileID: 826056235}
   - component: {fileID: 826056237}
+  - component: {fileID: 826056238}
   m_Layer: 5
   m_Name: Scene Manager
   m_TagString: Untagged
@@ -660,6 +661,52 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LoadMode: 0
+--- !u!114 &826056238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 826056234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70205b9d637ca7642b08b30937b993b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnSceneExitEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnAwake:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnFocus:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnUnFocus:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnPause:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnPlay:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnQuit:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1001 &853766530
 Prefab:
   m_ObjectHideFlags: 0
@@ -670,7 +717,7 @@ Prefab:
     - target: {fileID: 114174548617117370, guid: 1c1c5654baf9b674d98643e199750762,
         type: 2}
       propertyPath: OnFinished.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 224465032064407226, guid: 1c1c5654baf9b674d98643e199750762,
         type: 2}
@@ -765,7 +812,7 @@ Prefab:
     - target: {fileID: 114174548617117370, guid: 1c1c5654baf9b674d98643e199750762,
         type: 2}
       propertyPath: OnFinished.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114174548617117370, guid: 1c1c5654baf9b674d98643e199750762,
         type: 2}
@@ -776,11 +823,12 @@ Prefab:
         type: 2}
       propertyPath: OnFinished.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 826056237}
+      objectReference: {fileID: 11400000, guid: 8d66d4105827e4747ba9e6ec24980aca,
+        type: 2}
     - target: {fileID: 114174548617117370, guid: 1c1c5654baf9b674d98643e199750762,
         type: 2}
       propertyPath: OnFinished.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ChangeScene
+      value: Save
       objectReference: {fileID: 0}
     - target: {fileID: 114174548617117370, guid: 1c1c5654baf9b674d98643e199750762,
         type: 2}
@@ -790,6 +838,36 @@ Prefab:
     - target: {fileID: 114174548617117370, guid: 1c1c5654baf9b674d98643e199750762,
         type: 2}
       propertyPath: OnFinished.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: WalkingScreen
+      objectReference: {fileID: 0}
+    - target: {fileID: 114174548617117370, guid: 1c1c5654baf9b674d98643e199750762,
+        type: 2}
+      propertyPath: OnFinished.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114174548617117370, guid: 1c1c5654baf9b674d98643e199750762,
+        type: 2}
+      propertyPath: OnFinished.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114174548617117370, guid: 1c1c5654baf9b674d98643e199750762,
+        type: 2}
+      propertyPath: OnFinished.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 826056237}
+    - target: {fileID: 114174548617117370, guid: 1c1c5654baf9b674d98643e199750762,
+        type: 2}
+      propertyPath: OnFinished.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: ChangeScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 114174548617117370, guid: 1c1c5654baf9b674d98643e199750762,
+        type: 2}
+      propertyPath: OnFinished.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114174548617117370, guid: 1c1c5654baf9b674d98643e199750762,
+        type: 2}
+      propertyPath: OnFinished.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_StringArgument
       value: WalkingScreen
       objectReference: {fileID: 0}
     m_RemovedComponents: []

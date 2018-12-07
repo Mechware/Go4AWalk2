@@ -45,7 +45,6 @@ public class ProgressBarController : MonoBehaviour {
     public void UpdateUI() {
         Vector3 scale = ProgressBarFill.rectTransform.localScale;
         if (Max == 0) {
-            Debug.LogWarning("Max - min is zero. Object: " + name);
             return;
         }
         scale.x = Mathf.Clamp01((float)Current / Max);

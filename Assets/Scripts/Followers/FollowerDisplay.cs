@@ -47,7 +47,6 @@ namespace G4AW2.Followers {
 
 		public void SetData(FollowerData data) {
 			Data = data;
-			print("Setting data: " + Data.name);
 
 			aoc["Idle"] = Data.SideIdleAnimation;
 			if (Data.HasRandomAnimation) {

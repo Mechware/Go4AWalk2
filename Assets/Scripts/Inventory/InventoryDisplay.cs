@@ -50,7 +50,6 @@ namespace G4AW2.Data.Inventory
             width = (width - 15 - itemWidth*columns)/(columns+1); //fun math to find the spacing required between items
             height = (height - 25 - itemWidth*rows)/(rows+1); // the 15 and the 25 are tweaks
 
-            print(size.rect.height);
             startLocation = new Vector2(-50+width+itemWidth/2, size.rect.height/2-30); // make the startLocation of items the top left
             add.x = width+itemWidth; //this is how much we move the items in the display
             add.y = -height - itemWidth;
@@ -74,7 +73,6 @@ namespace G4AW2.Data.Inventory
         {
             itemList.ForEach(kvp => { Destroy(kvp.gameObject); }); //**KILL_THEM_ALL**??//##
             itemList.Clear();
-            print("Cleared List");
             switch (itemType)
             {
                 case Type.Equipment: // display items in the inventory if it matches
@@ -119,9 +117,6 @@ namespace G4AW2.Data.Inventory
 
             if(itemList.Count - Mathf.Floor((itemList.Count)/columns) * columns == 0) // some weird indexing issue happening here. seems to be extending the rect before I want it to. not a big deal though
                 changedSize = true; // just so we don't rebuild the whole list every time
-
-            print(changedSize);
-
 
 
             if (changedSize) startingIndex = 0;

@@ -1,11 +1,23 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Events;
 
 namespace CustomEvents {
-	public class RuntimeSetGeneric<T, TEvent> : RuntimeSetBase where TEvent : UnityEvent<T> {
+
+	public class SaveableScriptableObject : ScriptableObject {
+		public virtual string GetSaveString() {
+			throw new NotImplementedException();
+		}
+
+		public virtual void SetData(string saveString, params object[] otherData) {
+			throw new NotImplementedException();
+		}
+	}
+
+	public class RuntimeSetGeneric<T, TEvent> : SaveableScriptableObject where TEvent : UnityEvent<T> {
 		public List<T> Value { get { return list; } }
 		[ShowInInspector][ReadOnly] private List<T> list = new List<T>();
 
@@ -61,7 +73,33 @@ namespace CustomEvents {
 		}
 	}
 
-	public class RuntimeSetBase : ScriptableObject { }
+	public abstract class RuntimeSetGenericSaveable<T, TEvent> : RuntimeSetGeneric<T, TEvent> where TEvent : UnityEvent<T> where T : IID {
+
+		[System.Serializable]
+		private struct SaveObject {
+			public List<int> List;
+		}
+
+		public override string GetSaveString() {
+			return JsonUtility.ToJson( new SaveObject { List = Value.Select(d => d.GetID()).ToList()});
+		}
+
+		public override void SetData(string saveString, params object[] otherData) {
+			Clear();
+
+			List<T> listOfAllPossibleObjects = ((PersistentSetGeneric<T, TEvent>) otherData[0]).ToList();
+			List<int> ids = JsonUtility.FromJson<SaveObject>(saveString).List;
+			foreach (int id in ids) {
+				T obj = listOfAllPossibleObjects.FirstOrDefault(o => o.GetID() == id);
+				if (obj != null && !obj.Equals(default(T))) {
+					Add(obj);
+				}
+				else {
+					Debug.LogWarning("Tried to load an ID that does not exist");
+				}
+			}
+		}
+	}
 }
 
 
