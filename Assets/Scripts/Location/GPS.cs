@@ -63,13 +63,14 @@ namespace G4AW2.GPS
 			}
 
 			Input.location.Start(desiredAccuracyInMeters, updateDistanceInMeters);
+			int maxInitializationTime = this.maxInitializationTime;
 
 			while (Input.location.status == LocationServiceStatus.Initializing && maxInitializationTime > 0) {
 				yield return new WaitForSecondsRealtime(1);
 				maxInitializationTime--;
 			}
 
-			if (maxInitializationTime == 0) {
+			if (maxInitializationTime <= 0) {
 				state = LocationState.TimedOut;
 			} else if (Input.location.status == LocationServiceStatus.Failed) {
 				state = LocationState.Failed;
@@ -91,16 +92,18 @@ namespace G4AW2.GPS
 		}
 
 		private void OnApplicationPause( bool pauseState ) {
-			if (state != LocationState.Enabled)
-				return;
 
 			StopAllCoroutines();
 
-			if (!pauseState) {
+			if (pauseState) {
+				// In background
+				Debug.Log("In background");
 				initialized = false;
 				Input.location.Stop();
 				state = LocationState.Stopped;
 			} else {
+				// No longer in background
+				Debug.Log("No longer in background");
 				state = LocationState.Initializing;
 				StartCoroutine(InitializeGPS());
 			}
@@ -118,7 +121,7 @@ namespace G4AW2.GPS
 		private IEnumerator CheckForUpdates() {
 			timestamp = Input.location.lastData.timestamp;
 			while (state == LocationState.Enabled) {
-				if (timestamp <= Input.location.lastData.timestamp) {
+				if (timestamp >= Input.location.lastData.timestamp) {
 					yield return new WaitForSecondsRealtime(timeBetweenChecks);
 					continue;
 				}

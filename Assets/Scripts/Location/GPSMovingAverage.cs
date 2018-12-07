@@ -95,8 +95,6 @@ public class GPSMovingAverage : GPSStrategy {
 	public override string GetTextUpdate() {
 		return "Number of Updates in window: " + Updates.Count + "\n" +
 		       "lastUpdateTime: " + lastUpdateTime + "\n" +
-		       "current average lat: " + currentAverageLat + "\n" +
-		       "current average long: " + currentAverageLong + "\n" +
-		       "last amount of distance moved: " + distanceMoved * 1000f + "\n";
+		       "last amount of distance moved: " + distanceMoved + "m\n";
 	}
 }
