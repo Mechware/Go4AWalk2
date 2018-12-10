@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0606decdee0805744af5b515563bff7e, type: 3}
-  m_Name: ConsumableList
+  m_Name: ItemsInInventory
   m_EditorClassIdentifier: 
   OnAdd:
     m_PersistentCalls:
@@ -23,6 +23,17 @@ MonoBehaviour:
       PublicKeyToken=null
   OnChange:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: f196be35e27296046a7f4524bc24edbf, type: 2}
+        m_MethodName: Raise
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: CustomEvents.UnityEventItem, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null

@@ -6,10 +6,11 @@ using UnityEngine.UI;
 
 public class AttackArea : Graphic, IPointerClickHandler, IPointerDownHandler, IPointerUpHandler, IBeginDragHandler, IEndDragHandler, IDragHandler {
 
-	public UnityEvent OnTap;
+	public UnityEventVector3 OnTap;
 	public UnityEvent OnSwipeStart;
     public UnityEventVector3Array OnSwipe;
 	public UnityEventVector3Array OnSwipingDistanceChange;
+	public UnityEventVector3 OnSwiping;
 
 	public float SimplifyAmount = 20;
 	public LineRenderer LineRenderer;
@@ -20,7 +21,9 @@ public class AttackArea : Graphic, IPointerClickHandler, IPointerDownHandler, IP
 
 	public void OnPointerClick(PointerEventData eventData) {
 		if (dragging) return;
-		OnTap.Invoke();
+		Vector3 worldPoint = Camera.main.ScreenToWorldPoint(eventData.position);
+		worldPoint.z = 0;
+		OnTap.Invoke(worldPoint);
         eventData.Use();
 	}
 
@@ -63,6 +66,9 @@ public class AttackArea : Graphic, IPointerClickHandler, IPointerDownHandler, IP
 
 		LineRenderer.positionCount++;
 		Vector3 pos = Camera.main.ScreenToWorldPoint(eventData.position);
+		pos.z = 0;
+		OnSwiping.Invoke(pos);
+
 		pos.z = 10;
 
 		LineRenderer.SetPosition(LineRenderer.positionCount-1, pos);

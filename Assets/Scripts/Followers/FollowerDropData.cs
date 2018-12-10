@@ -5,8 +5,8 @@ using G4AW2.Data;
 using UnityEngine;
 
 namespace G4AW2.Followers {
-	[CreateAssetMenu(menuName = "Data/Follower/DropData")]
-	public class FollowerDropData : ScriptableObject {
+	[System.Serializable]
+	public class FollowerDropData {
 
 		[System.Serializable]
 		public class FollowerDrop {

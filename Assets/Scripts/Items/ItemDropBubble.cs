@@ -14,6 +14,7 @@ public class ItemDropBubble : MonoBehaviour, IPointerClickHandler {
 	private Item item;
 
 	public Image image;
+	public Image background;
 
 	[Tooltip("A rng with roll a number between 0 and 1 and then get the value from this anim curve")]
 	public AnimationCurve XForce;
@@ -32,6 +33,7 @@ public class ItemDropBubble : MonoBehaviour, IPointerClickHandler {
 		item = it;
 		image.sprite = item.image;
 		ItemClicked = OnClick;
+		background.color = ConfigObject.GetColorFromRarity(it.rarity);
 	}
 
 	[ContextMenu("Shoot")]

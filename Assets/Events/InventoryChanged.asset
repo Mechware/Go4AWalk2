@@ -8,7 +8,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a553465d252bef64d9480cad62502509, type: 3}
-  m_Name: Inventory
+  m_Script: {fileID: 11500000, guid: 2161ecdd0e795724cb65e35f1128479c, type: 3}
+  m_Name: InventoryChanged
   m_EditorClassIdentifier: 
-  allItems: {fileID: 11400000, guid: 881091bceb3b0ed41a240670fd6111f0, type: 2}
