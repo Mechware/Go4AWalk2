@@ -35,6 +35,7 @@ namespace G4AW2.Data.DropSystem
         public string description;
         public Rarity rarity;
         public ItemType type;
+	    public int maxStackSize;
 
 	    public int GetID() {
 		    return ID;

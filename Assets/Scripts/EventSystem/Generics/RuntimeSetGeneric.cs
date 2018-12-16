@@ -48,6 +48,8 @@ namespace CustomEvents {
 			}
 		}
 
+		public bool Contains(T it) => Value.Contains(it);
+
 		public void Remove( T item ) {
 			list.Remove(item);
 			OnChange.Invoke(item);

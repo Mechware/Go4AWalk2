@@ -75,7 +75,7 @@ namespace G4AW2.Combat {
                     if (weapon!=null)
                     {
                         Damage.Value = 1;
-                        inventory.addItem(weapon);
+                        inventory.AddItem(weapon);
                         weapon = null;
                     }
                     break;
@@ -83,7 +83,7 @@ namespace G4AW2.Combat {
                     if (armor != null)
                     {
                         Armor.Value = Armor.Value-armor.value;
-                        inventory.addItem(armor);
+                        inventory.AddItem(armor);
                         armor = null;
                     }
                     break;
@@ -91,7 +91,7 @@ namespace G4AW2.Combat {
                     if (hat != null)
                     {
                         Armor.Value = Armor.Value-hat.value;
-                        inventory.addItem(hat);
+                        inventory.AddItem(hat);
                         hat = null;
                     }
                     break;
@@ -99,7 +99,7 @@ namespace G4AW2.Combat {
                     if (boots != null)
                     {
                         Armor.Value = Armor.Value-boots.value;
-                        inventory.addItem(boots);
+                        inventory.AddItem(boots);
                         boots = null;
                     }
                     break;

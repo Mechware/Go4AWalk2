@@ -33,24 +33,25 @@ public class InventoryUI : MonoBehaviour {
 		AllItems.ForEach(it => Destroy(it.gameObject));
 		AllItems.Clear();
 
-		IEnumerable<Item> toDisplay;
+		IEnumerable<InventoryList.ItemWithNumber> toDisplay;
 		if (itemType == ItemFilter.Equipment) {
-			toDisplay = list.allItems.Value.Where(it => it.type == ItemType.Boots || it.type == ItemType.Accessory ||
-			                                            it.type == ItemType.Hat || it.type == ItemType.Torso ||
-			                                            it.type == ItemType.Weapon);
+			toDisplay = list.inventory
+				.Where(it => it.item.type == ItemType.Boots || it.item.type == ItemType.Accessory ||
+			                                            it.item.type == ItemType.Hat || it.item.type == ItemType.Torso ||
+			                                            it.item.type == ItemType.Weapon);
 		} else if (itemType == ItemFilter.Consumable) {
-			toDisplay = list.allItems.Value.Where(it => it.type == ItemType.Consumable);
+			toDisplay = list.inventory.Where(it => it.item.type == ItemType.Consumable);
 		} else if (itemType == ItemFilter.Material) {
-			toDisplay = list.allItems.Value.Where(it => it.type == ItemType.Material);
+			toDisplay = list.inventory.Where(it => it.item.type == ItemType.Material);
 		}
 		else {
-			toDisplay = list.allItems.Value;
+			toDisplay = list.inventory;
 		}
 
-		foreach (Item it in toDisplay) {
+		foreach (InventoryList.ItemWithNumber it in toDisplay) {
 			GameObject go = GameObject.Instantiate(ItemPrefab, ItemParent);
 			InventoryItemDisplay iid = go.GetComponent<InventoryItemDisplay>();
-			iid.SetData(it, 1);
+			iid.SetData(it.item, it.amount);
 			AllItems.Add(iid);
 		}
 	}
