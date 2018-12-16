@@ -11,7 +11,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db81f2a5ff2763a44a4237019f0f7e33, type: 3}
   m_Name: Area2
   m_EditorClassIdentifier: 
-  Enemies: {fileID: 11400000, guid: 074181d9b7ca4a941ac99a1f29d28072, type: 2}
+  Enemies:
+    Drops:
+    - Follower: {fileID: 11400000, guid: e2753df0922c7be4bbd9352c043f5d57, type: 2}
+      DropChance: 1
+    - Follower: {fileID: 11400000, guid: 2e192900fc69cce47bbdd742701c4d63, type: 2}
+      DropChance: 1
   Background: {fileID: 21300000, guid: 9daa8e8d50d4f8f4080d8502688e4996, type: 3}
   SkyUpper: {fileID: 21300000, guid: bfab8ec1cf01c6b44b95d964dbb89392, type: 3}
   Sky: {fileID: 21300000, guid: cfa6904b18878cb4ca9f10427acbb3d9, type: 3}

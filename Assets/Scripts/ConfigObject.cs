@@ -14,27 +14,35 @@ public class ConfigObject : ScriptableObject {
 		public Color Color;
 	}
 
+	private  static ConfigObject Singleton;
 	public List<RarityColorDefines> RarityToColor;
-	private static List<RarityColorDefines> rarityToColor;
+	
 
 	public static Color GetColorFromRarity(Rarity r) {
-		var thing = rarityToColor.FirstOrDefault(rcd => rcd.Rarity == r);
+		var thing = Singleton.RarityToColor.FirstOrDefault(rcd => rcd.Rarity == r);
 		if (thing == null) {
 			throw new Exception("No color define for rarity");
 		}
 		return thing.Color;
 	}
 
-	void OnEnable() {
+	private void OnEnable() {
 		RegisterChanges();
 	}
 
-	void Awake() {
+	private void Awake() {
 		RegisterChanges();
 	}
+
+	private void OnDisable() {
+		RegisterChanges();
+	}
+
+
 
 	[ContextMenu("Register Changes")]
 	public void RegisterChanges() {
-		rarityToColor = RarityToColor;
+		Debug.Log("Registering changes");
+		Singleton = this;
 	}
 }
