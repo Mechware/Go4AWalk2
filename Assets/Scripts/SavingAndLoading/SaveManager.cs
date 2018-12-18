@@ -11,7 +11,7 @@ namespace G4AW2.Saving {
 		private string saveFile;
 		private string backUpFile;
 
-		public List<VariableBase> ObjectsToSave;
+		public List<SaveableScriptableObject> ObjectsToSave;
 		public List<KeyValuePairSaveableSetAndAllIdsList> RuntimeSetsAndAllIdsSets;
 
 		void OnEnable() {
@@ -42,7 +42,7 @@ namespace G4AW2.Saving {
 
 			SaveObject saveData = JsonUtility.FromJson<SaveObject>(File.ReadAllText(saveFile));
 			foreach (KeyValuePairStringString kvp in saveData.VariableDictionary) {
-				VariableBase soToOverwrite = ObjectsToSave.First(so => so.name.Equals(kvp.Key));
+				SaveableScriptableObject soToOverwrite = ObjectsToSave.First(so => so.name.Equals(kvp.Key));
 
 				if (soToOverwrite == null) {
 					// Removed a variable?
@@ -50,7 +50,7 @@ namespace G4AW2.Saving {
 					continue;
 				}
 
-				soToOverwrite.LoadString(kvp.Value);
+				soToOverwrite.SetData(kvp.Value);
 			}
 
 			foreach (KeyValuePairStringString kvp in saveData.RuntimeSetDictionary) {
@@ -68,7 +68,7 @@ namespace G4AW2.Saving {
 		}
 
 		private SaveObject GetSaveData() {
-			List<KeyValuePairStringString> saveDictForVariables = ObjectsToSave.Select(so => new KeyValuePairStringString(so.name, so.GetSaveData())).ToList();
+			List<KeyValuePairStringString> saveDictForVariables = ObjectsToSave.Select(so => new KeyValuePairStringString(so.name, so.GetSaveString())).ToList();
 
 			List<KeyValuePairStringString> saveDictForRuntimeSets = RuntimeSetsAndAllIdsSets.Select(kvp => new KeyValuePairStringString(kvp.Key.name, kvp.Key.GetSaveString())).ToList();
 

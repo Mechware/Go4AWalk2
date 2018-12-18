@@ -9,7 +9,6 @@ using System.IO;
 using System.Linq;
 using System.Globalization;
 using UnityEngine.UI;
-using G4AW2.Data.Inventory;
 
 namespace G4AW2.Tools
 {
@@ -174,52 +173,12 @@ namespace G4AW2.Tools
                 itemScriptableObject.description = description;
                 itemScriptableObject.image = SpritePNG;
 
-                AnimationClip ac = CreateAnimation(animation, spriteSheet, ItemName, animPath);
-
-                itemScriptableObject.Walking = ac;
-
 
                 if (!loadedData) AssetDatabase.CreateAsset(itemScriptableObject, ItemPath);
                 AssetDatabase.SaveAssets();
                 AssetDatabase.Refresh();
-
             }
 
-        }
-
-        private AnimationClip CreateAnimation(Anim a, Sprite[] Sprites, string itemName, string pngPath)
-        {
-            AnimationClip clip = new AnimationClip();
-            float FramesPerSecond = 1000f / a.milliPerFrame;
-            clip.frameRate = FramesPerSecond;
-
-            EditorCurveBinding curveBinding = new EditorCurveBinding();
-
-            curveBinding.type = typeof(Image);
-            curveBinding.path = "";
-            curveBinding.propertyName = "m_Sprite";
-
-            ObjectReferenceKeyframe[] keyframes = new ObjectReferenceKeyframe[Sprites.Length];
-            for (int i = 0 ; i < Sprites.Length ; i++)
-            {
-                keyframes[i] = new ObjectReferenceKeyframe();
-                keyframes[i].time = i / FramesPerSecond;
-                keyframes[i].value = Sprites[i];
-            }
-
-            AnimationUtility.SetObjectReferenceCurve(clip, curveBinding, keyframes);
-           // clip.wrapMode = WrapMode.Loop;
-
-           /* AnimationClipSettings clipSettings = AnimationUtility.GetAnimationClipSettings(clip);
-            clipSettings.loopTime = true;
-            AnimationUtility.SetAnimationClipSettings(clip, clipSettings);*/
-
-
-            string saveLocation = Path.Combine(Path.GetDirectoryName(pngPath), itemName + a.name + ".anim");
-
-            AssetDatabase.CreateAsset(clip, saveLocation);        
-
-            return clip;
         }
 
         private class NaturalComparer : IComparer<string>

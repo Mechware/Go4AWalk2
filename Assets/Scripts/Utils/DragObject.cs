@@ -5,7 +5,6 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using CustomEvents;
-using G4AW2.Data.Inventory;
 using UnityEngine.UI;
 
 public class DragObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler {

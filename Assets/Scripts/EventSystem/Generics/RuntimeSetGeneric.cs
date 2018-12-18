@@ -40,6 +40,10 @@ namespace CustomEvents {
 			OnChange.Invoke(default(T));
 		}
 
+        public void Add(T item) {
+            Add(item, false);
+        }
+
 		public void Add( T item, bool silently = false) {
 			list.Add(item);
 			if (!silently) {

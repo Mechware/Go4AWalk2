@@ -28,9 +28,12 @@ public class Lerper : MonoBehaviour {
 	private IEnumerator Lerp(float start, float end, float unitPerSecond) {
 		float val = start;
 
+        bool startLessThanEnd = start < end;
+
 		while (true) {
 			val += unitPerSecond * Time.deltaTime;
-			if (val >= end) {
+            LerpUpdate.Invoke(val);
+			if ((startLessThanEnd && val >= end) || (!startLessThanEnd && val <= end)) {
 				currentlyLerping = false;
 				DoneLerping.Invoke();
 				break;

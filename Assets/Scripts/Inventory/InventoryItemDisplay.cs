@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class InventoryItemDisplay : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler, IDragHandler, IBeginDragHandler, IEndDragHandler {
+public class InventoryItemDisplay : MonoBehaviour, IPointerDownHandler, IPointerUpHandler {
 
 	public Item Item;
 
@@ -15,59 +15,61 @@ public class InventoryItemDisplay : MonoBehaviour, IPointerEnterHandler, IPointe
 	public Image ItemSprite;
 	public TextMeshProUGUI AmountText;
 
-	private static Color HighlightColor = Color.yellow;
+    private Action<InventoryItemDisplay> OnClick;
+    private Action<InventoryItemDisplay> OnHold;
 
-	public void SetData( Item item, int amount ) {
-		ItemSprite.sprite = item.image;
-		AmountText.text = amount.ToString();
-
-		AmountText.gameObject.SetActive(amount > 1);
+	public void SetData( Item item, int amount, Action<InventoryItemDisplay> onclick = null, Action<InventoryItemDisplay> onhold = null) {
+        Item = item;
+        if(item == null) {
+            ItemSprite.sprite = null;
+            AmountText.gameObject.SetActive(false);
+        } else {
+            ItemSprite.sprite = item.image;
+            AmountText.text = amount.ToString();
+            AmountText.gameObject.SetActive(amount > 1);
+        }
+		
+        OnClick = onclick;
+        OnHold = onhold;
 	}
 
 #if UNITY_EDITOR
+    /// <summary>
+    /// For testing ONLY.
+    /// </summary>
 	[ContextMenu("SetItem")]
 	public void SetItem() {
 		if (Item == null) {
 			throw new Exception("There's no item to set to...");
 		}
-		SetData(Item, 1);
+		SetData(Item, 1, (it) => { });
 	}
 #endif
 
-	private static bool holdingItem = false;
-	private static InventoryItemDisplay currentlyOver = null;
+    bool holding = false;
+    public void OnPointerDown( PointerEventData eventData ) {
+        print("Pointer down");
+        StopAllCoroutines();
+        holding = true;
+        StartCoroutine(PointerHold());
+    }
 
-	public void OnPointerClick(PointerEventData eventData) {
-	}
+    public void OnPointerUp( PointerEventData eventData ) {
+        print("Pointer up");
+        if(holding) {
+            print("Clicked item");
+            OnClick?.Invoke(this);
+        }
+        holding = false;
+        StopAllCoroutines();
+    }
 
-	public void OnBeginDrag( PointerEventData eventData ) {
-		holdingItem = true;
-		eventData.Use();
-	}
-
-	public void OnDrag(PointerEventData eventData) {
-		eventData.Use();
-	}
-
-	public void OnEndDrag(PointerEventData eventData) {
-		holdingItem = false;
-		if (currentlyOver != null) {
-			int index = currentlyOver.transform.GetSiblingIndex();
-			transform.SetSiblingIndex(index);
-			currentlyOver = null;
-		}
-		eventData.Use();
-	}
-
-	public void OnPointerEnter(PointerEventData eventData) {
-		if (holdingItem) {
-			Background.color = HighlightColor;
-			currentlyOver = this;
-		}
-	}
-
-	public void OnPointerExit(PointerEventData eventData) {
-		Background.color = Color.white;
-		if (currentlyOver == this) currentlyOver = null;
-	}
+    IEnumerator PointerHold() {
+        yield return new WaitForSeconds(1);
+        if(holding) {
+            holding = false;
+            print("Hold");
+            OnHold?.Invoke(this);
+        }
+    }
 }

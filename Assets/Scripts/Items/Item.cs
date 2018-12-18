@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using G4AW2.Data.Inventory;
 
 namespace G4AW2.Data.DropSystem
 {
@@ -29,7 +28,6 @@ namespace G4AW2.Data.DropSystem
     [CreateAssetMenu(menuName = "Data/DropSystem/Item")]
     public class Item : ScriptableObject, IID {
 	    public int ID;
-        public AnimationClip Walking;
         public Sprite image;
         public int value;
         public string description;

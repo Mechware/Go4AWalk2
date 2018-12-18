@@ -2,7 +2,6 @@ using CustomEvents;
 using G4AW2.Combat.Swiping;
 using UnityEngine;
 using G4AW2.Data.DropSystem;
-using G4AW2.Data.Inventory; 
 
 namespace G4AW2.Combat {
 
@@ -19,7 +18,7 @@ namespace G4AW2.Combat {
 		public FloatReference PowerPerBlock;
 		public GameEvent OnPowerMax;
 
-        public InventoryList inventory;
+        public RuntimeSetItem inventory;
 
         public Item hat, armor, weapon, boots, accessory;
 
@@ -75,7 +74,7 @@ namespace G4AW2.Combat {
                     if (weapon!=null)
                     {
                         Damage.Value = 1;
-                        inventory.AddItem(weapon);
+                        inventory.Add(weapon);
                         weapon = null;
                     }
                     break;
@@ -83,7 +82,7 @@ namespace G4AW2.Combat {
                     if (armor != null)
                     {
                         Armor.Value = Armor.Value-armor.value;
-                        inventory.AddItem(armor);
+                        inventory.Add(armor);
                         armor = null;
                     }
                     break;
@@ -91,7 +90,7 @@ namespace G4AW2.Combat {
                     if (hat != null)
                     {
                         Armor.Value = Armor.Value-hat.value;
-                        inventory.AddItem(hat);
+                        inventory.Add(hat);
                         hat = null;
                     }
                     break;
@@ -99,7 +98,7 @@ namespace G4AW2.Combat {
                     if (boots != null)
                     {
                         Armor.Value = Armor.Value-boots.value;
-                        inventory.AddItem(boots);
+                        inventory.Add(boots);
                         boots = null;
                     }
                     break;
