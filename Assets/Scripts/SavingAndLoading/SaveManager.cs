@@ -37,10 +37,21 @@ namespace G4AW2.Saving {
 
 		[ContextMenu("Load")]
 		public void Load() {
-			if (!File.Exists(saveFile))
-				return;
+            string saveFilePath;
+			if (!File.Exists(saveFile)) {
+                
+                Debug.LogWarning("Could not find save file. Attempting to load back up");
+                if (!File.Exists(backUpFile)) {
+                    Debug.LogWarning("Could not find back up file.");
+                    return;
+                } else {
+                    saveFilePath = backUpFile;
+                }
+            } else {
+                saveFilePath = saveFile;
+            }
 
-			SaveObject saveData = JsonUtility.FromJson<SaveObject>(File.ReadAllText(saveFile));
+            SaveObject saveData = JsonUtility.FromJson<SaveObject>(File.ReadAllText(saveFilePath));
 			foreach (KeyValuePairStringString kvp in saveData.VariableDictionary) {
 				SaveableScriptableObject soToOverwrite = ObjectsToSave.First(so => so.name.Equals(kvp.Key));
 

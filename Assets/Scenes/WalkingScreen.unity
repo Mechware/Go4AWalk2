@@ -2320,15 +2320,14 @@ MonoBehaviour:
   TestEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11400000, guid: d0fd09527a66e9748be16ba73538f66e, type: 2}
-        m_MethodName: addItem
-        m_Mode: 2
+      - m_Target: {fileID: 11400000, guid: 8e51ff24d5c060f419de9c94ecb46f82, type: 2}
+        m_MethodName: Raise
+        m_Mode: 4
         m_Arguments:
-          m_ObjectArgument: {fileID: 11400000, guid: 9289bb1359441744d8b7158b705f8ea1,
-            type: 2}
-          m_ObjectArgumentAssemblyTypeName: G4AW2.Data.DropSystem.Item, Assembly-CSharp
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
-          m_FloatArgument: 0
+          m_FloatArgument: 100
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
@@ -6170,6 +6169,79 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 224866206907643586, guid: f30d12e0ab3c22a409454602125da153,
     type: 2}
   m_PrefabInternal: {fileID: 1192348159}
+--- !u!114 &1192348161 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114225620053588060, guid: f30d12e0ab3c22a409454602125da153,
+    type: 2}
+  m_PrefabInternal: {fileID: 1192348159}
+  m_Script: {fileID: 11500000, guid: 2b5ff678b48208f42ad445ef0f57b234, type: 3}
+--- !u!114 &1192348162 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114883364171832682, guid: f30d12e0ab3c22a409454602125da153,
+    type: 2}
+  m_PrefabInternal: {fileID: 1192348159}
+  m_Script: {fileID: 11500000, guid: 2b5ff678b48208f42ad445ef0f57b234, type: 3}
+--- !u!114 &1192348163 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114418216935523158, guid: f30d12e0ab3c22a409454602125da153,
+    type: 2}
+  m_PrefabInternal: {fileID: 1192348159}
+  m_Script: {fileID: 11500000, guid: 2b5ff678b48208f42ad445ef0f57b234, type: 3}
+--- !u!1 &1192348164 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1833288270240590, guid: f30d12e0ab3c22a409454602125da153,
+    type: 2}
+  m_PrefabInternal: {fileID: 1192348159}
+--- !u!114 &1192348165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1192348164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84491bb971488454cac29d36e870e423, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: f196be35e27296046a7f4524bc24edbf, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1192348163}
+        m_MethodName: SetData
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1192348162}
+        m_MethodName: SetData
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1192348161}
+        m_MethodName: SetData
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: CustomEvents.UnityEventItem, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!1 &1214435376
 GameObject:
   m_ObjectHideFlags: 0

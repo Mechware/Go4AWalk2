@@ -485,6 +485,79 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 224866206907643586, guid: f30d12e0ab3c22a409454602125da153,
     type: 2}
   m_PrefabInternal: {fileID: 267491275}
+--- !u!114 &267491277 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114225620053588060, guid: f30d12e0ab3c22a409454602125da153,
+    type: 2}
+  m_PrefabInternal: {fileID: 267491275}
+  m_Script: {fileID: 11500000, guid: 2b5ff678b48208f42ad445ef0f57b234, type: 3}
+--- !u!114 &267491278 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114883364171832682, guid: f30d12e0ab3c22a409454602125da153,
+    type: 2}
+  m_PrefabInternal: {fileID: 267491275}
+  m_Script: {fileID: 11500000, guid: 2b5ff678b48208f42ad445ef0f57b234, type: 3}
+--- !u!114 &267491279 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114418216935523158, guid: f30d12e0ab3c22a409454602125da153,
+    type: 2}
+  m_PrefabInternal: {fileID: 267491275}
+  m_Script: {fileID: 11500000, guid: 2b5ff678b48208f42ad445ef0f57b234, type: 3}
+--- !u!1 &267491280 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1833288270240590, guid: f30d12e0ab3c22a409454602125da153,
+    type: 2}
+  m_PrefabInternal: {fileID: 267491275}
+--- !u!114 &267491281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 267491280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84491bb971488454cac29d36e870e423, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: f196be35e27296046a7f4524bc24edbf, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 267491279}
+        m_MethodName: SetData
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 267491278}
+        m_MethodName: SetData
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 267491277}
+        m_MethodName: SetData
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: CustomEvents.MyResponse, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!1 &318014392
 GameObject:
   m_ObjectHideFlags: 0
@@ -1314,6 +1387,63 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 884322607}
   m_CullTransparentMesh: 0
+--- !u!1 &943294975
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 943294977}
+  - component: {fileID: 943294976}
+  m_Layer: 0
+  m_Name: Tester
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &943294976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 943294975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa6dc42dbe3476643a2ea590754fbef5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TestEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1745320718}
+        m_MethodName: ApplyDamage
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 100
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  TestGameEvent: {fileID: 0}
+--- !u!4 &943294977
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 943294975}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 42.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &947975910
 Prefab:
   m_ObjectHideFlags: 0

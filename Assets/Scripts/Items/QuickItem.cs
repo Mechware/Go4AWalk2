@@ -14,16 +14,12 @@ public class QuickItem : MonoBehaviour {
 
     public GameObject ItemViewer;
 
-    public UnityEventItem UseItem;
-
 	// Use this for initialization
 	void Start () {
         SetData();
 	}
 
     void OnHold(InventoryItemDisplay item) {
-        print("NANI?");
-
         ItemViewer.GetComponent<ItemViewer>().ShowItems(
             Inventory.Value.Where(it => it.type == ItemType.Consumable).Distinct(), 
             null, 
@@ -36,11 +32,15 @@ public class QuickItem : MonoBehaviour {
         ItemViewer.SetActive(false);
     }
 
-    void SetData() {
+    public void SetData() {
         ItemDisplay.SetData(Item, Item.Value == null ? 0 : Inventory.Value.Count(it => it.ID == Item.Value.ID), OnClick, OnHold);
     }
 
     void OnClick(InventoryItemDisplay it) {
-        UseItem.Invoke(it.Item);
+        if (it == null)
+            return;
+
+        Consumable c = (Consumable) it.Item;
+        c.OnUse.Invoke();
     }
 }

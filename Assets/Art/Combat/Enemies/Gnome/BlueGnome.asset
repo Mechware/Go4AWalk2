@@ -32,13 +32,13 @@ MonoBehaviour:
   Swipes: {fileID: 11400000, guid: 5ae2e0eda78248e4e8d0eb4f1b19a2f0, type: 2}
   Drops:
     Items:
-    - item: {fileID: 11400000, guid: 9289bb1359441744d8b7158b705f8ea1, type: 2}
+    - item: {fileID: 11400000, guid: 11fbe90a2780405449ad82a1ae93b06e, type: 2}
       dropChance: 0.5
-    - item: {fileID: 11400000, guid: 181345e8493002944bc2b80e13afc03c, type: 2}
+    - item: {fileID: 11400000, guid: 11fbe90a2780405449ad82a1ae93b06e, type: 2}
       dropChance: 0.9
-    - item: {fileID: 11400000, guid: 181345e8493002944bc2b80e13afc03c, type: 2}
+    - item: {fileID: 11400000, guid: 937f6268098bfaa4f9c28d94ddc092f9, type: 2}
       dropChance: 0.8
-    - item: {fileID: 11400000, guid: 181345e8493002944bc2b80e13afc03c, type: 2}
+    - item: {fileID: 11400000, guid: 11fbe90a2780405449ad82a1ae93b06e, type: 2}
       dropChance: 1
-    - item: {fileID: 11400000, guid: 9289bb1359441744d8b7158b705f8ea1, type: 2}
+    - item: {fileID: 11400000, guid: 937f6268098bfaa4f9c28d94ddc092f9, type: 2}
       dropChance: 1
