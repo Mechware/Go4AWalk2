@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using CustomEvents;
 using G4AW2.Data.DropSystem;
 using UnityEngine;
@@ -15,6 +16,10 @@ public class ItemDropBubbleManager : MonoBehaviour {
 	public UnityEvent OnFinished;
 
 	public void AddItems( IEnumerable<Item> items ) {
+        if(items.ToList().Count == 0) {
+            OnFinished.Invoke();
+            return;
+        }
 		StartCoroutine(ShootItems(items));
 	}
 

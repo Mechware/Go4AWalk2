@@ -11,6 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92ed46357c010e84ea5a3394f3ad888d, type: 3}
   m_Name: BlueGoblin
   m_EditorClassIdentifier: 
+  ID: 6
   SideIdleAnimation: {fileID: 7400000, guid: 62a485c23053823458623139150d45b1, type: 2}
   RandomAnimation: {fileID: 7400000, guid: bfabafed0d27c544f822a78e9e7e34a0, type: 2}
   MinTimeBetweenRandomAnims: 3
@@ -29,3 +30,7 @@ MonoBehaviour:
   BaseLightDamage: 0
   BaseHeavyDamage: 5
   Swipes: {fileID: 11400000, guid: 5ae2e0eda78248e4e8d0eb4f1b19a2f0, type: 2}
+  Drops:
+    Items:
+    - item: {fileID: 11400000, guid: 11fbe90a2780405449ad82a1ae93b06e, type: 2}
+      dropChance: 1

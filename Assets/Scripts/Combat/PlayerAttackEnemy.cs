@@ -15,6 +15,7 @@ namespace G4AW2.Combat {
 		public SwipeDrawer EnemySwipe;
 
 		public UnityEvent PlayerSwipingDone;
+        public UnityEventInt DamageDoneToEnemy;
 		public UnityEventSwipe EnemySwipeBroken;
 
 		private bool swiping = false;
@@ -40,10 +41,12 @@ namespace G4AW2.Combat {
 		}
 
 		public void OnScreenTap() {
-			Enemy.ApplyDamage(Player.GetLightDamage());
-		}
+            int damage = Player.GetLightDamage();
+            Enemy.ApplyDamage(damage);
+            DamageDoneToEnemy.Invoke(damage);
+        }
 
-		public void OnScreenSwipe( Vector3[] points ) {
+        public void OnScreenSwipe( Vector3[] points ) {
 			swiping = false;
 		}
 

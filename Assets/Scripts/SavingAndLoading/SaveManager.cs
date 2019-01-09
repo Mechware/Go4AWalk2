@@ -113,6 +113,7 @@ namespace G4AW2.Saving {
 		[ContextMenu("Clear all save data")]
 		void ClearSaveData() {
 			File.Delete(saveFile);
+            File.Delete(backUpFile);
 		}
 
 #if UNITY_EDITOR

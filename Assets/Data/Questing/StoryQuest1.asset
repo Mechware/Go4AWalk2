@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 1
   DisplayName: Wandering in the Forest
-  NextQuest: {fileID: 11400000, guid: 7772697f7dd01f34b9f246fc0cdf5cbd, type: 2}
+  NextQuest: {fileID: 11400000, guid: 34332a3094c776547ab733c1126f5bc8, type: 2}
   Area: {fileID: 11400000, guid: 5e4d1ba5949749b44bc3427231ca82f2, type: 2}
   StartConversation:
     Text: Haha! You can't catch me!
