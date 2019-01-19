@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87affdc055474c44b934b6b45b96fc3f, type: 3}
+  m_Name: StoryQuest1
+  m_EditorClassIdentifier: 
+  ID: 1
+  DisplayName: Wandering in the Forest
+  NextQuest: {fileID: 11400000, guid: 34332a3094c776547ab733c1126f5bc8, type: 2}
+  Area: {fileID: 11400000, guid: 5e4d1ba5949749b44bc3427231ca82f2, type: 2}
+  StartConversation:
+    Text: Haha! You can't catch me!
+    Speaker: {fileID: 21300000, guid: cb5bad34af4fa8249bd1c7bc6381285a, type: 3}
+  EndConversation:
+    Text: Dang it, you caught me!
+    Speaker: {fileID: 21300000, guid: cb5bad34af4fa8249bd1c7bc6381285a, type: 3}
+  TotalDistanceToWalk: 100

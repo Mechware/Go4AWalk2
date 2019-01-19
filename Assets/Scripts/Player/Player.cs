@@ -2,7 +2,6 @@ using CustomEvents;
 using G4AW2.Combat.Swiping;
 using UnityEngine;
 using G4AW2.Data.DropSystem;
-using G4AW2.Data.Inventory; 
 
 namespace G4AW2.Combat {
 
@@ -19,24 +18,15 @@ namespace G4AW2.Combat {
 		public FloatReference PowerPerBlock;
 		public GameEvent OnPowerMax;
 
-        public InventoryList inventory;
+        public RuntimeSetItem inventory;
 
         public Item hat, armor, weapon, boots, accessory;
 
 		public void OnEnable() {
-			MaxHealth.Value = PlayerPrefs.GetInt("PlayerMaxHealth", 100);
-			Health.Value = PlayerPrefs.GetInt("PlayerHealth", 100);
-			Power.Value = PlayerPrefs.GetInt("PlayerPower", 0);
-			Damage.Value = PlayerPrefs.GetInt("PlayerDamage", 1);
-
             if (weapon != null) Damage.Value = weapon.value;
 		}
 
 		public void OnDisable() {
-			PlayerPrefs.SetInt("PlayerMaxHealth", MaxHealth.Value);
-			PlayerPrefs.SetInt("PlayerHealth", Health.Value);
-			PlayerPrefs.SetFloat("PlayerPower", Power.Value);
-			PlayerPrefs.SetInt("PlayerDamage", Damage.Value);
 		}
 
 		public int GetLightDamage() {
@@ -44,7 +34,7 @@ namespace G4AW2.Combat {
 		}
 
 		public void Hit( int damage ) {
-			Health.Value -= Mathf.RoundToInt(damage*Armor/100);
+			Health.Value -= Mathf.RoundToInt(damage - Armor);
 		}
 
 		public void Block( Swipe s ) {
@@ -84,7 +74,7 @@ namespace G4AW2.Combat {
                     if (weapon!=null)
                     {
                         Damage.Value = 1;
-                        inventory.addItem(weapon);
+                        inventory.Add(weapon);
                         weapon = null;
                     }
                     break;
@@ -92,7 +82,7 @@ namespace G4AW2.Combat {
                     if (armor != null)
                     {
                         Armor.Value = Armor.Value-armor.value;
-                        inventory.addItem(armor);
+                        inventory.Add(armor);
                         armor = null;
                     }
                     break;
@@ -100,7 +90,7 @@ namespace G4AW2.Combat {
                     if (hat != null)
                     {
                         Armor.Value = Armor.Value-hat.value;
-                        inventory.addItem(hat);
+                        inventory.Add(hat);
                         hat = null;
                     }
                     break;
@@ -108,7 +98,7 @@ namespace G4AW2.Combat {
                     if (boots != null)
                     {
                         Armor.Value = Armor.Value-boots.value;
-                        inventory.addItem(boots);
+                        inventory.Add(boots);
                         boots = null;
                     }
                     break;

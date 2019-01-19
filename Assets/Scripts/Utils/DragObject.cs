@@ -5,7 +5,6 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using CustomEvents;
-using G4AW2.Data.Inventory;
 using UnityEngine.UI;
 
 public class DragObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler {
@@ -38,17 +37,31 @@ public class DragObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 	private Vector3 deltaPosition;
 	private Vector3 position;
 
+	private bool scrollingEnabled = true;
+
+	public void Disable() {
+		scrollingEnabled = false;
+	}
+
+	public void Enable() {
+		scrollingEnabled = true;
+	}
+
 	public void OnBeginDrag(PointerEventData eventData) {
+		if (!scrollingEnabled)
+			return;
+
         OnDragEvent.Invoke();
 		eventData.Use();
 	}
 
 	public void OnDrag(PointerEventData eventData) {
+		if (!scrollingEnabled)
+			return;
 
- 
 
 
-        deltaPosition = eventData.delta;
+		deltaPosition = eventData.delta;
 		deltaPosition.x = !MoveX ? 0 : Mathf.RoundToInt(deltaPosition.x) * ScaleFactor;
 		deltaPosition.y = !MoveY ? 0 : Mathf.RoundToInt(deltaPosition.y) * ScaleFactor;
 		deltaPosition.z = 0; // Just in case.
@@ -85,7 +98,10 @@ public class DragObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 	}
 
 	public void OnEndDrag(PointerEventData eventData) {
-	    if (rt.localPosition.x.Equals(MinBounds.x) && rt.localPosition.y.Equals(MaxBounds.y)) { // make sure both are in the bottom corner 
+		if (!scrollingEnabled)
+			return;
+
+		if (rt.localPosition.x.Equals(MinBounds.x) && rt.localPosition.y.Equals(MaxBounds.y)) { // make sure both are in the bottom corner 
             OnReset.Invoke();
 	    }
         if (MoveY) OnReset.Invoke();

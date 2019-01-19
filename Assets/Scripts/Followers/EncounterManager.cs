@@ -17,8 +17,4 @@ public class EncounterManager : MonoBehaviour {
 			CurrentFollowers.Value.RemoveAt(0);
 		}	
 	}
-
-	void EncounterOver() {
-		SceneManager.LoadScene("WalkingScreen");
-	}
 }

@@ -11,21 +11,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92ed46357c010e84ea5a3394f3ad888d, type: 3}
   m_Name: BlueGnome
   m_EditorClassIdentifier: 
+  ID: 8
   SideIdleAnimation: {fileID: 7400000, guid: f6d0ebd2bc4e7984b94c2a0216943bf8, type: 2}
   RandomAnimation: {fileID: 7400000, guid: 63a30402433e81244891e603037a9f8a, type: 2}
   MinTimeBetweenRandomAnims: 2
   MaxTimeBetweenRandomAnims: 10
   Idle: {fileID: 7400000, guid: ec79fa92f3c41b345a16a95aba72b433, type: 2}
   Flinch: {fileID: 7400000, guid: ad577467dd7feb34d8afb62ade4326eb, type: 2}
-  LightAttack: {fileID: 7400000, guid: 91ba5dc96eeb1664f94b49db67d2023a, type: 2}
-  BeforeSwipeAttack: {fileID: 7400000, guid: 14611e9280aa0ee44b10cb043acc37af, type: 2}
-  SwipeAttack: {fileID: 7400000, guid: c5834a62461c54346a623c86deff33ae, type: 2}
+  BeforeAttack: {fileID: 7400000, guid: 14611e9280aa0ee44b10cb043acc37af, type: 2}
+  AttackExecute: {fileID: 7400000, guid: c5834a62461c54346a623c86deff33ae, type: 2}
+  AfterAttack: {fileID: 7400000, guid: ec79fa92f3c41b345a16a95aba72b433, type: 2}
   Death: {fileID: 7400000, guid: ff71956244e374f489722bc6f7537f06, type: 2}
   Dead: {fileID: 7400000, guid: 9394ef7f9ee83074c8d4eea5682a91d0, type: 2}
   BaseHealth: 50
   BaseArmor: 0
-  TimeBetweenLightAttacks: 0
-  TimeBetweenHeavyAttacks: 0
-  BaseLightDamage: 0
-  BaseHeavyDamage: 0
-  Swipes: {fileID: 11400000, guid: 5ae2e0eda78248e4e8d0eb4f1b19a2f0, type: 2}
+  TimeBetweenLightAttacks: 4
+  TimeBetweenHeavyAttacks: 3
+  BaseLightDamage: 1
+  BaseHeavyDamage: 5
+  Drops:
+    Items:
+    - item: {fileID: 11400000, guid: 11fbe90a2780405449ad82a1ae93b06e, type: 2}
+      dropChance: 0.5
+    - item: {fileID: 11400000, guid: 11fbe90a2780405449ad82a1ae93b06e, type: 2}
+      dropChance: 0.9
+    - item: {fileID: 11400000, guid: 937f6268098bfaa4f9c28d94ddc092f9, type: 2}
+      dropChance: 0.8
+    - item: {fileID: 11400000, guid: 11fbe90a2780405449ad82a1ae93b06e, type: 2}
+      dropChance: 1
+    - item: {fileID: 11400000, guid: 937f6268098bfaa4f9c28d94ddc092f9, type: 2}
+      dropChance: 1

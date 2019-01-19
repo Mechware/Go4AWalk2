@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace G4AW2.Data.DropSystem
 {
-    [CreateAssetMenu(menuName = "Data/Item Dropper")]
-    public class ItemDropper : ScriptableObject
+    [System.Serializable]
+    public class ItemDropper
     {
         public List<ItemAndRarity> Items;
 

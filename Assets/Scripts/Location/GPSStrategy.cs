@@ -30,6 +30,6 @@ public class GPSStrategy : ScriptableObject {
 		          Mathf.Cos(lastLatitude * Mathf.Deg2Rad) * Mathf.Cos(currLatitude * Mathf.Deg2Rad) *
 		          Mathf.Pow(Mathf.Sin(deltaLongitude / 2), 2);
 		float c = 2 * Mathf.Atan2(Mathf.Sqrt(a), Mathf.Sqrt(1 - a));
-		return EARTH_RADIUS * c;
+		return EARTH_RADIUS * c * 1000;
 	}
 }

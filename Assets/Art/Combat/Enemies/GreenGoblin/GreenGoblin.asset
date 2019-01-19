@@ -11,19 +11,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92ed46357c010e84ea5a3394f3ad888d, type: 3}
   m_Name: GreenGoblin
   m_EditorClassIdentifier: 
+  ID: 2
   SideIdleAnimation: {fileID: 7400000, guid: 4a67940ef3d0c684d84eca9814d5c5f7, type: 2}
   RandomAnimation: {fileID: 7400000, guid: 970f69169b76f9244b1a0f4f8bd46789, type: 2}
   MinTimeBetweenRandomAnims: 30
   MaxTimeBetweenRandomAnims: 180
   Idle: {fileID: 7400000, guid: 9cb0e690ea8179d4cb666208c6ef2de7, type: 2}
   Flinch: {fileID: 7400000, guid: e135ca2035d24204d961c34aa7c738fc, type: 2}
-  Attack: {fileID: 7400000, guid: 14434a7af4c54c445b10eebecd1b08c7, type: 2}
-  HeavyAttack: {fileID: 7400000, guid: 14434a7af4c54c445b10eebecd1b08c7, type: 2}
+  LightAttack: {fileID: 7400000, guid: b060bdedc2804314c8516c5c4648c3ad, type: 2}
+  BeforeSwipeAttack: {fileID: 7400000, guid: 182657826d78d7641b50fcad04e77e81, type: 2}
+  SwipeAttack: {fileID: 7400000, guid: 221e5f068c014a24dadd55e652ef0e35, type: 2}
   Death: {fileID: 7400000, guid: 8506f87f1499db04f9623698cd35cfd1, type: 2}
   Dead: {fileID: 7400000, guid: 1df5577d6344553418ad332125ed9f0f, type: 2}
-  BaseHealth: 0
+  BaseHealth: 150
   BaseArmor: 0
-  BaseAttackSpeed: 0
-  BaseHeavyAttackSpeed: 0
-  BaseDamage: 0
-  Swipes: {fileID: 0}
+  TimeBetweenLightAttacks: 0
+  TimeBetweenHeavyAttacks: 4
+  BaseLightDamage: 0
+  BaseHeavyDamage: 8
+  Swipes: {fileID: 11400000, guid: 5ae2e0eda78248e4e8d0eb4f1b19a2f0, type: 2}
+  Drops:
+    Items:
+    - item: {fileID: 11400000, guid: 937f6268098bfaa4f9c28d94ddc092f9, type: 2}
+      dropChance: 1
+    - item: {fileID: 11400000, guid: 937f6268098bfaa4f9c28d94ddc092f9, type: 2}
+      dropChance: 1
+    - item: {fileID: 11400000, guid: 937f6268098bfaa4f9c28d94ddc092f9, type: 2}
+      dropChance: 1

@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using CustomEvents;
 using G4AW2.Combat.Swiping;
+using G4AW2.Events;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -10,56 +11,71 @@ namespace G4AW2.Combat {
 	[RequireComponent(typeof(Animator))]
     public class EnemyDisplay : MonoBehaviour {
 
+		public enum State {
+			Idle, BeforeAttack, ExecuteAttack, AfterAttack, Stun, Disabled
+		}
+
+		public State EnemyState;
 		public EnemyData Enemy;
 	    public IntReference Level;
 
 		public IntReference MaxHealth;
 	    public IntReference CurrentHealth;
 
-		public FloatReference TimeBetweenLightAttacks;
 	    public FloatReference TimeBetweenHeavyAttacks;
-	    public IntReference HeavyDamage;
+		public FloatReference AttackPrepTime;
+		public FloatReference AttackExecuteDuration;
+		public FloatReference AfterAttackWaitTime;
+		public IntReference HeavyDamage;
 
         // Events
-        public UnityEventSwipe OnSwipeBegin;
-        public UnityEventInt OnSwipeHit;
-		public UnityEvent OnAttackBroken;
-	    public UnityEventInt OnLightAttack;
-	    public UnityEvent OnDeath;
-	    public UnityEvent OnStun;
+        public UnityEvent OnAttackBegin;
+        public UnityEvent OnAttackExecute;
+		public UnityEventInt OnAttackHit;
+	    public UnityEvent OnAttackParried;
+		public UnityEventEnemyData OnDeath;
+	    public UnityEventIEnumerableLoot OnDropLoot;
+		public UnityEvent OnStun;
 	    public UnityEvent OnUnStun;
 		public UnityEventInt OnHit;
 
 		private bool isDead = false;
 
 	    void Start() {
-		    if (Enemy != null) {
+			EnemyState = State.Disabled;
+
+			if (Enemy != null) {
 			    SetEnemy(Enemy, Level);
 		    }
 	    }
 
+		public void SetEnemy(EnemyData data) {
+			SetEnemy(data, 1);
+		}
+
 		public void SetEnemy( EnemyData data, int level ) {
+            isDead = false;
 			Enemy = data;
 			Level.Value = level;
 
 			MaxHealth.Value = data.GetHealth(level);
 			CurrentHealth.Value = MaxHealth;
 			HeavyDamage.Value = data.GetHeavyDamage(level);
-			TimeBetweenLightAttacks.Value = data.GetTimeBetweenLightAttacks(level);
 			TimeBetweenHeavyAttacks.Value = data.GetTimeBetweenHeavyAttacks(level);
-
-			StopAllCoroutines();
-			//StartCoroutine(Attack());
-			StartCoroutine(DoSwipingAttack());
 
 			AnimatorOverrideController aoc = (AnimatorOverrideController)GetComponent<Animator>().runtimeAnimatorController;
 			aoc["Death"] = Enemy.Death;
 			aoc["Dead"] = Enemy.Dead;
 			aoc["Flinch"] = Enemy.Flinch;
-			aoc["LightAttack"] = Enemy.LightAttack;
-			aoc["BeforeSwipeAttack"] = Enemy.BeforeSwipeAttack;
-			aoc["SwipeAttack"] = Enemy.SwipeAttack;
+			aoc["BeforeAttack"] = Enemy.BeforeAttack;
+			aoc["AttackExecute"] = Enemy.AttackExecute;
+			aoc["AfterAttack"] = Enemy.AttackExecute;
 			aoc["Idle"] = Enemy.Idle;
+		}
+
+		public void StartAttacking() {
+			StopAllCoroutines();
+			StartCoroutine(DoAttack());
 		}
 
 		public void Stun() {
@@ -68,42 +84,52 @@ namespace G4AW2.Combat {
 		}
 
 		public void UnStun() {
-			StartCoroutine(DoSwipingAttack());
+			StartCoroutine(DoAttack());
 			OnUnStun.Invoke();
 		}
 
 		#region Attack
 
-		public IEnumerator Attack() {
-			for (; ; ) {
-				yield return new WaitForSeconds(TimeBetweenLightAttacks);
-				if (isDead)
-					break;
-				OnLightAttack.Invoke(HeavyDamage);
-			}
-		}
+		private bool attackBroken = false;
+		private bool canParry = false;
 
-		private bool swipeBroken = false;
-		public IEnumerator DoSwipingAttack() {
+		public IEnumerator DoAttack() {
+			Animator animator = GetComponent<Animator>();
 			for (; ; ) {
+				EnemyState = State.Idle;
 				yield return new WaitForSeconds(TimeBetweenHeavyAttacks);
+				EnemyState = State.BeforeAttack;
+
 				if (isDead)
 					break;
-				Swipe swipe = Enemy.Swipes.GetSwipe(Level);
-				OnSwipeBegin.Invoke(swipe);
-				swipeBroken = false;
-				yield return new WaitForSeconds(swipe.GetEntireSwipeTime());
-				if(!swipeBroken) SwipeCompleted(swipe);
+
+				OnAttackBegin.Invoke();
+				attackBroken = false;
+				canParry = false;
+
+				// Wind up
+				yield return new WaitForSeconds(AttackPrepTime);
+				EnemyState = State.ExecuteAttack;
+
+				OnAttackExecute.Invoke();
+				canParry = true;
+
+				// Perform the attack
+				yield return new WaitForSeconds(AttackExecuteDuration);
+				EnemyState = State.AfterAttack;
+				canParry = false;
+				OnAttackHit.Invoke(HeavyDamage);
+
+				// Wait for a bit (let dust settle)
+				yield return new WaitForSeconds(AfterAttackWaitTime);
 			}
 		}
 
-		public void SwipeBroken() {
-			swipeBroken = true;
-			OnAttackBroken.Invoke();
-		}
-
-		public void SwipeCompleted( Swipe s ) {
-			OnSwipeHit.Invoke(HeavyDamage);
+		public void AttemptedParry() {
+			if(canParry) {
+				attackBroken = true;
+				OnAttackParried.Invoke();
+			}
 		}
 
 		public void ApplyDamage( int amount ) {
@@ -113,7 +139,8 @@ namespace G4AW2.Combat {
 			CurrentHealth.Value -= amount;
 			if (CurrentHealth.Value <= 0) {
 				isDead = true;
-				OnDeath.Invoke();
+				OnDeath.Invoke(Enemy);
+				OnDropLoot.Invoke(Enemy.Drops.GetItems());
 			} else {
 				OnHit.Invoke(amount);
 			}

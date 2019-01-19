@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using G4AW2.Data.Inventory;
 
 namespace G4AW2.Data.DropSystem
 {
@@ -27,23 +26,32 @@ namespace G4AW2.Data.DropSystem
     }
 
     [CreateAssetMenu(menuName = "Data/DropSystem/Item")]
-    public class Item : ScriptableObject {
-        public AnimationClip Walking;
+    public class Item : ScriptableObject, IID {
+	    public int ID;
         public Sprite image;
         public int value;
         public string description;
         public Rarity rarity;
         public ItemType type;
-        public InventoryList list;
+	    public int maxStackSize;
 
-        public void addToInventory()
-        {         
-            list.addItem(this);
-        }
+	    public int GetID() {
+		    return ID;
+	    }
+
+#if UNITY_EDITOR
+	    [ContextMenu("Pick ID")]
+	    public void PickID() {
+		    ID = IDUtils.PickID<Item>();
+	    }
+
+	    void OnEnable() {
+		    if (ID == 0)
+			    PickID();
+	    }
+#endif
+	}
 
 
-    }
-
-  
 }
 

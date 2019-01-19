@@ -1,17 +1,19 @@
+using System;
 using CustomEvents;
 using G4AW2.Data;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using Random = UnityEngine.Random;
 
 namespace G4AW2.Followers {
 
 	[RequireComponent(typeof(Animator))]
 	public class FollowerDisplay : MonoBehaviour, IPointerClickHandler {
-		private FollowerData Data;
+		[NonSerialized] public FollowerData Data;
 
 		public AnimatorOverrideController BaseController;
 
-		public UnityEventFollowerData FollowerClicked;
+		public Action<FollowerDisplay> FollowerClicked;
 		private Animator Animator;
 
 		private AnimatorOverrideController aoc;
@@ -45,7 +47,6 @@ namespace G4AW2.Followers {
 
 		public void SetData(FollowerData data) {
 			Data = data;
-			print("Setting data: " + Data.name);
 
 			aoc["Idle"] = Data.SideIdleAnimation;
 			if (Data.HasRandomAnimation) {
@@ -55,7 +56,7 @@ namespace G4AW2.Followers {
 		}
 
 		public void OnPointerClick(PointerEventData eventData) {
-			FollowerClicked.Invoke(Data);
+			FollowerClicked.Invoke(this);
 		}
 	}
 
