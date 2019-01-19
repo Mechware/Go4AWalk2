@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92ed46357c010e84ea5a3394f3ad888d, type: 3}
+  m_Name: Monch
+  m_EditorClassIdentifier: 
+  ID: 9
+  SideIdleAnimation: {fileID: 7400000, guid: f90fc67c3287ca749b519e9ad9a59f70, type: 2}
+  RandomAnimation: {fileID: 7400000, guid: f55407dce871a18439040cc69ec91174, type: 2}
+  MinTimeBetweenRandomAnims: 2
+  MaxTimeBetweenRandomAnims: 20
+  Idle: {fileID: 7400000, guid: fdad327da4d434648b19b7c46ec006d9, type: 2}
+  Flinch: {fileID: 7400000, guid: fe81f150077401c4d9665854d74f5a48, type: 2}
+  BeforeAttack: {fileID: 7400000, guid: 2065f6e7fd9629d4cb4df64e78962a23, type: 2}
+  AttackExecute: {fileID: 7400000, guid: f11a83ca3cf0fd04a9e043635b6dd3ba, type: 2}
+  AfterAttack: {fileID: 7400000, guid: 39835d42554a6854685c357faf4254fb, type: 2}
+  Death: {fileID: 7400000, guid: 8bdca9a98387abd4a840ead360121abb, type: 2}
+  Dead: {fileID: 7400000, guid: 7d60b7f8379db93439a8f6cc54e8a8d4, type: 2}
+  BaseHealth: 100
+  BaseArmor: 10
+  TimeBetweenHeavyAttacks: 3
+  BaseHeavyDamage: 1
+  Drops:
+    Items:
+    - item: {fileID: 11400000, guid: 6aa310ad3ac3a0c4cb6ab065138454e4, type: 2}
+      dropChance: 0.1
