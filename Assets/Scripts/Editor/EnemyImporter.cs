@@ -38,9 +38,9 @@ namespace G4AW2.Tools {
 		public Anim[] animations = {
 			new Anim("Idle", 0, 500),
 			new Anim("Flinch", 0, 125),
-			new Anim("SwipeAttack", 0, 125),
-			new Anim("BeforeSwipeAttack", 0, 125),
-			new Anim("LightAttack", 0, 125),
+			new Anim("BeforeAttack", 0, 125),
+			new Anim("AttackExecute", 0, 125),
+			new Anim("AfterAttack", 0, 125),
             new Anim("Death", 0, 250),
 			new Anim("SideIdle", 0, 125),
 			new Anim("SideRandom", 0, 125)
@@ -163,14 +163,14 @@ namespace G4AW2.Tools {
 						case "Flinch":
 							enemyScriptableObject.Flinch = ac;
 							break;
-						case "SwipeAttack":
-							enemyScriptableObject.SwipeAttack = ac;
+						case "BeforeAttack":
+							enemyScriptableObject.BeforeAttack = ac;
 							break;
-                        case "BeforeSwipeAttack":
-                            enemyScriptableObject.BeforeSwipeAttack = ac;
+                        case "AttackExecute":
+                            enemyScriptableObject.AttackExecute = ac;
                             break;
-                        case "LightAttack":
-                            enemyScriptableObject.LightAttack = ac;
+                        case "AfterAttack":
+                            enemyScriptableObject.AfterAttack = ac;
                             break;
 						case "Death":
 							enemyScriptableObject.Death = ac;

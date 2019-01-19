@@ -8,7 +8,7 @@ public class AttackArea : Graphic, IPointerClickHandler, IPointerDownHandler, IP
 
 	public UnityEventVector3 OnTap;
 	public UnityEvent OnSwipeStart;
-    public UnityEventVector3Array OnSwipe;
+    public UnityEventVector3Array OnSwipeFinished;
 	public UnityEventVector3Array OnSwipingDistanceChange;
 	public UnityEventVector3 OnSwiping;
 
@@ -34,7 +34,7 @@ public class AttackArea : Graphic, IPointerClickHandler, IPointerDownHandler, IP
 		LineRenderer.Simplify(SimplifyAmount);
 		Vector3[] points = new Vector3[LineRenderer.positionCount];
 		LineRenderer.GetPositions(points);
-		OnSwipe.Invoke(points);
+		OnSwipeFinished.Invoke(points);
 		LineRenderer.positionCount = 0;
 	}
 
@@ -55,7 +55,7 @@ public class AttackArea : Graphic, IPointerClickHandler, IPointerDownHandler, IP
 		LineRenderer.Simplify(SimplifyAmount);
 		Vector3[] points = new Vector3[LineRenderer.positionCount];
 		LineRenderer.GetPositions(points);
-	    OnSwipe.Invoke(points);
+	    OnSwipeFinished.Invoke(points);
         LineRenderer.positionCount = 0;
 		eventData.Use();
 	}

@@ -16,11 +16,12 @@ public class ItemDropBubbleManager : MonoBehaviour {
 	public UnityEvent OnFinished;
 
 	public void AddItems( IEnumerable<Item> items ) {
-        if(items.ToList().Count == 0) {
+		List<Item> itemsList = items.ToList();
+        if(itemsList.Count == 0) {
             OnFinished.Invoke();
             return;
         }
-		StartCoroutine(ShootItems(items));
+		StartCoroutine(ShootItems(itemsList));
 	}
 
 	private int onScreenItems = 0;
@@ -31,7 +32,8 @@ public class ItemDropBubbleManager : MonoBehaviour {
 		foreach (Item it in items) {
 			yield return new WaitForSeconds(SpawnDelay);
 			GameObject itemBubble = GameObject.Instantiate(ItemDropperPrefab, Vector3.zero, Quaternion.identity, transform);
-			itemBubble.GetComponent<ItemDropBubble>().SetData(it, OnClick);
+            itemBubble.transform.localPosition = new Vector3(0, 0, 0);
+            itemBubble.GetComponent<ItemDropBubble>().SetData(it, OnClick);
 			itemBubble.GetComponent<ItemDropBubble>().Shoot();
 			onScreenItems++;
 		}

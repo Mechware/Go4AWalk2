@@ -18,9 +18,9 @@ MonoBehaviour:
   MaxTimeBetweenRandomAnims: 10
   Idle: {fileID: 7400000, guid: ec79fa92f3c41b345a16a95aba72b433, type: 2}
   Flinch: {fileID: 7400000, guid: ad577467dd7feb34d8afb62ade4326eb, type: 2}
-  LightAttack: {fileID: 7400000, guid: 91ba5dc96eeb1664f94b49db67d2023a, type: 2}
-  BeforeSwipeAttack: {fileID: 7400000, guid: 14611e9280aa0ee44b10cb043acc37af, type: 2}
-  SwipeAttack: {fileID: 7400000, guid: c5834a62461c54346a623c86deff33ae, type: 2}
+  BeforeAttack: {fileID: 7400000, guid: 14611e9280aa0ee44b10cb043acc37af, type: 2}
+  AttackExecute: {fileID: 7400000, guid: c5834a62461c54346a623c86deff33ae, type: 2}
+  AfterAttack: {fileID: 7400000, guid: ec79fa92f3c41b345a16a95aba72b433, type: 2}
   Death: {fileID: 7400000, guid: ff71956244e374f489722bc6f7537f06, type: 2}
   Dead: {fileID: 7400000, guid: 9394ef7f9ee83074c8d4eea5682a91d0, type: 2}
   BaseHealth: 50
@@ -29,7 +29,6 @@ MonoBehaviour:
   TimeBetweenHeavyAttacks: 3
   BaseLightDamage: 1
   BaseHeavyDamage: 5
-  Swipes: {fileID: 11400000, guid: 5ae2e0eda78248e4e8d0eb4f1b19a2f0, type: 2}
   Drops:
     Items:
     - item: {fileID: 11400000, guid: 11fbe90a2780405449ad82a1ae93b06e, type: 2}

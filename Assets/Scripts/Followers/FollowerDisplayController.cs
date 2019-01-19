@@ -6,6 +6,7 @@ using CustomEvents;
 using G4AW2.Data;
 using G4AW2.Data.Combat;
 using G4AW2.Dialogue;
+using G4AW2.Events;
 using Sirenix.OdinInspector;
 using Sirenix.Utilities;
 using UnityEngine;
@@ -20,7 +21,7 @@ namespace G4AW2.Followers {
 	    public FollowerDisplay DisplayPrefab;
 		private List<FollowerDisplay> AllFollowers = new List<FollowerDisplay>();
 
-		public UnityEvent FightFollower;
+		public UnityEventEnemyData FightFollower;
 
 		void Awake() {
 			ListOfCurrentFollowers.OnAdd.RemoveListener(FollowerAdded);
@@ -69,7 +70,7 @@ namespace G4AW2.Followers {
 				if (fd.Data is EnemyData) {
 					//EnemyData ed = (EnemyData) fd;
 					// TODO: Include stats
-					PopUp.SetPopUp("Fight follower?", new[] {"Yes", "No"}, new Action[] { FightFollower.Invoke, () => { }});
+					PopUp.SetPopUp("Fight follower?", new[] {"Yes", "No"}, new Action[] { () => { FightFollower.Invoke((EnemyData)fd.Data); }, () => { }});
 				} else if (fd.Data is QuestGiver) {
 					QuestGiver qg = (QuestGiver) fd.Data;
 					PopUp.SetPopUp("Accept quest from quest giver? Title: " + qg.QuestToGive.DisplayName, new[] { "Yes", "No" }, new Action[] {
