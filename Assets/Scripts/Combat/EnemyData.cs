@@ -22,6 +22,9 @@ namespace G4AW2.Data.Combat {
 	    public float TimeBetweenHeavyAttacks;
 	    public int BaseHeavyDamage;
 
+        public float AttackPrepTime;
+        public float AttackExecuteTime;
+
 		[Header("Misc")]
 		public ItemDropper Drops;
 

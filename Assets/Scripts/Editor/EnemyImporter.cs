@@ -171,7 +171,7 @@ namespace G4AW2.Tools {
                             enemyScriptableObject.AttackExecute = ac;
                             break;
                         case "AfterAttack":
-                            if(!ac.empty)
+                            if(anims[i].frameCount != 0)
                                 enemyScriptableObject.AfterAttack = ac;
                             else
                                 enemyScriptableObject.AfterAttack = CreateAnimation(new Anim("AfterAttack", 1, 1000), new[] { spriteSheet[totalFrameCount + anims[i].frameCount - 1] }, EnemyName, path);

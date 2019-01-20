@@ -5918,6 +5918,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e867138000182e84abd90819f3968476, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StunDuration:
+    UseConstant: 1
+    ConstantValue: 4
+    Variable: {fileID: 0}
   EnemyState: 0
   Enemy: {fileID: 0}
   Level:
@@ -5941,10 +5945,6 @@ MonoBehaviour:
     ConstantValue: 0.5
     Variable: {fileID: 0}
   AttackExecuteDuration:
-    UseConstant: 1
-    ConstantValue: 0.5
-    Variable: {fileID: 0}
-  AfterAttackWaitTime:
     UseConstant: 1
     ConstantValue: 0.5
     Variable: {fileID: 0}

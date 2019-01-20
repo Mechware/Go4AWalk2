@@ -15,6 +15,8 @@ namespace G4AW2.Combat {
 			Idle, BeforeAttack, ExecuteAttack, AfterAttack, Stun, Disabled
 		}
 
+        public FloatReference StunDuration;
+
 		public State EnemyState;
 		public EnemyData Enemy;
 	    public IntReference Level;
@@ -25,7 +27,6 @@ namespace G4AW2.Combat {
 	    public FloatReference TimeBetweenHeavyAttacks;
 		public FloatReference AttackPrepTime;
 		public FloatReference AttackExecuteDuration;
-		public FloatReference AfterAttackWaitTime;
 		public IntReference HeavyDamage;
 
         // Events
@@ -63,6 +64,8 @@ namespace G4AW2.Combat {
 			CurrentHealth.Value = MaxHealth;
 			HeavyDamage.Value = data.GetHeavyDamage(level);
 			TimeBetweenHeavyAttacks.Value = data.GetTimeBetweenHeavyAttacks(level);
+            AttackPrepTime.Value = data.AttackPrepTime;
+            AttackExecuteDuration.Value = data.AttackExecuteTime;
 
 			AnimatorOverrideController aoc = (AnimatorOverrideController)GetComponent<Animator>().runtimeAnimatorController;
 			aoc["Death"] = Enemy.Death;
@@ -75,9 +78,9 @@ namespace G4AW2.Combat {
             aoc["Walking"] = Enemy.Walking;
 
             // I wish there was a better way to do this
-            Vector2 pos = transform.position;
+            Vector3 pos = transform.localPosition;
             pos.x = -70;
-            transform.position = pos;
+            transform.localPosition = pos;
 		}
 
         public void StartWalking()
@@ -132,9 +135,6 @@ namespace G4AW2.Combat {
 				EnemyState = State.AfterAttack;
 				canParry = false;
 				OnAttackHit.Invoke(HeavyDamage);
-
-				// Wait for a bit (let dust settle)
-				yield return new WaitForSeconds(AfterAttackWaitTime);
 			}
 		}
 
@@ -142,6 +142,11 @@ namespace G4AW2.Combat {
 			if(canParry) {
 				attackBroken = true;
                 Stun();
+                Timer.StartTimer(this, StunDuration, () =>
+                {
+                    UnStun();
+                });
+
 				OnAttackParried.Invoke();
                 return true;
 			}
