@@ -101,7 +101,7 @@ namespace CustomEvents {
 					Add(obj);
 				}
 				else {
-					Debug.LogWarning("Tried to load an ID that does not exist");
+					Debug.LogWarning("Tried to load an ID that does not exist - " + id);
 				}
 			}
 		}

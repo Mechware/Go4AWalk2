@@ -38,6 +38,7 @@ namespace G4AW2.Combat {
 		public UnityEvent OnStun;
 	    public UnityEvent OnUnStun;
 		public UnityEventInt OnHit;
+        public UnityEvent OnStartWalking;
 
 		private bool isDead = false;
 
@@ -69,9 +70,21 @@ namespace G4AW2.Combat {
 			aoc["Flinch"] = Enemy.Flinch;
 			aoc["BeforeAttack"] = Enemy.BeforeAttack;
 			aoc["AttackExecute"] = Enemy.AttackExecute;
-			aoc["AfterAttack"] = Enemy.AttackExecute;
+			aoc["AfterAttack"] = Enemy.AfterAttack;
 			aoc["Idle"] = Enemy.Idle;
+            aoc["Walking"] = Enemy.Walking;
+
+            // I wish there was a better way to do this
+            Vector2 pos = transform.position;
+            pos.x = -70;
+            transform.position = pos;
 		}
+
+        public void StartWalking()
+        {
+            StopAllCoroutines();
+            OnStartWalking.Invoke();
+        }
 
 		public void StartAttacking() {
 			StopAllCoroutines();
@@ -125,11 +138,14 @@ namespace G4AW2.Combat {
 			}
 		}
 
-		public void AttemptedParry() {
+		public bool AttemptedParry() {
 			if(canParry) {
 				attackBroken = true;
+                Stun();
 				OnAttackParried.Invoke();
+                return true;
 			}
+            return false;
 		}
 
 		public void ApplyDamage( int amount ) {

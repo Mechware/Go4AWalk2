@@ -35,8 +35,13 @@ public class LerpToPosition : MonoBehaviour {
 			Vector3 Pos = startPosition + (steps * (Time.time - startTime) / TimeToLerp);
 			Pos.z = ((RectTransform)transform).localPosition.z;
 			((RectTransform) transform).localPosition = Pos;
+
 			if(Time.time - startTime >= TimeToLerp) {
-				lerping = false;
+                Pos.x = EndPosition.x;
+                Pos.y = EndPosition.y;
+                ((RectTransform)transform).localPosition = Pos;
+
+                lerping = false;
                 OnLerpingDone.Invoke();
 			}
 		}

@@ -479,8 +479,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5d160cfdefc89d46a02b160cfbdbe39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clip: {fileID: 0}
-  timeToPlay: 10
+  clip: {fileID: 7400000, guid: e479e63d38e7f784993e44ad33c46fbc, type: 2}
+  timeToPlay: 1
   toPlayOn: {fileID: 1584482923}
   controller: {fileID: 22100000, guid: 1b32dd706003e5d4c893427094e41bd6, type: 2}
 --- !u!114 &1584482927
@@ -502,7 +502,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300028, guid: e2545104d53500946929c95b2690cdc0, type: 3}
+  m_Sprite: {fileID: 21300032, guid: 528920b705781dd44ad85bfa72280111, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

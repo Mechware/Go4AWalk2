@@ -14,6 +14,7 @@ namespace G4AW2.Data.Combat {
 		public AnimationClip AfterAttack;
 		public AnimationClip Death;
 		public AnimationClip Dead;
+        public AnimationClip Walking;
 
 		[Header("Stats")]
 		public int BaseHealth;

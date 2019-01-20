@@ -1648,7 +1648,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -118, y: 0}
+  m_AnchoredPosition: {x: -118, y: 5}
   m_SizeDelta: {x: 64, y: 64}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &300978733
@@ -1670,8 +1670,8 @@ MonoBehaviour:
   m_ChildAlignment: 5
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 64, y: 64}
-  m_Spacing: {x: -32, y: 0}
+  m_CellSize: {x: 32, y: 32}
+  m_Spacing: {x: 0, y: 0}
   m_Constraint: 2
   m_ConstraintCount: 1
 --- !u!114 &300978734
@@ -3336,7 +3336,7 @@ Prefab:
     - target: {fileID: 114174548617117370, guid: 1c1c5654baf9b674d98643e199750762,
         type: 2}
       propertyPath: OnFinished.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114174548617117370, guid: 1c1c5654baf9b674d98643e199750762,
         type: 2}
@@ -3347,7 +3347,17 @@ Prefab:
         type: 2}
       propertyPath: OnFinished.m_PersistentCalls.m_Calls.Array.data[3].m_Target
       value: 
-      objectReference: {fileID: 1324188854}
+      objectReference: {fileID: 999456373}
+    - target: {fileID: 114174548617117370, guid: 1c1c5654baf9b674d98643e199750762,
+        type: 2}
+      propertyPath: OnFinished.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      value: set_parent
+      objectReference: {fileID: 0}
+    - target: {fileID: 114174548617117370, guid: 1c1c5654baf9b674d98643e199750762,
+        type: 2}
+      propertyPath: OnFinished.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Transform, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1c1c5654baf9b674d98643e199750762, type: 2}
   m_IsPrefabAsset: 0
@@ -4566,26 +4576,15 @@ MonoBehaviour:
   OnTap:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 999456374}
-        m_MethodName: ApplyDamage
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 10
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 860766377}
-        m_MethodName: PrintString
-        m_Mode: 5
+      - m_Target: {fileID: 1550784726}
+        m_MethodName: PlayerAttemptToHitEnemy
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Applying damage
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: CustomEvents.UnityEventVector3, Assembly-CSharp, Version=0.0.0.0,
@@ -4597,7 +4596,18 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
   OnSwipeFinished:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1550784726}
+        m_MethodName: PlayerScreenSwipe
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: CustomEvents.UnityEventVector3Array, Assembly-CSharp, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   OnSwipingDistanceChange:
@@ -5871,6 +5881,7 @@ GameObject:
   - component: {fileID: 999456374}
   - component: {fileID: 999456377}
   - component: {fileID: 999456376}
+  - component: {fileID: 999456378}
   m_Layer: 5
   m_Name: EnemyFighter
   m_TagString: Untagged
@@ -5893,8 +5904,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -30, y: 0}
-  m_SizeDelta: {x: 64, y: 64}
+  m_AnchoredPosition: {x: -70, y: 0}
+  m_SizeDelta: {x: 32, y: 32}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &999456374
 MonoBehaviour:
@@ -5927,15 +5938,15 @@ MonoBehaviour:
     Variable: {fileID: 0}
   AttackPrepTime:
     UseConstant: 1
-    ConstantValue: 0
+    ConstantValue: 0.5
     Variable: {fileID: 0}
   AttackExecuteDuration:
     UseConstant: 1
-    ConstantValue: 0
+    ConstantValue: 0.5
     Variable: {fileID: 0}
   AfterAttackWaitTime:
     UseConstant: 1
-    ConstantValue: 0
+    ConstantValue: 0.5
     Variable: {fileID: 0}
   HeavyDamage:
     UseConstant: 1
@@ -5991,18 +6002,7 @@ MonoBehaviour:
       PublicKeyToken=null
   OnAttackParried:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 999456374}
-        m_MethodName: Stun
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   OnDeath:
@@ -6061,12 +6061,34 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
   OnStun:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 999456375}
+        m_MethodName: SetTrigger
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Stun
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   OnUnStun:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 999456375}
+        m_MethodName: SetTrigger
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: StunOver
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   OnHit:
@@ -6085,6 +6107,33 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: CustomEvents.UnityEventInt, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  OnStartWalking:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 999456375}
+        m_MethodName: SetTrigger
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Walking
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 999456378}
+        m_MethodName: StartLerping
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!95 &999456375
 Animator:
   serializedVersion: 3
@@ -6137,6 +6186,47 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 999456372}
   m_CullTransparentMesh: 0
+--- !u!114 &999456378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 999456372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4c1231061dd2dd4daf40456556abcd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EndPosition: {x: -30, y: 0}
+  TimeToLerp: 1
+  OnLerpingDone:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 999456375}
+        m_MethodName: SetTrigger
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: DoneWalking
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 999456374}
+        m_MethodName: StartAttacking
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  lerping: 0
 --- !u!1 &1006470403
 GameObject:
   m_ObjectHideFlags: 0
@@ -7557,7 +7647,7 @@ MonoBehaviour:
           m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 999456374}
-        m_MethodName: StartAttacking
+        m_MethodName: StartWalking
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8689,6 +8779,7 @@ GameObject:
   - component: {fileID: 1550784725}
   - component: {fileID: 1550784724}
   - component: {fileID: 1550784723}
+  - component: {fileID: 1550784726}
   m_Layer: 5
   m_Name: Player
   m_TagString: Player
@@ -8766,6 +8857,105 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1550784721}
   m_CullTransparentMesh: 0
+--- !u!114 &1550784726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1550784721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c127ee1e91ec73c4ab8f1677dda5e211, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 11400000, guid: 6d079e86c36b66d4c88947d754ae6e3e, type: 2}
+  EnemyDisplay: {fileID: 999456374}
+  MinSwipeDistance: 5
+  FailedParryStunTime: 0.5
+  BlockTime: 1
+  BlockingDamageModifier: 0.5
+  PerfectBlockDamageModifier: 0
+  BadParryDamageModifier: 2
+  OnBlockStart:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 860766377}
+        m_MethodName: PrintString
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Blocking
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnBlockEnd:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 860766377}
+        m_MethodName: PrintString
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Done Blocking
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnFailedParry:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 860766377}
+        m_MethodName: PrintString
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Failed Parry
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnFailedParryDone:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 860766377}
+        m_MethodName: PrintString
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Failed Parry Stun Over
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnSuccessfulParry:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 860766377}
+        m_MethodName: PrintString
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Successful Parry
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &1556846224
 GameObject:
   m_ObjectHideFlags: 0

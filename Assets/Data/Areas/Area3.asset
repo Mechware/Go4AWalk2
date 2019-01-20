@@ -17,8 +17,6 @@ MonoBehaviour:
       DropChance: 1
     - Follower: {fileID: 11400000, guid: 24dcc537a71658e4e9fbf5e0d5fc124a, type: 2}
       DropChance: 1
-    - Follower: {fileID: 11400000, guid: ddee636582497854889c3ed5085dffe5, type: 2}
-      DropChance: 1
   Background: {fileID: 21300000, guid: 3503b24ea3aa5304481c06fbdd002b54, type: 3}
   SkyUpper: {fileID: 21300000, guid: bfab8ec1cf01c6b44b95d964dbb89392, type: 3}
   Sky: {fileID: 21300000, guid: cfa6904b18878cb4ca9f10427acbb3d9, type: 3}

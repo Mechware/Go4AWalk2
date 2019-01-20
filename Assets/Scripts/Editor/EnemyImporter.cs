@@ -43,8 +43,9 @@ namespace G4AW2.Tools {
 			new Anim("AfterAttack", 0, 125),
             new Anim("Death", 0, 250),
 			new Anim("SideIdle", 0, 125),
-			new Anim("SideRandom", 0, 125)
-		};
+			new Anim("SideRandom", 0, 125),
+			new Anim("Walking", 0, 125),
+        };
 
 		public ReorderableList AnimationOrder;
 
@@ -170,7 +171,10 @@ namespace G4AW2.Tools {
                             enemyScriptableObject.AttackExecute = ac;
                             break;
                         case "AfterAttack":
-                            enemyScriptableObject.AfterAttack = ac;
+                            if(!ac.empty)
+                                enemyScriptableObject.AfterAttack = ac;
+                            else
+                                enemyScriptableObject.AfterAttack = CreateAnimation(new Anim("AfterAttack", 1, 1000), new[] { spriteSheet[totalFrameCount + anims[i].frameCount - 1] }, EnemyName, path);
                             break;
 						case "Death":
 							enemyScriptableObject.Death = ac;
@@ -183,6 +187,9 @@ namespace G4AW2.Tools {
 						case "SideRandom":
 							enemyScriptableObject.RandomAnimation = ac;
 							break;
+                        case "Walking":
+                            enemyScriptableObject.Walking = ac;
+                            break;
 					}
 
 					totalFrameCount += anims[i].frameCount;
