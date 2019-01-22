@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -21,11 +21,5 @@ public class CustomTap : MonoBehaviour, IPointerClickHandler {
     {
         if (clickEvent != null)
             clickEvent.Raise();
-        else if (itemEvent != null)
-        {
-            if (player.returnItem(type) != null)
-                itemEvent.Raise(player.returnItem(type));
-                
-        }
     }
 }

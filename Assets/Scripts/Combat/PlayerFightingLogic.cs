@@ -35,8 +35,15 @@ public class PlayerFightingLogic : MonoBehaviour {
         else if(badParry)
             damage = Mathf.CeilToInt(damage * BadParryDamageModifier);
 
+        if(perfectBlock || blocking)
+        {
+            blocking = false;
+            perfectBlock = false;
+            OnBlockEnd.Invoke();
+        }
 
         Player.Health.Value -= damage;
+        Debug.Log("Hit for: " + damage);
 	}
 
 	public void PlayerAttemptToHitEnemy() {
@@ -49,6 +56,7 @@ public class PlayerFightingLogic : MonoBehaviour {
 	public void PlayerScreenSwipe( Vector3[] swipe ) {
         if (!AbleToAttack) return;
         if (swipe.Length < 2) return;
+
 		Vector3 start = swipe[0];
 		Vector3 end = swipe[swipe.Length - 1];
 		if ((start - end).magnitude > MinSwipeDistance) {
@@ -68,12 +76,13 @@ public class PlayerFightingLogic : MonoBehaviour {
 		}
         OnBlockStart.Invoke();
 
+        /*
         Timer.StartTimer(this, BlockTime, () =>
         {
             blocking = false;
             perfectBlock = false;
             OnBlockEnd.Invoke();
-        });
+        });*/
 	}
 
 	public void PlayerParried() {

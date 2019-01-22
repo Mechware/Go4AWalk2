@@ -11,7 +11,6 @@ namespace G4AW2.Combat {
 		public IntReference MaxHealth;
 
 		public IntReference Health;
-		public FloatReference Power;
         public FloatReference Armor;
 		public IntReference Damage;
 
@@ -32,95 +31,6 @@ namespace G4AW2.Combat {
 		public int GetLightDamage() {
 			return Damage;
 		}
-
-		public void Hit( int damage ) {
-			Health.Value -= Mathf.RoundToInt(damage - Armor);
-		}
-
-		public void Block( Swipe s ) {
-			Power.Value = Mathf.Min(Power.Value + PowerPerBlock, 100f);
-			if (Power.Value == 100f) {
-				OnPowerMax.Raise();
-			}
-		}
-        public void setItem(Item item)
-        {
-            //removeItem(item.type);
-            switch (item.type)
-            {
-                case (ItemType.Weapon):
-                    Damage.Value = item.value;
-                    weapon = item;
-                    break;
-                case (ItemType.Torso):
-                    Armor.Value = Armor.Value+item.value;
-                    armor = item;
-                    break;
-                case (ItemType.Hat):
-                    Armor.Value = Armor.Value+item.value;
-                    hat = item;
-                    break;
-                case (ItemType.Boots):
-                    Armor.Value = Armor.Value+item.value;
-                    boots = item;
-                    break;
-            }
-        }
-        public void removeItem(ItemType type)
-        {
-            switch (type)
-            {
-                case (ItemType.Weapon):
-                    if (weapon!=null)
-                    {
-                        Damage.Value = 1;
-                        inventory.Add(weapon);
-                        weapon = null;
-                    }
-                    break;
-                case (ItemType.Torso):
-                    if (armor != null)
-                    {
-                        Armor.Value = Armor.Value-armor.value;
-                        inventory.Add(armor);
-                        armor = null;
-                    }
-                    break;
-                case (ItemType.Hat):
-                    if (hat != null)
-                    {
-                        Armor.Value = Armor.Value-hat.value;
-                        inventory.Add(hat);
-                        hat = null;
-                    }
-                    break;
-                case (ItemType.Boots):
-                    if (boots != null)
-                    {
-                        Armor.Value = Armor.Value-boots.value;
-                        inventory.Add(boots);
-                        boots = null;
-                    }
-                    break;
-            }
-        }
-
-        public Item returnItem(ItemType type)
-        {            
-            switch (type)
-            {
-                case (ItemType.Weapon):
-                    return weapon;
-                case (ItemType.Torso):
-                    return armor;
-                case (ItemType.Hat):
-                    return hat;
-                case (ItemType.Boots):
-                    return boots;
-                    
-            }
-            return null;
-        }
 
 
 #if UNITY_EDITOR
