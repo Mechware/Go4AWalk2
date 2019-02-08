@@ -26,20 +26,6 @@ public class ConfigObject : ScriptableObject {
 		return thing.Color;
 	}
 
-	private void OnEnable() {
-		RegisterChanges();
-	}
-
-	private void Awake() {
-		RegisterChanges();
-	}
-
-	private void OnDisable() {
-		RegisterChanges();
-	}
-
-
-
 	[ContextMenu("Register Changes")]
 	public void RegisterChanges() {
 		Debug.Log("Registering changes");

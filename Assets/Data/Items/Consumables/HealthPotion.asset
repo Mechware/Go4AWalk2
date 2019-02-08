@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: HealthPotion
   m_EditorClassIdentifier: 
   ID: 5
-  image: {fileID: 21300000, guid: 5f615e58265c352499a8444731d81666, type: 3}
+  image: {fileID: 21300000, guid: 09f935aaee218424c912860a0651b6c4, type: 3}
   value: 100
   description: it's a fucking health potion
   rarity: 3
