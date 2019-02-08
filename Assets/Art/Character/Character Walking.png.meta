@@ -1,37 +1,30 @@
 fileFormatVersion: 2
-guid: 198bd0adffe491b48940b2fbe19b0a32
+guid: 72060952398b2384ab4933474edf555c
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Monch_0
-    21300002: Monch_1
-    21300004: Monch_2
-    21300006: Monch_3
-    21300008: Monch_4
-    21300010: Monch_5
-    21300012: Monch_6
-    21300014: Monch_7
-    21300016: Monch_8
-    21300018: Monch_9
-    21300020: Monch_10
-    21300022: Monch_11
-    21300024: Monch_12
-    21300026: Monch_13
-    21300028: Monch_14
-    21300030: Monch_15
-    21300032: Monch_16
-    21300034: Monch_17
-    21300036: Monch_18
-    21300038: Monch_19
-    21300040: Monch_20
-    21300042: Monch_21
-    21300044: Monch_22
-    21300046: Monch_23
-    21300048: Monch_24
-    21300050: Monch_25
-    21300052: Monch_26
-    21300054: Monch_27
-    21300056: Monch_28
-    21300058: Monch_29
+    21300000: Character Walking_0
+    21300002: Character Walking_1
+    21300004: Character Walking_2
+    21300006: Character Walking_3
+    21300008: Character Walking_4
+    21300010: Character Walking_5
+    21300012: Character Walking_6
+    21300014: Character Walking_7
+    21300016: Character Walking_8
+    21300018: Character Walking_9
+    21300020: Character Walking_10
+    21300022: Character Walking_11
+    21300024: Character Walking_12
+    21300026: Character Walking_13
+    21300028: Character Walking_14
+    21300030: Character Walking_15
+    21300032: Character Walking_16
+    21300034: Character Walking_17
+    21300036: Character Walking_18
+    21300038: Character Walking_19
+    21300040: Character Walking_20
+    21300042: Character Walking_21
+    21300044: Character Walking_22
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -99,91 +92,33 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Monch_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 192
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5c5f41d0e187b864b834ce47793ccc83
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Monch_1
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 192
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4e218d73fd6ca5f40bf54a646185da2d
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Monch_2
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 160
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: facde067e2d7f1a4abf46536dcf80d03
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Monch_3
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 160
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 86b9510340e9b644cae8b27f073fdcdd
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Monch_4
+      name: Character Walking_0
       rect:
         serializedVersion: 2
         x: 0
@@ -195,15 +130,15 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 95832f218d16c4c4aa87077499655d42
+      spriteID: d91fdd577d42915478b4491351e07ac9
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Monch_5
+      name: Character Walking_1
       rect:
         serializedVersion: 2
         x: 32
@@ -215,15 +150,15 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c9870ccf76f9c3f4dba622751e4378e1
+      spriteID: 9814621446a87a147af3f008045789b4
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Monch_6
+      name: Character Walking_2
       rect:
         serializedVersion: 2
         x: 64
@@ -235,15 +170,15 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c1720f67e78f420438e8471a053479b7
+      spriteID: 79bb98cf00882bf449b7aa00450af932
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Monch_7
+      name: Character Walking_3
       rect:
         serializedVersion: 2
         x: 96
@@ -255,15 +190,15 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 8550d20225397df45b53ec6da31f1794
+      spriteID: 8ebab3a620a20b144891eeffff632131
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Monch_8
+      name: Character Walking_4
       rect:
         serializedVersion: 2
         x: 128
@@ -275,15 +210,15 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c2d2d8e2ebf8a1d48b6bd49d538bf20a
+      spriteID: 6cea45ab6929dd9478be3863c415fd5c
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Monch_9
+      name: Character Walking_5
       rect:
         serializedVersion: 2
         x: 160
@@ -295,15 +230,15 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 58625f53b4928f84cae3782ec90d8305
+      spriteID: ea0238e4a2125e14f90db70477ea356e
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Monch_10
+      name: Character Walking_6
       rect:
         serializedVersion: 2
         x: 192
@@ -315,15 +250,15 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: fbdf3a06220fc3745ac4237eb45f60ae
+      spriteID: a4e627838375b9d46ac29ade65ab4f72
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Monch_11
+      name: Character Walking_7
       rect:
         serializedVersion: 2
         x: 224
@@ -335,15 +270,15 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 4ee2df5886a9e814d9c62a948d1805be
+      spriteID: 52c9ceb8d18a09549a9c1f2d9ce296ca
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Monch_12
+      name: Character Walking_8
       rect:
         serializedVersion: 2
         x: 0
@@ -355,15 +290,15 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: af39a1cd2eaf12248bb96f99224a509a
+      spriteID: b05ca265afde7b149993a25fa0b184cb
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Monch_13
+      name: Character Walking_9
       rect:
         serializedVersion: 2
         x: 32
@@ -375,59 +310,19 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e71e769d49db47c42b958bd1a17d1c9a
+      spriteID: d20eee1e8da53ce45936d5c7e6a833b3
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Monch_14
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7466cb93d37013f4d8114079391449fc
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Monch_15
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b83ba42aa565d874cbb1f887e888a00f
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Monch_16
+      name: Character Walking_10
       rect:
         serializedVersion: 2
         x: 64
-        y: 64
+        y: 96
         width: 32
         height: 32
       alignment: 0
@@ -435,19 +330,19 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 201954b21bdbb60468d2fab64b244fd9
+      spriteID: ec362bff2e32c5d4bbae4edd7ddb7ae8
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Monch_17
+      name: Character Walking_11
       rect:
         serializedVersion: 2
         x: 96
-        y: 64
+        y: 96
         width: 32
         height: 32
       alignment: 0
@@ -455,19 +350,19 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ba81a6dc027cf8145af0648d28d427d1
+      spriteID: 11353772c1663d94c90c0d9a91977295
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Monch_18
+      name: Character Walking_12
       rect:
         serializedVersion: 2
         x: 128
-        y: 64
+        y: 96
         width: 32
         height: 32
       alignment: 0
@@ -475,18 +370,18 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e37eb87155ccd8d49976e5f5beb67323
+      spriteID: e5f7cb49aab1ab84db05b5e6c67cc202
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Monch_19
+      name: Character Walking_13
       rect:
         serializedVersion: 2
-        x: 160
+        x: 0
         y: 64
         width: 32
         height: 32
@@ -495,15 +390,75 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 92a3508027ee09a4db866f1d3198a527
+      spriteID: b52e732be26a3584ca468f13e351c1eb
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Monch_20
+      name: Character Walking_14
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85233732b7b56f34d9e7b05004191a54
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character Walking_15
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d47b2b2e19517924f9cc6f88f7ac6012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character Walking_16
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e46cc4144448d54dbf69d23ed817437
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character Walking_17
       rect:
         serializedVersion: 2
         x: 0
@@ -515,15 +470,15 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 97b8f586763509f4db14e002afae309c
+      spriteID: a04d7981ad66db544ac535db75704e5b
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Monch_21
+      name: Character Walking_18
       rect:
         serializedVersion: 2
         x: 32
@@ -535,95 +490,15 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 436fcf733ac75c144a395156152952f1
+      spriteID: 70aa38ee36d7e754b970ed53ec75d2f7
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Monch_22
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f1582460ef2a45e449dbef28357eb244
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Monch_23
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 053b5fda406050c43a267aa9d0d940da
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Monch_24
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 045efcddb2c62134aa26a30124985ccb
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Monch_25
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7f183220da666e5428ab65a47abcc2b9
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Monch_26
+      name: Character Walking_19
       rect:
         serializedVersion: 2
         x: 0
@@ -635,15 +510,15 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 86444d186f9b3ad4d9975c40193715d5
+      spriteID: 8304373c96d298f4db702031ae9dd8cc
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Monch_27
+      name: Character Walking_20
       rect:
         serializedVersion: 2
         x: 32
@@ -655,15 +530,15 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 09743bb3cacc0334bb6f7ca06557595c
+      spriteID: 1eb42ad96673f5d4780e23305708454d
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Monch_28
+      name: Character Walking_21
       rect:
         serializedVersion: 2
         x: 64
@@ -675,15 +550,15 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 751b3379509f444448ed8c746cd9ac80
+      spriteID: 8328ffd91a99cbf4393a06a7c61ef07c
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Monch_29
+      name: Character Walking_22
       rect:
         serializedVersion: 2
         x: 96
@@ -695,9 +570,9 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 140102b0a31472b40a23d00dbbcda913
+      spriteID: 7b54911f32aa15845a1e980b9e67a64a
       vertices: []
       indices: 
       edges: []
@@ -705,7 +580,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5520f47a99f0cb64f90db9043a9877ca
+    spriteID: 7a4e786dd453fd04f86bdf4d27acaf84
     vertices: []
     indices: 
     edges: []
