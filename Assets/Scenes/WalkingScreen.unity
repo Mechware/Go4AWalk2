@@ -5710,6 +5710,17 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1550784727}
+        m_MethodName: ResetAttack
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1550784727}
         m_MethodName: Celebrate
         m_Mode: 1
         m_Arguments:
@@ -8460,6 +8471,22 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  Attacked:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1550784727}
+        m_MethodName: Attack
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!114 &1550784727
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8474,6 +8501,7 @@ MonoBehaviour:
   animator: {fileID: 1550784723}
   armAnimator: {fileID: 430088777}
   armourAnimator: {fileID: 961437828}
+  weaponAnimator: {fileID: 1933517929}
   StoppedWalking:
     m_PersistentCalls:
       m_Calls: []
@@ -9790,6 +9818,7 @@ GameObject:
   - component: {fileID: 1933517926}
   - component: {fileID: 1933517928}
   - component: {fileID: 1933517927}
+  - component: {fileID: 1933517929}
   m_Layer: 5
   m_Name: Weapon
   m_TagString: Untagged
@@ -9849,6 +9878,24 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1933517925}
   m_CullTransparentMesh: 0
+--- !u!95 &1933517929
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1933517925}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: 1c7381aedb4c0514bb38bc005588e3fe, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1935267774
 GameObject:
   m_ObjectHideFlags: 0

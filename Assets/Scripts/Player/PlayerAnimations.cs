@@ -9,6 +9,7 @@ public class PlayerAnimations : MonoBehaviour {
     public Animator animator;
     public Animator armAnimator;
     public Animator armourAnimator;
+    public Animator weaponAnimator;
 
     public UnityEvent StoppedWalking;
     public UnityEvent StartedWalking;
@@ -25,6 +26,7 @@ public class PlayerAnimations : MonoBehaviour {
         animator.SetBool("Walking", true);
         armAnimator.SetBool("Walking", true);
         armourAnimator.SetBool("Walking", true);
+        weaponAnimator.SetBool("Walking", true);
         StartedWalking.Invoke();
 
     }
@@ -35,6 +37,7 @@ public class PlayerAnimations : MonoBehaviour {
         animator.SetBool("Walking", false);
         armAnimator.SetBool("Walking", false);
         armourAnimator.SetBool("Walking", false);
+        weaponAnimator.SetBool("Walking", false);
         StoppedWalking.Invoke();
     }
 
@@ -44,27 +47,13 @@ public class PlayerAnimations : MonoBehaviour {
         animator.SetTrigger("Spin");
         armAnimator.SetTrigger("Spin");
         armourAnimator.SetTrigger("Spin");
-        StartCoroutine(SpinEnum());
+        weaponAnimator.SetTrigger("Spin");
+        
         Spun.Invoke();
     }
 
-    public IEnumerator SpinEnum()
+    public void SpinDone()
     {
-        AnimatorStateInfo asi = animator.GetCurrentAnimatorStateInfo(0);
-
-        while (!asi.IsName("CharacterSpin"))
-        {
-            //Debug.Log(asi.ToString());
-            yield return null;
-            asi = animator.GetCurrentAnimatorStateInfo(0);
-        }
-
-        while (asi.IsName("CharacterSpin"))
-        {
-            yield return null;
-            asi = animator.GetCurrentAnimatorStateInfo(0);
-        }
-
         Vector3 scale = transform.localScale;
         scale.x *= -1;
         transform.localScale = scale;
@@ -76,5 +65,24 @@ public class PlayerAnimations : MonoBehaviour {
         animator.SetTrigger("Celebrate");
         armAnimator.SetTrigger("Celebrate");
         armourAnimator.SetTrigger("Celebrate");
+        weaponAnimator.SetTrigger("Celebrate");
+    }
+
+    [ContextMenu("Attack")]
+    public void Attack()
+    {
+        animator.SetTrigger("Attack");
+        armAnimator.SetTrigger("Attack");
+        armourAnimator.SetTrigger("Attack");
+        weaponAnimator.SetTrigger("Attack");
+    }
+
+    [ContextMenu("ResetAttack")]
+    public void ResetAttack()
+    {
+        animator.ResetTrigger("Attack");
+        armAnimator.ResetTrigger("Attack");
+        armourAnimator.ResetTrigger("Attack");
+        weaponAnimator.ResetTrigger("Attack");
     }
 }

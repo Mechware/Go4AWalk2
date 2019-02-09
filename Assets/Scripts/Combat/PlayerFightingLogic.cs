@@ -20,6 +20,7 @@ public class PlayerFightingLogic : MonoBehaviour {
     public UnityEvent OnFailedParry;
     public UnityEvent OnFailedParryDone;
     public UnityEvent OnSuccessfulParry;
+    public UnityEvent Attacked;
 
     private bool AbleToAttack { get { return !(blocking || perfectBlock || badParry); } }
     private bool blocking = false;
@@ -49,6 +50,7 @@ public class PlayerFightingLogic : MonoBehaviour {
 	public void PlayerAttemptToHitEnemy() {
         if(AbleToAttack)
         {
+            Attacked.Invoke();
             EnemyDisplay.ApplyDamage(Player.Damage);
         }
     }
