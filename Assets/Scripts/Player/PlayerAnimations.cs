@@ -6,7 +6,9 @@ using UnityEngine.Events;
 [RequireComponent(typeof(Animator))]
 public class PlayerAnimations : MonoBehaviour {
 
-    Animator animator;
+    public Animator animator;
+    public Animator armAnimator;
+    public Animator armourAnimator;
 
     public UnityEvent StoppedWalking;
     public UnityEvent StartedWalking;
@@ -20,6 +22,8 @@ public class PlayerAnimations : MonoBehaviour {
 	public void StartWalking()
     {
         animator.SetBool("Walking", true);
+        armAnimator.SetBool("Walking", true);
+        armourAnimator.SetBool("Walking", true);
         StartedWalking.Invoke();
 
     }
@@ -27,12 +31,16 @@ public class PlayerAnimations : MonoBehaviour {
     public void StopWalking()
     {
         animator.SetBool("Walking", false);
+        armAnimator.SetBool("Walking", false);
+        armourAnimator.SetBool("Walking", false);
         StoppedWalking.Invoke();
     }
 
     public void Spin()
     {
         animator.SetTrigger("Spin");
+        armAnimator.SetTrigger("Spin");
+        armourAnimator.SetTrigger("Spin");
         StartCoroutine(SpinEnum());
         Spun.Invoke();
     }
@@ -57,5 +65,12 @@ public class PlayerAnimations : MonoBehaviour {
         Vector3 scale = transform.localScale;
         scale.x *= -1;
         transform.localScale = scale;
+    }
+
+    public void Celebrate()
+    {
+        animator.SetTrigger("Celebrate");
+        armAnimator.SetTrigger("Celebrate");
+        armourAnimator.SetTrigger("Celebrate");
     }
 }
