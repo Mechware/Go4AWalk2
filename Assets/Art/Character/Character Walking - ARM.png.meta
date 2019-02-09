@@ -19,6 +19,12 @@ TextureImporter:
     21300028: Character Walking - ARM_14
     21300030: Character Walking - ARM_15
     21300032: Character Walking - ARM_16
+    21300034: Character Walking - ARM_17
+    21300036: Character Walking - ARM_18
+    21300038: Character Walking - ARM_19
+    21300040: Character Walking - ARM_20
+    21300042: Character Walking - ARM_21
+    21300044: Character Walking - ARM_22
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -126,7 +132,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1cfcfae73c895ca4bac56d96c2cb34e7
+      spriteID: a7687064b28cddb45833a1e7dd438c12
       vertices: []
       indices: 
       edges: []
@@ -146,7 +152,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6a91bbe706acfde4fba88e4628b3bcf1
+      spriteID: e3071a5f86fa0cd4198030b4d7054ad1
       vertices: []
       indices: 
       edges: []
@@ -166,7 +172,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3c76631ee58680e4a9b64d22434e220d
+      spriteID: b8d9a33954b389b46acb921c628078a9
       vertices: []
       indices: 
       edges: []
@@ -186,7 +192,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d46263e5f8a63354d84c0d7da827ac02
+      spriteID: c259268d287a57b46af2c012ed73d9df
       vertices: []
       indices: 
       edges: []
@@ -206,7 +212,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d7123636b86f3a2488d0c9fdad6f0e4a
+      spriteID: ab6a5085c2734944e872c209317efa02
       vertices: []
       indices: 
       edges: []
@@ -226,7 +232,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a986c1c0832d76849a33717a521ab6ba
+      spriteID: 29e598d8b58f33947a05a37b263d7a7b
       vertices: []
       indices: 
       edges: []
@@ -246,7 +252,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ce0b05947f6271e49a0778dd77c929da
+      spriteID: 1b985b6b9a82ea141b18dc3a12943628
       vertices: []
       indices: 
       edges: []
@@ -266,7 +272,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a9eb4bb64be18f54dbe97952fb1d61e1
+      spriteID: b1b6fe5d0c98f174ebffde53446ae058
       vertices: []
       indices: 
       edges: []
@@ -286,7 +292,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 26701bcd0a54be24fac0d03da2482a39
+      spriteID: 93b774e8181a2314c996d4e2ca1a005e
       vertices: []
       indices: 
       edges: []
@@ -306,7 +312,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 668745accc6ec7d42b2a7a8b135807fc
+      spriteID: 04b550b2020d4374bbb044dced2aeb69
       vertices: []
       indices: 
       edges: []
@@ -326,7 +332,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f1c9908a3fe77d248bb5a97e96a0682d
+      spriteID: 03d9042c1f6a4694e8f2555ee3c321cd
       vertices: []
       indices: 
       edges: []
@@ -346,7 +352,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5006d9055ad2ec94ea40a79166ade3eb
+      spriteID: d8c5095ffcd52914a959952d7f377c55
       vertices: []
       indices: 
       edges: []
@@ -366,7 +372,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a4e82093a715bc74697d8c9e846ef904
+      spriteID: 66dcccb4e8674b74da5e12d8e6ef506e
       vertices: []
       indices: 
       edges: []
@@ -386,7 +392,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d082e4536fb994c4991ed2d6365a54f8
+      spriteID: 75bad2f4c98b23f4485c44489c84df91
       vertices: []
       indices: 
       edges: []
@@ -406,7 +412,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 17d43904b0a65064c9a0d95e17463122
+      spriteID: 346850f30d9582842a9633c04609ce80
       vertices: []
       indices: 
       edges: []
@@ -426,7 +432,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2b36a77a0b30fb84a9430de651327440
+      spriteID: b701de154458426429dccfeaf9ab5711
       vertices: []
       indices: 
       edges: []
@@ -446,7 +452,127 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: daa839064f5ad664788fd06b692527da
+      spriteID: 01d14bcca9b42294a8a9010658165d5f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character Walking - ARM_17
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4afd040ecea7aa447a49f4db5b20857a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character Walking - ARM_18
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7075acea5688524285cea6af8908690
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character Walking - ARM_19
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a3eec06bbb847e4abfdffd8aa7ef8d6
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character Walking - ARM_20
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6e1b2c974410104dbb58ce57abfcebf
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character Walking - ARM_21
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2388f77795d35e41a8754872fd69c1e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character Walking - ARM_22
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27c9c41ad17bc0140b9fb7021ff11a70
       vertices: []
       indices: 
       edges: []

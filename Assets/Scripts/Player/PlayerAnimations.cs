@@ -19,6 +19,7 @@ public class PlayerAnimations : MonoBehaviour {
         animator = GetComponent<Animator>();
 	}
 	
+    [ContextMenu("StartWalking")]
 	public void StartWalking()
     {
         animator.SetBool("Walking", true);
@@ -28,6 +29,7 @@ public class PlayerAnimations : MonoBehaviour {
 
     }
 
+    [ContextMenu("StopWalking")]
     public void StopWalking()
     {
         animator.SetBool("Walking", false);
@@ -36,6 +38,7 @@ public class PlayerAnimations : MonoBehaviour {
         StoppedWalking.Invoke();
     }
 
+    [ContextMenu("Spin")]
     public void Spin()
     {
         animator.SetTrigger("Spin");
@@ -67,6 +70,7 @@ public class PlayerAnimations : MonoBehaviour {
         transform.localScale = scale;
     }
 
+    [ContextMenu("Celebrate")]
     public void Celebrate()
     {
         animator.SetTrigger("Celebrate");
