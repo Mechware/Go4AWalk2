@@ -101,13 +101,16 @@ public class DragObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 		if (!scrollingEnabled)
 			return;
 
-		if (rt.localPosition.x.Equals(MinBounds.x) && rt.localPosition.y.Equals(MaxBounds.y)) { // make sure both are in the bottom corner 
+		if (rt.localPosition.x.Near(MinBounds.x, 0.5f) && rt.localPosition.y.Near(MaxBounds.y, 0.5f)) {
             OnReset.Invoke();
 	    }
-        if (MoveY) OnReset.Invoke();
 
 		eventData.Use();
 	}
 
+    public void ResetScrolling()
+    {
+        OnReset.Invoke();
+    }
 
 }

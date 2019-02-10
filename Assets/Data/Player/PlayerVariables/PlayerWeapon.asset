@@ -12,10 +12,21 @@ MonoBehaviour:
   m_Name: PlayerWeapon
   m_EditorClassIdentifier: 
   DeveloperDescription: 
-  InitialValue: {fileID: 0}
+  InitialValue: {fileID: 11400000, guid: 37922c7fca4096e48a04b7094a8a3449, type: 2}
   OnChange:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: bed16ee2b29f1ed4dafe4e2954b26a12, type: 2}
+        m_MethodName: Raise
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: CustomEvents.UnityEventWeapon, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
-  _value: {fileID: 0}
+  _value: {fileID: 11400000, guid: a1bae974b4903be4ab94566370f05d52, type: 2}

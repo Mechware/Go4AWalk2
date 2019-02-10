@@ -48,8 +48,6 @@ public class PlayerAnimations : MonoBehaviour {
         armAnimator.SetTrigger("Spin");
         armourAnimator.SetTrigger("Spin");
         weaponAnimator.SetTrigger("Spin");
-        
-        Spun.Invoke();
     }
 
     public void SpinDone()
@@ -57,6 +55,7 @@ public class PlayerAnimations : MonoBehaviour {
         Vector3 scale = transform.localScale;
         scale.x *= -1;
         transform.localScale = scale;
+        Spun.Invoke();
     }
 
     [ContextMenu("Celebrate")]
