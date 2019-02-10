@@ -110,7 +110,6 @@ namespace G4AW2.Combat {
 		private bool canParry = false;
 
 		public IEnumerator DoAttack() {
-			Animator animator = GetComponent<Animator>();
 			for (; ; ) {
 				EnemyState = State.Idle;
 				yield return new WaitForSeconds(TimeBetweenHeavyAttacks);

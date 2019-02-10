@@ -25,7 +25,7 @@ namespace G4AW2.Data.DropSystem
         Accessory = 6
     }
 
-    [CreateAssetMenu(menuName = "Data/DropSystem/Item")]
+    [CreateAssetMenu(menuName = "Data/Items/Item")]
     public class Item : ScriptableObject, IID {
 	    public int ID;
         public Sprite image;

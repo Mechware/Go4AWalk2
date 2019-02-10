@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-[CreateAssetMenu(menuName ="Data/DropSystem/Consumable")]
+[CreateAssetMenu(menuName ="Data/Items/Consumable")]
 public class Consumable : Item {
 
     public UnityEvent OnUse;

@@ -5438,6 +5438,8 @@ GameObject:
   - component: {fileID: 961437830}
   - component: {fileID: 961437829}
   - component: {fileID: 961437828}
+  - component: {fileID: 961437833}
+  - component: {fileID: 961437832}
   m_Layer: 5
   m_Name: Armour
   m_TagString: Untagged
@@ -5515,6 +5517,45 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -1}
   m_SizeDelta: {x: 24, y: 24}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &961437832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 961437827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e80a0fb7ea10e944badaf8e505ad1825, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &961437833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 961437827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8daf88438ca759f4b9e8843f17c0c51f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: e9836488f9c8dd04ebc02b2befea9431, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 961437832}
+        m_MethodName: SetImage
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: CustomEvents.UnityEventArmor, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!1 &999456372
 GameObject:
   m_ObjectHideFlags: 0
@@ -5887,7 +5928,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4c1231061dd2dd4daf40456556abcd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EndPosition: {x: -30, y: 5}
+  EndPosition: {x: -10, y: 5}
   TimeToLerp: 1
   OnLerpingDone:
     m_PersistentCalls:
@@ -8317,7 +8358,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 30, y: 0}
+  m_AnchoredPosition: {x: 11.6, y: 0}
   m_SizeDelta: {x: 32, y: 32}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &1550784723
@@ -8387,10 +8428,6 @@ MonoBehaviour:
   EnemyDisplay: {fileID: 999456374}
   MinSwipeDistance: 2.5
   FailedParryStunTime: 0.5
-  BlockTime: 1
-  BlockingDamageModifier: 0.5
-  PerfectBlockDamageModifier: 0
-  BadParryDamageModifier: 2
   OnBlockStart:
     m_PersistentCalls:
       m_Calls:
@@ -9819,6 +9856,8 @@ GameObject:
   - component: {fileID: 1933517928}
   - component: {fileID: 1933517927}
   - component: {fileID: 1933517929}
+  - component: {fileID: 1933517931}
+  - component: {fileID: 1933517930}
   m_Layer: 5
   m_Name: Weapon
   m_TagString: Untagged
@@ -9896,6 +9935,45 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1933517930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1933517925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e80a0fb7ea10e944badaf8e505ad1825, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1933517931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1933517925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 543bcf7b630d19743a208cee40bd7954, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: bed16ee2b29f1ed4dafe4e2954b26a12, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1933517930}
+        m_MethodName: SetImage
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: CustomEvents.UnityEventWeapon, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!1 &1935267774
 GameObject:
   m_ObjectHideFlags: 0

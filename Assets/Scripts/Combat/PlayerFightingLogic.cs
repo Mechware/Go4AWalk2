@@ -9,11 +9,7 @@ public class PlayerFightingLogic : MonoBehaviour {
 	public Player Player;
 	public EnemyDisplay EnemyDisplay;
 	public float MinSwipeDistance;
-    public float FailedParryStunTime = 0.5f;
-    public float BlockTime = 1f;
-    public float BlockingDamageModifier = 0.5f;
-    public float PerfectBlockDamageModifier = 0;
-    public float BadParryDamageModifier = 2f;
+    public float FailedParryStunTime = 2f;
 
     public UnityEvent OnBlockStart;
     public UnityEvent OnBlockEnd;
@@ -29,12 +25,7 @@ public class PlayerFightingLogic : MonoBehaviour {
 
 	public void OnEnemyHitPlayer(int damage) {
 
-        if (perfectBlock)
-            damage = Mathf.CeilToInt(damage * PerfectBlockDamageModifier);
-        else if (blocking)
-            damage = Mathf.CeilToInt(damage * BlockingDamageModifier);
-        else if(badParry)
-            damage = Mathf.CeilToInt(damage * BadParryDamageModifier);
+        float fdamage = Player.Armor.Value.GetDamage(damage, perfectBlock, blocking, badParry);
 
         if(perfectBlock || blocking)
         {
@@ -43,7 +34,8 @@ public class PlayerFightingLogic : MonoBehaviour {
             OnBlockEnd.Invoke();
         }
 
-        Player.Health.Value -= damage;
+        damage = Mathf.RoundToInt(fdamage);
+        Player.DamagePlayer(damage);
         Debug.Log("Hit for: " + damage);
 	}
 
@@ -51,7 +43,7 @@ public class PlayerFightingLogic : MonoBehaviour {
         if(AbleToAttack)
         {
             Attacked.Invoke();
-            EnemyDisplay.ApplyDamage(Player.Damage);
+            EnemyDisplay.ApplyDamage(Player.GetLightDamage());
         }
     }
 
@@ -77,14 +69,6 @@ public class PlayerFightingLogic : MonoBehaviour {
 			perfectBlock = true;
 		}
         OnBlockStart.Invoke();
-
-        /*
-        Timer.StartTimer(this, BlockTime, () =>
-        {
-            blocking = false;
-            perfectBlock = false;
-            OnBlockEnd.Invoke();
-        });*/
 	}
 
 	public void PlayerParried() {

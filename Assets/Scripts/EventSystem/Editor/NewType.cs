@@ -316,7 +316,11 @@ namespace {1} {{
 				}
 			}
 
-			File.AppendAllText(fullPath, script);
+            string directory = Path.GetDirectoryName(fullPath);
+            
+            if(!Directory.Exists(directory)) Directory.CreateDirectory(directory);
+
+            File.AppendAllText(fullPath, script);
 
 			return "";
 		}
