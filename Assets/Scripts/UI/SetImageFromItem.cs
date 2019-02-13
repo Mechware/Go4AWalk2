@@ -1,4 +1,4 @@
-﻿using G4AW2.Data.DropSystem;
+using G4AW2.Data.DropSystem;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +8,6 @@ public class SetImageFromItem : MonoBehaviour {
 
 	public void SetImage(Item a)
     {
-        GetComponent<Image>().sprite = a.image;
+        GetComponent<Image>().sprite = a.Image;
     }
 }

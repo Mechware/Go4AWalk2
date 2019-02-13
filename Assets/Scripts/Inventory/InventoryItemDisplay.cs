@@ -24,7 +24,7 @@ public class InventoryItemDisplay : MonoBehaviour, IPointerDownHandler, IPointer
             ItemSprite.sprite = null;
             AmountText.gameObject.SetActive(false);
         } else {
-            ItemSprite.sprite = item.image;
+            ItemSprite.sprite = item.Image;
             AmountText.text = amount.ToString();
             AmountText.gameObject.SetActive(amount > 1);
         }

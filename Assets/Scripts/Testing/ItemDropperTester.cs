@@ -24,7 +24,7 @@ namespace G4AW2.Testing {
 			}
 
 			foreach (var kvp in counts) {
-				Debug.Log(string.Format("Key: {0}, Value: {1}", kvp.Key.description, kvp.Value / (float)times));
+				Debug.Log(string.Format("Key: {0}, Value: {1}", kvp.Key.Description, kvp.Value / (float)times));
 			}
 		}
 

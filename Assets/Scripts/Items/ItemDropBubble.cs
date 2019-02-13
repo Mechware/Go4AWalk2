@@ -31,9 +31,9 @@ public class ItemDropBubble : MonoBehaviour, IPointerClickHandler {
 
 	public void SetData(Item it, Action<ItemDropBubble> OnClick) {
 		item = it;
-		image.sprite = item.image;
+		image.sprite = item.Image;
 		ItemClicked = OnClick;
-		background.color = ConfigObject.GetColorFromRarity(it.rarity);
+		background.color = ConfigObject.GetColorFromRarity(it.Rarity);
 	}
 
 	[ContextMenu("Shoot")]

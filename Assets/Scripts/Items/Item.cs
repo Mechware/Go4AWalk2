@@ -14,26 +14,14 @@ namespace G4AW2.Data.DropSystem
         AMAZING = 5
     }
 
-    public enum ItemType
-    {
-        Material = 0,
-        Consumable = 1,
-        Weapon = 2,
-        Hat = 3,
-        Torso = 4,
-        Boots = 5,
-        Accessory = 6
-    }
-
     [CreateAssetMenu(menuName = "Data/Items/Item")]
     public class Item : ScriptableObject, IID {
 	    public int ID;
-        public Sprite image;
-        public int value;
-        public string description;
-        public Rarity rarity;
-        public ItemType type;
-	    public int maxStackSize;
+        public Sprite Image;
+        public int Value;
+        public string Description;
+        public Rarity Rarity;
+	    public int MaxStackSize;
 
 	    public int GetID() {
 		    return ID;

@@ -113,6 +113,7 @@ MonoBehaviour:
   ItemDisplayPrefab: {fileID: 1833409186414204, guid: 443b0094fc267f64bbf4b08d4837ff39,
     type: 2}
   Content: {fileID: 1968982191915182}
+  Inventory: {fileID: 11400000, guid: 881091bceb3b0ed41a240670fd6111f0, type: 2}
 --- !u!114 &114292277578665860
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -412,7 +413,7 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1357779908203022}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -423,6 +424,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0.000118255615, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}

@@ -1,4 +1,4 @@
-﻿using CustomEvents;
+using CustomEvents;
 using G4AW2.Data.DropSystem;
 using System.Collections;
 using System.Collections.Generic;
@@ -20,10 +20,7 @@ public class QuickItem : MonoBehaviour {
 	}
 
     void OnHold(InventoryItemDisplay item) {
-        ItemViewer.GetComponent<ItemViewer>().ShowItems(
-            Inventory.Value.Where(it => it.type == ItemType.Consumable).Distinct(), 
-            null, 
-            ItemSelect);
+        ItemViewer.GetComponent<ItemViewer>().ShowAllMaterialFromInventory(false, ItemSelect);
     }
 
     void ItemSelect(Item it) {

@@ -14,7 +14,6 @@ public class CustomTap : MonoBehaviour, IPointerClickHandler {
     public GameEvent clickEvent;
     public GameEventItem itemEvent;
     public Player player;
-    public ItemType type;
 
 
     public void OnPointerClick(PointerEventData pointerEventData)
