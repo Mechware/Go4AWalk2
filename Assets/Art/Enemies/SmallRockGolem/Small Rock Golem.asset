@@ -23,9 +23,20 @@ MonoBehaviour:
   AfterAttack: {fileID: 7400000, guid: 8725fffba24ebf74b91f94ed0db9783a, type: 2}
   Death: {fileID: 7400000, guid: f96eae3da48164c4ea68a42dc727b2b8, type: 2}
   Dead: {fileID: 7400000, guid: d43a7163ac906b24590f645515d44927, type: 2}
+  Walking: {fileID: 0}
   BaseHealth: 10
   BaseArmor: 10
   TimeBetweenHeavyAttacks: 10
   BaseHeavyDamage: 10
+  AttackPrepTime: 0
+  AttackExecuteTime: 0
   Drops:
-    Items: []
+    Items:
+    - item: {fileID: 11400000, guid: 49a395b3e2e7c7b4aa598c53811f7e7d, type: 2}
+      dropChance: 0.2
+    - item: {fileID: 11400000, guid: 614ab21de69c9b94884b5eefdfe78e16, type: 2}
+      dropChance: 0.6
+    - item: {fileID: 11400000, guid: 614ab21de69c9b94884b5eefdfe78e16, type: 2}
+      dropChance: 1
+    - item: {fileID: 11400000, guid: 6cc9b6f53e24aec4c8334a6e06045db7, type: 2}
+      dropChance: 0.2

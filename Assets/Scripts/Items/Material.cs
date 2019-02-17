@@ -14,5 +14,6 @@ namespace G4AW2.Data.DropSystem {
     [CreateAssetMenu(menuName = "Data/Items/Material")]
     public class Material : Item {
         public MaterialType Type;
+
     }
 }

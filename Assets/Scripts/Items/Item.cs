@@ -6,12 +6,12 @@ namespace G4AW2.Data.DropSystem
 {
     public enum Rarity
     {
-        Shit = 0,
-        PolishedShit = 1,
-        Rarish = 2,
-        Rare = 3,
+        Common = 0,
+        Uncommon = 1,
+        Rare = 2,
+        VeryRare = 3,
         Legendary = 4,
-        AMAZING = 5
+        Mythical = 5
     }
 
     [CreateAssetMenu(menuName = "Data/Items/Item")]

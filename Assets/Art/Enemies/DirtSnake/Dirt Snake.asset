@@ -34,3 +34,9 @@ MonoBehaviour:
     Items:
     - item: {fileID: 11400000, guid: 11fbe90a2780405449ad82a1ae93b06e, type: 2}
       dropChance: 1
+    - item: {fileID: 11400000, guid: 6b9584ef9e8e3814faf69e9f1efe1e8b, type: 2}
+      dropChance: 0.3
+    - item: {fileID: 11400000, guid: a774e612aec67b740aa55df3e3e3ff17, type: 2}
+      dropChance: 0.1
+    - item: {fileID: 11400000, guid: e569c822608e91343ad176ae5b1f744f, type: 2}
+      dropChance: 0.1

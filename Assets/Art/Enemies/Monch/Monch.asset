@@ -32,7 +32,9 @@ MonoBehaviour:
   AttackExecuteTime: 1
   Drops:
     Items:
-    - item: {fileID: 11400000, guid: 6aa310ad3ac3a0c4cb6ab065138454e4, type: 2}
-      dropChance: 0.1
+    - item: {fileID: 11400000, guid: 10f87211d9f03ba468a8554aae870c84, type: 2}
+      dropChance: 0.3
     - item: {fileID: 11400000, guid: 11fbe90a2780405449ad82a1ae93b06e, type: 2}
       dropChance: 1
+    - item: {fileID: 11400000, guid: a464ae4e3daf624418d389df8584622f, type: 2}
+      dropChance: 0.2
