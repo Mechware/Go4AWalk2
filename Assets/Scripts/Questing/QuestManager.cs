@@ -25,7 +25,7 @@ public class QuestManager : MonoBehaviour {
 	public UnityEvent ResetQuestState;
 
 	public void LoadQuestFromID() {
-		SetCurrentQuest(AllQuests.ToList().First(q => q.ID == CurrentQuestId));
+		SetCurrentQuest(AllQuests.First(q => q.ID == CurrentQuestId));
 	}
 
 	private bool open = false;

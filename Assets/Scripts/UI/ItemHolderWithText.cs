@@ -11,21 +11,18 @@ public class ItemHolderWithText : MonoBehaviour {
 
     public ItemViewer ItemSelector;
 
-    public RuntimeSetItem Inventory;
-
-
     public Button ButtonToSelectNewItem;
     public Image ItemImage;
     public TextMeshProUGUI ItemDescription;
 
-    public Item CurrentItem;
+    public ItemReference CurrentItem;
 
     public void Start() {
         ButtonToSelectNewItem.onClick.AddListener(() => { ItemSelector.ShowAllMaterialFromInventory(true, SetItem); });
     }
 
     public void SetItem(Item it) {
-        CurrentItem = it;
+        CurrentItem.Value = it;
         ItemImage.sprite = it.Image;
         ItemDescription.text = it.name + "\n<size=80%" + it.Description;
     }

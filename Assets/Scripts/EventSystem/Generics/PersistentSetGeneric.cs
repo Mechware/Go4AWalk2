@@ -1,11 +1,12 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Sirenix.Utilities;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class PersistentSetGeneric<T, TEvent> : ScriptableObject where TEvent : UnityEvent<T> {
+public class PersistentSetGeneric<T, TEvent> : ScriptableObject, IEnumerable<T> where TEvent : UnityEvent<T> {
 	[SerializeField] private List<T> Value;
 
 	public TEvent OnAdd, OnRemove, OnChange;
@@ -40,11 +41,11 @@ public class PersistentSetGeneric<T, TEvent> : ScriptableObject where TEvent : U
 		Value.Clear();
 	}
 
-	public T[] ToArray() {
-		return Value.ToArray();
-	}
+    public IEnumerator<T> GetEnumerator() {
+        return Value.GetEnumerator();
+    }
 
-	public List<T> ToList() {
-		return Value.ToList();
-	}
+    IEnumerator IEnumerable.GetEnumerator() {
+        return Value.GetEnumerator();
+    }
 }

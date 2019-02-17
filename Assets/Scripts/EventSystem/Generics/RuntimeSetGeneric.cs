@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Sirenix.OdinInspector;
@@ -17,7 +18,7 @@ namespace CustomEvents {
 		}
 	}
 
-	public class RuntimeSetGeneric<T, TEvent> : SaveableScriptableObject where TEvent : UnityEvent<T> {
+	public class RuntimeSetGeneric<T, TEvent> : SaveableScriptableObject, IEnumerable<T> where TEvent : UnityEvent<T> {
 		public List<T> Value { get { return list; } }
 		[ShowInInspector][ReadOnly] private List<T> list = new List<T>();
 
@@ -77,7 +78,15 @@ namespace CustomEvents {
 		private void OnEnable() {
 			Clear();
 		}
-	}
+
+        public IEnumerator<T> GetEnumerator() {
+            return Value.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator() {
+            return Value.GetEnumerator();
+        }
+    }
 
 	public abstract class RuntimeSetGenericSaveable<T, TEvent> : RuntimeSetGeneric<T, TEvent> where TEvent : UnityEvent<T> where T : IID {
 

@@ -20,9 +20,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e2d8c0b54b2455f4d8da6fc93413f26a, type: 2}
   - {fileID: 11400000, guid: ddec0eaf5ab10b542b2cca79d5614413, type: 2}
   - {fileID: 11400000, guid: aef2e70a37f2e9b4f8d5bf8624d26f8f, type: 2}
+  - {fileID: 11400000, guid: 26cb67b184c39ce41a042b44d325797c, type: 2}
   RuntimeSetsAndAllIdsSets:
-  - Key: {fileID: 11400000, guid: 881091bceb3b0ed41a240670fd6111f0, type: 2}
-    Value: {fileID: 11400000, guid: f34cbb7c711f3c94f92aaeed3b937361, type: 2}
   - Key: {fileID: 11400000, guid: d9764a15526dace4899689a1b14b9b44, type: 2}
     Value: {fileID: 11400000, guid: afcafdf2c3083224fa02a69f0ab6cd59, type: 2}
   - Key: {fileID: 11400000, guid: a3029039454c15d44a2580065a397a0e, type: 2}

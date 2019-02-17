@@ -10,7 +10,7 @@ public class QuickItem : MonoBehaviour {
     public InventoryItemDisplay ItemDisplay;
 
     public ItemVariable Item;
-    public RuntimeSetItem Inventory;
+    public Inventory Inventory;
 
     public GameObject ItemViewer;
 
@@ -30,7 +30,7 @@ public class QuickItem : MonoBehaviour {
     }
 
     public void SetData() {
-        ItemDisplay.SetData(Item, Item.Value == null ? 0 : Inventory.Value.Count(it => it.ID == Item.Value.ID), OnClick, OnHold);
+        ItemDisplay.SetData(Item, Item.Value == null ? 0 : Inventory.Count(it => it.Item.ID == Item.Value.ID), OnClick, OnHold);
     }
 
     void OnClick(InventoryItemDisplay it) {

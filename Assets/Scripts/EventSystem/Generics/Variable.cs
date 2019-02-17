@@ -78,7 +78,7 @@ namespace CustomEvents {
                 return;
 
             PersistentSetGeneric < T, TEvent > allitems = (PersistentSetGeneric<T, TEvent>)otherData[0];
-            Value = allitems.ToList().First(item => item.GetID() == so2.id);
+            Value = allitems.First(item => item.GetID() == so2.id);
         }
 
         private class SaveObject2 { public int id; }
