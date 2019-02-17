@@ -11,7 +11,7 @@ namespace G4AW2.Data.DropSystem {
         Monster = 2,
     }
 
-    [CreateAssetMenu(menuName = "Data/Items/Weapon")]
+    [CreateAssetMenu(menuName = "Data/Items/Material")]
     public class Material : Item {
         public MaterialType Type;
     }
