@@ -11,21 +11,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92ed46357c010e84ea5a3394f3ad888d, type: 3}
   m_Name: Chicken
   m_EditorClassIdentifier: 
+  ID: 5
   SideIdleAnimation: {fileID: 7400000, guid: 1d4de40d339b49b4d98b6be002df9a49, type: 2}
   RandomAnimation: {fileID: 7400000, guid: 1d4de40d339b49b4d98b6be002df9a49, type: 2}
   MinTimeBetweenRandomAnims: 30
   MaxTimeBetweenRandomAnims: 180
   Idle: {fileID: 7400000, guid: 8018041f9b6ecfa49bafd078a44bf523, type: 2}
   Flinch: {fileID: 7400000, guid: 87fe2da240b857346b63f3effeed812a, type: 2}
-  LightAttack: {fileID: 0}
-  BeforeSwipeAttack: {fileID: 0}
-  SwipeAttack: {fileID: 0}
+  BeforeAttack: {fileID: 0}
+  AttackExecute: {fileID: 0}
+  AfterAttack: {fileID: 0}
   Death: {fileID: 7400000, guid: 9be3681b890b5c14c9343ad1f4c61ee2, type: 2}
   Dead: {fileID: 7400000, guid: 68b8cc7874e7bc24385a1ef59242232d, type: 2}
+  Walking: {fileID: 0}
   BaseHealth: 25
   BaseArmor: 0
-  TimeBetweenLightAttacks: 0
   TimeBetweenHeavyAttacks: 0
-  BaseLightDamage: 0
   BaseHeavyDamage: 0
-  Swipes: {fileID: 11400000, guid: 5ae2e0eda78248e4e8d0eb4f1b19a2f0, type: 2}
+  AttackPrepTime: 0
+  AttackExecuteTime: 0
+  Drops:
+    Items:
+    - item: {fileID: 11400000, guid: dc820a69f03cdd143ab25de0aeea35e5, type: 2}
+      dropChance: 1
