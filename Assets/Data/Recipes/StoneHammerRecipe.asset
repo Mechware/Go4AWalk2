@@ -9,7 +9,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a97f1898c302cd44b8adfe51accc35cd, type: 3}
-  m_Name: PrototypeRecipe1
+  m_Name: StoneHammerRecipe
   m_EditorClassIdentifier: 
-  components: []
-  result: {fileID: 0}
+  Components:
+  - Item: {fileID: 11400000, guid: 37922c7fca4096e48a04b7094a8a3449, type: 2}
+    Amount: 1
+  - Item: {fileID: 11400000, guid: 614ab21de69c9b94884b5eefdfe78e16, type: 2}
+    Amount: 1
+  Result:
+    Item: {fileID: 11400000, guid: 6246a40d9001d144e83b43a25b75c9b6, type: 2}
+    Amount: 1

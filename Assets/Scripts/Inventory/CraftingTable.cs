@@ -10,7 +10,6 @@ using UnityEngine;
 public class CraftingTable : ScriptableObject {
 
     public PersistentSetCraftingRecipe Recipes;
-    public RuntimeSetCraftingRecipe AvailableRecipes;
     public Inventory Inventory;
 
     public List<CraftingRecipe> GetPossibleRecipes() {
@@ -22,13 +21,13 @@ public class CraftingTable : ScriptableObject {
         List<CraftingRecipe> recipes = new List<CraftingRecipe>();
 
         foreach(var recipe in Recipes) {
-            if(!recipe.Result.Item is T)
+            if(!(recipe.Result.Item is T))
                 continue;
 
             bool canMake = true;
 
             foreach(var component in recipe.Components) {
-                if(Inventory.FirstOrDefault(e => e.Item == component.Item) != default(InventoryEntry)) {
+                if(Inventory.FirstOrDefault(e => e.Item == component.Item) == default(InventoryEntry)) {
                     canMake = false;
                     break;
                 }
@@ -41,15 +40,15 @@ public class CraftingTable : ScriptableObject {
     }
 
     public bool Make(CraftingRecipe cr) {
-        foreach(var comp in cr.Components) {
-            if(!Inventory.Contains(comp)) {
-                return false;
-            }
+        if (cr.Components.Any(comp => !Inventory.Contains(comp))) {
+            return false;
         }
 
         foreach(var comp in cr.Components) {
             Inventory.Remove(comp);
         }
+
+        ScriptableObject.Instantiate(cr.Result.Item);
 
         Inventory.Add(cr.Result);
         return true;
