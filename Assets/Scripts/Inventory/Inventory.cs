@@ -16,9 +16,9 @@ public class Inventory : SaveableScriptableObject, IEnumerable<InventoryEntry> {
     }
 
     public void Add(Item it, int amount) {
-        InventoryEntry entry = InventoryEntries.FirstOrDefault(e => e.Item == it);
+        InventoryEntry entry = InventoryEntries.FirstOrDefault(e => e.Item == it && it.GetAdditionalInfo() == e.AdditionInfo);
         if(entry == default(InventoryEntry)) {
-            InventoryEntries.Add(new InventoryEntry() { Item = it, Amount = amount });
+            InventoryEntries.Add(new InventoryEntry() { Item = it, Amount = amount, AdditionInfo = it.GetAdditionalInfo()});
         } else {
             entry.Amount += amount;
         }
@@ -55,7 +55,7 @@ public class Inventory : SaveableScriptableObject, IEnumerable<InventoryEntry> {
     }
 
     public bool Contains(Item it, int amount) {
-        InventoryEntry entry = InventoryEntries.FirstOrDefault(e => e.Item == it);
+        InventoryEntry entry = InventoryEntries.FirstOrDefault(e => e.Item.ID == it.ID);
         if(entry == default(InventoryEntry) || entry.Amount - amount < 0) {
             return false;
         }
@@ -79,10 +79,18 @@ public class Inventory : SaveableScriptableObject, IEnumerable<InventoryEntry> {
         DummySave entries = JsonUtility.FromJson<DummySave>(saveString);
         InventoryEntries.Clear();
         foreach(var entry in entries.entries) {
-            InventoryEntries.Add(new InventoryEntry() {
+            var ie = new InventoryEntry() {
                 Item = AllItems.First(d => d.ID == entry.Id),
-                Amount = entry.Amount
-            });
+                Amount = entry.Amount,
+                AdditionInfo = entry.AdditionalInfo
+            };
+
+            if (!ie.AdditionInfo.Equals("")) {
+                ie.Item = ScriptableObject.Instantiate(ie.Item);
+                ie.Item.Create(ie.AdditionInfo);
+            }
+
+            InventoryEntries.Add(ie);
         }
         
     }

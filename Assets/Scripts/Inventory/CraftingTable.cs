@@ -27,7 +27,7 @@ public class CraftingTable : ScriptableObject {
             bool canMake = true;
 
             foreach(var component in recipe.Components) {
-                if(Inventory.FirstOrDefault(e => e.Item == component.Item) == default(InventoryEntry)) {
+                if(Inventory.FirstOrDefault(e => e.Item.ID == component.Item.ID) == default(InventoryEntry)) {
                     canMake = false;
                     break;
                 }
@@ -48,9 +48,16 @@ public class CraftingTable : ScriptableObject {
             Inventory.Remove(comp);
         }
 
-        ScriptableObject.Instantiate(cr.Result.Item);
+        Item it = ScriptableObject.Instantiate(cr.Result.Item);
+        it.Create("");
 
-        Inventory.Add(cr.Result);
+        InventoryEntry ie = new InventoryEntry() {
+            Item = it,
+            AdditionInfo = it.GetAdditionalInfo(),
+            Amount = cr.Result.Amount
+        };
+
+        Inventory.Add(ie);
         return true;
     }
 }

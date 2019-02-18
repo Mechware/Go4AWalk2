@@ -7,14 +7,16 @@ using UnityEngine;
 public class InventoryEntry {
     public Item Item;
     public int Amount;
+    public string AdditionInfo = "";
 
     public InventoryEntryWithID GetIdEntry() {
-        return new InventoryEntryWithID() { Id = Item.ID, Amount = Amount };
+        return new InventoryEntryWithID() { Id = Item.ID, Amount = Amount, AdditionalInfo = Item.GetAdditionalInfo()};
     }
 
     [System.Serializable]
     public class InventoryEntryWithID {
         public int Id;
         public int Amount;
+        public string AdditionalInfo;
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 namespace G4AW2.Data.DropSystem
@@ -26,6 +27,14 @@ namespace G4AW2.Data.DropSystem
 	    public int GetID() {
 		    return ID;
 	    }
+
+        public virtual void Create(string additionalInfo) {
+            
+        }
+
+        public virtual string GetAdditionalInfo() {
+            return "";
+        }
 
 #if UNITY_EDITOR
 	    [ContextMenu("Pick ID")]
