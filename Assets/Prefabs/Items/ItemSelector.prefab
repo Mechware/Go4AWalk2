@@ -113,7 +113,7 @@ MonoBehaviour:
   ItemDisplayPrefab: {fileID: 1833409186414204, guid: 443b0094fc267f64bbf4b08d4837ff39,
     type: 2}
   Content: {fileID: 1968982191915182}
-  Inventory: {fileID: 11400000, guid: 881091bceb3b0ed41a240670fd6111f0, type: 2}
+  Inventory: {fileID: 11400000, guid: 26cb67b184c39ce41a042b44d325797c, type: 2}
 --- !u!114 &114292277578665860
 MonoBehaviour:
   m_ObjectHideFlags: 1

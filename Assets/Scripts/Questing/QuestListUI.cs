@@ -16,6 +16,13 @@ public class QuestListUI : MonoBehaviour {
 	private List<Quest> quests = new List<Quest>();
 	private List<GameObject> questItems = new List<GameObject>();
 
+    public RuntimeSetQuest CurrentQuests;
+
+    public void RefreshList() {
+        Clear();
+        CurrentQuests.Value.ForEach(AddItem);
+    }
+
 	public void AddItem(Quest info) {
 		quests.Add(info);
 		var gameobject = GameObject.Instantiate(ListItemPrefab);

@@ -14,9 +14,11 @@ public class ProgressBarController : MonoBehaviour {
     public Image ProgressBarFill;
 
 	void OnEnable() {
-		if(!Max.UseConstant) Max.Variable.OnChange.AddListener(UpdateUI);
-		if(!Current.UseConstant) Current.Variable.OnChange.AddListener(UpdateUI);
-	}
+	    if(!Max.UseConstant)
+	        Max.Variable.OnChange.AddListener(UpdateUI);
+	    if(!Current.UseConstant)
+	        Current.Variable.OnChange.AddListener(UpdateUI);
+    }
 
 	void OnDisable() {
 		if (!Max.UseConstant)
@@ -26,7 +28,7 @@ public class ProgressBarController : MonoBehaviour {
 	}
 
 	void Start() {
-		UpdateUI();
+        UpdateUI();
 	}
 
 	private void UpdateUI(int i ) { UpdateUI();}

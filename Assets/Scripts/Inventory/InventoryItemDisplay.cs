@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using CustomEvents;
 using G4AW2.Data.DropSystem;
 using TMPro;
 using UnityEngine;
@@ -17,6 +18,7 @@ public class InventoryItemDisplay : MonoBehaviour, IPointerDownHandler, IPointer
 
     private Action<InventoryItemDisplay> OnClick;
     private Action<InventoryItemDisplay> OnHold;
+
 
 	public void SetData( Item item, int amount, Action<InventoryItemDisplay> onclick = null, Action<InventoryItemDisplay> onhold = null) {
         Item = item;
@@ -48,16 +50,13 @@ public class InventoryItemDisplay : MonoBehaviour, IPointerDownHandler, IPointer
 
     bool holding = false;
     public void OnPointerDown( PointerEventData eventData ) {
-        print("Pointer down");
         StopAllCoroutines();
         holding = true;
         StartCoroutine(PointerHold());
     }
 
     public void OnPointerUp( PointerEventData eventData ) {
-        print("Pointer up");
         if(holding) {
-            print("Clicked item");
             OnClick?.Invoke(this);
         }
         holding = false;
@@ -68,7 +67,6 @@ public class InventoryItemDisplay : MonoBehaviour, IPointerDownHandler, IPointer
         yield return new WaitForSeconds(1);
         if(holding) {
             holding = false;
-            print("Hold");
             OnHold?.Invoke(this);
         }
     }

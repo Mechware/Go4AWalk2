@@ -49,11 +49,12 @@ public class CraftingTable : ScriptableObject {
         }
 
         Item it = ScriptableObject.Instantiate(cr.Result.Item);
-        it.Create("");
+        if (it.ShouldCreateNewInstanceWhenCrafted()) {
+            
+        }
 
         InventoryEntry ie = new InventoryEntry() {
             Item = it,
-            AdditionInfo = it.GetAdditionalInfo(),
             Amount = cr.Result.Amount
         };
 

@@ -20,7 +20,7 @@ public class ItemHolderWithText : MonoBehaviour {
 
     private Action<Item> OnClick;
 
-    public void Start() {
+    public void Awake() {
         ButtonToSelectNewItem.onClick.AddListener(ItemClick);
     }
 

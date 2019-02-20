@@ -6,15 +6,6 @@ using UnityEngine.EventSystems;
 
 public class ClickReceiver : MonoBehaviour, IPointerClickHandler {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	}
-
 	public UnityEventVector3 MouseClick3D;
 	public UnityEventVector2 MouseClick2D;
 

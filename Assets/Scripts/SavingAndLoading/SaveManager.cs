@@ -11,8 +11,14 @@ namespace G4AW2.Saving {
 		private string saveFile;
 		private string backUpFile;
 
-		public List<SaveableScriptableObject> ObjectsToSave;
-		public List<KeyValuePairSaveableSetAndAllIdsList> RuntimeSetsAndAllIdsSets;
+        
+		public List<ListObject> ObjectsToSave; 
+
+        [System.Serializable]
+	    public class ListObject {
+	        public ScriptableObject ObjectToSave; // These objects must inherit from ISaveable. There's no way to enforce that though.
+            public List<ScriptableObject> OtherData;
+	    }
 
 		void OnEnable() {
 			saveFile = Path.Combine(Application.persistentDataPath, "Saves", "G4AW2_" + name + ".save");
@@ -51,41 +57,48 @@ namespace G4AW2.Saving {
                 saveFilePath = saveFile;
             }
 
-            SaveObject saveData = JsonUtility.FromJson<SaveObject>(File.ReadAllText(saveFilePath));
-			foreach (KeyValuePairStringString kvp in saveData.VariableDictionary) {
-				SaveableScriptableObject soToOverwrite = ObjectsToSave.First(so => so.name.Equals(kvp.Key));
-
-				if (soToOverwrite == null) {
-					// Removed a variable?
-					Debug.LogWarning("Could not find scriptable object matching name: " + kvp.Key);
-					continue;
-				}
-
-				soToOverwrite.SetData(kvp.Value);
-			}
-
-			foreach (KeyValuePairStringString kvp in saveData.RuntimeSetDictionary) {
-				KeyValuePairSaveableSetAndAllIdsList set2 = RuntimeSetsAndAllIdsSets.FirstOrDefault(set => set.Key.name.Equals(kvp.Key));
-				if (set2.Equals(default(KeyValuePairSaveableSetAndAllIdsList))) {
-					Debug.LogWarning("Could not find runtime set matching name: " + kvp.Key);
-					continue;
-				}
-				set2.Key.SetData(kvp.Value, set2.Value);
-			}
+            LoadFromString(File.ReadAllText(saveFilePath));
 		}
+
+	    private void LoadFromString(string loadText) {
+	        SaveObject saveData = JsonUtility.FromJson<SaveObject>(loadText);
+	        foreach(KeyValuePairStringString kvp in saveData.VariableDictionary) {
+	            ListObject soToOverwrite = ObjectsToSave.First(so => so.ObjectToSave.name.Equals(kvp.Key));
+
+	            if(soToOverwrite == null) {
+	                // Removed a variable?
+	                Debug.LogWarning("Could not find scriptable object matching name: " + kvp.Key);
+	                continue;
+	            }
+
+	            if (soToOverwrite.OtherData.Count == 0) {
+	                ((ISaveable) soToOverwrite.ObjectToSave).SetData(kvp.Value);
+	            }
+	            else {
+	                ((ISaveable)soToOverwrite.ObjectToSave).SetData(kvp.Value, soToOverwrite.OtherData[0]);
+                }
+            }
+        }
 
 		private string GetSaveString() {
 			return JsonUtility.ToJson(GetSaveData());
 		}
 
 		private SaveObject GetSaveData() {
-			List<KeyValuePairStringString> saveDictForVariables = ObjectsToSave.Select(so => new KeyValuePairStringString(so.name, so.GetSaveString())).ToList();
+			List<KeyValuePairStringString> saveDictForVariables = new List<KeyValuePairStringString>();// = 
+                //ObjectsToSave.Select(so => new KeyValuePairStringString(so.ObjectToSave.name, ((ISaveable)so.ObjectToSave).GetSaveString())).ToList();
 
-			List<KeyValuePairStringString> saveDictForRuntimeSets = RuntimeSetsAndAllIdsSets.Select(kvp => new KeyValuePairStringString(kvp.Key.name, kvp.Key.GetSaveString())).ToList();
+		    foreach (var saveObjs in ObjectsToSave) {
+
+		        string key = saveObjs.ObjectToSave.name;
+		        string value = ((ISaveable) saveObjs.ObjectToSave).GetSaveString();
+
+
+                saveDictForVariables.Add(new KeyValuePairStringString(key, value));
+		    }
 
 			return new SaveObject {
 				VariableDictionary = saveDictForVariables,
-				RuntimeSetDictionary = saveDictForRuntimeSets
 			};
 		}
 
@@ -99,15 +112,8 @@ namespace G4AW2.Saving {
 			}
 		}
 
-		[System.Serializable]
-		public struct KeyValuePairSaveableSetAndAllIdsList {
-			public SaveableScriptableObject Key;
-			public ScriptableObject Value; // Persistent Runtime Set
-		}
-
 		private struct SaveObject {
 			public List<KeyValuePairStringString> VariableDictionary;
-			public List<KeyValuePairStringString> RuntimeSetDictionary;
 		}
 
 		[ContextMenu("Clear all save data")]

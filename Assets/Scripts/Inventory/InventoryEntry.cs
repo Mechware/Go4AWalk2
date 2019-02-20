@@ -7,10 +7,20 @@ using UnityEngine;
 public class InventoryEntry {
     public Item Item;
     public int Amount;
-    public string AdditionInfo = "";
 
     public InventoryEntryWithID GetIdEntry() {
-        return new InventoryEntryWithID() { Id = Item.ID, Amount = Amount, AdditionalInfo = Item.GetAdditionalInfo()};
+
+        string AdditionalInfo = "";
+        if (Item is ISaveable) {
+            ISaveable saveable = (ISaveable) Item;
+            AdditionalInfo = saveable.GetSaveString();
+        }
+
+        return new InventoryEntryWithID() {
+            Id = Item.ID,
+            Amount = Amount,
+            AdditionalInfo = AdditionalInfo
+        };
     }
 
     [System.Serializable]

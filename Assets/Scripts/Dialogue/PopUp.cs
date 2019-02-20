@@ -19,7 +19,7 @@ namespace G4AW2.Dialogue {
 		private static PopUp singleton;
 		private bool inUse = false;
 
-		void Start() {
+		void Awake() {
 			singleton = this;
 		}
 

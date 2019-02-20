@@ -12,41 +12,17 @@ public class QuestManager : MonoBehaviour {
 
 	public PersistentSetQuest AllQuests;
 	public Quest CurrentQuest;
-	public IntReference CurrentQuestId;
-	public QuestListUI QuestList;
+	public IntVariable CurrentQuestId;
 	public FloatReference DistanceWalkedInQuest;
 	public Dialogue QuestDialogUI;
 	public RuntimeSetQuest CurrentQuests;
 
 	[Header("Events")]
-	public UnityEvent OnMenuOpen;
-	public UnityEvent OnMenuClose;
 	public UnityEventQuest AreaQuestChanged;
 	public UnityEvent ResetQuestState;
 
-	public void LoadQuestFromID() {
-		SetCurrentQuest(AllQuests.First(q => q.ID == CurrentQuestId));
-	}
-
-	private bool open = false;
-	public void ToggleQuestMenu() {
-		if (open) {
-			CloseQuestMenu();
-		}
-		else {
-			OpenQuestMenu();
-		}
-		open = !open;
-	}
-
-	public void OpenQuestMenu() {
-		OnMenuOpen.Invoke();
-		QuestList.Clear();
-		CurrentQuests.Value.ForEach(QuestList.AddItem);
-	}
-
-	public void CloseQuestMenu() {
-		OnMenuClose.Invoke();
+	public void LoadQuestFromID() { // Should be called after load.
+        SetCurrentQuest(AllQuests.First(q => q.ID == CurrentQuestId));
 	}
 
 	private bool receivedEndPopUp = false;
@@ -58,12 +34,12 @@ public class QuestManager : MonoBehaviour {
 			return; // YOU CAN NEVER FINISH MWHAHHAAHA
 
 		if (DistanceWalkedInQuest >= CurrentQuest.TotalDistanceToWalk && !receivedEndPopUp) {
-			QuestDialogUI.SetConversation(CurrentQuest.EndConversation, AdvanceQuest);
+			QuestDialogUI.SetConversation(CurrentQuest.EndConversation, AdvanceQuestAfterConversation);
 			receivedEndPopUp = true;
 		}
 	}
 
-	public void AdvanceQuest() {
+	private void AdvanceQuestAfterConversation() {
 
 		if (CurrentQuest.NextQuest == null) {
 			PopUp.SetPopUp(
@@ -76,33 +52,9 @@ public class QuestManager : MonoBehaviour {
 
 		ResetQuestState.Invoke();
 		CurrentQuests.Remove(CurrentQuest);
-		SetCurrentQuest(CurrentQuest.NextQuest);
-	}
-
-	public void QuestClicked(Quest q) {
-
-		if (q == CurrentQuest) {
-			PopUp.SetPopUp("This is your current quest.", new[] {"Cool", "Nice."}, new Action[] {() => { }, () => { }});
-			return;
-		}
-		if (CurrentQuest.TotalDistanceToWalk > DistanceWalkedInQuest) {
-			PopUp.SetPopUp("Are you sure you want to switch quests? You will lose all progress in this one.",
-				new[] {"Yep", "Nope"}, new Action[] {
-					() => {
-						ResetQuestState.Invoke();
-						SetCurrentQuest(q);
-					},
-					() => { }
-				});
-		}
-		else {
-			// You've already completed the quest
-			CurrentQuests.Remove(CurrentQuest);
-			ResetQuestState.Invoke();
-			SetCurrentQuest(q);
-		}
-		
-	}
+        DistanceWalkedInQuest.Value = 0;
+        SetCurrentQuest(CurrentQuest.NextQuest);
+    }
 
 	public void SetCurrentQuest(Quest quest) {
 
@@ -121,4 +73,28 @@ public class QuestManager : MonoBehaviour {
 
 		PlayerMoved(0);
 	}
+
+    public void QuestClicked(Quest q) {
+
+        if(q == CurrentQuest) {
+            PopUp.SetPopUp("This is your current quest.", new[] { "Cool", "Nice." }, new Action[] { () => { }, () => { } });
+            return;
+        }
+        if(CurrentQuest.TotalDistanceToWalk > DistanceWalkedInQuest) {
+            PopUp.SetPopUp("Are you sure you want to switch quests? You will lose all progress in this one.",
+                new[] { "Yep", "Nope" }, new Action[] {
+                    () => {
+                        ResetQuestState.Invoke();
+                        SetCurrentQuest(q);
+                    },
+                    () => { }
+                });
+        } else {
+            // You've already completed the quest
+            CurrentQuests.Remove(CurrentQuest);
+            ResetQuestState.Invoke();
+            SetCurrentQuest(q);
+        }
+
+    }
 }

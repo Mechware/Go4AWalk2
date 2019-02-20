@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using CustomEvents;
 using UnityEditor;
 using UnityEngine;
 
@@ -22,18 +24,16 @@ namespace G4AW2.Data.DropSystem
         public int Value;
         public string Description;
         public Rarity Rarity;
-	    public int MaxStackSize;
 
 	    public int GetID() {
 		    return ID;
 	    }
 
-        public virtual void Create(string additionalInfo) {
-            
+        public virtual bool ShouldCreateNewInstanceWhenCrafted() {
+            return false;
         }
 
-        public virtual string GetAdditionalInfo() {
-            return "";
+        public virtual void OnAfterCrafted() {
         }
 
 #if UNITY_EDITOR
@@ -41,13 +41,9 @@ namespace G4AW2.Data.DropSystem
 	    public void PickID() {
 		    ID = IDUtils.PickID<Item>();
 	    }
-
-	    void OnEnable() {
-		    if (ID == 0)
-			    PickID();
-	    }
 #endif
-	}
+        
+    }
 
 
 }

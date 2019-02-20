@@ -8,21 +8,9 @@ using UnityEngine.Events;
 
 namespace CustomEvents {
 
-	public class SaveableScriptableObject : ScriptableObject {
-		public virtual string GetSaveString() {
-			throw new NotImplementedException();
-		}
-
-		public virtual void SetData(string saveString, params object[] otherData) {
-			throw new NotImplementedException();
-		}
-	}
-
-	public class RuntimeSetGeneric<T, TEvent> : SaveableScriptableObject, IEnumerable<T> where TEvent : UnityEvent<T> {
+	public class RuntimeSetGeneric<T, TEvent> : ScriptableObject, IEnumerable<T>, ISaveable where TEvent : UnityEvent<T> {
 		public List<T> Value { get { return list; } }
 		[ShowInInspector][ReadOnly] private List<T> list = new List<T>();
-
-		public int Count => list.Count;
 
 		public TEvent OnAdd, OnRemove, OnChange;
 
@@ -86,35 +74,22 @@ namespace CustomEvents {
         IEnumerator IEnumerable.GetEnumerator() {
             return Value.GetEnumerator();
         }
+
+	    [Serializable]
+	    private struct SaveObject {
+	        public List<T> List;
+	    }
+
+	    public virtual string GetSaveString() {
+	        return JsonUtility.ToJson(new SaveObject { List = Value });
+	    }
+
+	    public virtual void SetData(string saveString, params object[] otherData) {
+	        Clear();
+
+	        Value.AddRange(JsonUtility.FromJson<SaveObject>(saveString).List);
+	    }
     }
-
-	public abstract class RuntimeSetGenericSaveable<T, TEvent> : RuntimeSetGeneric<T, TEvent> where TEvent : UnityEvent<T> where T : IID {
-
-		[System.Serializable]
-		private struct SaveObject {
-			public List<int> List;
-		}
-
-		public override string GetSaveString() {
-			return JsonUtility.ToJson( new SaveObject { List = Value.Select(d => d.GetID()).ToList()});
-		}
-
-		public override void SetData(string saveString, params object[] otherData) {
-			Clear();
-
-			List<T> listOfAllPossibleObjects = ((PersistentSetGeneric<T, TEvent>) otherData[0]).ToList();
-			List<int> ids = JsonUtility.FromJson<SaveObject>(saveString).List;
-			foreach (int id in ids) {
-				T obj = listOfAllPossibleObjects.FirstOrDefault(o => o.GetID() == id);
-				if (obj != null && !obj.Equals(default(T))) {
-					Add(obj);
-				}
-				else {
-					Debug.LogWarning("Tried to load an ID that does not exist - " + id);
-				}
-			}
-		}
-	}
 }
 
 

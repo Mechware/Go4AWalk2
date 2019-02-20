@@ -6,7 +6,7 @@ using System.Linq;
 using UnityEngine;
 
 [CreateAssetMenu(menuName ="Data/Inventory")]
-public class Inventory : SaveableScriptableObject, IEnumerable<InventoryEntry> {
+public class Inventory : ScriptableObject, IEnumerable<InventoryEntry>, ISaveable {
 
     public List<InventoryEntry> InventoryEntries;
     public PersistentSetItem AllItems;
@@ -16,9 +16,11 @@ public class Inventory : SaveableScriptableObject, IEnumerable<InventoryEntry> {
     }
 
     public void Add(Item it, int amount) {
-        InventoryEntry entry = InventoryEntries.FirstOrDefault(e => e.Item == it && it.GetAdditionalInfo() == e.AdditionInfo);
+
+        InventoryEntry entry = InventoryEntries.FirstOrDefault(e => e.Item == it);
+
         if(entry == default(InventoryEntry)) {
-            InventoryEntries.Add(new InventoryEntry() { Item = it, Amount = amount, AdditionInfo = it.GetAdditionalInfo()});
+            InventoryEntries.Add(new InventoryEntry() { Item = it, Amount = amount});
         } else {
             entry.Amount += amount;
         }
@@ -65,34 +67,35 @@ public class Inventory : SaveableScriptableObject, IEnumerable<InventoryEntry> {
     public bool Contains(Item it) => Contains(it, 1);
     public bool Contains(InventoryEntry it) => Contains(it.Item, it.Amount);
 
-    public override string GetSaveString() {
+    public string GetSaveString() {
         DummySave ds = new DummySave();
-        InventoryEntries.ForEach(e => ds.entries.Add(e.GetIdEntry()));
+        InventoryEntries.ForEach(e => ds.Entries.Add(e.GetIdEntry()));
         return JsonUtility.ToJson(ds);
     }
 
-    private class DummySave {
-        public List<InventoryEntry.InventoryEntryWithID> entries = new List<InventoryEntry.InventoryEntryWithID>();
-    }
-
-    public override void SetData(string saveString, params object[] otherData) {
+    public void SetData(string saveString, params object[] otherData) {
         DummySave entries = JsonUtility.FromJson<DummySave>(saveString);
         InventoryEntries.Clear();
-        foreach(var entry in entries.entries) {
-            var ie = new InventoryEntry() {
-                Item = AllItems.First(d => d.ID == entry.Id),
-                Amount = entry.Amount,
-                AdditionInfo = entry.AdditionalInfo
-            };
+        foreach(InventoryEntry.InventoryEntryWithID entry in entries.Entries) {
 
-            if (!ie.AdditionInfo.Equals("")) {
-                ie.Item = ScriptableObject.Instantiate(ie.Item);
-                ie.Item.Create(ie.AdditionInfo);
+            Item it = AllItems.First(d => d.ID == entry.Id);
+
+            if (it is ISaveable) {
+                it = (Item) CreateInstance(it.GetType());
+                ((ISaveable) it).SetData(entry.AdditionalInfo, otherData);
             }
+
+            InventoryEntry ie = new InventoryEntry() {
+                Item = it,
+                Amount = entry.Amount,
+            };
 
             InventoryEntries.Add(ie);
         }
-        
+    }
+
+    private class DummySave {
+        public List<InventoryEntry.InventoryEntryWithID> Entries = new List<InventoryEntry.InventoryEntryWithID>();
     }
 
     public IEnumerator<InventoryEntry> GetEnumerator() {

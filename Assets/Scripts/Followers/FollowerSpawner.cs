@@ -21,7 +21,7 @@ namespace G4AW2.Followers {
 		private float currentTime;
 		private float currentDistance;
 
-		void Start() {
+		void Awake() {
 			currentTimeToReach = Random.Range(RandomTimeMin, RandomTimeMax);
 			currentDistanceToReach = Random.Range(RandomDistanceMin, RandomDistanceMax);
 		}

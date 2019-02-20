@@ -14,7 +14,7 @@ namespace G4AW2.UI {
 		private TextMeshProUGUI Text;
 
 		// Use this for initialization
-		void Start() {
+		void Awake() {
 			Text = GetComponentInChildren<TextMeshProUGUI>();
 			Reference.OnChange.RemoveListener(UpdateUI); // just in case
 			Reference.OnChange.AddListener(UpdateUI);

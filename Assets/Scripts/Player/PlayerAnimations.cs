@@ -16,7 +16,7 @@ public class PlayerAnimations : MonoBehaviour {
     public UnityEvent Spun;
 
     // Use this for initialization
-    void Start () {
+    void Awake () {
         animator = GetComponent<Animator>();
 	}
 	

@@ -140,7 +140,7 @@ MonoBehaviour:
   ItemImage: {fileID: 114084349097404680}
   ItemDescription: {fileID: 114892559834196198}
   CurrentItem:
-    UseConstant: 0
+    UseConstant: 1
     ConstantValue: {fileID: 0}
     Variable: {fileID: 0}
 --- !u!114 &114084349097404680

@@ -8,6 +8,8 @@ public class GameEventsManager : MonoBehaviour {
 
 	public UnityEvent OnSceneExitEvent;
 	public UnityEvent OnAwake;
+    public UnityEvent OnOnEnable;
+    public UnityEvent OnStart;
 
 	public UnityEvent OnFocus;
 	public UnityEvent OnUnFocus;
@@ -22,8 +24,13 @@ public class GameEventsManager : MonoBehaviour {
 		OnAwake.Invoke();
 	}
 
+    void OnEnable() {
+        OnOnEnable.Invoke();
+    }
+
 	// Use this for initialization
 	void Start () {
+        OnStart.Invoke();
 		SceneManager.sceneUnloaded += SceneManager_sceneUnloaded;
 	}
 
