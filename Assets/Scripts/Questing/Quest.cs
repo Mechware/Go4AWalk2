@@ -11,11 +11,6 @@ namespace G4AW2.Questing {
         public void PickID() {
             ID = IDUtils.PickID<Quest>();
         }
-
-        void OnEnable() {
-            if(ID == 0)
-                PickID();
-        }
 #endif
         public int GetID() {
             return ID;

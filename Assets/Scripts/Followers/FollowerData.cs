@@ -26,11 +26,6 @@ namespace G4AW2.Data {
 		public void PickID() {
 			ID = IDUtils.PickID<FollowerData>();
 		}
-
-		void OnEnable() {
-			if (ID == 0)
-				PickID();
-		}
 #endif
 
 		public int GetID() {

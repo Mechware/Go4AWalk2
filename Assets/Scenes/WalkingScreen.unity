@@ -2623,6 +2623,7 @@ GameObject:
   - component: {fileID: 413173346}
   - component: {fileID: 413173345}
   - component: {fileID: 413173347}
+  - component: {fileID: 413173348}
   m_Layer: 0
   m_Name: GameEventHandler
   m_TagString: Untagged
@@ -2669,6 +2670,19 @@ MonoBehaviour:
   - Enemy: {fileID: 11400000, guid: bab6c5ae11e85b84e93f622b614ade7c, type: 2}
     Count: {fileID: 11400000, guid: e70966d51d11ac54bbbd2c2a80a97b71, type: 2}
   ItemObtainedCount: []
+--- !u!114 &413173348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 413173344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 816af950fedb51e4e829c36a5f9724a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Achievements:
+  - {fileID: 11400000, guid: c746cba27ad59204980568a6833aa858, type: 2}
 --- !u!1 &430088773
 GameObject:
   m_ObjectHideFlags: 0
@@ -4743,8 +4757,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: CustomEvents.UnityEventQuest, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
+    m_TypeName: CustomEvents.UnityEventActiveQuest, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   ResetQuestState:
     m_PersistentCalls:
       m_Calls:

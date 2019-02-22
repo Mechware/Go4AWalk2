@@ -11,9 +11,10 @@ namespace G4AW2.Data {
        
         public EnemyData Enemy;
         public int TotalToKill;
-        public int StartAmount = -1;
         public IntVariable KilledCount;
         public Action OnComplete;
+
+        private int startAmount = -1;
 
         public void StartQuest(Action onComplete) {
             OnComplete = onComplete;
@@ -39,7 +40,7 @@ namespace G4AW2.Data {
         }
 
         public override string GetSaveString() {
-            return JsonUtility.ToJson(new DummySave() {ID = ID, StartAmount = StartAmount});
+            return JsonUtility.ToJson(new DummySave() {ID = ID, StartAmount = startAmount});
         }
 
         public override void SetData(string saveString, params object[] otherData) {
@@ -52,7 +53,7 @@ namespace G4AW2.Data {
             ID = original.ID;
             Enemy = original.Enemy;
             TotalToKill = original.TotalToKill;
-            StartAmount = original.StartAmount;
+            startAmount = original.startAmount;
             KilledCount = original.KilledCount;
         }
     }
