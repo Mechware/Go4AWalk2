@@ -11,18 +11,18 @@ using UnityEngine.Events;
 public class QuestManager : MonoBehaviour {
 
 	public PersistentSetQuest AllQuests;
-	public Quest CurrentQuest;
+	public ActiveQuest CurrentQuest;
 	public IntVariable CurrentQuestId;
 	public FloatReference DistanceWalkedInQuest;
 	public Dialogue QuestDialogUI;
 	public RuntimeSetQuest CurrentQuests;
 
 	[Header("Events")]
-	public UnityEventQuest AreaQuestChanged;
+	public UnityEventActiveQuest AreaQuestChanged;
 	public UnityEvent ResetQuestState;
 
 	public void LoadQuestFromID() { // Should be called after load.
-        SetCurrentQuest(AllQuests.First(q => q.ID == CurrentQuestId));
+        SetCurrentQuest(AllQuests.First(q => q.ID == CurrentQuestId) as ActiveQuest);
 	}
 
 	private bool receivedEndPopUp = false;
@@ -56,7 +56,7 @@ public class QuestManager : MonoBehaviour {
         SetCurrentQuest(CurrentQuest.NextQuest);
     }
 
-	public void SetCurrentQuest(Quest quest) {
+	public void SetCurrentQuest(ActiveQuest quest) {
 
 		receivedEndPopUp = false;
 
@@ -74,7 +74,7 @@ public class QuestManager : MonoBehaviour {
 		PlayerMoved(0);
 	}
 
-    public void QuestClicked(Quest q) {
+    public void QuestClicked(ActiveQuest q) {
 
         if(q == CurrentQuest) {
             PopUp.SetPopUp("This is your current quest.", new[] { "Cool", "Nice." }, new Action[] { () => { }, () => { } });

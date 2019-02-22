@@ -2,49 +2,59 @@ using CustomEvents;
 using G4AW2.Data.Combat;
 using G4AW2.Questing;
 using System;
+using System.Linq;
 using G4AW2.Data.DropSystem;
 using UnityEngine;
 
 namespace G4AW2.Data {
-    [CreateAssetMenu(menuName = "Data/Quests/EnemySlayer")]
-    public class CollectItemQuest : ScriptableObject, IID {
+    [CreateAssetMenu(menuName = "Data/Quests/CollectItem")]
+    public class CollectItemQuest : PassiveQuest {
 
-        public int ID;
-        public string DisplayName;
-        public Item ItemToCollect;
-        public int TotalToCollect;
-        public IntVariable CollectedCount;
+        public Item Item;
+        public int AmountToCollect;
+        public int StartAmount = -1;
+        public IntVariable TotalCollected;
         public Action OnComplete;
 
         public void StartQuest(Action onComplete) {
             OnComplete = onComplete;
-            CollectedCount.OnChange.AddListener(CountChange);
+            TotalCollected.OnChange.AddListener(CountChanged);
         }
 
-        private void CountChange(int killed) {
-            if(killed > TotalToCollect) {
+        private void CountChanged(int collected) {
+            if(collected > AmountToCollect + StartAmount) {
                 FinishQuest();
             }
         }
 
         public void FinishQuest() {
             OnComplete?.Invoke();
-            CollectedCount.OnChange.RemoveListener(CountChange);
+            TotalCollected.OnChange.RemoveListener(CountChanged);
+            Debug.Log("Collected " + AmountToCollect + " " + Item.name + "s.");
         }
 
-#if UNITY_EDITOR
-        [ContextMenu("Pick ID")]
-        public void PickID() {
-            ID = IDUtils.PickID<Quest>();
+        [Serializable]
+        private class DummySave {
+            public int ID;
+            public int StartAmount;
         }
 
-        void OnEnable() {
-            if(ID == 0)
-                PickID();
+        public override string GetSaveString() {
+            return JsonUtility.ToJson(new DummySave() { ID = ID, StartAmount = StartAmount });
         }
-#endif
-        public int GetID() {
-            return ID;
+
+        public override void SetData(string saveString, params object[] otherData) {
+
+            PersistentSetPassiveQuest quests = otherData[0] as PersistentSetPassiveQuest;
+            DummySave ds = JsonUtility.FromJson<DummySave>(saveString);
+
+            CollectItemQuest original = quests.First(q => q.ID == ds.ID) as CollectItemQuest;
+
+            ID = original.ID;
+            Item = original.Item;
+            AmountToCollect = original.AmountToCollect;
+            StartAmount = original.StartAmount;
+            TotalCollected = original.TotalCollected;
         }
     }
 }

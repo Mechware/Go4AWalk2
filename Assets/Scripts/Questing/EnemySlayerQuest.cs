@@ -2,15 +2,16 @@ using CustomEvents;
 using G4AW2.Data.Combat;
 using G4AW2.Questing;
 using System;
+using System.Linq;
 using UnityEngine;
 
 namespace G4AW2.Data {
     [CreateAssetMenu(menuName = "Data/Quests/EnemySlayer")]
-    public class EnemySlayerQuest : ScriptableObject, ISaveable {
-
-        public int ID;
+    public class EnemySlayerQuest : PassiveQuest {
+       
         public EnemyData Enemy;
         public int TotalToKill;
+        public int StartAmount = -1;
         public IntVariable KilledCount;
         public Action OnComplete;
 
@@ -31,12 +32,28 @@ namespace G4AW2.Data {
             Debug.Log("Killed " + TotalToKill + " " + Enemy.name + "s.");
         }
 
-        public string GetSaveString() {
-            throw new NotImplementedException();
+        [Serializable]
+        private class DummySave {
+            public int ID;
+            public int StartAmount;
         }
 
-        public void SetData(string saveString, params object[] otherData) {
-            throw new NotImplementedException();
+        public override string GetSaveString() {
+            return JsonUtility.ToJson(new DummySave() {ID = ID, StartAmount = StartAmount});
+        }
+
+        public override void SetData(string saveString, params object[] otherData) {
+
+            PersistentSetPassiveQuest quests = otherData[0] as PersistentSetPassiveQuest;
+            DummySave ds = JsonUtility.FromJson<DummySave>(saveString);
+
+            EnemySlayerQuest original = quests.First(q => q.ID == ds.ID) as EnemySlayerQuest;
+
+            ID = original.ID;
+            Enemy = original.Enemy;
+            TotalToKill = original.TotalToKill;
+            StartAmount = original.StartAmount;
+            KilledCount = original.KilledCount;
         }
     }
 }
