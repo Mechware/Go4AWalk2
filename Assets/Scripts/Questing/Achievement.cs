@@ -14,7 +14,7 @@ namespace G4AW2.Data {
         public IntVariable Number;
         public Action<Achievement> OnComplete;
 
-        private void OnEnable() {
+        public void AchievementInit() {
             Number.OnChange.AddListener(CountChange);
         }
 
