@@ -1,0 +1,30 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using G4AW2.Data.Combat;
+using G4AW2.Data.DropSystem;
+using UnityEngine;
+
+public class GameEventHandler : MonoBehaviour {
+
+    public static GameEventHandler Singleton;
+
+    public static Action<EnemyData> EnemyKilled;
+    public static Action<Item> LootObtained;
+
+    void Awake() {
+        Singleton = this;
+    }
+
+    public void OnEnemyKilled(EnemyData ed) {
+        EnemyKilled?.Invoke(ed);
+    }
+
+    public void OnLootObtained(IEnumerable<Item> its) {
+        foreach(var it in its) OnLootObtained(it);
+    }
+
+    public void OnLootObtained(Item it) {
+        LootObtained?.Invoke(it);
+    }
+}

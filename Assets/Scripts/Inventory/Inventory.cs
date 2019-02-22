@@ -8,8 +8,12 @@ using UnityEngine;
 [CreateAssetMenu(menuName ="Data/Inventory")]
 public class Inventory : ScriptableObject, IEnumerable<InventoryEntry>, ISaveable {
 
-    public List<InventoryEntry> InventoryEntries;
+    private List<InventoryEntry> InventoryEntries;
     public PersistentSetItem AllItems;
+
+    public void AddItems(IEnumerable<Item> items) {
+        foreach(Item item in items) Add(item);
+    }
 
     public void Add(Item it) {
         Add(it, 1);

@@ -95,6 +95,7 @@ public class QuestManager : MonoBehaviour {
             ResetQuestState.Invoke();
             SetCurrentQuest(q);
         }
-
     }
+
+
 }
