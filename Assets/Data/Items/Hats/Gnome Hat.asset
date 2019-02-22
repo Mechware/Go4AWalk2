@@ -8,12 +8,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8a71bc6eb5540340ab8a37547aab1c9, type: 3}
+  m_Script: {fileID: 11500000, guid: 537e80b66e507d44c9c2c4286ef354b4, type: 3}
   m_Name: Gnome Hat
   m_EditorClassIdentifier: 
-  ID: 2
-  Image: {fileID: 21300000, guid: 7ba1194a564133d4680be72cda22fb56, type: 3}
-  Value: 6
-  Description: A gnomes' old hat. Smells like gnome.
+  ID: 10
+  Image: {fileID: 0}
+  Value: 0
+  Description: 
   Rarity: 0
   MaxStackSize: 0
