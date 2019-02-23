@@ -12,23 +12,29 @@ namespace G4AW2.Data {
 
         public Item Item;
         public int AmountToCollect;
-        public int StartAmount = -1;
         public IntVariable TotalCollected;
-        public Action OnComplete;
 
-        public void StartQuest(Action onComplete) {
-            OnComplete = onComplete;
+        private int startAmount = -1;
+
+
+        public override void StartQuest(Action<PassiveQuest> onComplete) {
+            base.StartQuest(onComplete);
+            TotalCollected.OnChange.AddListener(CountChanged);
+        }
+
+        public override void ResumeQuest(Action<PassiveQuest> onComplete) {
+            base.ResumeQuest(onComplete);
             TotalCollected.OnChange.AddListener(CountChanged);
         }
 
         private void CountChanged(int collected) {
-            if(collected > AmountToCollect + StartAmount) {
+            if(collected > AmountToCollect + startAmount) {
                 FinishQuest();
             }
         }
 
-        public void FinishQuest() {
-            OnComplete?.Invoke();
+        public override void FinishQuest() {
+            base.FinishQuest();
             TotalCollected.OnChange.RemoveListener(CountChanged);
             Debug.Log("Collected " + AmountToCollect + " " + Item.name + "s.");
         }
@@ -40,7 +46,7 @@ namespace G4AW2.Data {
         }
 
         public override string GetSaveString() {
-            return JsonUtility.ToJson(new DummySave() { ID = ID, StartAmount = StartAmount });
+            return JsonUtility.ToJson(new DummySave() { ID = ID, StartAmount = startAmount });
         }
 
         public override void SetData(string saveString, params object[] otherData) {
@@ -53,7 +59,7 @@ namespace G4AW2.Data {
             ID = original.ID;
             Item = original.Item;
             AmountToCollect = original.AmountToCollect;
-            StartAmount = original.StartAmount;
+            startAmount = original.startAmount;
             TotalCollected = original.TotalCollected;
         }
     }

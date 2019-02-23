@@ -12,12 +12,17 @@ namespace G4AW2.Data {
         public EnemyData Enemy;
         public int TotalToKill;
         public IntVariable KilledCount;
-        public Action OnComplete;
 
         private int startAmount = -1;
 
-        public void StartQuest(Action onComplete) {
-            OnComplete = onComplete;
+        public override void StartQuest(Action<PassiveQuest> onComplete) {
+            base.StartQuest(onComplete);
+            startAmount = KilledCount;
+            KilledCount.OnChange.AddListener(EnemyKillCountChange);
+        }
+
+        public override void ResumeQuest(Action<PassiveQuest> onComplete) {
+            base.ResumeQuest(onComplete);
             KilledCount.OnChange.AddListener(EnemyKillCountChange);
         }
 
@@ -27,8 +32,8 @@ namespace G4AW2.Data {
             }
         }
 
-        public void FinishQuest() {
-            OnComplete?.Invoke();
+        public override void FinishQuest() {
+            base.FinishQuest();
             KilledCount.OnChange.RemoveListener(EnemyKillCountChange);
             Debug.Log("Killed " + TotalToKill + " " + Enemy.name + "s.");
         }

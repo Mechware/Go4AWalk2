@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d3b77944b8900364caaa9a1de4a7a255, type: 3}
-  m_Name: CurrentQuests
+  m_Name: CurrentActiveQuests
   m_EditorClassIdentifier: 
   OnAdd:
     m_PersistentCalls:
