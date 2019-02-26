@@ -8,17 +8,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87affdc055474c44b934b6b45b96fc3f, type: 3}
+  m_Script: {fileID: 11500000, guid: ada0d5cb92b2c864bacdd24744b16c27, type: 3}
   m_Name: StoryQuest3
   m_EditorClassIdentifier: 
-  ID: 4
-  DisplayName: TheGriiind
-  NextQuest: {fileID: 11400000, guid: 7772697f7dd01f34b9f246fc0cdf5cbd, type: 2}
+  ID: 3
+  DisplayName: Kill 3 Dirt Snakes
+  NextQuest: {fileID: 11400000}
   Area: {fileID: 11400000, guid: 20807a95d9221854188f642cafb3449d, type: 2}
   StartConversation:
-    Text: It's a me, mario!
+    Text: Now dirt snakes have taken over!
     Speaker: {fileID: 21300000, guid: c7a865312b76c054287af19f5a519b49, type: 3}
   EndConversation:
-    Text: You saved peach!
-    Speaker: {fileID: 21300018, guid: 6beb19b6cb12b73428bca62c48706924, type: 3}
-  TotalDistanceToWalk: 10000
+    Text: Thanks for doing that!
+    Speaker: {fileID: 21300000, guid: c7a865312b76c054287af19f5a519b49, type: 3}
+  TotalAmount: {fileID: 11400000, guid: fdbd90a93216918498014533588c8a22, type: 2}
+  AmountToReach: 3
+  AmountSoFar: {fileID: 11400000, guid: 66d427283c1651346a2bb795dcaa50b7, type: 2}

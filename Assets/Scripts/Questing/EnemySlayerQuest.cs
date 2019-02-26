@@ -6,7 +6,7 @@ using System.Linq;
 using UnityEngine;
 
 namespace G4AW2.Data {
-    [CreateAssetMenu(menuName = "Data/Quests/EnemySlayer")]
+    [CreateAssetMenu(menuName = "Data/Quests/Passive/Slaying")]
     public class EnemySlayerQuest : PassiveQuest {
        
         public EnemyData Enemy;
@@ -27,7 +27,7 @@ namespace G4AW2.Data {
         }
 
         private void EnemyKillCountChange(int killed) {
-            if(killed > TotalToKill) {
+            if(killed >= TotalToKill + startAmount) {
                 FinishQuest();
             }
         }
@@ -54,6 +54,8 @@ namespace G4AW2.Data {
             DummySave ds = JsonUtility.FromJson<DummySave>(saveString);
 
             EnemySlayerQuest original = quests.First(q => q.ID == ds.ID) as EnemySlayerQuest;
+
+            startAmount = ds.StartAmount;
 
             ID = original.ID;
             Enemy = original.Enemy;

@@ -35,7 +35,7 @@ namespace G4AW2.UI.Areas {
 		}
 
 		// Must do this due to Unity events... Is there a better way to do this?
-		public void SetAreaFromQuest(ActiveQuest quest) {
+		public void SetAreaFromQuest(ActiveQuestBase quest) {
 			SetArea(quest.Area);
 		}
 

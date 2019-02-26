@@ -8,7 +8,7 @@ namespace G4AW2.Questing {
 
 #if UNITY_EDITOR
         [ContextMenu("Pick ID")]
-        public void PickID() {
+        public new void PickID() {
             ID = IDUtils.PickID<Quest>();
         }
 #endif

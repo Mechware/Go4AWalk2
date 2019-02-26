@@ -8,22 +8,22 @@ using G4AW2.Dialogue;
 using G4AW2.Questing;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Data/Quests/Active/Slaying")]
-public class ActiveEnemySlayerQuest : ActiveQuest<int, IntVariable, UnityEventInt> {
+[CreateAssetMenu(menuName = "Data/Quests/Active/Walking")]
+public class ActiveWalkingQuest : ActiveQuest<float, FloatVariable, UnityEventFloat> {
 
-    protected override void OnTotalChanged(int totalAmount) {
+    protected override void OnTotalChanged(float totalAmount) {
         AmountSoFar.Value = totalAmount - amountWhenStarted;
-        if(IsFinished()) {
+        if (IsFinished()) {
             FinishQuest();
         }
     }
-
+    
     protected override void UpdateAmountOnStart() {
         amountWhenStarted = TotalAmount - AmountSoFar;
     }
 
     public override bool IsFinished() {
-        return AmountSoFar.Value >= AmountToReach;
+        return AmountSoFar.Value >= AmountToReach && AmountToReach > 0;
     }
 
 #if UNITY_EDITOR

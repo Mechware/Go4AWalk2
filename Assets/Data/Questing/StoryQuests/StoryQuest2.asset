@@ -8,17 +8,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87affdc055474c44b934b6b45b96fc3f, type: 3}
+  m_Script: {fileID: 11500000, guid: ada0d5cb92b2c864bacdd24744b16c27, type: 3}
   m_Name: StoryQuest2
   m_EditorClassIdentifier: 
-  ID: 3
-  DisplayName: End of the game
-  NextQuest: {fileID: 0}
-  Area: {fileID: 11400000, guid: 952fe4e430290d94997d1062d0ad9a2a, type: 2}
+  ID: 2
+  DisplayName: Kill 5 monchs!
+  NextQuest: {fileID: 11400000, guid: 34332a3094c776547ab733c1126f5bc8, type: 2}
+  Area: {fileID: 11400000, guid: 20807a95d9221854188f642cafb3449d, type: 2}
   StartConversation:
-    Text: You beat the game! Congrats :D
-    Speaker: {fileID: 21300000, guid: 9468193b853eb2c4aa10ed54ed27a3eb, type: 3}
+    Text: These dang monchs keep eating my flowers. Take em out!
+    Speaker: {fileID: 21300000, guid: c7a865312b76c054287af19f5a519b49, type: 3}
   EndConversation:
-    Text: You beat the game.. again? How did this happen.... DEVS! FIX THIS!
-    Speaker: {fileID: 21300000, guid: 9468193b853eb2c4aa10ed54ed27a3eb, type: 3}
-  TotalDistanceToWalk: -1
+    Text: Thanks for taking those bastards out.
+    Speaker: {fileID: 21300000, guid: c7a865312b76c054287af19f5a519b49, type: 3}
+  TotalAmount: {fileID: 11400000, guid: e70966d51d11ac54bbbd2c2a80a97b71, type: 2}
+  AmountToReach: 5
+  AmountSoFar: {fileID: 11400000, guid: 66d427283c1651346a2bb795dcaa50b7, type: 2}

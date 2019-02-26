@@ -28,7 +28,7 @@ namespace G4AW2.Data {
         }
 
         private void CountChanged(int collected) {
-            if(collected > AmountToCollect + startAmount) {
+            if(collected >= AmountToCollect + startAmount) {
                 FinishQuest();
             }
         }
@@ -55,6 +55,8 @@ namespace G4AW2.Data {
             DummySave ds = JsonUtility.FromJson<DummySave>(saveString);
 
             CollectItemQuest original = quests.First(q => q.ID == ds.ID) as CollectItemQuest;
+
+            startAmount = ds.StartAmount;
 
             ID = original.ID;
             Item = original.Item;
