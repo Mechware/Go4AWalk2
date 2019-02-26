@@ -24,6 +24,7 @@ public class QuestManager : MonoBehaviour {
             SetCurrentQuest(CurrentQuest.Value);
         } else {
             CurrentQuest.Value.ResumeQuest(FinishQuest);
+            AreaQuestChanged.Invoke(CurrentQuest.Value);
         }
     }
 

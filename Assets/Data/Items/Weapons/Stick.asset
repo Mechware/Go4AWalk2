@@ -16,5 +16,4 @@ MonoBehaviour:
   Value: 1
   Description: It's a stick.
   Rarity: 0
-  MaxStackSize: 0
-  Damage: 1
+  Damage: 10
