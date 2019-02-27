@@ -8,32 +8,29 @@ namespace G4AW2.Followers {
 	[System.Serializable]
 	public class FollowerDropData {
 
-		[System.Serializable]
-		public class FollowerDrop {
-			public FollowerData Follower;
-			public int DropChance;
-		}
-
 		public List<FollowerDrop> Drops;
 
-		public FollowerData GetRandomFollower() {
-			int sum = Drops.Sum(t => t.DropChance);
+		public FollowerData GetRandomFollower(bool includeGlobal) {
+
+		    List<FollowerDrop> drops = includeGlobal ? this.Drops.Concat(GlobalFollowerDrops.GlobalDrops).ToList() : this.Drops;
+
+			int sum = drops.Sum(t => t.DropChance);
 			int rand = Random.Range(0, sum);
 			int count = 0;
-			foreach (var t in Drops) {
+			foreach (var t in drops) {
 				count += t.DropChance;
 
 				if (rand < count) {
 					return t.Follower;
 				}
 			}
-			return Drops.Last().Follower;
+			return drops.Last().Follower;
 		}
 
 #if UNITY_EDITOR
 		[ContextMenu("Print random follower")]
 		public void Get100Followers() {
-			FollowerData follower = GetRandomFollower();
+			FollowerData follower = GetRandomFollower(false);
 			Debug.Log(follower.name);
 		}
 
@@ -45,7 +42,7 @@ namespace G4AW2.Followers {
 		public void PrintStatistics( int amount ) {
 			Dictionary<FollowerData, int> amounts = new Dictionary<FollowerData, int>();
 			for (int i = 0; i < amount; i++) {
-				var f = GetRandomFollower();
+				var f = GetRandomFollower(false);
 				if (amounts.ContainsKey(f)) {
 					int timesSeen = amounts[f] + 1;
 					amounts.Remove(f);

@@ -160,7 +160,7 @@ namespace G4AW2.Combat {
 			if (CurrentHealth.Value <= 0) {
 				isDead = true;
 				OnDeath.Invoke(Enemy);
-				OnDropLoot.Invoke(Enemy.Drops.GetItems());
+				OnDropLoot.Invoke(Enemy.Drops.GetItems(true));
 			} else {
 				OnHit.Invoke(amount);
 			}

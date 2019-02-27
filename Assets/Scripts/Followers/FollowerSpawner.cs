@@ -56,7 +56,7 @@ namespace G4AW2.Followers {
             // randomly choose a follower!
 	        if (CurrentFollowers.Value.Count >= 10) return;
 
-		    CurrentFollowers.Add(DropData.GetRandomFollower());
+		    CurrentFollowers.Add(DropData.GetRandomFollower(true));
         }
 
 #if UNITY_EDITOR

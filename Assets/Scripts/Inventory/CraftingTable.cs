@@ -49,8 +49,8 @@ public class CraftingTable : ScriptableObject {
         }
 
         Item it = ScriptableObject.Instantiate(cr.Result.Item);
-        if (it.ShouldCreateNewInstanceWhenCrafted()) {
-            
+        if (it.ShouldCreateNewInstanceWhenPlayerObtained()) {
+            it.OnAfterObtained(cr.Result.Item);
         }
 
         InventoryEntry ie = new InventoryEntry() {

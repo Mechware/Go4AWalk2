@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using CustomEvents;
 using G4AW2.Data.DropSystem;
+using G4AW2.Dialogue;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -32,10 +33,15 @@ public class ChangeItemBase<T, TRef, TVar, TEvent> : MonoBehaviour
 
     private void Onclick(InventoryItemDisplay inventoryItemDisplay) {
         Viewer.ShowItemsFromInventory<T>(false, it => {
-            Inventory.Add(Item.Value);
-            Item.Value = (T) it;
-            Inventory.Remove(it);
-            Viewer.Close();
+            PopUp.SetPopUp($"{it.GetName()}\n{it.GetDescription()}", new string[] {"Equip", "Cancel"}, new Action[] {
+                () => {
+                    Inventory.Add(Item.Value);
+                    Item.Value = (T) it;
+                    Inventory.Remove(it);
+                    Viewer.Close();
+                },
+                () => { }
+            });
         });
     }
 }

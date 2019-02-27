@@ -29,11 +29,19 @@ namespace G4AW2.Data.DropSystem
 		    return ID;
 	    }
 
-        public virtual bool ShouldCreateNewInstanceWhenCrafted() {
+        public virtual bool ShouldCreateNewInstanceWhenPlayerObtained() {
             return false;
         }
 
-        public virtual void OnAfterCrafted() {
+        public virtual void OnAfterObtained(Item original) {
+        }
+
+        public virtual string GetName() {
+            return name;
+        }
+
+        public virtual string GetDescription() {
+            return Description;
         }
 
 #if UNITY_EDITOR

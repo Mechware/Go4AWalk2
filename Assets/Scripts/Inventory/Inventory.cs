@@ -73,16 +73,9 @@ public class Inventory : ScriptableObject, IEnumerable<InventoryEntry>, ISaveabl
     public bool Contains(InventoryEntry it) => Contains(it.Item, it.Amount);
 
     public string GetSaveString() {
-        try {
-            DummySave ds = new DummySave();
-            InventoryEntries.ForEach(e => ds.Entries.Add(e.GetIdEntry()));
-            return JsonUtility.ToJson(ds);
-        }
-        catch (Exception e) {
-            Debug.Log(e.Message);
-            throw new Exception("Fucking inventory");
-        }
-        
+        DummySave ds = new DummySave();
+        InventoryEntries.ForEach(e => ds.Entries.Add(e.GetIdEntry()));
+        return JsonUtility.ToJson(ds);
     }
 
     public void SetData(string saveString, params object[] otherData) {
@@ -116,5 +109,9 @@ public class Inventory : ScriptableObject, IEnumerable<InventoryEntry>, ISaveabl
 
     IEnumerator IEnumerable.GetEnumerator() {
         return InventoryEntries.GetEnumerator();
+    }
+
+    public void Clear() {
+        InventoryEntries.Clear();
     }
 }

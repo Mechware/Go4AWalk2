@@ -10,18 +10,40 @@ namespace G4AW2.Data.DropSystem
     [CreateAssetMenu(menuName = "Data/Items/Weapon")]
     public class Weapon : Item, ISaveable
     {
+        public int ActualDamage => Mathf.RoundToInt(Damage * mod);
         public int Damage;
         private int random = -1;
         private float mod;
         private string nameMod;
 
-        public override bool ShouldCreateNewInstanceWhenCrafted() {
+        public override bool ShouldCreateNewInstanceWhenPlayerObtained() {
             return true;
         }
 
-        public override void OnAfterCrafted() {
-            random = UnityEngine.Random.Range(0, 101);
-            SetValuesBasedOnRandom();
+        public override void OnAfterObtained(Item original) {
+
+            ID = original.ID;
+            name = original.name;
+            Image = original.Image;
+            Value = original.Value;
+            Description = original.Description;
+            Rarity = original.Rarity;
+            Damage = ((Weapon)original).Damage;
+
+            if(random != -1) {
+                SetValuesBasedOnRandom();
+            } else {
+                random = UnityEngine.Random.Range(0, 101);
+                SetValuesBasedOnRandom();
+            }
+        }
+
+        public override string GetName() {
+            return $"{nameMod} {name}";
+        }
+
+        public override string GetDescription() {
+            return $"Damage: {ActualDamage}\n{Description}";
         }
 
         public void SetValuesBasedOnRandom() {
@@ -77,19 +99,7 @@ namespace G4AW2.Data.DropSystem
             }
 
             // Copy Original Values
-            ID = original.ID;
-            Image = original.Image;
-            Value = original.Value;
-            Description = original.Description;
-            Rarity = original.Rarity;
-            Damage = original.Damage;
-
-            if(random != -1) {
-                SetValuesBasedOnRandom();
-            } else {
-                random = UnityEngine.Random.Range(0, 101);
-                SetValuesBasedOnRandom();
-            }
+            OnAfterObtained(original);
         }
     }
 }
