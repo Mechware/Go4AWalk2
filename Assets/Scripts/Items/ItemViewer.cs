@@ -46,4 +46,8 @@ public class ItemViewer : MonoBehaviour {
             items.Add(iid.gameObject);
         }
     }
+
+    public void Close() {
+        gameObject.SetActive(false);
+    }
 }

@@ -406,24 +406,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 36339004}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a0ef6baa0b2eca40a8fbb736cbad06c, type: 3}
+  m_Script: {fileID: 11500000, guid: 0a62ce47c75087643b59456e5ef8b287, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   IID: {fileID: 36339005}
-  Weapon:
-    UseConstant: 1
-    ConstantValue: {fileID: 0}
-    Variable: {fileID: 0}
-  Armor:
-    UseConstant: 1
-    ConstantValue: {fileID: 0}
-    Variable: {fileID: 0}
-  Head:
+  Inventory: {fileID: 11400000, guid: 26cb67b184c39ce41a042b44d325797c, type: 2}
+  Item:
     UseConstant: 0
     ConstantValue: {fileID: 0}
     Variable: {fileID: 11400000, guid: 51a1543524a270a45bc1d26cb08f360f, type: 2}
   Viewer: {fileID: 1243540567}
-  ItType: 0
 --- !u!1 &38763387
 GameObject:
   m_ObjectHideFlags: 0
@@ -3476,24 +3468,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 533907245}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a0ef6baa0b2eca40a8fbb736cbad06c, type: 3}
+  m_Script: {fileID: 11500000, guid: b95a40d783d80d44eb58e0dba9b4f400, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   IID: {fileID: 533907246}
-  Weapon:
+  Inventory: {fileID: 11400000, guid: 26cb67b184c39ce41a042b44d325797c, type: 2}
+  Item:
     UseConstant: 0
     ConstantValue: {fileID: 0}
     Variable: {fileID: 11400000, guid: ddec0eaf5ab10b542b2cca79d5614413, type: 2}
-  Armor:
-    UseConstant: 1
-    ConstantValue: {fileID: 0}
-    Variable: {fileID: 0}
-  Head:
-    UseConstant: 1
-    ConstantValue: {fileID: 0}
-    Variable: {fileID: 0}
   Viewer: {fileID: 1243540567}
-  ItType: 2
 --- !u!1 &540755831
 GameObject:
   m_ObjectHideFlags: 0
@@ -6616,24 +6600,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 876765479}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a0ef6baa0b2eca40a8fbb736cbad06c, type: 3}
+  m_Script: {fileID: 11500000, guid: 7ad33baf53f51dd4888d6b56e7aba3ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   IID: {fileID: 876765480}
-  Weapon:
-    UseConstant: 1
-    ConstantValue: {fileID: 0}
-    Variable: {fileID: 0}
-  Armor:
+  Inventory: {fileID: 11400000, guid: 26cb67b184c39ce41a042b44d325797c, type: 2}
+  Item:
     UseConstant: 0
     ConstantValue: {fileID: 0}
     Variable: {fileID: 11400000, guid: aef2e70a37f2e9b4f8d5bf8624d26f8f, type: 2}
-  Head:
-    UseConstant: 1
-    ConstantValue: {fileID: 0}
-    Variable: {fileID: 0}
   Viewer: {fileID: 1243540567}
-  ItType: 1
 --- !u!1 &879639779
 GameObject:
   m_ObjectHideFlags: 0
