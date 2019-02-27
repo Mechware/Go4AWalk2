@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ada0d5cb92b2c864bacdd24744b16c27, type: 3}
+  m_Name: Kill10Monchs
+  m_EditorClassIdentifier: 
+  ID: 7
+  DisplayName: 
+  NextQuest: {fileID: 0}
+  Area: {fileID: 0}
+  StartConversation:
+    Text: 
+    Speaker: {fileID: 0}
+  EndConversation:
+    Text: 
+    Speaker: {fileID: 0}
+  TotalAmount: {fileID: 0}
+  AmountToReach: 0
+  AmountSoFar: {fileID: 0}

@@ -1,7 +1,10 @@
+using System;
 using CustomEvents;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.AccessControl;
+using G4AW2.Dialogue;
 using UnityEngine;
 
 namespace G4AW2.Saving {
@@ -36,12 +39,16 @@ namespace G4AW2.Saving {
 				File.Delete(saveFile);
 			}
 
-			Directory.CreateDirectory(Path.GetDirectoryName(saveFile));
+		    string directoryName = Path.GetDirectoryName(saveFile);
 
-			File.WriteAllText(saveFile, GetSaveString());
-		}
+            if(!Directory.Exists(directoryName)) Directory.CreateDirectory(directoryName);
 
-		[ContextMenu("Load")]
+            string saveString = GetSaveString();
+
+            File.WriteAllText(saveFile, saveString);
+        }
+
+        [ContextMenu("Load")]
 		public void Load() {
             string saveFilePath;
 			if (!File.Exists(saveFile)) {
@@ -57,8 +64,18 @@ namespace G4AW2.Saving {
                 saveFilePath = saveFile;
             }
 
-            LoadFromString(File.ReadAllText(saveFilePath));
-		}
+		    try {
+		        LoadFromString(File.ReadAllText(saveFilePath));
+		    }
+		    catch (Exception e) {
+		        PopUp.SetPopUp("Could not load save data, would you like to clear all progress?", new [] {"Yes", "No"},
+		            new Action[] {
+		                () => { ClearSaveData(); },
+                        () =>{}
+		            });
+		    }
+
+        }
 
 	    private void LoadFromString(string loadText) {
 	        SaveObject saveData = JsonUtility.FromJson<SaveObject>(loadText);
@@ -89,7 +106,6 @@ namespace G4AW2.Saving {
                 //ObjectsToSave.Select(so => new KeyValuePairStringString(so.ObjectToSave.name, ((ISaveable)so.ObjectToSave).GetSaveString())).ToList();
 
 		    foreach (var saveObjs in ObjectsToSave) {
-
 		        string key = saveObjs.ObjectToSave.name;
 		        string value = ((ISaveable) saveObjs.ObjectToSave).GetSaveString();
 

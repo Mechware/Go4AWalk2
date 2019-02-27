@@ -1,3 +1,4 @@
+using System;
 using CustomEvents;
 using G4AW2.Data.DropSystem;
 using System.Collections;
@@ -8,7 +9,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName ="Data/Inventory")]
 public class Inventory : ScriptableObject, IEnumerable<InventoryEntry>, ISaveable {
 
-    private List<InventoryEntry> InventoryEntries;
+    private List<InventoryEntry> InventoryEntries = new List<InventoryEntry>();
     public PersistentSetItem AllItems;
 
     public void AddItems(IEnumerable<Item> items) {
@@ -72,9 +73,16 @@ public class Inventory : ScriptableObject, IEnumerable<InventoryEntry>, ISaveabl
     public bool Contains(InventoryEntry it) => Contains(it.Item, it.Amount);
 
     public string GetSaveString() {
-        DummySave ds = new DummySave();
-        InventoryEntries.ForEach(e => ds.Entries.Add(e.GetIdEntry()));
-        return JsonUtility.ToJson(ds);
+        try {
+            DummySave ds = new DummySave();
+            InventoryEntries.ForEach(e => ds.Entries.Add(e.GetIdEntry()));
+            return JsonUtility.ToJson(ds);
+        }
+        catch (Exception e) {
+            Debug.Log(e.Message);
+            throw new Exception("Fucking inventory");
+        }
+        
     }
 
     public void SetData(string saveString, params object[] otherData) {
