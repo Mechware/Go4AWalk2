@@ -42,16 +42,22 @@ namespace G4AW2.Combat {
         public UnityEvent OnStartWalking;
 
 		private bool isDead = false;
+	    private Animator MyAnimator;
 
-	    void Start() {
+	    void Awake() {
+	        MyAnimator = GetComponent<Animator>();
+        }
+
+        void Start() {
 			EnemyState = State.Disabled;
 
 			if (Enemy != null) {
 			    SetEnemy(Enemy, Level);
 		    }
+
 	    }
 
-		public void SetEnemy(EnemyData data) {
+        public void SetEnemy(EnemyData data) {
 			SetEnemy(data, 1);
 		}
 
@@ -77,6 +83,7 @@ namespace G4AW2.Combat {
 			aoc["Idle"] = Enemy.Idle;
             aoc["Walking"] = Enemy.Walking;
 
+
             // I wish there was a better way to do this
             Vector3 pos = transform.localPosition;
             pos.x = -70;
@@ -87,6 +94,7 @@ namespace G4AW2.Combat {
         {
             StopAllCoroutines();
             OnStartWalking.Invoke();
+            MyAnimator.SetTrigger("Walking");
         }
 
 		public void StartAttacking() {
@@ -97,16 +105,18 @@ namespace G4AW2.Combat {
 		public void Stun() {
 			StopAllCoroutines();
 			OnStun.Invoke();
-		}
+		    MyAnimator.SetTrigger("Stun");
+        }
 
-		public void UnStun() {
+        public void UnStun() {
 			StartCoroutine(DoAttack());
 			OnUnStun.Invoke();
-		}
+            MyAnimator.SetTrigger("StunOver");
+        }
 
-		#region Attack
+        #region Attack
 
-		private bool attackBroken = false;
+        private bool attackBroken = false;
 		private bool canParry = false;
 
 		public IEnumerator DoAttack() {
@@ -119,7 +129,8 @@ namespace G4AW2.Combat {
 					break;
 
 				OnAttackBegin.Invoke();
-				attackBroken = false;
+			    MyAnimator.SetTrigger("AttackStart");
+                attackBroken = false;
 				canParry = false;
 
 				// Wind up
@@ -127,15 +138,17 @@ namespace G4AW2.Combat {
 				EnemyState = State.ExecuteAttack;
 
 				OnAttackExecute.Invoke();
+			    MyAnimator.SetTrigger("AttackExecute");
 				canParry = true;
 
-				// Perform the attack
-				yield return new WaitForSeconds(AttackExecuteDuration);
+                // Perform the attack
+                yield return new WaitForSeconds(AttackExecuteDuration);
 				EnemyState = State.AfterAttack;
 				canParry = false;
 				OnAttackHit.Invoke(HeavyDamage);
+			    MyAnimator.SetTrigger("AttackEnd");
 			}
-		}
+        }
 
 		public bool AttemptedParry() {
 			if(canParry) {
@@ -146,7 +159,7 @@ namespace G4AW2.Combat {
                     UnStun();
                 });
 
-				OnAttackParried.Invoke();
+                OnAttackParried.Invoke();
                 return true;
 			}
             return false;
@@ -160,11 +173,13 @@ namespace G4AW2.Combat {
 			if (CurrentHealth.Value <= 0) {
 				isDead = true;
 				OnDeath.Invoke(Enemy);
+                MyAnimator.SetTrigger("Death");
 				OnDropLoot.Invoke(Enemy.Drops.GetItems(true));
 			} else {
 				OnHit.Invoke(amount);
-			}
-		}
+			    MyAnimator.SetTrigger("Flinch");
+            }
+        }
 
 		#endregion
 
