@@ -18,18 +18,25 @@ MonoBehaviour:
   MaxTimeBetweenRandomAnims: 5
   Idle: {fileID: 7400000, guid: eb21a9b6f2b065d49ad671fb4d3333bd, type: 2}
   Flinch: {fileID: 7400000, guid: 14efa9dd78134ea488a7fe43063eb149, type: 2}
-  BeforeAttack: {fileID: 7400000, guid: 668cc56696c02514986184edc7fcae79, type: 2}
-  AttackExecute: {fileID: 7400000, guid: 058b47e10231349419a1fb3126d928a7, type: 2}
-  AfterAttack: {fileID: 7400000, guid: eb21a9b6f2b065d49ad671fb4d3333bd, type: 2}
+  BeforeAttack: {fileID: 7400000, guid: 6ef0c0fb3561ac64f8fc9970e39d6363, type: 2}
+  AttackExecute: {fileID: 7400000, guid: 41048e782e5210e46b5c4b3b1d65fa82, type: 2}
+  AfterAttack: {fileID: 7400000, guid: 97f6a47e258e51b4e994fd42c86fbdf7, type: 2}
   Death: {fileID: 7400000, guid: a4c05cc8e086d1140a51c737c39582eb, type: 2}
   Dead: {fileID: 7400000, guid: 52d2386ab3747ea43b89705d65471247, type: 2}
+  Walking: {fileID: 7400000, guid: b12563a0d07ab5c4aabb9888d3393197, type: 2}
   BaseHealth: 50
   BaseArmor: 0
-  TimeBetweenLightAttacks: 0
   TimeBetweenHeavyAttacks: 5
-  BaseLightDamage: 0
   BaseHeavyDamage: 5
+  AttackPrepTime: 0
+  AttackExecuteTime: 0
   Drops:
     Items:
     - item: {fileID: 11400000, guid: 11fbe90a2780405449ad82a1ae93b06e, type: 2}
       dropChance: 1
+    - item: {fileID: 11400000, guid: 34c8f35c564af1c49bf3a0c75282030c, type: 2}
+      dropChance: 0.4
+    - item: {fileID: 11400000, guid: 4c5e23e2eafdd084e85f629307646260, type: 2}
+      dropChance: 0.6
+    - item: {fileID: 11400000, guid: 93a734356920da24caaee99393399534, type: 2}
+      dropChance: 0.75

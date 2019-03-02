@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92ed46357c010e84ea5a3394f3ad888d, type: 3}
+  m_Name: Blue Gnome
+  m_EditorClassIdentifier: 
+  ID: 5
+  SideIdleAnimation: {fileID: 7400000, guid: ad95f3549c4ac0c4883c18644932a4a4, type: 2}
+  RandomAnimation: {fileID: 7400000, guid: 6eb80e4323ee2234a83171f8b46b0953, type: 2}
+  MinTimeBetweenRandomAnims: 5
+  MaxTimeBetweenRandomAnims: 10
+  Idle: {fileID: 7400000, guid: 5f3af23afcd2ee54fa6a47da017db60f, type: 2}
+  Flinch: {fileID: 7400000, guid: b7643416db00a4c4b84392e67ce64dfb, type: 2}
+  BeforeAttack: {fileID: 7400000, guid: f87b68299d7748f4292ae92613146c56, type: 2}
+  AttackExecute: {fileID: 7400000, guid: b9a88573da9ac204288bfbd0ac4e3d09, type: 2}
+  AfterAttack: {fileID: 7400000, guid: a141eda5b0dcd0f4586dc08470e5fcd7, type: 2}
+  Death: {fileID: 7400000, guid: 25540dc4537155d47ab9d223634e1237, type: 2}
+  Dead: {fileID: 7400000, guid: c96ac75cc87c5024eacbf9754c08e1df, type: 2}
+  Walking: {fileID: 7400000, guid: 5a6146f8c50f0d848899e60e9e88cd98, type: 2}
+  BaseHealth: 50
+  BaseArmor: 0
+  TimeBetweenHeavyAttacks: 5
+  BaseHeavyDamage: 10
+  AttackPrepTime: 1
+  AttackExecuteTime: 1
+  Drops:
+    Items:
+    - item: {fileID: 11400000, guid: 212b5a7b5274ba54eafbf973b21ed3f8, type: 2}
+      dropChance: 0.5
