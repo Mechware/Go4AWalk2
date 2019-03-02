@@ -9,7 +9,7 @@ public class PlayerFightingLogic : MonoBehaviour {
 
 	public Player Player;
 	public EnemyDisplay EnemyDisplay;
-	public float MinSwipeDistance;
+	public FloatReference MinSwipeDistance;
     public float FailedParryStunTime = 2f;
 
     public UnityEvent OnBlockStart;
@@ -39,7 +39,6 @@ public class PlayerFightingLogic : MonoBehaviour {
         damage = Mathf.RoundToInt(fdamage);
         Player.DamagePlayer(damage);
 	    AttackHit.Invoke(damage);
-        Debug.Log("Hit for: " + damage);
 	}
 
 	public void PlayerAttemptToHitEnemy() {

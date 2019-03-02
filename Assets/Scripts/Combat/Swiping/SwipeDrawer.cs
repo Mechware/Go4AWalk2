@@ -3,26 +3,52 @@ using System.Collections.Generic;
 using CustomEvents;
 using UnityEngine;
 
-namespace G4AW2.Combat.Swiping {
-	public class SwipeDrawer : MonoBehaviour {
+public class SwipeDrawer : MonoBehaviour {
 
-		public Vector3Drawer drawer;
-		public Swipe Swipe;
+    public LineRenderer lr;
+    public float DelayBeforeDeath;
+    public FloatReference MinSwipingDistance;
 
-		public void AnimateSwipe(Swipe s) {
-			drawer.AnimateSwipe(s.Points, s.PixelsPerSecond);
-		}
+    public Color BlockColor;
+    public Color ParryColor;
 
-		[ContextMenu("Animate Swipe")]
-		public void AnimateSwipe() {
-			drawer.AnimateSwipe(Swipe.Points, Swipe.PixelsPerSecond);
-		}
+    // Use this for initialization
+    void Start () {
+    }
 
-		[ContextMenu("Show Swipe")]
-		public void ShowSwipe() {
-			drawer.ShowSwipe(Swipe.Points);
-		}
-	}
+    private bool firstSpotRecorded = false;
+    private Vector3 firstPos;
 
+    public void SwipeStart() {
+        StopAllCoroutines();
+        firstSpotRecorded = false;
+    }
+
+    public void DrawVector(Vector3[] arr) {
+        if (!firstSpotRecorded) {
+            firstPos = arr[0];
+            firstSpotRecorded = true;
+        }
+
+        Vector3 start = firstPos;
+        Vector3 end = arr[arr.Length - 1];
+
+        float swipeLength = Mathf.Min(Mathf.Abs(end.x - start.x), MinSwipingDistance);
+        float percentComplete = 1f - swipeLength / MinSwipingDistance;
+
+        Color color;
+
+        if(start.x > end.x) {
+            color = ParryColor;
+        } else {
+            color = BlockColor;
+        }
+
+        Color c = color + percentComplete * (lr.startColor - color);
+        c.a = lr.endColor.a;
+        lr.endColor = c;
+    }
+
+    public void OnDone() {
+    }
 }
-

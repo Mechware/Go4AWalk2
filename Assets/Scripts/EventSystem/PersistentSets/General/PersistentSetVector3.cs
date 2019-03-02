@@ -1,5 +1,4 @@
 
-using G4AW2.Combat.Swiping;
 using UnityEngine;
 
 namespace CustomEvents {

@@ -2,7 +2,6 @@ using G4AW2.Data.Combat;
 using System;
 using System.Collections;
 using CustomEvents;
-using G4AW2.Combat.Swiping;
 using G4AW2.Events;
 using UnityEngine;
 using UnityEngine.Events;

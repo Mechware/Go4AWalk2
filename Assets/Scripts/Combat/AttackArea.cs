@@ -56,7 +56,9 @@ public class AttackArea : Graphic, IPointerClickHandler, IPointerDownHandler, IP
 		Vector3[] points = new Vector3[LineRenderer.positionCount];
 		LineRenderer.GetPositions(points);
 	    OnSwipeFinished.Invoke(points);
+
         LineRenderer.positionCount = 0;
+
 		eventData.Use();
 	}
 
@@ -68,8 +70,6 @@ public class AttackArea : Graphic, IPointerClickHandler, IPointerDownHandler, IP
 		Vector3 pos = Camera.main.ScreenToWorldPoint(eventData.position);
 		pos.z = 0;
 		OnSwiping.Invoke(pos);
-
-		pos.z = 10;
 
 		LineRenderer.SetPosition(LineRenderer.positionCount-1, pos);
 		if (LineRenderer.positionCount > 1) {
