@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Name: Gnome Hat
   m_EditorClassIdentifier: 
   ID: 10
-  Image: {fileID: 0}
-  Value: 0
-  Description: 
+  Image: {fileID: 21300000, guid: 7ba1194a564133d4680be72cda22fb56, type: 3}
+  Value: 5
+  Description: Gnome is wear you hang your hat.
   Rarity: 0
-  MaxStackSize: 0

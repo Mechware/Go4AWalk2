@@ -13,9 +13,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Components:
   - Item: {fileID: 11400000, guid: 37922c7fca4096e48a04b7094a8a3449, type: 2}
-    Amount: 1
+    Amount: 2
   - Item: {fileID: 11400000, guid: 614ab21de69c9b94884b5eefdfe78e16, type: 2}
-    Amount: 1
+    Amount: 6
   Result:
     Item: {fileID: 11400000, guid: 6246a40d9001d144e83b43a25b75c9b6, type: 2}
     Amount: 1
