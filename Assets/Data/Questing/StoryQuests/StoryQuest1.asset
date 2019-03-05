@@ -14,7 +14,7 @@ MonoBehaviour:
   ID: 1
   DisplayName: Walk 500 Meters
   NextQuest: {fileID: 11400000, guid: 7772697f7dd01f34b9f246fc0cdf5cbd, type: 2}
-  Area: {fileID: 11400000, guid: 20807a95d9221854188f642cafb3449d, type: 2}
+  Area: {fileID: 11400000, guid: 5e4d1ba5949749b44bc3427231ca82f2, type: 2}
   StartConversation:
     Text: Welcome to the greatest game ever.
     Speaker: {fileID: 21300000, guid: 590957ad0b5f14443a67fb363125e7bf, type: 3}

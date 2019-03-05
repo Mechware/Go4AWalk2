@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.3731193, g: 0.38073996, b: 0.35872698, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1822,11 +1822,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 300978732}
-  - component: {fileID: 300978733}
   - component: {fileID: 300978734}
   - component: {fileID: 300978736}
   - component: {fileID: 300978737}
   - component: {fileID: 300978735}
+  - component: {fileID: 300978733}
   m_Layer: 5
   m_Name: Followers
   m_TagString: Untagged
@@ -1842,16 +1842,16 @@ RectTransform:
   m_GameObject: {fileID: 300978731}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.00032, y: 1.00032, z: 1.00032}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 581060206}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -118, y: 5}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: -117.999985, y: 0}
   m_SizeDelta: {x: 64, y: 64}
-  m_Pivot: {x: 0, y: 0.5}
+  m_Pivot: {x: 0, y: 0}
 --- !u!114 &300978733
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1860,21 +1860,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 300978731}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -2095666955, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: 29513e297b9c0144382aad41e20ed1cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Padding:
-    m_Left: 0
-    m_Right: 0
-    m_Top: 0
-    m_Bottom: 0
-  m_ChildAlignment: 5
-  m_StartCorner: 0
-  m_StartAxis: 0
-  m_CellSize: {x: 32, y: 32}
-  m_Spacing: {x: 0, y: 0}
-  m_Constraint: 2
-  m_ConstraintCount: 1
+  StartX: 16
+  StartY: 16
+  XGap: -32
+  YGap: 0
 --- !u!114 &300978734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2843,6 +2835,10 @@ MonoBehaviour:
     Count: {fileID: 11400000, guid: e70966d51d11ac54bbbd2c2a80a97b71, type: 2}
   - Enemy: {fileID: 11400000, guid: 24dcc537a71658e4e9fbf5e0d5fc124a, type: 2}
     Count: {fileID: 11400000, guid: fdbd90a93216918498014533588c8a22, type: 2}
+  - Enemy: {fileID: 11400000, guid: f9cb20d3635f5ec40935188217f021cd, type: 2}
+    Count: {fileID: 11400000, guid: ec1265330248d3849a01ca45324ef0a3, type: 2}
+  - Enemy: {fileID: 11400000, guid: 396482660d9279a4294f369245325131, type: 2}
+    Count: {fileID: 11400000, guid: c81d62077aaa51d49b956024b1c8fb17, type: 2}
   ItemObtainedCount:
   - Item: {fileID: 11400000, guid: 10f87211d9f03ba468a8554aae870c84, type: 2}
     Count: {fileID: 11400000, guid: 231906127b8affd4b8c948e1c044f8e7, type: 2}
@@ -7909,11 +7905,11 @@ RectTransform:
   m_Father: {fileID: 581060206}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -70, y: 5}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: -70, y: 16}
   m_SizeDelta: {x: 32, y: 32}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &999456374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8178,7 +8174,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 6afa27fbfcbf46c439be7a9c9bfcb794, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c27605eebf83392428128ddf89b5bd1f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8204,7 +8200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4c1231061dd2dd4daf40456556abcd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EndPosition: {x: -10, y: 5}
+  EndPosition: {x: -10, y: 16}
   TimeToLerp: 1
   OnLerpingDone:
     m_PersistentCalls:
@@ -17051,11 +17047,11 @@ RectTransform:
   m_Father: {fileID: 581060206}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 11.6, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 12, y: 16}
   m_SizeDelta: {x: 32, y: 32}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!95 &1550784723
 Animator:
   serializedVersion: 3

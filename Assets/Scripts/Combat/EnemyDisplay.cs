@@ -87,7 +87,12 @@ namespace G4AW2.Combat {
             Vector3 pos = transform.localPosition;
             pos.x = -70;
             transform.localPosition = pos;
-		}
+
+		    Vector2 r = ((RectTransform) transform).sizeDelta;
+		    r.x = data.SizeOfSprite.x;
+		    r.y = data.SizeOfSprite.y;
+		    ((RectTransform) transform).sizeDelta = r;
+        }
 
         public void StartWalking()
         {

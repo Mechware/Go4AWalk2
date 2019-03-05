@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Name: Green Gnome
   m_EditorClassIdentifier: 
   ID: 0
+  SizeOfSprite: {x: 64, y: 64}
   SideIdleAnimation: {fileID: 7400000, guid: 18490713dd8bc1441bcda360acb69605, type: 2}
   RandomAnimation: {fileID: 7400000, guid: f3c04ab5bb2b84146bcd08e65a08b089, type: 2}
   MinTimeBetweenRandomAnims: 30

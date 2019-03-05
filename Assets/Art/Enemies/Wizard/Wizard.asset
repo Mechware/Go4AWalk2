@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Name: Wizard
   m_EditorClassIdentifier: 
   ID: 8
+  SizeOfSprite: {x: 32, y: 32}
   SideIdleAnimation: {fileID: 7400000, guid: fa8b3cf7a3c163548959b092684e4fdf, type: 2}
   RandomAnimation: {fileID: 7400000, guid: 325dd30ed7d60dd4a82a13006fc458d5, type: 2}
   MinTimeBetweenRandomAnims: 10

@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Name: StoryQuest3
   m_EditorClassIdentifier: 
   ID: 3
-  DisplayName: Kill 3 Dirt Snakes
+  DisplayName: Kill 5 Blue Gnomes
   NextQuest: {fileID: 11400000, guid: 5a8fb4e0461e96b418512cc266283e09, type: 2}
-  Area: {fileID: 11400000, guid: 20807a95d9221854188f642cafb3449d, type: 2}
+  Area: {fileID: 11400000, guid: 5e4d1ba5949749b44bc3427231ca82f2, type: 2}
   StartConversation:
-    Text: Now dirt snakes have taken over!
-    Speaker: {fileID: 21300000, guid: c7a865312b76c054287af19f5a519b49, type: 3}
+    Text: That bastard sent you to kill us?! Take 5 of his kind out for redemption.
+    Speaker: {fileID: 21300000, guid: c27605eebf83392428128ddf89b5bd1f, type: 3}
   EndConversation:
-    Text: Thanks for doing that!
-    Speaker: {fileID: 21300000, guid: c7a865312b76c054287af19f5a519b49, type: 3}
-  TotalAmount: {fileID: 11400000, guid: fdbd90a93216918498014533588c8a22, type: 2}
-  AmountToReach: 3
+    Text: You're the best. You've resolved all of the conflict in the entire world.
+    Speaker: {fileID: 21300000, guid: c27605eebf83392428128ddf89b5bd1f, type: 3}
+  TotalAmount: {fileID: 11400000, guid: c81d62077aaa51d49b956024b1c8fb17, type: 2}
+  AmountToReach: 5
   AmountSoFar: {fileID: 11400000, guid: 66d427283c1651346a2bb795dcaa50b7, type: 2}

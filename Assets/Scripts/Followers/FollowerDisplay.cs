@@ -3,6 +3,7 @@ using CustomEvents;
 using G4AW2.Data;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 namespace G4AW2.Followers {
