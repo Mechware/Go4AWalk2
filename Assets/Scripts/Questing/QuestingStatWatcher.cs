@@ -30,6 +30,11 @@ public class QuestingStatWatcher : MonoBehaviour {
             MaxText.text = "" + awq.AmountToReach;
             CurrentText.text = "" + awq.AmountSoFar.Value;
             awq.AmountSoFar.OnChange.AddListener(OnChange);
+        } else if (currentQuest is BossQuest) {
+            BossQuest awq = currentQuest as BossQuest;
+            MaxText.text = "" + awq.AmountToReach;
+            CurrentText.text = "" + awq.AmountSoFar.Value;
+            awq.AmountSoFar.OnChange.AddListener(OnChange);
         }
 
         previous = currentQuest;

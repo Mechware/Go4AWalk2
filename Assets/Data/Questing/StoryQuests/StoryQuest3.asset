@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 3
   DisplayName: Kill 5 Blue Gnomes
-  NextQuest: {fileID: 11400000, guid: 5a8fb4e0461e96b418512cc266283e09, type: 2}
+  NextQuest: {fileID: 11400000, guid: 6a152c9f5e6fb0245aa9a63fdc71fdae, type: 2}
   Area: {fileID: 11400000, guid: 5e4d1ba5949749b44bc3427231ca82f2, type: 2}
   StartConversation:
     Text: That bastard sent you to kill us?! Take 5 of his kind out for redemption.
