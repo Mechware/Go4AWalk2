@@ -37,13 +37,13 @@ namespace G4AW2.Tools {
 
 		public Anim[] animations = {
 			new Anim("Idle", 0, 500),
-			new Anim("Flinch", 0, 125),
+            new Anim("SideRandom", 0, 125),
+            new Anim("SideIdle", 0, 125),
+            new Anim("Flinch", 0, 125),
 			new Anim("BeforeAttack", 0, 125),
 			new Anim("AttackExecute", 0, 125),
 			new Anim("AfterAttack", 0, 125),
-            new Anim("Death", 0, 250),
-			new Anim("SideIdle", 0, 125),
-			new Anim("SideRandom", 0, 125),
+            new Anim("Death", 0, 250),		
 			new Anim("Walking", 0, 125),
         };
 
@@ -161,7 +161,13 @@ namespace G4AW2.Tools {
 						case "Idle":
 							enemyScriptableObject.Idle = ac;
 							break;
-						case "Flinch":
+                        case "SideRandom":
+                            enemyScriptableObject.RandomAnimation = ac;
+                            break;
+                        case "SideIdle":
+                            enemyScriptableObject.SideIdleAnimation = ac;
+                            break;
+                        case "Flinch":
 							enemyScriptableObject.Flinch = ac;
 							break;
 						case "BeforeAttack":
@@ -181,12 +187,6 @@ namespace G4AW2.Tools {
                             // If this is the death animation then create a dead animation that is just the last frame of the death animation
                             enemyScriptableObject.Dead = CreateAnimation(new Anim("Dead", 1, 1000), new[] { spriteSheet[totalFrameCount + anims[i].frameCount - 1] }, EnemyName, path);
                             break;
-						case "SideIdle":
-							enemyScriptableObject.SideIdleAnimation = ac;
-							break;
-						case "SideRandom":
-							enemyScriptableObject.RandomAnimation = ac;
-							break;
                         case "Walking":
                             enemyScriptableObject.Walking = ac;
                             break;

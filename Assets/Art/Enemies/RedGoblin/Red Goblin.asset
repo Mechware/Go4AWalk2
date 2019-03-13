@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92ed46357c010e84ea5a3394f3ad888d, type: 3}
+  m_Name: Red Goblin
+  m_EditorClassIdentifier: 
+  ID: 0
+  SideIdleAnimation: {fileID: 7400000, guid: 36735c37166f22a41bd7089b36eafe16, type: 2}
+  RandomAnimation: {fileID: 7400000, guid: 7c1f03fe3593ffe4095fe7c270000a9f, type: 2}
+  MinTimeBetweenRandomAnims: 30
+  MaxTimeBetweenRandomAnims: 180
+  Idle: {fileID: 7400000, guid: 04e94ecbfb9d02246a0bcca6e39f9807, type: 2}
+  Flinch: {fileID: 7400000, guid: 3c62a5760d9ebc0408be44edd7114a69, type: 2}
+  BeforeAttack: {fileID: 7400000, guid: 6205b02dd3a621844aba38f51c3c7c29, type: 2}
+  AttackExecute: {fileID: 7400000, guid: a4bdca849e1e9a448b3f966816f0fa34, type: 2}
+  AfterAttack: {fileID: 7400000, guid: f9ac05a1a6ec2a248b5f90e8a9d1a2af, type: 2}
+  Death: {fileID: 7400000, guid: 777446bd182ff804d88aaa97758a2752, type: 2}
+  Dead: {fileID: 7400000, guid: 7ca7e545c27a7b44e8a3877cae40adbf, type: 2}
+  Walking: {fileID: 7400000, guid: d5ca7be903f70da4b88646fda75b9f2d, type: 2}
+  BaseHealth: 0
+  BaseArmor: 0
+  TimeBetweenHeavyAttacks: 0
+  BaseHeavyDamage: 0
+  AttackPrepTime: 0
+  AttackExecuteTime: 0
+  Drops:
+    Items: []
