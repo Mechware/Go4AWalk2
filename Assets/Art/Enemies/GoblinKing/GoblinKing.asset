@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Name: GoblinKing
   m_EditorClassIdentifier: 
   ID: 7
+  SizeOfSprite: {x: 64, y: 64}
   SideIdleAnimation: {fileID: 7400000, guid: 13c31e834dfd52841a1b9572226560c5, type: 2}
   RandomAnimation: {fileID: 7400000, guid: 360d94484572ba5478c9c3a4937265cb, type: 2}
   MinTimeBetweenRandomAnims: 5
@@ -36,7 +37,7 @@ MonoBehaviour:
       dropChance: 0.6
     - item: {fileID: 11400000, guid: 11fbe90a2780405449ad82a1ae93b06e, type: 2}
       dropChance: 1
-    - item: {fileID: 11400000, guid: 937f6268098bfaa4f9c28d94ddc092f9, type: 2}
+    - item: {fileID: 0}
       dropChance: 1
     - item: {fileID: 11400000, guid: 11fbe90a2780405449ad82a1ae93b06e, type: 2}
       dropChance: 0.5

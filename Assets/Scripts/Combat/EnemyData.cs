@@ -1,4 +1,3 @@
-using G4AW2.Combat.Swiping;
 using G4AW2.Data.DropSystem;
 using UnityEngine;
 

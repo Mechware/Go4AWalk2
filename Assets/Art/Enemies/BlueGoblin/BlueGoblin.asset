@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Name: BlueGoblin
   m_EditorClassIdentifier: 
   ID: 6
+  SizeOfSprite: {x: 64, y: 64}
   SideIdleAnimation: {fileID: 7400000, guid: 62a485c23053823458623139150d45b1, type: 2}
   RandomAnimation: {fileID: 7400000, guid: bfabafed0d27c544f822a78e9e7e34a0, type: 2}
   MinTimeBetweenRandomAnims: 3

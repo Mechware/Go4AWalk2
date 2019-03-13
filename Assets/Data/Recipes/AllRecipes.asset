@@ -14,6 +14,11 @@ MonoBehaviour:
   Value:
   - {fileID: 11400000, guid: def46f832889c3c438d6f853843dcb3b, type: 2}
   - {fileID: 11400000, guid: 4e242135ba3c1fd4f95bb292e287aa82, type: 2}
+  - {fileID: 11400000, guid: daef55885666f33488304f39111816b6, type: 2}
+  - {fileID: 11400000, guid: b6022d09d71f2eb48bca80462bf9fbf0, type: 2}
+  - {fileID: 11400000, guid: fd8fb0930082e514cb183b60ddfe17b6, type: 2}
+  - {fileID: 11400000, guid: 355bd553debe8f848b42c7e465d33c56, type: 2}
+  - {fileID: 11400000, guid: 072e8c50f688c06488d21d9bc70ab89c, type: 2}
   OnAdd:
     m_PersistentCalls:
       m_Calls: []

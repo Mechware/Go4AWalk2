@@ -1,6 +1,7 @@
 using G4AW2.Combat;
 using System.Collections;
 using System.Collections.Generic;
+using CustomEvents;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -8,7 +9,7 @@ public class PlayerFightingLogic : MonoBehaviour {
 
 	public Player Player;
 	public EnemyDisplay EnemyDisplay;
-	public float MinSwipeDistance;
+	public FloatReference MinSwipeDistance;
     public float FailedParryStunTime = 2f;
 
     public UnityEvent OnBlockStart;
@@ -17,6 +18,7 @@ public class PlayerFightingLogic : MonoBehaviour {
     public UnityEvent OnFailedParryDone;
     public UnityEvent OnSuccessfulParry;
     public UnityEvent Attacked;
+    public UnityEventInt AttackHit;
 
     private bool AbleToAttack { get { return !(blocking || perfectBlock || badParry); } }
     private bool blocking = false;
@@ -36,7 +38,7 @@ public class PlayerFightingLogic : MonoBehaviour {
 
         damage = Mathf.RoundToInt(fdamage);
         Player.DamagePlayer(damage);
-        Debug.Log("Hit for: " + damage);
+	    AttackHit.Invoke(damage);
 	}
 
 	public void PlayerAttemptToHitEnemy() {

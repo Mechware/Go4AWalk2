@@ -1,5 +1,4 @@
 using CustomEvents;
-using G4AW2.Combat.Swiping;
 using UnityEngine;
 using G4AW2.Data.DropSystem;
 

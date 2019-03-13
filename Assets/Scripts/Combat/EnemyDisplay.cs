@@ -2,7 +2,6 @@ using G4AW2.Data.Combat;
 using System;
 using System.Collections;
 using CustomEvents;
-using G4AW2.Combat.Swiping;
 using G4AW2.Events;
 using UnityEngine;
 using UnityEngine.Events;
@@ -88,7 +87,12 @@ namespace G4AW2.Combat {
             Vector3 pos = transform.localPosition;
             pos.x = -70;
             transform.localPosition = pos;
-		}
+
+		    Vector2 r = ((RectTransform) transform).sizeDelta;
+		    r.x = data.SizeOfSprite.x;
+		    r.y = data.SizeOfSprite.y;
+		    ((RectTransform) transform).sizeDelta = r;
+        }
 
         public void StartWalking()
         {

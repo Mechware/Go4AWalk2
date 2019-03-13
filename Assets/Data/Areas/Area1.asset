@@ -13,9 +13,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Enemies:
     Drops:
-    - Follower: {fileID: 11400000, guid: e2753df0922c7be4bbd9352c043f5d57, type: 2}
+    - Follower: {fileID: 11400000, guid: 396482660d9279a4294f369245325131, type: 2}
+      DropChance: 5
+    - Follower: {fileID: 11400000, guid: 1661ac05f43e068448b3f2960ac1d57f, type: 2}
+      DropChance: 2
+    - Follower: {fileID: 11400000, guid: f9cb20d3635f5ec40935188217f021cd, type: 2}
+      DropChance: 5
+    - Follower: {fileID: 11400000, guid: 51d3cce514427d448a622c4b31127522, type: 2}
       DropChance: 1
-  Background: {fileID: 21300000, guid: 8f39de82e516faa4393ccd2eb84eae65, type: 3}
+  Background: {fileID: 21300000, guid: 9daa8e8d50d4f8f4080d8502688e4996, type: 3}
   SkyUpper: {fileID: 21300000, guid: bfab8ec1cf01c6b44b95d964dbb89392, type: 3}
   Sky: {fileID: 21300000, guid: cfa6904b18878cb4ca9f10427acbb3d9, type: 3}
   Clouds1: {fileID: 21300000, guid: 3aa7625d41e61eb41aadd47eee40b5c3, type: 3}

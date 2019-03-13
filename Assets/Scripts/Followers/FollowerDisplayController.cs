@@ -24,9 +24,12 @@ namespace G4AW2.Followers {
 		public UnityEventEnemyData FightFollower;
 
 		void Awake() {
+            // Remove listeneres
 			ListOfCurrentFollowers.OnAdd.RemoveListener(FollowerAdded);
 			ListOfCurrentFollowers.OnRemove.RemoveListener(FollowerRemoved);
 			ListOfCurrentFollowers.OnChange.RemoveListener(FollowerRemoved);
+
+            // Add listeners
 			ListOfCurrentFollowers.OnAdd.AddListener(FollowerAdded);
 			ListOfCurrentFollowers.OnRemove.AddListener(FollowerRemoved);
 			ListOfCurrentFollowers.OnChange.AddListener(FollowerRemoved);
@@ -54,7 +57,12 @@ namespace G4AW2.Followers {
 
 		private void AddDisplay(FollowerDisplay display, FollowerData d) {
 			display.transform.SetAsFirstSibling();
-			display.SetData(d);
+		    Vector2 r = ((RectTransform) display.transform).sizeDelta;
+		    r.x = d.SizeOfSprite.x;
+		    r.y = d.SizeOfSprite.y;
+		    ((RectTransform) display.transform).sizeDelta = r;
+
+            display.SetData(d);
 			display.FollowerClicked -= FollowerClicked;
 			display.FollowerClicked += FollowerClicked;
 		}

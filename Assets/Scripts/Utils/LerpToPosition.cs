@@ -18,7 +18,7 @@ public class LerpToPosition : MonoBehaviour {
 	// Use this for initialization
 	public void StartLerping () {
 		lerping = true;
-		startPosition = ((RectTransform)transform).localPosition;
+		startPosition = ((RectTransform)transform).anchoredPosition;
 		Vector3 distance = EndPosition - startPosition;
 		steps.x = distance.x / TimeToLerp;
 		steps.y = distance.y / TimeToLerp;
@@ -33,13 +33,14 @@ public class LerpToPosition : MonoBehaviour {
 	void Update () {
 		if(lerping) {
 			Vector3 Pos = startPosition + (steps * (Time.time - startTime) / TimeToLerp);
+
 			Pos.z = ((RectTransform)transform).localPosition.z;
-			((RectTransform) transform).localPosition = Pos;
+			((RectTransform) transform).anchoredPosition = Pos;
 
 			if(Time.time - startTime >= TimeToLerp) {
                 Pos.x = EndPosition.x;
                 Pos.y = EndPosition.y;
-                ((RectTransform)transform).localPosition = Pos;
+                ((RectTransform)transform).anchoredPosition = Pos;
 
                 lerping = false;
                 OnLerpingDone.Invoke();

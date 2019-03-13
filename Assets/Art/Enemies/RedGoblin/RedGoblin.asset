@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Name: RedGoblin
   m_EditorClassIdentifier: 
   ID: 3
+  SizeOfSprite: {x: 64, y: 64}
   SideIdleAnimation: {fileID: 7400000, guid: 1218649ec9e2e63498393ec222af06a3, type: 2}
   RandomAnimation: {fileID: 7400000, guid: 66f96bfdf055fd540827f9ceb20b7626, type: 2}
   MinTimeBetweenRandomAnims: 2
