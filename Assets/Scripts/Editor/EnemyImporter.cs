@@ -36,14 +36,14 @@ namespace G4AW2.Tools {
 
 
 		public Anim[] animations = {
-			new Anim("Idle", 0, 500),
+            new Anim("SideIdle", 0, 125),            
             new Anim("SideRandom", 0, 125),
-            new Anim("SideIdle", 0, 125),
+            new Anim("Idle", 0, 125),
             new Anim("Flinch", 0, 125),
 			new Anim("BeforeAttack", 0, 125),
 			new Anim("AttackExecute", 0, 125),
 			new Anim("AfterAttack", 0, 125),
-            new Anim("Death", 0, 250),		
+            new Anim("Death", 0, 125),		
 			new Anim("Walking", 0, 125),
         };
 
@@ -158,15 +158,15 @@ namespace G4AW2.Tools {
 					AnimationClip ac = CreateAnimation(anims[i], spriteSheet.Skip(totalFrameCount).Take(anims[i].frameCount).ToArray(), EnemyName, path);
 
 					switch (anims[i].name) {
-						case "Idle":
-							enemyScriptableObject.Idle = ac;
-							break;
-                        case "SideRandom":
-                            enemyScriptableObject.RandomAnimation = ac;
-                            break;
                         case "SideIdle":
                             enemyScriptableObject.SideIdleAnimation = ac;
                             break;
+                        case "SideRandom":
+                            enemyScriptableObject.RandomAnimation = ac;
+                            break;
+                        case "Idle":
+							enemyScriptableObject.Idle = ac;
+							break;
                         case "Flinch":
 							enemyScriptableObject.Flinch = ac;
 							break;
