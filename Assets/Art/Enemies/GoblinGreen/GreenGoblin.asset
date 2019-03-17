@@ -13,11 +13,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 2
   SizeOfSprite: {x: 64, y: 64}
-  SideIdleAnimation: {fileID: 7400000, guid: 4a67940ef3d0c684d84eca9814d5c5f7, type: 2}
+  SideIdleAnimation: {fileID: 7400000, guid: 9cb0e690ea8179d4cb666208c6ef2de7, type: 2}
   RandomAnimation: {fileID: 7400000, guid: 970f69169b76f9244b1a0f4f8bd46789, type: 2}
   MinTimeBetweenRandomAnims: 10
   MaxTimeBetweenRandomAnims: 12
-  Idle: {fileID: 7400000, guid: 9cb0e690ea8179d4cb666208c6ef2de7, type: 2}
+  Idle: {fileID: 7400000, guid: 4a67940ef3d0c684d84eca9814d5c5f7, type: 2}
   Flinch: {fileID: 7400000, guid: e135ca2035d24204d961c34aa7c738fc, type: 2}
   BeforeAttack: {fileID: 7400000, guid: 21264d31052b47249befe931e1a423a2, type: 2}
   AttackExecute: {fileID: 7400000, guid: d445912627eb96948bf8a9d632f604a4, type: 2}
@@ -29,8 +29,8 @@ MonoBehaviour:
   BaseArmor: 0
   TimeBetweenHeavyAttacks: 4
   BaseHeavyDamage: 8
-  AttackPrepTime: 0
-  AttackExecuteTime: 0
+  AttackPrepTime: 1
+  AttackExecuteTime: 1
   Drops:
     Items:
     - item: {fileID: 11400000, guid: 2da6b9adf5d871c4a8c481d49c4b2092, type: 2}
@@ -39,5 +39,5 @@ MonoBehaviour:
       dropChance: 0.1
     - item: {fileID: 11400000, guid: 49a395b3e2e7c7b4aa598c53811f7e7d, type: 2}
       dropChance: 0.25
-    - item: {fileID: 11400000, guid: 93a734356920da24caaee99393399534, type: 2}
+    - item: {fileID: 11400000, guid: f02a4360ffd63e2499d1222a338cd414, type: 2}
       dropChance: 0.3
