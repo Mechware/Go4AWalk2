@@ -3,48 +3,65 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+[RequireComponent(typeof(RectTransform))]
 public class LerpToPosition : MonoBehaviour {
 
-	public Vector2 EndPosition;
+    public AnimationCurve XCurve;
+    public AnimationCurve YCurve;
+
 	public float TimeToLerp;
 	public UnityEvent OnLerpingDone;
-	public bool lerping;
 
-	private Vector2 startPosition;
-	private Vector2 steps;
-	private float startTime;
+    private Vector2 startPosition;
+    private Vector2 steps;
+	private float duration;
+    private bool lerping = false;
+    private RectTransform RectTransform;
 
+    private void Awake() {
+        RectTransform = GetComponent<RectTransform>();
+    }
 
-	// Use this for initialization
-	public void StartLerping () {
-		lerping = true;
-		startPosition = ((RectTransform)transform).anchoredPosition;
-		Vector3 distance = EndPosition - startPosition;
-		steps.x = distance.x / TimeToLerp;
-		steps.y = distance.y / TimeToLerp;
-		startTime = Time.time;
+    // Use this for initialization
+    public void StartLerping () {
+		startPosition = RectTransform.anchoredPosition;
+
+        Keyframe frame = XCurve.keys[0];
+        frame.value = RectTransform.anchoredPosition.x;
+        XCurve.MoveKey(0, frame);
+
+        frame = YCurve.keys[0];
+        frame.value = RectTransform.anchoredPosition.y;
+        YCurve.MoveKey(0, frame);
+
+        lerping = true;
+        duration = 0;
 	}
 
 	public void StopLerping() {
-		lerping = false;
-	}
+        Vector2 pos;
+        pos.x = XCurve.keys[1].value;
+        pos.y = YCurve.keys[1].value;
+        RectTransform.anchoredPosition = pos;
+
+        lerping = false;
+        OnLerpingDone.Invoke();
+    }
 
 	// Update is called once per frame
 	void Update () {
 		if(lerping) {
-			Vector3 Pos = startPosition + (steps * (Time.time - startTime) / TimeToLerp);
+            duration += Time.deltaTime;
 
-			Pos.z = ((RectTransform)transform).localPosition.z;
-			((RectTransform) transform).anchoredPosition = Pos;
+            if(duration > TimeToLerp) {
+                StopLerping();
+                return;
+            }
 
-			if(Time.time - startTime >= TimeToLerp) {
-                Pos.x = EndPosition.x;
-                Pos.y = EndPosition.y;
-                ((RectTransform)transform).anchoredPosition = Pos;
-
-                lerping = false;
-                OnLerpingDone.Invoke();
-			}
-		}
-	}
+            Vector2 pos = new Vector2();
+            pos.x = XCurve.Evaluate(duration);
+            pos.y = YCurve.Evaluate(duration);
+            RectTransform.anchoredPosition = pos;
+        }
+    }
 }
