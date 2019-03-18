@@ -16,4 +16,5 @@ MonoBehaviour:
   Value: 10
   Description: Too bad you don't know magic or this might actually be useful.
   Rarity: 0
+  TapsWithWeapon: 0
   Damage: 3

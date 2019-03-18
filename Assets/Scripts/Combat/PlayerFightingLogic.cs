@@ -46,6 +46,7 @@ public class PlayerFightingLogic : MonoBehaviour {
         {
             Attacked.Invoke();
             EnemyDisplay.ApplyDamage(Player.GetLightDamage());
+            Player.Weapon.Value.TapsWithWeapon++;
         }
     }
 

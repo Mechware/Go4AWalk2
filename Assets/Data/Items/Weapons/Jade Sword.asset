@@ -16,5 +16,5 @@ MonoBehaviour:
   Value: 2000
   Description: An exotic blade hewn from magically inbued jade deposits.
   Rarity: 3
-  MaxStackSize: 0
+  TapsWithWeapon: 0
   Damage: 35

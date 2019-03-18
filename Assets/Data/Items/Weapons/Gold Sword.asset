@@ -17,5 +17,5 @@ MonoBehaviour:
   Description: We all know gold would make for terrible weapons, but don't worry we
     didn't tell the game balancers that.
   Rarity: 3
-  MaxStackSize: 0
+  TapsWithWeapon: 0
   Damage: 35

@@ -16,5 +16,5 @@ MonoBehaviour:
   Value: 140
   Description: A razor-sharp sword crafted using forgotten techniques.
   Rarity: 2
-  MaxStackSize: 0
+  TapsWithWeapon: 0
   Damage: 25

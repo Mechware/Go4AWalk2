@@ -16,4 +16,5 @@ MonoBehaviour:
   Value: 25
   Description: The blood is 'cause you dont floss.
   Rarity: 1
+  TapsWithWeapon: 0
   Damage: 20

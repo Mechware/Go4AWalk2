@@ -16,5 +16,5 @@ MonoBehaviour:
   Value: 200
   Description: A sword crafted from the legendary material known as mythril.
   Rarity: 2
-  MaxStackSize: 0
+  TapsWithWeapon: 0
   Damage: 30

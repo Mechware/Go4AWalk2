@@ -16,5 +16,5 @@ MonoBehaviour:
   Value: 5000
   Description: The obsidian blades that make up this weapon are sharper than a scalpel.
   Rarity: 4
-  MaxStackSize: 0
+  TapsWithWeapon: 0
   Damage: 40

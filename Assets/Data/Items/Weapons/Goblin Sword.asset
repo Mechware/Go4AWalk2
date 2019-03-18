@@ -16,5 +16,5 @@ MonoBehaviour:
   Value: 10
   Description: Its dull and rusty and kinda too small but hey, its better than a stick.
   Rarity: 0
-  MaxStackSize: 0
-  Damage: 5
+  TapsWithWeapon: 0
+  Damage: 50

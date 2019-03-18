@@ -17,5 +17,5 @@ MonoBehaviour:
   Description: Stronger and lighter than iron, its amazing what a little carbon can
     do.
   Rarity: 1
-  MaxStackSize: 0
+  TapsWithWeapon: 0
   Damage: 20

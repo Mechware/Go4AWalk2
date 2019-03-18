@@ -12,11 +12,19 @@ public class ConfigObject : ScriptableObject {
 	public class RarityColorDefines {
 		public Rarity Rarity;
 		public Color Color;
+        public AnimationCurve WeaponLevelPerTap;
 	}
 
 	private  static ConfigObject Singleton;
 	public List<RarityColorDefines> RarityToColor;
 	
+    public static int GetLevel(Rarity r, int taps) {
+        var thing = Singleton.RarityToColor.FirstOrDefault(rcd => rcd.Rarity == r);
+        if(thing == null) {
+            throw new Exception("No color define for rarity");
+        }
+        return Mathf.RoundToInt(thing.WeaponLevelPerTap.Evaluate(taps));
+    }
 
 	public static Color GetColorFromRarity(Rarity r) {
 		var thing = Singleton.RarityToColor.FirstOrDefault(rcd => rcd.Rarity == r);

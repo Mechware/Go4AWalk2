@@ -16,5 +16,5 @@ MonoBehaviour:
   Value: 20
   Description: A sturdy bronze sword crafted by a smith.
   Rarity: 0
-  MaxStackSize: 0
+  TapsWithWeapon: 0
   Damage: 10

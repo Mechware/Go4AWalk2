@@ -16,5 +16,5 @@ MonoBehaviour:
   Value: 75
   Description: A heavy hammer made from iron, great for crushing watermelons.
   Rarity: 0
-  MaxStackSize: 0
+  TapsWithWeapon: 0
   Damage: 17

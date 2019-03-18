@@ -16,5 +16,5 @@ MonoBehaviour:
   Value: 41
   Description: A deadly blunt weapon. Doesn't hurt that bad but its real poisonous.
   Rarity: 1
-  MaxStackSize: 0
+  TapsWithWeapon: 0
   Damage: 16

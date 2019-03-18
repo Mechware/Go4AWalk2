@@ -29,7 +29,7 @@ namespace G4AW2.Combat {
         }
 
 		public int GetLightDamage() {
-            return Weapon.Value.Damage;
+            return Weapon.Value.ActualDamage;
 		}
 
 #if UNITY_EDITOR

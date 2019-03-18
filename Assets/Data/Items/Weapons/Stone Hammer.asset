@@ -17,5 +17,5 @@ MonoBehaviour:
   Description: A simple tool used since ancient times. Still just as effective as
     ever.
   Rarity: 0
-  MaxStackSize: 0
+  TapsWithWeapon: 0
   Damage: 14
