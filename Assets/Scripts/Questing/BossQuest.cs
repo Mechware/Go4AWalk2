@@ -2,8 +2,6 @@
 using G4AW2.Data.Combat;
 using G4AW2.Questing;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -20,7 +18,7 @@ public class BossQuest : ActiveQuest<int, IntVariable, UnityEventInt> {
 
     public override void ResumeQuest(Action<ActiveQuestBase> onFinish) {
         base.ResumeQuest(onFinish);
-        if(EnemyList.FirstOrDefault(e => e.ID == Enemy.ID) == null ) {
+        if(EnemyList.FirstOrDefault(e => e.ID == Enemy.ID) == null) {
             EnemyList.Add(Enemy);
         }
     }

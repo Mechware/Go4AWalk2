@@ -25,7 +25,7 @@ MonoBehaviour:
   Death: {fileID: 7400000, guid: 25540dc4537155d47ab9d223634e1237, type: 2}
   Dead: {fileID: 7400000, guid: c96ac75cc87c5024eacbf9754c08e1df, type: 2}
   Walking: {fileID: 7400000, guid: 5a6146f8c50f0d848899e60e9e88cd98, type: 2}
-  BaseHealth: 50
+  BaseHealth: 750
   BaseArmor: 0
   TimeBetweenHeavyAttacks: 5
   BaseHeavyDamage: 10

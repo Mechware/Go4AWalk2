@@ -16,4 +16,5 @@ MonoBehaviour:
   Value: 1
   Description: It's a stick.
   Rarity: 0
-  Damage: 1
+  TapsWithWeapon: 0
+  Damage: 10

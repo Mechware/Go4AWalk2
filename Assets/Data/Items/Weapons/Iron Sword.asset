@@ -16,5 +16,5 @@ MonoBehaviour:
   Value: 50
   Description: A well crafted sword made out of iron.
   Rarity: 0
-  MaxStackSize: 0
+  TapsWithWeapon: 0
   Damage: 15

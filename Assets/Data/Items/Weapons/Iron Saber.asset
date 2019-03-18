@@ -16,5 +16,5 @@ MonoBehaviour:
   Value: 60
   Description: A duelists saber made of iron.
   Rarity: 0
-  MaxStackSize: 0
+  TapsWithWeapon: 0
   Damage: 16

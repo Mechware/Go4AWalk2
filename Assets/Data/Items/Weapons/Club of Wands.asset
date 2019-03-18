@@ -16,4 +16,5 @@ MonoBehaviour:
   Value: 100
   Description: Now all these wands might actually be useful.
   Rarity: 1
+  TapsWithWeapon: 0
   Damage: 30

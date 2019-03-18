@@ -16,5 +16,5 @@ MonoBehaviour:
   Value: 22
   Description: A bronze blade, slightly more balanced than a traditional sword.
   Rarity: 0
-  MaxStackSize: 0
+  TapsWithWeapon: 0
   Damage: 11

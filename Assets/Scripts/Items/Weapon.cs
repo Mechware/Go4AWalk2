@@ -10,8 +10,11 @@ namespace G4AW2.Data.DropSystem
     [CreateAssetMenu(menuName = "Data/Items/Weapon")]
     public class Weapon : Item, ISaveable
     {
-        public int ActualDamage => Mathf.RoundToInt(Damage * mod);
+        public int TapsWithWeapon = 1;
+        public int ActualDamage => Mathf.RoundToInt( (Level == 99 ? 2.15f * Damage :  Damage * ( 1 + Level / 100f)) * mod);
+        public int Level => Mathf.RoundToInt( ConfigObject.GetLevel(Rarity, TapsWithWeapon));
         public int Damage;
+
         private int random = -1;
         private float mod;
         private string nameMod;
@@ -35,6 +38,7 @@ namespace G4AW2.Data.DropSystem
             } else {
                 random = UnityEngine.Random.Range(0, 101);
                 SetValuesBasedOnRandom();
+                TapsWithWeapon = 0;
             }
         }
 
@@ -75,10 +79,11 @@ namespace G4AW2.Data.DropSystem
         private class DummySave {
             public int ID;
             public int Random;
+            public int Taps = 0;
         }
 
         public string GetSaveString() {
-            return JsonUtility.ToJson(new DummySave() {ID = ID, Random = random});
+            return JsonUtility.ToJson(new DummySave() {ID = ID, Random = random, Taps = TapsWithWeapon});
         }
 
         public void SetData(string saveString, params object[] otherData) {
@@ -87,6 +92,7 @@ namespace G4AW2.Data.DropSystem
 
             ID = ds.ID;
             random = ds.Random;
+            TapsWithWeapon = ds.Taps;
 
             Weapon original;
 

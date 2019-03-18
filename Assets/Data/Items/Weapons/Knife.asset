@@ -16,5 +16,5 @@ MonoBehaviour:
   Value: 0
   Description: 'Small and good for cutting an apple or a person or something. '
   Rarity: 0
-  MaxStackSize: 0
-  Damage: 8
+  TapsWithWeapon: 0
+  Damage: 80

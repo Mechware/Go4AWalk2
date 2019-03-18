@@ -23,4 +23,15 @@ public class RectTransformPositionSetter : MonoBehaviour {
         Transform.anchoredPosition = vec;
     }
 
+    public void SetScaleX(float x) {
+        Vector3 scale = Transform.localScale;
+        scale.x = x;
+        Transform.localScale = scale;
+    }
+
+    public void SetScaleY(float y) {
+        Vector3 scale = Transform.localScale;
+        scale.y = y;
+        Transform.localScale = scale;
+    }
 }

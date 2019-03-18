@@ -16,5 +16,5 @@ MonoBehaviour:
   Value: 6666
   Description: Oof.
   Rarity: 4
-  MaxStackSize: 0
+  TapsWithWeapon: 0
   Damage: 50
