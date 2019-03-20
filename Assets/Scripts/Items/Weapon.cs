@@ -1,3 +1,4 @@
+using System;
 using CustomEvents;
 using G4AW2.Data.DropSystem;
 using System.Collections;
@@ -8,12 +9,14 @@ using UnityEngine;
 namespace G4AW2.Data.DropSystem
 {
     [CreateAssetMenu(menuName = "Data/Items/Weapon")]
-    public class Weapon : Item, ISaveable
-    {
+    public class Weapon : Item, ISaveable, ITrashable {
         public int TapsWithWeapon = 1;
         public int ActualDamage => Mathf.RoundToInt( (Level == 99 ? 2.15f * Damage :  Damage * ( 1 + Level / 100f)) * mod);
         public int Level => Mathf.RoundToInt( ConfigObject.GetLevel(Rarity, TapsWithWeapon));
         public int Damage;
+
+        [NonSerialized]
+        public bool MarkedAsTrash = false;
 
         private int random = -1;
         private float mod;
@@ -47,7 +50,7 @@ namespace G4AW2.Data.DropSystem
         }
 
         public override string GetDescription() {
-            return $"Damage: {ActualDamage}\n{Description}";
+            return $"Level: {Level}\nDamage: {ActualDamage}\n{Description}";
         }
 
         public void SetValuesBasedOnRandom() {
@@ -80,10 +83,11 @@ namespace G4AW2.Data.DropSystem
             public int ID;
             public int Random;
             public int Taps = 0;
+            public bool Trash = false;
         }
 
         public string GetSaveString() {
-            return JsonUtility.ToJson(new DummySave() {ID = ID, Random = random, Taps = TapsWithWeapon});
+            return JsonUtility.ToJson(new DummySave() {ID = ID, Random = random, Taps = TapsWithWeapon, Trash = MarkedAsTrash});
         }
 
         public void SetData(string saveString, params object[] otherData) {
@@ -93,6 +97,7 @@ namespace G4AW2.Data.DropSystem
             ID = ds.ID;
             random = ds.Random;
             TapsWithWeapon = ds.Taps;
+            MarkedAsTrash = ds.Trash;
 
             Weapon original;
 
@@ -106,6 +111,14 @@ namespace G4AW2.Data.DropSystem
 
             // Copy Original Values
             OnAfterObtained(original);
+        }
+
+        public bool IsTrash() {
+            return MarkedAsTrash;
+        }
+
+        public void SetTrash(bool isTrash) {
+            MarkedAsTrash = isTrash;
         }
     }
 }

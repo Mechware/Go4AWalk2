@@ -1,12 +1,18 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using CustomEvents;
+using G4AW2.Combat;
 using G4AW2.Data.DropSystem;
+using G4AW2.Dialogue;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class ItemDropBubbleManager : MonoBehaviour {
+
+    public Inventory Inventory;
+    public WeaponVariable PlayerWeapon;
 
 	public GameObject ItemDropperPrefab;
 
@@ -41,6 +47,24 @@ public class ItemDropBubbleManager : MonoBehaviour {
 	}
 
 	private void OnClick(ItemDropBubble it) {
+
+	    if (it.Item is Weapon) {
+
+	        PopUp.SetPopUp(it.Item.GetDescription(),
+	            new string[] {"Pick Up", "Trash", "Equip"},
+	            new Action[] {
+	                () => { },
+	                () => {
+	                    ((Weapon) it.Item).MarkedAsTrash = true;
+	                },
+	                () => {
+	                    Inventory.Add(PlayerWeapon.Value);
+                        PlayerWeapon.Value = (Weapon) it.Item;
+	                }
+	            });
+
+	    }
+
 		OnItemClick.Invoke(it.Item);
 		Destroy(it.gameObject);
 		onScreenItems--;

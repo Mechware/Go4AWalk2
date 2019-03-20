@@ -17,8 +17,12 @@ public class ItemViewer : MonoBehaviour {
 
     public Inventory Inventory;
 
-    public void ShowItemsFromInventory<T>(bool showAmounts, Action<Item> onClick) where T : Item {
-        ShowItems(Inventory.Where(e => e.Item is T), onClick, showAmounts);
+    public void ShowItemsFromInventory<T>(bool showAmounts, bool showTrash, Action<T> onClick) where T : Item, ITrashable {
+        ShowItems(Inventory.Where(e => e.Item is T && (showTrash || !((T) e.Item).IsTrash())), i => onClick((T) i), showAmounts);
+    }
+
+    public void ShowItemsFromInventory<T>(bool showAmounts, Action<T> onClick) where T : Item {
+        ShowItems(Inventory.Where(e => e.Item is T), i => onClick((T) i), showAmounts);
     }
 
     public void ShowMaterialFromInventory(MaterialType type, bool showAmounts, Action<Item> onClick) {

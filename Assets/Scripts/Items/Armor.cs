@@ -1,34 +1,61 @@
-using G4AW2.Data.DropSystem;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+using System;
 using CustomEvents;
+using System.Linq;
 using UnityEngine;
 
-namespace G4AW2.Data.DropSystem
-{
+namespace G4AW2.Data.DropSystem {
     [CreateAssetMenu(menuName = "Data/Items/Armor")]
-    public class Armor : Item, ISaveable
-    {
-        public float NoBlockModifierWithMod => mod * NoBlockModifier;
-        public float PerfectBlockModifierWithMod => mod * PerfectBlockModifier;
-        public float MistimedBlockModifierWithMod => mod * MistimedBlockModifier;
-        public float DamageAdditiveModifierWithMod => mod * DamageAdditiveModifier;
+    public class Armor : Item, ISaveable, ITrashable {
 
+
+        public float NoBlockModifierWithMod {
+            get {
+                return mod * NoBlockModifier;
+            }
+        }
+
+        public float PerfectBlockModifierWithMod {
+            get {
+                return mod * PerfectBlockModifier;
+            }
+        }
+
+        public float MistimedBlockModifierWithMod {
+            get {
+                return mod * MistimedBlockModifier;
+            }
+        }
+
+        public float DamageAdditiveModifierWithMod {
+            get {
+                return mod * DamageAdditiveModifier;
+            }
+        }
 
         public float NoBlockModifier;
         public float PerfectBlockModifier;
         public float MistimedBlockModifier;
         public float DamageAdditiveModifier;
 
-        public float GetDamage(int damage, bool perfectBlock, bool mistimedBlock, bool badParry)
-        {
+        [NonSerialized]
+        public bool IsMarkedTrash = false;
+
+        public float GetDamage(int damage, bool perfectBlock, bool mistimedBlock, bool badParry) {
             float fdamage = damage - DamageAdditiveModifierWithMod;
             fdamage = Mathf.Max(0, fdamage);
 
-            if (perfectBlock) return fdamage * PerfectBlockModifierWithMod;
-            if (mistimedBlock) return fdamage * MistimedBlockModifierWithMod;
-            if (badParry) return fdamage;
+            if(perfectBlock) {
+                return fdamage * PerfectBlockModifierWithMod;
+            }
+
+            if(mistimedBlock) {
+                return fdamage * MistimedBlockModifierWithMod;
+            }
+
+            if(badParry) {
+                return fdamage;
+            }
+
             return fdamage * NoBlockModifierWithMod;
         }
 
@@ -102,10 +129,11 @@ namespace G4AW2.Data.DropSystem
         private class DummySave {
             public int ID;
             public int Random;
+            public bool Trash;
         }
 
         public string GetSaveString() {
-            return JsonUtility.ToJson(new DummySave() { ID = ID, Random = random });
+            return JsonUtility.ToJson(new DummySave() { ID = ID, Random = random, Trash = IsMarkedTrash });
         }
 
         public void SetData(string saveString, params object[] otherData) {
@@ -114,6 +142,7 @@ namespace G4AW2.Data.DropSystem
 
             ID = ds.ID;
             random = ds.Random;
+            IsMarkedTrash = ds.Trash;
 
             Armor original;
 
@@ -126,6 +155,14 @@ namespace G4AW2.Data.DropSystem
 
             // Copy Original Values
             OnAfterObtained(original);
+        }
+
+        public bool IsTrash() {
+            return IsMarkedTrash;
+        }
+
+        public void SetTrash(bool isTrash) {
+            IsMarkedTrash = isTrash;
         }
     }
 }

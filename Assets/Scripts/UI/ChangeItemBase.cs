@@ -8,7 +8,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 public class ChangeItemBase<T, TRef, TVar, TEvent> : MonoBehaviour 
-    where T : Item
+    where T : Item, ITrashable
     where TEvent : UnityEvent<T>, new()
     where TVar : Variable<T, TEvent>
     where TRef : Reference<T, TVar, TEvent> {
@@ -20,6 +20,8 @@ public class ChangeItemBase<T, TRef, TVar, TEvent> : MonoBehaviour
     public TRef Item;
 
     public ItemViewer Viewer;
+    public BoolReference ShowTrash;
+
 
     // Use this for initialization
     public void Awake() {
@@ -31,14 +33,18 @@ public class ChangeItemBase<T, TRef, TVar, TEvent> : MonoBehaviour
         //throw new NotImplementedException();
     }
 
-    private void Onclick(InventoryItemDisplay inventoryItemDisplay) {
-        Viewer.ShowItemsFromInventory<T>(false, it => {
-            PopUp.SetPopUp($"{it.GetName()}\n{it.GetDescription()}", new string[] {"Equip", "Cancel"}, new Action[] {
+    protected virtual void Onclick(InventoryItemDisplay inventoryItemDisplay) {
+
+        Viewer.ShowItemsFromInventory<T>(false, ShowTrash, it => {
+            PopUp.SetPopUp($"{it.GetName()}\n{it.GetDescription()}", new string[] {"Equip", it.IsTrash() ? "Untrash" : "Trash", "Cancel"}, new Action[] {
                 () => {
                     Inventory.Add(Item.Value);
                     Item.Value = (T) it;
                     Inventory.Remove(it);
                     Viewer.Close();
+                },
+                () => {
+                    it.SetTrash(!it.IsTrash());
                 },
                 () => { }
             });

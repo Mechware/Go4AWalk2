@@ -45,6 +45,9 @@ public class DragObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 
 	public void Enable() {
 		scrollingEnabled = true;
+	    if (IsAtEnd()) {
+	        OnReset.Invoke();
+        }
 	}
 
 	public void OnBeginDrag(PointerEventData eventData) {
@@ -101,12 +104,16 @@ public class DragObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 		if (!scrollingEnabled)
 			return;
 
-		if (rt.localPosition.x.Near(MinBounds.x, 0.5f) && rt.localPosition.y.Near(MaxBounds.y, 0.5f)) {
+		if (IsAtEnd()) {
             OnReset.Invoke();
 	    }
 
 		eventData.Use();
 	}
+
+    bool IsAtEnd() {
+        return rt.localPosition.x.Near(MinBounds.x, 0.5f) && rt.localPosition.y.Near(MaxBounds.y, 0.5f);
+    }
 
     public void ResetScrolling()
     {
