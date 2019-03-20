@@ -8,7 +8,7 @@ using G4AW2.Dialogue;
 using UnityEngine;
 
 namespace G4AW2.Saving {
-	[CreateAssetMenu(menuName = "Save Manager")]
+	[CreateAssetMenu(menuName = "Misc/Save Manager")]
 	public class SaveManager : ScriptableObject {
 
 		private string saveFile;

@@ -8,7 +8,7 @@ using UnityEditor;
 #endif
 
 namespace CustomEvents {
-	[UnityEngine.CreateAssetMenu(menuName = "Persistent Set/General/FollowerData")]
+	[UnityEngine.CreateAssetMenu(menuName = "SO Architecture/Persistent Set/Specific/FollowerData")]
 		public class PersistentSetFollowerData : PersistentSetGeneric<FollowerData, UnityEventFollowerData> {
 #if UNITY_EDITOR
 		[ContextMenu("Add all followers")]

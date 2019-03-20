@@ -1,11 +1,11 @@
-﻿using CustomEvents;
+using CustomEvents;
 using G4AW2.Data.Combat;
 using G4AW2.Questing;
 using System;
 using System.Linq;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Data/Quests/BossQuest")]
+[CreateAssetMenu(menuName = "Data/Quests/Active/BossQuest")]
 public class BossQuest : ActiveQuest<int, IntVariable, UnityEventInt> {
 
     public RuntimeSetFollowerData EnemyList;

@@ -5,7 +5,7 @@ using UnityEditor;
 using UnityEngine;
 
 namespace CustomEvents {
-    [UnityEngine.CreateAssetMenu(menuName = "Persistent Set/General/Quest")]
+    [UnityEngine.CreateAssetMenu(menuName = "SO Architecture/Persistent Set/Specific/Quest")]
     public class PersistentSetQuest : PersistentSetGeneric<Quest, UnityEventQuest> {
 #if UNITY_EDITOR
         [ContextMenu("Add all quests")]

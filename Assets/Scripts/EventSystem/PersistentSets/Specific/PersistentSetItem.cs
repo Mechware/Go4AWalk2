@@ -7,7 +7,7 @@ using UnityEditor;
 using UnityEngine;
 
 namespace CustomEvents {
-	[UnityEngine.CreateAssetMenu(menuName = "Persistent Set/General/Item")]
+	[UnityEngine.CreateAssetMenu(menuName = "SO Architecture/Persistent Set/Specific/Item")]
 		public class PersistentSetItem : PersistentSetGeneric<Item, UnityEventItem> {
 #if UNITY_EDITOR
 		[ContextMenu("Add all items")]

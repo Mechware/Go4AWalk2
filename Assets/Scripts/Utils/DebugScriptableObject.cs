@@ -1,8 +1,8 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Debug/Debug Object")]
+[CreateAssetMenu(menuName = "Misc/Debug/Debug Object")]
 public class DebugScriptableObject : ScriptableObject {
 
 	public void Print(string text) {

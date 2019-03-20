@@ -19,7 +19,7 @@ namespace {1} {{
 {0}
 namespace {1} {{
     [System.Serializable]
-    [UnityEngine.CreateAssetMenu(menuName = ""Events/{4}/{3}"")]
+    [UnityEngine.CreateAssetMenu(menuName = ""SO Architecture/Events/{4}/{3}"")]
 	public class GameEvent{3} : GameEventGeneric<{2}, GameEvent{3}, UnityEvent{3}> {{
 	}}
 }}
@@ -34,7 +34,7 @@ namespace {1} {{
 		private static readonly string VariableScript = @"
 {0}
 namespace {1} {{
-    [UnityEngine.CreateAssetMenu(menuName = ""Variable/{4}/{3}"")]
+    [UnityEngine.CreateAssetMenu(menuName = ""SO Architecture/Variable/{4}/{3}"")]
 	public class {3}Variable : Variable<{2}, UnityEvent{3}> {{
 	}}
 }}
@@ -58,7 +58,7 @@ namespace {1}.Editor {{
 		private static readonly string RuntimeSetScript = @"
 {0}
 namespace {1} {{
-	[UnityEngine.CreateAssetMenu(menuName = ""Runtime Set/{4}/{3}"")]
+	[UnityEngine.CreateAssetMenu(menuName = ""SO Architecture/Runtime Set/{4}/{3}"")]
 		public class RuntimeSet{3} : RuntimeSetGeneric<{2}, UnityEvent{3}> {{
 		}}
 	}}
@@ -67,7 +67,7 @@ namespace {1} {{
 		private static readonly string PersistentSetScript = @"
 {0}
 namespace {1} {{
-	[UnityEngine.CreateAssetMenu(menuName = ""Persistent Set/{4}/{3}"")]
+	[UnityEngine.CreateAssetMenu(menuName = ""SO Architecture/Persistent Set/{4}/{3}"")]
 		public class PersistentSet{3} : PersistentSetGeneric<{2}, UnityEvent{3}> {{
 		}}
 	}}

@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace CustomEvents {
 
-	[Serializable][CreateAssetMenu(menuName = "Events/None")]
+	[Serializable][CreateAssetMenu(menuName = "SO Architecture/Events/None")]
 	public class GameEvent : ScriptableObject {
 
 		private readonly List<GameEventListener> listeners = new List<GameEventListener>();

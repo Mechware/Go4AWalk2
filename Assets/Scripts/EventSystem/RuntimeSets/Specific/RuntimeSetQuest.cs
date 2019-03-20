@@ -2,7 +2,7 @@
 using G4AW2.Questing;
 
 namespace CustomEvents {
-	[UnityEngine.CreateAssetMenu(menuName = "Runtime Set/General/Quest")]
+	[UnityEngine.CreateAssetMenu(menuName = "SO Architecture/Runtime Set/Specific/Quest")]
 		public class RuntimeSetQuest : RuntimeSetGenericSaveableWithIID<Quest, UnityEventQuest> {
 		}
 	}

@@ -2,7 +2,7 @@ using G4AW2.Data.DropSystem;
 using UnityEngine;
 
 namespace G4AW2.Data.Combat {
-	[CreateAssetMenu(menuName = "Data/Enemy")]
+	[CreateAssetMenu(menuName = "Data/Follower/Enemy")]
     public class EnemyData : FollowerData {
 
 		[Header("Animations")]

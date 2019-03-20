@@ -7,7 +7,7 @@ using UnityEditor;
 using UnityEngine;
 
 namespace CustomEvents {
-	[UnityEngine.CreateAssetMenu(menuName = "Persistent Set/Specific/CraftingRecipe")]
+	[UnityEngine.CreateAssetMenu(menuName = "SO Architecture/Persistent Set/Specific/CraftingRecipe")]
 		public class PersistentSetCraftingRecipe : PersistentSetGeneric<CraftingRecipe, UnityEventCraftingRecipe> {
 #if UNITY_EDITOR
 	    [ContextMenu("Add all Recipes")]

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "GPSStrategies/Average")]
+[CreateAssetMenu(menuName = "Misc/GPSStrategies/Average")]
 public class GPSStrategyAverage : GPSStrategy {
 
 	[ShowInInspector] private int GPSUpdatesBeforeAverage = 5;

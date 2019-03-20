@@ -7,7 +7,7 @@ using G4AW2.Data.DropSystem;
 using UnityEngine;
 
 namespace G4AW2.Data {
-    [CreateAssetMenu(menuName = "Data/Quests/CollectItem")]
+    [CreateAssetMenu(menuName = "Data/Quests/Passive/Collecting")]
     public class CollectItemQuest : PassiveQuest {
 
         public Item Item;

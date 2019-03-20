@@ -2,7 +2,7 @@
 using G4AW2.Data.Crafting;
 
 namespace CustomEvents {
-    [UnityEngine.CreateAssetMenu(menuName = "Variable/Specific/CraftingRecipe")]
+    [UnityEngine.CreateAssetMenu(menuName = "SO Architecture/Variable/Specific/CraftingRecipe")]
 	public class CraftingRecipeVariable : Variable<CraftingRecipe, UnityEventCraftingRecipe> {
 	}
 }

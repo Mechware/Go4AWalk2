@@ -1,4 +1,4 @@
-﻿using G4AW2.Data.DropSystem;
+using G4AW2.Data.DropSystem;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ namespace CustomEvents
 {
 
     [Serializable]
-    [CreateAssetMenu(menuName = "Events/General/GameObject")]
+    [CreateAssetMenu(menuName = "SO Architecture/Events/General/GameObject")]
     public class GameEventGameObject : ScriptableObject
     {
         private readonly List<GameEventListenerGameObject> listeners = new List<GameEventListenerGameObject>();
