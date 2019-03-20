@@ -2,6 +2,7 @@ using CustomEvents;
 using G4AW2.Data;
 using System.Collections.Generic;
 using System.Linq;
+using G4AW2.Data.Combat;
 using UnityEngine;
 
 namespace G4AW2.Followers {
@@ -56,7 +57,14 @@ namespace G4AW2.Followers {
             // randomly choose a follower!
 	        if (CurrentFollowers.Value.Count >= 10) return;
 
-		    CurrentFollowers.Add(DropData.GetRandomFollower(true));
+	        FollowerData data = DropData.GetRandomFollower(true);
+
+	        if (data is EnemyData) {
+	            EnemyData d = (EnemyData) data;
+                // TODO: Spawn a unique enemy
+	        }
+
+            CurrentFollowers.Add(data);
         }
 
 #if UNITY_EDITOR
