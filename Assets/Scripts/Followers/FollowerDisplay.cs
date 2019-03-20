@@ -1,6 +1,8 @@
 using System;
 using CustomEvents;
 using G4AW2.Data;
+using G4AW2.Data.Combat;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -13,6 +15,7 @@ namespace G4AW2.Followers {
 		[NonSerialized] public FollowerData Data;
 
 		public AnimatorOverrideController BaseController;
+        public TextMeshProUGUI followerID;
 
 		public Action<FollowerDisplay> FollowerClicked;
 		private Animator Animator;
@@ -34,7 +37,6 @@ namespace G4AW2.Followers {
 			}
 			
 		}
-
 		void Update() {
 			if (Data.HasRandomAnimation) {
 				currentTime += Time.deltaTime;
@@ -54,6 +56,10 @@ namespace G4AW2.Followers {
 				aoc["Random"] = Data.RandomAnimation;
 				doRandomTime = Random.Range(Data.MinTimeBetweenRandomAnims, Data.MaxTimeBetweenRandomAnims);
 			}
+            if (Data is EnemyData) {
+                EnemyData e = (EnemyData) data;
+                followerID.text = "LVL 1" + "\n" + e.name;
+            }
 		}
 
 		public void OnPointerClick(PointerEventData eventData) {
