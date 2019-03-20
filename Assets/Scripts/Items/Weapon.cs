@@ -4,23 +4,45 @@ using G4AW2.Data.DropSystem;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using G4AW2.Utils;
 using UnityEngine;
 
 namespace G4AW2.Data.DropSystem
 {
     [CreateAssetMenu(menuName = "Data/Items/Weapon")]
     public class Weapon : Item, ISaveable, ITrashable {
-        public int TapsWithWeapon = 1;
+
         public int ActualDamage => Mathf.RoundToInt( (Level == 99 ? 2.15f * Damage :  Damage * ( 1 + Level / 100f)) * mod);
         public int Level => Mathf.RoundToInt( ConfigObject.GetLevel(Rarity, TapsWithWeapon));
         public int Damage;
 
+        public GameEventWeapon LevelUp;
+
         [NonSerialized]
         public bool MarkedAsTrash = false;
+        [NonSerialized]
+        public ObservableInt TapsWithWeapon = new ObservableInt(1);
 
         private int random = -1;
         private float mod;
         private string nameMod;
+
+        void OnEnable() {
+            TapsWithWeapon.OnValueChange += TapsChanged;
+        }
+
+        private int lastLevel = -1;
+        void TapsChanged(int amount) {
+            if (lastLevel == -1) {
+                lastLevel = Level;
+                return;
+            }
+
+            if (Level != lastLevel) {
+                LevelUp.Raise(this);
+                lastLevel = Level;
+            }
+        }
 
         public override bool ShouldCreateNewInstanceWhenPlayerObtained() {
             return true;
@@ -35,13 +57,14 @@ namespace G4AW2.Data.DropSystem
             Description = original.Description;
             Rarity = original.Rarity;
             Damage = ((Weapon)original).Damage;
+            LevelUp = ((Weapon) original).LevelUp;
 
             if(random != -1) {
                 SetValuesBasedOnRandom();
             } else {
                 random = UnityEngine.Random.Range(0, 101);
                 SetValuesBasedOnRandom();
-                TapsWithWeapon = 0;
+                TapsWithWeapon.Value = 0;
             }
         }
 
@@ -96,7 +119,7 @@ namespace G4AW2.Data.DropSystem
 
             ID = ds.ID;
             random = ds.Random;
-            TapsWithWeapon = ds.Taps;
+            TapsWithWeapon.Value = ds.Taps;
             MarkedAsTrash = ds.Trash;
 
             Weapon original;

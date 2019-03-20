@@ -17,6 +17,7 @@ public class Checkbox : MonoBehaviour, IPointerDownHandler {
 
     void Awake() {
         im = GetComponent<Image>();
+        im.sprite = Selected ? SelectedImage : NormalImage;
     }
 
 	// Use this for initialization

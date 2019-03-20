@@ -17,5 +17,5 @@ MonoBehaviour:
   Description: We all know gold would make for terrible weapons, but don't worry we
     didn't tell the game balancers that.
   Rarity: 3
-  TapsWithWeapon: 0
   Damage: 35
+  LevelUp: {fileID: 11400000, guid: 1b44135a1b59bbf4193efb1137b4ab02, type: 2}

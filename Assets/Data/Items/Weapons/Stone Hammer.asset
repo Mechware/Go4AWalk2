@@ -17,5 +17,5 @@ MonoBehaviour:
   Description: A simple tool used since ancient times. Still just as effective as
     ever.
   Rarity: 0
-  TapsWithWeapon: 0
   Damage: 14
+  LevelUp: {fileID: 11400000, guid: 1b44135a1b59bbf4193efb1137b4ab02, type: 2}
