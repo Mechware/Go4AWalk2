@@ -58,7 +58,7 @@ namespace G4AW2.Followers {
 			}
             if (Data is EnemyData) {
                 EnemyData e = (EnemyData) data;
-                followerID.text = "LVL 1" + "\n" + e.name;
+                followerID.text = "LVL " + e.Level + "\n" + e.name.Replace("(Clone)", "");
             }
 		}
 

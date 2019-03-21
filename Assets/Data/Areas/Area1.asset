@@ -14,10 +14,16 @@ MonoBehaviour:
   Enemies:
     Drops:
     - Follower: {fileID: 11400000, guid: 396482660d9279a4294f369245325131, type: 2}
+      MinLevel: 1
+      MaxLevel: 5
       DropChance: 5
     - Follower: {fileID: 11400000, guid: f9cb20d3635f5ec40935188217f021cd, type: 2}
+      MinLevel: 1
+      MaxLevel: 10
       DropChance: 5
     - Follower: {fileID: 11400000, guid: 51d3cce514427d448a622c4b31127522, type: 2}
+      MinLevel: 2
+      MaxLevel: 4
       DropChance: 10
   Background: {fileID: 21300000, guid: 8f39de82e516faa4393ccd2eb84eae65, type: 3}
   SkyUpper: {fileID: 21300000, guid: bfab8ec1cf01c6b44b95d964dbb89392, type: 3}

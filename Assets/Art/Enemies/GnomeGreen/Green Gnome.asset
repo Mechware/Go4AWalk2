@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92ed46357c010e84ea5a3394f3ad888d, type: 3}
   m_Name: Green Gnome
   m_EditorClassIdentifier: 
-  ID: 0
+  ID: 15
   SizeOfSprite: {x: 64, y: 64}
   SideIdleAnimation: {fileID: 7400000, guid: 18490713dd8bc1441bcda360acb69605, type: 2}
   RandomAnimation: {fileID: 7400000, guid: f3c04ab5bb2b84146bcd08e65a08b089, type: 2}
@@ -25,10 +25,24 @@ MonoBehaviour:
   Death: {fileID: 7400000, guid: ffbeb4db412c88b45ae41590b0c026a6, type: 2}
   Dead: {fileID: 7400000, guid: d1018a116e017ce4fa0e4a56f1330bba, type: 2}
   Walking: {fileID: 7400000, guid: 3a4a77268e2965449827f915e6502947, type: 2}
-  BaseHealth: 10
-  BaseArmor: 1
-  TimeBetweenHeavyAttacks: 1
-  BaseHeavyDamage: 3
+  HealthScaling:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  TimeBetweenHeavyAttacksScaling:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  DamageScaling:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   AttackPrepTime: 0.5
   AttackExecuteTime: 0.5
   Drops:

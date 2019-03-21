@@ -115,6 +115,10 @@ public class DragObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         return rt.localPosition.x.Near(MinBounds.x, 0.5f) && rt.localPosition.y.Near(MaxBounds.y, 0.5f);
     }
 
+    public void InvokeDragEvent() {
+        OnDragEvent.Invoke();
+    }
+
     public void ResetScrolling()
     {
         OnReset.Invoke();

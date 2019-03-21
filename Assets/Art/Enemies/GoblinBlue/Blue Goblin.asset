@@ -11,7 +11,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92ed46357c010e84ea5a3394f3ad888d, type: 3}
   m_Name: Blue Goblin
   m_EditorClassIdentifier: 
-  ID: 0
+  ID: 13
+  SizeOfSprite: {x: 32, y: 32}
   SideIdleAnimation: {fileID: 7400000, guid: 2cdbe3c753068ce47bed78385693138c, type: 2}
   RandomAnimation: {fileID: 7400000, guid: c91d90e94e0aaab419c9a4121dc8637d, type: 2}
   MinTimeBetweenRandomAnims: 30
@@ -24,10 +25,24 @@ MonoBehaviour:
   Death: {fileID: 7400000, guid: 6652d04e2bc2b484ba7547c6c1b66376, type: 2}
   Dead: {fileID: 7400000, guid: a8651d931914a9145bd745f196b88525, type: 2}
   Walking: {fileID: 7400000, guid: 1119eac8ebcd4504ca1a1f3321509e81, type: 2}
-  BaseHealth: 0
-  BaseArmor: 0
-  TimeBetweenHeavyAttacks: 0
-  BaseHeavyDamage: 0
+  HealthScaling:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  TimeBetweenHeavyAttacksScaling:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  DamageScaling:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   AttackPrepTime: 0
   AttackExecuteTime: 0
   Drops:

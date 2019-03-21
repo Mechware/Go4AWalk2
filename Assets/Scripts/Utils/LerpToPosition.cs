@@ -12,7 +12,6 @@ public class LerpToPosition : MonoBehaviour {
 	public float TimeToLerp;
 	public UnityEvent OnLerpingDone;
 
-    private Vector2 startPosition;
     private Vector2 steps;
 	private float duration;
     private bool lerping = false;
@@ -24,7 +23,6 @@ public class LerpToPosition : MonoBehaviour {
 
     // Use this for initialization
     public void StartLerping () {
-		startPosition = RectTransform.anchoredPosition;
 
         Keyframe frame = XCurve.keys[0];
         frame.value = RectTransform.anchoredPosition.x;

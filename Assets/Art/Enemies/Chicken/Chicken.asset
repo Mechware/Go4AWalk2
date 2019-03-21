@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92ed46357c010e84ea5a3394f3ad888d, type: 3}
   m_Name: Chicken
   m_EditorClassIdentifier: 
-  ID: 0
+  ID: 14
   SizeOfSprite: {x: 32, y: 32}
   SideIdleAnimation: {fileID: 7400000, guid: 1d4de40d339b49b4d98b6be002df9a49, type: 2}
   RandomAnimation: {fileID: 7400000, guid: f032d3e5988a563498a3647c02b6e8c0, type: 2}
@@ -25,10 +25,105 @@ MonoBehaviour:
   Death: {fileID: 7400000, guid: 9be3681b890b5c14c9343ad1f4c61ee2, type: 2}
   Dead: {fileID: 7400000, guid: 68b8cc7874e7bc24385a1ef59242232d, type: 2}
   Walking: {fileID: 7400000, guid: 2a140d8f52d2e274a9f93313a970fc1f, type: 2}
-  BaseHealth: 250
-  BaseArmor: 0
-  TimeBetweenHeavyAttacks: 60
-  BaseHeavyDamage: 1000
+  HealthScaling:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 70
+      inSlope: 0.10955195
+      outSlope: 0.10955195
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.0508982
+    - serializedVersion: 3
+      time: 98
+      value: 100
+      inSlope: 0.31077388
+      outSlope: 0.31077388
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 99
+      value: 10000000
+      inSlope: 9999900
+      outSlope: 9999900
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  TimeBetweenHeavyAttacksScaling:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 99
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 98
+      value: 99
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 99
+      value: 0.2
+      inSlope: -98.8
+      outSlope: -98.8
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  DamageScaling:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 30
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 98
+      value: 30
+      inSlope: -115.69326
+      outSlope: -115.69326
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.051719043
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 99
+      value: 1000000
+      inSlope: 999970
+      outSlope: 999970
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   AttackPrepTime: 1
   AttackExecuteTime: 1
   Drops:

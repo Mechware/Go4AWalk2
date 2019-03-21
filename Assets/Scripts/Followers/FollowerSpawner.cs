@@ -59,11 +59,6 @@ namespace G4AW2.Followers {
 
 	        FollowerData data = DropData.GetRandomFollower(true);
 
-	        if (data is EnemyData) {
-	            EnemyData d = (EnemyData) data;
-                // TODO: Spawn a unique enemy
-	        }
-
             CurrentFollowers.Add(data);
         }
 

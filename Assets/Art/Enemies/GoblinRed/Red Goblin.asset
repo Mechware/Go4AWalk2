@@ -11,7 +11,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92ed46357c010e84ea5a3394f3ad888d, type: 3}
   m_Name: Red Goblin
   m_EditorClassIdentifier: 
-  ID: 0
+  ID: 16
+  SizeOfSprite: {x: 32, y: 32}
   SideIdleAnimation: {fileID: 7400000, guid: 36735c37166f22a41bd7089b36eafe16, type: 2}
   RandomAnimation: {fileID: 7400000, guid: 7c1f03fe3593ffe4095fe7c270000a9f, type: 2}
   MinTimeBetweenRandomAnims: 30
@@ -24,10 +25,24 @@ MonoBehaviour:
   Death: {fileID: 7400000, guid: 777446bd182ff804d88aaa97758a2752, type: 2}
   Dead: {fileID: 7400000, guid: 7ca7e545c27a7b44e8a3877cae40adbf, type: 2}
   Walking: {fileID: 7400000, guid: d5ca7be903f70da4b88646fda75b9f2d, type: 2}
-  BaseHealth: 0
-  BaseArmor: 0
-  TimeBetweenHeavyAttacks: 0
-  BaseHeavyDamage: 0
+  HealthScaling:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  TimeBetweenHeavyAttacksScaling:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  DamageScaling:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   AttackPrepTime: 0
   AttackExecuteTime: 0
   Drops:

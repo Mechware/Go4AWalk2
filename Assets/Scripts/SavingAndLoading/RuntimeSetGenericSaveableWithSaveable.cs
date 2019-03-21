@@ -10,22 +10,15 @@ namespace CustomEvents {
 
         [System.Serializable]
         private struct SaveObject {
-            public List<SaveObject2> List;
-        }
-
-        [System.Serializable]
-        private class SaveObject2 {
-            public string Data;
+            public List<string> List;
         }
 
         public override string GetSaveString() {
             SaveObject so = new SaveObject();
-            so.List = new List<SaveObject2>();
+            so.List = new List<string>();
 
             foreach(T val in Value) {
-                SaveObject2 so2 = new SaveObject2();
-                so2.Data = val.GetSaveString();
-                so.List.Add(so2);
+                so.List.Add(val.GetSaveString());
             }
 
             return JsonUtility.ToJson(so);
@@ -33,11 +26,12 @@ namespace CustomEvents {
 
         public override void SetData(string saveString, params object[] otherData) {
             Clear();
-            List<SaveObject2> loadedStrings = JsonUtility.FromJson<SaveObject>(saveString).List;
+            List<string> loadedStrings = JsonUtility.FromJson<SaveObject>(saveString).List;
+            if (loadedStrings == null) return;
 
-            foreach(SaveObject2 loadedObject in loadedStrings) {
+            foreach(string loadedObject in loadedStrings) {
                 T newItem = CreateInstance<T>();
-                newItem.SetData(loadedObject.Data, otherData[0]);
+                newItem.SetData(loadedObject, otherData[0]);
                 Add(newItem);
             }
         }

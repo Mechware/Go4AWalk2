@@ -10,5 +10,7 @@ public static class GlobalFollowerDrops {
 [System.Serializable]
 public class FollowerDrop {
     public FollowerData Follower;
+    public int MinLevel;
+    public int MaxLevel;
     public int DropChance;
 }

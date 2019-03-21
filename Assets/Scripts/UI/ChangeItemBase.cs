@@ -39,7 +39,7 @@ public class ChangeItemBase<T, TRef, TVar, TEvent> : MonoBehaviour
             PopUp.SetPopUp($"{it.GetName()}\n{it.GetDescription()}", new string[] {"Equip", it.IsTrash() ? "Untrash" : "Trash", "Cancel"}, new Action[] {
                 () => {
                     Inventory.Add(Item.Value);
-                    Item.Value = (T) it;
+                    Item.Value = it;
                     Inventory.Remove(it);
                     Viewer.Close();
                 },

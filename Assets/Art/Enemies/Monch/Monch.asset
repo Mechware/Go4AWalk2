@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Name: Monch
   m_EditorClassIdentifier: 
   ID: 9
+  SizeOfSprite: {x: 32, y: 32}
   SideIdleAnimation: {fileID: 7400000, guid: f90fc67c3287ca749b519e9ad9a59f70, type: 2}
   RandomAnimation: {fileID: 7400000, guid: f55407dce871a18439040cc69ec91174, type: 2}
   MinTimeBetweenRandomAnims: 2
@@ -24,12 +25,80 @@ MonoBehaviour:
   Death: {fileID: 7400000, guid: 8bdca9a98387abd4a840ead360121abb, type: 2}
   Dead: {fileID: 7400000, guid: 7d60b7f8379db93439a8f6cc54e8a8d4, type: 2}
   Walking: {fileID: 7400000, guid: 708288adc19db63429f741587fe751ab, type: 2}
-  BaseHealth: 100
-  BaseArmor: 10
-  TimeBetweenHeavyAttacks: 3
-  BaseHeavyDamage: 1
-  AttackPrepTime: 2
-  AttackExecuteTime: 1
+  HealthScaling:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 600
+      inSlope: 126.78131
+      outSlope: 126.78131
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.051896207
+    - serializedVersion: 3
+      time: 99
+      value: 90000
+      inSlope: 2408.8328
+      outSlope: 2408.8328
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.025948111
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  TimeBetweenHeavyAttacksScaling:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 3
+      inSlope: -0.01010101
+      outSlope: -0.01010101
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 99
+      value: 2
+      inSlope: -0.01010101
+      outSlope: -0.01010101
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  DamageScaling:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 12
+      inSlope: 24.770088
+      outSlope: 24.770088
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.05788423
+    - serializedVersion: 3
+      time: 99
+      value: 13000
+      inSlope: 131.19193
+      outSlope: 131.19193
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  AttackPrepTime: 0.5
+  AttackExecuteTime: 0.25
   Drops:
     Items:
     - item: {fileID: 11400000, guid: 10f87211d9f03ba468a8554aae870c84, type: 2}

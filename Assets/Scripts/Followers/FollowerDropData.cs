@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using G4AW2.Data;
+using G4AW2.Data.Combat;
 using UnityEngine;
 
 namespace G4AW2.Followers {
@@ -12,7 +13,7 @@ namespace G4AW2.Followers {
 
 		public FollowerData GetRandomFollower(bool includeGlobal) {
 
-		    List<FollowerDrop> drops = includeGlobal ? this.Drops.Concat(GlobalFollowerDrops.GlobalDrops).ToList() : this.Drops;
+		    List<FollowerDrop> drops = includeGlobal ? Drops.Concat(GlobalFollowerDrops.GlobalDrops).ToList() : Drops;
 
 			int sum = drops.Sum(t => t.DropChance);
 			int rand = Random.Range(0, sum);
@@ -21,9 +22,18 @@ namespace G4AW2.Followers {
 				count += t.DropChance;
 
 				if (rand < count) {
-					return t.Follower;
+				    FollowerData data = Object.Instantiate(t.Follower);
+				    if (data is EnemyData) {
+				        EnemyData d = data as EnemyData;
+				        d.Level = Mathf.RoundToInt(Random.value * (t.MaxLevel - t.MinLevel) + t.MinLevel);
+				        data = d;
+				    }
+					return data;
 				}
 			}
+
+
+
 			return drops.Last().Follower;
 		}
 

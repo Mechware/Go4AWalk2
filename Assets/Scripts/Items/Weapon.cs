@@ -12,8 +12,12 @@ namespace G4AW2.Data.DropSystem
     [CreateAssetMenu(menuName = "Data/Items/Weapon")]
     public class Weapon : Item, ISaveable, ITrashable {
 
-        public int ActualDamage => Mathf.RoundToInt( (Level == 99 ? 2.15f * Damage :  Damage * ( 1 + Level / 100f)) * mod);
-        public int Level => Mathf.RoundToInt( ConfigObject.GetLevel(Rarity, TapsWithWeapon));
+        public int ActualDamage => Mathf.RoundToInt( Damage * mod * MasteryDamageMod * LevelDamageMod);
+        public int Mastery => Mathf.RoundToInt( ConfigObject.GetLevel(Rarity, TapsWithWeapon));
+        private float MasteryDamageMod => Mastery == 99 ? 2.15f : 1 + Mastery / 100f;
+        private float LevelDamageMod => 1 + Level / 10f; 
+
+
         public int Damage;
 
         public GameEventWeapon LevelUp;
@@ -22,6 +26,8 @@ namespace G4AW2.Data.DropSystem
         public bool MarkedAsTrash = false;
         [NonSerialized]
         public ObservableInt TapsWithWeapon = new ObservableInt(1);
+        [NonSerialized]
+        public int Level = 1;
 
         private int random = -1;
         private float mod;
@@ -34,13 +40,13 @@ namespace G4AW2.Data.DropSystem
         private int lastLevel = -1;
         void TapsChanged(int amount) {
             if (lastLevel == -1) {
-                lastLevel = Level;
+                lastLevel = Mastery;
                 return;
             }
 
-            if (Level != lastLevel) {
+            if (Mastery != lastLevel) {
                 LevelUp.Raise(this);
-                lastLevel = Level;
+                lastLevel = Mastery;
             }
         }
 
@@ -73,7 +79,7 @@ namespace G4AW2.Data.DropSystem
         }
 
         public override string GetDescription() {
-            return $"Level: {Level}\nDamage: {ActualDamage}\n{Description}";
+            return $"Level: {Level}\nMastery: {Mastery}\nDamage: {ActualDamage}\n{Description}";
         }
 
         public void SetValuesBasedOnRandom() {
@@ -107,10 +113,11 @@ namespace G4AW2.Data.DropSystem
             public int Random;
             public int Taps = 0;
             public bool Trash = false;
+            public int Level = 1;
         }
 
         public string GetSaveString() {
-            return JsonUtility.ToJson(new DummySave() {ID = ID, Random = random, Taps = TapsWithWeapon, Trash = MarkedAsTrash});
+            return JsonUtility.ToJson(new DummySave() {ID = ID, Random = random, Taps = TapsWithWeapon, Trash = MarkedAsTrash, Level = Level});
         }
 
         public void SetData(string saveString, params object[] otherData) {
@@ -121,6 +128,7 @@ namespace G4AW2.Data.DropSystem
             random = ds.Random;
             TapsWithWeapon.Value = ds.Taps;
             MarkedAsTrash = ds.Trash;
+            Level = ds.Level;
 
             Weapon original;
 

@@ -1,7 +1,10 @@
 using G4AW2.Data.Combat;
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using CustomEvents;
+using G4AW2.Data.DropSystem;
 using G4AW2.Events;
 using UnityEngine;
 using UnityEngine.Events;
@@ -18,7 +21,6 @@ namespace G4AW2.Combat {
 
 		public State EnemyState;
 		public EnemyData Enemy;
-	    public IntReference Level;
 
 		public IntReference MaxHealth;
 	    public IntReference CurrentHealth;
@@ -51,24 +53,19 @@ namespace G4AW2.Combat {
 			EnemyState = State.Disabled;
 
 			if (Enemy != null) {
-			    SetEnemy(Enemy, Level);
+			    SetEnemy(Enemy);
 		    }
 
 	    }
 
-        public void SetEnemy(EnemyData data) {
-			SetEnemy(data, 1);
-		}
-
-		public void SetEnemy( EnemyData data, int level ) {
+		public void SetEnemy( EnemyData data) {
             isDead = false;
 			Enemy = data;
-			Level.Value = level;
 
-			MaxHealth.Value = data.GetHealth(level);
+			MaxHealth.Value = data.MaxHealth;
 			CurrentHealth.Value = MaxHealth;
-			HeavyDamage.Value = data.GetHeavyDamage(level);
-			TimeBetweenHeavyAttacks.Value = data.GetTimeBetweenHeavyAttacks(level);
+		    HeavyDamage.Value = data.Damage;
+		    TimeBetweenHeavyAttacks.Value = data.TimeBetweenHeavyAttack;
             AttackPrepTime.Value = data.AttackPrepTime;
             AttackExecuteDuration.Value = data.AttackExecuteTime;
 
@@ -83,7 +80,7 @@ namespace G4AW2.Combat {
             aoc["Walking"] = Enemy.Walking;
 
 
-            // I wish there was a better way to do this
+            // TODO: Find a better way to do this
             Vector3 pos = transform.localPosition;
             pos.x = -70;
             transform.localPosition = pos;
@@ -178,7 +175,15 @@ namespace G4AW2.Combat {
 				isDead = true;
 				OnDeath.Invoke(Enemy);
                 MyAnimator.SetTrigger("Death");
-				OnDropLoot.Invoke(Enemy.Drops.GetItems(true));
+			    List<Item> items = Enemy.Drops.GetItems(true);
+			    foreach (Item item in items) {
+			        if (item is Weapon) {
+			            Weapon weapon = item as Weapon;
+			            weapon.Level = Enemy.Level;
+			        }
+			    }
+
+                OnDropLoot.Invoke(items);
 			} else {
 				OnHit.Invoke(amount);
 			    MyAnimator.SetTrigger("Flinch");
@@ -191,7 +196,7 @@ namespace G4AW2.Combat {
 #if UNITY_EDITOR
 		[ContextMenu("Reload Enemy")]
 		public void ReloadLevel() {
-			SetEnemy(Enemy, Level);
+			SetEnemy(Enemy);
 		}
 #endif
 	}
