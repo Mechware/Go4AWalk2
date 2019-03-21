@@ -11,6 +11,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49d296f6db31aca498e7b7f0aef4c8c1, type: 3}
   m_Name: StatsSaveManager
   m_EditorClassIdentifier: 
+  OnLoadNotSuccessful: {fileID: 0}
+  OnNewGame: {fileID: 11400000, guid: 61132bc0371f108479ce7bac4d5dd674, type: 2}
+  OnSuccessfulLoad: {fileID: 11400000, guid: e0558b1d496d2464ebe30844eaacef9b, type: 2}
+  OnSaveFinish: {fileID: 11400000, guid: 79a093703b0742044bd169af356dc60d, type: 2}
   ObjectsToSave:
   - ObjectToSave: {fileID: 11400000, guid: f98c0dae92606424ead1fe09dd8181ed, type: 2}
     OtherData: []

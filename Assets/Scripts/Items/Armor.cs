@@ -69,6 +69,8 @@ namespace G4AW2.Data.DropSystem {
 
         public override void OnAfterObtained(Item original) {
 
+
+
             ID = original.ID;
             name = original.name;
             Image = original.Image;
