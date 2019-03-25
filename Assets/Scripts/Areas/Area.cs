@@ -10,7 +10,6 @@ namespace G4AW2.Data.Area {
 	public class Area : ScriptableObject {
 		public FollowerDropData Enemies;
 		public Sprite Background;
-		public Sprite SkyUpper;
 		public Sprite Sky;
 		public Sprite Clouds1;
 		public Sprite Clouds2;
