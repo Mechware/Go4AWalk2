@@ -16,7 +16,6 @@ namespace G4AW2.UI.Areas {
 		public ScrollingImages clouds1;
 		public ScrollingImages clouds2;
 		public Image[] SkyImages;
-		public Image UpperCloud;
 
 		public FollowerSpawner FollowerSpawner;
 
@@ -29,7 +28,6 @@ namespace G4AW2.UI.Areas {
 			SkyImages.ForEach(i => i.sprite = area.Sky);
 
 			FollowerSpawner.DropData = area.Enemies;
-			UpperCloud.sprite = area.Clouds2;
 		}
 
 		// Must do this due to Unity events... Is there a better way to do this?
