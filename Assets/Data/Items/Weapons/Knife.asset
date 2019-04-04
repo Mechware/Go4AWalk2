@@ -16,5 +16,5 @@ MonoBehaviour:
   Value: 0
   Description: 'Small and good for cutting an apple or a person or something. '
   Rarity: 0
-  Damage: 80
+  Damage: 11
   LevelUp: {fileID: 11400000, guid: 1b44135a1b59bbf4193efb1137b4ab02, type: 2}
