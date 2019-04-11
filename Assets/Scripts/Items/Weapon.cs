@@ -46,6 +46,7 @@ namespace G4AW2.Data.DropSystem
 
             if (Mastery != lastLevel) {
                 LevelUp.Raise(this);
+                DataChanged?.Invoke();
                 lastLevel = Mastery;
             }
         }

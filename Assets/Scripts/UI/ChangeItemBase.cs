@@ -25,8 +25,17 @@ public class ChangeItemBase<T, TRef, TVar, TEvent> : MonoBehaviour
 
     // Use this for initialization
     public void Awake() {
-        Item.Variable.OnChange.AddListener((it) => IID.SetData(it, 1, Onclick, Onhold));
-        IID.SetData(Item, 1, Onclick, Onhold);
+
+        Item.Variable.BeforeChange += () => Item.Value.DataChanged -= Refresh;
+        Item.Variable.OnChange.AddListener((it) => { Refresh(); });
+
+        Refresh();
+    }
+
+    public void Refresh() {
+        if(Item.Value != null)
+            Item.Value.DataChanged += Refresh;
+        IID.SetData(Item.Value, 1, Onclick, Onhold);
     }
 
     private void Onhold(InventoryItemDisplay inventoryItemDisplay) {

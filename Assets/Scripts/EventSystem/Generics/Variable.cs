@@ -14,6 +14,7 @@ namespace CustomEvents {
 		[Multiline]
 		public string DeveloperDescription = "";
 	    public T InitialValue;
+        public Action BeforeChange;
 	    public TEvent OnChange = new TEvent();
 
 		[ReadOnly] [SerializeField] private T _value;
@@ -21,6 +22,7 @@ namespace CustomEvents {
 		public T Value {
             get { return _value; }
             set {
+                BeforeChange?.Invoke();
                 _value = value;
                 OnChange.Invoke(Value);
             }

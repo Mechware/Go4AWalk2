@@ -25,6 +25,8 @@ namespace G4AW2.Data.DropSystem
         public string Description;
         public Rarity Rarity;
 
+        public Action DataChanged;
+
 	    public int GetID() {
 		    return ID;
 	    }
