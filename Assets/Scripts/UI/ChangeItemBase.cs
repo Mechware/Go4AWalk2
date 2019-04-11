@@ -54,6 +54,8 @@ public class ChangeItemBase<T, TRef, TVar, TEvent> : MonoBehaviour
                 },
                 () => {
                     it.SetTrash(!it.IsTrash());
+                    Viewer.Close();
+                    Onclick(null);
                 },
                 () => { }
             });

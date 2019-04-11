@@ -151,6 +151,7 @@ namespace G4AW2.Data.DropSystem
 
         public void SetTrash(bool isTrash) {
             MarkedAsTrash = isTrash;
+            DataChanged?.Invoke();
         }
     }
 }
