@@ -15,6 +15,8 @@ public class InventoryItemDisplay : MonoBehaviour, IPointerDownHandler, IPointer
 	public Image Background;
 	public Image ItemSprite;
 	public TextMeshProUGUI AmountText;
+    public TextMeshProUGUI LevelText;
+    public TextMeshProUGUI DamageText;
 
     private Action<InventoryItemDisplay> OnClick;
     private Action<InventoryItemDisplay> OnHold;
@@ -26,9 +28,38 @@ public class InventoryItemDisplay : MonoBehaviour, IPointerDownHandler, IPointer
             ItemSprite.sprite = null;
             AmountText.gameObject.SetActive(false);
         } else {
+            if(item.Rarity == Rarity.Common) {
+                Background.color = new Color(255f, 255f, 255f); //white
+            }
+            else if (item.Rarity == Rarity.Uncommon) {
+                Background.color = new Color(0f, 255f, 0f); //green
+            } 
+            else if (item.Rarity == Rarity.Rare) {
+                Background.color = new Color(0f, 0f, 255f); //blue
+            } 
+            else if (item.Rarity == Rarity.VeryRare) {
+                Background.color = new Color(128f, 0f, 128f); //purp
+            } 
+            else if (item.Rarity == Rarity.Legendary) {
+                Background.color = new Color(255f, 215f, 0f); //gold
+            } 
+            else if (item.Rarity == Rarity. Mythical) {
+                Background.color = new Color(0f, 0f, 0f); //black
+            }
+
             ItemSprite.sprite = item.Image;
-            AmountText.text = amount.ToString();
+            AmountText.text = "x" +amount.ToString();
             AmountText.gameObject.SetActive(amount > 1);
+            if(item is Weapon) {
+                Weapon w = (Weapon)item;
+                LevelText.text = " " + w.Mastery.ToString() + "\n<size=50%>" + "LVL " + w.Level.ToString();
+                DamageText.text = "<size=50%> DAM <size=100%>" + w.ActualDamage.ToString();
+            }
+            if (item is Armor) {
+                Armor a = (Armor)item;
+                LevelText.text = " " + 3/*a.Mastery.ToString()*/ + "\n<size=50%>" + "LVL " + 3/*a.Level.ToString()*/;
+                DamageText.text = "<size=50%> ARM <size=100%>" + a.NoBlockModifier.ToString();
+            }
         }
 		
         OnClick = onclick;

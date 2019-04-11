@@ -16,5 +16,5 @@ MonoBehaviour:
   Value: 5000
   Description: The obsidian blades that make up this weapon are sharper than a scalpel.
   Rarity: 4
-  Damage: 40
+  Damage: 85
   LevelUp: {fileID: 11400000, guid: 1b44135a1b59bbf4193efb1137b4ab02, type: 2}

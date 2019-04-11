@@ -17,5 +17,5 @@ MonoBehaviour:
   Description: Stronger and lighter than iron, its amazing what a little carbon can
     do.
   Rarity: 1
-  Damage: 20
+  Damage: 50
   LevelUp: {fileID: 11400000, guid: 1b44135a1b59bbf4193efb1137b4ab02, type: 2}

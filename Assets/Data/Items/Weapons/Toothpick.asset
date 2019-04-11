@@ -16,5 +16,5 @@ MonoBehaviour:
   Value: 25
   Description: The blood is 'cause you dont floss.
   Rarity: 1
-  Damage: 20
+  Damage: 40
   LevelUp: {fileID: 11400000, guid: 1b44135a1b59bbf4193efb1137b4ab02, type: 2}
