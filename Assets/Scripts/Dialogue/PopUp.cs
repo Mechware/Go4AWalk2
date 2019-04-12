@@ -23,6 +23,10 @@ namespace G4AW2.Dialogue {
 			singleton = this;
 		}
 
+	    public static void Close() {
+	        singleton.container.SetActive(false);
+	    }
+
 		/// Set pop up text, returns a bool values based off of whether or not it is in use
 		public static bool SetPopUp(string text, string[] options, Action[] responses) {
 			return singleton.SetPopUpPriv(text, options, responses);
@@ -63,10 +67,10 @@ namespace G4AW2.Dialogue {
 		}
 
 		private void AddListener(Button b, int i, Action[] responses) {
-			b.onClick.AddListener(() => responses[i]());
 			b.onClick.AddListener(() => container.SetActive(false));
+		    b.onClick.AddListener(() => responses[i]());
 		}
 
-	}
+    }
 }
 

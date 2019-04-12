@@ -23,6 +23,10 @@ public class InventoryItemDisplay : MonoBehaviour, IPointerDownHandler, IPointer
 
 
 	public void SetData( Item item, int amount, Action<InventoryItemDisplay> onclick = null, Action<InventoryItemDisplay> onhold = null) {
+
+        LevelText.gameObject.SetActive(false);
+        DamageText.gameObject.SetActive(false);
+
         Item = item;
         if(item == null) {
             ItemSprite.sprite = null;
@@ -54,11 +58,15 @@ public class InventoryItemDisplay : MonoBehaviour, IPointerDownHandler, IPointer
                 Weapon w = (Weapon)item;
                 LevelText.text = " " + w.Mastery.ToString() + "\n<size=50%>" + "LVL " + w.Level.ToString();
                 DamageText.text = "<size=50%> DAM <size=100%>" + w.ActualDamage.ToString();
+                LevelText.gameObject.SetActive(true);
+                DamageText.gameObject.SetActive(true);
             }
             if (item is Armor) {
                 Armor a = (Armor)item;
-                LevelText.text = " " + 3/*a.Mastery.ToString()*/ + "\n<size=50%>" + "LVL " + 3/*a.Level.ToString()*/;
+                //LevelText.text = " " + 3/*a.Mastery.ToString()*/ + "\n<size=50%>" + "LVL " + 3/*a.Level.ToString()*/;
                 DamageText.text = "<size=50%> ARM <size=100%>" + a.NoBlockModifier.ToString();
+                //LevelText.gameObject.SetActive(true);
+                DamageText.gameObject.SetActive(true);
             }
         }
 		

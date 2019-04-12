@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80b2cb49043ab024fbbfb3de98758f80, type: 3}
+  m_Name: ShopKeep1
+  m_EditorClassIdentifier: 
+  ID: 17
+  SizeOfSprite: {x: 32, y: 32}
+  SideIdleAnimation: {fileID: 7400000, guid: fa8b3cf7a3c163548959b092684e4fdf, type: 2}
+  RandomAnimation: {fileID: 7400000, guid: 325dd30ed7d60dd4a82a13006fc458d5, type: 2}
+  MinTimeBetweenRandomAnims: 30
+  MaxTimeBetweenRandomAnims: 180
+  AllItems: {fileID: 11400000, guid: f34cbb7c711f3c94f92aaeed3b937361, type: 2}
+  Items:
+  - Item: {fileID: 11400000, guid: f02a4360ffd63e2499d1222a338cd414, type: 2}
+    Amount: 5
+  - Item: {fileID: 11400000, guid: dc820a69f03cdd143ab25de0aeea35e5, type: 2}
+    Amount: 99
+  PriceMultiplier: 1.5

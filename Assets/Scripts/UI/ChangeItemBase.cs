@@ -26,7 +26,7 @@ public class ChangeItemBase<T, TRef, TVar, TEvent> : MonoBehaviour
     // Use this for initialization
     public void Awake() {
 
-        Item.Variable.BeforeChange += () => Item.Value.DataChanged -= Refresh;
+        Item.Variable.BeforeChange += () => { if(Item.Value != null) Item.Value.DataChanged -= Refresh; };
         Item.Variable.OnChange.AddListener((it) => { Refresh(); });
 
         Refresh();

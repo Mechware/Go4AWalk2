@@ -23,6 +23,9 @@ namespace G4AW2.Followers {
 
 		public UnityEventEnemyData FightFollower;
 
+
+	    public ShopUI Shop;
+
 		void Awake() {
             // Remove listeneres
 			ListOfCurrentFollowers.OnAdd.RemoveListener(FollowerAdded);
@@ -86,7 +89,9 @@ namespace G4AW2.Followers {
 							ListOfOpenQuests.Add(qg.QuestToGive);
 							ListOfCurrentFollowers.Remove(fd.Data);
 						}, () => { } });
-				}
+				} else if (fd.Data is ShopFollower) {
+				    Shop.OpenShop((ShopFollower)fd.Data);
+                }
 			} 
 		}
 	}
