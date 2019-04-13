@@ -11,6 +11,9 @@ namespace G4AW2.Combat {
 
 		public IntReference Health;
 
+        public IntReference Level;
+        public IntReference Experience;
+
 		public FloatReference PowerPerBlock;
 		public GameEvent OnPowerMax;
 
