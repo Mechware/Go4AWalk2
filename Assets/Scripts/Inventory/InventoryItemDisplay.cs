@@ -24,11 +24,14 @@ public class InventoryItemDisplay : MonoBehaviour, IPointerDownHandler, IPointer
 
 	public void SetData( Item item, int amount, Action<InventoryItemDisplay> onclick = null, Action<InventoryItemDisplay> onhold = null) {
 
+	    ItemSprite.color = Color.white;
+
         LevelText.gameObject.SetActive(false);
         DamageText.gameObject.SetActive(false);
 
         Item = item;
         if(item == null) {
+            ItemSprite.color = Color.clear;
             ItemSprite.sprite = null;
             AmountText.gameObject.SetActive(false);
         } else {

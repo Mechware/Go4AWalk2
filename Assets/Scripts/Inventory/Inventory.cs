@@ -12,6 +12,10 @@ public class Inventory : ScriptableObject, IEnumerable<InventoryEntry>, ISaveabl
     private List<InventoryEntry> InventoryEntries = new List<InventoryEntry>();
     public PersistentSetItem AllItems;
 
+    public int GetAmountOf(Item it) {
+        return InventoryEntries.Sum(i => i.Item == it ? i.Amount : 0);
+    }
+
     public void AddItems(IEnumerable<Item> items) {
         foreach(Item item in items) Add(item);
     }
