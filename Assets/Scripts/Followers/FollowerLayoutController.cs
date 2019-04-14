@@ -27,16 +27,22 @@ public class FollowerLayoutController : MonoBehaviour {
 
         if (transform.childCount == 0) return;
 
-        float x = StartX + 16 - transform.GetChild(transform.childCount-1).GetComponent<FollowerDisplay>().Data.SizeOfSprite.x / 2;
+        Transform child = transform.GetChild(transform.childCount - 1);
+        float distBetween = child.GetComponent<FollowerDisplay>().Data.SpaceBetweenEnemies;
+
+        float x = StartX;
         float y = StartY;
 
         for(int i = transform.childCount-1; i >= 0; i--) {
-            RectTransform child = (RectTransform) transform.GetChild(i);
-            Vector3 pos = child.anchoredPosition;
-            pos.x = x;
+            RectTransform rectChild = (RectTransform) transform.GetChild(i);
+            distBetween = rectChild.GetComponent<FollowerDisplay>().Data.SpaceBetweenEnemies;
+
+            Vector3 pos = rectChild.anchoredPosition;
+            pos.x = x - distBetween / 2;
             pos.y = y;
-            child.anchoredPosition = pos;
-            x += XGap;
+            rectChild.anchoredPosition = pos;
+
+            x -= distBetween;
             y += YGap;
         }
     }
