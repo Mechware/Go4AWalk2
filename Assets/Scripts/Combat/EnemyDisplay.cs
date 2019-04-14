@@ -136,7 +136,11 @@ namespace G4AW2.Combat {
 
 				// Wind up
 				yield return new WaitForSeconds(AttackPrepTime);
-				EnemyState = State.ExecuteAttack;
+
+                if(isDead)
+                    break;
+
+                EnemyState = State.ExecuteAttack;
 
 				OnAttackExecute.Invoke();
 			    MyAnimator.SetTrigger("AttackExecute");
@@ -144,7 +148,11 @@ namespace G4AW2.Combat {
 
                 // Perform the attack
                 yield return new WaitForSeconds(AttackExecuteDuration);
-				EnemyState = State.AfterAttack;
+
+                if(isDead)
+                    break;
+
+                EnemyState = State.AfterAttack;
 				canParry = false;
 				OnAttackHit.Invoke(HeavyDamage);
 			    MyAnimator.SetTrigger("AttackEnd");
