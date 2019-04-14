@@ -19,11 +19,16 @@ MonoBehaviour:
     UseConstant: 0
     ConstantValue: 0
     Variable: {fileID: 11400000, guid: f98c0dae92606424ead1fe09dd8181ed, type: 2}
+  Gold:
+    UseConstant: 0
+    ConstantValue: 0
+    Variable: {fileID: 11400000, guid: 270540f0df2b56e4086493e3e7066ace, type: 2}
   PowerPerBlock:
     UseConstant: 1
     ConstantValue: 60
     Variable: {fileID: 0}
   OnPowerMax: {fileID: 11400000, guid: 676de03edee86cf42b032f719f4c487c, type: 2}
+  PlayerDeath: {fileID: 11400000, guid: 9be316ce6ac3c2e47ad0119253013955, type: 2}
   Weapon:
     UseConstant: 0
     ConstantValue: {fileID: 0}

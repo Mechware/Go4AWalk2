@@ -13,7 +13,7 @@ namespace G4AW2.Data.DropSystem
     public class Weapon : Item, ISaveable, ITrashable {
 
         public int ActualDamage => Mathf.RoundToInt( Damage * mod * MasteryDamageMod * LevelDamageMod);
-        public int Mastery => Mathf.RoundToInt( ConfigObject.GetLevel(Rarity, TapsWithWeapon));
+        public int Mastery => Mathf.RoundToInt( ConfigObject.GetLevel(Rarity, MasteryLevels.GetTaps(ID)));
         private float MasteryDamageMod => Mastery == 99 ? 2.15f : 1 + Mastery / 100f;
         private float LevelDamageMod => 1 + Level / 10f; 
 
@@ -49,6 +49,8 @@ namespace G4AW2.Data.DropSystem
                 DataChanged?.Invoke();
                 lastLevel = Mastery;
             }
+
+            MasteryLevels.Tap(ID);
         }
 
         public override bool ShouldCreateNewInstanceWhenPlayerObtained() {
