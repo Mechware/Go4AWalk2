@@ -2782,6 +2782,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29513e297b9c0144382aad41e20ed1cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FollowerController: {fileID: 300978734}
   StartX: 16
   StartY: 12
   XGap: 32
@@ -2839,6 +2840,22 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: G4AW2.Events.UnityEventEnemyData, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  ListChanged:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 300978733}
+        m_MethodName: ChangeLayout
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   Shop: {fileID: 1122872034}
 --- !u!114 &300978736
@@ -3258,6 +3275,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  Debugging: 0
 --- !u!114 &319248498
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4464,6 +4482,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  Debugging: 0
 --- !u!1 &422863711
 GameObject:
   m_ObjectHideFlags: 0
@@ -7163,6 +7182,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  Debugging: 0
 --- !u!114 &701840142
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13061,6 +13081,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  Debugging: 0
 --- !u!114 &1225411232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13468,6 +13489,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  Debugging: 0
 --- !u!1 &1289403450
 GameObject:
   m_ObjectHideFlags: 0
@@ -13513,6 +13535,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  Debugging: 0
 --- !u!114 &1289403452
 MonoBehaviour:
   m_ObjectHideFlags: 0
