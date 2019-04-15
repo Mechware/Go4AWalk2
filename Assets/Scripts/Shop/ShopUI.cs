@@ -92,22 +92,32 @@ public class ShopUI : MonoBehaviour {
     }
 
     private void SetDataBuying(IconWithTextController itc, InventoryEntry iid) {
-        string text = iid.Item.name + "\n" + Mathf.RoundToInt(iid.Item.Value * shopKeep.BuyingPriceMultiplier) + " gold each";
+        int price = Mathf.RoundToInt(iid.Item.Value * shopKeep.BuyingPriceMultiplier);
+
+        string text = $"{iid.Item.Name}\n{price} gold each";
         itc.SetData(iid.Item, iid.Amount, text, () => ItemClickedBuying(iid));
     }
 
     private void ItemClickedBuying(InventoryEntry it) {
+        int price = Mathf.RoundToInt(it.Item.Value * shopKeep.BuyingPriceMultiplier);
+
         string title = string.Format("Would you like to buy a {0} for {1} gold?\nDescription:{2}",
-            it.Item.name,
-            Mathf.RoundToInt(it.Item.Value * shopKeep.BuyingPriceMultiplier),
+            it.Item.Name,
+            price,
             it.Item.GetDescription());
 
         PopUp.SetPopUp(title, new string[] { "Yes", "No" },
             new Action[] {
                 () => {
+                    if(GoldAmount.Value < price) {
+                        PopUp.SetPopUp("Not enough gold :(", new string[] {"ok"}, new Action[] {()=> { } });
+                        return;
+                    }
+
                     GoldAmount.Value -= Mathf.RoundToInt(it.Item.Value * shopKeep.BuyingPriceMultiplier);
                     Inventory.Add(it.Item, 1);
                     it.Amount -= 1;
+                    if(it.Amount == 0) shopKeep.Items.Remove(it);
                     PopUp.SetPopUp("Success!", new[] {"Ok"}, new Action[] {
                         () => {
                             if (it.Amount > 0) {
@@ -143,13 +153,13 @@ public class ShopUI : MonoBehaviour {
     }
 
     private void SetDataSelling(IconWithTextController itc, InventoryEntry iid) {
-        string text = iid.Item.name + "\n" + Mathf.RoundToInt(iid.Item.Value * shopKeep.SellingPriceMultiplier) + " gold each";
+        string text = iid.Item.Name + "\n" + Mathf.RoundToInt(iid.Item.Value * shopKeep.SellingPriceMultiplier) + " gold each";
         itc.SetData(iid.Item, iid.Amount, text, () => ItemClickedSelling(iid));
     }
 
     private void ItemClickedSelling(InventoryEntry it) {
         string title = string.Format("Would you like to sell a {0} for {1} gold?\nDescription:{2}",
-            it.Item.name,
+            it.Item.Name,
             Mathf.RoundToInt(it.Item.Value * shopKeep.SellingPriceMultiplier),
             it.Item.GetDescription());
 

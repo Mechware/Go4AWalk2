@@ -13,6 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 9
   SizeOfSprite: {x: 32, y: 32}
+  SpaceBetweenEnemies: 32
   SideIdleAnimation: {fileID: 7400000, guid: f90fc67c3287ca749b519e9ad9a59f70, type: 2}
   RandomAnimation: {fileID: 7400000, guid: f55407dce871a18439040cc69ec91174, type: 2}
   MinTimeBetweenRandomAnims: 2
@@ -98,7 +99,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   AttackPrepTime: 0.5
-  AttackExecuteTime: 0.25
+  AttackExecuteTime: 2
   Drops:
     Items:
     - item: {fileID: 11400000, guid: 10f87211d9f03ba468a8554aae870c84, type: 2}
