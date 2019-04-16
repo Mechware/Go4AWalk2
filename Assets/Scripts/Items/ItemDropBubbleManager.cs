@@ -21,7 +21,21 @@ public class ItemDropBubbleManager : MonoBehaviour {
 	public UnityEventItem OnItemClick;
 	public UnityEvent OnFinished;
 
+    private Action onFinish;
+
+    public void AddItems(IEnumerable<Item> items, Action onFinish) {
+        this.onFinish = onFinish;
+        List<Item> itemsList = items.ToList();
+        if(itemsList.Count == 0) {
+            onFinish?.Invoke();
+            OnFinished.Invoke();
+            return;
+        }
+        StartCoroutine(ShootItems(itemsList));
+    }
+
 	public void AddItems( IEnumerable<Item> items ) {
+	    onFinish = null;
 		List<Item> itemsList = items.ToList();
         if(itemsList.Count == 0) {
             OnFinished.Invoke();
@@ -70,6 +84,7 @@ public class ItemDropBubbleManager : MonoBehaviour {
 		onScreenItems--;
 		if (onScreenItems == 0 && finished) {
 			OnFinished.Invoke();
+            onFinish?.Invoke();
 		}
 	}
 

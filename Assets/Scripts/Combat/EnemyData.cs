@@ -18,6 +18,8 @@ namespace G4AW2.Data.Combat {
 		public AnimationClip Dead;
         public AnimationClip Walking;
 
+	    public Sprite DeadSprite;
+
 	    [Header("Stats")]
 		public AnimationCurve HealthScaling;
 	    public AnimationCurve TimeBetweenHeavyAttacksScaling;

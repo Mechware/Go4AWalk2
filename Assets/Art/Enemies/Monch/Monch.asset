@@ -26,6 +26,7 @@ MonoBehaviour:
   Death: {fileID: 7400000, guid: 8bdca9a98387abd4a840ead360121abb, type: 2}
   Dead: {fileID: 7400000, guid: 7d60b7f8379db93439a8f6cc54e8a8d4, type: 2}
   Walking: {fileID: 7400000, guid: 708288adc19db63429f741587fe751ab, type: 2}
+  DeadSprite: {fileID: 21300050, guid: 198bd0adffe491b48940b2fbe19b0a32, type: 3}
   HealthScaling:
     serializedVersion: 2
     m_Curve:

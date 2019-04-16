@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,6 +15,8 @@ public class PlayerAnimations : MonoBehaviour {
     public UnityEvent StoppedWalking;
     public UnityEvent StartedWalking;
     public UnityEvent Spun;
+
+    private Action celebrationFinished;
 
     // Use this for initialization
     void Awake () {
@@ -42,8 +45,17 @@ public class PlayerAnimations : MonoBehaviour {
     }
 
     [ContextMenu("Spin")]
-    public void Spin()
-    {
+    public void Spin() {
+        spinDone = null;
+        animator.SetTrigger("Spin");
+        armAnimator.SetTrigger("Spin");
+        armourAnimator.SetTrigger("Spin");
+        weaponAnimator.SetTrigger("Spin");
+    }
+
+    private Action spinDone;
+    public void Spin(Action spinDone) {
+        this.spinDone = spinDone;
         animator.SetTrigger("Spin");
         armAnimator.SetTrigger("Spin");
         armourAnimator.SetTrigger("Spin");
@@ -56,15 +68,29 @@ public class PlayerAnimations : MonoBehaviour {
         scale.x *= -1;
         transform.localScale = scale;
         Spun.Invoke();
+        spinDone?.Invoke();
     }
 
     [ContextMenu("Celebrate")]
     public void Celebrate()
     {
+        celebrationFinished = null;
         animator.SetTrigger("Celebrate");
         armAnimator.SetTrigger("Celebrate");
         armourAnimator.SetTrigger("Celebrate");
         weaponAnimator.SetTrigger("Celebrate");
+    }
+
+    public void Celebrate(Action onFinish) {
+        animator.SetTrigger("Celebrate");
+        armAnimator.SetTrigger("Celebrate");
+        armourAnimator.SetTrigger("Celebrate");
+        weaponAnimator.SetTrigger("Celebrate");
+        celebrationFinished = onFinish;
+    }
+
+    public void CelebrationDone() {
+        celebrationFinished?.Invoke();
     }
 
     [ContextMenu("Attack")]

@@ -17,6 +17,10 @@ namespace G4AW2.Combat {
 			Idle, BeforeAttack, ExecuteAttack, AfterAttack, Stun, Disabled
 		}
 
+	    public PlayerAnimations PlayerAnimations;
+	    public ItemDropBubbleManager ItemBubbleManager;
+
+
         public FloatReference StunDuration;
 
 		public State EnemyState;
@@ -45,9 +49,18 @@ namespace G4AW2.Combat {
 		private bool isDead = false;
 	    private Animator MyAnimator;
 
+	    private RectTransform rt;
+	    private RectTransform RectTransform {
+	        get {
+	            if (rt == null) rt = GetComponent<RectTransform>();
+	            return rt;
+	        }
+	    }
+
 	    void Awake() {
 	        MyAnimator = GetComponent<Animator>();
-        }
+	        rt = GetComponent<RectTransform>();
+	    }
 
         void Start() {
 			EnemyState = State.Disabled;
@@ -85,10 +98,10 @@ namespace G4AW2.Combat {
             pos.x = -70;
             transform.localPosition = pos;
 
-		    Vector2 r = ((RectTransform) transform).sizeDelta;
+		    Vector2 r = RectTransform.sizeDelta;
 		    r.x = data.SizeOfSprite.x;
 		    r.y = data.SizeOfSprite.y;
-		    ((RectTransform) transform).sizeDelta = r;
+		    RectTransform.sizeDelta = r;
         }
 
         public void StartWalking()
@@ -181,7 +194,20 @@ namespace G4AW2.Combat {
 			CurrentHealth.Value -= amount;
 			if (CurrentHealth.Value <= 0) {
 				isDead = true;
+                StopAllCoroutines();
 				OnDeath.Invoke(Enemy);
+
+			    bool celebrateDone = false;
+			    bool bubblesDone = false;
+
+                PlayerAnimations.ResetAttack();
+                PlayerAnimations.Celebrate(() => {
+                    celebrateDone = true;
+                    if(bubblesDone && celebrateDone) {
+                        AllDone();
+                    }
+                });
+
                 MyAnimator.SetTrigger("Death");
 			    List<Item> items = Enemy.Drops.GetItems(true);
 			    foreach (Item item in items) {
@@ -191,11 +217,31 @@ namespace G4AW2.Combat {
 			        }
 			    }
 
+			    ItemBubbleManager.AddItems(items, () => {
+			        bubblesDone = true;
+			        if (bubblesDone && celebrateDone) {
+			            AllDone();
+			        }
+			    });
+                
                 OnDropLoot.Invoke(items);
 			} else {
 				OnHit.Invoke(amount);
 			    MyAnimator.SetTrigger("Flinch");
             }
+        }
+
+	    public UnityEvent CleanUp;
+	    public GameObject DeadEnemyPrefab;
+	    public Transform DeadEnemyParent;
+
+	    private void AllDone() {
+            PlayerAnimations.Spin(() => {
+                CleanUp.Invoke();
+                var go = Instantiate(DeadEnemyPrefab, DeadEnemyParent);
+                DeadEnemy de = go.GetComponent<DeadEnemy>();
+                de.SetPosition(RectTransform.anchoredPosition.x, RectTransform.anchoredPosition.y, Enemy);
+            });
         }
 
 		#endregion

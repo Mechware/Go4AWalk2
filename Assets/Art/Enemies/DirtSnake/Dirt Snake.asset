@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Name: Dirt Snake
   m_EditorClassIdentifier: 
   ID: 10
+  SizeOfSprite: {x: 32, y: 32}
+  SpaceBetweenEnemies: 32
   SideIdleAnimation: {fileID: 7400000, guid: 3f269e7b6b3c2b54c939b2c65c805f09, type: 2}
   RandomAnimation: {fileID: 7400000, guid: 9a493765c5ad1574ea9d515a5960cf0b, type: 2}
   MinTimeBetweenRandomAnims: 30
@@ -24,10 +26,25 @@ MonoBehaviour:
   Death: {fileID: 7400000, guid: 8e98a158527b0544fa561a81ddfb21db, type: 2}
   Dead: {fileID: 7400000, guid: 40f92f4f71c21ac498414779c95d1ba8, type: 2}
   Walking: {fileID: 7400000, guid: 71788e2225136d24ab39792f99fbb4e6, type: 2}
-  BaseHealth: 100
-  BaseArmor: 0
-  TimeBetweenHeavyAttacks: 5
-  BaseHeavyDamage: 3
+  DeadSprite: {fileID: 21300050, guid: 528920b705781dd44ad85bfa72280111, type: 3}
+  HealthScaling:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  TimeBetweenHeavyAttacksScaling:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  DamageScaling:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   AttackPrepTime: 1
   AttackExecuteTime: 0.75
   Drops:

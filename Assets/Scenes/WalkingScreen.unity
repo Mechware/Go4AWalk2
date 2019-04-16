@@ -2764,7 +2764,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 581060206}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -4409,7 +4409,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 581060206}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -6439,6 +6439,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 842532800}
   - {fileID: 405046108}
   - {fileID: 1379573187}
   - {fileID: 1550784722}
@@ -7042,7 +7043,7 @@ Prefab:
     - target: {fileID: 114174548617117370, guid: 1c1c5654baf9b674d98643e199750762,
         type: 2}
       propertyPath: OnFinished.m_PersistentCalls.m_Calls.Array.size
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114174548617117370, guid: 1c1c5654baf9b674d98643e199750762,
         type: 2}
@@ -7179,11 +7180,11 @@ Prefab:
         type: 2}
       propertyPath: OnFinished.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 999456374}
+      objectReference: {fileID: 1324188856}
     - target: {fileID: 114174548617117370, guid: 1c1c5654baf9b674d98643e199750762,
         type: 2}
       propertyPath: OnFinished.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: StopAllCoroutines
+      value: Enable
       objectReference: {fileID: 0}
     - target: {fileID: 114174548617117370, guid: 1c1c5654baf9b674d98643e199750762,
         type: 2}
@@ -7193,7 +7194,7 @@ Prefab:
     - target: {fileID: 114174548617117370, guid: 1c1c5654baf9b674d98643e199750762,
         type: 2}
       propertyPath: OnFinished.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114174548617117370, guid: 1c1c5654baf9b674d98643e199750762,
         type: 2}
@@ -7204,11 +7205,11 @@ Prefab:
         type: 2}
       propertyPath: OnFinished.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 999456372}
+      objectReference: {fileID: 1324188856}
     - target: {fileID: 114174548617117370, guid: 1c1c5654baf9b674d98643e199750762,
         type: 2}
       propertyPath: OnFinished.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: SetActive
+      value: Enable
       objectReference: {fileID: 0}
     - target: {fileID: 114174548617117370, guid: 1c1c5654baf9b674d98643e199750762,
         type: 2}
@@ -7283,6 +7284,11 @@ Prefab:
       value: 
       objectReference: {fileID: 1176646900218486, guid: 297e3fe023f63d445b369f8e777ee039,
         type: 2}
+    - target: {fileID: 114174548617117370, guid: 1c1c5654baf9b674d98643e199750762,
+        type: 2}
+      propertyPath: OnFinished.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1c1c5654baf9b674d98643e199750762, type: 2}
   m_IsPrefabAsset: 0
@@ -9084,6 +9090,39 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 840319375}
   m_CullTransparentMesh: 0
+--- !u!1 &842532799
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 842532800}
+  m_Layer: 5
+  m_Name: DeadEnemyParent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &842532800
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 842532799}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 581060206}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 64, y: 64}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &845011326
 GameObject:
   m_ObjectHideFlags: 0
@@ -10780,7 +10819,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 581060206}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -10798,6 +10837,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e867138000182e84abd90819f3968476, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerAnimations: {fileID: 1550784727}
+  ItemBubbleManager: {fileID: 1497022282}
   StunDuration:
     UseConstant: 1
     ConstantValue: 4
@@ -10895,28 +10936,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1550784727}
-        m_MethodName: ResetAttack
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1550784727}
-        m_MethodName: Celebrate
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 413173345}
         m_MethodName: OnEnemyKilled
         m_Mode: 0
@@ -10933,17 +10952,6 @@ MonoBehaviour:
   OnDropLoot:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1497022282}
-        m_MethodName: AddItems
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 11400000, guid: 26cb67b184c39ce41a042b44d325797c, type: 2}
         m_MethodName: AddItems
         m_Mode: 0
@@ -11010,6 +11018,36 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  CleanUp:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1324188856}
+        m_MethodName: Enable
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 999456372}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  DeadEnemyPrefab: {fileID: 1285678961603886, guid: ca49dedaaeffb1347bdc96ae6fb1272f,
+    type: 2}
+  DeadEnemyParent: {fileID: 842532800}
 --- !u!95 &999456375
 Animator:
   serializedVersion: 3
@@ -14564,7 +14602,7 @@ RectTransform:
   m_LocalScale: {x: 1.0000516, y: 1.0000516, z: 1.0000516}
   m_Children: []
   m_Father: {fileID: 581060206}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -21251,7 +21289,7 @@ RectTransform:
   - {fileID: 1933517926}
   - {fileID: 430088774}
   m_Father: {fileID: 581060206}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
