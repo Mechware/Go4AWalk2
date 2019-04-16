@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf47fd378bc65494da74f58a602c31e3, type: 3}
+  m_Name: Fire Type
+  m_EditorClassIdentifier: 
+  NamePrefixes:
+  - Name: unable to function
+    RandomValueMin: 2
+  - Name: dumb
+    RandomValueMin: 10
+  - Name: pretty dumb
+    RandomValueMin: 25
+  - Name: average
+    RandomValueMin: 50
+  - Name: smart
+    RandomValueMin: 75
+  - Name: genius
+    RandomValueMin: 100

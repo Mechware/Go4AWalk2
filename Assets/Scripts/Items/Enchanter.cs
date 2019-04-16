@@ -1,10 +1,12 @@
 ﻿using CustomEvents;
 using G4AW2.Data.DropSystem;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+[CreateAssetMenu(menuName = "Data/Items/Enchanter")]
 public class Enchanter : Item, ISaveable {
 
     public enum GemType {
@@ -25,7 +27,7 @@ public class Enchanter : Item, ISaveable {
     }
 
     public override void OnAfterObtained() {
-
+        RandomAddition = UnityEngine.Random.Range(0, 101) + (int)GemTypeType;
     }
 
     public override bool ShouldCreateNewInstanceWhenPlayerObtained() {
@@ -33,7 +35,7 @@ public class Enchanter : Item, ISaveable {
     }
 
     public override string GetName() {
-        return base.GetName();
+        return Type.GetPrefix(RandomAddition) + " " + base.GetName() + " " + Enum.GetName(typeof(GemType), GemTypeType);
     }
 
 
@@ -59,7 +61,7 @@ public class Enchanter : Item, ISaveable {
         } else if (otherData[0] is Enchanter) {
             original = otherData[0] as Enchanter;
         } else {
-            throw new System.Exception("Other data was not persistent set or enchanter");
+            throw new Exception("Other data was not persistent set or enchanter");
         }
 
         GemTypeType = original.GemTypeType;
