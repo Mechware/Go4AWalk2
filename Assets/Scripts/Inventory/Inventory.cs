@@ -118,4 +118,14 @@ public class Inventory : ScriptableObject, IEnumerable<InventoryEntry>, ISaveabl
     public void Clear() {
         InventoryEntries.Clear();
     }
+
+
+    public Item ItemToAdd;
+    [ContextMenu("Add Item")]
+    ///THIS IS FOR TESTING ONLY.
+    public void Add() {
+        if(ItemToAdd != null) {
+            Add(ItemToAdd);
+        }
+    }
 }

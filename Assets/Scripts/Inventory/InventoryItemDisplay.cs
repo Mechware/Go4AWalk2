@@ -36,22 +36,22 @@ public class InventoryItemDisplay : MonoBehaviour, IPointerDownHandler, IPointer
             AmountText.gameObject.SetActive(false);
         } else {
             if(item.Rarity == Rarity.Common) {
-                Background.color = new Color(255f, 255f, 255f); //white
+                Background.color = ConfigObject.GetColorFromRarity(Rarity.Common);
             }
             else if (item.Rarity == Rarity.Uncommon) {
-                Background.color = new Color(0f, 255f, 0f); //green
+                Background.color = ConfigObject.GetColorFromRarity(Rarity.Uncommon);
             } 
             else if (item.Rarity == Rarity.Rare) {
-                Background.color = new Color(0f, 0f, 255f); //blue
+                Background.color = ConfigObject.GetColorFromRarity(Rarity.Rare);
             } 
             else if (item.Rarity == Rarity.VeryRare) {
-                Background.color = new Color(128f, 0f, 128f); //purp
+                Background.color = ConfigObject.GetColorFromRarity(Rarity.VeryRare);
             } 
             else if (item.Rarity == Rarity.Legendary) {
-                Background.color = new Color(255f, 215f, 0f); //gold
+                Background.color = ConfigObject.GetColorFromRarity(Rarity.Legendary);
             } 
             else if (item.Rarity == Rarity. Mythical) {
-                Background.color = new Color(0f, 0f, 0f); //black
+                Background.color = ConfigObject.GetColorFromRarity(Rarity.Mythical);
             }
 
             ItemSprite.sprite = item.Image;

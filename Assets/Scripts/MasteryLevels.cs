@@ -6,8 +6,6 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Data/Mastery ")]
 public class MasteryLevels : ScriptableObject, ISaveable {
 
-    private static MasteryLevels Singleton;
-
 	private static Dictionary<int, int> IDToNumTaps = new Dictionary<int, int>();
 
     public static int GetTaps(int id) {
@@ -24,21 +22,19 @@ public class MasteryLevels : ScriptableObject, ISaveable {
         IDToNumTaps[id]++;
     }
 
+    [System.Serializable]
     private class IDToTaps {
         public int ID;
         public int Taps;
     }
 
+    [System.Serializable]
     private class SaveObject {
         public List<IDToTaps> IDToTaps;
     }
 
-    void OnEnable() {
-        Singleton = this;
-    }
-
     public void Register() {
-        Singleton = this;
+        //Singleton = this;
     }
 
     public string GetSaveString() {
@@ -53,6 +49,9 @@ public class MasteryLevels : ScriptableObject, ISaveable {
 
     public void SetData(string saveString, params object[] otherData) {
         SaveObject so = JsonUtility.FromJson<SaveObject>(saveString);
+
+        if(so.IDToTaps == null)
+            return;
 
         IDToNumTaps.Clear();
         foreach (var idToTaps in so.IDToTaps) {

@@ -3,23 +3,12 @@ using UnityEngine;
 
 public class FollowerLayoutController : MonoBehaviour {
 
-    // Use this for initialization
-    void Awake() {
-        transform.hasChanged = true;
-    }
 
+    public FollowerDisplayController FollowerController;
     public float StartX = 16;
     public float StartY = 32;
     public float XGap = 32;
     public float YGap = 0;
-
-    // Update is called once per frame
-    void Update() {
-        if(transform.hasChanged) {
-            transform.hasChanged = false;
-            ChangeLayout();
-        }
-    }
 
 
     [ContextMenu("Apply Layout")]
@@ -27,16 +16,19 @@ public class FollowerLayoutController : MonoBehaviour {
 
         if (transform.childCount == 0) return;
 
-        float x = StartX + 16 - transform.GetChild(transform.childCount-1).GetComponent<FollowerDisplay>().Data.SizeOfSprite.x / 2;
+        float x = StartX;
         float y = StartY;
 
-        for(int i = transform.childCount-1; i >= 0; i--) {
-            RectTransform child = (RectTransform) transform.GetChild(i);
-            Vector3 pos = child.anchoredPosition;
-            pos.x = x;
+        foreach(FollowerDisplay followerDisplay in FollowerController.AllFollowers) {
+            RectTransform rectChild = (RectTransform) followerDisplay.transform;
+            int distBetween = followerDisplay.Data.SpaceBetweenEnemies;
+
+            Vector3 pos = rectChild.anchoredPosition;
+            pos.x = x - distBetween / 2;
             pos.y = y;
-            child.anchoredPosition = pos;
-            x += XGap;
+            rectChild.anchoredPosition = pos;
+
+            x -= distBetween;
             y += YGap;
         }
     }

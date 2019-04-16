@@ -19,11 +19,12 @@ namespace G4AW2.Followers {
 		public RuntimeSetQuest ListOfOpenQuests;
 
 	    public FollowerDisplay DisplayPrefab;
-		private List<FollowerDisplay> AllFollowers = new List<FollowerDisplay>();
+		[NonSerialized] public List<FollowerDisplay> AllFollowers = new List<FollowerDisplay>();
 
 		public UnityEventEnemyData FightFollower;
 		public UnityEvent QuestGiverClicked;
 
+        public UnityEvent ListChanged;
 
         [Header("Shop")]
 	    public LerpToPosition ShopperWalk;
@@ -53,6 +54,8 @@ namespace G4AW2.Followers {
 				AddDisplay(display, fd);
 				AllFollowers.Add(display);
 			}
+
+            ListChanged.Invoke();
 		}
 
 	    public void FollowerAdded(FollowerData d) {
@@ -60,9 +63,10 @@ namespace G4AW2.Followers {
 			FollowerDisplay display = Instantiate(DisplayPrefab, transform);
 		    AddDisplay(display, fd);
 			AllFollowers.Add(display);
-		}
+            ListChanged.Invoke();
+        }
 
-		private void AddDisplay(FollowerDisplay display, FollowerData d) {
+        private void AddDisplay(FollowerDisplay display, FollowerData d) {
 			display.transform.SetAsFirstSibling();
 		    Vector2 r = ((RectTransform) display.transform).sizeDelta;
 		    r.x = d.SizeOfSprite.x;

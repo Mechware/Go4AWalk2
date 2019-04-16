@@ -12,15 +12,17 @@ MonoBehaviour:
   m_Name: ShopKeep1
   m_EditorClassIdentifier: 
   ID: 17
-  SizeOfSprite: {x: 32, y: 32}
-  SideIdleAnimation: {fileID: 7400000, guid: fa8b3cf7a3c163548959b092684e4fdf, type: 2}
-  RandomAnimation: {fileID: 7400000, guid: 325dd30ed7d60dd4a82a13006fc458d5, type: 2}
-  MinTimeBetweenRandomAnims: 30
-  MaxTimeBetweenRandomAnims: 180
+  SizeOfSprite: {x: 64, y: 64}
+  SpaceBetweenEnemies: 64
+  SideIdleAnimation: {fileID: 7400000, guid: 503b6b3ca442ec44da5f872f459c22f3, type: 2}
+  RandomAnimation: {fileID: 7400000, guid: 04ac814bc2649d24581d7f39fa466add, type: 2}
+  MinTimeBetweenRandomAnims: 15
+  MaxTimeBetweenRandomAnims: 50
   AllItems: {fileID: 11400000, guid: f34cbb7c711f3c94f92aaeed3b937361, type: 2}
   Items:
   - Item: {fileID: 11400000, guid: f02a4360ffd63e2499d1222a338cd414, type: 2}
     Amount: 5
   - Item: {fileID: 11400000, guid: dc820a69f03cdd143ab25de0aeea35e5, type: 2}
     Amount: 99
-  PriceMultiplier: 1.5
+  BuyingPriceMultiplier: 1.5
+  SellingPriceMultiplier: 0.5

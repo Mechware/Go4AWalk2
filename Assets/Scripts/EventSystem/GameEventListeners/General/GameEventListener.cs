@@ -10,8 +10,9 @@ namespace CustomEvents {
 
 		public GameEvent Event;
 		public UnityEvent Response;
-
+        public bool Debugging = false;
 		private void OnEnable() {
+            if(Debugging) Debug.Log("Registering: " + Event.name);
 			Event.RegisterListener(this);
 		}
 
@@ -20,7 +21,9 @@ namespace CustomEvents {
 		}
 
 		public void OnEventRaised() {
-			Response.Invoke();
+            if(Debugging)
+                Debug.Log("Raised: " + Event.name);
+            Response.Invoke();
 		}
 	}
 }
