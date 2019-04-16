@@ -26,7 +26,10 @@ public class ShopUI : MonoBehaviour {
     private List<GameObject> buyingItems = new List<GameObject>();
     private List<GameObject> sellingItems = new List<GameObject>();
 
-    public void OpenShop(ShopFollower shopKeep) {
+    private Action actionOnSendAway;
+
+    public void OpenShop(ShopFollower shopKeep, Action actionOnSendAway) {
+        this.actionOnSendAway = actionOnSendAway;
         this.shopKeep = shopKeep;
         gameObject.SetActive(true);
         GetComponent<RobustLerper>().StartLerping();
@@ -36,6 +39,7 @@ public class ShopUI : MonoBehaviour {
     }
 
     public void Finish() {
+        actionOnSendAway?.Invoke();
         Followers.Remove(shopKeep);
         GetComponent<RobustLerper>().StartReverseLerp();
     }

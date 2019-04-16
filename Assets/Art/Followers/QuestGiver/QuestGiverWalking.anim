@@ -5,7 +5,7 @@ AnimationClip:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: MerchantWalk
+  m_Name: QuestGiverWalking
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -19,13 +19,9 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300006, guid: ec1509a565ab3bb4e9d6e8bb91b4baa1, type: 3}
+      value: {fileID: 21300018, guid: d1f4f2861a5493746a532113a8f1dfd1, type: 3}
     - time: 0.125
-      value: {fileID: 21300008, guid: ec1509a565ab3bb4e9d6e8bb91b4baa1, type: 3}
-    - time: 0.25
-      value: {fileID: 21300010, guid: ec1509a565ab3bb4e9d6e8bb91b4baa1, type: 3}
-    - time: 0.375
-      value: {fileID: 21300012, guid: ec1509a565ab3bb4e9d6e8bb91b4baa1, type: 3}
+      value: {fileID: 21300020, guid: d1f4f2861a5493746a532113a8f1dfd1, type: 3}
     attribute: m_Sprite
     path: 
     classID: 114
@@ -45,16 +41,14 @@ AnimationClip:
       customType: 0
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300006, guid: ec1509a565ab3bb4e9d6e8bb91b4baa1, type: 3}
-    - {fileID: 21300008, guid: ec1509a565ab3bb4e9d6e8bb91b4baa1, type: 3}
-    - {fileID: 21300010, guid: ec1509a565ab3bb4e9d6e8bb91b4baa1, type: 3}
-    - {fileID: 21300012, guid: ec1509a565ab3bb4e9d6e8bb91b4baa1, type: 3}
+    - {fileID: 21300018, guid: d1f4f2861a5493746a532113a8f1dfd1, type: 3}
+    - {fileID: 21300020, guid: d1f4f2861a5493746a532113a8f1dfd1, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.5
+    m_StopTime: 0.25
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0

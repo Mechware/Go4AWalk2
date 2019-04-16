@@ -10,6 +10,7 @@ namespace G4AW2.Followers {
 
 		public Quest QuestToGive;
 		public AnimationClip GivingQuest;
+	    public AnimationClip WalkingAnimation;
 	}
 }
 

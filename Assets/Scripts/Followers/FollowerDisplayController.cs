@@ -16,22 +16,26 @@ namespace G4AW2.Followers {
 
 	public class FollowerDisplayController : MonoBehaviour {
 	    public RuntimeSetFollowerData ListOfCurrentFollowers;
-		public RuntimeSetQuest ListOfOpenQuests;
 
 	    public FollowerDisplay DisplayPrefab;
 		[NonSerialized] public List<FollowerDisplay> AllFollowers = new List<FollowerDisplay>();
 
 		public UnityEventEnemyData FightFollower;
-		public UnityEvent QuestGiverClicked;
 
         public UnityEvent ListChanged;
+
+	    public LerpToPosition WorldCameraLerper;
 
         [Header("Shop")]
 	    public LerpToPosition ShopperWalk;
 	    public ShopGiverDisplay Shopper;
-        public LerpToPosition WorldCameraLerper;
+        
 
-		void Awake() {
+	    [Header("Quest Giver")]
+	    public LerpToPosition QuestGiverWalk;
+	    public QuestGiverDisplay QuestGiver;
+
+        void Awake() {
             // Remove listeneres
 			ListOfCurrentFollowers.OnAdd.RemoveListener(FollowerAdded);
 			ListOfCurrentFollowers.OnRemove.RemoveListener(FollowerRemoved);
@@ -91,12 +95,16 @@ namespace G4AW2.Followers {
 					// TODO: Include stats
 					PopUp.SetPopUp("Fight follower?", new[] {"Yes", "No"}, new Action[] { () => { FightFollower.Invoke((EnemyData)fd.Data); }, () => { }});
 				} else if (fd.Data is QuestGiver) {
-					QuestGiver qg = (QuestGiver) fd.Data;
-					PopUp.SetPopUp("Accept quest from quest giver? Title: " + qg.QuestToGive.DisplayName, new[] { "Yes", "No" }, new Action[] {
-						() => {
-							ListOfOpenQuests.Add(qg.QuestToGive);
-							ListOfCurrentFollowers.Remove(fd.Data);
-						}, () => { } });
+
+				    WorldCameraLerper.StartLerping(() => {
+				        QuestGiver.SetData(fd.Data);
+				        QuestGiver.StartWalking();
+				        QuestGiverWalk.StartLerping(() => {
+				            QuestGiver.StopWalking();
+				            QuestGiver.OnPointerClick(null);
+				        });
+				    });
+
 				} else if (fd.Data is ShopFollower) {
 
 				    WorldCameraLerper.StartLerping(() => {
@@ -104,7 +112,7 @@ namespace G4AW2.Followers {
                         Shopper.StartWalking();
 				        ShopperWalk.StartLerping(() => {
 				            Shopper.StopWalking();
-                            Shopper.OnClick();
+                            Shopper.OnPointerClick(null);
 				        });
                     });
                 }

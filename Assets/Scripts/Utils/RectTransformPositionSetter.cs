@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,6 +18,8 @@ public class RectTransformPositionSetter : MonoBehaviour {
     }
 
     public void SetY(float y) {
+        if (Transform == null) return;
+
         Vector3 vec = Transform.anchoredPosition;
         vec.y = y;
         Transform.anchoredPosition = vec;

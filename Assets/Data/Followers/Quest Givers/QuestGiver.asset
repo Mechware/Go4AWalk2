@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Name: QuestGiver
   m_EditorClassIdentifier: 
   ID: 1
-  SizeOfSprite: {x: 32, y: 32}
+  SizeOfSprite: {x: 64, y: 64}
   SpaceBetweenEnemies: 32
-  SideIdleAnimation: {fileID: 7400000, guid: fa8b3cf7a3c163548959b092684e4fdf, type: 2}
-  RandomAnimation: {fileID: 7400000, guid: 325dd30ed7d60dd4a82a13006fc458d5, type: 2}
-  MinTimeBetweenRandomAnims: 30
-  MaxTimeBetweenRandomAnims: 180
+  SideIdleAnimation: {fileID: 7400000, guid: 526b3fe6017c85140beb11c97383bf2a, type: 2}
+  RandomAnimation: {fileID: 7400000, guid: 469ce1e080255ae42bb09a7bf8882de2, type: 2}
+  MinTimeBetweenRandomAnims: 10
+  MaxTimeBetweenRandomAnims: 30
   QuestToGive: {fileID: 11400000, guid: b0511233219c194478188b1196a22f4a, type: 2}
-  GivingQuest: {fileID: 0}
+  GivingQuest: {fileID: 7400000, guid: 66ed1d68dac696545bde9805c12f3aad, type: 2}
+  WalkingAnimation: {fileID: 7400000, guid: 758d32a3ef1611d429446991e41091fe, type: 2}

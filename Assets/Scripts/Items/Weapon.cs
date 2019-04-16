@@ -44,13 +44,15 @@ namespace G4AW2.Data.DropSystem
                 return;
             }
 
+            MasteryLevels.Tap(ID);
+
             if (Mastery != lastLevel) {
                 LevelUp.Raise(this);
                 DataChanged?.Invoke();
                 lastLevel = Mastery;
             }
 
-            MasteryLevels.Tap(ID);
+            
         }
 
         public override bool ShouldCreateNewInstanceWhenPlayerObtained() {

@@ -9,6 +9,8 @@ using UnityEngine;
 namespace G4AW2.Data {
     [CreateAssetMenu(menuName = "Data/Follower/Shop Follower")]
     public class ShopFollower : FollowerData, ISaveable {
+        public AnimationClip WalkingAnimation;
+
         public PersistentSetItem AllItems;
         public List<InventoryEntry> Items;
         public float BuyingPriceMultiplier = 1.5f;

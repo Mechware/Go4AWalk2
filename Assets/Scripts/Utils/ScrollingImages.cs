@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using CustomEvents;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,7 +12,7 @@ public class ScrollingImages : MonoBehaviour {
 	public int ScrollSpeed;
 	public Image ImagePrefab;
 	public int NumberRepeats;
-	public bool Playing = true;
+	public BoolReference Playing;
 	public bool ForceInt = false;
 
 	public List<Image> Images = new List<Image>();
@@ -37,10 +38,10 @@ public class ScrollingImages : MonoBehaviour {
 	}
 
 	public void Pause() {
-		Playing = false;
+		Playing.Value = false;
 	}
 	public void Play() {
-		Playing = true;
+		Playing.Value = true;
 	}
 
 	// Update is called once per frame

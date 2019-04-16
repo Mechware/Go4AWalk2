@@ -1,18 +1,20 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using CustomEvents;
 using G4AW2.Data;
+using G4AW2.Dialogue;
+using G4AW2.Followers;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
-public class ShopGiverDisplay : MonoBehaviour, IPointerClickHandler {
+public class QuestGiverDisplay : MonoBehaviour, IPointerClickHandler {
 
-    public ShopUI Shop;
     public UnityEvent StartedWalking;
     public UnityEvent FinishInteraction;
 
-    private ShopFollower follower;
+    private QuestGiver follower;
 
     public void SetData(FollowerData follower) {
 
@@ -26,7 +28,7 @@ public class ShopGiverDisplay : MonoBehaviour, IPointerClickHandler {
         pivot.x = 1;
         rt.pivot = pivot;
 
-        this.follower = (ShopFollower) follower;
+        this.follower = (QuestGiver) follower;
         gameObject.SetActive(true);
 
         Vector2 r = ((RectTransform) transform).sizeDelta;
@@ -44,6 +46,7 @@ public class ShopGiverDisplay : MonoBehaviour, IPointerClickHandler {
         aoc["Idle"] = this.follower.SideIdleAnimation;
         aoc["Walk Up"] = this.follower.WalkingAnimation;
         aoc["Random"] = this.follower.RandomAnimation;
+        aoc["QuestGiving"] = this.follower.GivingQuest;
     }
 
     public void StartWalking() {
@@ -55,26 +58,35 @@ public class ShopGiverDisplay : MonoBehaviour, IPointerClickHandler {
     public void StopWalking() {
         GetComponent<Animator>().ResetTrigger("Random");
         GetComponent<Animator>().SetBool("Walking", false);
+        GetComponent<Animator>().SetBool("Giving", true);
     }
 
+    public RuntimeSetFollowerData ListOfCurrentFollowers;
+    public RuntimeSetQuest ListOfOpenQuests;
+
     public void OnPointerClick(PointerEventData eventData) {
-        Shop.OpenShop(follower, () => {
 
-            // Flip Shopper
-            RectTransform rt = (RectTransform) transform;
-            Vector3 scale = rt.localScale;
-            scale.x = -1;
-            rt.localScale = scale;
+        PopUp.SetPopUp("Accept quest from quest giver? Title: " + follower.QuestToGive.DisplayName, new[] { "Yes", "No" }, new Action[] {
+            () => {
+                ListOfOpenQuests.Add(follower.QuestToGive);
+                ListOfCurrentFollowers.Remove(follower);
 
-            Vector2 pivot = rt.pivot;
-            pivot.x = 0;
-            rt.pivot = pivot;
+                // Flip Giver
+                RectTransform rt = (RectTransform) transform;
+                Vector3 scale = rt.localScale;
+                scale.x = -1;
+                rt.localScale = scale;
 
-            FinishInteraction.Invoke();
+                Vector2 pivot = rt.pivot;
+                pivot.x = 0;
+                rt.pivot = pivot;
 
-            StartCoroutine(WalkOffScreen());
-        });
-        
+                FinishInteraction.Invoke();
+
+                StartCoroutine(WalkOffScreen());
+
+            }, () => { } });
+
     }
 
     [Header("Walk Off Parameters")]
@@ -86,18 +98,20 @@ public class ShopGiverDisplay : MonoBehaviour, IPointerClickHandler {
 
     IEnumerator WalkOffScreen() {
 
+        GetComponent<Animator>().SetBool("Giving", false);
         GetComponent<Animator>().SetBool("Walking", true);
 
         RectTransform rt = (RectTransform) transform;
 
-        while (true) {
+        while(true) {
 
             Vector3 pos = rt.localPosition;
             pos.x -= WalkOffSpeed * Time.deltaTime;
             pos.x -= Scrolling ? ScrollSpeed * Time.deltaTime : 0;
             rt.localPosition = pos;
 
-            if (pos.x < End) break;
+            if(pos.x < End)
+                break;
 
             yield return null;
         }
