@@ -22,9 +22,13 @@ namespace G4AW2.Followers {
 		private List<FollowerDisplay> AllFollowers = new List<FollowerDisplay>();
 
 		public UnityEventEnemyData FightFollower;
+		public UnityEvent QuestGiverClicked;
 
 
-	    public ShopUI Shop;
+        [Header("Shop")]
+	    public LerpToPosition ShopperWalk;
+	    public ShopGiverDisplay Shopper;
+        public LerpToPosition WorldCameraLerper;
 
 		void Awake() {
             // Remove listeneres
@@ -90,7 +94,15 @@ namespace G4AW2.Followers {
 							ListOfCurrentFollowers.Remove(fd.Data);
 						}, () => { } });
 				} else if (fd.Data is ShopFollower) {
-				    Shop.OpenShop((ShopFollower)fd.Data);
+
+				    WorldCameraLerper.StartLerping(() => {
+				        Shopper.SetData(fd.Data);
+                        Shopper.StartWalking();
+				        ShopperWalk.StartLerping(() => {
+				            Shopper.StopWalking();
+                            Shopper.OnClick();
+				        });
+                    });
                 }
 			} 
 		}

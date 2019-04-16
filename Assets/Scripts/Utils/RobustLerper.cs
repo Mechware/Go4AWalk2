@@ -1,4 +1,5 @@
-﻿using CustomEvents;
+using CustomEvents;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -30,20 +31,42 @@ public class RobustLerper : MonoBehaviour {
     private bool reverse = false;
     private float duration;
 
+    private Action currentLerpingAction;
+
+    public void StartLerping(Action a) {
+        currentLerpingAction = a;
+        StartLerp();
+    }
+
     [ContextMenu("Play")]
     public void StartLerping() {
-        reverse = false;
-        duration = 0;
-        playing = true;
+        currentLerpingAction = null;
+        StartLerp();
+    }
 
-        OnStart.Invoke();
+    private void StartLerp() {
+        duration = 0;
+        reverse = false;
+        playing = true;
 
         foreach(var lerper in Lerpers) {
             lerper.Update(0);
         }
+
+        OnStart.Invoke();
     }
 
     public void StartReverseLerp() {
+        currentLerpingAction = null;
+        ReverseLerp();
+    }
+
+    public void StartReverseLerp(Action a) {
+        currentLerpingAction = a;
+        ReverseLerp();
+    }
+
+    private void ReverseLerp() {
         duration = 0;
         reverse = true;
         playing = true;
@@ -69,6 +92,7 @@ public class RobustLerper : MonoBehaviour {
         }
 
         OnEnd.Invoke();
+        currentLerpingAction?.Invoke();
     }
 
     public void EndReverseLerping() {
@@ -79,6 +103,7 @@ public class RobustLerper : MonoBehaviour {
         }
 
         OnReverseEnd.Invoke();
+        currentLerpingAction?.Invoke();
     }
 
     private void Start() {
