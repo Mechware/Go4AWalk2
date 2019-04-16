@@ -19,6 +19,9 @@ namespace G4AW2.Data.DropSystem
 
     [CreateAssetMenu(menuName = "Data/Items/Item")]
     public class Item : ScriptableObject, IID {
+
+        public string Name { get { return name.Replace(" (clone)", ""); } }
+
 	    public int ID;
         public Sprite Image;
         public int Value;
