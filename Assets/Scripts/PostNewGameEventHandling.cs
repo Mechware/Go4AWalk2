@@ -13,12 +13,14 @@ public class PostNewGameEventHandling : MonoBehaviour {
     public void OnNewGame() {
         Weapon original = PlayerWeapon.Value;
         PlayerWeapon.Value = Instantiate(original);
+        PlayerWeapon.Value.CreatedFromOriginal = true;
         PlayerWeapon.Value.Level = 1;
         PlayerWeapon.Value.TapsWithWeapon.Value = 0;
-        PlayerWeapon.Value.OnAfterObtained(original);
+        PlayerWeapon.Value.OnAfterObtained();
 
         Armor originalArmor = PlayerArmor;
         PlayerArmor.Value = Instantiate(originalArmor);
-        PlayerArmor.Value.OnAfterObtained(originalArmor);
+        PlayerArmor.Value.CreatedFromOriginal = true;
+        PlayerArmor.Value.OnAfterObtained();
     }
 }

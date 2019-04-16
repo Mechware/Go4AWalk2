@@ -67,27 +67,10 @@ namespace G4AW2.Data.DropSystem {
             return true;
         }
 
-        public override void OnAfterObtained(Item original) {
+        public override void OnAfterObtained() {
 
-
-
-            ID = original.ID;
-            name = original.name;
-            Image = original.Image;
-            Value = original.Value;
-            Description = original.Description;
-            Rarity = original.Rarity;
-            NoBlockModifier = ((Armor) original).NoBlockModifier;
-            PerfectBlockModifier = ((Armor) original).PerfectBlockModifier;
-            MistimedBlockModifier = ((Armor) original).MistimedBlockModifier;
-            DamageAdditiveModifier = ((Armor) original).DamageAdditiveModifier;
-
-            if(random != -1) {
-                SetValuesBasedOnRandom();
-            } else {
-                random = UnityEngine.Random.Range(0, 101);
-                SetValuesBasedOnRandom();
-            }
+            random = UnityEngine.Random.Range(0, 101);
+            SetValuesBasedOnRandom();
         }
 
         public override string GetName() {
@@ -146,6 +129,9 @@ namespace G4AW2.Data.DropSystem {
             random = ds.Random;
             IsMarkedTrash = ds.Trash;
 
+            if(CreatedFromOriginal)
+                return;
+
             Armor original;
 
             if(otherData[0] is PersistentSetItem) {
@@ -156,7 +142,17 @@ namespace G4AW2.Data.DropSystem {
             }
 
             // Copy Original Values
-            OnAfterObtained(original);
+            //OnAfterObtained(original);
+            ID = original.ID;
+            name = original.name;
+            Image = original.Image;
+            Value = original.Value;
+            Description = original.Description;
+            Rarity = original.Rarity;
+            NoBlockModifier = ((Armor) original).NoBlockModifier;
+            PerfectBlockModifier = ((Armor) original).PerfectBlockModifier;
+            MistimedBlockModifier = ((Armor) original).MistimedBlockModifier;
+            DamageAdditiveModifier = ((Armor) original).DamageAdditiveModifier;
         }
 
         public bool IsTrash() {

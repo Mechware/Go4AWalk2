@@ -15,7 +15,8 @@ namespace G4AW2.Data.DropSystem {
                     Item itemThatGoesToInventory = item.item;
                     if(item.item.ShouldCreateNewInstanceWhenPlayerObtained()) {
                         itemThatGoesToInventory = Object.Instantiate(item.item);
-                        itemThatGoesToInventory.OnAfterObtained(item.item);
+                        itemThatGoesToInventory.CreatedFromOriginal = true;
+                        itemThatGoesToInventory.OnAfterObtained();
                     }
                     droppedItems.Add(itemThatGoesToInventory);
                 }

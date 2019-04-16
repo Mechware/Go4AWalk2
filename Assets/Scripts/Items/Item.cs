@@ -20,6 +20,8 @@ namespace G4AW2.Data.DropSystem
     [CreateAssetMenu(menuName = "Data/Items/Item")]
     public class Item : ScriptableObject, IID {
 
+        [NonSerialized] public bool CreatedFromOriginal = false;
+
         public string Name { get { return name.Replace(" (clone)", ""); } }
 
 	    public int ID;
@@ -38,7 +40,15 @@ namespace G4AW2.Data.DropSystem
             return false;
         }
 
-        public virtual void OnAfterObtained(Item original) {
+        public virtual void OnAfterObtained() {
+        }
+
+        public virtual void CopyValues(Item original) {
+            ID = original.ID;
+            Image = original.Image;
+            Value = original.Value;
+            Description = original.Description;
+            Rarity = original.Rarity;
         }
 
         public virtual string GetName() {

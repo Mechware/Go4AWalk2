@@ -51,32 +51,17 @@ namespace G4AW2.Data.DropSystem
                 DataChanged?.Invoke();
                 lastLevel = Mastery;
             }
-
-            
         }
 
         public override bool ShouldCreateNewInstanceWhenPlayerObtained() {
             return true;
         }
 
-        public override void OnAfterObtained(Item original) {
+        public override void OnAfterObtained() {
 
-            ID = original.ID;
-            name = original.name;
-            Image = original.Image;
-            Value = original.Value;
-            Description = original.Description;
-            Rarity = original.Rarity;
-            Damage = ((Weapon)original).Damage;
-            LevelUp = ((Weapon) original).LevelUp;
-
-            if(random != -1) {
-                SetValuesBasedOnRandom();
-            } else {
-                random = UnityEngine.Random.Range(0, 101);
-                SetValuesBasedOnRandom();
-                TapsWithWeapon.Value = 0;
-            }
+            random = UnityEngine.Random.Range(0, 101);
+            SetValuesBasedOnRandom();
+            TapsWithWeapon.Value = 0;
         }
 
         public override string GetName() {
@@ -135,6 +120,11 @@ namespace G4AW2.Data.DropSystem
             MarkedAsTrash = ds.Trash;
             Level = ds.Level;
 
+            SetValuesBasedOnRandom();
+
+            if(CreatedFromOriginal)
+                return;
+
             Weapon original;
 
             if (otherData[0] is PersistentSetItem) {
@@ -146,7 +136,9 @@ namespace G4AW2.Data.DropSystem
             }
 
             // Copy Original Values
-            OnAfterObtained(original);
+            CopyValues(original);
+            Damage = original.Damage;
+            LevelUp = original.LevelUp;
         }
 
         public bool IsTrash() {

@@ -77,13 +77,13 @@ namespace G4AW2.Saving {
 
             bool success;
 
-            try {
+            //try {
                 LoadFromString(File.ReadAllText(saveFilePath));
                 success = true;
-            } catch(Exception) {
-                ShowErrorPopUp();
-                success = false;
-            }
+            //} catch(Exception) {
+            //    ShowErrorPopUp();
+            //    success = false;
+            //}
 
             if(!success) {
                 OnLoadNotSuccessful?.Raise();

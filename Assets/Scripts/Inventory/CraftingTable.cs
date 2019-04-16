@@ -49,8 +49,10 @@ public class CraftingTable : ScriptableObject {
         }
 
         Item it = ScriptableObject.Instantiate(cr.Result.Item);
+        it.CreatedFromOriginal = true;
+
         if (it.ShouldCreateNewInstanceWhenPlayerObtained()) {
-            it.OnAfterObtained(cr.Result.Item);
+            it.OnAfterObtained();
         }
 
         InventoryEntry ie = new InventoryEntry() {
@@ -60,5 +62,10 @@ public class CraftingTable : ScriptableObject {
 
         Inventory.Add(ie);
         return true;
+    }
+
+
+    public void Enchant(Weapon w) {
+
     }
 }

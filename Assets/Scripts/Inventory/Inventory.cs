@@ -90,8 +90,9 @@ public class Inventory : ScriptableObject, IEnumerable<InventoryEntry>, ISaveabl
             Item it = AllItems.First(d => d.ID == entry.Id);
 
             if (it is ISaveable) {
-                it = (Item) CreateInstance(it.GetType());
-                ((ISaveable) it).SetData(entry.AdditionalInfo, otherData);
+                it = Instantiate(it);
+                it.CreatedFromOriginal = true;
+                ((ISaveable) it).SetData(entry.AdditionalInfo, it);
             }
 
             InventoryEntry ie = new InventoryEntry() {
