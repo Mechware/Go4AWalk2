@@ -11,10 +11,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f0d0a27342846e498e094ea7e7ac35a, type: 3}
   m_Name: Magic Wand
   m_EditorClassIdentifier: 
-  ID: 0
-  Image: {fileID: 0}
-  Value: 0
-  Description: 
-  Rarity: 0
-  Damage: 0
-  LevelUp: {fileID: 0}
+  ID: 49
+  Image: {fileID: 21300000, guid: 9a2a067e6eafa57428000bf6e2d3a1fb, type: 3}
+  Value: 1000000
+  Description: Oooh yeah.
+  Rarity: 4
+  Damage: 10
+  LevelUp: {fileID: 11400000, guid: 1b44135a1b59bbf4193efb1137b4ab02, type: 2}
