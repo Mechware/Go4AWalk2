@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92ed46357c010e84ea5a3394f3ad888d, type: 3}
+  m_Name: Bad Beetle
+  m_EditorClassIdentifier: 
+  ID: 18
+  SizeOfSprite: {x: 32, y: 32}
+  SpaceBetweenEnemies: 32
+  SideIdleAnimation: {fileID: 7400000, guid: 356f4bc689d4fba44baf7dbfbcc89d4f, type: 2}
+  RandomAnimation: {fileID: 7400000, guid: 65c7eac4a614380419f4478817237709, type: 2}
+  MinTimeBetweenRandomAnims: 3
+  MaxTimeBetweenRandomAnims: 8
+  Idle: {fileID: 7400000, guid: 5283477d0aa56ff4ea44d9baf16221bf, type: 2}
+  Flinch: {fileID: 7400000, guid: daca460ae64869342bc7126e3bef8876, type: 2}
+  BeforeAttack: {fileID: 7400000, guid: 23671dd4251633e40952d3fbdd6e0eb4, type: 2}
+  AttackExecute: {fileID: 7400000, guid: dfeb007cf4ae6414ebff42dc4ea0e1f0, type: 2}
+  AfterAttack: {fileID: 7400000, guid: 34d0133722861554ea6a767496bc1ef3, type: 2}
+  Death: {fileID: 7400000, guid: bc5e3dc139d22074299d149cd96a2f80, type: 2}
+  Dead: {fileID: 7400000, guid: efe29aacfffe53e499ac14df2b57b422, type: 2}
+  Walking: {fileID: 7400000, guid: 3bcc891abc823f0459b217b380f95c24, type: 2}
+  HealthScaling:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  TimeBetweenHeavyAttacksScaling:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  DamageScaling:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  AttackPrepTime: 0
+  AttackExecuteTime: 0
+  Drops:
+    Items: []
