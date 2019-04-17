@@ -129,6 +129,8 @@ namespace G4AW2.Data.DropSystem {
             random = ds.Random;
             IsMarkedTrash = ds.Trash;
 
+            SetValuesBasedOnRandom();
+
             if(CreatedFromOriginal)
                 return;
 

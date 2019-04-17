@@ -13,12 +13,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Enemies:
     Drops:
-    - Follower: {fileID: 11400000, guid: ff7eb37824fb51d49b8e7d54e43010c6, type: 2}
+    - Follower: {fileID: 11400000, guid: 0fa793a270e17e94988ea8a538153bab, type: 2}
       MinLevel: 1
       MaxLevel: 5
       DropChance: 5
   Background: {fileID: 21300000, guid: 8f39de82e516faa4393ccd2eb84eae65, type: 3}
-  SkyUpper: {fileID: 21300000, guid: bfab8ec1cf01c6b44b95d964dbb89392, type: 3}
   Sky: {fileID: 21300000, guid: cfa6904b18878cb4ca9f10427acbb3d9, type: 3}
   Clouds1: {fileID: 21300000, guid: 3aa7625d41e61eb41aadd47eee40b5c3, type: 3}
   Clouds2: {fileID: 21300000, guid: 37f2a7d2d28b09d4d8e7d3e693b1ad46, type: 3}

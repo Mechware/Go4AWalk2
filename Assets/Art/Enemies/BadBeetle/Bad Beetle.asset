@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Name: Bad Beetle
   m_EditorClassIdentifier: 
   ID: 18
-  SizeOfSprite: {x: 32, y: 32}
-  SpaceBetweenEnemies: 32
+  SizeOfSprite: {x: 64, y: 64}
+  SpaceBetweenEnemies: 40
   SideIdleAnimation: {fileID: 7400000, guid: 356f4bc689d4fba44baf7dbfbcc89d4f, type: 2}
   RandomAnimation: {fileID: 7400000, guid: 65c7eac4a614380419f4478817237709, type: 2}
   MinTimeBetweenRandomAnims: 3
@@ -26,25 +26,11 @@ MonoBehaviour:
   Death: {fileID: 7400000, guid: bc5e3dc139d22074299d149cd96a2f80, type: 2}
   Dead: {fileID: 7400000, guid: efe29aacfffe53e499ac14df2b57b422, type: 2}
   Walking: {fileID: 7400000, guid: 3bcc891abc823f0459b217b380f95c24, type: 2}
-  HealthScaling:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  TimeBetweenHeavyAttacksScaling:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  DamageScaling:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  AttackPrepTime: 0
-  AttackExecuteTime: 0
+  DeadSprite: {fileID: 21300064, guid: a2fa2e39be9110b45bd391930d0466c2, type: 3}
+  BaseHealth: 450
+  BaseDamage: 5
+  TimeBetweenHeavyAttacks: 2
+  AttackPrepTime: 0.5
+  AttackExecuteTime: 0.25
   Drops:
     Items: []

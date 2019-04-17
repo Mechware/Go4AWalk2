@@ -27,80 +27,11 @@ MonoBehaviour:
   Dead: {fileID: 7400000, guid: c96ac75cc87c5024eacbf9754c08e1df, type: 2}
   Walking: {fileID: 7400000, guid: 5a6146f8c50f0d848899e60e9e88cd98, type: 2}
   DeadSprite: {fileID: 21300052, guid: e0be62ea78b407d4a88f12efea2ca7d4, type: 3}
-  HealthScaling:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 100
-      inSlope: 43.803326
-      outSlope: 43.803326
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.0499002
-    - serializedVersion: 3
-      time: 99
-      value: 10000
-      inSlope: 50.34892
-      outSlope: 50.34892
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.057884216
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  TimeBetweenHeavyAttacksScaling:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 3
-      inSlope: -0.060116503
-      outSlope: -0.060116503
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.045908187
-    - serializedVersion: 3
-      time: 99
-      value: 0.2
-      inSlope: -0.0068070297
-      outSlope: -0.0068070297
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.051896222
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  DamageScaling:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 3
-      inSlope: 0.93460417
-      outSlope: 0.93460417
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.058882236
-    - serializedVersion: 3
-      time: 99
-      value: 1000
-      inSlope: 31.05661
-      outSlope: 31.05661
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.028942069
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  AttackPrepTime: 1
-  AttackExecuteTime: 1
+  BaseHealth: 150
+  BaseDamage: 2
+  TimeBetweenHeavyAttacks: 1.5
+  AttackPrepTime: 2
+  AttackExecuteTime: 0.25
   Drops:
     Items:
     - item: {fileID: 11400000, guid: 212b5a7b5274ba54eafbf973b21ed3f8, type: 2}

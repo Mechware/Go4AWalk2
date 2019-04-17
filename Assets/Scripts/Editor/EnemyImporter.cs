@@ -153,6 +153,8 @@ namespace G4AW2.Tools {
 					loadedData = false;
 				}
 
+			    enemyScriptableObject.DeadSprite = spriteSheet[spriteSheet.Length - 1];
+
 				totalFrameCount = 0;
 				for (int i = 0; i < anims.Count; i++) {
 					AnimationClip ac = CreateAnimation(anims[i], spriteSheet.Skip(totalFrameCount).Take(anims[i].frameCount).ToArray(), EnemyName, path);
@@ -185,7 +187,9 @@ namespace G4AW2.Tools {
 						case "Death":
 							enemyScriptableObject.Death = ac;
                             // If this is the death animation then create a dead animation that is just the last frame of the death animation
-                            enemyScriptableObject.Dead = CreateAnimation(new Anim("Dead", 1, 1000), new[] { spriteSheet[totalFrameCount + anims[i].frameCount - 1] }, EnemyName, path);
+						    Sprite deadSprite = spriteSheet[totalFrameCount + anims[i].frameCount - 1];
+                            enemyScriptableObject.Dead = CreateAnimation(new Anim("Dead", 1, 1000), new[] { deadSprite }, EnemyName, path);
+						    enemyScriptableObject.DeadSprite = deadSprite;
                             break;
                         case "Walking":
                             enemyScriptableObject.Walking = ac;

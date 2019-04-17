@@ -21,10 +21,9 @@ namespace G4AW2.Data.Combat {
 	    public Sprite DeadSprite;
 
 	    [Header("Stats")]
-		public AnimationCurve HealthScaling;
-	    public AnimationCurve TimeBetweenHeavyAttacksScaling;
-	    public AnimationCurve DamageScaling;
-
+	    public float BaseHealth;
+	    public float BaseDamage;
+	    public float TimeBetweenHeavyAttacks;
         public float AttackPrepTime;
         public float AttackExecuteTime;
 
@@ -33,9 +32,8 @@ namespace G4AW2.Data.Combat {
 
 	    [NonSerialized] public int Level;
 
-	    public int MaxHealth => Mathf.RoundToInt(HealthScaling.Evaluate(Level));
-	    public int TimeBetweenHeavyAttack => Mathf.RoundToInt(TimeBetweenHeavyAttacksScaling.Evaluate(Level));
-	    public int Damage => Mathf.RoundToInt(DamageScaling.Evaluate(Level));
+	    public int MaxHealth => Mathf.RoundToInt(BaseHealth * (1 + Level / 10f));
+	    public int Damage => Mathf.RoundToInt(BaseDamage * (1 + Level / 10f));
 
 	    private class SaveObject {
 	        public int ID;

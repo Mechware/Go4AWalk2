@@ -20,6 +20,9 @@ public class PlayerFightingLogic : MonoBehaviour {
     public UnityEvent Attacked;
     public UnityEventInt AttackHit;
 
+    public DamageNumberSpawner PlayerDamageNumberSpawner;
+    public Color DamageColor;
+
     private bool AbleToAttack { get { return !(blocking || perfectBlock || badParry); } }
     private bool blocking = false;
 	private bool perfectBlock = false;
@@ -39,7 +42,9 @@ public class PlayerFightingLogic : MonoBehaviour {
         damage = Mathf.RoundToInt(fdamage);
         Player.DamagePlayer(damage);
 	    AttackHit.Invoke(damage);
-	}
+	    PlayerDamageNumberSpawner.SpawnNumber(damage, DamageColor);
+
+    }
 
 	public void PlayerAttemptToHitEnemy() {
         if(AbleToAttack)

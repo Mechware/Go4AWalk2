@@ -13,6 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 3
   SizeOfSprite: {x: 64, y: 64}
+  SpaceBetweenEnemies: 32
   SideIdleAnimation: {fileID: 7400000, guid: 1218649ec9e2e63498393ec222af06a3, type: 2}
   RandomAnimation: {fileID: 7400000, guid: 66f96bfdf055fd540827f9ceb20b7626, type: 2}
   MinTimeBetweenRandomAnims: 2
@@ -25,10 +26,10 @@ MonoBehaviour:
   Death: {fileID: 7400000, guid: 9ac03ab87923fe54a9fa0818c7959473, type: 2}
   Dead: {fileID: 7400000, guid: 27ca152491557ea4f921d128b45684aa, type: 2}
   Walking: {fileID: 7400000, guid: 144518af6c52ac7438580d128efef087, type: 2}
-  BaseHealth: 200
-  BaseArmor: 0
-  TimeBetweenHeavyAttacks: 6
-  BaseHeavyDamage: 20
+  DeadSprite: {fileID: 21300054, guid: d89c36434d5f4cf4fa9119e9d064eabb, type: 3}
+  BaseHealth: 600
+  BaseDamage: 14
+  TimeBetweenHeavyAttacks: 0.1
   AttackPrepTime: 0
   AttackExecuteTime: 0
   Drops:

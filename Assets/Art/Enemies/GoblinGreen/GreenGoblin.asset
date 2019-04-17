@@ -27,80 +27,11 @@ MonoBehaviour:
   Dead: {fileID: 7400000, guid: 1df5577d6344553418ad332125ed9f0f, type: 2}
   Walking: {fileID: 7400000, guid: 3829f6b9c2b1cdf43b60974df8716e30, type: 2}
   DeadSprite: {fileID: 21300054, guid: 03250a6a4c96e00478de458191be07fb, type: 3}
-  HealthScaling:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 400
-      inSlope: 16.796913
-      outSlope: 16.796913
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.053892218
-    - serializedVersion: 3
-      time: 99
-      value: 25000
-      inSlope: 248.48485
-      outSlope: 248.48485
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  TimeBetweenHeavyAttacksScaling:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 3
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 3
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  DamageScaling:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 7
-      inSlope: 0.71789616
-      outSlope: 0.71789616
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.050898205
-    - serializedVersion: 3
-      time: 99
-      value: 1000
-      inSlope: 10.030303
-      outSlope: 10.030303
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  AttackPrepTime: 1
-  AttackExecuteTime: 1
+  BaseHealth: 250
+  BaseDamage: 5
+  TimeBetweenHeavyAttacks: 4
+  AttackPrepTime: 1.5
+  AttackExecuteTime: 0.25
   Drops:
     Items:
     - item: {fileID: 11400000, guid: 2da6b9adf5d871c4a8c481d49c4b2092, type: 2}

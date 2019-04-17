@@ -22852,6 +22852,8 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: CustomEvents.UnityEventInt, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  PlayerDamageNumberSpawner: {fileID: 1179473444}
+  DamageColor: {r: 0.20784315, g: 0.078431375, b: 0.15686275, a: 1}
 --- !u!114 &1550784727
 MonoBehaviour:
   m_ObjectHideFlags: 0

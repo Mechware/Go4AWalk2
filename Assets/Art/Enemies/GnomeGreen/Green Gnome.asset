@@ -27,25 +27,10 @@ MonoBehaviour:
   Dead: {fileID: 7400000, guid: d1018a116e017ce4fa0e4a56f1330bba, type: 2}
   Walking: {fileID: 7400000, guid: 3a4a77268e2965449827f915e6502947, type: 2}
   DeadSprite: {fileID: 21300050, guid: 560c1c6bacec80b42beabace4159e48e, type: 3}
-  HealthScaling:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  TimeBetweenHeavyAttacksScaling:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  DamageScaling:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  AttackPrepTime: 0.5
-  AttackExecuteTime: 0.5
+  BaseHealth: 350
+  BaseDamage: 17
+  TimeBetweenHeavyAttacks: 2
+  AttackPrepTime: 0.75
+  AttackExecuteTime: 0.25
   Drops:
     Items: []

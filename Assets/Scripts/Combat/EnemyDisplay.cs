@@ -78,7 +78,7 @@ namespace G4AW2.Combat {
 			MaxHealth.Value = data.MaxHealth;
 			CurrentHealth.Value = MaxHealth;
 		    HeavyDamage.Value = data.Damage;
-		    TimeBetweenHeavyAttacks.Value = data.TimeBetweenHeavyAttack;
+		    TimeBetweenHeavyAttacks.Value = data.TimeBetweenHeavyAttacks;
             AttackPrepTime.Value = data.AttackPrepTime;
             AttackExecuteDuration.Value = data.AttackExecuteTime;
 
