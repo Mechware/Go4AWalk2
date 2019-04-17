@@ -9,7 +9,7 @@ public class MoveObject : MonoBehaviour {
     public Vector2 StartMaxVelocity;
 
 	// Use this for initialization
-	void Start () {
+	void OnEnable () {
 	    float rand = Random.Range(0f, 1f);
 	    Vector2 velocity = StartMinVelocity + rand * (StartMaxVelocity - StartMinVelocity);
 	    GetComponent<Rigidbody2D>().velocity = velocity;

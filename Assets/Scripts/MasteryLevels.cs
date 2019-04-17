@@ -47,6 +47,8 @@ public class MasteryLevels : ScriptableObject, ISaveable {
         return JsonUtility.ToJson(so);
     }
 
+    public static bool Loaded = false;
+
     public void SetData(string saveString, params object[] otherData) {
         SaveObject so = JsonUtility.FromJson<SaveObject>(saveString);
 
@@ -57,5 +59,7 @@ public class MasteryLevels : ScriptableObject, ISaveable {
         foreach (var idToTaps in so.IDToTaps) {
             IDToNumTaps.Add(idToTaps.ID, idToTaps.Taps);
         }
+
+        Loaded = true;
     }
 }

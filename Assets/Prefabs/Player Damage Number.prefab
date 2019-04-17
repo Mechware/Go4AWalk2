@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 224578067231662096}
   - component: {fileID: 222617408720232666}
   - component: {fileID: 114621119102145980}
-  - component: {fileID: 114114992178610456}
   - component: {fileID: 50364320330878788}
   - component: {fileID: 114263620622895862}
   m_Layer: 5
@@ -51,21 +50,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &114114992178610456
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1727291124328016}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 623510ecf9f2b2847a11d59213f5af8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  StartColor: {r: 1, g: 0.030305546, b: 0, a: 1}
-  EndColor: {r: 0.4716981, g: 0, b: 0, a: 0}
-  Duration: 1
-  Delay: 0.5
 --- !u!114 &114263620622895862
 MonoBehaviour:
   m_ObjectHideFlags: 1

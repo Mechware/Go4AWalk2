@@ -21,8 +21,8 @@ namespace G4AW2.Data.DropSystem
 
         public int Damage;
 
-        public bool IsEnchanted { get { return enchantment != null; } }
-        public Enchanter Enchantment { get { return enchantment; } }
+        public bool IsEnchanted { get { return Enchantment != null; } }
+        public Enchanter Enchantment { get; private set; }
 
         public GameEventWeapon LevelUp;
 
@@ -37,7 +37,6 @@ namespace G4AW2.Data.DropSystem
         private float mod;
         private string nameMod;
 
-        private Enchanter enchantment;
 
         void OnEnable() {
             TapsWithWeapon.OnValueChange += TapsChanged;
@@ -45,6 +44,9 @@ namespace G4AW2.Data.DropSystem
 
         private int lastLevel = -1;
         void TapsChanged(int amount) {
+
+            if (!MasteryLevels.Loaded) return;
+
             if (lastLevel == -1) {
                 lastLevel = Mastery;
                 return;
@@ -115,7 +117,7 @@ namespace G4AW2.Data.DropSystem
         }
 
         public string GetSaveString() {
-            return JsonUtility.ToJson(new DummySave() {ID = ID, Random = random, Taps = TapsWithWeapon, Trash = MarkedAsTrash, Level = Level, EnchantID = enchantment == null ? -1 : enchantment.ID, EnchantSave = enchantment == null ? "" : enchantment.GetSaveString()});
+            return JsonUtility.ToJson(new DummySave() {ID = ID, Random = random, Taps = TapsWithWeapon, Trash = MarkedAsTrash, Level = Level, EnchantID = Enchantment == null ? -1 : Enchantment.ID, EnchantSave = Enchantment == null ? "" : Enchantment.GetSaveString()});
         }
 
         public void SetData(string saveString, params object[] otherData) {
@@ -130,9 +132,9 @@ namespace G4AW2.Data.DropSystem
 
             if(ds.EnchantID != -1 && CreatedFromOriginal) {
                 Enchanter og = AllItems.First(it => it.ID == ds.EnchantID) as Enchanter;
-                enchantment = Instantiate(og);
-                enchantment.CreatedFromOriginal = true;
-                enchantment.SetData(ds.EnchantSave, og);
+                Enchantment = Instantiate(og);
+                Enchantment.CreatedFromOriginal = true;
+                Enchantment.SetData(ds.EnchantSave, og);
             }
 
             SetValuesBasedOnRandom();
@@ -158,9 +160,9 @@ namespace G4AW2.Data.DropSystem
 
             if(ds.EnchantID != -1) {
                 Enchanter og = AllItems.First(it => it.ID == ds.EnchantID) as Enchanter;
-                enchantment = Instantiate(og);
-                enchantment.CreatedFromOriginal = true;
-                enchantment.SetData(ds.EnchantSave, og);
+                Enchantment = Instantiate(og);
+                Enchantment.CreatedFromOriginal = true;
+                Enchantment.SetData(ds.EnchantSave, og);
             }
         }
 
@@ -174,11 +176,11 @@ namespace G4AW2.Data.DropSystem
         }
 
         public void Enchant(Enchanter e) {
-            enchantment = e;
+            Enchantment = e;
         }
 
         public int GetEnchantDamage() {
-            return enchantment == null ? 0 : Mathf.RoundToInt(enchantment.GetAdditiveDamage(this));
+            return Enchantment == null ? 0 : Mathf.RoundToInt(Enchantment.GetAdditiveDamage(this));
         }
     }
 }

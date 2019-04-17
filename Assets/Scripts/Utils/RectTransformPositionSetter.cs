@@ -5,11 +5,11 @@ using UnityEngine;
 [RequireComponent(typeof(RectTransform))]
 public class RectTransformPositionSetter : MonoBehaviour {
 
-    private RectTransform Transform;
-
-    void Awake() {
-        Transform = GetComponent<RectTransform>();
-    }
+    private RectTransform rt;
+    private RectTransform Transform {get {
+        if (rt == null) rt = GetComponent<RectTransform>();
+        return rt;
+    }}
 
     public void SetX(float x) {
         Vector3 vec = Transform.anchoredPosition;
@@ -18,8 +18,6 @@ public class RectTransformPositionSetter : MonoBehaviour {
     }
 
     public void SetY(float y) {
-        if (Transform == null) return;
-
         Vector3 vec = Transform.anchoredPosition;
         vec.y = y;
         Transform.anchoredPosition = vec;

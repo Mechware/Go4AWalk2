@@ -4027,7 +4027,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -14.61, y: -31.4}
+  m_AnchoredPosition: {x: -9.3, y: -13.8}
   m_SizeDelta: {x: 29.22, y: 40.62}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &340642938
@@ -10012,7 +10012,7 @@ GameObject:
   - component: {fileID: 874343735}
   - component: {fileID: 874343736}
   m_Layer: 5
-  m_Name: StartLerper
+  m_Name: FadeInUILerper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13861,7 +13861,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 14.61, y: -31.4}
+  m_AnchoredPosition: {x: 14.61, y: -15}
   m_SizeDelta: {x: 29.22, y: 40.62}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1179473444
@@ -27850,7 +27850,7 @@ GameObject:
   - component: {fileID: 2092539048}
   - component: {fileID: 2092539049}
   m_Layer: 5
-  m_Name: EndLerper
+  m_Name: FadeOutUILerper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
