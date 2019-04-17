@@ -9,18 +9,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cf47fd378bc65494da74f58a602c31e3, type: 3}
-  m_Name: Fire Type
+  m_Name: Dark
   m_EditorClassIdentifier: 
+  DamageColor: {r: 0.30588236, g: 0.3254902, b: 0.4431373, a: 1}
   NamePrefixes:
-  - Name: unable to function
-    RandomValueMin: 2
-  - Name: dumb
+  - Name: dim
     RandomValueMin: 10
-  - Name: pretty dumb
-    RandomValueMin: 25
-  - Name: average
-    RandomValueMin: 50
-  - Name: smart
-    RandomValueMin: 75
-  - Name: genius
+    BaseDamage: 1
+  - Name: shadowed
+    RandomValueMin: 30
+    BaseDamage: 2
+  - Name: dark
+    RandomValueMin: 70
+    BaseDamage: 5
+  - Name: demonic
+    RandomValueMin: 90
+    BaseDamage: 8
+  - Name: infernal
     RandomValueMin: 100
+    BaseDamage: 10

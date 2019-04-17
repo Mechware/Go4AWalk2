@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Name: Inventory
   m_EditorClassIdentifier: 
   AllItems: {fileID: 11400000, guid: f34cbb7c711f3c94f92aaeed3b937361, type: 2}
-  ItemToAdd: {fileID: 11400000, guid: dc820a69f03cdd143ab25de0aeea35e5, type: 2}
+  ItemToAdd: {fileID: 11400000, guid: 49a395b3e2e7c7b4aa598c53811f7e7d, type: 2}

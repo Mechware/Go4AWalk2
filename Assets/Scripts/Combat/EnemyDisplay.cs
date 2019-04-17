@@ -35,15 +35,15 @@ namespace G4AW2.Combat {
 		public IntReference HeavyDamage;
 
         // Events
-        public UnityEvent OnAttackBegin;
-        public UnityEvent OnAttackExecute;
 		public UnityEventInt OnAttackHit;
-	    public UnityEvent OnAttackParried;
 		public UnityEventEnemyData OnDeath;
 	    public UnityEventIEnumerableLoot OnDropLoot;
-		public UnityEvent OnStun;
-	    public UnityEvent OnUnStun;
-		public UnityEventInt OnHit;
+
+	    public DamageNumberSpawner RegularDamageNumberSpawner;
+	    public DamageNumberSpawner ElementalDamageNumberSpawner;
+        public UnityEventInt OnHit;
+		public UnityEventInt OnElementalHit;
+
         public UnityEvent OnStartWalking;
 
 		private bool isDead = false;
@@ -118,13 +118,11 @@ namespace G4AW2.Combat {
 
 		public void Stun() {
 			StopAllCoroutines();
-			OnStun.Invoke();
 		    MyAnimator.SetTrigger("Stun");
         }
 
         public void UnStun() {
 			StartCoroutine(DoAttack());
-			OnUnStun.Invoke();
             MyAnimator.SetTrigger("StunOver");
         }
 
@@ -142,7 +140,6 @@ namespace G4AW2.Combat {
 				if (isDead)
 					break;
 
-				OnAttackBegin.Invoke();
 			    MyAnimator.SetTrigger("AttackStart");
                 attackBroken = false;
 				canParry = false;
@@ -155,7 +152,6 @@ namespace G4AW2.Combat {
 
                 EnemyState = State.ExecuteAttack;
 
-				OnAttackExecute.Invoke();
 			    MyAnimator.SetTrigger("AttackExecute");
 				canParry = true;
 
@@ -181,17 +177,26 @@ namespace G4AW2.Combat {
                     UnStun();
                 });
 
-                OnAttackParried.Invoke();
                 return true;
 			}
             return false;
 		}
 
-		public void ApplyDamage( int amount ) {
+	    public Color BaseDamageColor;
+
+		public void ApplyDamage( int amount, bool elemental, EnchantingType type = null ) {
 			if (isDead)
 				return;
 
-			CurrentHealth.Value -= amount;
+		    if(!elemental) {
+		        OnHit.Invoke(amount);
+                RegularDamageNumberSpawner.SpawnNumber(amount, BaseDamageColor);
+		    } else {
+                ElementalDamageNumberSpawner.SpawnNumber(amount, type.DamageColor);
+		        OnElementalHit.Invoke(amount);
+		    }
+
+            CurrentHealth.Value -= amount;
 			if (CurrentHealth.Value <= 0) {
 				isDead = true;
                 StopAllCoroutines();
@@ -226,8 +231,7 @@ namespace G4AW2.Combat {
                 
                 OnDropLoot.Invoke(items);
 			} else {
-				OnHit.Invoke(amount);
-			    MyAnimator.SetTrigger("Flinch");
+                MyAnimator.SetTrigger("Flinch");
             }
         }
 

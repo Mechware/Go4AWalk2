@@ -45,7 +45,9 @@ public class PlayerFightingLogic : MonoBehaviour {
         if(AbleToAttack)
         {
             Attacked.Invoke();
-            EnemyDisplay.ApplyDamage(Player.GetLightDamage());
+            EnemyDisplay.ApplyDamage(Player.GetLightDamage(), false);
+            if(Player.Weapon.Value.IsEnchanted)
+                EnemyDisplay.ApplyDamage(Player.GetElementalDamage(), true, Player.Weapon.Value.Enchantment.Type);
             Player.Weapon.Value.TapsWithWeapon.Value++;
         }
     }

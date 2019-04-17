@@ -8,7 +8,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64793f7087d520e4986f332c04439f67, type: 3}
+  m_Script: {fileID: 11500000, guid: d7252a251baf7f3449083c0069d65613, type: 3}
   m_Name: White Crystal
   m_EditorClassIdentifier: 
   ID: 27
@@ -16,5 +16,5 @@ MonoBehaviour:
   Value: 150
   Description: An incredible colourless crystal.
   Rarity: 3
-  MaxStackSize: 0
-  Type: 1
+  Type: {fileID: 0}
+  GemTypeType: 30

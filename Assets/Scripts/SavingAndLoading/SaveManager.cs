@@ -77,13 +77,13 @@ namespace G4AW2.Saving {
 
             bool success;
 
-            //try {
+            try {
                 LoadFromString(File.ReadAllText(saveFilePath));
                 success = true;
-            //} catch(Exception) {
-            //    ShowErrorPopUp();
-            //    success = false;
-            //}
+            } catch(Exception) {
+                ShowErrorPopUp();
+                success = false;
+            }
 
             if(!success) {
                 OnLoadNotSuccessful?.Raise();
@@ -116,6 +116,8 @@ namespace G4AW2.Saving {
         }
 
         private void LoadFromString(string loadText) {
+            string errorMessage = "Could not load the following:";
+            bool error = false;
             SaveObject saveData = JsonUtility.FromJson<SaveObject>(loadText);
             foreach(KeyValuePairStringString kvp in saveData.VariableDictionary) {
                 ListObject soToOverwrite = ObjectsToSave.First(so => so.ObjectToSave.name.Equals(kvp.Key));
@@ -126,12 +128,26 @@ namespace G4AW2.Saving {
                     continue;
                 }
 
-                if(soToOverwrite.OtherData.Count == 0) {
-                    ((ISaveable) soToOverwrite.ObjectToSave).SetData(kvp.Value);
-                } else {
-                    ((ISaveable) soToOverwrite.ObjectToSave).SetData(kvp.Value, soToOverwrite.OtherData[0]);
+                try {
+                    if (soToOverwrite.OtherData.Count == 0) {
+                        ((ISaveable) soToOverwrite.ObjectToSave).SetData(kvp.Value);
+                    }
+                    else {
+                        ((ISaveable) soToOverwrite.ObjectToSave).SetData(kvp.Value, soToOverwrite.OtherData[0]);
+                    }
+                }
+                catch (Exception e) {
+                    Debug.LogWarning(e.Message + "\n" + e.StackTrace);
+                    errorMessage += soToOverwrite.ObjectToSave.name + "\n";
+                    error = true;
                 }
             }
+
+            if (error) {
+                PopUp.SetPopUp(errorMessage, new[] {"Ok", "Close Game"},
+                    new Action[] {() => { }, () => Application.Quit()});
+            }
+            
         }
 
         private string GetSaveString() {

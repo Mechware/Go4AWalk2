@@ -72,8 +72,10 @@ public class ItemDropBubbleManager : MonoBehaviour {
 	                    ((Weapon) it.Item).MarkedAsTrash = true;
 	                },
 	                () => {
+                        
 	                    Inventory.Add(PlayerWeapon.Value);
                         PlayerWeapon.Value = (Weapon) it.Item;
+	                    Inventory.Remove(it.Item);
 	                }
 	            });
 

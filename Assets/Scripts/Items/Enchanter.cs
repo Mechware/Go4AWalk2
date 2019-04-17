@@ -1,4 +1,4 @@
-﻿using CustomEvents;
+using CustomEvents;
 using G4AW2.Data.DropSystem;
 using System;
 using System.Collections;
@@ -18,16 +18,19 @@ public class Enchanter : Item, ISaveable {
     public EnchantingType Type;
     [Tooltip("Gem/Crystal/Other")]
     public GemType GemTypeType;
-    public int RandomAddition;
 
     private int RandomlyGeneratedValue;
+
+    public float GetAdditiveDamage(Weapon w) {
+        return Type.GetDamage(RandomlyGeneratedValue) * (1 + w.Level / 10);
+    }
 
     public override string GetDescription() {
         return base.GetDescription();
     }
 
     public override void OnAfterObtained() {
-        RandomAddition = UnityEngine.Random.Range(0, 101) + (int)GemTypeType;
+        RandomlyGeneratedValue = UnityEngine.Random.Range(0, 101) + (int)GemTypeType;
     }
 
     public override bool ShouldCreateNewInstanceWhenPlayerObtained() {
@@ -35,7 +38,7 @@ public class Enchanter : Item, ISaveable {
     }
 
     public override string GetName() {
-        return Type.GetPrefix(RandomAddition) + " " + base.GetName() + " " + Enum.GetName(typeof(GemType), GemTypeType);
+        return Type.GetPrefix(RandomlyGeneratedValue) + " " + base.GetName();
     }
 
 

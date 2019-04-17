@@ -56,6 +56,10 @@ namespace G4AW2.Combat {
             return Weapon.Value.ActualDamage;
 		}
 
+	    public int GetElementalDamage() {
+	        return Weapon.Value.GetEnchantDamage();
+	    }
+
 #if UNITY_EDITOR
 		[ContextMenu("Restore Health")]
 		private void ResetHealth() {

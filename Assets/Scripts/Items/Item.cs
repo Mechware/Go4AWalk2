@@ -22,7 +22,7 @@ namespace G4AW2.Data.DropSystem
 
         [NonSerialized] public bool CreatedFromOriginal = false;
 
-        public string Name { get { return name.Replace(" (clone)", ""); } }
+        public string Name { get { return name.Replace(" (clone)", "").Replace(" (Clone)", ""); } }
 
 	    public int ID;
         public Sprite Image;
