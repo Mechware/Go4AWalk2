@@ -64,7 +64,7 @@ public class ItemDropBubbleManager : MonoBehaviour {
 
 	    if (it.Item is Weapon) {
 
-	        PopUp.SetPopUp(it.Item.GetDescription(),
+	        PopUp.SetPopUp($"{it.Item.GetName()}\n{it.Item.GetDescription()}",
 	            new string[] {"Pick Up", "Trash", "Equip"},
 	            new Action[] {
 	                () => { },

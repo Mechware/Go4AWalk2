@@ -18,6 +18,10 @@ public class QuestListUI : MonoBehaviour {
 
     public RuntimeSetQuest CurrentQuests;
 
+    public void Awake() {
+        CurrentQuests.OnChange.AddListener(q => RefreshList());
+    }
+
     public void RefreshList() {
         Clear();
         CurrentQuests.Value.ForEach(AddItem);

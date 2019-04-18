@@ -61,33 +61,43 @@ public class QuestManager : MonoBehaviour {
     }
 
     public void QuestClicked(Quest q) {
-
-        if(q == CurrentQuest) {
-            PopUp.SetPopUp("This is your current quest.", new[] { "Cool", "Nice." }, new Action[] { () => { }, () => { } });
-            return;
-        }
-
         //TODO: Show some sort of info on the quest.
-
         if(!(q is ActiveQuestBase)) {
             return;
         }
 
-        if(!CurrentQuest.Value.IsFinished()) {
-            PopUp.SetPopUp("Are you sure you want to switch quests? You will lose all progress in this one.",
-                new[] { "Yep", "Nope" }, new Action[] {
-                    () => {
+        PopUp.SetPopUp($"{q.DisplayName}\nWhat would you like to do?", new[] {"Set Active", "Remove", "Cancel"},
+            new Action[] {
+                () => {
+                    // Set Active
+                    if (!CurrentQuest.Value.IsFinished()) {
+                        PopUp.SetPopUp(
+                            "Are you sure you want to switch quests? You will lose all progress in this one.",
+                            new[] {"Yep", "Nope"}, new Action[] {
+                                () => {
+                                    ResetQuestState.Invoke();
+                                    CurrentQuests.Add(CurrentQuest);
+                                    CurrentQuests.Remove(q);
+                                    SetCurrentQuest((ActiveQuestBase) q);
+                                },
+                                () => { }
+                            });
+                    }
+                    else {
+                        // You've already completed the quest
                         ResetQuestState.Invoke();
-                        SetCurrentQuest((ActiveQuestBase)q);
-                    },
-                    () => { }
-                });
-        } else {
-            // You've already completed the quest
-            CurrentQuests.Remove(CurrentQuest);
-            ResetQuestState.Invoke();
-            SetCurrentQuest((ActiveQuestBase) q);
-        }
+                        SetCurrentQuest((ActiveQuestBase) q);
+                    }
+                },
+                () => {
+                    // Remove
+                    CurrentQuests.Remove(q);
+                },
+                () => {
+                    // Cancel
+
+                }
+            });
     }
 
 

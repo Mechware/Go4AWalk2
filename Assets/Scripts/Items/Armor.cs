@@ -74,7 +74,7 @@ namespace G4AW2.Data.DropSystem {
         }
 
         public override string GetName() {
-            return $"{nameMod} {name}";
+            return $"{nameMod} {base.GetName()}";
         }
 
         public override string GetDescription() {

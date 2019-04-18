@@ -29,4 +29,4 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: CustomEvents.UnityEventWeapon, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
-  _value: {fileID: 11400000, guid: 37922c7fca4096e48a04b7094a8a3449, type: 2}
+  _value: {fileID: 0}
