@@ -10892,6 +10892,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Inventory: {fileID: 11400000, guid: 26cb67b184c39ce41a042b44d325797c, type: 2}
+  PlayerWeapon:
+    UseConstant: 0
+    ConstantValue: {fileID: 0}
+    Variable: {fileID: 11400000, guid: ddec0eaf5ab10b542b2cca79d5614413, type: 2}
   Weapon: {fileID: 170653550}
   Enchanter: {fileID: 1462626083}
   Result: {fileID: 982086823}

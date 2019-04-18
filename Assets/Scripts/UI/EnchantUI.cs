@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using CustomEvents;
 using G4AW2.Data.DropSystem;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,6 +9,7 @@ using UnityEngine.UI;
 public class EnchantUI : MonoBehaviour {
 
     public Inventory Inventory;
+    public WeaponReference PlayerWeapon;
 
     public IconWithTextController Weapon;
     public IconWithTextController Enchanter;
@@ -25,7 +28,9 @@ public class EnchantUI : MonoBehaviour {
     }
 
     void WeaponViewerClicked() {
-        ItemViewer.ShowItemsFromInventory<Weapon>(false, false, WeaponClicked);
+        ItemViewer.ShowItemsFromInventoryWhere<Weapon>(ie => !((Weapon)ie.Item).IsEnchanted && !((Weapon) ie.Item).IsTrash(), false, WeaponClicked);
+        if(!PlayerWeapon.Value.IsEnchanted)
+            ItemViewer.Add<Weapon>(PlayerWeapon, 0, WeaponClicked);
     }
 
     void WeaponClicked(Weapon w) {

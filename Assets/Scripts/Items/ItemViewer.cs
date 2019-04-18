@@ -21,6 +21,10 @@ public class ItemViewer : MonoBehaviour {
         ShowItems(Inventory.Where(e => e.Item is T && (showTrash || !((T) e.Item).IsTrash())), i => onClick((T) i), showAmounts, showNull);
     }
 
+    public void ShowItemsFromInventoryWhere<T>(Func<InventoryEntry, bool> selection, bool showAmounts, Action<T> onClick, bool showNull = false) where T : Item {
+        ShowItems(Inventory.Where(e => e.Item is T).Where(selection), i => onClick((T) i), showAmounts, showNull);
+    }
+
     public void ShowItemsFromInventory<T>(bool showAmounts, Action<T> onClick, bool showNull = false) where T : Item {
         ShowItems(Inventory.Where(e => e.Item is T), i => onClick((T) i), showAmounts, showNull);
     }
@@ -56,6 +60,27 @@ public class ItemViewer : MonoBehaviour {
             iid.SetData(null, 0, (it2) => onClick?.Invoke(it2.Item));
             items.Add(iid.gameObject);
         }
+    }
+
+    public void ShowItems(IEnumerable<Item> itemsToAdd, Action<Item> onClick) {
+        Clear();
+
+        gameObject.SetActive(true);
+
+
+        foreach(var item in itemsToAdd) {
+            GameObject go = GameObject.Instantiate(ItemDisplayPrefab, Content.transform);
+            InventoryItemDisplay iid = go.GetComponent<InventoryItemDisplay>();
+            iid.SetData(item, 0, (it2) => onClick?.Invoke(it2.Item));
+            items.Add(iid.gameObject);
+        }
+    }
+
+    public void Add<T>(T it, int amount, Action<T> onClick) where T : Item {
+        GameObject go = GameObject.Instantiate(ItemDisplayPrefab, Content.transform);
+        InventoryItemDisplay iid = go.GetComponent<InventoryItemDisplay>();
+        iid.SetData(it, amount, (it2) => onClick?.Invoke((T)it2.Item));
+        items.Add(iid.gameObject);
     }
 
     public void Close() {
