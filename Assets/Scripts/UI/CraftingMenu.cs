@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,12 +22,13 @@ public class CraftingMenu : MonoBehaviour {
 
     public ItemViewer ItemSelector;
 
+    public Sprite QuestionMark;
+
     private Item itemFilter;
 
     private enum FilterType {
         Craftable = 0,
-        Uncraftable = 1,
-        HaveSomeMaterials = 2
+        HaveSomeMaterials = 1
     };
 
     private FilterType filter = FilterType.Craftable;
@@ -64,13 +66,15 @@ public class CraftingMenu : MonoBehaviour {
 
         if(filter == FilterType.Craftable) {
             recipesToShow = recipesToShow.Where(r => r.IsCraftable(CT.Inventory));
-        } else if(filter == FilterType.HaveSomeMaterials) {
+        } else if (filter == FilterType.HaveSomeMaterials) {
             if (itemFilter == null) {
                 recipesToShow =
-                    recipesToShow.Where(recipe => recipe.Components.Any(component => CT.Inventory.Contains(component.Item)));
+                    recipesToShow.Where(
+                        recipe => recipe.Components.Any(component => CT.Inventory.Contains(component.Item)));
             }
-        } else if(filter == FilterType.Uncraftable) {
-            recipesToShow = recipesToShow.Where(r => !r.IsCraftable(CT.Inventory));
+        }
+        else {
+            throw  new Exception("Invalid filter selection");
         }
 
         return recipesToShow;
@@ -92,14 +96,30 @@ public class CraftingMenu : MonoBehaviour {
     }
 
     private void SetItem(IconWithTextController holder, CraftingRecipe recipe) {
-        string text = $"{recipe.Result.Item.GetName()}\n<size=50%>";
-        foreach (var r in recipe.Components) {
-            text += $"{r.Item.GetName()} - {CT.Inventory.GetAmountOf(r.Item)} / {r.Amount}\n";
-        }
 
-        holder.SetData(recipe.Result.Item, 1, text,  () => {
-            CT.Make(recipe);
-            OnMake?.Invoke(recipe);
-        });
+        if (CraftingRecipesMade.RecipesMade.Contains(recipe.ID)) {
+            string text = $"{recipe.Result.Item.GetName()}\n<size=50%>";
+            foreach (var r in recipe.Components) {
+                text += $"{r.Item.GetName()} - {CT.Inventory.GetAmountOf(r.Item)} / {r.Amount}\n";
+            }
+
+            holder.SetData(recipe.Result.Item, 1, text, () => {
+                CT.Make(recipe);
+                OnMake?.Invoke(recipe);
+            }, showText:false);
+        }
+        else {
+            string text = $"???\n<size=50%>";
+            foreach(var r in recipe.Components) {
+                text += $"{r.Item.GetName()} - {CT.Inventory.GetAmountOf(r.Item)} / {r.Amount}\n";
+            }
+
+            holder.SetData(recipe.Result.Item, 1, text, () => {
+                CraftingRecipesMade.RecipesMade.Add(recipe.ID);
+                CT.Make(recipe);
+                OnMake?.Invoke(recipe);
+            }, QuestionMark, false);
+        }
+        
     }
 }

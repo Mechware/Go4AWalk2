@@ -22,7 +22,11 @@ public class InventoryItemDisplay : MonoBehaviour, IPointerDownHandler, IPointer
     private Action<InventoryItemDisplay> OnHold;
 
 
-	public void SetData( Item item, int amount, Action<InventoryItemDisplay> onclick = null, Action<InventoryItemDisplay> onhold = null) {
+	public void SetData( Item item, int amount, 
+        Action<InventoryItemDisplay> onclick = null, 
+        Action<InventoryItemDisplay> onhold = null, 
+        Sprite spriteOverride = null,
+        bool showText = true) {
 
 	    ItemSprite.color = Color.white;
 
@@ -54,7 +58,7 @@ public class InventoryItemDisplay : MonoBehaviour, IPointerDownHandler, IPointer
                 Background.color = ConfigObject.GetColorFromRarity(Rarity.Mythical);
             }
 
-            ItemSprite.sprite = item.Image;
+            ItemSprite.sprite = spriteOverride ?? item.Image;
             AmountText.text = "x" +amount.ToString();
             AmountText.gameObject.SetActive(amount > 1);
             if(item is Weapon) {
@@ -72,7 +76,13 @@ public class InventoryItemDisplay : MonoBehaviour, IPointerDownHandler, IPointer
                 DamageText.gameObject.SetActive(true);
             }
         }
-		
+
+	    if (!showText) {
+	        AmountText.gameObject.SetActive(false);
+	        DamageText.gameObject.SetActive(false);
+	        LevelText.gameObject.SetActive(false);
+        }
+
         OnClick = onclick;
         OnHold = onhold;
 	}
