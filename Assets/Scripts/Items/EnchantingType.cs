@@ -16,9 +16,9 @@ public class EnchantingType : ScriptableObject {
     public List<NamePrefix> NamePrefixes;
 
     public string GetPrefix(int random) {
-        foreach(var prefix in NamePrefixes) {
-            if(random >= prefix.RandomValueMin) {
-                return prefix.Name;
+        for(int i=NamePrefixes.Count-1; i >= 0; i--) {
+            if(random >= NamePrefixes[i].RandomValueMin) {
+                return NamePrefixes[i].Name;
             }
         }
 

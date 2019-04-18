@@ -22,11 +22,13 @@ public class DamageNumberSpawner : MonoBehaviour {
 
         GameObject damageNumber = pool.GetObject();
         ((RectTransform) damageNumber.transform).anchoredPosition = new Vector2(0,0);
-        damageNumber.GetComponent<TextMeshProUGUI>().SetText(number.ToString());
-        damageNumber.GetComponent<TextMeshProUGUI>().faceColor = c;
-        damageNumber.GetComponent<TextMeshProUGUI>().CrossFadeAlpha(0, 2, false);
+        TextMeshProUGUI tmpugui = damageNumber.GetComponent<TextMeshProUGUI>();
 
-        Timer.StartTimer(this, 5, () => {pool.Return(damageNumber);});
+        tmpugui.SetText(number.ToString());
+        tmpugui.faceColor = c;
+        tmpugui.CrossFadeAlpha(0, 2, false);
+
+        Timer.StartTimer(this, 2.1f, () => {pool.Return(damageNumber);});
     }
 
 #if UNITY_EDITOR

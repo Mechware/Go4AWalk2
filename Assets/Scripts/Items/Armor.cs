@@ -145,16 +145,11 @@ namespace G4AW2.Data.DropSystem {
 
             // Copy Original Values
             //OnAfterObtained(original);
-            ID = original.ID;
-            name = original.name;
-            Image = original.Image;
-            Value = original.Value;
-            Description = original.Description;
-            Rarity = original.Rarity;
-            NoBlockModifier = ((Armor) original).NoBlockModifier;
-            PerfectBlockModifier = ((Armor) original).PerfectBlockModifier;
-            MistimedBlockModifier = ((Armor) original).MistimedBlockModifier;
-            DamageAdditiveModifier = ((Armor) original).DamageAdditiveModifier;
+            base.CopyValues(original);
+            NoBlockModifier = original.NoBlockModifier;
+            PerfectBlockModifier = original.PerfectBlockModifier;
+            MistimedBlockModifier = original.MistimedBlockModifier;
+            DamageAdditiveModifier = original.DamageAdditiveModifier;
         }
 
         public bool IsTrash() {

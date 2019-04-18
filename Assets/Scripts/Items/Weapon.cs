@@ -40,6 +40,8 @@ namespace G4AW2.Data.DropSystem
 
         void OnEnable() {
             TapsWithWeapon.OnValueChange += TapsChanged;
+            if(Name == "")
+                Name = name;
         }
 
         private int lastLevel = -1;
@@ -73,10 +75,16 @@ namespace G4AW2.Data.DropSystem
         }
 
         public override string GetName() {
-            return $"{nameMod} {name}";
+            if (IsEnchanted) {
+                return $"{Enchantment.GetPrefix()} {nameMod} {base.GetName()}";
+            }
+            return $"{nameMod} {base.GetName()}";
         }
 
         public override string GetDescription() {
+            if (IsEnchanted) {
+                return $"Level: {Level}\nMastery: {Mastery}\nDamage: {ActualDamage}\n{Enchantment.Type.name} Damage: {GetEnchantDamage()}\n{Description}";
+            }
             return $"Level: {Level}\nMastery: {Mastery}\nDamage: {ActualDamage}\n{Description}";
         }
 
@@ -153,7 +161,7 @@ namespace G4AW2.Data.DropSystem
             }
 
             // Copy Original Values
-            CopyValues(original);
+            base.CopyValues(original);
             Damage = original.Damage;
             LevelUp = original.LevelUp;
             AllItems = original.AllItems;

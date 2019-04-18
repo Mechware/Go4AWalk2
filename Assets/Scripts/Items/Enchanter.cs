@@ -25,10 +25,6 @@ public class Enchanter : Item, ISaveable {
         return Type.GetDamage(RandomlyGeneratedValue) * (1 + w.Level / 10);
     }
 
-    public override string GetDescription() {
-        return base.GetDescription();
-    }
-
     public override void OnAfterObtained() {
         RandomlyGeneratedValue = UnityEngine.Random.Range(0, 101) + (int)GemTypeType;
     }
@@ -41,6 +37,13 @@ public class Enchanter : Item, ISaveable {
         return Type.GetPrefix(RandomlyGeneratedValue) + " " + base.GetName();
     }
 
+    public string GetPrefix() {
+        return Type.GetPrefix(RandomlyGeneratedValue);
+    }
+
+    public override string GetDescription() {
+        return $"Type: {Type.name}\nLevel: {GetPrefix()}";
+    }
 
     private class SaveObject {
         public int ID;

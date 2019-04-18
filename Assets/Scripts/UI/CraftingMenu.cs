@@ -92,9 +92,9 @@ public class CraftingMenu : MonoBehaviour {
     }
 
     private void SetItem(IconWithTextController holder, CraftingRecipe recipe) {
-        string text = $"{recipe.Result.Item.Name}\n<size=50%>";
+        string text = $"{recipe.Result.Item.GetName()}\n<size=50%>";
         foreach (var r in recipe.Components) {
-            text += $"{r.Item.Name} - {CT.Inventory.GetAmountOf(r.Item)} / {r.Amount}\n";
+            text += $"{r.Item.GetName()} - {CT.Inventory.GetAmountOf(r.Item)} / {r.Amount}\n";
         }
 
         holder.SetData(recipe.Result.Item, 1, text,  () => {

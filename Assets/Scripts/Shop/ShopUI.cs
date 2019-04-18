@@ -98,7 +98,7 @@ public class ShopUI : MonoBehaviour {
     private void SetDataBuying(IconWithTextController itc, InventoryEntry iid) {
         int price = Mathf.RoundToInt(iid.Item.Value * shopKeep.BuyingPriceMultiplier);
 
-        string text = $"{iid.Item.Name}\n{price} gold each";
+        string text = $"{iid.Item.GetName()}\n{price} gold each";
         itc.SetData(iid.Item, iid.Amount, text, () => ItemClickedBuying(iid));
     }
 
@@ -106,7 +106,7 @@ public class ShopUI : MonoBehaviour {
         int price = Mathf.RoundToInt(it.Item.Value * shopKeep.BuyingPriceMultiplier);
 
         string title = string.Format("Would you like to buy a {0} for {1} gold?\nDescription:{2}",
-            it.Item.Name,
+            it.Item.GetName(),
             price,
             it.Item.GetDescription());
 
@@ -157,13 +157,13 @@ public class ShopUI : MonoBehaviour {
     }
 
     private void SetDataSelling(IconWithTextController itc, InventoryEntry iid) {
-        string text = iid.Item.Name + "\n" + Mathf.RoundToInt(iid.Item.Value * shopKeep.SellingPriceMultiplier) + " gold each";
+        string text = iid.Item.GetName() + "\n" + Mathf.RoundToInt(iid.Item.Value * shopKeep.SellingPriceMultiplier) + " gold each";
         itc.SetData(iid.Item, iid.Amount, text, () => ItemClickedSelling(iid));
     }
 
     private void ItemClickedSelling(InventoryEntry it) {
         string title = string.Format("Would you like to sell a {0} for {1} gold?\nDescription:{2}",
-            it.Item.Name,
+            it.Item.GetName(),
             Mathf.RoundToInt(it.Item.Value * shopKeep.SellingPriceMultiplier),
             it.Item.GetDescription());
 

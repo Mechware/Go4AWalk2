@@ -22,15 +22,18 @@ namespace G4AW2.Data.DropSystem
 
         [NonSerialized] public bool CreatedFromOriginal = false;
 
-        public string Name { get { return name.Replace(" (clone)", "").Replace(" (Clone)", ""); } }
-
 	    public int ID;
+        public string Name = "";
         public Sprite Image;
         public int Value;
         public string Description;
         public Rarity Rarity;
 
         public Action DataChanged;
+
+        void OnEnable() {
+            if (Name == "") Name = name;
+        }
 
 	    public int GetID() {
 		    return ID;
@@ -49,10 +52,11 @@ namespace G4AW2.Data.DropSystem
             Value = original.Value;
             Description = original.Description;
             Rarity = original.Rarity;
+            Name = original.Name;
         }
 
         public virtual string GetName() {
-            return name;
+            return Name;
         }
 
         public virtual string GetDescription() {

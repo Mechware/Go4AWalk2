@@ -29,9 +29,9 @@ MonoBehaviour:
   DeadSprite: {fileID: 21300054, guid: d89c36434d5f4cf4fa9119e9d064eabb, type: 3}
   BaseHealth: 600
   BaseDamage: 14
-  TimeBetweenHeavyAttacks: 0.1
-  AttackPrepTime: 0
-  AttackExecuteTime: 0
+  TimeBetweenHeavyAttacks: 2
+  AttackPrepTime: 0.75
+  AttackExecuteTime: 0.25
   Drops:
     Items:
     - item: {fileID: 11400000, guid: 11fbe90a2780405449ad82a1ae93b06e, type: 2}

@@ -28,7 +28,7 @@ public class ItemHolderWithText : MonoBehaviour {
         OnClick = onClick;
         CurrentItem.Value = it;
         ItemImage.sprite = it.Image;
-        ItemDescription.text = it.name + "\n<size=80%>" + it.Description;
+        ItemDescription.text = it.GetName() + "\n<size=80%>" + it.Description;
     }
 
     public void ItemClick() {
