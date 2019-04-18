@@ -26,3 +26,4 @@ MonoBehaviour:
   AmountSoFar: {fileID: 11400000, guid: 66d427283c1651346a2bb795dcaa50b7, type: 2}
   EnemyList: {fileID: 11400000, guid: d9764a15526dace4899689a1b14b9b44, type: 2}
   Enemy: {fileID: 11400000, guid: bab6c5ae11e85b84e93f622b614ade7c, type: 2}
+  Level: 3

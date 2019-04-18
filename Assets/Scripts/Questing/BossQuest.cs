@@ -10,10 +10,13 @@ public class BossQuest : ActiveQuest<int, IntVariable, UnityEventInt> {
 
     public RuntimeSetFollowerData EnemyList;
     public EnemyData Enemy;
+    public int Level;
 
     public override void StartQuest(Action<ActiveQuestBase> onFinish) {
         base.StartQuest(onFinish);
-        EnemyList.Add(Enemy);
+        var enemy = Instantiate(Enemy);
+        enemy.Level = Level;
+        EnemyList.Add(enemy);
     }
 
     public override void ResumeQuest(Action<ActiveQuestBase> onFinish) {
