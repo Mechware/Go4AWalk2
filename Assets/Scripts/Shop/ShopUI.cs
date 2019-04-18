@@ -8,6 +8,7 @@ using G4AW2.Data.DropSystem;
 using G4AW2.Dialogue;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ShopUI : MonoBehaviour {
 
@@ -20,6 +21,8 @@ public class ShopUI : MonoBehaviour {
     public GameObject SellingScrollPanelContent;
 
     public TextMeshProUGUI TrashButtonText;
+
+    public UnityEvent OnFinish;
 
     private ShopFollower shopKeep;
 
@@ -42,6 +45,7 @@ public class ShopUI : MonoBehaviour {
         actionOnSendAway?.Invoke();
         Followers.Remove(shopKeep);
         GetComponent<RobustLerper>().StartReverseLerp();
+        OnFinish.Invoke();
     }
 
     public void SetSellingTab() {
