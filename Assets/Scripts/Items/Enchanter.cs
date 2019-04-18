@@ -33,6 +33,10 @@ public class Enchanter : Item, ISaveable {
         return true;
     }
 
+    public override int GetValue() {
+        return Mathf.RoundToInt(Value * (1 + RandomlyGeneratedValue / 100f));
+    }
+
     public override string GetName() {
         return Type.GetPrefix(RandomlyGeneratedValue) + " " + base.GetName();
     }
@@ -42,7 +46,7 @@ public class Enchanter : Item, ISaveable {
     }
 
     public override string GetDescription() {
-        return $"Type: {Type.name}\nLevel: {GetPrefix()}";
+        return $"Type: {Type.name}\nValue: {GetValue()}\nLevel: {GetPrefix()}";
     }
 
     private class SaveObject {

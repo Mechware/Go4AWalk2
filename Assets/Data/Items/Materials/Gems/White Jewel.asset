@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Name: White Jewel
   m_EditorClassIdentifier: 
   ID: 26
+  Name: White Jewel
   Image: {fileID: 21300000, guid: 3db01da6ca163684cb2d4b5332b8462c, type: 3}
   Value: 75
   Description: An equisite clear gemstone.
   Rarity: 2
-  Type: {fileID: 0}
+  Type: {fileID: 11400000, guid: 2b8306db4b1f89b46951140b9e7f9220, type: 2}
   GemTypeType: 15

@@ -39,6 +39,10 @@ namespace G4AW2.Data.DropSystem
 		    return ID;
 	    }
 
+        public virtual int GetValue() {
+            return Value;
+        }
+
         public virtual bool ShouldCreateNewInstanceWhenPlayerObtained() {
             return false;
         }

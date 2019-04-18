@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Name: White Crystal
   m_EditorClassIdentifier: 
   ID: 27
+  Name: White Crystal
   Image: {fileID: 21300000, guid: 0271182b5c96f224bb47d91e44f1ec06, type: 3}
   Value: 150
   Description: An incredible colourless crystal.
   Rarity: 3
-  Type: {fileID: 0}
+  Type: {fileID: 11400000, guid: 2b8306db4b1f89b46951140b9e7f9220, type: 2}
   GemTypeType: 30

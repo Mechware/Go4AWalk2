@@ -53,10 +53,10 @@ public class ShopUI : MonoBehaviour {
         int sum = 0;
         foreach (var i in Inventory) {
             if (i.Item is Weapon && ((Weapon)i.Item).MarkedAsTrash) {
-                sum += Mathf.RoundToInt(i.Item.Value * i.Amount * (shopKeep.SellingPriceMultiplier));
+                sum += Mathf.RoundToInt(i.Item.GetValue() * i.Amount * (shopKeep.SellingPriceMultiplier));
             }
             if (i.Item is Armor && ((Armor) i.Item).IsMarkedTrash) {
-                sum += Mathf.RoundToInt(i.Item.Value * i.Amount * (shopKeep.SellingPriceMultiplier));
+                sum += Mathf.RoundToInt(i.Item.GetValue() * i.Amount * (shopKeep.SellingPriceMultiplier));
             }
         }
         TrashButtonText.text = $"Sell Trash ({sum} gold)";
@@ -67,11 +67,11 @@ public class ShopUI : MonoBehaviour {
         List<InventoryEntry> toRemove = new List<InventoryEntry>();
         foreach(var i in Inventory) {
             if(i.Item is Weapon && ((Weapon) i.Item).MarkedAsTrash) {
-                sum += Mathf.RoundToInt(i.Item.Value * i.Amount * (shopKeep.SellingPriceMultiplier));
+                sum += Mathf.RoundToInt(i.Item.GetValue() * i.Amount * (shopKeep.SellingPriceMultiplier));
                 toRemove.Add(i);
             }
             if(i.Item is Armor && ((Armor) i.Item).IsMarkedTrash) {
-                sum += Mathf.RoundToInt(i.Item.Value * i.Amount * (shopKeep.SellingPriceMultiplier));
+                sum += Mathf.RoundToInt(i.Item.GetValue() * i.Amount * (shopKeep.SellingPriceMultiplier));
                 toRemove.Add(i);
             }
         }
@@ -96,14 +96,14 @@ public class ShopUI : MonoBehaviour {
     }
 
     private void SetDataBuying(IconWithTextController itc, InventoryEntry iid) {
-        int price = Mathf.RoundToInt(iid.Item.Value * shopKeep.BuyingPriceMultiplier);
+        int price = Mathf.RoundToInt(iid.Item.GetValue() * shopKeep.BuyingPriceMultiplier);
 
         string text = $"{iid.Item.GetName()}\n{price} gold each";
         itc.SetData(iid.Item, iid.Amount, text, () => ItemClickedBuying(iid));
     }
 
     private void ItemClickedBuying(InventoryEntry it) {
-        int price = Mathf.RoundToInt(it.Item.Value * shopKeep.BuyingPriceMultiplier);
+        int price = Mathf.RoundToInt(it.Item.GetValue() * shopKeep.BuyingPriceMultiplier);
 
         string title = string.Format("Would you like to buy a {0} for {1} gold?\nDescription:{2}",
             it.Item.GetName(),
@@ -118,7 +118,7 @@ public class ShopUI : MonoBehaviour {
                         return;
                     }
 
-                    GoldAmount.Value -= Mathf.RoundToInt(it.Item.Value * shopKeep.BuyingPriceMultiplier);
+                    GoldAmount.Value -= Mathf.RoundToInt(it.Item.GetValue() * shopKeep.BuyingPriceMultiplier);
                     Inventory.Add(it.Item, 1);
                     it.Amount -= 1;
                     if(it.Amount == 0) shopKeep.Items.Remove(it);
@@ -157,20 +157,20 @@ public class ShopUI : MonoBehaviour {
     }
 
     private void SetDataSelling(IconWithTextController itc, InventoryEntry iid) {
-        string text = iid.Item.GetName() + "\n" + Mathf.RoundToInt(iid.Item.Value * shopKeep.SellingPriceMultiplier) + " gold each";
+        string text = iid.Item.GetName() + "\n" + Mathf.RoundToInt(iid.Item.GetValue() * shopKeep.SellingPriceMultiplier) + " gold each";
         itc.SetData(iid.Item, iid.Amount, text, () => ItemClickedSelling(iid));
     }
 
     private void ItemClickedSelling(InventoryEntry it) {
         string title = string.Format("Would you like to sell a {0} for {1} gold?\nDescription:{2}",
             it.Item.GetName(),
-            Mathf.RoundToInt(it.Item.Value * shopKeep.SellingPriceMultiplier),
+            Mathf.RoundToInt(it.Item.GetValue() * shopKeep.SellingPriceMultiplier),
             it.Item.GetDescription());
 
         PopUp.SetPopUp(title, new string[] { "Yes", "No" },
             new Action[] {
                 () => {
-                    GoldAmount.Value += Mathf.RoundToInt(it.Item.Value * shopKeep.SellingPriceMultiplier);
+                    GoldAmount.Value += Mathf.RoundToInt(it.Item.GetValue() * shopKeep.SellingPriceMultiplier);
                     Inventory.Remove(it.Item, 1);
 
                     PopUp.SetPopUp("Success!", new[] {"Ok"}, new Action[] {

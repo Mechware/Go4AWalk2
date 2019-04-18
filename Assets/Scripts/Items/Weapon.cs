@@ -83,9 +83,13 @@ namespace G4AW2.Data.DropSystem
 
         public override string GetDescription() {
             if (IsEnchanted) {
-                return $"Level: {Level}\nMastery: {Mastery}\nDamage: {ActualDamage}\n{Enchantment.Type.name} Damage: {GetEnchantDamage()}\n{Description}";
+                return $"Level: {Level}\nMastery: {Mastery}\nDamage: {ActualDamage}\n{Enchantment.Type.name} Damage: {GetEnchantDamage()}\nValue: {GetValue()}\n{Description}";
             }
-            return $"Level: {Level}\nMastery: {Mastery}\nDamage: {ActualDamage}\n{Description}";
+            return $"Level: {Level}\nMastery: {Mastery}\nDamage: {ActualDamage}\nValue: {GetValue()}\n{Description}";
+        }
+
+        public override int GetValue() {
+            return Mathf.RoundToInt(Value * (1 + Level / 10f) * (1 + random / 100f)) + (IsEnchanted ? Enchantment.Value : 0);
         }
 
         public void SetValuesBasedOnRandom() {
