@@ -33,8 +33,9 @@ namespace G4AW2.Dialogue {
 		}
 
 		private bool SetPopUpPriv(string text, string[] options, Action[] responses) {
-
+            transform.SetAsLastSibling();
 			container.SetActive(true);
+
 
 			if (inUse)
 				return false;

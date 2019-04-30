@@ -94,7 +94,25 @@ MonoBehaviour:
     Color: {r: 1, g: 0, b: 1, a: 1}
     WeaponLevelPerTap:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0.022586076
+        outSlope: 0.022586076
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.03992016
+      - serializedVersion: 3
+        time: 10000
+        value: 100
+        inSlope: -0.000000020117525
+        outSlope: -0.000000020117525
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.075848244
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -102,7 +120,25 @@ MonoBehaviour:
     Color: {r: 1, g: 1, b: 0, a: 1}
     WeaponLevelPerTap:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0.0131409895
+        outSlope: 0.0131409895
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.043912176
+      - serializedVersion: 3
+        time: 12500
+        value: 100
+        inSlope: 0.000705113
+        outSlope: 0.000705113
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.08183633
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4

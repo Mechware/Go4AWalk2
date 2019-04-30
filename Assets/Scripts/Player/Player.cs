@@ -53,7 +53,7 @@ namespace G4AW2.Combat {
 	    }
 
 		public int GetLightDamage() {
-            return Weapon.Value.ActualDamage;
+            return Weapon.Value.RawDamage;
 		}
 
 	    public int GetElementalDamage() {

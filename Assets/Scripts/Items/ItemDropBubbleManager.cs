@@ -60,25 +60,20 @@ public class ItemDropBubbleManager : MonoBehaviour {
 		finished = true;
 	}
 
+    public WeaponUI WeaponUI;
+
 	private void OnClick(ItemDropBubble it) {
 
 	    if (it.Item is Weapon) {
 
-	        PopUp.SetPopUp($"{it.Item.GetName()}\n{it.Item.GetDescription()}",
-	            new string[] {"Pick Up", "Trash", "Equip"},
-	            new Action[] {
-	                () => { },
-	                () => {
-	                    ((Weapon) it.Item).MarkedAsTrash = true;
-	                },
-	                () => {
-                        
-	                    Inventory.Add(PlayerWeapon.Value);
-                        PlayerWeapon.Value = (Weapon) it.Item;
-	                    Inventory.Remove(it.Item);
-	                }
-	            });
-
+	        WeaponUI.SetWeapon((Weapon)it.Item, new [] {
+	            new WeaponUI.ButtonAction() {Title="Trash", OnClick = () => { ((Weapon) it.Item).MarkedAsTrash = true; } },
+	            new WeaponUI.ButtonAction() {Title="Equip", OnClick = () => {
+                    Inventory.Add(PlayerWeapon.Value);
+	                PlayerWeapon.Value = (Weapon) it.Item;
+	                Inventory.Remove(it.Item);} },
+	            new WeaponUI.ButtonAction() {Title="Keep", OnClick = () => { } },
+            });
 	    }
 
 		OnItemClick.Invoke(it.Item);

@@ -14,8 +14,9 @@ namespace G4AW2.Data.DropSystem
 
         public PersistentSetItem AllItems;
 
-        public int ActualDamage => Mathf.RoundToInt( Damage * mod * MasteryDamageMod * LevelDamageMod);
-        public int Mastery => Mathf.RoundToInt( ConfigObject.GetLevel(Rarity, MasteryLevels.GetTaps(ID)));
+        public int RawDamage => Mathf.RoundToInt( Damage * mod * MasteryDamageMod * LevelDamageMod);
+        public int Mastery => Mathf.FloorToInt( ConfigObject.GetLevel(Rarity, MasteryLevels.GetTaps(ID)));
+        public float RawMastery => ConfigObject.GetLevel(Rarity, MasteryLevels.GetTaps(ID));
         private float MasteryDamageMod => Mastery == 99 ? 2.15f : 1 + Mastery / 100f;
         private float LevelDamageMod => 1 + Level / 10f; 
 
@@ -75,17 +76,29 @@ namespace G4AW2.Data.DropSystem
         }
 
         public override string GetName() {
-            if (IsEnchanted) {
+            return GetName(IsEnchanted, true);
+        }
+
+        public string GetName(bool enchantInclude, bool includeNameMod) {
+            if (enchantInclude && includeNameMod) {
                 return $"{Enchantment.GetPrefix()} {nameMod} {base.GetName()}";
             }
-            return $"{nameMod} {base.GetName()}";
+            if (enchantInclude) {
+                return $"{Enchantment.GetPrefix()} {base.GetName()}";
+            }
+            if (includeNameMod) {
+                return $"{nameMod} {base.GetName()}";
+            }
+
+            return base.GetName();
+            
         }
 
         public override string GetDescription() {
             if (IsEnchanted) {
-                return $"Level: {Level}\nMastery: {Mastery}\nDamage: {ActualDamage}\n{Enchantment.Type.name} Damage: {GetEnchantDamage()}\nValue: {GetValue()}\n{Description}";
+                return $"Level: {Level}\nMastery: {Mastery}\nDamage: {RawDamage}\n{Enchantment.Type.name} Damage: {GetEnchantDamage()}\nValue: {GetValue()}\n{Description}";
             }
-            return $"Level: {Level}\nMastery: {Mastery}\nDamage: {ActualDamage}\nValue: {GetValue()}\n{Description}";
+            return $"Level: {Level}\nMastery: {Mastery}\nDamage: {RawDamage}\nValue: {GetValue()}\n{Description}";
         }
 
         public override int GetValue() {

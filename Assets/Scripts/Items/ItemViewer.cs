@@ -43,7 +43,7 @@ public class ItemViewer : MonoBehaviour {
 
     public void ShowItems(IEnumerable<InventoryEntry> itemsToAdd, Action<Item> onClick, bool showAmount, bool showNull = false) {
         Clear();
-
+        transform.SetAsLastSibling();
         gameObject.SetActive(true);
 
 

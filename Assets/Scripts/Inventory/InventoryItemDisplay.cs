@@ -63,8 +63,8 @@ public class InventoryItemDisplay : MonoBehaviour, IPointerDownHandler, IPointer
             AmountText.gameObject.SetActive(amount > 1);
             if(item is Weapon) {
                 Weapon w = (Weapon)item;
-                LevelText.text = " " + w.Mastery.ToString() + "\n<size=50%>" + "LVL " + w.Level.ToString();
-                DamageText.text = "<size=50%> DAM <size=100%>" + w.ActualDamage.ToString();
+                LevelText.text = " " + w.Mastery + "\n<size=50%>" + "LVL " + w.Level;
+                DamageText.text = "<size=50%> DAM <size=100%>" + w.RawDamage;
                 LevelText.gameObject.SetActive(true);
                 DamageText.gameObject.SetActive(true);
             }
