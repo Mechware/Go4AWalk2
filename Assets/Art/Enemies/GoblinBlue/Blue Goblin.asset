@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Name: Blue Goblin
   m_EditorClassIdentifier: 
   ID: 13
+  DisplayName: Blue Goblin
+  Portrait: {fileID: 21300000, guid: e2545104d53500946929c95b2690cdc0, type: 3}
   SizeOfSprite: {x: 32, y: 32}
   SpaceBetweenEnemies: 32
   SideIdleAnimation: {fileID: 7400000, guid: 2cdbe3c753068ce47bed78385693138c, type: 2}

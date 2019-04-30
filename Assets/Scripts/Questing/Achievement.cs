@@ -9,6 +9,7 @@ namespace G4AW2.Data {
     public class Achievement : ScriptableObject, IID {
 
         public int ID;
+        public Sprite AchievementIcon;
         public string AchievementCompletedText;
         public int NumberToReach;
         public IntVariable Number;

@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Name: Blue Gnome
   m_EditorClassIdentifier: 
   ID: 5
+  DisplayName: Blue Gnome
+  Portrait: {fileID: 21300000, guid: e0be62ea78b407d4a88f12efea2ca7d4, type: 3}
   SizeOfSprite: {x: 64, y: 64}
   SpaceBetweenEnemies: 32
   SideIdleAnimation: {fileID: 7400000, guid: ad95f3549c4ac0c4883c18644932a4a4, type: 2}

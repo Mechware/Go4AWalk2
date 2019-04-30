@@ -19,6 +19,16 @@ public class QuickPopUp : MonoBehaviour {
         public string Text;
     }
 
+    void Awake() {
+        instance = this;
+    }
+
+    private static QuickPopUp instance;
+
+    public static void Show(Sprite icon, string text) {
+        instance.SetData(icon, text);
+    }
+
     private Queue<PopUpData> PopUpsToShow = new Queue<PopUpData>();
 
     public void SetData(Sprite icon, string text) {
@@ -26,7 +36,7 @@ public class QuickPopUp : MonoBehaviour {
         // Note: Text can be rich text
         if (!alreadyActive) {
             PositionLerper.StartLerping();
-            AlphaLerper.EndReverseLerping();
+            AlphaLerper.StartReverseLerp();
 
             alreadyActive = true;
 
@@ -39,14 +49,24 @@ public class QuickPopUp : MonoBehaviour {
     }
 
     private void ProcessNext() {
+
+        if(alphaLerpRunning) {
+            PopUpData data = PopUpsToShow.Dequeue();
+            Image.sprite = data.Icon;
+            Text.text = data.Text;
+        }
+
         if (PopUpsToShow.Count == 0) {
             PositionLerper.StartReverseLerp();
             AlphaLerper.StartLerping();
             alreadyActive = false;
+            alphaLerpRunning = false;
             return;
         }
 
+        alphaLerpRunning = true;
         AlphaLerper.StartLerping(() => {
+            alphaLerpRunning = false;
             PopUpData data = PopUpsToShow.Dequeue();
             Image.sprite = data.Icon;
             Text.text = data.Text;
@@ -54,6 +74,8 @@ public class QuickPopUp : MonoBehaviour {
             AlphaLerper.StartReverseLerp();
         });
     }
+
+    private bool alphaLerpRunning = false;
 
     public void PopUpClicked() {
         ProcessNext();

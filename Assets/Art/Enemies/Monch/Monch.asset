@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Name: Monch
   m_EditorClassIdentifier: 
   ID: 9
+  DisplayName: Monch
+  Portrait: {fileID: 21300000, guid: 198bd0adffe491b48940b2fbe19b0a32, type: 3}
   SizeOfSprite: {x: 32, y: 32}
   SpaceBetweenEnemies: 32
   SideIdleAnimation: {fileID: 7400000, guid: f90fc67c3287ca749b519e9ad9a59f70, type: 2}

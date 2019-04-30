@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Name: Wizard
   m_EditorClassIdentifier: 
   ID: 8
+  DisplayName: Wizard
+  Portrait: {fileID: 21300000, guid: d78ea1f06254335418ccb2c28aac0a47, type: 3}
   SizeOfSprite: {x: 32, y: 32}
   SpaceBetweenEnemies: 32
   SideIdleAnimation: {fileID: 7400000, guid: fa8b3cf7a3c163548959b092684e4fdf, type: 2}

@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Name: Chicken
   m_EditorClassIdentifier: 
   ID: 14
+  DisplayName: Chicken
+  Portrait: {fileID: 21300000, guid: c27605eebf83392428128ddf89b5bd1f, type: 3}
   SizeOfSprite: {x: 32, y: 32}
   SpaceBetweenEnemies: 32
   SideIdleAnimation: {fileID: 7400000, guid: 1d4de40d339b49b4d98b6be002df9a49, type: 2}

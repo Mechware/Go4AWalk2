@@ -17,6 +17,7 @@ public class AchievementManager : MonoBehaviour {
 	}
 
     private void AchievementComplete(Achievement ach) {
+        QuickPopUp.Show(ach.AchievementIcon, "<size=150%>Achievement!</size>\n" + ach.AchievementCompletedText);
         Debug.Log("Achievement Completed! " + ach);
     }
 }

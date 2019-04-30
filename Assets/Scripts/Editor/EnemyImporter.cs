@@ -154,6 +154,7 @@ namespace G4AW2.Tools {
 				}
 
 			    enemyScriptableObject.DeadSprite = spriteSheet[spriteSheet.Length - 1];
+			    enemyScriptableObject.Portrait = spriteSheet[0];
 
 				totalFrameCount = 0;
 				for (int i = 0; i < anims.Count; i++) {

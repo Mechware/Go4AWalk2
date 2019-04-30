@@ -35,9 +35,12 @@ namespace G4AW2.Followers {
 	    public LerpToPosition QuestGiverWalk;
 	    public QuestGiverDisplay QuestGiver;
 
-        void Awake() {
+	    public void AfterLoadEvent() {
+
+	        ResetFollowers();
+
             // Remove listeneres
-			ListOfCurrentFollowers.OnAdd.RemoveListener(FollowerAdded);
+            ListOfCurrentFollowers.OnAdd.RemoveListener(FollowerAdded);
 			ListOfCurrentFollowers.OnRemove.RemoveListener(FollowerRemoved);
 			ListOfCurrentFollowers.OnChange.RemoveListener(FollowerRemoved);
 
@@ -67,6 +70,7 @@ namespace G4AW2.Followers {
 			FollowerDisplay display = Instantiate(DisplayPrefab, transform);
 		    AddDisplay(display, fd);
 			AllFollowers.Add(display);
+            QuickPopUp.Show(d.Portrait, $"<size=140%>Follower Appeared!</size>\n\nA {d.DisplayName} is now following you");
             ListChanged.Invoke();
         }
 

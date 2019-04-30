@@ -15,6 +15,8 @@ namespace G4AW2.Data {
 	public abstract class FollowerData : ScriptableObject, IID, ISaveable {
 
 		public int ID;
+	    public string DisplayName;
+	    public Sprite Portrait;
 
         public Vector2 SizeOfSprite = new Vector2(32,32);
         public int SpaceBetweenEnemies = 32;
