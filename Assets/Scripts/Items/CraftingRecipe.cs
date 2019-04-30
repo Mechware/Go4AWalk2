@@ -18,7 +18,8 @@ namespace G4AW2.Data.Crafting
         }
 
 #if UNITY_EDITOR
-        void OnEnable() {
+        [ContextMenu("Pick ID")]
+        public void PickID() {
             ID = IDUtils.PickID<CraftingRecipe>();
         }
 #endif

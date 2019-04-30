@@ -37,8 +37,6 @@ DAM {2}";
         public Action OnClick;
     }
 
-    private ButtonAction[] currentActions;
-
     public void SetWeapon(Weapon w, ButtonAction[] actions) {
 
         Open();
@@ -73,9 +71,8 @@ DAM {2}";
         DescriptionText.text = w.Description;
         SellAmountText.text = "Sell: " + w.GetValue();
 
-        currentActions = actions;
         if (actions.Length == 0) {
-            currentActions = new [] { new ButtonAction {OnClick = Close, Title = "Close"}};
+            actions = new [] { new ButtonAction {OnClick = Close, Title = "Close"}};
         }
 
         Button1.gameObject.SetActive(false);
