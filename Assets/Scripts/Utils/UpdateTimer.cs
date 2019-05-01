@@ -18,15 +18,27 @@ public class UpdateTimer {
     /// <param name="onFinish">The function to call on finish</param>
     /// <param name="onUpdate">The function called each updated that reports a percentage done</param>
     public void Start(float duration, Action onFinish, Action<float> onUpdate) {
+        running = true;
         total = duration;
         elapsed = 0;
         this.onUpdate = onUpdate;
         this.onFinish = onFinish;
     }
 
+    private bool running = false;
+
+    public void Stop() {
+        running = false;
+        onFinish = null;
+        onUpdate = null;
+    }
+
 	public void Update (float dt) {
+	    if (!running) return;
+
 	    elapsed += dt;
 	    if (elapsed >= total) {
+	        running = false;
             onFinish?.Invoke();
             return;
 	    }

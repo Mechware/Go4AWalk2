@@ -128,7 +128,7 @@ namespace G4AW2.Combat {
 
         #region Attack
 
-        private bool attackBroken = false;
+        [NonSerialized] public bool Stunned = false;
 		private bool canParry = false;
 
 		public IEnumerator DoAttack() {
@@ -141,7 +141,7 @@ namespace G4AW2.Combat {
 					break;
 
 			    MyAnimator.SetTrigger("AttackStart");
-                attackBroken = false;
+                Stunned = false;
 				canParry = false;
 
 				// Wind up
@@ -170,7 +170,7 @@ namespace G4AW2.Combat {
 
 		public bool AttemptedParry() {
 			if(canParry) {
-				attackBroken = true;
+				Stunned = true;
                 Stun();
                 Timer.StartTimer(this, StunDuration, () =>
                 {

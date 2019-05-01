@@ -13,6 +13,7 @@ public class PlayerFightingLogic : MonoBehaviour {
     public float FailedParryStunTime = 2f;
 
     public UnityEvent OnBlockStart;
+    public UnityEvent OnPerfectBlock;
     public UnityEvent OnBlockEnd;
     public UnityEvent OnFailedParry;
     public UnityEvent OnFailedParryDone;
@@ -34,6 +35,10 @@ public class PlayerFightingLogic : MonoBehaviour {
 
         if(perfectBlock || blocking)
         {
+            if(perfectBlock)
+                OnPerfectBlock.Invoke();
+
+            blockTimer.Stop();
             blocking = false;
             perfectBlock = false;
             OnBlockEnd.Invoke();
@@ -46,11 +51,16 @@ public class PlayerFightingLogic : MonoBehaviour {
 
     }
 
+    public float StunnedDamageMultiplier = 1.15f;
+
 	public void PlayerAttemptToHitEnemy() {
         if(AbleToAttack)
         {
             Attacked.Invoke();
-            EnemyDisplay.ApplyDamage(Player.GetLightDamage(), false);
+
+            float damageMultipler = EnemyDisplay.Stunned ? StunnedDamageMultiplier : 1;
+
+            EnemyDisplay.ApplyDamage(Mathf.RoundToInt(Player.GetLightDamage() * damageMultipler), false);
             if(Player.Weapon.Value.IsEnchanted)
                 EnemyDisplay.ApplyDamage(Player.GetElementalDamage(), true, Player.Weapon.Value.Enchantment.Type);
             Player.Weapon.Value.TapsWithWeapon.Value++;
@@ -72,10 +82,25 @@ public class PlayerFightingLogic : MonoBehaviour {
 		}
 	}
 
+    void Update() {
+        blockTimer.Update(Time.deltaTime);
+    }
+
+    public float MaxBlockDuration = 4f;
+
+    private UpdateTimer blockTimer = new UpdateTimer();
+
 	public void PlayerBlocked() {
 		blocking = true;
 
-		if (EnemyDisplay.EnemyState == EnemyDisplay.State.BeforeAttack) {
+	    blockTimer.Start(MaxBlockDuration, () => {
+	        blocking = false;
+	        perfectBlock = false;
+	        OnBlockEnd.Invoke();
+	    }, null);
+
+
+        if (EnemyDisplay.EnemyState == EnemyDisplay.State.BeforeAttack) {
 			perfectBlock = true;
 		}
         OnBlockStart.Invoke();

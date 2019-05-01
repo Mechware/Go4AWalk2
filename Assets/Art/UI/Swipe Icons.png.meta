@@ -5,6 +5,7 @@ TextureImporter:
     21300000: Swipe Icons_0
     21300002: Swipe Icons_1
     21300004: Swipe Icons_2
+    21300006: Swipe Icons_3
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -105,14 +106,14 @@ TextureImporter:
         y: 0
         width: 32
         height: 32
-      alignment: 9
-      pivot: {x: 0.5, y: 0.46527785}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cbfd616bfe48f024d87474e4ce9659a5
+      spriteID: 9632ea6f31fc00546bf348af15992515
       vertices: []
       indices: 
       edges: []
@@ -125,14 +126,14 @@ TextureImporter:
         y: 0
         width: 32
         height: 32
-      alignment: 9
-      pivot: {x: 0.51736116, y: 0.49131954}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 490bdab9bc4322a46a5e76445e9ceb37
+      spriteID: ccde5940a6d179d4091b5da3fb05f792
       vertices: []
       indices: 
       edges: []
@@ -145,14 +146,34 @@ TextureImporter:
         y: 0
         width: 32
         height: 32
-      alignment: 9
-      pivot: {x: 0.50000024, y: 0.48263898}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 619a168f0496963418dc715710b466c3
+      spriteID: 883c72d096c563d4f88bcb91b6403e64
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Swipe Icons_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ab8bf1d19629714dbd3980d00a5d0ad
       vertices: []
       indices: 
       edges: []
