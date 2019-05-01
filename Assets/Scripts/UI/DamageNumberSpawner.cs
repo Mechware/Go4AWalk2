@@ -48,7 +48,6 @@ public class DamageNumberSpawner : MonoBehaviour {
         }, 
         (percentComplete) => { // update
             c.a = 1 - percentComplete;
-            Debug.Log("Setting color: " + c.ToString());
             tmpugui.faceColor = c;
         });
     }

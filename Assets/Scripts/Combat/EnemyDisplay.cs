@@ -102,7 +102,7 @@ namespace G4AW2.Combat {
 		    r.x = data.SizeOfSprite.x;
 		    r.y = data.SizeOfSprite.y;
 		    RectTransform.sizeDelta = r;
-        }
+		}
 
         public void StartWalking()
         {
@@ -128,9 +128,6 @@ namespace G4AW2.Combat {
 
         #region Attack
 
-        [NonSerialized] public bool Stunned = false;
-		private bool canParry = false;
-
 		public IEnumerator DoAttack() {
 			for (; ; ) {
 				EnemyState = State.Idle;
@@ -141,8 +138,6 @@ namespace G4AW2.Combat {
 					break;
 
 			    MyAnimator.SetTrigger("AttackStart");
-                Stunned = false;
-				canParry = false;
 
 				// Wind up
 				yield return new WaitForSeconds(AttackPrepTime);
@@ -153,7 +148,6 @@ namespace G4AW2.Combat {
                 EnemyState = State.ExecuteAttack;
 
 			    MyAnimator.SetTrigger("AttackExecute");
-				canParry = true;
 
                 // Perform the attack
                 yield return new WaitForSeconds(AttackExecuteDuration);
@@ -162,15 +156,14 @@ namespace G4AW2.Combat {
                     break;
 
                 EnemyState = State.AfterAttack;
-				canParry = false;
 				OnAttackHit.Invoke(HeavyDamage);
 			    MyAnimator.SetTrigger("AttackEnd");
 			}
         }
 
 		public bool AttemptedParry() {
-			if(canParry) {
-				Stunned = true;
+			if(EnemyState == State.ExecuteAttack) {
+				EnemyState = State.Stun;
                 Stun();
                 Timer.StartTimer(this, StunDuration, () =>
                 {

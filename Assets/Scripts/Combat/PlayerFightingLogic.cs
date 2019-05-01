@@ -58,7 +58,7 @@ public class PlayerFightingLogic : MonoBehaviour {
         {
             Attacked.Invoke();
 
-            float damageMultipler = EnemyDisplay.Stunned ? StunnedDamageMultiplier : 1;
+            float damageMultipler = EnemyDisplay.EnemyState == EnemyDisplay.State.Stun ? StunnedDamageMultiplier : 1;
 
             EnemyDisplay.ApplyDamage(Mathf.RoundToInt(Player.GetLightDamage() * damageMultipler), false);
             if(Player.Weapon.Value.IsEnchanted)
