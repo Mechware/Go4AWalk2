@@ -14,41 +14,43 @@ namespace G4AW2.Combat {
     public class EnemyDisplay : MonoBehaviour {
 
 		public enum State {
-			Idle, BeforeAttack, ExecuteAttack, AfterAttack, Stun, Disabled
+			Idle, BeforeAttack, ExecuteAttack, AfterAttack, Stun, Disabled, Dead
 		}
 
+        [Header("Misc References")]
 	    public PlayerAnimations PlayerAnimations;
 	    public ItemDropBubbleManager ItemBubbleManager;
+	    public PlayerFightingLogic FightingLogic;
+	    public DamageNumberSpawner RegularDamageNumberSpawner;
+	    public DamageNumberSpawner ElementalDamageNumberSpawner;
+	    public GameObject DeadEnemyPrefab;
+	    public Transform DeadEnemyParent;
+	    public Player Player;
+	    public RuntimeSetFollowerData CurrentFollowers;
 
-
+        [Header("Settings")]
         public FloatReference StunDuration;
+	    public Color BaseDamageColor;
 
+        [Header("Data")]
 		public State EnemyState;
 		public EnemyData Enemy;
 
+        [Header("Readable Data")]
 		public IntReference MaxHealth;
 	    public IntReference CurrentHealth;
 
-	    public FloatReference TimeBetweenHeavyAttacks;
-		public FloatReference AttackPrepTime;
-		public FloatReference AttackExecuteDuration;
-		public IntReference HeavyDamage;
-
         // Events
-		public UnityEventInt OnAttackHit;
-		public UnityEventEnemyData OnDeath;
-	    public UnityEventIEnumerableLoot OnDropLoot;
-
-	    public DamageNumberSpawner RegularDamageNumberSpawner;
-	    public DamageNumberSpawner ElementalDamageNumberSpawner;
+        [Header("Events")]
+        public UnityEvent OnStartWalking;
         public UnityEventInt OnHit;
 		public UnityEventInt OnElementalHit;
+        public UnityEventEnemyData OnDeath;
+	    public UnityEventEnemyData OnKilled;
+        public UnityEventIEnumerableLoot OnDropLoot;
+	    public UnityEvent CleanUp;
 
-        public UnityEvent OnStartWalking;
 
-	    public PlayerFightingLogic FightingLogic;
-
-		private bool isDead = false;
 	    private Animator MyAnimator;
 
 	    private RectTransform rt;
@@ -62,27 +64,14 @@ namespace G4AW2.Combat {
 	    void Awake() {
 	        MyAnimator = GetComponent<Animator>();
 	        rt = GetComponent<RectTransform>();
-	    }
-
-        void Start() {
 			EnemyState = State.Disabled;
-
-			if (Enemy != null) {
-			    SetEnemy(Enemy);
-		    }
-
-	    }
+        }
 
 		public void SetEnemy( EnemyData data) {
-            isDead = false;
 			Enemy = data;
 
 			MaxHealth.Value = data.MaxHealth;
 			CurrentHealth.Value = MaxHealth;
-		    HeavyDamage.Value = data.Damage;
-		    TimeBetweenHeavyAttacks.Value = data.TimeBetweenHeavyAttacks;
-            AttackPrepTime.Value = data.AttackPrepTime;
-            AttackExecuteDuration.Value = data.AttackExecuteTime;
 
 			AnimatorOverrideController aoc = (AnimatorOverrideController)GetComponent<Animator>().runtimeAnimatorController;
 			aoc["Death"] = Enemy.Death;
@@ -121,6 +110,8 @@ namespace G4AW2.Combat {
 		public void Stun() {
 			StopAllCoroutines();
 		    MyAnimator.SetTrigger("Stun");
+			EnemyState = State.Stun;
+		    Timer.StartTimer(this, StunDuration, UnStun);
         }
 
         public void UnStun() {
@@ -133,61 +124,59 @@ namespace G4AW2.Combat {
 		public IEnumerator DoAttack() {
 			for (; ; ) {
 				EnemyState = State.Idle;
-				yield return new WaitForSeconds(TimeBetweenHeavyAttacks);
+				yield return new WaitForSeconds(Enemy.TimeBetweenHeavyAttacks);
+			    if (EnemyState == State.Dead) break;
+
 				EnemyState = State.BeforeAttack;
-
-				if (isDead)
-					break;
-
 			    MyAnimator.SetTrigger("AttackStart");
 
 				// Wind up
-				yield return new WaitForSeconds(AttackPrepTime);
+				yield return new WaitForSeconds(Enemy.AttackPrepTime);
+			    if(EnemyState == State.Dead)
+			        break;
 
-                if(isDead)
-                    break;
 
                 EnemyState = State.ExecuteAttack;
 
 			    MyAnimator.SetTrigger("AttackExecute");
 
                 // Perform the attack
-                yield return new WaitForSeconds(AttackExecuteDuration);
+                yield return new WaitForSeconds(Enemy.AttackExecuteTime);
+			    if(EnemyState == State.Dead)
+			        break;
 
-                if(isDead)
-                    break;
 
                 EnemyState = State.AfterAttack;
-			    FightingLogic.OnEnemyHitPlayer(HeavyDamage);
+			    FightingLogic.OnEnemyHitPlayer(Enemy.Damage);
 			    if (Enemy.HasElementalDamage) {
 			        FightingLogic.OnEnemyHitPlayerElemental(Enemy.ElementalDamage, Enemy.ElementalDamageType);
 			    }
-                OnAttackHit.Invoke(HeavyDamage);
+
+			    if (Enemy.OneAndDoneAttacker) {
+			        EnemyState = State.Dead;
+
+			        StopAllCoroutines();
+
+			        OnDeath.Invoke(Enemy);
+
+			        if (Player.Health.Value > 0) {
+			            PlayerAnimations.ResetAttack();
+			            PlayerAnimations.Spin(() => {
+			                CleanUp.Invoke();
+			            });
+                    }
+			        break;
+			    }
+
 			    MyAnimator.SetTrigger("AttackEnd");
 			}
         }
 
-		public bool AttemptedParry() {
-			if(EnemyState == State.ExecuteAttack) {
-				EnemyState = State.Stun;
-                Stun();
-                Timer.StartTimer(this, StunDuration, () =>
-                {
-                    UnStun();
-                });
-
-                return true;
-			}
-            return false;
-		}
-
-	    public Color BaseDamageColor;
-
 		public void ApplyDamage( int amount, bool elemental, EnchantingType type = null ) {
-			if (isDead)
-				return;
+		    if(EnemyState == State.Dead)
+		        return;
 
-		    if(!elemental) {
+            if(!elemental) {
 		        OnHit.Invoke(amount);
                 RegularDamageNumberSpawner.SpawnNumber(amount, BaseDamageColor);
 		    } else {
@@ -197,46 +186,48 @@ namespace G4AW2.Combat {
 
             CurrentHealth.Value -= amount;
 			if (CurrentHealth.Value <= 0) {
-				isDead = true;
-                StopAllCoroutines();
-				OnDeath.Invoke(Enemy);
-
-			    bool celebrateDone = false;
-			    bool bubblesDone = false;
-
-                PlayerAnimations.ResetAttack();
-                PlayerAnimations.Celebrate(() => {
-                    celebrateDone = true;
-                    if(bubblesDone && celebrateDone) {
-                        AllDone();
-                    }
-                });
-
-                MyAnimator.SetTrigger("Death");
-			    List<Item> items = Enemy.Drops.GetItems(true);
-			    foreach (Item item in items) {
-			        if (item is Weapon) {
-			            Weapon weapon = item as Weapon;
-			            weapon.Level = Enemy.Level;
-			        }
-			    }
-
-			    ItemBubbleManager.AddItems(items, () => {
-			        bubblesDone = true;
-			        if (bubblesDone && celebrateDone) {
-			            AllDone();
-			        }
-			    });
-                
-                OnDropLoot.Invoke(items);
+			    Die();
 			} else {
                 MyAnimator.SetTrigger("Flinch");
             }
         }
 
-	    public UnityEvent CleanUp;
-	    public GameObject DeadEnemyPrefab;
-	    public Transform DeadEnemyParent;
+	    private void Die() {
+	        EnemyState = State.Dead;
+
+	        StopAllCoroutines();
+	        OnDeath.Invoke(Enemy);
+	        OnKilled.Invoke(Enemy);
+
+            bool celebrateDone = false;
+	        bool bubblesDone = false;
+
+	        PlayerAnimations.ResetAttack();
+	        PlayerAnimations.Celebrate(() => {
+	            celebrateDone = true;
+	            if(bubblesDone && celebrateDone) {
+	                AllDone();
+	            }
+	        });
+
+	        MyAnimator.SetTrigger("Death");
+	        List<Item> items = Enemy.Drops.GetItems(true);
+	        foreach(Item item in items) {
+	            if(item is Weapon) {
+	                Weapon weapon = item as Weapon;
+	                weapon.Level = Enemy.Level;
+	            }
+	        }
+
+	        ItemBubbleManager.AddItems(items, () => {
+	            bubblesDone = true;
+	            if(bubblesDone && celebrateDone) {
+	                AllDone();
+	            }
+	        });
+
+	        OnDropLoot.Invoke(items);
+        }
 
 	    private void AllDone() {
             PlayerAnimations.Spin(() => {

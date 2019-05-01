@@ -114,7 +114,7 @@ public class PlayerFightingLogic : MonoBehaviour {
 	}
 
 	public void PlayerParried() {
-		bool success = EnemyDisplay.AttemptedParry();
+		bool success = EnemyDisplay.EnemyState == EnemyDisplay.State.ExecuteAttack;
 
         if (!success)
         {
@@ -127,6 +127,7 @@ public class PlayerFightingLogic : MonoBehaviour {
             });
         } else
         {
+            EnemyDisplay.Stun();
             OnSuccessfulParry.Invoke();
         }
     }

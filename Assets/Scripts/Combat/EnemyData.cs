@@ -34,6 +34,7 @@ namespace G4AW2.Data.Combat {
 
         [Header("Misc")]
 		public ItemDropper Drops;
+	    public bool OneAndDoneAttacker = false;
 
 	    [NonSerialized] public int Level;
 

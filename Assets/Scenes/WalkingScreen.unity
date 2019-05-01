@@ -15339,10 +15339,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerAnimations: {fileID: 1550784727}
   ItemBubbleManager: {fileID: 1497022282}
+  FightingLogic: {fileID: 1550784726}
+  RegularDamageNumberSpawner: {fileID: 340642938}
+  ElementalDamageNumberSpawner: {fileID: 340642938}
+  DeadEnemyPrefab: {fileID: 1285678961603886, guid: ca49dedaaeffb1347bdc96ae6fb1272f,
+    type: 2}
+  DeadEnemyParent: {fileID: 842532800}
+  Player: {fileID: 11400000, guid: 6d079e86c36b66d4c88947d754ae6e3e, type: 2}
+  CurrentFollowers: {fileID: 11400000, guid: d9764a15526dace4899689a1b14b9b44, type: 2}
   StunDuration:
     UseConstant: 1
     ConstantValue: 4
     Variable: {fileID: 0}
+  BaseDamageColor: {r: 0.078431375, g: 0.0627451, b: 0.1254902, a: 1}
   EnemyState: 0
   Enemy: {fileID: 11400000, guid: f9cb20d3635f5ec40935188217f021cd, type: 2}
   MaxHealth:
@@ -15353,33 +15362,12 @@ MonoBehaviour:
     UseConstant: 0
     ConstantValue: 0
     Variable: {fileID: 11400000, guid: a4c7e2533c2cad14ebf607c110bd26cc, type: 2}
-  TimeBetweenHeavyAttacks:
-    UseConstant: 1
-    ConstantValue: 60
-    Variable: {fileID: 0}
-  AttackPrepTime:
-    UseConstant: 1
-    ConstantValue: 1
-    Variable: {fileID: 0}
-  AttackExecuteDuration:
-    UseConstant: 1
-    ConstantValue: 1
-    Variable: {fileID: 0}
-  HeavyDamage:
-    UseConstant: 1
-    ConstantValue: 1000
-    Variable: {fileID: 0}
-  OnAttackHit:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: CustomEvents.UnityEventInt, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
-  OnDeath:
+  OnStartWalking:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 794008227}
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 999456378}
+        m_MethodName: StartLerping
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -15388,9 +15376,35 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnHit:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: CustomEvents.UnityEventInt, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  OnElementalHit:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: CustomEvents.UnityEventInt, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  OnDeath:
+    m_PersistentCalls:
+      m_Calls:
       - m_Target: {fileID: 11400000, guid: d9764a15526dace4899689a1b14b9b44, type: 2}
         m_MethodName: Remove
         m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 794008227}
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -15410,6 +15424,11 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+    m_TypeName: G4AW2.Events.UnityEventEnemyData, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnKilled:
+    m_PersistentCalls:
+      m_Calls:
       - m_Target: {fileID: 413173345}
         m_MethodName: OnEnemyKilled
         m_Mode: 0
@@ -15450,36 +15469,6 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: G4AW2.Events.UnityEventIEnumerableLoot, Assembly-CSharp, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  RegularDamageNumberSpawner: {fileID: 340642938}
-  ElementalDamageNumberSpawner: {fileID: 340642938}
-  OnHit:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: CustomEvents.UnityEventInt, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
-  OnElementalHit:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: CustomEvents.UnityEventInt, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
-  OnStartWalking:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 999456378}
-        m_MethodName: StartLerping
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  FightingLogic: {fileID: 1550784726}
-  BaseDamageColor: {r: 0.078431375, g: 0.0627451, b: 0.1254902, a: 1}
   CleanUp:
     m_PersistentCalls:
       m_Calls:
@@ -15507,9 +15496,6 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  DeadEnemyPrefab: {fileID: 1285678961603886, guid: ca49dedaaeffb1347bdc96ae6fb1272f,
-    type: 2}
-  DeadEnemyParent: {fileID: 842532800}
 --- !u!95 &999456375
 Animator:
   serializedVersion: 3
