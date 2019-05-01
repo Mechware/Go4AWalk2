@@ -5045,6 +5045,7 @@ GameObject:
   m_Component:
   - component: {fileID: 398981462}
   - component: {fileID: 398981463}
+  - component: {fileID: 398981464}
   m_Layer: 5
   m_Name: Player Events
   m_TagString: Untagged
@@ -5092,6 +5093,34 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: CustomEvents.UnityEventWeapon, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+--- !u!114 &398981464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 398981461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da006eeec2506b546b896271e9c466f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 4356fb3a98ed6f248a6676644e98d99e, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 74f12590ab51f1d458ce51a019ae59e3, type: 2}
+        m_MethodName: FloorAndSetTo
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: CustomEvents.UnityEventFloat, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
 --- !u!1 &402803371
 GameObject:
@@ -5514,6 +5543,7 @@ MonoBehaviour:
   Achievements:
   - {fileID: 11400000, guid: c746cba27ad59204980568a6833aa858, type: 2}
   - {fileID: 11400000, guid: 41d1efea498f96f48842cd6ba16ba0d4, type: 2}
+  - {fileID: 11400000, guid: 2623d8fdbcf51894d973c122dc049372, type: 2}
 --- !u!114 &413173349
 MonoBehaviour:
   m_ObjectHideFlags: 0

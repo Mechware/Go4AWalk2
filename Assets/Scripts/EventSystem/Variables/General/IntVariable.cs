@@ -6,5 +6,9 @@ namespace CustomEvents {
         public void Add(int other) {
             Value += other;
         }
+
+        public void FloorAndSetTo(float other) {
+            Value = Mathf.FloorToInt(other);
+        }
     }
 }
