@@ -34,6 +34,10 @@ MonoBehaviour:
   TimeBetweenHeavyAttacks: 4
   AttackPrepTime: 1.5
   AttackExecuteTime: 0.25
+  HasElementalDamage: 1
+  BaseElementalDamage: 1
+  ElementalDamageType: {fileID: 11400000, guid: 340fc19084f13f942b011990a3e168cb,
+    type: 2}
   Drops:
     Items:
     - item: {fileID: 11400000, guid: 2da6b9adf5d871c4a8c481d49c4b2092, type: 2}

@@ -19,7 +19,6 @@ public class PlayerFightingLogic : MonoBehaviour {
     public UnityEvent OnFailedParryDone;
     public UnityEvent OnSuccessfulParry;
     public UnityEvent Attacked;
-    public UnityEventInt AttackHit;
 
     public DamageNumberSpawner PlayerDamageNumberSpawner;
     public Color DamageColor;
@@ -46,9 +45,17 @@ public class PlayerFightingLogic : MonoBehaviour {
 
         damage = Mathf.RoundToInt(fdamage);
         Player.DamagePlayer(damage);
-	    AttackHit.Invoke(damage);
 	    PlayerDamageNumberSpawner.SpawnNumber(damage, DamageColor);
+    }
 
+    public void OnEnemyHitPlayerElemental(int damage, EnchantingType damageType) {
+
+        // No armor for elemental damage
+        float fdamage = damage;
+
+        damage = Mathf.RoundToInt(fdamage);
+        Player.DamagePlayer(damage);
+        PlayerDamageNumberSpawner.SpawnNumber(damage, damageType.DamageColor);
     }
 
     public float StunnedDamageMultiplier = 1.15f;

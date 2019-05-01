@@ -27,15 +27,21 @@ namespace G4AW2.Data.Combat {
         public float AttackPrepTime;
         public float AttackExecuteTime;
 
-		[Header("Misc")]
+        [Header("Elemental")]
+	    public bool HasElementalDamage;
+	    public float BaseElementalDamage;
+	    public EnchantingType ElementalDamageType;
+
+        [Header("Misc")]
 		public ItemDropper Drops;
 
 	    [NonSerialized] public int Level;
 
 	    public int MaxHealth => Mathf.RoundToInt(BaseHealth * (1 + Level / 10f));
 	    public int Damage => Mathf.RoundToInt(BaseDamage * (1 + Level / 10f));
+	    public int ElementalDamage => Mathf.RoundToInt(BaseElementalDamage * (1 + Level / 10f));
 
-	    private class SaveObject {
+        private class SaveObject {
 	        public int ID;
 	        public int Level;
 	    }

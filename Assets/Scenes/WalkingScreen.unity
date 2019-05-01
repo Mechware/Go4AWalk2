@@ -15371,18 +15371,7 @@ MonoBehaviour:
     Variable: {fileID: 0}
   OnAttackHit:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1550784726}
-        m_MethodName: OnEnemyHitPlayer
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: CustomEvents.UnityEventInt, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   OnDeath:
@@ -15489,6 +15478,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  FightingLogic: {fileID: 1550784726}
   BaseDamageColor: {r: 0.078431375, g: 0.0627451, b: 0.1254902, a: 1}
   CleanUp:
     m_PersistentCalls:
@@ -27288,17 +27278,6 @@ MonoBehaviour:
   OnBlockStart:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 860766377}
-        m_MethodName: PrintString
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Blocking
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 23258810}
         m_MethodName: StartLerping
         m_Mode: 1
@@ -27331,17 +27310,6 @@ MonoBehaviour:
   OnBlockEnd:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 860766377}
-        m_MethodName: PrintString
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Done Blocking
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 23258810}
         m_MethodName: StartReverseLerp
         m_Mode: 1
@@ -27358,17 +27326,6 @@ MonoBehaviour:
   OnFailedParry:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 860766377}
-        m_MethodName: PrintString
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Failed Parry
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 454949873}
         m_MethodName: StartLerping
         m_Mode: 1
@@ -27396,17 +27353,6 @@ MonoBehaviour:
   OnFailedParryDone:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 860766377}
-        m_MethodName: PrintString
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Failed Parry Stun Over
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 454949873}
         m_MethodName: StartReverseLerp
         m_Mode: 1
@@ -27463,11 +27409,6 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  AttackHit:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: CustomEvents.UnityEventInt, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
   PlayerDamageNumberSpawner: {fileID: 1179473444}
   DamageColor: {r: 0.20784315, g: 0.078431375, b: 0.15686275, a: 1}
   StunnedDamageMultiplier: 1.15

@@ -46,6 +46,8 @@ namespace G4AW2.Combat {
 
         public UnityEvent OnStartWalking;
 
+	    public PlayerFightingLogic FightingLogic;
+
 		private bool isDead = false;
 	    private Animator MyAnimator;
 
@@ -156,7 +158,11 @@ namespace G4AW2.Combat {
                     break;
 
                 EnemyState = State.AfterAttack;
-				OnAttackHit.Invoke(HeavyDamage);
+			    FightingLogic.OnEnemyHitPlayer(HeavyDamage);
+			    if (Enemy.HasElementalDamage) {
+			        FightingLogic.OnEnemyHitPlayerElemental(Enemy.ElementalDamage, Enemy.ElementalDamageType);
+			    }
+                OnAttackHit.Invoke(HeavyDamage);
 			    MyAnimator.SetTrigger("AttackEnd");
 			}
         }

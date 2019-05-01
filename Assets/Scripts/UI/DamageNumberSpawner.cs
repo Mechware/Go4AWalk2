@@ -20,7 +20,6 @@ public class DamageNumberSpawner : MonoBehaviour {
     void OnEnable() {
         pool.Reset();
         timers.Reset();
-        Debug.Log("Enabled!!2");
     }
 
     void Update() {
