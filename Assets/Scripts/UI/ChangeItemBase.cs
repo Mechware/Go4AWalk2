@@ -43,7 +43,8 @@ public class ChangeItemBase<T, TRef, TVar, TEvent> : MonoBehaviour
         Viewer.ShowItemsFromInventory<T>(false, ShowTrash, it => {
             PopUp.SetPopUp($"{it.GetName()}\n{it.GetDescription()}", new string[] {"Equip", it.IsTrash() ? "Untrash" : "Trash", "Cancel"}, new Action[] {
                 () => {
-                    Inventory.Add(Item.Value);
+                    if(Item.Value != null)
+                        Inventory.Add(Item.Value);
                     Item.Value = it;
                     Inventory.Remove(it);
                     Viewer.Close();

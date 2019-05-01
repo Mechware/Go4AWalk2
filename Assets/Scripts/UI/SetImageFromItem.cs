@@ -10,5 +10,6 @@ public class SetImageFromItem : MonoBehaviour {
 	public void SetImage(Item a)
     {
         GetComponent<Image>().sprite = a.Image;
+        GetComponent<Image>().SetNativeSize();
     }
 }

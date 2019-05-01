@@ -9,10 +9,12 @@ namespace CustomEvents {
         where T : ScriptableObject, ISaveable {
 
         public override string GetSaveString() {
-            return Value.GetSaveString();
+            return Value == null ? "" : Value.GetSaveString();
         }
 
         public override void SetData(string saveString, params object[] otherData) {
+            if (saveString == "") return;
+
             T val = CreateInstance<T>();
             val.SetData(saveString, otherData);
             Value = val;
