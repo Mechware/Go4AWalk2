@@ -35,7 +35,7 @@ public class EnchantUI : MonoBehaviour {
 
     void WeaponClicked(Weapon w) {
         EnchantButton.interactable = Enchanter.Item.Item != null;
-        Weapon.SetData(w, 1, $"{w.GetName()}\n{w.GetDescription()}", WeaponViewerClicked);
+        Weapon.SetData(w, 1, $"{w.GetName()}\nDAM: {w.Damage}", WeaponViewerClicked);
 		Result.SetData(null, 0, "Result of enchantment goes here.", () => {});
     }
 
@@ -50,6 +50,8 @@ public class EnchantUI : MonoBehaviour {
 		Result.SetData(null, 0, "Result of enchantment goes here.", () => {});
     }
 
+    public WeaponUI WeaponUI;
+
     public void Enchant() {
         Weapon w = Weapon.Item.Item as Weapon;
         Enchanter e = Enchanter.Item.Item as Enchanter;
@@ -61,6 +63,6 @@ public class EnchantUI : MonoBehaviour {
 
         Start();
 
-        Result.SetData(w, 1, "Enchant Damage: " + w.GetEnchantDamage(), () => {});
+        Result.SetData(w, 1, "Enchant Damage: " + w.GetEnchantDamage(), () => { WeaponUI.SetWeaponWithDefaults(w); });
     }
 }

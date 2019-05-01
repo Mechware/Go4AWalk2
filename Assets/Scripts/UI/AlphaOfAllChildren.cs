@@ -16,9 +16,18 @@ public class AlphaOfAllChildren : MonoBehaviour {
 
         TextMeshProUGUI []texts = GetComponentsInChildren<TextMeshProUGUI>();
 	    foreach(TextMeshProUGUI text in texts) {
-	        Color c = text.color;
+	        Color c = text.faceColor;
 	        c.a = alpha;
-	        text.color = c;
+	        text.faceColor = c;
 	    }
+    }
+
+    public void SetAlphaOfAllImages(float alpha) {
+        Image[] ims = GetComponentsInChildren<Image>();
+        foreach(Image im in ims) {
+            Color c = im.color;
+            c.a = alpha;
+            im.color = c;
+        }
     }
 }

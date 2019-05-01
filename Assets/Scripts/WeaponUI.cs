@@ -37,11 +37,26 @@ DAM {2}";
         public Action OnClick;
     }
 
+    public Inventory Inventory;
+
+    public void SetWeaponWithDefaults(Weapon w) {
+        SetWeapon(w, new[] {
+            new ButtonAction() {Title= w.IsTrash() ? "Untrash" : "Trash", OnClick = () => { w.MarkedAsTrash = true; } },
+            new ButtonAction() {Title="Equip", OnClick = () => {
+                if (PlayerWeapon.Value == w) return;
+
+                Inventory.Add(PlayerWeapon.Value);
+                PlayerWeapon.Value = w;
+                Inventory.Remove(w);} },
+            new ButtonAction() {Title="Close", OnClick = () => { } },
+        });
+    }
+
     public void SetWeapon(Weapon w, ButtonAction[] actions) {
 
         Open();
 
-        WeaponDisplay.SetData(w, 1, null, null, null, false);
+        WeaponDisplay.SetData(w, 1, null, null, false);
         MasteryString.text = "M" + w.Mastery;
 
         MasteryProgressBar.SetMax(1);

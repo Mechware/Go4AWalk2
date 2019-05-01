@@ -19,10 +19,6 @@ public class QuickItem : MonoBehaviour {
         SetData();
 	}
 
-    void OnHold(InventoryItemDisplay item) {
-        ItemViewer.GetComponent<ItemViewer>().ShowAllMaterialFromInventory(false, ItemSelect);
-    }
-
     void ItemSelect(Item it) {
         Item.Value = it;
         SetData();
@@ -30,7 +26,7 @@ public class QuickItem : MonoBehaviour {
     }
 
     public void SetData() {
-        ItemDisplay.SetData(Item, Item.Value == null ? 0 : Inventory.Count(it => it.Item.ID == Item.Value.ID), OnClick, OnHold);
+        ItemDisplay.SetData(Item, Item.Value == null ? 0 : Inventory.Count(it => it.Item.ID == Item.Value.ID), OnClick);
     }
 
     void OnClick(InventoryItemDisplay it) {

@@ -8,7 +8,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class InventoryItemDisplay : MonoBehaviour, IPointerDownHandler, IPointerUpHandler {
+public class InventoryItemDisplay : MonoBehaviour, IPointerClickHandler {
 
 	public Item Item;
 
@@ -19,12 +19,9 @@ public class InventoryItemDisplay : MonoBehaviour, IPointerDownHandler, IPointer
     public TextMeshProUGUI DamageText;
 
     private Action<InventoryItemDisplay> OnClick;
-    private Action<InventoryItemDisplay> OnHold;
-
 
 	public void SetData( Item item, int amount, 
         Action<InventoryItemDisplay> onclick = null, 
-        Action<InventoryItemDisplay> onhold = null, 
         Sprite spriteOverride = null,
         bool showText = true) {
 
@@ -84,7 +81,6 @@ public class InventoryItemDisplay : MonoBehaviour, IPointerDownHandler, IPointer
         }
 
         OnClick = onclick;
-        OnHold = onhold;
 	}
 
 #if UNITY_EDITOR
@@ -100,26 +96,7 @@ public class InventoryItemDisplay : MonoBehaviour, IPointerDownHandler, IPointer
 	}
 #endif
 
-    bool holding = false;
-    public void OnPointerDown( PointerEventData eventData ) {
-        StopAllCoroutines();
-        holding = true;
-        StartCoroutine(PointerHold());
-    }
-
-    public void OnPointerUp( PointerEventData eventData ) {
-        if(holding) {
-            OnClick?.Invoke(this);
-        }
-        holding = false;
-        StopAllCoroutines();
-    }
-
-    IEnumerator PointerHold() {
-        yield return new WaitForSeconds(1);
-        if(holding) {
-            holding = false;
-            OnHold?.Invoke(this);
-        }
+    public void OnPointerClick(PointerEventData eventData) {
+        OnClick?.Invoke(this);
     }
 }

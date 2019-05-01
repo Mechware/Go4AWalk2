@@ -58,11 +58,11 @@ namespace G4AW2.Followers {
 			}
             if (Data is EnemyData) {
                 EnemyData e = (EnemyData) data;
-                followerID.text = "LVL " + e.Level + "\n" + e.name.Replace("(Clone)", "");
+                followerID.text = "LVL " + e.Level + "\n" + e.DisplayName;
             } else if (Data is ShopFollower) {
-                followerID.text = "Shop Keeper";
+                followerID.text = data.DisplayName;
             } else if (Data is QuestGiver) {
-                followerID.text = "Quest Giver";
+                followerID.text = data.DisplayName;
             } else {
                 followerID.text = "";
             }

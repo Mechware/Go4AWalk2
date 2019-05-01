@@ -15,4 +15,21 @@ public static class Timer {
         yield return new WaitForSeconds(time);
         OnFinish();
     }
+
+
+    public static void StartTimer(MonoBehaviour actor, float time, Action OnFinish, Action<float> OnUpdate) {
+        actor.StartCoroutine(StartTimer(time, OnFinish, OnUpdate));
+    }
+
+    private static IEnumerator StartTimer(float time, Action OnFinish, Action<float> OnUpdate) {
+        float timeElapsed = 0;
+        while (true) {
+            timeElapsed += Time.deltaTime;
+            if (time - timeElapsed <= 0) break;
+            OnUpdate(timeElapsed);
+            yield return null;
+        }
+
+        OnFinish();
+    }
 }

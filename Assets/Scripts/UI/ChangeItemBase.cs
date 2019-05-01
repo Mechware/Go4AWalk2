@@ -35,11 +35,7 @@ public class ChangeItemBase<T, TRef, TVar, TEvent> : MonoBehaviour
     public void Refresh() {
         if(Item.Value != null)
             Item.Value.DataChanged += Refresh;
-        IID.SetData(Item.Value, 1, Onclick, Onhold);
-    }
-
-    private void Onhold(InventoryItemDisplay inventoryItemDisplay) {
-        //throw new NotImplementedException();
+        IID.SetData(Item.Value, 1, Onclick);
     }
 
     protected virtual void Onclick(InventoryItemDisplay inventoryItemDisplay) {

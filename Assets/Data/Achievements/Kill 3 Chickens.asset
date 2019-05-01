@@ -9,10 +9,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8c341df8585b5cc488aaa0b0c8293940, type: 3}
-  m_Name: Kill 5 Monchs
+  m_Name: Kill 3 Chickens
   m_EditorClassIdentifier: 
-  ID: 1
-  AchievementIcon: {fileID: 21300000, guid: 198bd0adffe491b48940b2fbe19b0a32, type: 3}
-  AchievementCompletedText: You killed 5 Monchs!
-  NumberToReach: 5
-  Number: {fileID: 11400000, guid: e70966d51d11ac54bbbd2c2a80a97b71, type: 2}
+  ID: 3
+  AchievementIcon: {fileID: 21300000, guid: 3bf2497b77dee764c8a7acc2e8eee577, type: 3}
+  AchievementCompletedText: 'You''ve killed 3 chickens!
+
+    <size=50%>you monster.</size>'
+  NumberToReach: 3
+  Number: {fileID: 11400000, guid: ec1265330248d3849a01ca45324ef0a3, type: 2}
