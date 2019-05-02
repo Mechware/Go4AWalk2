@@ -4,6 +4,7 @@ using G4AW2.Data.DropSystem;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using G4AW2.Data.Crafting;
 using UnityEngine;
 
 [CreateAssetMenu(menuName ="Data/Inventory")]
@@ -11,6 +12,8 @@ public class Inventory : ScriptableObject, IEnumerable<InventoryEntry>, ISaveabl
 
     private List<InventoryEntry> InventoryEntries = new List<InventoryEntry>();
     public PersistentSetItem AllItems;
+    public CraftingTable CraftingTable;
+    public Sprite QuestionMark;
 
     public int GetAmountOf(Item it) {
         return InventoryEntries.Sum(i => i.Item == it ? i.Amount : 0);
@@ -24,6 +27,8 @@ public class Inventory : ScriptableObject, IEnumerable<InventoryEntry>, ISaveabl
         Add(it, 1);
     }
 
+    private List<CraftingRecipe> currentRecipes = null;
+
     public void Add(Item it, int amount) {
 
         InventoryEntry entry = InventoryEntries.FirstOrDefault(e => e.Item == it);
@@ -33,6 +38,26 @@ public class Inventory : ScriptableObject, IEnumerable<InventoryEntry>, ISaveabl
         } else {
             entry.Amount += amount;
         }
+
+
+        // Check if a new recipe is makeable
+        if (currentRecipes == null) {
+            currentRecipes = CraftingTable.GetPossibleRecipes();
+        } else {
+            List<CraftingRecipe> recipes = CraftingTable.GetPossibleRecipes();
+            foreach(var recipe in recipes) {
+                if(!currentRecipes.Contains(recipe) && !CraftingRecipesMade.RecipesMade.Contains(recipe.ID)) {
+                    string postText = "";
+                    foreach(var component in recipe.Components) {
+                        postText +=
+                            $"{component.Amount} {component.Item.GetName()} {(component.Amount > 1 ? "s" : "")}\n";
+                    }
+                    QuickPopUp.Show(QuestionMark, $"<size=150%>New Craftable Recipe!</size>\nA new recipe is now craftable!\nRequires:{postText}");
+                }
+            }
+            currentRecipes = recipes;
+        }
+        
     }
 
     public void Add(InventoryEntry it) {
