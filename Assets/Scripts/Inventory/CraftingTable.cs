@@ -1,3 +1,4 @@
+using System;
 using CustomEvents;
 using G4AW2.Data.Crafting;
 using G4AW2.Data.DropSystem;
@@ -39,29 +40,26 @@ public class CraftingTable : ScriptableObject {
         return recipes;
     }
 
-    public bool Make(CraftingRecipe cr) {
+    public Item Make(CraftingRecipe cr) {
         if (cr.Components.Any(comp => !Inventory.Contains(comp))) {
-            return false;
+            Debug.LogError("Tried to craft something you could not make");
+            return null;
         }
 
         foreach(var comp in cr.Components) {
             Inventory.Remove(comp);
         }
 
-        Item it = ScriptableObject.Instantiate(cr.Result.Item);
-        it.CreatedFromOriginal = true;
-
+        Item it = cr.Result.Item;
+        
         if (it.ShouldCreateNewInstanceWhenPlayerObtained()) {
+            it = ScriptableObject.Instantiate(cr.Result.Item);
+            it.CreatedFromOriginal = true;
             it.OnAfterObtained();
         }
 
-        InventoryEntry ie = new InventoryEntry() {
-            Item = it,
-            Amount = cr.Result.Amount
-        };
-
-        Inventory.Add(ie);
-        return true;
+        Inventory.Add(it, cr.Result.Amount);
+        return it;
     }
 
 

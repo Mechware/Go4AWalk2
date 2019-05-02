@@ -16,8 +16,6 @@ public class CraftingMenu : MonoBehaviour {
 
     public List<GameObject> Children;
 
-    public UnityEventCraftingRecipe OnMake;
-
     public InventoryItemDisplay ItemDisplay;
 
     public ItemViewer ItemSelector;
@@ -104,8 +102,7 @@ public class CraftingMenu : MonoBehaviour {
             }
 
             holder.SetData(recipe.Result.Item, 1, text, () => {
-                CT.Make(recipe);
-                OnMake?.Invoke(recipe);
+                MakeRecipe(recipe);
             }, showText:false);
         }
         else {
@@ -116,10 +113,20 @@ public class CraftingMenu : MonoBehaviour {
 
             holder.SetData(recipe.Result.Item, 1, text, () => {
                 CraftingRecipesMade.RecipesMade.Add(recipe.ID);
-                CT.Make(recipe);
-                OnMake?.Invoke(recipe);
+                MakeRecipe(recipe);
             }, QuestionMark, false);
         }
         
+    }
+
+    private void MakeRecipe(CraftingRecipe cr) {
+        Item it = CT.Make(cr);
+        RefreshList();
+
+        string PostText = "";
+        if(it is Weapon)
+            PostText = $"\nDAM: {((Weapon) it).RawDamage}";
+
+        QuickPopUp.Show(cr.Result.Item.Image, $"<size=150%>Crafted!</size>\nYou successfully crafted a {it.GetName()}!{PostText}");
     }
 }
