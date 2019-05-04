@@ -43,10 +43,10 @@ namespace CustomEvents.Editor {
 			var floatConst = new Rect(position.x, position.y, position.width, position.height);
 
 			if (property.FindPropertyRelative("UseConstant").boolValue) {
-				EditorGUI.PropertyField(floatConst, property.FindPropertyRelative("ConstantValue"), GUIContent.none);
+				EditorGUI.PropertyField(floatConst, property.FindPropertyRelative("ConstantValue"), GUIContent.none, true);
 			}
 			else {
-				EditorGUI.PropertyField(floatConst, property.FindPropertyRelative("Variable"), GUIContent.none);
+				EditorGUI.PropertyField(floatConst, property.FindPropertyRelative("Variable"), GUIContent.none, true);
 			}
 
 			EditorGUI.indentLevel = indent;

@@ -34,6 +34,14 @@ MonoBehaviour:
   TimeBetweenHeavyAttacks: 4
   AttackPrepTime: 0
   AttackExecuteTime: 0
+  HasElementalDamage: 0
+  BaseElementalDamage: 0
+  ElementalDamageType: {fileID: 0}
+  ElementalWeaknesses:
+    UseConstant: 1
+    ConstantValue:
+      Weaknesses: []
+    Variable: {fileID: 0}
   Drops:
     Items:
     - item: {fileID: 11400000, guid: 2da6b9adf5d871c4a8c481d49c4b2092, type: 2}
@@ -46,3 +54,4 @@ MonoBehaviour:
       dropChance: 0.5
     - item: {fileID: 11400000, guid: c20ab2832a61eba47b68b5650049b9cf, type: 2}
       dropChance: 0.1
+  OneAndDoneAttacker: 0

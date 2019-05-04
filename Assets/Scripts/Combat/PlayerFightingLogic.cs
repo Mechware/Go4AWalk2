@@ -48,7 +48,7 @@ public class PlayerFightingLogic : MonoBehaviour {
 	    PlayerDamageNumberSpawner.SpawnNumber(damage, DamageColor);
     }
 
-    public void OnEnemyHitPlayerElemental(int damage, EnchantingType damageType) {
+    public void OnEnemyHitPlayerElemental(int damage, ElementalType damageType) {
 
         // No armor for elemental damage
         float fdamage = damage;

@@ -14426,7 +14426,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.00015258789}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 128.16}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &924306595
@@ -17258,19 +17258,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HelpItems:
-  - {fileID: 11400000, guid: 455d62b261d84d648b3dcb8e7a1fc477, type: 2}
-  - {fileID: 11400000, guid: e20259f67a7638e4c9f50723dc0e74a4, type: 2}
-  - {fileID: 11400000, guid: 96801712628fccb4eb8268a471015623, type: 2}
-  - {fileID: 11400000, guid: c2f3a266a03b47a4a8d15c222a48c7a2, type: 2}
-  - {fileID: 11400000, guid: e440633338169484e9f8cf0d53b2055b, type: 2}
-  - {fileID: 11400000, guid: 09fe193fdd3c14144988bde4da51c37d, type: 2}
-  - {fileID: 11400000, guid: c8ab6f775d6b6d645ba9fdbb809f8b81, type: 2}
-  - {fileID: 11400000, guid: b1cd112c54ecabd468e65e7892f42126, type: 2}
-  - {fileID: 11400000, guid: cf204b330e77a0f4cb2f116a6c0b338c, type: 2}
-  - {fileID: 11400000, guid: 9233139cfd7e4304186df8bc5f34c11f, type: 2}
-  - {fileID: 11400000, guid: d1db4ff91b5a80e44b2dd8e8ed804304, type: 2}
   - {fileID: 11400000, guid: d6a10b6f58c7b0840b52b541c677c507, type: 2}
+  - {fileID: 11400000, guid: 9233139cfd7e4304186df8bc5f34c11f, type: 2}
+  - {fileID: 11400000, guid: b1cd112c54ecabd468e65e7892f42126, type: 2}
+  - {fileID: 11400000, guid: 96801712628fccb4eb8268a471015623, type: 2}
+  - {fileID: 11400000, guid: c8ab6f775d6b6d645ba9fdbb809f8b81, type: 2}
   - {fileID: 11400000, guid: e21132aca3f1919419ac0540b7f609d1, type: 2}
+  - {fileID: 11400000, guid: cf204b330e77a0f4cb2f116a6c0b338c, type: 2}
+  - {fileID: 11400000, guid: e20259f67a7638e4c9f50723dc0e74a4, type: 2}
+  - {fileID: 11400000, guid: 455d62b261d84d648b3dcb8e7a1fc477, type: 2}
+  - {fileID: 11400000, guid: c2f3a266a03b47a4a8d15c222a48c7a2, type: 2}
+  - {fileID: 11400000, guid: 09fe193fdd3c14144988bde4da51c37d, type: 2}
+  - {fileID: 11400000, guid: e440633338169484e9f8cf0d53b2055b, type: 2}
+  - {fileID: 11400000, guid: d1db4ff91b5a80e44b2dd8e8ed804304, type: 2}
   HelpItemPrefab: {fileID: 1637106070701080, guid: 6a4c5c96521fe0f48b3951f85830b2c4,
     type: 2}
   HelpItemParent: {fileID: 1824567018}
@@ -32968,7 +32968,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.00014634879, y: -0.00015640259}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 8}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1824567019

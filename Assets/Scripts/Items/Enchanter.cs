@@ -15,7 +15,7 @@ public class Enchanter : Item, ISaveable {
         Crystal = 30,
     }
 
-    public EnchantingType Type;
+    public ElementalType Type;
     [Tooltip("Gem/Crystal/Other")]
     public GemType GemTypeType;
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName ="Data/Items/Enchanting Type")]
-public class EnchantingType : ScriptableObject {
+public class ElementalType : ScriptableObject {
 
     [System.Serializable]
     public class NamePrefix {

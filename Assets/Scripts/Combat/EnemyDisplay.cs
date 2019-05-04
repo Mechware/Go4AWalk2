@@ -172,7 +172,7 @@ namespace G4AW2.Combat {
 			}
         }
 
-		public void ApplyDamage( int amount, bool elemental, EnchantingType type = null ) {
+		public void ApplyDamage( int amount, bool elemental, ElementalType type = null ) {
 		    if(EnemyState == State.Dead)
 		        return;
 

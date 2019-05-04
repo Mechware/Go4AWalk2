@@ -30,7 +30,8 @@ namespace G4AW2.Data.Combat {
         [Header("Elemental")]
 	    public bool HasElementalDamage;
 	    public float BaseElementalDamage;
-	    public EnchantingType ElementalDamageType;
+	    public ElementalType ElementalDamageType;
+	    public ElementalWeaknessReference ElementalWeaknesses;
 
         [Header("Misc")]
 		public ItemDropper Drops;
