@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Name: Red Crystal
   m_EditorClassIdentifier: 
   ID: 24
+  Name: Flame Crystal
   Image: {fileID: 21300000, guid: 2f1186997f73f7f4ea96addf400fcd04, type: 3}
   Value: 120
-  Description: A fantastic blood-red crystal.
+  Description: A fantastic blood-red crystal full of heat energy.
   Rarity: 3
   Type: {fileID: 11400000, guid: ac66ff0c16089c04d84fea70a9d11015, type: 2}
   GemTypeType: 30

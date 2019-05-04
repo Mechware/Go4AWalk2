@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e14cef1bd89181b4a94cde67bfc7abb1, type: 3}
+  m_Name: RedMiningPoint
+  m_EditorClassIdentifier: 
+  MinDistanceBetween: 10
+  MaxDistanceBetween: 100
+  Image: {fileID: 21300000, guid: 2521e10b9b3e294408f50f3827d7a705, type: 3}
+  Drops:
+    Items:
+    - item: {fileID: 11400000, guid: a464ae4e3daf624418d389df8584622f, type: 2}
+      dropChance: 0.7
+    - item: {fileID: 11400000, guid: e49f5dd06a30be34a89ba3cfe20cd5f1, type: 2}
+      dropChance: 0.1
+    - item: {fileID: 11400000, guid: bd5bf7658c5d3a64ebb5582322e34161, type: 2}
+      dropChance: 0.01

@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Name: Red Gem
   m_EditorClassIdentifier: 
   ID: 22
+  Name: Flame Gem
   Image: {fileID: 21300000, guid: 70f3adfe65ddab345a23f78ea79c3382, type: 3}
   Value: 12
-  Description: A small red gemstone.
+  Description: A small red gemstone that is warm to the touch.
   Rarity: 1
   Type: {fileID: 11400000, guid: ac66ff0c16089c04d84fea70a9d11015, type: 2}
   GemTypeType: 0
