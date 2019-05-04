@@ -172,17 +172,12 @@ namespace G4AW2.Combat {
 			}
         }
 
-		public void ApplyDamage( int amount, bool elemental, ElementalType type = null ) {
+		public void ApplyDamage( int amount) {
 		    if(EnemyState == State.Dead)
 		        return;
 
-            if(!elemental) {
-		        OnHit.Invoke(amount);
-                RegularDamageNumberSpawner.SpawnNumber(amount, BaseDamageColor);
-		    } else {
-                ElementalDamageNumberSpawner.SpawnNumber(amount, type.DamageColor);
-		        OnElementalHit.Invoke(amount);
-		    }
+            RegularDamageNumberSpawner.SpawnNumber(amount, BaseDamageColor);
+		    OnHit.Invoke(amount);
 
             CurrentHealth.Value -= amount;
 			if (CurrentHealth.Value <= 0) {
@@ -192,7 +187,23 @@ namespace G4AW2.Combat {
             }
         }
 
-	    private void Die() {
+	    public void ApplyElementalDamage(int amount, ElementalType type) {
+	        if(EnemyState == State.Dead)
+	            return;
+
+            amount = Mathf.RoundToInt(amount * Enemy.ElementalWeaknesses.Value[type]);
+	        ElementalDamageNumberSpawner.SpawnNumber(amount, type.DamageColor);
+	        OnElementalHit.Invoke(amount);
+
+            CurrentHealth.Value -= amount;
+	        if(CurrentHealth.Value <= 0) {
+	            Die();
+	        } else {
+	            MyAnimator.SetTrigger("Flinch");
+	        }
+	    }
+
+        private void Die() {
 	        EnemyState = State.Dead;
 
 	        StopAllCoroutines();
@@ -217,7 +228,11 @@ namespace G4AW2.Combat {
 	                Weapon weapon = item as Weapon;
 	                weapon.Level = Enemy.Level;
 	            }
-	        }
+	            if(item is Armor) {
+	                Armor armor = item as Armor;
+	                armor.Level = Enemy.Level;
+	            }
+            }
 
 	        ItemBubbleManager.AddItems(items, () => {
 	            bubblesDone = true;

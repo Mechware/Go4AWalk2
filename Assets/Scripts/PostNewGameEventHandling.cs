@@ -21,6 +21,7 @@ public class PostNewGameEventHandling : MonoBehaviour {
         Armor originalArmor = PlayerArmor;
         PlayerArmor.Value = Instantiate(originalArmor);
         PlayerArmor.Value.CreatedFromOriginal = true;
+        PlayerArmor.Value.Level = 1;
         PlayerArmor.Value.OnAfterObtained();
     }
 }

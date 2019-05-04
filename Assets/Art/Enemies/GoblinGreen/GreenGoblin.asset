@@ -38,6 +38,11 @@ MonoBehaviour:
   BaseElementalDamage: 1
   ElementalDamageType: {fileID: 11400000, guid: 340fc19084f13f942b011990a3e168cb,
     type: 2}
+  ElementalWeaknesses:
+    UseConstant: 0
+    ConstantValue:
+      Weaknesses: []
+    Variable: {fileID: 11400000, guid: 5bde2dcf7a75eb24aa1758dc44eba435, type: 2}
   Drops:
     Items:
     - item: {fileID: 11400000, guid: 2da6b9adf5d871c4a8c481d49c4b2092, type: 2}
@@ -48,3 +53,4 @@ MonoBehaviour:
       dropChance: 0.25
     - item: {fileID: 11400000, guid: f02a4360ffd63e2499d1222a338cd414, type: 2}
       dropChance: 0.3
+  OneAndDoneAttacker: 0

@@ -68,7 +68,7 @@ public class InventoryItemDisplay : MonoBehaviour, IPointerClickHandler {
             if (item is Armor) {
                 Armor a = (Armor)item;
                 //LevelText.text = " " + 3/*a.Mastery.ToString()*/ + "\n<size=50%>" + "LVL " + 3/*a.Level.ToString()*/;
-                DamageText.text = "<size=50%> ARM <size=100%>" + a.NoBlockModifier.ToString();
+                DamageText.text = "<size=50%> ARM <size=100%>" + a.ARMValue;
                 //LevelText.gameObject.SetActive(true);
                 DamageText.gameObject.SetActive(true);
             }

@@ -7,61 +7,45 @@ namespace G4AW2.Data.DropSystem {
     [CreateAssetMenu(menuName = "Data/Items/Armor")]
     public class Armor : Item, ISaveable, ITrashable {
 
-
-        public float NoBlockModifierWithMod {
-            get {
-                return mod * NoBlockModifier;
-            }
-        }
-
-        public float PerfectBlockModifierWithMod {
-            get {
-                return mod * PerfectBlockModifier;
-            }
-        }
-
-        public float MistimedBlockModifierWithMod {
-            get {
-                return mod * MistimedBlockModifier;
-            }
-        }
-
-        public float DamageAdditiveModifierWithMod {
-            get {
-                return mod * DamageAdditiveModifier;
-            }
-        }
-
-        public float NoBlockModifier;
-        public float PerfectBlockModifier;
-        public float MistimedBlockModifier;
-        public float DamageAdditiveModifier;
+        public float BaseARMValue;
+        public ElementalWeaknessReference ElementalWeakness;
 
         [NonSerialized]
         public bool IsMarkedTrash = false;
 
-        public float GetDamage(int damage, bool perfectBlock, bool mistimedBlock, bool badParry) {
-            float fdamage = damage - DamageAdditiveModifierWithMod;
+        [NonSerialized]
+        public int Level;
+
+        private int random = -1;
+        private float mod;
+        private string nameMod;
+
+        
+        private float NoBlockModifierWithMod => Mathf.Max(1 - ARMValue / 100, 0);
+        private float PerfectBlockModifierWithMod => Mathf.Max(1 - 1.5f * ARMValue / 100, 0);
+        private float MistimedBlockModifierWithMod => Mathf.Max(1 - 2 * ARMValue / 100, 0);
+        public float ARMValue => BaseARMValue * mod * (1 + Level / 100f);
+
+        public enum BlockState { None, Blocking, PerfectlyBlocking, BadParry}
+
+        public float GetDamage(int damage, BlockState state) {
+            float fdamage = damage;
             fdamage = Mathf.Max(0, fdamage);
 
-            if(perfectBlock) {
+            if(state == BlockState.PerfectlyBlocking) {
                 return fdamage * PerfectBlockModifierWithMod;
             }
 
-            if(mistimedBlock) {
+            if(state == BlockState.Blocking) {
                 return fdamage * MistimedBlockModifierWithMod;
             }
 
-            if(badParry) {
+            if(state == BlockState.BadParry) {
                 return fdamage;
             }
 
             return fdamage * NoBlockModifierWithMod;
         }
-
-        private int random = -1;
-        private float mod;
-        private string nameMod;
 
         public override bool ShouldCreateNewInstanceWhenPlayerObtained() {
             return true;
@@ -78,10 +62,7 @@ namespace G4AW2.Data.DropSystem {
         }
 
         public override string GetDescription() {
-            return $"No Block Armor: {NoBlockModifierWithMod}\n" +
-                   $"Perfect Block Armor: {PerfectBlockModifierWithMod}\n" +
-                   $"Mistimed Block Armor: {MistimedBlockModifierWithMod}\n" +
-                   $"Damage Subtraction: {DamageAdditiveModifierWithMod}\n" +
+            return $"ARM Value: {ARMValue}\n" +
                    $"{Description}";
         }
 
@@ -110,15 +91,15 @@ namespace G4AW2.Data.DropSystem {
             }
         }
 
-
         private class DummySave {
             public int ID;
             public int Random;
             public bool Trash;
+            public int Level = 1;
         }
 
         public string GetSaveString() {
-            return JsonUtility.ToJson(new DummySave() { ID = ID, Random = random, Trash = IsMarkedTrash });
+            return JsonUtility.ToJson(new DummySave() { ID = ID, Random = random, Trash = IsMarkedTrash, Level = Level});
         }
 
         public void SetData(string saveString, params object[] otherData) {
@@ -128,6 +109,7 @@ namespace G4AW2.Data.DropSystem {
             ID = ds.ID;
             random = ds.Random;
             IsMarkedTrash = ds.Trash;
+            Level = ds.Level;
 
             SetValuesBasedOnRandom();
 
@@ -146,10 +128,8 @@ namespace G4AW2.Data.DropSystem {
             // Copy Original Values
             //OnAfterObtained(original);
             base.CopyValues(original);
-            NoBlockModifier = original.NoBlockModifier;
-            PerfectBlockModifier = original.PerfectBlockModifier;
-            MistimedBlockModifier = original.MistimedBlockModifier;
-            DamageAdditiveModifier = original.DamageAdditiveModifier;
+            BaseARMValue = original.BaseARMValue;
+            ElementalWeakness = original.ElementalWeakness;
         }
 
         public bool IsTrash() {
