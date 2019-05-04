@@ -41,3 +41,5 @@ MonoBehaviour:
   Sky: {fileID: 21300000, guid: b2a51613906fac74cbd12fa6221718f3, type: 3}
   Clouds1: {fileID: 21300000, guid: 3aa7625d41e61eb41aadd47eee40b5c3, type: 3}
   Clouds2: {fileID: 21300000, guid: 37f2a7d2d28b09d4d8e7d3e693b1ad46, type: 3}
+  MiningPoints:
+  - {fileID: 11400000, guid: 0679f2acf7e07cf44a9bd1f060ffafb9, type: 2}

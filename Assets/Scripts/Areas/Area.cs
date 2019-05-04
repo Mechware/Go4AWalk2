@@ -13,5 +13,6 @@ namespace G4AW2.Data.Area {
 		public Sprite Sky;
 		public Sprite Clouds1;
 		public Sprite Clouds2;
+	    public List<MiningPoint> MiningPoints;
 	}
 }

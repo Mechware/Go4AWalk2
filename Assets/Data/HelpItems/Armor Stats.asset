@@ -12,12 +12,9 @@ MonoBehaviour:
   m_Name: Armor Stats
   m_EditorClassIdentifier: 
   DisplayName: Armor Stats
-  Description: 'Armor has 4 main stats: No block modifier, block modifier, perfect
-    block modifier, damage additive modifier. No block modifier is the number that
-    the incoming damage is multiplied by when you are not blocking, block modifier
-    is the modifier when you''re blocking, perfect block modifier is the modifier
-    when you perform a perfect block, and damage additive modifier is the amount of
-    damage subtracted from the incoming damage. So if you''re blocking, damage = EnemyAttack
-    * block modifier - damage additive modifier.'
+  Description: "Armor is based on the ARM stat. The higher the ARM, the better the
+    armor! \n\nThat being said, some armor has elemental strengths and weaknesses
+    so be sure to get armors that protect you from as many elements as possible!"
   SeeAlso:
   - {fileID: 11400000, guid: e20259f67a7638e4c9f50723dc0e74a4, type: 2}
+  - {fileID: 11400000, guid: c8ab6f775d6b6d645ba9fdbb809f8b81, type: 2}
