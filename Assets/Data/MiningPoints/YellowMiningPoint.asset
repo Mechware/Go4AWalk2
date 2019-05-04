@@ -9,14 +9,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e14cef1bd89181b4a94cde67bfc7abb1, type: 3}
-  m_Name: MiningPoint
+  m_Name: YellowMiningPoint
   m_EditorClassIdentifier: 
   MinDistanceBetween: 10
   MaxDistanceBetween: 100
-  Image: {fileID: 21300000, guid: 23ff33e35320e59418f02b19c8bbb0f6, type: 3}
+  Image: {fileID: 21300000, guid: 512599398b366e64b8d38f23712129e7, type: 3}
   Drops:
     Items:
-    - item: {fileID: 11400000, guid: 49a395b3e2e7c7b4aa598c53811f7e7d, type: 2}
+    - item: {fileID: 11400000, guid: a774e612aec67b740aa55df3e3e3ff17, type: 2}
       dropChance: 0.7
-    - item: {fileID: 11400000, guid: d8b9e342a823b224798d3b1d7d6bdf71, type: 2}
+    - item: {fileID: 11400000, guid: 4ef056b8210cf334c823e8b11fb4d3af, type: 2}
       dropChance: 0.1
+    - item: {fileID: 11400000, guid: 492bd27deea319a49b2cb368355b815e, type: 2}
+      dropChance: 0.01

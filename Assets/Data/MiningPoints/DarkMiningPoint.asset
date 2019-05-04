@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e14cef1bd89181b4a94cde67bfc7abb1, type: 3}
+  m_Name: DarkMiningPoint
+  m_EditorClassIdentifier: 
+  MinDistanceBetween: 10
+  MaxDistanceBetween: 100
+  Image: {fileID: 21300000, guid: f0a105aa1d1ba7749a3e1d6976d2a9f9, type: 3}
+  Drops:
+    Items:
+    - item: {fileID: 11400000, guid: d08d0756c736c2a4ab0d0954542e7fed, type: 2}
+      dropChance: 0.666
+    - item: {fileID: 11400000, guid: 833b0d247a0cc7641ae66f37c76ba899, type: 2}
+      dropChance: 0.08
+    - item: {fileID: 11400000, guid: 4d391139bcead144f8607a63bc321fee, type: 2}
+      dropChance: 0.008

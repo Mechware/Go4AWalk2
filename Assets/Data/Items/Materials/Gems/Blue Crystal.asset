@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Name: Blue Crystal
   m_EditorClassIdentifier: 
   ID: 21
+  Name: Ice Crystal
   Image: {fileID: 21300000, guid: ea94b141a8219ae4d830aa78c50b19b1, type: 3}
   Value: 100
-  Description: An equisite crystal in a vibrant blue hue.
+  Description: An equisite crystal in a vibrant blue hue it seems to be made of pure
+    ice.
   Rarity: 3
   Type: {fileID: 11400000, guid: 2e3d517a6eddcc14bb76e30ceae83a92, type: 2}
   GemTypeType: 30

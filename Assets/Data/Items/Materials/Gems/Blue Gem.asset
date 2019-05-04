@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Name: Blue Gem
   m_EditorClassIdentifier: 
   ID: 20
+  Name: Ice Gem
   Image: {fileID: 21300000, guid: 9168cab164f0dec4cbe4641e88149ce2, type: 3}
   Value: 10
-  Description: A small blue gemstone.
+  Description: A small blue gemstone that is cool to the touch.
   Rarity: 1
   Type: {fileID: 11400000, guid: 2e3d517a6eddcc14bb76e30ceae83a92, type: 2}
   GemTypeType: 0
