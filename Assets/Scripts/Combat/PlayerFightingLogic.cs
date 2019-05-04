@@ -38,6 +38,7 @@ public class PlayerFightingLogic : MonoBehaviour {
 
             blockTimer.Stop();
             OnBlockEnd.Invoke();
+            BlockState = Armor.BlockState.None;
         }
 
         damage = Mathf.RoundToInt(fdamage);

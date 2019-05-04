@@ -43,6 +43,11 @@ namespace G4AW2.Data.Combat {
 	    public int Damage => Mathf.RoundToInt(BaseDamage * (1 + Level / 10f));
 	    public int ElementalDamage => Mathf.RoundToInt(BaseElementalDamage * (1 + Level / 10f));
 
+	    public float GetElementalWeakness(ElementalType type) {
+	        return ElementalWeaknesses.Value?[type] ?? 1;
+	    }
+
+
         private class SaveObject {
 	        public int ID;
 	        public int Level;
@@ -51,6 +56,7 @@ namespace G4AW2.Data.Combat {
 	    public override string GetSaveString() {
 	        return JsonUtility.ToJson(new SaveObject() { ID = ID, Level = Level});
         }
+
 
 	    public override void SetData(string saveString, params object[] otherData) {
 
@@ -79,6 +85,8 @@ namespace G4AW2.Data.Combat {
             Death = original.Death;
             Dead = original.Dead;
             Walking = original.Walking;
+	        ElementalWeaknesses = original.ElementalWeaknesses;
+	        ElementalDamageType = original.ElementalDamageType;
 
             base.SetData(saveString, original);
         }

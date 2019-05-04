@@ -18,7 +18,7 @@ namespace CustomEvents {
 		}
 
 		public T Value {
-			get { return UseConstant ? ConstantValue : Variable.Value; }
+			get { return UseConstant ? ConstantValue : (Variable == null ? default(T) : Variable.Value); }
 			set {
 				if (UseConstant) {
 					ConstantValue = value;

@@ -41,7 +41,9 @@ MonoBehaviour:
   ElementalWeaknesses:
     UseConstant: 0
     ConstantValue:
-      Weaknesses: []
+      Weaknesses:
+      - ElementalType: {fileID: 0}
+        DamageMultiplier: 0
     Variable: {fileID: 11400000, guid: 5bde2dcf7a75eb24aa1758dc44eba435, type: 2}
   Drops:
     Items:

@@ -191,7 +191,7 @@ namespace G4AW2.Combat {
 	        if(EnemyState == State.Dead)
 	            return;
 
-            amount = Mathf.RoundToInt(amount * Enemy.ElementalWeaknesses.Value[type]);
+            amount = Mathf.RoundToInt(amount * Enemy.GetElementalWeakness(type));
 	        ElementalDamageNumberSpawner.SpawnNumber(amount, type.DamageColor);
 	        OnElementalHit.Invoke(amount);
 
