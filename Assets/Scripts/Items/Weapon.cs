@@ -14,7 +14,7 @@ namespace G4AW2.Data.DropSystem
 
         public PersistentSetItem AllItems;
 
-        public int RawDamage => Mathf.RoundToInt( Damage * mod * MasteryDamageMod * LevelDamageMod);
+        public int RawDamage => Mathf.RoundToInt( 10*(1+Damage/100) * mod * MasteryDamageMod * LevelDamageMod);
         public int Mastery => Mathf.FloorToInt( ConfigObject.GetLevel(Rarity, MasteryLevels.GetTaps(ID)));
         public float RawMastery => ConfigObject.GetLevel(Rarity, MasteryLevels.GetTaps(ID));
         private float MasteryDamageMod => Mastery == 99 ? 2.15f : 1 + Mastery / 100f;
