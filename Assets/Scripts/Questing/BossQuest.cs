@@ -10,6 +10,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Data/Quests/Active/BossQuest")]
 public class BossQuest : ActiveQuestBase {
 
+    [Header("Boss Objective")]
     public RuntimeSetFollowerData EnemyList;
     public EnemyData Enemy;
     public int Level;

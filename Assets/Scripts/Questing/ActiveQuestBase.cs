@@ -11,15 +11,23 @@ using UnityEngine;
 
 namespace G4AW2.Questing {
     public class ActiveQuestBase : Quest {
-        public ActiveQuestBase NextQuest;
-        public Area Area;
-        public List<MiningPoint> MiningPoints;
-        public FollowerDropData Enemies;
 
+        [Header("Progress")]
+        public ActiveQuestBase NextQuest;
         public Conversation StartConversation;
         public Conversation EndConversation;
 
+        [Header("Area Definitions")]
+        public float MinEnemyDropTime = 240;
+        public float MaxEnemyDropTime = 480;
+        public float MinEnemyDropDistance = 50;
+        public float MaxEnemyDropDistance = 250;
+        public Area Area;
+        public List<MiningPoint> MiningPoints;
+        public FollowerDropData Enemies;
         public List<Reward> QuestRewards;
+
+        
         protected Action<ActiveQuestBase> fininshed;
 
         [Serializable]
