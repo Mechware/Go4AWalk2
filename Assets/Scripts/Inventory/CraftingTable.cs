@@ -28,7 +28,8 @@ public class CraftingTable : ScriptableObject {
             bool canMake = true;
 
             foreach(var component in recipe.Components) {
-                if(Inventory.FirstOrDefault(e => e.Item.ID == component.Item.ID) == default(InventoryEntry)) {
+                InventoryEntry ie = Inventory.FirstOrDefault(e => e.Item.ID == component.Item.ID);
+                if(ie == default(InventoryEntry) || ie.Amount < component.Amount) {
                     canMake = false;
                     break;
                 }
