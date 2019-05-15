@@ -28,6 +28,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 122dbbbf58a55ed4ea26d6db1f754cbb, type: 2}
   - {fileID: 11400000, guid: ad9b8d87849cbb443985f26909b572f2, type: 2}
   - {fileID: 11400000, guid: 0fa793a270e17e94988ea8a538153bab, type: 2}
+  - {fileID: 11400000, guid: 7c3e61303c6798748b00b115c31a54f4, type: 2}
+  - {fileID: 11400000, guid: 6c8f3c7d1db4f8d4c8f328fecf3daa82, type: 2}
+  - {fileID: 11400000, guid: ae440f5c2b096e24e8fb41f791a0ec9e, type: 2}
   OnAdd:
     m_PersistentCalls:
       m_Calls: []

@@ -11,6 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a97f1898c302cd44b8adfe51accc35cd, type: 3}
   m_Name: IronHammerRecipe
   m_EditorClassIdentifier: 
+  ID: 7
   Components:
   - Item: {fileID: 11400000, guid: 37922c7fca4096e48a04b7094a8a3449, type: 2}
     Amount: 1

@@ -36,7 +36,8 @@ namespace G4AW2.Data.DropSystem
         [NonSerialized]
         public int Level = 1;
 
-        private int random = -1;
+        [NonSerialized]
+        public int Random = -1;
         private float mod;
         private string nameMod;
 
@@ -72,7 +73,7 @@ namespace G4AW2.Data.DropSystem
 
         public override void OnAfterObtained() {
 
-            random = UnityEngine.Random.Range(0, 101);
+            Random = UnityEngine.Random.Range(0, 101);
             SetValuesBasedOnRandom();
             TapsWithWeapon.Value = 0;
         }
@@ -104,29 +105,29 @@ namespace G4AW2.Data.DropSystem
         }
 
         public override int GetValue() {
-            return Mathf.RoundToInt(Value * (1 + Level / 10f) * (1 + random / 100f)) + (IsEnchanted ? Enchantment.Value : 0);
+            return Mathf.RoundToInt(Value * (1 + Level / 10f) * (1 + Random / 100f)) + (IsEnchanted ? Enchantment.Value : 0);
         }
 
         public void SetValuesBasedOnRandom() {
-            if(random == 0) {
+            if(Random == 0) {
                 mod = 0.5f;
                 nameMod = "Broken";
-            } else if(random >= 1 && random <= 10) {
+            } else if(Random >= 1 && Random <= 10) {
                 mod = 0.7f;
                 nameMod = "Damaged";
-            } else if(random >= 11 && random <= 30) {
+            } else if(Random >= 11 && Random <= 30) {
                 mod = 0.85f;
                 nameMod = "Inferior";
-            } else if(random >= 31 && random <= 70) {
+            } else if(Random >= 31 && Random <= 70) {
                 mod = 1;
                 nameMod = "Normal";
-            } else if(random >= 71 && random <= 90) {
+            } else if(Random >= 71 && Random <= 90) {
                 mod = 1.15f;
                 nameMod = "Fine";
-            } else if(random >= 91 && random <= 99) {
+            } else if(Random >= 91 && Random <= 99) {
                 mod = 1.3f;
                 nameMod = "Exquisite";
-            } else if(random == 100) {
+            } else if(Random == 100) {
                 mod = 1.5f;
                 nameMod = "Masterwork";
             }
@@ -144,7 +145,7 @@ namespace G4AW2.Data.DropSystem
         }
 
         public string GetSaveString() {
-            return JsonUtility.ToJson(new DummySave() {ID = ID, Random = random, Taps = TapsWithWeapon, Trash = MarkedAsTrash, Level = Level, EnchantID = Enchantment == null ? -1 : Enchantment.ID, EnchantSave = Enchantment == null ? "" : Enchantment.GetSaveString()});
+            return JsonUtility.ToJson(new DummySave() {ID = ID, Random = Random, Taps = TapsWithWeapon, Trash = MarkedAsTrash, Level = Level, EnchantID = Enchantment == null ? -1 : Enchantment.ID, EnchantSave = Enchantment == null ? "" : Enchantment.GetSaveString()});
         }
 
         public void SetData(string saveString, params object[] otherData) {
@@ -152,7 +153,7 @@ namespace G4AW2.Data.DropSystem
             DummySave ds = JsonUtility.FromJson<DummySave>(saveString);
 
             ID = ds.ID;
-            random = ds.Random;
+            Random = ds.Random;
             TapsWithWeapon.Value = ds.Taps;
             MarkedAsTrash = ds.Trash;
             Level = ds.Level;

@@ -58,6 +58,7 @@ namespace G4AW2.Followers {
 	        if (CurrentFollowers.Value.Count >= 10) return;
 
 	        FollowerData data = DropData.GetRandomFollower(true);
+	        if (data == null) return;
 
             CurrentFollowers.Add(data);
         }

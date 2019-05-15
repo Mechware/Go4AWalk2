@@ -19,12 +19,12 @@ namespace G4AW2.Data.Combat {
         public AnimationClip Walking;
 
 	    public Sprite DeadSprite;
-
-	    [Header("Stats")]
+	    
         private const float BASE_ENEMY_HEALTH_SCALING = 1000;
 	    private const float BASE_ENEMY_DAMAGE_SCALING = 10;
 	    private const float BASE_ENEMY_ELEM_DAMAGE_SCALING = 2.5f;
 
+	    [Header("Stats")]
         [Range(0, 100)]
         public float BaseHealth;
         [Range(0, 100)]

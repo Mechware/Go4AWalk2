@@ -18,65 +18,61 @@ public class ItemDropBubbleManager : MonoBehaviour {
 
 	public float SpawnDelay;
 
-	public UnityEventItem OnItemClick;
-	public UnityEvent OnFinished;
-
-    private Action onFinish;
-
     public void AddItems(IEnumerable<Item> items, Action onFinish) {
-        this.onFinish = onFinish;
         List<Item> itemsList = items.ToList();
         if(itemsList.Count == 0) {
             onFinish?.Invoke();
-            OnFinished.Invoke();
             return;
         }
-        StartCoroutine(ShootItems(itemsList));
+        StartCoroutine(ShootItems(itemsList, onFinish));
     }
 
 	public void AddItems( IEnumerable<Item> items ) {
-	    onFinish = null;
 		List<Item> itemsList = items.ToList();
         if(itemsList.Count == 0) {
-            OnFinished.Invoke();
             return;
         }
-		StartCoroutine(ShootItems(itemsList));
+		StartCoroutine(ShootItems(itemsList, null));
 	}
 
 	private int onScreenItems = 0;
-	private bool finished = true;
+	private bool finishedShooting = true;
 
-	private IEnumerator ShootItems( IEnumerable<Item> items ) {
-		finished = false;
+	private IEnumerator ShootItems( IEnumerable<Item> items, Action onFinish ) {
+		finishedShooting = false;
 		foreach (Item it in items) {
 			yield return new WaitForSeconds(SpawnDelay);
 			GameObject itemBubble = GameObject.Instantiate(ItemDropperPrefab, Vector3.zero, Quaternion.identity, transform);
             itemBubble.transform.localPosition = new Vector3(0, 0, 0);
-            itemBubble.GetComponent<ItemDropBubble>().SetData(it, OnClick);
+            itemBubble.GetComponent<ItemDropBubble>().SetData(it, (i) => OnClick(i, onFinish));
 			itemBubble.GetComponent<ItemDropBubble>().Shoot();
 			onScreenItems++;
 		}
-		finished = true;
+		finishedShooting = true;
 	}
 
     public WeaponUI WeaponUI;
 
-	private void OnClick(ItemDropBubble it) {
+	private void OnClick(ItemDropBubble it, Action onfinish) {
 
 	    if (it.Item is Weapon) {
 
-	        WeaponUI.SetWeaponWithDefaults((Weapon)it.Item);
+	        WeaponUI.SetWeaponWithDefaults((Weapon)it.Item, () => {
+	            Destroy(it.gameObject);
+	            onScreenItems--;
+	            if(onScreenItems == 0 && finishedShooting) {
+	                onfinish?.Invoke();
+	            }
+            });
+	        return;
 	    }
 
-		OnItemClick.Invoke(it.Item);
 		Destroy(it.gameObject);
-		onScreenItems--;
-		if (onScreenItems == 0 && finished) {
-			OnFinished.Invoke();
-            onFinish?.Invoke();
-		}
-	}
+	    onScreenItems--;
+	    if(onScreenItems == 0 && finishedShooting) {
+	        onfinish?.Invoke();
+	    }
+    }
 
 	[Header("Debug")] public ItemDropper Dropper;
 #if UNITY_EDITOR

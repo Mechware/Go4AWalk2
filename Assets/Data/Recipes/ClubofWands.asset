@@ -11,6 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a97f1898c302cd44b8adfe51accc35cd, type: 3}
   m_Name: ClubofWands
   m_EditorClassIdentifier: 
+  ID: 8
   Components:
   - Item: {fileID: 11400000, guid: d053d65b8f09c264983e32e3a535f101, type: 2}
     Amount: 10
