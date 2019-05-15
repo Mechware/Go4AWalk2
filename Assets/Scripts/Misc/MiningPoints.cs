@@ -28,7 +28,7 @@ public class MiningPoints : MonoBehaviour {
     private List<float> nextSpawnDistance = new List<float>();
 
     public void AreaChanged(ActiveQuestBase a) {
-        areaPoints = a.Area.MiningPoints;
+        areaPoints = a.MiningPoints;
         Pool.Reset();
         nextSpawnDistance.Clear();
         foreach(var point in areaPoints) {

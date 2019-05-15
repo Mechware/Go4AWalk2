@@ -5,11 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 using G4AW2.Data.Area;
 using G4AW2.Dialogue;
+using G4AW2.Followers;
 
 namespace G4AW2.Questing {
     public class ActiveQuestBase : Quest {
         public ActiveQuestBase NextQuest;
         public Area Area;
+        public List<MiningPoint> MiningPoints;
+        public FollowerDropData Enemies;
+
         public Conversation StartConversation;
         public Conversation EndConversation;
 

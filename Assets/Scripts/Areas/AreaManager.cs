@@ -27,13 +27,15 @@ namespace G4AW2.UI.Areas {
 			clouds2.Images.ForEach(i => i.sprite = area.Clouds2);
 			SkyImages.ForEach(i => i.sprite = area.Sky);
 
-			FollowerSpawner.DropData = area.Enemies;
 		}
 
 		// Must do this due to Unity events... Is there a better way to do this?
 		public void SetAreaFromQuest(ActiveQuestBase quest) {
-			SetArea(quest.Area);
-		}
+            if(quest.Area != Area)
+			    SetArea(quest.Area);
+
+		    FollowerSpawner.DropData = quest.Enemies;
+        }
 
 		// Update is called once per frame
 		void Update() {
