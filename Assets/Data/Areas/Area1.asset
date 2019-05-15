@@ -43,3 +43,8 @@ MonoBehaviour:
   Clouds2: {fileID: 21300000, guid: 37f2a7d2d28b09d4d8e7d3e693b1ad46, type: 3}
   MiningPoints:
   - {fileID: 11400000, guid: 0679f2acf7e07cf44a9bd1f060ffafb9, type: 2}
+  - {fileID: 11400000, guid: cbda951cd8fa5a94881717788533b3d7, type: 2}
+  - {fileID: 11400000, guid: 4fa48dc5117752d42baf1ee35a9f713c, type: 2}
+  - {fileID: 11400000, guid: 3a339d311e675a64693fb800ebc6c697, type: 2}
+  - {fileID: 11400000, guid: 4821808305d186840a2534372270b694, type: 2}
+  - {fileID: 11400000, guid: 2bbd3aa989e9a5c49b9fe47d32b261aa, type: 2}
