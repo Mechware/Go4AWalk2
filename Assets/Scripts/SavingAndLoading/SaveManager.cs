@@ -191,6 +191,11 @@ namespace G4AW2.Saving {
             File.Delete(backUpFile);
         }
 
+        public void ClearDataAndPreventFromSaving() {
+            ClearSaveData();
+            allowSave = false;
+        }
+
 #if UNITY_EDITOR
         [ContextMenu("Print Save String")]
         void PrintSaveString() {
