@@ -21,9 +21,16 @@ namespace G4AW2.Data.Combat {
 	    public Sprite DeadSprite;
 
 	    [Header("Stats")]
-	    public float BaseHealth;
+        private const float BASE_ENEMY_HEALTH_SCALING = 1000;
+	    private const float BASE_ENEMY_DAMAGE_SCALING = 10;
+	    private const float BASE_ENEMY_ELEM_DAMAGE_SCALING = 2.5f;
+
+        [Range(0, 100)]
+        public float BaseHealth;
+        [Range(0, 100)]
 	    public float BaseDamage;
-	    public float TimeBetweenHeavyAttacks;
+
+	    public float TimeBetweenAttacks;
         public float AttackPrepTime;
         public float AttackExecuteTime;
 
@@ -39,9 +46,9 @@ namespace G4AW2.Data.Combat {
 
 	    [NonSerialized] public int Level;
 
-	    public int MaxHealth => Mathf.RoundToInt(BaseHealth * (1 + Level / 10f));
-	    public int Damage => Mathf.RoundToInt(BaseDamage * (1 + Level / 10f));
-	    public int ElementalDamage => Mathf.RoundToInt(BaseElementalDamage * (1 + Level / 10f));
+	    public int MaxHealth => Mathf.RoundToInt(BASE_ENEMY_HEALTH_SCALING * (1 + BaseHealth / 100) * (1 + Level / 10f));
+	    public int Damage => Mathf.RoundToInt(BASE_ENEMY_DAMAGE_SCALING *(1 + BaseDamage / 100) * (1 + Level / 10f));
+	    public int ElementalDamage => Mathf.RoundToInt(BASE_ENEMY_ELEM_DAMAGE_SCALING * (1 + BaseElementalDamage / 100) * (1 + Level / 10f));
 
 	    public float GetElementalWeakness(ElementalType type) {
 	        return ElementalWeaknesses.Value?[type] ?? 1;

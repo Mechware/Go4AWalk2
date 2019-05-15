@@ -14,7 +14,7 @@ namespace G4AW2.Combat {
 		public IntReference Health;
 	    public IntReference Gold;
 
-        public IntReference Level;
+        public int Level => Weapon.Value.Level;
         public IntReference Experience;
 
 		public FloatReference PowerPerBlock;

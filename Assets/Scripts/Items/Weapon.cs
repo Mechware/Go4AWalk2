@@ -12,15 +12,17 @@ namespace G4AW2.Data.DropSystem
     [CreateAssetMenu(menuName = "Data/Items/Weapon")]
     public class Weapon : Item, ISaveable, ITrashable {
 
+        private const float DAMAGE_SCALING = 10;
+
         public PersistentSetItem AllItems;
 
-        public int RawDamage => Mathf.RoundToInt( Damage * mod * MasteryDamageMod * LevelDamageMod);
+        public int RawDamage => Mathf.RoundToInt(DAMAGE_SCALING * (1 + Damage / 100f) * MasteryDamageMod * (1 + Level / 10f) * mod);
         public int Mastery => Mathf.FloorToInt( ConfigObject.GetLevel(Rarity, MasteryLevels.GetTaps(ID)));
         public float RawMastery => ConfigObject.GetLevel(Rarity, MasteryLevels.GetTaps(ID));
         private float MasteryDamageMod => Mastery == 99 ? 2.15f : 1 + Mastery / 100f;
-        private float LevelDamageMod => 1 + Level / 10f; 
 
-        public int Damage;
+        [Range(0,100)]
+        public float Damage;
 
         public bool IsEnchanted { get { return Enchantment != null; } }
         public Enchanter Enchantment { get; private set; }
