@@ -11,8 +11,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e14cef1bd89181b4a94cde67bfc7abb1, type: 3}
   m_Name: DarkMiningPoint
   m_EditorClassIdentifier: 
-  MinDistanceBetween: 10
-  MaxDistanceBetween: 100
+  MinDistanceBetween: 100
+  MaxDistanceBetween: 1000
   Image: {fileID: 21300000, guid: f0a105aa1d1ba7749a3e1d6976d2a9f9, type: 3}
   Drops:
     Items:

@@ -11,8 +11,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e14cef1bd89181b4a94cde67bfc7abb1, type: 3}
   m_Name: RedMiningPoint
   m_EditorClassIdentifier: 
-  MinDistanceBetween: 10
-  MaxDistanceBetween: 100
+  MinDistanceBetween: 100
+  MaxDistanceBetween: 1000
   Image: {fileID: 21300000, guid: 2521e10b9b3e294408f50f3827d7a705, type: 3}
   Drops:
     Items:
