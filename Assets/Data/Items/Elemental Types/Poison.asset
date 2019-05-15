@@ -16,7 +16,7 @@ MonoBehaviour:
   - Name: Dirty
     RandomValueMin: 10
     BaseDamage: 1
-  - Name: Infectous
+  - Name: Infectious
     RandomValueMin: 30
     BaseDamage: 2
   - Name: Poisonous

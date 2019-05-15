@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Name: Magic Wand
   m_EditorClassIdentifier: 
   ID: 49
+  Name: Magic Wand
   Image: {fileID: 21300000, guid: 9a2a067e6eafa57428000bf6e2d3a1fb, type: 3}
   Value: 1000000
   Description: Oooh yeah.
   Rarity: 4
   AllItems: {fileID: 11400000, guid: f34cbb7c711f3c94f92aaeed3b937361, type: 2}
-  Damage: 10
+  Damage: 69
   LevelUp: {fileID: 11400000, guid: 1b44135a1b59bbf4193efb1137b4ab02, type: 2}
