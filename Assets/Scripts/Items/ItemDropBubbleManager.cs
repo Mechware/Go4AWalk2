@@ -18,6 +18,12 @@ public class ItemDropBubbleManager : MonoBehaviour {
 
 	public float SpawnDelay;
 
+    private ObjectPrefabPool Pool;
+
+    void Awake() {
+        Pool = new ObjectPrefabPool(ItemDropperPrefab, transform, 5);
+    }
+
     public void AddItems(IEnumerable<Item> items, Action onFinish) {
         List<Item> itemsList = items.ToList();
         if(itemsList.Count == 0) {
@@ -42,8 +48,9 @@ public class ItemDropBubbleManager : MonoBehaviour {
 		finishedShooting = false;
 		foreach (Item it in items) {
 			yield return new WaitForSeconds(SpawnDelay);
-			GameObject itemBubble = GameObject.Instantiate(ItemDropperPrefab, Vector3.zero, Quaternion.identity, transform);
-            itemBubble.transform.localPosition = new Vector3(0, 0, 0);
+		    GameObject itemBubble = Pool.GetObject();
+		    itemBubble.transform.localPosition = Vector3.zero;
+            itemBubble.transform.rotation = Quaternion.identity;
             itemBubble.GetComponent<ItemDropBubble>().SetData(it, (i) => OnClick(i, onFinish));
 			itemBubble.GetComponent<ItemDropBubble>().Shoot();
 			onScreenItems++;
@@ -67,14 +74,30 @@ public class ItemDropBubbleManager : MonoBehaviour {
 	        return;
 	    }
 
-		Destroy(it.gameObject);
+        Pool.Return(it.gameObject);
 	    onScreenItems--;
 	    if(onScreenItems == 0 && finishedShooting) {
 	        onfinish?.Invoke();
 	    }
     }
 
-	[Header("Debug")] public ItemDropper Dropper;
+    public void Clear() {
+        if (Pool.InUse.Count == 0) return;
+
+        string loot = "";
+        Sprite s = null;
+        foreach (var obj in Pool.InUse.ToArray()) {
+            var bubble = obj.GetComponent<ItemDropBubble>();
+            bubble.OnPointerClick(null);
+            loot = bubble.Item.GetName() + "\n";
+            if(s == null) s = bubble.Item.Image;
+        }
+        QuickPopUp.Show(s, "<size=150%>Auto Collected Loot</size>\nLoot was auto collected for you. The following was picked up:\n" + loot);
+
+        Pool.Reset();
+    }
+
+    [Header("Debug")] public ItemDropper Dropper;
 #if UNITY_EDITOR
 	[ContextMenu("Drop Items")]
 	public void DropItems() {

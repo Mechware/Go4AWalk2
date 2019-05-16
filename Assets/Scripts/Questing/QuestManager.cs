@@ -14,6 +14,7 @@ public class QuestManager : MonoBehaviour {
     public Dialogue QuestDialogUI;
 
     public RuntimeSetQuest CurrentQuests;
+    public BossQuestController BossController;
 
     [Header("Events")]
     public UnityEventActiveQuestBase AreaQuestChanged;
@@ -25,6 +26,10 @@ public class QuestManager : MonoBehaviour {
         } else {
             CurrentQuest.Value.ResumeQuest(FinishQuest);
             AreaQuestChanged.Invoke(CurrentQuest.Value);
+
+            if(CurrentQuest.Value is BossQuest) {
+                BossController.ResumeBossQuest();
+            }
         }
     }
 
@@ -82,10 +87,18 @@ public class QuestManager : MonoBehaviour {
     }
 
     public void SetCurrentQuest(ActiveQuestBase quest) {
+
+        ItemDropManager.Clear();
+
         CurrentQuest.Value = quest;
         AreaQuestChanged.Invoke(quest);
         quest.StartQuest(FinishQuest);
-        QuestDialogUI.SetConversation(quest.StartConversation, () => { });
+        QuestDialogUI.SetConversation(quest.StartConversation, () => {
+
+            if (quest is BossQuest) {
+                BossController.StartBossQuest();
+            }
+        });
     }
 
     public void QuestClicked(Quest q) {

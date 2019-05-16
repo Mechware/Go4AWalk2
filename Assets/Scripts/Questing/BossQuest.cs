@@ -11,33 +11,11 @@ using UnityEngine;
 public class BossQuest : ActiveQuestBase {
 
     [Header("Boss Objective")]
-    public RuntimeSetFollowerData EnemyList;
     public EnemyData Enemy;
     public int Level;
 
-    public override void StartQuest(Action<ActiveQuestBase> onFinish) {
-        base.StartQuest(onFinish);
-        var enemy = Instantiate(Enemy);
-        enemy.Level = Level;
-        EnemyList.Add(enemy);
-        EnemyList.OnChange.AddListener(ListChanged);
-    }
-
-    private void ListChanged(FollowerData data) {
-        if(EnemyList.FirstOrDefault(e => e.ID == Enemy.ID) == null) {
-            fininshed?.Invoke(this);
-            EnemyList.OnChange.RemoveListener(ListChanged);
-        }
-    }
-
-    public override void ResumeQuest(Action<ActiveQuestBase> onFinish) {
-        base.ResumeQuest(onFinish);
-        if(EnemyList.FirstOrDefault(e => e.ID == Enemy.ID) == null) {
-            var enemy = Instantiate(Enemy);
-            enemy.Level = Level;
-            EnemyList.Add(enemy);
-        }
-        EnemyList.OnChange.AddListener(ListChanged);
+    public void Finish() {
+        fininshed(this);
     }
 
 #if UNITY_EDITOR

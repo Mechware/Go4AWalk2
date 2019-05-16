@@ -27,6 +27,7 @@ namespace G4AW2.Combat {
 	    public Transform DeadEnemyParent;
 	    public Player Player;
 	    public RuntimeSetFollowerData CurrentFollowers;
+	    public LerpToPosition WalkingToPosition;
 
         [Header("Settings")]
         public FloatReference StunDuration;
@@ -43,6 +44,7 @@ namespace G4AW2.Combat {
         // Events
         [Header("Events")]
         public UnityEvent OnStartWalking;
+        public UnityEvent OnWalkingDone;
         public UnityEventInt OnHit;
 		public UnityEventInt OnElementalHit;
         public UnityEventEnemyData OnDeath;
@@ -95,11 +97,21 @@ namespace G4AW2.Combat {
 		    RectTransform.sizeDelta = r;
 		}
 
+	    public void StartWalkingAnimation() {
+	        StopAllCoroutines();
+            MyAnimator.SetTrigger("Walking");
+        }
+
         public void StartWalking()
         {
             StopAllCoroutines();
             OnStartWalking.Invoke();
             MyAnimator.SetTrigger("Walking");
+            WalkingToPosition.StartLerping(() => {
+                StartAttacking();
+                MyAnimator.SetTrigger("DoneWalking");
+                OnWalkingDone.Invoke();
+            });
         }
 
 		public void StartAttacking() {
