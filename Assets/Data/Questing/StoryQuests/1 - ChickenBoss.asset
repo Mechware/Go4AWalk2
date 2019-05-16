@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 1
   DisplayName: Battle Tutorial
-  NextQuest: {fileID: 11400000, guid: 99e0179e9089e19418a0726ad0cb1664, type: 2}
+  NextQuest: {fileID: 11400000, guid: 7772697f7dd01f34b9f246fc0cdf5cbd, type: 2}
   StartConversation:
     Text: 'Welcome to the <color=red>GAME!</color>
 

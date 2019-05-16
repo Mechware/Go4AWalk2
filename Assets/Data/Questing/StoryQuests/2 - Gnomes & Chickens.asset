@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 2
   DisplayName: Defeat 5 Gnomes
-  NextQuest: {fileID: 11400000, guid: 99e0179e9089e19418a0726ad0cb1664, type: 2}
+  NextQuest: {fileID: 11400000, guid: 34332a3094c776547ab733c1126f5bc8, type: 2}
   StartConversation:
     Text: Now that you've got the basics of fighting, several bad guys are going to
       start following you and trying to fight you! Try defeating 5 gnomes. After a

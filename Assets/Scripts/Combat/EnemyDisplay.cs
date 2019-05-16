@@ -102,16 +102,20 @@ namespace G4AW2.Combat {
             MyAnimator.SetTrigger("Walking");
         }
 
-        public void StartWalking()
-        {
-            StopAllCoroutines();
-            OnStartWalking.Invoke();
-            MyAnimator.SetTrigger("Walking");
-            WalkingToPosition.StartLerping(() => {
-                StartAttacking();
-                MyAnimator.SetTrigger("DoneWalking");
-                OnWalkingDone.Invoke();
-            });
+	    public void StartWalking(Action donewalking) {
+	        StopAllCoroutines();
+	        OnStartWalking.Invoke();
+	        MyAnimator.SetTrigger("Walking");
+	        WalkingToPosition.StartLerping(() => {
+	            StartAttacking();
+	            MyAnimator.SetTrigger("DoneWalking");
+	            OnWalkingDone.Invoke();
+	            donewalking?.Invoke();
+	        });
+        }
+
+        public void StartWalking() {
+            StartWalking(null);
         }
 
 		public void StartAttacking() {
