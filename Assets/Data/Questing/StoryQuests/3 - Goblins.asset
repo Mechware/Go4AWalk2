@@ -14,6 +14,22 @@ MonoBehaviour:
   ID: 3
   DisplayName: Defeat 5 Goblins
   NextQuest: {fileID: 11400000, guid: 6a152c9f5e6fb0245aa9a63fdc71fdae, type: 2}
+  StartConversation:
+    Text: You're doing great! Those gnomes didn't stand a chance. Some stronger folks
+      heard about how strong you are and want a peice so you're gonna have to fight
+      tougher enemies. The goblins are a ruthless bunch, try and take out 5 of them.
+    Speaker: {fileID: 21300000, guid: c27605eebf83392428128ddf89b5bd1f, type: 3}
+  EndConversation:
+    Text: 'Nice work! For defeating a goblin, I present you with a goblin sword. Use
+      it wisely.
+
+
+      Just kidding, hit everything with it.'
+    Speaker: {fileID: 21300000, guid: c27605eebf83392428128ddf89b5bd1f, type: 3}
+  MinEnemyDropTime: 240
+  MaxEnemyDropTime: 480
+  MinEnemyDropDistance: 50
+  MaxEnemyDropDistance: 250
   Area: {fileID: 11400000, guid: 5e4d1ba5949749b44bc3427231ca82f2, type: 2}
   MiningPoints: []
   Enemies:
@@ -30,22 +46,10 @@ MonoBehaviour:
       MinLevel: 1
       MaxLevel: 4
       DropChance: 5
-  StartConversation:
-    Text: You're doing great! Those gnomes didn't stand a chance. Some stronger folks
-      heard about how strong you are and want a peice so you're gonna have to fight
-      tougher enemies. The goblins are a ruthless bunch, try and take out 5 of them.
-    Speaker: {fileID: 21300000, guid: c27605eebf83392428128ddf89b5bd1f, type: 3}
-  EndConversation:
-    Text: 'Nice work! For defeating a goblin, I present you with a goblin sword. Use
-      it wisely.
-
-
-      Just kidding, hit everything with it.'
-    Speaker: {fileID: 21300000, guid: c27605eebf83392428128ddf89b5bd1f, type: 3}
   QuestRewards:
   - it: {fileID: 11400000, guid: 2da6b9adf5d871c4a8c481d49c4b2092, type: 2}
     Level: 5
     RandomRoll: 50
-  TotalAmount: {fileID: 11400000, guid: c81d62077aaa51d49b956024b1c8fb17, type: 2}
+  TotalAmount: {fileID: 11400000, guid: 27ca57e927a9d564cbbc4aeac61c99bb, type: 2}
   AmountToReach: 5
   AmountSoFar: {fileID: 11400000, guid: 66d427283c1651346a2bb795dcaa50b7, type: 2}

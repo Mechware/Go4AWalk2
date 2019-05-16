@@ -6882,9 +6882,149 @@ MonoBehaviour:
     Count: {fileID: 11400000, guid: ec1265330248d3849a01ca45324ef0a3, type: 2}
   - Enemy: {fileID: 11400000, guid: 396482660d9279a4294f369245325131, type: 2}
     Count: {fileID: 11400000, guid: c81d62077aaa51d49b956024b1c8fb17, type: 2}
+  - Enemy: {fileID: 11400000, guid: 0fa793a270e17e94988ea8a538153bab, type: 2}
+    Count: {fileID: 11400000, guid: 84910e2cd9cfff349a5abf60fabe7caa, type: 2}
+  - Enemy: {fileID: 11400000, guid: 1661ac05f43e068448b3f2960ac1d57f, type: 2}
+    Count: {fileID: 11400000, guid: 2fa37ea30488ec0439eb4aafd34f1afc, type: 2}
+  - Enemy: {fileID: 11400000, guid: 122dbbbf58a55ed4ea26d6db1f754cbb, type: 2}
+    Count: {fileID: 11400000, guid: 55fa507ac2e36b34e947af3110a2778a, type: 2}
+  - Enemy: {fileID: 11400000, guid: 83a82c4d831cd0e4ea76b4e193b6f359, type: 2}
+    Count: {fileID: 11400000, guid: 2af91fa6d37a6ed40aa46b8681f8f433, type: 2}
+  - Enemy: {fileID: 11400000, guid: 51d3cce514427d448a622c4b31127522, type: 2}
+    Count: {fileID: 11400000, guid: 27ca57e927a9d564cbbc4aeac61c99bb, type: 2}
+  - Enemy: {fileID: 11400000, guid: e75340b3bcfa1db4bae6e3c12eb51d0b, type: 2}
+    Count: {fileID: 11400000, guid: 0c5e465ed68f00e479ee8069440d8c24, type: 2}
+  - Enemy: {fileID: 11400000, guid: 7c3e61303c6798748b00b115c31a54f4, type: 2}
+    Count: {fileID: 11400000, guid: a9898388a15baec458431f4bc1ac76e6, type: 2}
+  - Enemy: {fileID: 11400000, guid: 581f3693b61c6534881558b338b2fc3f, type: 2}
+    Count: {fileID: 11400000, guid: 23644b4fcc28bd84c8f14428da54e1f2, type: 2}
+  - Enemy: {fileID: 11400000, guid: 6c8f3c7d1db4f8d4c8f328fecf3daa82, type: 2}
+    Count: {fileID: 11400000, guid: a3f0d77186d6a854ab9665ec07895e71, type: 2}
+  - Enemy: {fileID: 11400000, guid: 22746ebe0f237cd4fb8f33599478aab2, type: 2}
+    Count: {fileID: 11400000, guid: c23df4e2e0187ff4fb2d2093fc8c6474, type: 2}
+  - Enemy: {fileID: 11400000, guid: ddee636582497854889c3ed5085dffe5, type: 2}
+    Count: {fileID: 11400000, guid: 8051153163c151643b3c3d91d3bf67eb, type: 2}
+  - Enemy: {fileID: 11400000, guid: ae440f5c2b096e24e8fb41f791a0ec9e, type: 2}
+    Count: {fileID: 11400000, guid: 6915f4d97457c6d478e7edb362cd7e6d, type: 2}
+  - Enemy: {fileID: 11400000, guid: ded08c89b255409499576e626cb15960, type: 2}
+    Count: {fileID: 11400000, guid: 00ef43f76e94b1342af6779eece17b4e, type: 2}
   ItemObtainedCount:
+  - Item: {fileID: 11400000, guid: 4e5da4bccb25c1e4c8b7eac00c00a99d, type: 2}
+    Count: {fileID: 11400000, guid: 1d5005d95302f5d43afdc5962d389c21, type: 2}
+  - Item: {fileID: 11400000, guid: 93a734356920da24caaee99393399534, type: 2}
+    Count: {fileID: 11400000, guid: 5fac347c681b575488404e964df1b54b, type: 2}
+  - Item: {fileID: 11400000, guid: 8b252922b67ac8d49ae55e5b68c1d8e8, type: 2}
+    Count: {fileID: 11400000, guid: 48c690c639b901a499b46207fcff6043, type: 2}
+  - Item: {fileID: 11400000, guid: c95db40fef0530548972ce5e8819e0e3, type: 2}
+    Count: {fileID: 11400000, guid: 1a1f4b659fdcd9b488f65d5e8e016766, type: 2}
+  - Item: {fileID: 11400000, guid: 11fbe90a2780405449ad82a1ae93b06e, type: 2}
+    Count: {fileID: 11400000, guid: ba38854303e21d04382ebb33f14b45f3, type: 2}
+  - Item: {fileID: 11400000, guid: c20ab2832a61eba47b68b5650049b9cf, type: 2}
+    Count: {fileID: 11400000, guid: ce9e0493c7e9add4b8755bd4029bdfab, type: 2}
+  - Item: {fileID: 11400000, guid: 5dbeaf9deb25d984a9f9d45d7bb0df10, type: 2}
+    Count: {fileID: 11400000, guid: be36c9fe256f2e943ba7565f6c48e8fa, type: 2}
+  - Item: {fileID: 11400000, guid: cc1f49edd82ca8e45a1fe6cd2440d676, type: 2}
+    Count: {fileID: 11400000, guid: 575978ebf994236488116ed3d1be2f6b, type: 2}
+  - Item: {fileID: 11400000, guid: 48e9f629903268947a3892b88645bad6, type: 2}
+    Count: {fileID: 11400000, guid: 53c413a516bc2844baa8942ea56e702e, type: 2}
+  - Item: {fileID: 11400000, guid: dfdbef5619962ee459fd1d0deacc5bc0, type: 2}
+    Count: {fileID: 11400000, guid: aad05baf8dd316c4abd580a9d869c6e8, type: 2}
+  - Item: {fileID: 11400000, guid: 49a395b3e2e7c7b4aa598c53811f7e7d, type: 2}
+    Count: {fileID: 11400000, guid: 265372402ac72dc4d8befe10a98af6e9, type: 2}
+  - Item: {fileID: 11400000, guid: d8b9e342a823b224798d3b1d7d6bdf71, type: 2}
+    Count: {fileID: 11400000, guid: 04ba99aa4802ab04abfeb5905477f96e, type: 2}
+  - Item: {fileID: 11400000, guid: 4d391139bcead144f8607a63bc321fee, type: 2}
+    Count: {fileID: 11400000, guid: c4a28965de1cb8e468ecdbabb6e8329d, type: 2}
+  - Item: {fileID: 11400000, guid: d08d0756c736c2a4ab0d0954542e7fed, type: 2}
+    Count: {fileID: 11400000, guid: 52c4c6a1ea1889e4b97522c10786abcb, type: 2}
+  - Item: {fileID: 11400000, guid: 833b0d247a0cc7641ae66f37c76ba899, type: 2}
+    Count: {fileID: 11400000, guid: 57af2415171071847ae9cb0b8c1d87d3, type: 2}
+  - Item: {fileID: 11400000, guid: c6659dc48446fec46bae08827825a9a9, type: 2}
+    Count: {fileID: 11400000, guid: 7cd481f34884253428a32b3573e228dd, type: 2}
+  - Item: {fileID: 11400000, guid: f7ac10c6c6808c04081796324e6eaba5, type: 2}
+    Count: {fileID: 11400000, guid: 2bad9ac40121ac846aeb3fe662cf621d, type: 2}
+  - Item: {fileID: 11400000, guid: 8a79e6122ddf3ca4eb1cc1f6511d081c, type: 2}
+    Count: {fileID: 11400000, guid: 40591ea52c03c9649af829d4fe25f204, type: 2}
+  - Item: {fileID: 11400000, guid: bd5bf7658c5d3a64ebb5582322e34161, type: 2}
+    Count: {fileID: 11400000, guid: 58fd7f9b6faba3e44ab7046dea154b73, type: 2}
+  - Item: {fileID: 11400000, guid: a464ae4e3daf624418d389df8584622f, type: 2}
+    Count: {fileID: 11400000, guid: 74d2b061e88312449831a9207a87e51d, type: 2}
+  - Item: {fileID: 11400000, guid: e49f5dd06a30be34a89ba3cfe20cd5f1, type: 2}
+    Count: {fileID: 11400000, guid: 6f862600300db774083eeb7c1a223538, type: 2}
+  - Item: {fileID: 11400000, guid: 492bd27deea319a49b2cb368355b815e, type: 2}
+    Count: {fileID: 11400000, guid: c630e23bbc8751648a02b89168d2ed6d, type: 2}
+  - Item: {fileID: 11400000, guid: a774e612aec67b740aa55df3e3e3ff17, type: 2}
+    Count: {fileID: 11400000, guid: 960bc1e4f605c9b4c9a07aa3a1de220b, type: 2}
+  - Item: {fileID: 11400000, guid: 4ef056b8210cf334c823e8b11fb4d3af, type: 2}
+    Count: {fileID: 11400000, guid: 8e1aede3c2fd10840b2af97c387aa5f7, type: 2}
+  - Item: {fileID: 11400000, guid: cca3b4ab4ef63d5448382ac5a3f35c50, type: 2}
+    Count: {fileID: 11400000, guid: 1661dc50bc7c7c94da413b78ea665213, type: 2}
+  - Item: {fileID: 11400000, guid: 6cc9b6f53e24aec4c8334a6e06045db7, type: 2}
+    Count: {fileID: 11400000, guid: 7832847522cafe647b2e128531384f77, type: 2}
+  - Item: {fileID: 11400000, guid: 81ec107920144b74a96b6e8ed74afb66, type: 2}
+    Count: {fileID: 11400000, guid: f4fd8e56d37517c4a8bcfc7d58c9f5d5, type: 2}
+  - Item: {fileID: 11400000, guid: 4c5e23e2eafdd084e85f629307646260, type: 2}
+    Count: {fileID: 11400000, guid: 38601477857f64d4b94eeb4651daaf11, type: 2}
+  - Item: {fileID: 11400000, guid: 614ab21de69c9b94884b5eefdfe78e16, type: 2}
+    Count: {fileID: 11400000, guid: a5c58ae2514a83b46983a1949ef7a4d2, type: 2}
+  - Item: {fileID: 11400000, guid: dc820a69f03cdd143ab25de0aeea35e5, type: 2}
+    Count: {fileID: 11400000, guid: b32e93b00b4bdbe48bd14fe9b6248027, type: 2}
+  - Item: {fileID: 11400000, guid: 6b9584ef9e8e3814faf69e9f1efe1e8b, type: 2}
+    Count: {fileID: 11400000, guid: 6c2c2bc503b180f4b9911fabcf7dfc3d, type: 2}
   - Item: {fileID: 11400000, guid: 10f87211d9f03ba468a8554aae870c84, type: 2}
-    Count: {fileID: 11400000, guid: 231906127b8affd4b8c948e1c044f8e7, type: 2}
+    Count: {fileID: 11400000, guid: c8c166b277e87e043a6d91373ae546ba, type: 2}
+  - Item: {fileID: 11400000, guid: 0ad535ea489ac67408922f7ad87a90cc, type: 2}
+    Count: {fileID: 11400000, guid: a19f8d0d45a9be04990ce71650e76cee, type: 2}
+  - Item: {fileID: 11400000, guid: 1af2a214dc94bd644b379c4e893b37a2, type: 2}
+    Count: {fileID: 11400000, guid: 332ccd343813a8f4c87b05fa28418d7a, type: 2}
+  - Item: {fileID: 11400000, guid: 435d784ea3afa354ea9f9655b874a367, type: 2}
+    Count: {fileID: 11400000, guid: 0b760b8dcb90bd4458a3daddc65f5734, type: 2}
+  - Item: {fileID: 11400000, guid: 1fedd65bee70a4642803c28e693ec31f, type: 2}
+    Count: {fileID: 11400000, guid: b4ef975df49776048828c50ed7ff1ca4, type: 2}
+  - Item: {fileID: 11400000, guid: 2e9186a42ba81104c9354db697b23fd5, type: 2}
+    Count: {fileID: 11400000, guid: 5cda9d6fa5153c84db933ef0ff44e2ab, type: 2}
+  - Item: {fileID: 11400000, guid: d4a043ad9fdbd5347b161651a42c52b0, type: 2}
+    Count: {fileID: 11400000, guid: fd4cb35f68804a547839799d63be63cb, type: 2}
+  - Item: {fileID: 11400000, guid: 1a804971af98ebc4cbf6dda1c9b80054, type: 2}
+    Count: {fileID: 11400000, guid: b951e53bf82b13248803ebefda9a69af, type: 2}
+  - Item: {fileID: 11400000, guid: 2da6b9adf5d871c4a8c481d49c4b2092, type: 2}
+    Count: {fileID: 11400000, guid: 9bbeeda3d1a0df143a549804a123b84f, type: 2}
+  - Item: {fileID: 11400000, guid: 158141b3e2bc1ca439234c4acf5cd71d, type: 2}
+    Count: {fileID: 11400000, guid: ef4eaaf100d94af48941d5af0eb780ad, type: 2}
+  - Item: {fileID: 11400000, guid: a1bae974b4903be4ab94566370f05d52, type: 2}
+    Count: {fileID: 11400000, guid: 097d2086eaf1a4249af21100a29c58cf, type: 2}
+  - Item: {fileID: 11400000, guid: 34c8f35c564af1c49bf3a0c75282030c, type: 2}
+    Count: {fileID: 11400000, guid: e4a9ad0a6a34ded4fbfd218087e17f71, type: 2}
+  - Item: {fileID: 11400000, guid: 890d3d3a441ca0043a666fed93a16876, type: 2}
+    Count: {fileID: 11400000, guid: 8bca2540c0c5eee46a5a6cfbe5a28595, type: 2}
+  - Item: {fileID: 11400000, guid: 358a083fd27f0aa45b5e80af96fbd175, type: 2}
+    Count: {fileID: 11400000, guid: ae7cee0d69e835340b8baa18d3daa320, type: 2}
+  - Item: {fileID: 11400000, guid: b333cf7fecaebf742bf8e228d7678d5e, type: 2}
+    Count: {fileID: 11400000, guid: 4fd4f48654a414a4fba0d00d417935cf, type: 2}
+  - Item: {fileID: 11400000, guid: e569c822608e91343ad176ae5b1f744f, type: 2}
+    Count: {fileID: 11400000, guid: b0dd9162f0c548e4e900140f58202bef, type: 2}
+  - Item: {fileID: 11400000, guid: c36dbb75125d93a4db25d2c3da690bf9, type: 2}
+    Count: {fileID: 11400000, guid: b1affa40d11faff428095305ab2ea1c5, type: 2}
+  - Item: {fileID: 11400000, guid: 5afaa37fa3a07a94db5652e209ba0401, type: 2}
+    Count: {fileID: 11400000, guid: d37c883f4a11aa940a8d516bd74ba260, type: 2}
+  - Item: {fileID: 11400000, guid: 3812f7270bee1a541ac27c0c08cecbfc, type: 2}
+    Count: {fileID: 11400000, guid: cb75e1cbde80a674bb07030e8eab3117, type: 2}
+  - Item: {fileID: 11400000, guid: fa5c84f7737283d4cb2fa199f12336f3, type: 2}
+    Count: {fileID: 11400000, guid: c9c5c3713e95cd345b15b8a473aa375d, type: 2}
+  - Item: {fileID: 11400000, guid: edcbea15740520d4e852997aaf1bd49f, type: 2}
+    Count: {fileID: 11400000, guid: fe5492ff5e7c1f54f99189a850aa5f30, type: 2}
+  - Item: {fileID: 11400000, guid: 37922c7fca4096e48a04b7094a8a3449, type: 2}
+    Count: {fileID: 11400000, guid: 4811b8e2efb2a394fac43ce249fe7a5b, type: 2}
+  - Item: {fileID: 11400000, guid: 6246a40d9001d144e83b43a25b75c9b6, type: 2}
+    Count: {fileID: 11400000, guid: ddcc36f0a19ebbe46a404b272b0c8c3f, type: 2}
+  - Item: {fileID: 11400000, guid: 2fd6f953e2882b84f8e82d6133f3c766, type: 2}
+    Count: {fileID: 11400000, guid: 7234b194ef92a5641903143ae1425e22, type: 2}
+  - Item: {fileID: 11400000, guid: 1f43a006405b55d40bf7e1a47ed7ced1, type: 2}
+    Count: {fileID: 11400000, guid: c616ff7c6ac8032428e39ab4d42bb680, type: 2}
+  - Item: {fileID: 11400000, guid: 6881e132fa648604ebef24fa4f4f977e, type: 2}
+    Count: {fileID: 11400000, guid: ee270d68d7d623847adbaa80c4bfd4c9, type: 2}
+  - Item: {fileID: 11400000, guid: d138635bc5b52cb42af404429ba71ab4, type: 2}
+    Count: {fileID: 11400000, guid: 9b62220d50a3dbd429d1e7660617ad08, type: 2}
 --- !u!114 &413173348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8150,6 +8290,179 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 484489486}
   m_CullTransparentMesh: 0
+--- !u!1 &493081879
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 493081880}
+  - component: {fileID: 493081881}
+  m_Layer: 0
+  m_Name: Game Event Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &493081880
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 493081879}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 701840140}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &493081881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 493081879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70205b9d637ca7642b08b30937b993b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnSceneExitEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 107e193b6ceb5af438ca90c6aabf0414, type: 2}
+        m_MethodName: Save
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnAwake:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 19c64e4b84c92344daed90066a694c25, type: 2}
+        m_MethodName: RegisterChanges
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: 26cb67b184c39ce41a042b44d325797c, type: 2}
+        m_MethodName: Clear
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: 9db1046dee0a2914eb15726caba8f256, type: 2}
+        m_MethodName: Register
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnOnEnable:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnStart:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 107e193b6ceb5af438ca90c6aabf0414, type: 2}
+        m_MethodName: Load
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: 75aa316c4f2f8514ab72de35706f978f, type: 2}
+        m_MethodName: Raise
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnFocus:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnUnFocus:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnPause:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 107e193b6ceb5af438ca90c6aabf0414, type: 2}
+        m_MethodName: Save
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnPlay:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnQuit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 107e193b6ceb5af438ca90c6aabf0414, type: 2}
+        m_MethodName: Save
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &503513817
 GameObject:
   m_ObjectHideFlags: 0
@@ -11164,11 +11477,8 @@ GameObject:
   m_Component:
   - component: {fileID: 701840140}
   - component: {fileID: 701840142}
-  - component: {fileID: 701840143}
   - component: {fileID: 701840139}
-  - component: {fileID: 701840144}
   - component: {fileID: 701840145}
-  - component: {fileID: 701840146}
   - component: {fileID: 701840141}
   m_Layer: 0
   m_Name: Manager
@@ -11209,7 +11519,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 139.5, y: 248, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 493081880}
+  - {fileID: 1195126807}
+  - {fileID: 1726539135}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -11254,88 +11567,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LoadMode: 0
---- !u!114 &701840143
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 701840138}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1afaee8e9cc26b94ab117c0ce8438c08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  desiredAccuracyInMeters: 1
-  updateDistanceInMeters: 0
-  timeBetweenChecks: 1
-  maxInitializationTime: 15
-  GPSUpdated:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 11400000, guid: 8e51ff24d5c060f419de9c94ecb46f82, type: 2}
-        m_MethodName: Raise
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: CustomEvents.UnityEventFloat, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
-  GPSTextUpdate:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 803499265}
-        m_MethodName: SetText
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: CustomEvents.UnityEventString, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
-  StatusUpdated:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  GpsStrategy: {fileID: 11400000, guid: 13aa5daba07bf3444855e153872cdba1, type: 2}
-  state: 5
---- !u!114 &701840144
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 701840138}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da006eeec2506b546b896271e9c466f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 8e51ff24d5c060f419de9c94ecb46f82, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 11400000, guid: fccca33ee9801fb4286449995f40c3eb, type: 2}
-        m_MethodName: Add
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: CustomEvents.UnityEventFloat, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
 --- !u!114 &701840145
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11406,150 +11637,6 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   ItemDropManager: {fileID: 1497022282}
---- !u!114 &701840146
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 701840138}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70205b9d637ca7642b08b30937b993b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnSceneExitEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 11400000, guid: 8d66d4105827e4747ba9e6ec24980aca, type: 2}
-        m_MethodName: Save
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  OnAwake:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 11400000, guid: 19c64e4b84c92344daed90066a694c25, type: 2}
-        m_MethodName: RegisterChanges
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 11400000, guid: 26cb67b184c39ce41a042b44d325797c, type: 2}
-        m_MethodName: Clear
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 11400000, guid: 9db1046dee0a2914eb15726caba8f256, type: 2}
-        m_MethodName: Register
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  OnOnEnable:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  OnStart:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 11400000, guid: 8d66d4105827e4747ba9e6ec24980aca, type: 2}
-        m_MethodName: Load
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 11400000, guid: 75aa316c4f2f8514ab72de35706f978f, type: 2}
-        m_MethodName: Raise
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  OnFocus:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  OnUnFocus:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  OnPause:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 11400000, guid: 8d66d4105827e4747ba9e6ec24980aca, type: 2}
-        m_MethodName: Save
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  OnPlay:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  OnQuit:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 11400000, guid: 8d66d4105827e4747ba9e6ec24980aca, type: 2}
-        m_MethodName: Save
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!1 &708668011
 GameObject:
   m_ObjectHideFlags: 0
@@ -19905,6 +19992,89 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: CustomEvents.UnityEventItem, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+--- !u!1 &1195126806
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1195126807}
+  - component: {fileID: 1195126808}
+  m_Layer: 0
+  m_Name: GPS
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1195126807
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1195126806}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 701840140}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1195126808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1195126806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1afaee8e9cc26b94ab117c0ce8438c08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  desiredAccuracyInMeters: 1
+  updateDistanceInMeters: 0
+  timeBetweenChecks: 1
+  maxInitializationTime: 15
+  GPSUpdated:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 8e51ff24d5c060f419de9c94ecb46f82, type: 2}
+        m_MethodName: Raise
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: CustomEvents.UnityEventFloat, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  GPSTextUpdate:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 803499265}
+        m_MethodName: SetText
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: CustomEvents.UnityEventString, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  StatusUpdated:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  GpsStrategy: {fileID: 11400000, guid: 13aa5daba07bf3444855e153872cdba1, type: 2}
+  state: 5
 --- !u!1 &1201876786
 GameObject:
   m_ObjectHideFlags: 0
@@ -32765,6 +32935,63 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1717080224}
   m_CullTransparentMesh: 0
+--- !u!1 &1726539134
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1726539135}
+  - component: {fileID: 1726539136}
+  m_Layer: 0
+  m_Name: Misc
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1726539135
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1726539134}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 701840140}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1726539136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1726539134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da006eeec2506b546b896271e9c466f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 8e51ff24d5c060f419de9c94ecb46f82, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: fccca33ee9801fb4286449995f40c3eb, type: 2}
+        m_MethodName: Add
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: CustomEvents.UnityEventFloat, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!1 &1734369170
 GameObject:
   m_ObjectHideFlags: 0

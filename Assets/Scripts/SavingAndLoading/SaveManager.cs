@@ -5,20 +5,21 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace G4AW2.Saving {
     [CreateAssetMenu(menuName = "Misc/Save Manager")]
     public class SaveManager : ScriptableObject {
 
-        public GameEvent OnLoadNotSuccessful;
-        public GameEvent OnNewGame;
-        public GameEvent OnSuccessfulLoad;
-        public GameEvent OnSaveFinish;
+        public UnityEvent OnLoadNotSuccessful;
+        public UnityEvent OnNewGame;
+        public UnityEvent OnSuccessfulLoad;
+        public UnityEvent OnSaveFinish;
 
         private string saveFile;
         private string backUpFile;
 
-        private bool allowSave = true;
+        public BoolReference AllowSave;
 
         public List<ListObject> ObjectsToSave;
 
@@ -35,7 +36,7 @@ namespace G4AW2.Saving {
 
         [ContextMenu("Save")]
         public void Save() {
-            if (!allowSave) return;
+            if (!AllowSave) return;
 
             if(File.Exists(saveFile)) {
                 if(File.Exists(backUpFile)) {
@@ -55,7 +56,7 @@ namespace G4AW2.Saving {
             string saveString = GetSaveString();
 
             File.WriteAllText(saveFile, saveString);
-            OnSaveFinish?.Raise();
+            OnSaveFinish?.Invoke();
         }
 
         [ContextMenu("Load")]
@@ -66,7 +67,7 @@ namespace G4AW2.Saving {
                 Debug.LogWarning("Could not find save file. Attempting to load back up");
                 if(!File.Exists(backUpFile)) {
                     Debug.LogWarning("Could not find back up file.");
-                    OnNewGame?.Raise();
+                    OnNewGame?.Invoke();
                     return;
                 } else {
                     saveFilePath = backUpFile;
@@ -86,9 +87,9 @@ namespace G4AW2.Saving {
             }
 
             if(!success) {
-                OnLoadNotSuccessful?.Raise();
+                OnLoadNotSuccessful?.Invoke();
             } else {
-                OnSuccessfulLoad?.Raise();
+                OnSuccessfulLoad?.Invoke();
             }
 
         }
@@ -105,7 +106,7 @@ namespace G4AW2.Saving {
                             new Action[] {
                                 () => {
                                     ClearSaveData();
-                                    allowSave = false;
+                                    AllowSave.Value = false;
                                 },
                                 () => {
                                     ShowErrorPopUp();
@@ -193,7 +194,7 @@ namespace G4AW2.Saving {
 
         public void ClearDataAndPreventFromSaving() {
             ClearSaveData();
-            allowSave = false;
+            AllowSave.Value = false;
         }
 
 #if UNITY_EDITOR
