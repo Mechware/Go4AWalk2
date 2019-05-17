@@ -12,7 +12,7 @@ namespace G4AW2.Data.DropSystem
     [CreateAssetMenu(menuName = "Data/Items/Weapon")]
     public class Weapon : Item, ISaveable, ITrashable {
 
-        private const float DAMAGE_SCALING = 10;
+        private const float DAMAGE_SCALING = 100;
 
         public PersistentSetItem AllItems;
 

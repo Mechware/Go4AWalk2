@@ -29474,7 +29474,7 @@ MonoBehaviour:
     UseConstant: 0
     ConstantValue: 0
     Variable: {fileID: 11400000, guid: db9a167cbd9a72e438e6d302c360dfc3, type: 2}
-  FailedParryStunTime: 0.5
+  FailedParryStunTime: 1.25
   OnBlockStart:
     m_PersistentCalls:
       m_Calls:
@@ -35544,6 +35544,7 @@ MonoBehaviour:
     ConstantValue: 0
     Variable: {fileID: 11400000, guid: a4c7e2533c2cad14ebf607c110bd26cc, type: 2}
   ProgressBarFill: {fileID: 1544815334}
+  TimeToCompleteLerp: 0.2
 --- !u!1 &1992234736
 GameObject:
   m_ObjectHideFlags: 0
@@ -35593,6 +35594,8 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   FightStarted: {fileID: 11400000, guid: 73bbe12f9e4b3af41b09a7d7868641e8, type: 2}
+  ScrollSpeedToBoss: 12
+  OriginalScrollSpeed: 5
   MinXForBoss: 33
   WalkSpeedOfPlayer: 35
   PlayerFightPosition: 12

@@ -20,6 +20,9 @@ public class BossQuestController : MonoBehaviour {
     public UnityEvent OnWaitingStart;
     public GameEvent FightStarted;
 
+    public int ScrollSpeedToBoss = 12;
+    public int OriginalScrollSpeed = 5;
+
     private RectTransformPositionSetter playerPositionSetter;
     private RectTransformPositionSetter enemyPositionSetter;
 
@@ -49,6 +52,7 @@ public class BossQuestController : MonoBehaviour {
 
         // 1. Start screen scroll if not started
         BackgroundImages.Play();
+        BackgroundImages.ScrollSpeed = ScrollSpeedToBoss;
 
         // 2. Stop player from walking & drag player backwards
         PlayerAnimations.StopWalking();
@@ -75,6 +79,7 @@ public class BossQuestController : MonoBehaviour {
                 scrolling = false;
                 BackgroundImages.Pause();
                 OnWaitingStart.Invoke();
+                BackgroundImages.ScrollSpeed = OriginalScrollSpeed;
             }
         }
 
