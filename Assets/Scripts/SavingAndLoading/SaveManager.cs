@@ -139,7 +139,7 @@ namespace G4AW2.Saving {
                 }
                 catch (Exception e) {
                     Debug.LogWarning(e.Message + "\n" + e.StackTrace);
-                    errorMessage += soToOverwrite.ObjectToSave.name + "\n";
+                    errorMessage += $"<b>{soToOverwrite.ObjectToSave.name}</b>\n";
                     error = true;
                 }
             }
