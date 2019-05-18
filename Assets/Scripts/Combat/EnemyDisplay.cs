@@ -168,24 +168,23 @@ namespace G4AW2.Combat {
 			        FightingLogic.OnEnemyHitPlayerElemental(Enemy.ElementalDamage, Enemy.ElementalDamageType);
 			    }
 
-			    if (Enemy.OneAndDoneAttacker) {
+                if (Enemy.OneAndDoneAttacker) {
 			        EnemyState = State.Dead;
-
-			        StopAllCoroutines();
 
 			        OnDeath.Invoke(Enemy);
 
 			        if (Player.Health.Value > 0) {
-			            PlayerAnimations.ResetAttack();
-			            PlayerAnimations.Spin(() => {
+			            yield return new WaitForSeconds(1);
+                        PlayerAnimations.ResetAttack();
+                        PlayerAnimations.Spin(() => {
 			                CleanUp.Invoke();
 			            });
-                    }
+			        }
 			        break;
 			    }
 
 			    MyAnimator.SetTrigger("AttackEnd");
-			}
+            }
         }
 
 		public void ApplyDamage( int amount) {
