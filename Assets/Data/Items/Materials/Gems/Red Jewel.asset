@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 23
   Name: Flame Jewel
-  Image: {fileID: 21300000, guid: 5e732cbc5b6ff7042973dd87dfe7233b, type: 3}
+  Image: {fileID: 21300000, guid: 42601124ca33da5489a56349d8027874, type: 3}
   Value: 60
   Description: A beautiful red gemstone imbued with warmth.
   Rarity: 2

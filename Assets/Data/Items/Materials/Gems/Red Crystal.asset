@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 24
   Name: Flame Crystal
-  Image: {fileID: 21300000, guid: 2f1186997f73f7f4ea96addf400fcd04, type: 3}
+  Image: {fileID: 21300000, guid: b5d231f93c50fa043a8d66570d150d0f, type: 3}
   Value: 120
   Description: A fantastic blood-red crystal full of heat energy.
   Rarity: 3

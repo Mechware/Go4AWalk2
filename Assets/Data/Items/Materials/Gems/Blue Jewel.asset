@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 19
   Name: Ice Jewel
-  Image: {fileID: 21300000, guid: 48fb799bd20b41f4e85a94c643232208, type: 3}
+  Image: {fileID: 21300000, guid: 607c8ffa54b02e145b6a09c179a48401, type: 3}
   Value: 50
   Description: A brilliant blue gemstone that radiates cold.
   Rarity: 2
