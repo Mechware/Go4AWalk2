@@ -17,7 +17,9 @@ namespace CustomEvents {
 		}
 
 		private void OnDisable() {
-			Event.UnregisterListener(this);
+		    if(Debugging)
+		        Debug.Log("Deregistering: " + Event.name);
+            Event.UnregisterListener(this);
 		}
 
 		public void OnEventRaised() {

@@ -2,43 +2,20 @@ using CustomEvents;
 using G4AW2.Data.Combat;
 using G4AW2.Questing;
 using System;
+using System.ComponentModel;
 using System.Linq;
+using G4AW2.Data;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Data/Quests/Active/BossQuest")]
-public class BossQuest : ActiveQuest<int, IntVariable, UnityEventInt> {
+public class BossQuest : ActiveQuestBase {
 
-    public RuntimeSetFollowerData EnemyList;
+    [Header("Boss Objective")]
     public EnemyData Enemy;
     public int Level;
 
-    public override void StartQuest(Action<ActiveQuestBase> onFinish) {
-        base.StartQuest(onFinish);
-        var enemy = Instantiate(Enemy);
-        enemy.Level = Level;
-        EnemyList.Add(enemy);
-    }
-
-    public override void ResumeQuest(Action<ActiveQuestBase> onFinish) {
-        base.ResumeQuest(onFinish);
-        if(EnemyList.FirstOrDefault(e => e.ID == Enemy.ID) == null) {
-            EnemyList.Add(Enemy);
-        }
-    }
-
-    protected override void OnTotalChanged(int totalAmount) {
-        AmountSoFar.Value = totalAmount - amountWhenStarted;
-        if(IsFinished()) {
-            FinishQuest();
-        }
-    }
-
-    protected override void UpdateAmountOnStart() {
-        amountWhenStarted = TotalAmount - AmountSoFar;
-    }
-
-    public override bool IsFinished() {
-        return AmountSoFar.Value >= AmountToReach;
+    public void Finish() {
+        fininshed(this);
     }
 
 #if UNITY_EDITOR

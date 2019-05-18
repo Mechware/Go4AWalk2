@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Name: CurrentQuest
   m_EditorClassIdentifier: 
   DeveloperDescription: 
-  InitialValue: {fileID: 11400000, guid: 771974687dfc4b44b90a19a3480b81b4, type: 2}
+  InitialValue: {fileID: 11400000, guid: d0b1a45baf6b3d242a6af33d66b443b7, type: 2}
   OnChange:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: CustomEvents.UnityEventActiveQuestBase, Assembly-CSharp, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  _value: {fileID: 0}
+  _value: {fileID: 11400000, guid: d0b1a45baf6b3d242a6af33d66b443b7, type: 2}

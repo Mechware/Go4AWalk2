@@ -18,67 +18,86 @@ public class ItemDropBubbleManager : MonoBehaviour {
 
 	public float SpawnDelay;
 
-	public UnityEventItem OnItemClick;
-	public UnityEvent OnFinished;
+    private ObjectPrefabPool Pool;
 
-    private Action onFinish;
+    void Awake() {
+        Pool = new ObjectPrefabPool(ItemDropperPrefab, transform, 5);
+    }
 
     public void AddItems(IEnumerable<Item> items, Action onFinish) {
-        this.onFinish = onFinish;
         List<Item> itemsList = items.ToList();
         if(itemsList.Count == 0) {
             onFinish?.Invoke();
-            OnFinished.Invoke();
             return;
         }
-        StartCoroutine(ShootItems(itemsList));
+        StartCoroutine(ShootItems(itemsList, onFinish));
     }
 
 	public void AddItems( IEnumerable<Item> items ) {
-	    onFinish = null;
 		List<Item> itemsList = items.ToList();
         if(itemsList.Count == 0) {
-            OnFinished.Invoke();
             return;
         }
-		StartCoroutine(ShootItems(itemsList));
+		StartCoroutine(ShootItems(itemsList, null));
 	}
 
 	private int onScreenItems = 0;
-	private bool finished = true;
+	private bool finishedShooting = true;
 
-	private IEnumerator ShootItems( IEnumerable<Item> items ) {
-		finished = false;
+	private IEnumerator ShootItems( IEnumerable<Item> items, Action onFinish ) {
+		finishedShooting = false;
 		foreach (Item it in items) {
 			yield return new WaitForSeconds(SpawnDelay);
-			GameObject itemBubble = GameObject.Instantiate(ItemDropperPrefab, Vector3.zero, Quaternion.identity, transform);
-            itemBubble.transform.localPosition = new Vector3(0, 0, 0);
-            itemBubble.GetComponent<ItemDropBubble>().SetData(it, OnClick);
+		    GameObject itemBubble = Pool.GetObject();
+		    itemBubble.transform.localPosition = Vector3.zero;
+            itemBubble.transform.rotation = Quaternion.identity;
+            itemBubble.GetComponent<ItemDropBubble>().SetData(it, (i) => OnClick(i, onFinish));
 			itemBubble.GetComponent<ItemDropBubble>().Shoot();
 			onScreenItems++;
 		}
-		finished = true;
+		finishedShooting = true;
 	}
 
     public WeaponUI WeaponUI;
 
-	private void OnClick(ItemDropBubble it) {
+	private void OnClick(ItemDropBubble it, Action onfinish) {
 
 	    if (it.Item is Weapon) {
 
-	        WeaponUI.SetWeaponWithDefaults((Weapon)it.Item);
+	        WeaponUI.SetWeaponWithDefaults((Weapon)it.Item, () => {
+	            Destroy(it.gameObject);
+	            onScreenItems--;
+	            if(onScreenItems == 0 && finishedShooting) {
+	                onfinish?.Invoke();
+	            }
+            });
+	        return;
 	    }
 
-		OnItemClick.Invoke(it.Item);
-		Destroy(it.gameObject);
-		onScreenItems--;
-		if (onScreenItems == 0 && finished) {
-			OnFinished.Invoke();
-            onFinish?.Invoke();
-		}
-	}
+        Pool.Return(it.gameObject);
+	    onScreenItems--;
+	    if(onScreenItems == 0 && finishedShooting) {
+	        onfinish?.Invoke();
+	    }
+    }
 
-	[Header("Debug")] public ItemDropper Dropper;
+    public void Clear() {
+        if (Pool.InUse.Count == 0) return;
+
+        string loot = "";
+        Sprite s = null;
+        foreach (var obj in Pool.InUse.ToArray()) {
+            var bubble = obj.GetComponent<ItemDropBubble>();
+            bubble.OnPointerClick(null);
+            loot = bubble.Item.GetName() + "\n";
+            if(s == null) s = bubble.Item.Image;
+        }
+        QuickPopUp.Show(s, "<size=150%>Auto Collected Loot</size>\nLoot was auto collected for you. The following was picked up:\n" + loot);
+
+        Pool.Reset();
+    }
+
+    [Header("Debug")] public ItemDropper Dropper;
 #if UNITY_EDITOR
 	[ContextMenu("Drop Items")]
 	public void DropItems() {

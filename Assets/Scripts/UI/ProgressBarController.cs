@@ -23,28 +23,57 @@ public class ProgressBarController : MonoBehaviour {
     }
 
     void Start() {
-        UpdateUI();
+        UpdateUI(false);
 	}
 
-	private void UpdateUI(int i ) { UpdateUI();}
+	private void UpdateUI(int i ) { UpdateUI(true);}
 
     public void SetMax( int Max ) {
         this.Max.Value = Max;
-        UpdateUI();
+        UpdateUI(true);
     }
 
     public void SetCurrent( int Current ) {
         this.Current.Value = Current;
-        UpdateUI();
+        UpdateUI(true);
     }
 
     [ContextMenu("Update")]
-    public void UpdateUI() {
-        Vector3 scale = ProgressBarFill.rectTransform.localScale;
+    public void UpdateUI(bool lerp) {
+
         if (Max == 0) {
             return;
         }
-        scale.x = Mathf.Clamp01((float)Current / Max);
+
+        StopAllCoroutines();
+
+        if (gameObject.activeInHierarchy && lerp)
+            StartCoroutine(Lerp(Mathf.Clamp01((float) Current / Max)));
+        else {
+            Vector3 scale = ProgressBarFill.rectTransform.localScale;
+            scale.x = Mathf.Clamp01((float) Current / Max);
+            ProgressBarFill.rectTransform.localScale = scale;
+        }
+    }
+
+    public float TimeToCompleteLerp = 0.2f;
+
+    IEnumerator Lerp(float end) {
+        Vector3 scale = ProgressBarFill.rectTransform.localScale;
+        float start = scale.x;
+        float cur = start;
+
+        float sign = end > start ? 1 : -1;
+        float timeToLerp = Mathf.Abs(cur - end) / TimeToCompleteLerp;
+
+        while ((sign > 0 && cur < end) || (sign < 0 && end < cur)) {
+            cur += sign * Time.deltaTime * timeToLerp;
+            scale.x = cur;
+            ProgressBarFill.rectTransform.localScale = scale;
+            yield return null;
+        }
+
+        scale.x = end;
         ProgressBarFill.rectTransform.localScale = scale;
     }
 }

@@ -11,6 +11,10 @@ public class RectTransformPositionSetter : MonoBehaviour {
         return rt;
     }}
 
+    public float GetX() {
+        return Transform.anchoredPosition.x;
+    }
+
     public void SetX(float x) {
         Vector3 vec = Transform.anchoredPosition;
         vec.x = x;

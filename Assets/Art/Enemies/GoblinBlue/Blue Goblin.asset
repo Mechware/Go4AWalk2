@@ -29,10 +29,19 @@ MonoBehaviour:
   Dead: {fileID: 7400000, guid: a8651d931914a9145bd745f196b88525, type: 2}
   Walking: {fileID: 7400000, guid: 1119eac8ebcd4504ca1a1f3321509e81, type: 2}
   DeadSprite: {fileID: 21300054, guid: e2545104d53500946929c95b2690cdc0, type: 3}
-  BaseHealth: 500
+  BaseHealth: 100
   BaseDamage: 20
-  TimeBetweenHeavyAttacks: 3
+  TimeBetweenAttacks: 0
   AttackPrepTime: 2
   AttackExecuteTime: 0.25
+  HasElementalDamage: 0
+  BaseElementalDamage: 0
+  ElementalDamageType: {fileID: 0}
+  ElementalWeaknesses:
+    UseConstant: 1
+    ConstantValue:
+      Weaknesses: []
+    Variable: {fileID: 0}
   Drops:
     Items: []
+  OneAndDoneAttacker: 0

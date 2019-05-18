@@ -12,5 +12,10 @@ MonoBehaviour:
   m_Name: PlayerHealth
   m_EditorClassIdentifier: 
   DeveloperDescription: 
-  InitialValue: 100
+  InitialValue: 1000
+  OnChange:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: CustomEvents.UnityEventInt, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
   _value: 100

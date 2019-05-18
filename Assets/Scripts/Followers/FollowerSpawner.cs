@@ -3,6 +3,7 @@ using G4AW2.Data;
 using System.Collections.Generic;
 using System.Linq;
 using G4AW2.Data.Combat;
+using G4AW2.Questing;
 using UnityEngine;
 
 namespace G4AW2.Followers {
@@ -10,11 +11,7 @@ namespace G4AW2.Followers {
 
         public FollowerDropData DropData;
         public RuntimeSetFollowerData CurrentFollowers;
-
-		public float RandomTimeMin;
-		public float RandomTimeMax;
-		public float RandomDistanceMin;
-		public float RandomDistanceMax;
+	    public ActiveQuestBaseVariable CurrentQuest;
 
 		private float currentTimeToReach;
 		private float currentDistanceToReach;
@@ -23,9 +20,14 @@ namespace G4AW2.Followers {
 		private float currentDistance;
 
 		void Awake() {
-			currentTimeToReach = Random.Range(RandomTimeMin, RandomTimeMax);
-			currentDistanceToReach = Random.Range(RandomDistanceMin, RandomDistanceMax);
+            CurrentQuest.OnChange.AddListener(QuestChanged);
 		}
+
+	    void QuestChanged(ActiveQuestBase quest) {
+	        currentTime = 0;
+	        currentTimeToReach = Random.Range(quest.MinEnemyDropTime, quest.MaxEnemyDropTime);
+	        currentDistanceToReach = Random.Range(quest.MinEnemyDropDistance, quest.MaxEnemyDropDistance);
+        }
 
 		void Update() {
 			currentTime += Time.deltaTime;
@@ -40,14 +42,14 @@ namespace G4AW2.Followers {
 		private void CheckSpawns() {
 			if (currentTime > currentTimeToReach) {
 				currentTime -= currentTimeToReach;
-				currentTimeToReach = Random.Range(RandomTimeMin, RandomTimeMax);
-				AddFollower();
+				currentTimeToReach = Random.Range(CurrentQuest.Value.MinEnemyDropTime, CurrentQuest.Value.MaxEnemyDropTime);
+                AddFollower();
 				CheckSpawns();
 			}
 			if (currentDistance > currentDistanceToReach) {
 				currentDistance -= currentDistanceToReach;
-				currentDistanceToReach = Random.Range(RandomDistanceMin, RandomDistanceMax);
-				AddFollower();
+				currentDistanceToReach = Random.Range(CurrentQuest.Value.MinEnemyDropDistance, CurrentQuest.Value.MaxEnemyDropDistance);
+                AddFollower();
 				CheckSpawns();
 			}
 		}
@@ -58,6 +60,7 @@ namespace G4AW2.Followers {
 	        if (CurrentFollowers.Value.Count >= 10) return;
 
 	        FollowerData data = DropData.GetRandomFollower(true);
+	        if (data == null) return;
 
             CurrentFollowers.Add(data);
         }

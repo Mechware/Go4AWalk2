@@ -20,9 +20,9 @@ public class Enchanter : Item, ISaveable {
     public GemType GemTypeType;
 
     private int RandomlyGeneratedValue;
-
+    private const float DAMAGE_SCALING = 2.5F;
     public float GetAdditiveDamage(Weapon w) {
-        return Type.GetDamage(RandomlyGeneratedValue) * (1 + w.Level / 10);
+        return DAMAGE_SCALING * (1 + Type.GetDamage(RandomlyGeneratedValue) / 10f) * (1 + w.Level / 10);
     }
 
     public override void OnAfterObtained() {

@@ -15,6 +15,8 @@ namespace G4AW2.Followers {
 
 		    List<FollowerDrop> drops = includeGlobal ? Drops.Concat(GlobalFollowerDrops.GlobalDrops).ToList() : Drops;
 
+		    if (drops.Count == 0) return null;
+
 			int sum = drops.Sum(t => t.DropChance);
 			int rand = Random.Range(0, sum);
 			int count = 0;

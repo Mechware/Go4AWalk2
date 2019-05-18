@@ -2,6 +2,8 @@ using CustomEvents;
 using G4AW2.Dialogue;
 using G4AW2.Questing;
 using System;
+using System.Collections.Generic;
+using G4AW2.Data.DropSystem;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -12,28 +14,61 @@ public class QuestManager : MonoBehaviour {
     public Dialogue QuestDialogUI;
 
     public RuntimeSetQuest CurrentQuests;
+    public BossQuestController BossController;
 
     [Header("Events")]
     public UnityEventActiveQuestBase AreaQuestChanged;
     public UnityEvent ResetQuestState;
 
-    private bool receivedEndPopUp = false;
-
     public void Initialize() {
-        if(CurrentQuest.Value.ID == 1 && ((ActiveWalkingQuest) CurrentQuest.Value).AmountSoFar < 1f) {
+        if(CurrentQuest.Value.ID == 1) {
             SetCurrentQuest(CurrentQuest.Value);
         } else {
             CurrentQuest.Value.ResumeQuest(FinishQuest);
             AreaQuestChanged.Invoke(CurrentQuest.Value);
+
+            if(CurrentQuest.Value is BossQuest) {
+                BossController.ResumeBossQuest();
+            }
         }
     }
 
     private void FinishQuest(ActiveQuestBase quest) {
-        if(receivedEndPopUp) {
-            return;
-        }
+        QuestDialogUI.SetConversation(CurrentQuest.Value.EndConversation, () => DropRewardAndAdvanceConversation(quest));
+    }
 
-        QuestDialogUI.SetConversation(CurrentQuest.Value.EndConversation, AdvanceQuestAfterConversation);
+    public ItemDropBubbleManager ItemDropManager;
+
+    private void DropRewardAndAdvanceConversation(ActiveQuestBase q) {
+
+        List<Item> todrops = new List<Item>();
+        foreach (var reward in q.QuestRewards) {
+            Item it = reward.it;
+            if(it.ShouldCreateNewInstanceWhenPlayerObtained()) {
+                if(it is Weapon) {
+                    Weapon w = ScriptableObject.Instantiate(it) as Weapon;
+                    w.OnAfterObtained();
+                    w.Level = reward.Level;
+                    if(reward.RandomRoll != -1) {
+                        w.Random = reward.RandomRoll;
+                        w.SetValuesBasedOnRandom();
+                    }
+                    it = w;
+                } else if(it is Armor) {
+                    Armor a = ScriptableObject.Instantiate(it) as Armor;
+                    a.OnAfterObtained();
+                    a.Level = reward.Level;
+                    if(reward.RandomRoll != -1) {
+                        a.Random = reward.RandomRoll;
+                        a.SetValuesBasedOnRandom();
+                    }
+                    it = a;
+                }
+            }
+            todrops.Add(it);
+        }
+            
+        ItemDropManager.AddItems(todrops, AdvanceQuestAfterConversation);
     }
 
     private void AdvanceQuestAfterConversation() {
@@ -53,11 +88,17 @@ public class QuestManager : MonoBehaviour {
 
     public void SetCurrentQuest(ActiveQuestBase quest) {
 
-        receivedEndPopUp = false;
+        ItemDropManager.Clear();
+
         CurrentQuest.Value = quest;
         AreaQuestChanged.Invoke(quest);
         quest.StartQuest(FinishQuest);
-        QuestDialogUI.SetConversation(quest.StartConversation, () => { });
+        QuestDialogUI.SetConversation(quest.StartConversation, () => {
+
+            if (quest is BossQuest) {
+                BossController.StartBossQuest();
+            }
+        });
     }
 
     public void QuestClicked(Quest q) {

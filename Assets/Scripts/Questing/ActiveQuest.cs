@@ -15,6 +15,7 @@ namespace G4AW2.Questing {
         where TEvent : UnityEvent<T>, ISerializationCallbackReceiver, new()
         where TVar : Variable<T, TEvent> {
 
+        [Header("Objective")]
         public TVar TotalAmount;
 
         public T AmountToReach;

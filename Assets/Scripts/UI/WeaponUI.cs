@@ -39,16 +39,24 @@ DAM {2}";
 
     public Inventory Inventory;
 
-    public void SetWeaponWithDefaults(Weapon w) {
+    public void SetWeaponWithDefaults(Weapon w, Action onfinish=null) {
         SetWeapon(w, new[] {
-            new ButtonAction() {Title= w.IsTrash() ? "Untrash" : "Trash", OnClick = () => { w.MarkedAsTrash = true; } },
-            new ButtonAction() {Title="Equip", OnClick = () => {
-                if (PlayerWeapon.Value == w) return;
+            new ButtonAction() {Title= w.IsTrash() ? "Untrash" : "Trash", OnClick = () => { w.MarkedAsTrash = true; onfinish?.Invoke(); } },
+            new ButtonAction() {
+                Title ="Equip",
+                OnClick = () => {
+                    if (PlayerWeapon.Value == w) return;
 
-                Inventory.Add(PlayerWeapon.Value);
-                PlayerWeapon.Value = w;
-                Inventory.Remove(w);} },
-            new ButtonAction() {Title="Close", OnClick = () => { } },
+                    Inventory.Add(PlayerWeapon.Value);
+                    PlayerWeapon.Value = w;
+                    Inventory.Remove(w);
+                    onfinish?.Invoke();
+                }
+            },
+            new ButtonAction() {
+                Title="Close",
+                OnClick = () => { onfinish?.Invoke();  }
+            },
         });
     }
 

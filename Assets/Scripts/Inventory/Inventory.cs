@@ -50,7 +50,7 @@ public class Inventory : ScriptableObject, IEnumerable<InventoryEntry>, ISaveabl
                     string postText = "";
                     foreach(var component in recipe.Components) {
                         postText +=
-                            $"{component.Amount} {component.Item.GetName()} {(component.Amount > 1 ? "s" : "")}\n";
+                            $"{component.Amount} {component.Item.GetName()}{(component.Amount > 1 ? "s" : "")}\n";
                     }
                     QuickPopUp.Show(QuestionMark, $"<size=150%>New Craftable Recipe!</size>\nA new recipe is now craftable!\nRequires:{postText}");
                 }

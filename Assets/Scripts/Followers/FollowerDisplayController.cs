@@ -15,16 +15,12 @@ using UnityEngine.Events;
 namespace G4AW2.Followers {
 
 	public class FollowerDisplayController : MonoBehaviour {
-	    public RuntimeSetFollowerData ListOfCurrentFollowers;
 
+        [Header("Misc References")]
+        public RuntimeSetFollowerData ListOfCurrentFollowers;
 	    public FollowerDisplay DisplayPrefab;
-		[NonSerialized] public List<FollowerDisplay> AllFollowers = new List<FollowerDisplay>();
-
-		public UnityEventEnemyData FightFollower;
-
-        public UnityEvent ListChanged;
-
 	    public LerpToPosition WorldCameraLerper;
+		[NonSerialized] public List<FollowerDisplay> AllFollowers = new List<FollowerDisplay>();
 
         [Header("Shop")]
 	    public LerpToPosition ShopperWalk;
@@ -35,7 +31,13 @@ namespace G4AW2.Followers {
 	    public LerpToPosition QuestGiverWalk;
 	    public QuestGiverDisplay QuestGiver;
 
-	    public void AfterLoadEvent() {
+	    [Header("Events")]
+	    public UnityEventEnemyData FightFollower;
+	    public UnityEvent ListChanged;
+	    public UnityEvent CameraDoneAfterScroll;
+	    public UnityEvent CameraDoneAfterScrollFighting;
+
+        public void AfterLoadEvent() {
 
 	        ResetFollowers();
 
@@ -97,11 +99,20 @@ namespace G4AW2.Followers {
 				if (fd.Data is EnemyData) {
 					//EnemyData ed = (EnemyData) fd;
 					// TODO: Include stats
-					PopUp.SetPopUp("Fight follower?", new[] {"Yes", "No"}, new Action[] { () => { FightFollower.Invoke((EnemyData)fd.Data); }, () => { }});
+					PopUp.SetPopUp("Fight follower?", new[] {"Yes", "No"}, new Action[] {
+					    () => {
+                            
+					        FightFollower.Invoke((EnemyData)fd.Data);
+                            WorldCameraLerper.StartLerping(() => {
+                                CameraDoneAfterScrollFighting.Invoke();
+                            });
+					    },
+                        () => { }});
 				} else if (fd.Data is QuestGiver) {
 
 				    WorldCameraLerper.StartLerping(() => {
-				        QuestGiver.SetData(fd.Data);
+				        CameraDoneAfterScroll.Invoke();
+                        QuestGiver.SetData(fd.Data);
 				        QuestGiver.StartWalking();
 				        QuestGiverWalk.StartLerping(() => {
 				            QuestGiver.StopWalking();
@@ -112,6 +123,7 @@ namespace G4AW2.Followers {
 				} else if (fd.Data is ShopFollower) {
 
 				    WorldCameraLerper.StartLerping(() => {
+				        CameraDoneAfterScroll.Invoke();
 				        Shopper.SetData(fd.Data);
                         Shopper.StartWalking();
 				        ShopperWalk.StartLerping(() => {
