@@ -25,7 +25,7 @@ namespace G4AW2.Data.DropSystem {
         private float NoBlockModifierWithMod => Mathf.Max(1 - ARMValue / 100, 0);
         private float PerfectBlockModifierWithMod => Mathf.Max(1 - 2 * ARMValue / 100, 0);
         private float MistimedBlockModifierWithMod => Mathf.Max(1 - 1.5f * ARMValue / 100, 0);
-        public float ARMValue => BaseARMValue * mod * (1 + Level / 100f);
+        public float ARMValue => Mathf.RoundToInt(BaseARMValue * mod * (1 + Level / 100f));
 
         public enum BlockState { None, Blocking, PerfectlyBlocking, BadParry}
 
