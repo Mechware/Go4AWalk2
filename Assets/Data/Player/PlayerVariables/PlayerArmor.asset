@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: PlayerArmor
   m_EditorClassIdentifier: 
   DeveloperDescription: 
-  InitialValue: {fileID: 11400000, guid: 8b252922b67ac8d49ae55e5b68c1d8e8, type: 2}
+  InitialValue: {fileID: 11400000, guid: 3cd3cc6eaa8df734db7ef0699c67d055, type: 2}
   OnChange:
     m_PersistentCalls:
       m_Calls:

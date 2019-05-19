@@ -67,8 +67,13 @@ public class QuestManager : MonoBehaviour {
             }
             todrops.Add(it);
         }
-            
-        ItemDropManager.AddItems(todrops, AdvanceQuestAfterConversation);
+
+        if (todrops.Count == 0) {
+            AdvanceQuestAfterConversation();
+        }
+        else {
+            ItemDropManager.AddItems(todrops, AdvanceQuestAfterConversation);
+        }
     }
 
     private void AdvanceQuestAfterConversation() {

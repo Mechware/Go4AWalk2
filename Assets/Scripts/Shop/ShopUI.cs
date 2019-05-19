@@ -103,14 +103,14 @@ public class ShopUI : MonoBehaviour {
         return Mathf.Max(Mathf.RoundToInt(i.GetValue() * shopKeep.BuyingPriceMultiplier), 1);
     }
 
-    private void SetDataBuying(IconWithTextController itc, InventoryEntry iid) {
+    private void SetDataBuying(IconWithTextController itc, ShopFollower.SellableItem iid) {
         int price = GetBuyingPrice(iid.Item);
 
         string text = $"{iid.Item.GetName()}\n{price} gold each";
         itc.SetData(iid.Item, iid.Amount, text, () => ItemClickedBuying(iid));
     }
 
-    private void ItemClickedBuying(InventoryEntry it) {
+    private void ItemClickedBuying(ShopFollower.SellableItem it) {
         int price = GetBuyingPrice(it.Item);
 
         string title = string.Format("Would you like to buy a {0} for {1} gold?\nDescription:{2}",

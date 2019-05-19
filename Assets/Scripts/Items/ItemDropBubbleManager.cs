@@ -24,61 +24,42 @@ public class ItemDropBubbleManager : MonoBehaviour {
         Pool = new ObjectPrefabPool(ItemDropperPrefab, transform, 5);
     }
 
-    public void AddItems(IEnumerable<Item> items, Action onFinish) {
+    public void AddItems(IEnumerable<Item> items, Action onClick) {
         List<Item> itemsList = items.ToList();
-        if(itemsList.Count == 0) {
-            onFinish?.Invoke();
-            return;
-        }
-        StartCoroutine(ShootItems(itemsList, onFinish));
+        StartCoroutine(ShootItems(itemsList, onClick));
     }
 
 	public void AddItems( IEnumerable<Item> items ) {
 		List<Item> itemsList = items.ToList();
-        if(itemsList.Count == 0) {
-            return;
-        }
 		StartCoroutine(ShootItems(itemsList, null));
 	}
 
-	private int onScreenItems = 0;
-	private bool finishedShooting = true;
-
-	private IEnumerator ShootItems( IEnumerable<Item> items, Action onFinish ) {
-		finishedShooting = false;
+	private IEnumerator ShootItems( IEnumerable<Item> items, Action onClick ) {
 		foreach (Item it in items) {
 			yield return new WaitForSeconds(SpawnDelay);
 		    GameObject itemBubble = Pool.GetObject();
 		    itemBubble.transform.localPosition = Vector3.zero;
             itemBubble.transform.rotation = Quaternion.identity;
-            itemBubble.GetComponent<ItemDropBubble>().SetData(it, (i) => OnClick(i, onFinish));
+            itemBubble.GetComponent<ItemDropBubble>().SetData(it, (i) => OnClick(i, onClick));
 			itemBubble.GetComponent<ItemDropBubble>().Shoot();
-			onScreenItems++;
 		}
-		finishedShooting = true;
 	}
 
     public WeaponUI WeaponUI;
 
-	private void OnClick(ItemDropBubble it, Action onfinish) {
+	private void OnClick(ItemDropBubble it, Action onClick) {
 
 	    if (it.Item is Weapon) {
 
 	        WeaponUI.SetWeaponWithDefaults((Weapon)it.Item, () => {
 	            Pool.Return(it.gameObject);
-                onScreenItems--;
-	            if(onScreenItems == 0 && finishedShooting) {
-	                onfinish?.Invoke();
-	            }
+	            onClick?.Invoke();
             });
 	        return;
 	    }
 
         Pool.Return(it.gameObject);
-	    onScreenItems--;
-	    if(onScreenItems == 0 && finishedShooting) {
-	        onfinish?.Invoke();
-	    }
+	    onClick?.Invoke();
     }
 
     public void Clear() {

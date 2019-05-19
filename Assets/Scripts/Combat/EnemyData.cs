@@ -25,9 +25,9 @@ namespace G4AW2.Data.Combat {
 	    private const float BASE_ENEMY_ELEM_DAMAGE_SCALING = 2.5f;
 
 	    [Header("Stats")]
-        [Range(0, 100)]
+        [Range(-100, 100)]
         public float BaseHealth;
-        [Range(0, 100)]
+        [Range(-100, 100)]
 	    public float BaseDamage;
 
 	    public float TimeBetweenAttacks;

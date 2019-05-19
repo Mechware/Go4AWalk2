@@ -24,10 +24,13 @@ MonoBehaviour:
   AllItems: {fileID: 11400000, guid: f34cbb7c711f3c94f92aaeed3b937361, type: 2}
   Items:
   - Item: {fileID: 11400000, guid: f02a4360ffd63e2499d1222a338cd414, type: 2}
-    Amount: 12
+    Amount: 10
+    Level: 0
   - Item: {fileID: 11400000, guid: 93a734356920da24caaee99393399534, type: 2}
     Amount: 1
+    Level: 3
   - Item: {fileID: 11400000, guid: 1af2a214dc94bd644b379c4e893b37a2, type: 2}
     Amount: 1
+    Level: 10
   BuyingPriceMultiplier: 1.5
   SellingPriceMultiplier: 0.5

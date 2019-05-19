@@ -34,6 +34,10 @@ namespace G4AW2.Data {
 		}
 #endif
 
+	    public virtual void AfterCreated() {
+	        
+	    }
+
 		public int GetID() {
 			return ID;
 		}

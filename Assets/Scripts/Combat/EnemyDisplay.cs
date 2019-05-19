@@ -249,11 +249,22 @@ namespace G4AW2.Combat {
 	            }
             }
 
+            int count = 0;
+            if (items.Count == 0) {
+                bubblesDone = true;
+                if(bubblesDone && celebrateDone) {
+                    AllDone();
+                }
+            }
+
 	        ItemBubbleManager.AddItems(items, () => {
-	            bubblesDone = true;
-	            if(bubblesDone && celebrateDone) {
-	                AllDone();
-	            }
+	            count++;
+	            if (count == items.Count) {
+	                bubblesDone = true;
+	                if(bubblesDone && celebrateDone) {
+	                    AllDone();
+	                }
+                }
 	        });
 
 	        OnDropLoot.Invoke(items);

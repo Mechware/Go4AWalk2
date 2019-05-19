@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using CustomEvents;
 using G4AW2.Data;
@@ -12,20 +14,80 @@ namespace G4AW2.Data {
         public AnimationClip WalkingAnimation;
 
         public PersistentSetItem AllItems;
-        public List<InventoryEntry> Items;
+        public List<SellableItem> Items;
         public float BuyingPriceMultiplier = 1.5f;
         public float SellingPriceMultiplier = 0.5f;
 
+        [Serializable]
+        public class SellableItem {
+            public Item Item;
+            public int Amount;
+            public int Level;
+
+            public SellableItem(Item it, int amount, int level) {
+                Item = it;
+                Amount = amount;
+                Level = level;
+            }
+
+            public SellableItem(string data, PersistentSetItem allItems) {
+                StringReader sr = new StringReader(data);
+                int id = int.Parse(sr.ReadLine());
+                int amount = int.Parse(sr.ReadLine());
+                int level = int.Parse(sr.ReadLine());
+                string additionalInfo = sr.ReadLine();
+                Item original = allItems.First(it => it.ID == id);
+                if (original is ISaveable) {
+                    Item = Instantiate(original);
+                    Item.CreatedFromOriginal = true;
+                    ((ISaveable) Item).SetData(additionalInfo, original);
+                }
+                else {
+                    Item = original;
+                }
+                Amount = amount;
+                Level = level;
+            }
+
+            public string GetData() {
+                string additionalInfo = "";
+                if (Item is ISaveable) {
+                    additionalInfo = ((ISaveable) Item).GetSaveString();
+                }
+                return $"{Item.ID}\n{Amount}\n{Level}\n{additionalInfo}";
+            }
+        }
+
+        public override void AfterCreated() {
+            foreach (var item in Items.ToList()) {
+                if (item.Item.ShouldCreateNewInstanceWhenPlayerObtained()) {
+                    Item it = Instantiate(item.Item);
+                    it.CreatedFromOriginal = true;
+                    it.OnAfterObtained();
+
+                    if (it is Weapon) {
+                        ((Weapon) it).Level = item.Level;
+                    } else if (it is Armor) {
+                        ((Armor) it).Level = item.Level;
+                    }
+
+                    Items.Remove(item);
+                    var sell = new SellableItem(it, 1, -1 /*level doesn't matter anymore*/);
+                    Items.Add(sell);
+                }
+            }
+        }
+
         private class SaveObject {
             public int ID;
-            public List<InventoryEntry.InventoryEntryWithID> Entries;
+            public List<string> Entries;
         }
 
         public override string GetSaveString() {
 
             return JsonUtility.ToJson(new SaveObject() {
                 ID = ID,
-                Entries = Items.Select(it => it.GetIdEntry()).ToList()
+                Entries = Items.Select(it => it.GetData()).ToList()
             });
         }
 
@@ -37,21 +99,8 @@ namespace G4AW2.Data {
             if (AllItems != null && ds.Entries != null) {
                 Items.Clear();
 
-                foreach(InventoryEntry.InventoryEntryWithID entry in ds.Entries) {
-
-                    Item it = AllItems.First(d => d.ID == entry.Id);
-
-                    if(it is ISaveable) {
-                        it = (Item) CreateInstance(it.GetType());
-                        ((ISaveable) it).SetData(entry.AdditionalInfo, AllItems);
-                    }
-
-                    InventoryEntry ie = new InventoryEntry() {
-                        Item = it,
-                        Amount = entry.Amount,
-                    };
-
-                    Items.Add(ie);
+                foreach(string data in ds.Entries) {
+                    Items.Add(new SellableItem(data, AllItems));
                 }
             }
 
@@ -80,6 +129,8 @@ namespace G4AW2.Data {
             if (ds.Entries == null) {
                 Items = ((ShopFollower) original).Items;
             }
+
+            AfterCreated();
         }
     }
 }

@@ -14,11 +14,11 @@ namespace G4AW2.Data.DropSystem {
         public bool IsMarkedTrash = false;
 
         [NonSerialized]
-        public int Level;
+        public int Level = 1;
 
         [NonSerialized]
         public int Random = -1;
-        private float mod;
+        private float mod = 1;
         private string nameMod;
 
         

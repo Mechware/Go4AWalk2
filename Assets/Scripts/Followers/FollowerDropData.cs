@@ -30,6 +30,7 @@ namespace G4AW2.Followers {
 				        d.Level = Mathf.RoundToInt(Random.value * (t.MaxLevel - t.MinLevel) + t.MinLevel);
 				        data = d;
 				    }
+                    data.AfterCreated();
 					return data;
 				}
 			}

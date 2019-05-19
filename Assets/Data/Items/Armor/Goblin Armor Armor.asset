@@ -14,7 +14,7 @@ MonoBehaviour:
   ID: 8
   Name: Goblin Armor Armor
   Image: {fileID: 21300000, guid: 7cc66560792e4e44fbf96f0b1a7c78e3, type: 3}
-  Value: 7
+  Value: 30
   Description: Armor crafted from armor crafted by goblins.
   Rarity: 0
   BaseARMValue: 5

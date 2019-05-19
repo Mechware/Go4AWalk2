@@ -28,11 +28,11 @@ public class DebugMenu : MonoBehaviour {
 
     public void DropEnemy() {
 
-        FollowerData data = AllFollowers.ElementAt(EnemyDropdown.value);
+        FollowerData data = Instantiate(AllFollowers.ElementAt(EnemyDropdown.value));
         if (data is EnemyData) {
-            data = Instantiate(data);
             ((EnemyData) data).Level = int.Parse(EnemyLevel.text);
         }
+        data.AfterCreated();
 
         CurrentFollowers.Add(data);
     }
