@@ -3,6 +3,7 @@ using G4AW2.Dialogue;
 using G4AW2.Questing;
 using System;
 using System.Collections.Generic;
+using G4AW2.Data.Area;
 using G4AW2.Data.DropSystem;
 using UnityEngine;
 using UnityEngine.Events;
@@ -18,9 +19,12 @@ public class QuestManager : MonoBehaviour {
 
     [Header("Events")]
     public UnityEventActiveQuestBase AreaQuestChanged;
-    public UnityEvent ResetQuestState;
+    public UnityEvent AreaChanged;
+
+    private Area currentArea = null;
 
     public void Initialize() {
+        currentArea = CurrentQuest.Value.Area;
         if(CurrentQuest.Value.ID == 1) {
             SetCurrentQuest(CurrentQuest.Value);
         } else {
@@ -87,23 +91,51 @@ public class QuestManager : MonoBehaviour {
             return;
         }
 
-        ResetQuestState.Invoke();
         SetCurrentQuest(CurrentQuest.Value.NextQuest);
+    }
+
+    public RobustLerperSerialized AreaChangeInterpolater;
+
+    void Update() {
+        AreaChangeInterpolater.Update(Time.deltaTime);
     }
 
     public void SetCurrentQuest(ActiveQuestBase quest) {
 
         ItemDropManager.Clear();
 
-        CurrentQuest.Value = quest;
-        AreaQuestChanged.Invoke(quest);
-        quest.StartQuest(FinishQuest);
-        QuestDialogUI.SetConversation(quest.StartConversation, () => {
+        if (quest.Area != currentArea) {
+            AreaChangeInterpolater.StartLerping(() => {
 
-            if (quest is BossQuest) {
-                BossController.StartBossQuest();
-            }
-        });
+                AreaChanged.Invoke();
+
+                CurrentQuest.Value = quest;
+                AreaQuestChanged.Invoke(quest);
+                quest.StartQuest(FinishQuest);
+                
+                AreaChangeInterpolater.StartReverseLerp(() => {
+                    QuestDialogUI.SetConversation(quest.StartConversation, () => {
+
+                        if(quest is BossQuest) {
+                            BossController.StartBossQuest();
+                        }
+                    });
+                });
+            });
+        }
+        else {
+            CurrentQuest.Value = quest;
+            AreaQuestChanged.Invoke(quest);
+            quest.StartQuest(FinishQuest);
+            QuestDialogUI.SetConversation(quest.StartConversation, () => {
+
+                if(quest is BossQuest) {
+                    BossController.StartBossQuest();
+                }
+            });
+        }
+
+        currentArea = quest.Area;
     }
 
     public void QuestClicked(Quest q) {
@@ -121,7 +153,6 @@ public class QuestManager : MonoBehaviour {
                             "Are you sure you want to switch quests? You will lose all progress in this one.",
                             new[] {"Yep", "Nope"}, new Action[] {
                                 () => {
-                                    ResetQuestState.Invoke();
                                     CurrentQuests.Add(CurrentQuest);
                                     CurrentQuests.Remove(q);
                                     SetCurrentQuest((ActiveQuestBase) q);
@@ -131,7 +162,6 @@ public class QuestManager : MonoBehaviour {
                     }
                     else {
                         // You've already completed the quest
-                        ResetQuestState.Invoke();
                         SetCurrentQuest((ActiveQuestBase) q);
                     }
                 },

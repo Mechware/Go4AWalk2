@@ -27,9 +27,15 @@ public class MiningPoints : MonoBehaviour {
     private List<MiningPoint> areaPoints = new List<MiningPoint>();
     private List<float> nextSpawnDistance = new List<float>();
 
-    public void AreaChanged(ActiveQuestBase a) {
+    private Area currentArea;
+
+    public void QuestChanged(ActiveQuestBase a) {
+        if (currentArea != a.Area) {
+            currentArea = a.Area;
+            Pool.Reset();
+        }
+
         areaPoints = a.MiningPoints;
-        Pool.Reset();
         nextSpawnDistance.Clear();
         foreach(var point in areaPoints) {
             nextSpawnDistance.Add(Random.Range(point.MinDistanceBetween, point.MaxDistanceBetween));

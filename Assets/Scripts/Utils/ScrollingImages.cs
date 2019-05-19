@@ -16,7 +16,7 @@ public class ScrollingImages : MonoBehaviour {
 	public bool ForceInt = false;
 
 	public List<Image> Images = new List<Image>();
-
+    private Queue<Image> imQueue = new Queue<Image>();
 	private int imageWidth;
 	private Vector3 startPosition;
 	private Vector3 position;
@@ -35,6 +35,8 @@ public class ScrollingImages : MonoBehaviour {
 	void Start() {
 		imageWidth = (int)ImagePrefab.rectTransform.rect.width;
 		startPosition = position = rt.localPosition;
+        imQueue = new Queue<Image>();
+        Images.ForEach(imQueue.Enqueue);
 	}
 
 	public void Pause() {
@@ -49,10 +51,9 @@ public class ScrollingImages : MonoBehaviour {
 		if (!Playing) return;
 		position.x -= Time.deltaTime * ScrollSpeed;
 		if (position.x < startPosition.x - imageWidth) {
-			Images[0].transform.SetAsLastSibling();
-			Image i = Images[0];
-			Images[0] = Images[1];
-			Images[Images.Count - 1] = i;
+			Image i = imQueue.Dequeue();
+		    i.transform.SetAsLastSibling();
+            imQueue.Enqueue(i);
 			position.x += imageWidth;
 		}
 
@@ -60,10 +61,6 @@ public class ScrollingImages : MonoBehaviour {
 		if(ForceInt) roundedPosition.x = Mathf.RoundToInt(position.x);
 
 		rt.localPosition = roundedPosition;
-	}
-
-	public void ChangeSpriteOfChildren(Sprite s) {
-		Images.ForEach(im => im.sprite = s);
 	}
 
 #if UNITY_EDITOR

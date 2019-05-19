@@ -34,7 +34,7 @@ MonoBehaviour:
   MaxEnemyDropTime: 100
   MinEnemyDropDistance: 15
   MaxEnemyDropDistance: 50
-  Area: {fileID: 11400000, guid: 5e4d1ba5949749b44bc3427231ca82f2, type: 2}
+  Area: {fileID: 11400000, guid: de6df770e5018c44db6db97474277957, type: 2}
   MiningPoints: []
   Enemies:
     Drops:

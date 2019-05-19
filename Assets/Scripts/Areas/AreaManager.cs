@@ -22,7 +22,7 @@ namespace G4AW2.UI.Areas {
 		public void SetArea( Area area ) {
 			this.Area = area;
 
-			backgrounds.Images.ForEach(i => i.sprite = area.Background);
+            backgrounds.Images.ForEach(im => im.sprite = area.Background);
 			clouds1.Images.ForEach(i => i.sprite = area.Clouds1);
 			clouds2.Images.ForEach(i => i.sprite = area.Clouds2);
 			SkyImages.ForEach(i => i.sprite = area.Sky);
@@ -37,10 +37,10 @@ namespace G4AW2.UI.Areas {
 		    FollowerSpawner.DropData = quest.Enemies;
         }
 
-		// Update is called once per frame
-		void Update() {
-
-		}
+	    [ContextMenu("Set Area")]
+	    public void SetArea() {
+	        SetArea(Area);
+	    }
 	}
 
 }
