@@ -43,7 +43,7 @@ namespace G4AW2.Data {
 
                     if(it is ISaveable) {
                         it = (Item) CreateInstance(it.GetType());
-                        ((ISaveable) it).SetData(entry.AdditionalInfo, otherData);
+                        ((ISaveable) it).SetData(entry.AdditionalInfo, AllItems);
                     }
 
                     InventoryEntry ie = new InventoryEntry() {

@@ -104,7 +104,7 @@ public class ShopUI : MonoBehaviour {
     }
 
     private void SetDataBuying(IconWithTextController itc, InventoryEntry iid) {
-        int price = GetBuyingPrice(itc.Item.Item);
+        int price = GetBuyingPrice(iid.Item);
 
         string text = $"{iid.Item.GetName()}\n{price} gold each";
         itc.SetData(iid.Item, iid.Amount, text, () => ItemClickedBuying(iid));
@@ -165,7 +165,7 @@ public class ShopUI : MonoBehaviour {
     }
 
     private int GetSellingPrice(Item i) {
-        return Mathf.Max(Mathf.RoundToInt(i.GetValue() * shopKeep.BuyingPriceMultiplier), 1);
+        return Mathf.Max(Mathf.RoundToInt(i.GetValue() * shopKeep.SellingPriceMultiplier), 1);
     }
 
     private void SetDataSelling(IconWithTextController itc, InventoryEntry iid) {
