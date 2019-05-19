@@ -9,26 +9,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b312d8dc3e6ebbb4fa35f02bdc5d92a2, type: 3}
-  m_Name: 4 - Craft Feather Hat
+  m_Name: 5 - Craft Goblin Armor
   m_EditorClassIdentifier: 
-  ID: 8
-  DisplayName: Craft Feathered Hat
-  NextQuest: {fileID: 11400000, guid: 3bdbfb305ca5b514fbfb60ae208f0bdc, type: 2}
+  ID: 10
+  DisplayName: Craft Golbin Armor Armor
+  NextQuest: {fileID: 11400000, guid: d0b1a45baf6b3d242a6af33d66b443b7, type: 2}
   StartConversation:
-    Text: Nice new sword! You know what would go great with that sword? A new hat!
-      You can craft a new feathered hat with a gnome hat and a feather by <b>tapping
-      on the anvil in the top right</b> and then clicking on the crafting recipe that
-      requires 1 feather and 1 gnome hat! If there isn't one, you <b>may not have
-      enough materials</b>, so you'll have to <b>defeat a few chickens and gnomes</b>
-      to get the material.
+    Text: Now that you can defeat goblins <b>AND</b> craft things, you're unstoppable!
+      <b>Gather 12 goblin armors</b> from the corpses of goblins (or otherwise...)
+      and <b>craft some goblin armor Armor</b>!
     Speaker: {fileID: 21300000, guid: c27605eebf83392428128ddf89b5bd1f, type: 3}
   EndConversation:
-    Text: 'Good job! You can equip that hat through the journal (top right book),
-      going to the equip tab, and clicking the headgear box. The question mark in
-      the bottom right can help you out if you get lost.
+    Text: 'Great job! You can equip your new armor through the journal. Use the question
+      mark in the bottom right if you need assistance.
 
 
-      You''re gonna look so good.'
+      That goblin armor with your feathered hat will look amazing.
+
+
+      Also, you''re about to go back to the beginning.'
     Speaker: {fileID: 21300000, guid: c27605eebf83392428128ddf89b5bd1f, type: 3}
   MinEnemyDropTime: 50
   MaxEnemyDropTime: 100
@@ -38,6 +37,14 @@ MonoBehaviour:
   MiningPoints: []
   Enemies:
     Drops:
+    - Follower: {fileID: 11400000, guid: 51d3cce514427d448a622c4b31127522, type: 2}
+      MinLevel: 5
+      MaxLevel: 10
+      DropChance: 5
+    - Follower: {fileID: 11400000, guid: ad9b8d87849cbb443985f26909b572f2, type: 2}
+      MinLevel: 5
+      MaxLevel: 10
+      DropChance: 1
     - Follower: {fileID: 11400000, guid: 396482660d9279a4294f369245325131, type: 2}
       MinLevel: 5
       MaxLevel: 10
@@ -47,6 +54,6 @@ MonoBehaviour:
       MaxLevel: 10
       DropChance: 1
   QuestRewards: []
-  TotalAmount: {fileID: 11400000, guid: be36c9fe256f2e943ba7565f6c48e8fa, type: 2}
+  TotalAmount: {fileID: 11400000, guid: 5fac347c681b575488404e964df1b54b, type: 2}
   AmountToReach: 1
   AmountSoFar: {fileID: 11400000, guid: 66d427283c1651346a2bb795dcaa50b7, type: 2}

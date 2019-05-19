@@ -13,23 +13,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 3
   DisplayName: Defeat 5 Goblins
-  NextQuest: {fileID: 11400000, guid: 6a152c9f5e6fb0245aa9a63fdc71fdae, type: 2}
+  NextQuest: {fileID: 11400000, guid: fc18e94318e97394291c84a4249c3c18, type: 2}
   StartConversation:
     Text: You're doing great! Those gnomes didn't stand a chance. Some stronger folks
-      heard about how strong you are and want a peice so you're gonna have to fight
-      tougher enemies. The goblins are a ruthless bunch, try and take out 5 of them.
+      heard about how strong you are and want a piece so you're gonna have to fight
+      tougher enemies. The goblins are a ruthless bunch and are coming after you.
+      Try and <b>defeat 5 of those goblins</b>.
     Speaker: {fileID: 21300000, guid: c27605eebf83392428128ddf89b5bd1f, type: 3}
   EndConversation:
-    Text: 'Nice work! For defeating a goblin, I present you with a goblin sword. Use
-      it wisely.
+    Text: 'Nice work! For defeating a goblin, I present you with a <color=red><b>goblin
+      sword</b></color>. Use it wisely.
 
 
       Just kidding, hit everything with it.'
     Speaker: {fileID: 21300000, guid: c27605eebf83392428128ddf89b5bd1f, type: 3}
-  MinEnemyDropTime: 240
-  MaxEnemyDropTime: 480
-  MinEnemyDropDistance: 50
-  MaxEnemyDropDistance: 250
+  MinEnemyDropTime: 40
+  MaxEnemyDropTime: 80
+  MinEnemyDropDistance: 20
+  MaxEnemyDropDistance: 100
   Area: {fileID: 11400000, guid: 5e4d1ba5949749b44bc3427231ca82f2, type: 2}
   MiningPoints: []
   Enemies:

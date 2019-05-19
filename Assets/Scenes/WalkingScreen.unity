@@ -1100,9 +1100,9 @@ MonoBehaviour:
   m_fontSize: 6
   m_fontSizeBase: 6
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 3
+  m_fontSizeMax: 6
   m_fontStyle: 0
   m_textAlignment: 257
   m_isAlignmentEnumConverted: 1
@@ -1135,7 +1135,7 @@ MonoBehaviour:
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 5, y: 5, z: 0, w: 32.882214}
+  m_margin: {x: 5, y: 5, z: 0, w: 22.471619}
   m_textInfo:
     textComponent: {fileID: 59360161}
     characterCount: 8
@@ -1146,11 +1146,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -2899,7 +2899,7 @@ RectTransform:
   - {fileID: 503923648}
   - {fileID: 1344992479}
   m_Father: {fileID: 951186433}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -5379,7 +5379,7 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
@@ -8386,7 +8386,7 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
@@ -8719,6 +8719,8 @@ GameObject:
   - component: {fileID: 474011220}
   - component: {fileID: 474011221}
   - component: {fileID: 474011222}
+  - component: {fileID: 474011224}
+  - component: {fileID: 474011223}
   m_Layer: 5
   m_Name: QuickPopUp
   m_TagString: Untagged
@@ -8740,7 +8742,7 @@ RectTransform:
   - {fileID: 2115823800}
   - {fileID: 1160199342}
   m_Father: {fileID: 951186433}
-  m_RootOrder: 9
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -8769,22 +8771,69 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39de2c2d1d5da8440a2b6be126d2b7ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  QuickPopUpAllowed: {fileID: 11400000, guid: 6e77e5088f58495448bb8744144b0643, type: 2}
   PositionLerper: {fileID: 2115823801}
   AlphaLerper: {fileID: 266055279}
   Image: {fileID: 956645798}
   Text: {fileID: 994664440}
-  TestSprite1: {fileID: 21300000, guid: 590957ad0b5f14443a67fb363125e7bf, type: 3}
-  TestSprite2: {fileID: 21300000, guid: e3e966a2f2015b84ebd942f41dd41fb2, type: 3}
-  TestSprite3: {fileID: 21300000, guid: a2fa2e39be9110b45bd391930d0466c2, type: 3}
-  TestText1: '<size=150%>Achievement!</size>
-
-    You crafted 10 items!'
-  TestText2: '<size=150%>Notice</size>
-
-    You can now craft beetle armor'
-  TestText3: '<size=150%>Monster Appeared!</size>
-
-    A bad beetle is now following you'
+--- !u!114 &474011223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 474011219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b45f413f81c50134aaa2478013938f19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: f18da89729440ea45bff0b961ed15e4f, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 6e77e5088f58495448bb8744144b0643, type: 2}
+        m_MethodName: set_Value
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  Debugging: 0
+--- !u!114 &474011224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 474011219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b45f413f81c50134aaa2478013938f19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 73bbe12f9e4b3af41b09a7d7868641e8, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 6e77e5088f58495448bb8744144b0643, type: 2}
+        m_MethodName: set_Value
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  Debugging: 0
 --- !u!1 &484489486
 GameObject:
   m_ObjectHideFlags: 0
@@ -10598,7 +10647,7 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
@@ -10753,7 +10802,7 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
@@ -13369,11 +13418,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -13736,7 +13785,7 @@ RectTransform:
   - {fileID: 1589775612}
   - {fileID: 1622750877}
   m_Father: {fileID: 951186433}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -15711,8 +15760,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.00009428604, y: 0.000060802235}
-  m_SizeDelta: {x: 0, y: 300}
+  m_AnchoredPosition: {x: -0.00009428604, y: -0.000037857742}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &898273074
 MonoBehaviour:
@@ -16428,12 +16477,12 @@ RectTransform:
   - {fileID: 337027420}
   - {fileID: 1166863775}
   - {fileID: 328840617}
+  - {fileID: 474011220}
   - {fileID: 767931480}
   - {fileID: 1709589733}
   - {fileID: 1269016213}
   - {fileID: 1064130620}
   - {fileID: 175561637}
-  - {fileID: 474011220}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -18413,17 +18462,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 413173345}
-        m_MethodName: OnLootObtained
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
     m_TypeName: G4AW2.Events.UnityEventIEnumerableLoot, Assembly-CSharp, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   CleanUp:
@@ -18966,7 +19004,7 @@ RectTransform:
   - {fileID: 1094645736}
   - {fileID: 617062435}
   m_Father: {fileID: 951186433}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -19199,9 +19237,9 @@ MonoBehaviour:
   m_fontSize: 8
   m_fontSizeBase: 8
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 2
-  m_fontSizeMax: 72
+  m_fontSizeMax: 8
   m_fontStyle: 0
   m_textAlignment: 257
   m_isAlignmentEnumConverted: 1
@@ -19245,7 +19283,7 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
@@ -22776,7 +22814,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 951186433}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -32741,7 +32779,7 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
@@ -32896,7 +32934,7 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
@@ -34678,7 +34716,7 @@ RectTransform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 951186433}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -34794,6 +34832,17 @@ MonoBehaviour:
       - m_Target: {fileID: 999456372}
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: f18da89729440ea45bff0b961ed15e4f, type: 2}
+        m_MethodName: Raise
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -40142,7 +40191,7 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}

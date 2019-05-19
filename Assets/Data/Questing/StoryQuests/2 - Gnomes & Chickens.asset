@@ -15,19 +15,22 @@ MonoBehaviour:
   DisplayName: Defeat 5 Gnomes
   NextQuest: {fileID: 11400000, guid: 34332a3094c776547ab733c1126f5bc8, type: 2}
   StartConversation:
-    Text: Now that you've got the basics of fighting, several bad guys are going to
-      start following you and trying to fight you! Try defeating 5 gnomes. After a
-      certain period gnomes will appear, but you can speed up the process by walking
-      in real life.
+    Text: 'Now that you''ve got the basics of fighting, chickens and gnomes are going
+      to start following you and they are going to try to fight you! To show that
+      you''re the boss, <b>defeat 5 gnomes</b>. Gnomes will gradually start following
+      you, but you can speed up the process by walking in real life.
+
+
+      Whenever a new enemy is following you, you will see a pop up to let you know.'
     Speaker: {fileID: 21300000, guid: c27605eebf83392428128ddf89b5bd1f, type: 3}
   EndConversation:
     Text: Great job! If you're confused about anything try clicking the question mark
       in the bottom right corner for help.
     Speaker: {fileID: 21300000, guid: c27605eebf83392428128ddf89b5bd1f, type: 3}
-  MinEnemyDropTime: 240
-  MaxEnemyDropTime: 480
-  MinEnemyDropDistance: 50
-  MaxEnemyDropDistance: 250
+  MinEnemyDropTime: 20
+  MaxEnemyDropTime: 40
+  MinEnemyDropDistance: 20
+  MaxEnemyDropDistance: 100
   Area: {fileID: 11400000, guid: 5e4d1ba5949749b44bc3427231ca82f2, type: 2}
   MiningPoints: []
   Enemies:

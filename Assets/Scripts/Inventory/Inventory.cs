@@ -32,6 +32,7 @@ public class Inventory : ScriptableObject, IEnumerable<InventoryEntry>, ISaveabl
     public void Add(Item it, int amount) {
 
         InventoryEntry entry = InventoryEntries.FirstOrDefault(e => e.Item == it);
+        GameEventHandler.Singleton.OnLootObtained(it, amount);
 
         if(entry == default(InventoryEntry)) {
             InventoryEntries.Add(new InventoryEntry() { Item = it, Amount = amount});

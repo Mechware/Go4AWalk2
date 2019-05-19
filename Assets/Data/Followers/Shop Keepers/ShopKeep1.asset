@@ -24,8 +24,10 @@ MonoBehaviour:
   AllItems: {fileID: 11400000, guid: f34cbb7c711f3c94f92aaeed3b937361, type: 2}
   Items:
   - Item: {fileID: 11400000, guid: f02a4360ffd63e2499d1222a338cd414, type: 2}
-    Amount: 5
-  - Item: {fileID: 11400000, guid: dc820a69f03cdd143ab25de0aeea35e5, type: 2}
-    Amount: 99
+    Amount: 12
+  - Item: {fileID: 11400000, guid: 93a734356920da24caaee99393399534, type: 2}
+    Amount: 1
+  - Item: {fileID: 11400000, guid: 1af2a214dc94bd644b379c4e893b37a2, type: 2}
+    Amount: 1
   BuyingPriceMultiplier: 1.5
   SellingPriceMultiplier: 0.5

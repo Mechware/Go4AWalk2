@@ -65,8 +65,8 @@ public class ItemDropBubbleManager : MonoBehaviour {
 	    if (it.Item is Weapon) {
 
 	        WeaponUI.SetWeaponWithDefaults((Weapon)it.Item, () => {
-	            Destroy(it.gameObject);
-	            onScreenItems--;
+	            Pool.Return(it.gameObject);
+                onScreenItems--;
 	            if(onScreenItems == 0 && finishedShooting) {
 	                onfinish?.Invoke();
 	            }

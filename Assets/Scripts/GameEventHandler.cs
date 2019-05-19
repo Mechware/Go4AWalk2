@@ -27,4 +27,8 @@ public class GameEventHandler : MonoBehaviour {
     public void OnLootObtained(Item it) {
         LootObtained?.Invoke(it);
     }
+
+    public void OnLootObtained(Item it, int amount) {
+        for (int i = 0; i < amount; i++) LootObtained?.Invoke(it);
+    }
 }

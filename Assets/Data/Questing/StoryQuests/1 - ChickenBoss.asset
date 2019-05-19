@@ -19,12 +19,17 @@ MonoBehaviour:
 
       In this game you fight enemies and get cool loot!
 
-      Right now there''s a chicken following you. Try scrolling back and fighting
-      it by tapping on it.'
+      To start off, lets teach you about fighting. A chicken is going to approach
+      you who has the intent to harm you. You must fight it! To defeat the evil chicken
+      you must simply tap on the screen.'
     Speaker: {fileID: 21300000, guid: c27605eebf83392428128ddf89b5bd1f, type: 3}
   EndConversation:
-    Text: Great job taking care of that chicken. Don't worry about hurting the chicken,
-      it and all the others are just copies of me that can't feel anything.
+    Text: 'Great job taking care of that chicken. Don''t worry about hurting the chicken,
+      it and all the others are just clones of me gone wrong that can''t feel anything.
+
+
+      For more combat training, try looking into Parrying and Blocking in the help
+      menu accessed through the question mark in the bottom right.'
     Speaker: {fileID: 21300000, guid: c27605eebf83392428128ddf89b5bd1f, type: 3}
   MinEnemyDropTime: 240
   MaxEnemyDropTime: 480
