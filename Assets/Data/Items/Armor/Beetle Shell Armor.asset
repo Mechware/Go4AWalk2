@@ -12,11 +12,14 @@ MonoBehaviour:
   m_Name: Beetle Shell Armor
   m_EditorClassIdentifier: 
   ID: 54
+  Name: Beetle Shell Armor
   Image: {fileID: 21300000, guid: e3e966a2f2015b84ebd942f41dd41fb2, type: 3}
   Value: 100
   Description: Offers a surprising amount of protection, and looks pretty cool too.
   Rarity: 2
-  NoBlockModifier: 1
-  PerfectBlockModifier: 1
-  MistimedBlockModifier: 1
-  DamageAdditiveModifier: 1
+  BaseARMValue: 12
+  ElementalWeakness:
+    UseConstant: 1
+    ConstantValue:
+      Weaknesses: []
+    Variable: {fileID: 0}
