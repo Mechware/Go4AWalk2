@@ -6,8 +6,10 @@ using UnityEngine;
 
 public class QuestingStatWatcher : MonoBehaviour {
 
+    public TextMeshProUGUI QuestTitle;
     public TextMeshProUGUI MaxText;
     public TextMeshProUGUI CurrentText;
+
 
     private ActiveQuestBase previous;
 
@@ -15,6 +17,7 @@ public class QuestingStatWatcher : MonoBehaviour {
 
         RemoveListeners(previous);
 
+        QuestTitle.text = currentQuest.DisplayName;
         if (currentQuest is ActiveWalkingQuest) {
             ActiveWalkingQuest awq = currentQuest as ActiveWalkingQuest;
             MaxText.text = "" + awq.AmountToReach;
