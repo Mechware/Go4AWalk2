@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 10
   DisplayName: Craft Golbin Armor Armor
-  NextQuest: {fileID: 11400000, guid: d0b1a45baf6b3d242a6af33d66b443b7, type: 2}
+  NextQuest: {fileID: 11400000, guid: d7da656351c83b446bdb11c78e5cc95e, type: 2}
   StartConversation:
     Text: Now that you can defeat goblins <b>AND</b> craft things, you're unstoppable!
       <b>Gather 12 goblin armors</b> from the corpses of goblins (or otherwise...)

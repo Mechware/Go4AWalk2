@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using CustomEvents;
@@ -14,7 +15,9 @@ public class DeadEnemy : MonoBehaviour {
 
     public Image Image;
 
-    public void SetPosition(float x, float y, EnemyData s) {
+    public void SetPosition(float x, float y, EnemyData s, Action<DeadEnemy> onFinish) {
+
+        StopAllCoroutines();
 
         Image.sprite = s.DeadSprite;
 
@@ -29,10 +32,10 @@ public class DeadEnemy : MonoBehaviour {
         pos.y = y;
         rt.anchoredPosition = pos;
 
-        StartCoroutine(ScrollOff());
+        StartCoroutine(ScrollOff(onFinish));
     }
 
-    IEnumerator ScrollOff() {
+    IEnumerator ScrollOff(Action<DeadEnemy> onFinish) {
 
         RectTransform rt = GetComponent<RectTransform>();
 
@@ -46,6 +49,6 @@ public class DeadEnemy : MonoBehaviour {
             yield return null;
         }
 
-        Destroy(gameObject);
+        onFinish?.Invoke(this);
     }
 }

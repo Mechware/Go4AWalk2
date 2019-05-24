@@ -52,8 +52,10 @@ namespace G4AW2.Combat {
         public UnityEventIEnumerableLoot OnDropLoot;
 	    public UnityEvent CleanUp;
 
+        // This probably shouldn't be in this class
+	    private ObjectPrefabPool DeadEnemies;
 
-	    private Animator MyAnimator;
+        private Animator MyAnimator;
 
 	    private RectTransform rt;
 	    private RectTransform RectTransform {
@@ -64,7 +66,8 @@ namespace G4AW2.Combat {
 	    }
 
 	    void Awake() {
-	        MyAnimator = GetComponent<Animator>();
+	        DeadEnemies = new ObjectPrefabPool(DeadEnemyPrefab, DeadEnemyParent);
+            MyAnimator = GetComponent<Animator>();
 	        rt = GetComponent<RectTransform>();
 			EnemyState = State.Disabled;
         }
@@ -270,12 +273,18 @@ namespace G4AW2.Combat {
 	        OnDropLoot.Invoke(items);
         }
 
+	    public void ClearDeadEnemies() {
+	        DeadEnemies.Reset();
+	    }
+
 	    private void AllDone() {
             PlayerAnimations.Spin(() => {
                 CleanUp.Invoke();
-                var go = Instantiate(DeadEnemyPrefab, DeadEnemyParent);
+                var go = DeadEnemies.GetObject();
                 DeadEnemy de = go.GetComponent<DeadEnemy>();
-                de.SetPosition(RectTransform.anchoredPosition.x, RectTransform.anchoredPosition.y, Enemy);
+                de.SetPosition(RectTransform.anchoredPosition.x, RectTransform.anchoredPosition.y, Enemy, e => {
+                    DeadEnemies.Return(e.gameObject);
+                });
             });
         }
 

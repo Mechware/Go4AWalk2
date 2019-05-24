@@ -42,6 +42,7 @@ public class QuestManager : MonoBehaviour {
     }
 
     public ItemDropBubbleManager ItemDropManager;
+    public Inventory Inventory;
 
     private void DropRewardAndAdvanceConversation(ActiveQuestBase q) {
 
@@ -67,6 +68,14 @@ public class QuestManager : MonoBehaviour {
                         a.SetValuesBasedOnRandom();
                     }
                     it = a;
+                } else if(it is Headgear) {
+                    Headgear a = ScriptableObject.Instantiate(it) as Headgear;
+                    a.OnAfterObtained();
+                    //if(reward.RandomRoll != -1) {
+                    //    a.Random = reward.RandomRoll;
+                    //    a.SetValuesBasedOnRandom();
+                    //}
+                    it = a;
                 }
             }
             todrops.Add(it);
@@ -76,6 +85,7 @@ public class QuestManager : MonoBehaviour {
             AdvanceQuestAfterConversation();
         }
         else {
+            Inventory.AddItems(todrops);
             ItemDropManager.AddItems(todrops, AdvanceQuestAfterConversation);
         }
     }

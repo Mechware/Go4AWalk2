@@ -33,8 +33,10 @@ public class ChangeItemBase<T, TRef, TVar, TEvent> : MonoBehaviour
     }
 
     public void Refresh() {
-        if(Item.Value != null)
+        if (Item.Value != null) {
+            Item.Value.DataChanged -= Refresh;
             Item.Value.DataChanged += Refresh;
+        }
         IID.SetData(Item.Value, 1, Onclick);
     }
 

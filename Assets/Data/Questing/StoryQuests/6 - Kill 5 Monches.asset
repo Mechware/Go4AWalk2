@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ada0d5cb92b2c864bacdd24744b16c27, type: 3}
+  m_Name: 6 - Kill 5 Monches
+  m_EditorClassIdentifier: 
+  ID: 11
+  DisplayName: Monch Slayer
+  NextQuest: {fileID: 0}
+  StartConversation:
+    Text: 
+    Speaker: {fileID: 21300000, guid: c27605eebf83392428128ddf89b5bd1f, type: 3}
+  EndConversation:
+    Text: 
+    Speaker: {fileID: 0}
+  MinEnemyDropTime: 240
+  MaxEnemyDropTime: 480
+  MinEnemyDropDistance: 50
+  MaxEnemyDropDistance: 250
+  Area: {fileID: 11400000, guid: 5e4d1ba5949749b44bc3427231ca82f2, type: 2}
+  MiningPoints: []
+  Enemies:
+    Drops: []
+  QuestRewards: []
+  TotalAmount: {fileID: 11400000, guid: e70966d51d11ac54bbbd2c2a80a97b71, type: 2}
+  AmountToReach: 5
+  AmountSoFar: {fileID: 11400000, guid: 66d427283c1651346a2bb795dcaa50b7, type: 2}
