@@ -49,6 +49,8 @@ public class ItemDropBubbleManager : MonoBehaviour {
 
 	private void OnClick(ItemDropBubble it, Action onClick) {
 
+        SmoothPopUpManager.ShowPopUp(it.transform.localPosition, $"<color=green>+1</color> {it.Item.GetName()}", ConfigObject.GetColorFromRarity(it.Item.Rarity));
+
 	    if (it.Item is Weapon) {
 
 	        WeaponUI.SetWeaponWithDefaults((Weapon)it.Item, () => {
