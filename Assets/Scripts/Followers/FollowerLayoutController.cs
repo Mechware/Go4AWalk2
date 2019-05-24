@@ -1,3 +1,4 @@
+using System.Linq;
 using G4AW2.Followers;
 using UnityEngine;
 
@@ -19,7 +20,7 @@ public class FollowerLayoutController : MonoBehaviour {
         float x = StartX;
         float y = StartY;
 
-        foreach(FollowerDisplay followerDisplay in FollowerController.AllFollowers) {
+        foreach(FollowerDisplay followerDisplay in FollowerController.FollowerPool.InUse.Select(f => f.GetComponent<FollowerDisplay>())) {
             RectTransform rectChild = (RectTransform) followerDisplay.transform;
             int distBetween = followerDisplay.Data.SpaceBetweenEnemies;
 

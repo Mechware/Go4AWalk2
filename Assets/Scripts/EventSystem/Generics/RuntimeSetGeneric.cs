@@ -15,17 +15,23 @@ namespace CustomEvents {
 		public TEvent OnAdd, OnRemove, OnChange;
 
 		public void AddRange(IEnumerable<T> items) {
-			list.AddRange(items);
+		    foreach (var item in items) {
+		        Add(item, true);
+		        OnAdd.Invoke(item);
+		    }
 			OnChange.Invoke(default(T));
 		}
 
 		public void RemoveAt(int index) {
+		    T item = list[index];
 			list.RemoveAt(index);
+            OnRemove.Invoke(item);
 			OnChange.Invoke(default(T));
 		}
 
 		public void Insert(int index, T item ) {
 			list.Insert(index, item);
+		    OnAdd.Invoke(item);
 			OnChange.Invoke(default(T));
 		}
 
@@ -51,7 +57,7 @@ namespace CustomEvents {
 
 		public void Clear() {
 			list.Clear();
-			OnChange?.Invoke(default(T));
+			OnChange.Invoke(default(T));
 		}
 
 		public static implicit operator List<T>(RuntimeSetGeneric<T, TEvent> val) {

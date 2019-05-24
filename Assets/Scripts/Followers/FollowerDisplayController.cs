@@ -20,7 +20,6 @@ namespace G4AW2.Followers {
         public RuntimeSetFollowerData ListOfCurrentFollowers;
 	    public FollowerDisplay DisplayPrefab;
 	    public LerpToPosition WorldCameraLerper;
-		[NonSerialized] public List<FollowerDisplay> AllFollowers = new List<FollowerDisplay>();
 
         [Header("Shop")]
 	    public LerpToPosition ShopperWalk;
@@ -37,44 +36,43 @@ namespace G4AW2.Followers {
 	    public UnityEvent CameraDoneAfterScroll;
 	    public UnityEvent CameraDoneAfterScrollFighting;
 
+	    [NonSerialized] public ObjectPrefabPool FollowerPool;
+
+	    void Awake() {
+	        FollowerPool = new ObjectPrefabPool(DisplayPrefab.gameObject, transform);
+	    }
+
         public void AfterLoadEvent() {
 
 	        ResetFollowers();
 
             // Remove listeneres
-            ListOfCurrentFollowers.OnAdd.RemoveListener(FollowerAdded);
-			ListOfCurrentFollowers.OnRemove.RemoveListener(FollowerRemoved);
-			ListOfCurrentFollowers.OnChange.RemoveListener(FollowerRemoved);
+            ListOfCurrentFollowers.OnAdd.RemoveListener(ResetFollowersWithDummyParam);
+			ListOfCurrentFollowers.OnRemove.RemoveListener(ResetFollowersWithDummyParam);
+			ListOfCurrentFollowers.OnChange.RemoveListener(ResetFollowersWithDummyParam);
 
             // Add listeners
-			ListOfCurrentFollowers.OnAdd.AddListener(FollowerAdded);
-			ListOfCurrentFollowers.OnRemove.AddListener(FollowerRemoved);
-			ListOfCurrentFollowers.OnChange.AddListener(FollowerRemoved);
+			ListOfCurrentFollowers.OnAdd.AddListener(ResetFollowersWithDummyParam);
+			ListOfCurrentFollowers.OnRemove.AddListener(ResetFollowersWithDummyParam);
+			ListOfCurrentFollowers.OnChange.AddListener(ResetFollowersWithDummyParam);
 		}
 
+	    private void ResetFollowersWithDummyParam(FollowerData d) {
+	        ResetFollowers();
+	    }
+
 		private void ResetFollowers() {
-			// Should really re use these
-			AllFollowers.ForEach(kvp => { Destroy(kvp.gameObject); });
-			AllFollowers.Clear();
+			FollowerPool.Reset();
 
 			for (int i = 0; i < ListOfCurrentFollowers.Value.Count; i++) {
 				FollowerData fd = ListOfCurrentFollowers[i];
-				FollowerDisplay display = Instantiate(DisplayPrefab, transform);
-				AddDisplay(display, fd);
-				AllFollowers.Add(display);
+			    GameObject go = FollowerPool.GetObject();
+			    FollowerDisplay d = go.GetComponent<FollowerDisplay>();
+				AddDisplay(d, fd);
 			}
 
             ListChanged.Invoke();
 		}
-
-	    public void FollowerAdded(FollowerData d) {
-			FollowerData fd = ListOfCurrentFollowers.Value.Last();
-			FollowerDisplay display = Instantiate(DisplayPrefab, transform);
-		    AddDisplay(display, fd);
-			AllFollowers.Add(display);
-            QuickPopUp.Show(d.Portrait, $"<size=140%>Follower Appeared!</size>\n\nA {d.DisplayName} is now following you");
-            ListChanged.Invoke();
-        }
 
         private void AddDisplay(FollowerDisplay display, FollowerData d) {
 			display.transform.SetAsFirstSibling();
@@ -88,14 +86,10 @@ namespace G4AW2.Followers {
 			display.FollowerClicked += FollowerClicked;
 		}
 
-		public void FollowerRemoved(FollowerData d) {
-			ResetFollowers();
-		}
-
 		public void FollowerClicked(FollowerDisplay fd) {
 			// Show some info on them.
 			
-			if (AllFollowers[0] == fd) {
+			if (ListOfCurrentFollowers[0] == fd.Data) {
 				if (fd.Data is EnemyData) {
 					//EnemyData ed = (EnemyData) fd;
 					// TODO: Include stats

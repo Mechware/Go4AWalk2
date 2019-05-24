@@ -55,10 +55,11 @@ namespace G4AW2.Followers {
 			if (Data.HasRandomAnimation) {
 				aoc["Random"] = Data.RandomAnimation;
 				doRandomTime = Random.Range(Data.MinTimeBetweenRandomAnims, Data.MaxTimeBetweenRandomAnims);
-			}
+		        currentTime = 0;
+            }
             if (Data is EnemyData) {
                 EnemyData e = (EnemyData) data;
-                followerID.text = "LVL " + e.Level + "\n" + e.DisplayName;
+                followerID.text = $"{e.DisplayName}\n<size=75%>LVL {e.Level}";
             } else if (Data is ShopFollower) {
                 followerID.text = data.DisplayName;
             } else if (Data is QuestGiver) {
