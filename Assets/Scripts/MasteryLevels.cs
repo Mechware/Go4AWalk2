@@ -62,4 +62,8 @@ public class MasteryLevels : ScriptableObject, ISaveable {
 
         Loaded = true;
     }
+
+    public void OnNewGame() {
+        Loaded = true;
+    }
 }
