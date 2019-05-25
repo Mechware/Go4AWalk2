@@ -66,7 +66,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: <color=green>+1</color> Small Gold Shard
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 4a350a390fef0814a85f1246dd61ec69, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a7fe01646a3ae514e85cfec53b70445a, type: 2}
   m_sharedMaterial: {fileID: 21720084196554324, guid: 4a350a390fef0814a85f1246dd61ec69,
     type: 2}
   m_fontSharedMaterials: []
@@ -147,7 +147,7 @@ MonoBehaviour:
   m_spriteAnimator: {fileID: 0}
   m_isInputParsingRequired: 0
   m_inputSource: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_subTextObjects:
   - {fileID: 0}
   - {fileID: 114404996741345216}

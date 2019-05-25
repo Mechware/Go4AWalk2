@@ -57,10 +57,14 @@ public class QuestingStatWatcher : MonoBehaviour {
     }
 
     void OnChange(float val) {
+        //SmoothPopUpManager.ShowPopUp(((RectTransform)transform).anchoredPosition, "+1", Color.green);
         CurrentText.text = "" + val;
     }
 
+    public Transform SpawnPointOfNumberIncreasePopUp;
+
     void OnChange(int val) {
+        SmoothPopUpManager.ShowPopUp(SpawnPointOfNumberIncreasePopUp.position, "+1", Color.green, true);
         CurrentText.text = "" + val;
     }
 }

@@ -46,26 +46,26 @@ public class SmoothPopUpManager : MonoBehaviour {
         }
     }
 
-    private void ShowPopUpPrivate(Vector2 canvasSpaceStartPosition, string text, Color color) {
+    private void ShowPopUpPrivate(Vector2 canvasSpaceStartPosition, string text, Color color, bool worldCoords) {
         var go = popUpPool.GetObject();
 
         TextMeshProUGUI t = go.GetComponent<TextMeshProUGUI>();
         t.text = text;
         t.color = color;
         RectTransform pos = go.GetComponent<RectTransform>();
-        pos.anchoredPosition = canvasSpaceStartPosition;
-
+        if (!worldCoords) pos.anchoredPosition = canvasSpaceStartPosition;
+        else pos.position = canvasSpaceStartPosition;
 
         LerpData data = new LerpData();
         data.Time = 0;
         data.PopUpText = t;
         data.PopUpPosition = pos;
-        data.StartY = canvasSpaceStartPosition.y;
+        data.StartY = pos.anchoredPosition.y;
 
         currentLerpers.Add(data);
     }
 
-    public static void ShowPopUp(Vector2 canvasSpaceStartPosition, string text, Color color) {
-        instance.ShowPopUpPrivate(canvasSpaceStartPosition, text, color);
+    public static void ShowPopUp(Vector2 canvasSpaceStartPosition, string text, Color color, bool worldCoords = false) {
+        instance.ShowPopUpPrivate(canvasSpaceStartPosition, text, color, worldCoords);
     }
 }

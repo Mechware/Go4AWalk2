@@ -39,6 +39,8 @@ public class DamageNumberSpawner : MonoBehaviour {
         tmpugui.SetText(number.ToString());
         tmpugui.faceColor = c;
 
+        Color outline = Color.black;
+
         UpdateTimer ut = timers.Get();
         ut.Start(2, 
         () => { // finish
@@ -48,6 +50,8 @@ public class DamageNumberSpawner : MonoBehaviour {
         (percentComplete) => { // update
             c.a = 1 - percentComplete;
             tmpugui.faceColor = c;
+            outline.a = c.a;
+            tmpugui.outlineColor = outline;
         });
     }
 

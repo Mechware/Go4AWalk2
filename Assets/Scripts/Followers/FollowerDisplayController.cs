@@ -47,12 +47,12 @@ namespace G4AW2.Followers {
 	        ResetFollowers();
 
             // Remove listeneres
-            ListOfCurrentFollowers.OnAdd.RemoveListener(ResetFollowersWithDummyParam);
+            ListOfCurrentFollowers.OnAdd.RemoveListener(OnAdd);
 			ListOfCurrentFollowers.OnRemove.RemoveListener(ResetFollowersWithDummyParam);
 			ListOfCurrentFollowers.OnChange.RemoveListener(ResetFollowersWithDummyParam);
 
             // Add listeners
-			ListOfCurrentFollowers.OnAdd.AddListener(ResetFollowersWithDummyParam);
+			ListOfCurrentFollowers.OnAdd.AddListener(OnAdd);
 			ListOfCurrentFollowers.OnRemove.AddListener(ResetFollowersWithDummyParam);
 			ListOfCurrentFollowers.OnChange.AddListener(ResetFollowersWithDummyParam);
 		}
@@ -60,6 +60,11 @@ namespace G4AW2.Followers {
 	    private void ResetFollowersWithDummyParam(FollowerData d) {
 	        ResetFollowers();
 	    }
+
+	    private void OnAdd(FollowerData d) {
+	        QuickPopUp.Show(d.Portrait, $"<size=140%>Follower Appeared!</size>\n\nA {d.DisplayName} is now following you");
+            ResetFollowers();
+        }
 
 		private void ResetFollowers() {
 			FollowerPool.Reset();
