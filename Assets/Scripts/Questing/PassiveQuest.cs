@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace G4AW2.Questing {
-    public class PassiveQuest : Quest, ISaveable {
+    public class PassiveQuest : Quest {
 
 #if UNITY_EDITOR
         [ContextMenu("Pick ID")]
@@ -25,14 +25,6 @@ namespace G4AW2.Questing {
 
         public virtual void FinishQuest() {
             OnComplete?.Invoke(this);
-        }
-
-        public virtual string GetSaveString() {
-            throw new System.NotImplementedException();
-        }
-
-        public virtual void SetData(string saveString, params object[] otherData) {
-            throw new System.NotImplementedException();
         }
     }
 }

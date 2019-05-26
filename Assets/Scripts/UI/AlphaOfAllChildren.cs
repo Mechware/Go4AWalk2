@@ -19,6 +19,9 @@ public class AlphaOfAllChildren : MonoBehaviour {
 	        Color c = text.faceColor;
 	        c.a = alpha;
 	        text.faceColor = c;
+	        Color o = text.outlineColor;
+	        o.a = alpha;
+	        text.outlineColor = o;
 	    }
     }
 

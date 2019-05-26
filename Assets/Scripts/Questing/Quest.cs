@@ -1,7 +1,7 @@
 using UnityEngine;
 
 namespace G4AW2.Questing {
-    public class Quest : ScriptableObject, IID {
+    public class Quest : ScriptableObject, IID, ISaveable {
 
         public int ID;
         public string DisplayName;
@@ -14,6 +14,13 @@ namespace G4AW2.Questing {
 #endif
         public int GetID() {
             return ID;
+        }
+        public virtual string GetSaveString() {
+            return "";
+        }
+
+        public virtual void SetData(string saveString, params object[] otherData) {
+            
         }
     }
 }

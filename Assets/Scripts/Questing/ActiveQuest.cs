@@ -69,11 +69,11 @@ namespace G4AW2.Questing {
             public int ID;
         }
 
-        public string GetSaveString() {
+        public override string GetSaveString() {
             return JsonUtility.ToJson(new DummySave() { ID = ID });
         }
 
-        public void SetData(string saveString, params object[] otherData) {
+        public override void SetData(string saveString, params object[] otherData) {
 
             PersistentSetQuest quests = otherData[0] as PersistentSetQuest;
             DummySave ds = JsonUtility.FromJson<DummySave>(saveString);
