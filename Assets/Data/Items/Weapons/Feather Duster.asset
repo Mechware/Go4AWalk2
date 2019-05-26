@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Name: Feather Duster
   m_EditorClassIdentifier: 
   ID: 53
+  Name: Feather Duster
   Image: {fileID: 21300000, guid: 0a417c725e3df9f48b9751e6e9131385, type: 3}
-  Value: 10
+  Value: 6
   Description: Not effective as a duster or a weapon, but what else are you going
     to use all thsoe feathers for?
   Rarity: 0
+  AllItems: {fileID: 11400000, guid: f34cbb7c711f3c94f92aaeed3b937361, type: 2}
   Damage: 6
   LevelUp: {fileID: 11400000, guid: 1b44135a1b59bbf4193efb1137b4ab02, type: 2}

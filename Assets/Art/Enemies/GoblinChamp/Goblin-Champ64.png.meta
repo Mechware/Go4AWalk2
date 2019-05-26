@@ -35,6 +35,17 @@ TextureImporter:
     21300060: Goblin-Champ64_30
     21300062: Goblin-Champ64_31
     21300064: Goblin-Champ64_32
+    21300066: Goblin-Champ64_33
+    21300068: Goblin-Champ64_34
+    21300070: Goblin-Champ64_35
+    21300072: Goblin-Champ64_36
+    21300074: Goblin-Champ64_37
+    21300076: Goblin-Champ64_38
+    21300078: Goblin-Champ64_39
+    21300080: Goblin-Champ64_40
+    21300082: Goblin-Champ64_41
+    21300084: Goblin-Champ64_42
+    21300086: Goblin-Champ64_43
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -136,13 +147,13 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ac1f8c4c01e337c4ab6ebc3a7a22639d
+      spriteID: 3d199ab4dbd1cd44082180003514c391
       vertices: []
       indices: 
       edges: []
@@ -156,13 +167,13 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5677d46a1ca2737429ac5fba919072d7
+      spriteID: 677d5bab1dc2bcb45a5a8f012b7603e0
       vertices: []
       indices: 
       edges: []
@@ -171,18 +182,18 @@ TextureImporter:
       name: Goblin-Champ64_2
       rect:
         serializedVersion: 2
-        x: 0
-        y: 320
+        x: 128
+        y: 384
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9ea36c5416637ed439de32d7aeac709a
+      spriteID: c5ca5a6bfdcc76c478a9b5ee13415c42
       vertices: []
       indices: 
       edges: []
@@ -191,18 +202,18 @@ TextureImporter:
       name: Goblin-Champ64_3
       rect:
         serializedVersion: 2
-        x: 64
+        x: 0
         y: 320
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fd8c079e7d2c6a14b810c7d003d12912
+      spriteID: 65df52734750a51469601a3499fe4625
       vertices: []
       indices: 
       edges: []
@@ -211,18 +222,18 @@ TextureImporter:
       name: Goblin-Champ64_4
       rect:
         serializedVersion: 2
-        x: 128
+        x: 64
         y: 320
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ded6c6f50029fcb46bab142293c8f3da
+      spriteID: ff3bd3f7149429240a2ab8600cc382db
       vertices: []
       indices: 
       edges: []
@@ -231,18 +242,18 @@ TextureImporter:
       name: Goblin-Champ64_5
       rect:
         serializedVersion: 2
-        x: 192
+        x: 128
         y: 320
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 278ba36a19aafbb4abde1cbb6facad31
+      spriteID: 1c6ec5586c4f7d1478543aa8ace8af3a
       vertices: []
       indices: 
       edges: []
@@ -251,18 +262,18 @@ TextureImporter:
       name: Goblin-Champ64_6
       rect:
         serializedVersion: 2
-        x: 256
+        x: 192
         y: 320
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a91ceb3144a18b64581e6e3ba1f7e817
+      spriteID: ce2e8130e8acd8945bd5a7db43497f5f
       vertices: []
       indices: 
       edges: []
@@ -271,18 +282,18 @@ TextureImporter:
       name: Goblin-Champ64_7
       rect:
         serializedVersion: 2
-        x: 320
+        x: 256
         y: 320
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2b22b57331d63484a9eb63e9286c01e7
+      spriteID: 28e3077f421a3a84ab596b06bcc17111
       vertices: []
       indices: 
       edges: []
@@ -291,18 +302,18 @@ TextureImporter:
       name: Goblin-Champ64_8
       rect:
         serializedVersion: 2
-        x: 0
-        y: 256
+        x: 320
+        y: 320
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 38624562d4493b8419ea1b97e745b92f
+      spriteID: 78e013298ded800409494bff3d6e94d0
       vertices: []
       indices: 
       edges: []
@@ -311,18 +322,18 @@ TextureImporter:
       name: Goblin-Champ64_9
       rect:
         serializedVersion: 2
-        x: 64
-        y: 256
+        x: 384
+        y: 320
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f15307e74d70bde4c90028bf762f8a5a
+      spriteID: a58b170aab6fa29428d883e21c615d2b
       vertices: []
       indices: 
       edges: []
@@ -331,18 +342,18 @@ TextureImporter:
       name: Goblin-Champ64_10
       rect:
         serializedVersion: 2
-        x: 128
-        y: 256
+        x: 448
+        y: 320
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c0e5683992b73ac4d8abaad7a39dacf0
+      spriteID: c8e59d5d06cc0e34caf6ba59b04a0f37
       vertices: []
       indices: 
       edges: []
@@ -351,18 +362,18 @@ TextureImporter:
       name: Goblin-Champ64_11
       rect:
         serializedVersion: 2
-        x: 192
-        y: 256
+        x: 512
+        y: 320
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e390197b679cfd844a6a397773fbd4c8
+      spriteID: 3e2f3b4ebfe428b4b93458d9dbea0cf6
       vertices: []
       indices: 
       edges: []
@@ -371,18 +382,18 @@ TextureImporter:
       name: Goblin-Champ64_12
       rect:
         serializedVersion: 2
-        x: 256
-        y: 256
+        x: 576
+        y: 320
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 507ae7cfa6022c34cb468eb441c43750
+      spriteID: 50ce3291956c68f45a3e8f63cef6a15c
       vertices: []
       indices: 
       edges: []
@@ -391,18 +402,18 @@ TextureImporter:
       name: Goblin-Champ64_13
       rect:
         serializedVersion: 2
-        x: 320
-        y: 256
+        x: 640
+        y: 320
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4f38ca93032ac9e46a98384beec8b97e
+      spriteID: 3bf2be14f42d7c5489728b3dacddeb0a
       vertices: []
       indices: 
       edges: []
@@ -411,18 +422,18 @@ TextureImporter:
       name: Goblin-Champ64_14
       rect:
         serializedVersion: 2
-        x: 0
-        y: 192
+        x: 704
+        y: 320
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2767f73962bd98146817b03d7dd3f77e
+      spriteID: 2689c266b8e175b4fa3f705de38f1dd2
       vertices: []
       indices: 
       edges: []
@@ -431,18 +442,18 @@ TextureImporter:
       name: Goblin-Champ64_15
       rect:
         serializedVersion: 2
-        x: 64
-        y: 192
+        x: 0
+        y: 256
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3ad659309b555b04ebe7aeb0c010ac4f
+      spriteID: a5cf29f2ecb1d114d8c6bb9b2cb4e05e
       vertices: []
       indices: 
       edges: []
@@ -451,18 +462,18 @@ TextureImporter:
       name: Goblin-Champ64_16
       rect:
         serializedVersion: 2
-        x: 128
-        y: 192
+        x: 64
+        y: 256
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e1bd598a0468f4943804e9eb6224efe9
+      spriteID: 1ac39d556a88e2e4f99324d36547ef15
       vertices: []
       indices: 
       edges: []
@@ -471,18 +482,38 @@ TextureImporter:
       name: Goblin-Champ64_17
       rect:
         serializedVersion: 2
-        x: 192
-        y: 192
+        x: 128
+        y: 256
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 637be65ed3d153247878c818ccb43fb4
+      spriteID: 553ae752a46dbfa44afedaaa6be0e04a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Goblin-Champ64_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a6ef2f875c4cd740b12d62aaf8db17c
       vertices: []
       indices: 
       edges: []
@@ -491,18 +522,18 @@ TextureImporter:
       name: Goblin-Champ64_19
       rect:
         serializedVersion: 2
-        x: 0
-        y: 128
+        x: 64
+        y: 192
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: aeaf65ab86eb98046baae5d1d1196699
+      spriteID: 45dc4289ce095c24980e290952e546c7
       vertices: []
       indices: 
       edges: []
@@ -511,18 +542,18 @@ TextureImporter:
       name: Goblin-Champ64_20
       rect:
         serializedVersion: 2
-        x: 64
+        x: 0
         y: 128
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fce4ddacfb172bc48b5a7236ba41b971
+      spriteID: 0003d651ce49dbb4e80cfeaa7efd14ca
       vertices: []
       indices: 
       edges: []
@@ -531,18 +562,18 @@ TextureImporter:
       name: Goblin-Champ64_21
       rect:
         serializedVersion: 2
-        x: 0
-        y: 64
+        x: 64
+        y: 128
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b9c991ee5d8edd149a9945dd31759f4b
+      spriteID: b03cf16b5600ff845b11eaa641a58ae1
       vertices: []
       indices: 
       edges: []
@@ -551,18 +582,18 @@ TextureImporter:
       name: Goblin-Champ64_22
       rect:
         serializedVersion: 2
-        x: 64
-        y: 64
+        x: 128
+        y: 128
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 941a9518e4fc16c469847269afd435c6
+      spriteID: 003d732a8b36e1947af8cc087d62136e
       vertices: []
       indices: 
       edges: []
@@ -571,18 +602,18 @@ TextureImporter:
       name: Goblin-Champ64_23
       rect:
         serializedVersion: 2
-        x: 128
-        y: 64
+        x: 192
+        y: 128
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d146c4f9166980f4280a7f7520a10196
+      spriteID: c663b55e90f8fe848b3ea7113817b22d
       vertices: []
       indices: 
       edges: []
@@ -591,18 +622,18 @@ TextureImporter:
       name: Goblin-Champ64_24
       rect:
         serializedVersion: 2
-        x: 192
-        y: 64
+        x: 256
+        y: 128
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7a056b11904ef554bbf8fb8fc3b8a876
+      spriteID: 50ebb079a5c03084286472d37fd12016
       vertices: []
       indices: 
       edges: []
@@ -611,18 +642,18 @@ TextureImporter:
       name: Goblin-Champ64_25
       rect:
         serializedVersion: 2
-        x: 256
-        y: 64
+        x: 320
+        y: 128
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a8eb8e5511ce39b419c00cb9449af31b
+      spriteID: e5247ca8a12f80d498dfd50c8ecfc441
       vertices: []
       indices: 
       edges: []
@@ -631,18 +662,18 @@ TextureImporter:
       name: Goblin-Champ64_26
       rect:
         serializedVersion: 2
-        x: 320
-        y: 64
+        x: 384
+        y: 128
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 08e3f4256199dd6408b643b15beda8ba
+      spriteID: 7964f6711f998cb4da55129bec360aa9
       vertices: []
       indices: 
       edges: []
@@ -651,18 +682,18 @@ TextureImporter:
       name: Goblin-Champ64_27
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
+        x: 448
+        y: 128
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e62ac0f58f6517a44969ff325040250c
+      spriteID: b6c1d654c7c46d04988b84ee6d260032
       vertices: []
       indices: 
       edges: []
@@ -671,18 +702,18 @@ TextureImporter:
       name: Goblin-Champ64_28
       rect:
         serializedVersion: 2
-        x: 64
-        y: 0
+        x: 512
+        y: 128
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 58821deb159aecc4ba12cbf4bf8c6dc7
+      spriteID: 775508c8d7b9757438f864dad3fb2783
       vertices: []
       indices: 
       edges: []
@@ -691,18 +722,18 @@ TextureImporter:
       name: Goblin-Champ64_29
       rect:
         serializedVersion: 2
-        x: 128
-        y: 0
+        x: 576
+        y: 128
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 27ae1fadf0b10ac4a84b0d079ffc4e79
+      spriteID: c9234ad6dc176cc46a932b07fa80e10d
       vertices: []
       indices: 
       edges: []
@@ -711,18 +742,18 @@ TextureImporter:
       name: Goblin-Champ64_30
       rect:
         serializedVersion: 2
-        x: 192
-        y: 0
+        x: 640
+        y: 128
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f9a28a3122074b844a1d1191dc82b16c
+      spriteID: 7d6c318d22341844d9d73cb3f969f568
       vertices: []
       indices: 
       edges: []
@@ -731,18 +762,18 @@ TextureImporter:
       name: Goblin-Champ64_31
       rect:
         serializedVersion: 2
-        x: 256
-        y: 0
+        x: 0
+        y: 64
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0bbf858612fccf3409df24a02b5e5fe8
+      spriteID: 3b83a2f8c6db56049af5fbecdb742516
       vertices: []
       indices: 
       edges: []
@@ -751,18 +782,238 @@ TextureImporter:
       name: Goblin-Champ64_32
       rect:
         serializedVersion: 2
-        x: 320
-        y: 0
+        x: 64
+        y: 64
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 28ef2859a6b40044898c061cb23d4276
+      spriteID: c484ce64dcd584c4aafc55fd366f436f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Goblin-Champ64_33
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5169745bf22d0bb49b917430c68eca0f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Goblin-Champ64_34
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ec3d85ec23e28a4093e5a41b3c17a8e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Goblin-Champ64_35
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 65c121882a043af469460a37a15cc51e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Goblin-Champ64_36
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f2daafb811eb91245912d1f34e6d2d46
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Goblin-Champ64_37
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 61320a40e85342d4cb490e288c79ca1d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Goblin-Champ64_38
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a30e0a6b9ca6950439caf66aad3e55df
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Goblin-Champ64_39
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f07f18c4f22d69c47a6905b577767b66
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Goblin-Champ64_40
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 337adab38ad0ff848a9d0a18ccd2d2ef
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Goblin-Champ64_41
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef9b45cdf450d7d43b29713cf98f2be0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Goblin-Champ64_42
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3add74afe73b56944ae8e645011fb992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Goblin-Champ64_43
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e89f87eb89e2d844a176e085f3f6f82
       vertices: []
       indices: 
       edges: []

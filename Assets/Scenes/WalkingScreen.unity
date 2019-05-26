@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.3731193, g: 0.38073996, b: 0.35872698, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -7385,7 +7385,7 @@ MonoBehaviour:
     Count: {fileID: 11400000, guid: 2fa37ea30488ec0439eb4aafd34f1afc, type: 2}
   - Enemy: {fileID: 11400000, guid: 122dbbbf58a55ed4ea26d6db1f754cbb, type: 2}
     Count: {fileID: 11400000, guid: 55fa507ac2e36b34e947af3110a2778a, type: 2}
-  - Enemy: {fileID: 11400000, guid: 83a82c4d831cd0e4ea76b4e193b6f359, type: 2}
+  - Enemy: {fileID: 0}
     Count: {fileID: 11400000, guid: 2af91fa6d37a6ed40aa46b8681f8f433, type: 2}
   - Enemy: {fileID: 11400000, guid: 51d3cce514427d448a622c4b31127522, type: 2}
     Count: {fileID: 11400000, guid: 27ca57e927a9d564cbbc4aeac61c99bb, type: 2}
@@ -7490,7 +7490,7 @@ MonoBehaviour:
     Count: {fileID: 11400000, guid: ef4eaaf100d94af48941d5af0eb780ad, type: 2}
   - Item: {fileID: 11400000, guid: a1bae974b4903be4ab94566370f05d52, type: 2}
     Count: {fileID: 11400000, guid: 097d2086eaf1a4249af21100a29c58cf, type: 2}
-  - Item: {fileID: 11400000, guid: 34c8f35c564af1c49bf3a0c75282030c, type: 2}
+  - Item: {fileID: 0}
     Count: {fileID: 11400000, guid: e4a9ad0a6a34ded4fbfd218087e17f71, type: 2}
   - Item: {fileID: 11400000, guid: 890d3d3a441ca0043a666fed93a16876, type: 2}
     Count: {fileID: 11400000, guid: 8bca2540c0c5eee46a5a6cfbe5a28595, type: 2}
@@ -22237,6 +22237,22 @@ Prefab:
     - target: {fileID: 1442688939906840, guid: b07b7279b8533a743ac3ef8395402d78, type: 2}
       propertyPath: m_Name
       value: PlayerHealthBar
+      objectReference: {fileID: 0}
+    - target: {fileID: 114890422546432702, guid: b07b7279b8533a743ac3ef8395402d78,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 9f69b64489a0e8b49a53117d5ee5bb43,
+        type: 3}
+    - target: {fileID: 114890422546432702, guid: b07b7279b8533a743ac3ef8395402d78,
+        type: 2}
+      propertyPath: m_RaycastTarget
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114890422546432702, guid: b07b7279b8533a743ac3ef8395402d78,
+        type: 2}
+      propertyPath: m_Type
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b07b7279b8533a743ac3ef8395402d78, type: 2}

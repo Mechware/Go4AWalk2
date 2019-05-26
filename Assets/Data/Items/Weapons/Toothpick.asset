@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Name: Toothpick
   m_EditorClassIdentifier: 
   ID: 43
+  Name: Toothpick
   Image: {fileID: 21300000, guid: 1738dd73e4878824f81d23b2b251a583, type: 3}
-  Value: 25
+  Value: 40
   Description: The blood is 'cause you dont floss.
   Rarity: 1
   AllItems: {fileID: 11400000, guid: f34cbb7c711f3c94f92aaeed3b937361, type: 2}

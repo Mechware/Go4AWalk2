@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Name: Steel Sword
   m_EditorClassIdentifier: 
   ID: 4
+  Name: Steel Sword
   Image: {fileID: 21300000, guid: bc12466e5713ea945b391a76f6677c14, type: 3}
-  Value: 80
+  Value: 30
   Description: Stronger and lighter than iron, its amazing what a little carbon can
     do.
   Rarity: 1
   AllItems: {fileID: 11400000, guid: f34cbb7c711f3c94f92aaeed3b937361, type: 2}
-  Damage: 50
+  Damage: 30
   LevelUp: {fileID: 11400000, guid: 1b44135a1b59bbf4193efb1137b4ab02, type: 2}
