@@ -20,14 +20,14 @@ namespace G4AW2.Data.Combat {
 
 	    public Sprite DeadSprite;
 	    
-        private const float BASE_ENEMY_HEALTH_SCALING = 10000;
-	    private const float BASE_ENEMY_DAMAGE_SCALING = 100;
+        private const float BASE_ENEMY_HEALTH_SCALING = 5000;
+	    private const float BASE_ENEMY_DAMAGE_SCALING = 50;
 	    private const float BASE_ENEMY_ELEM_DAMAGE_SCALING = 2.5f;
 
 	    [Header("Stats")]
-        [Range(-100, 100)]
+        [Range(0, 500)]
         public float BaseHealth;
-        [Range(-100, 100)]
+        [Range(0, 500)]
 	    public float BaseDamage;
 
 	    public float TimeBetweenAttacks;

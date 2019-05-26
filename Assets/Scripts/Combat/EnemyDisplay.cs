@@ -274,7 +274,7 @@ namespace G4AW2.Combat {
         }
 
 	    public void ClearDeadEnemies() {
-	        DeadEnemies.Reset();
+	        DeadEnemies?.Reset();
 	    }
 
 	    private void AllDone() {
