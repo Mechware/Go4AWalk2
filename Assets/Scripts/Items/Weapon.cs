@@ -21,7 +21,7 @@ namespace G4AW2.Data.DropSystem
         public float RawMastery => ConfigObject.GetLevel(Rarity, MasteryLevels.GetTaps(ID));
         private float MasteryDamageMod => Mastery == 99 ? 2.15f : 1 + Mastery / 100f;
 
-        [Range(0,100)]
+        //[Range(0,100)]
         public float Damage;
 
         public bool IsEnchanted { get { return Enchantment != null; } }

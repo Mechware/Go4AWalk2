@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Name: Thief Saber
   m_EditorClassIdentifier: 
   ID: 47
+  Name: Thief Saber
   Image: {fileID: 21300000, guid: 7e74d63a8d2312f459d782fa8ce2c889, type: 3}
-  Value: 250
+  Value: 46
   Description: A rare blade used by ruffians and cutthroats, often still coated with
     devious poisons.
   Rarity: 2
   AllItems: {fileID: 11400000, guid: f34cbb7c711f3c94f92aaeed3b937361, type: 2}
-  Damage: 41
+  Damage: 46
   LevelUp: {fileID: 11400000, guid: 1b44135a1b59bbf4193efb1137b4ab02, type: 2}

@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Name: Gold Sword
   m_EditorClassIdentifier: 
   ID: 33
+  Name: Gold Sword
   Image: {fileID: 21300000, guid: 4c20f576803095a45bdfaeced38ae40f, type: 3}
-  Value: 1000
+  Value: 100
   Description: Gold makes for terrible weapons, but how else are you going to flex
     on the peasants.
   Rarity: 3

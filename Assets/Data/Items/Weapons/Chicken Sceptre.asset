@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Name: Chicken Sceptre
   m_EditorClassIdentifier: 
   ID: 52
+  Name: Chicken Sceptre
   Image: {fileID: 21300000, guid: f00687e35a449134bbea84eacfafa978, type: 3}
-  Value: 100
+  Value: 30
   Description: Proof of your mastery over chickens.
-  Rarity: 2
+  Rarity: 1
+  AllItems: {fileID: 11400000, guid: f34cbb7c711f3c94f92aaeed3b937361, type: 2}
   Damage: 30
   LevelUp: {fileID: 11400000, guid: 1b44135a1b59bbf4193efb1137b4ab02, type: 2}

@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Name: Knife
   m_EditorClassIdentifier: 
   ID: 41
+  Name: Knife
   Image: {fileID: 21300000, guid: b66b6d4336f34ff40ba2617028017317, type: 3}
-  Value: 0
+  Value: 11
   Description: 'Small and good for cutting an apple or a person or something. '
   Rarity: 0
   AllItems: {fileID: 11400000, guid: f34cbb7c711f3c94f92aaeed3b937361, type: 2}

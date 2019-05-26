@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Name: Goblin Sword
   m_EditorClassIdentifier: 
   ID: 28
+  Name: Goblin Sword
   Image: {fileID: 21300000, guid: c9e75633d9205df40b9300769ff39a5b, type: 3}
-  Value: 10
+  Value: 15
   Description: Its dull and rusty and kinda too small but hey, its better than a stick.
   Rarity: 0
   AllItems: {fileID: 11400000, guid: f34cbb7c711f3c94f92aaeed3b937361, type: 2}

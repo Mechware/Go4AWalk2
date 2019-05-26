@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Name: Demon Sword
   m_EditorClassIdentifier: 
   ID: 46
+  Name: Demon Sword
   Image: {fileID: 21300000, guid: a1873b9bf5f7c724f803f4b794c14bc6, type: 3}
-  Value: 6666
+  Value: 75
   Description: A blade crafted in the fires of hell.
   Rarity: 3
   AllItems: {fileID: 11400000, guid: f34cbb7c711f3c94f92aaeed3b937361, type: 2}
