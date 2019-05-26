@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.3731193, g: 0.38073996, b: 0.35872698, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -16209,6 +16209,8 @@ MonoBehaviour:
   Result: {fileID: 982086823}
   ItemViewer: {fileID: 1243540567}
   EnchantButton: {fileID: 718965111}
+  NumberOfEnchantedWeapons: {fileID: 11400000, guid: 7d8fe6d2e7f33864b90fbc69e833b4c2,
+    type: 2}
   WeaponUI: {fileID: 1186125109}
 --- !u!1 &935102087
 GameObject:

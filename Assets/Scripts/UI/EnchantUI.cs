@@ -19,6 +19,8 @@ public class EnchantUI : MonoBehaviour {
 
     public Button EnchantButton;
 
+    public IntVariable NumberOfEnchantedWeapons;
+
     // Use this for initialization
     void Start () {
 		Weapon.SetData(null, 0, "Put weapon to enchant here.", WeaponViewerClicked);
@@ -57,6 +59,8 @@ public class EnchantUI : MonoBehaviour {
         Enchanter e = Enchanter.Item.Item as Enchanter;
 
         if (w == null || e == null) return;
+
+        NumberOfEnchantedWeapons.Value++;
 
         Inventory.Remove(e);
         w.Enchant(e);

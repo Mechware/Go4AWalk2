@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: Blue Gnome
   m_EditorClassIdentifier: 
   ID: 5
-  DisplayName: Blue Gnome
+  DisplayName: Gnome Chompy
   Portrait: {fileID: 21300000, guid: e0be62ea78b407d4a88f12efea2ca7d4, type: 3}
   SizeOfSprite: {x: 64, y: 64}
   SpaceBetweenEnemies: 32
@@ -50,4 +50,6 @@ MonoBehaviour:
       dropChance: 0.6
     - item: {fileID: 11400000, guid: c95e6bfd76411ee4ba7c1167255243a9, type: 2}
       dropChance: 0.1
+    - item: {fileID: 11400000, guid: aadd84ecb64a69d438a811a67a041056, type: 2}
+      dropChance: 0.5
   OneAndDoneAttacker: 0

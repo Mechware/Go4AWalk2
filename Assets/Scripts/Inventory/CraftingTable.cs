@@ -62,9 +62,4 @@ public class CraftingTable : ScriptableObject {
         Inventory.Add(it, cr.Result.Amount);
         return it;
     }
-
-
-    public void Enchant(Weapon w) {
-
-    }
 }
