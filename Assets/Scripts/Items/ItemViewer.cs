@@ -38,14 +38,11 @@ public class ItemViewer : MonoBehaviour {
     }
 
     public void Clear() {
-        items.ForEach(it => Destroy(it));
+        items.ForEach(it => Destroy(it)); // TODO: Pool Items
     }
 
     public void ShowItems(IEnumerable<InventoryEntry> itemsToAdd, Action<Item> onClick, bool showAmount, bool showNull = false) {
-        Clear();
-        transform.SetAsLastSibling();
-        gameObject.SetActive(true);
-
+        Open();
 
         foreach(var entry in itemsToAdd) {
             GameObject go = GameObject.Instantiate(ItemDisplayPrefab, Content.transform);
@@ -62,12 +59,17 @@ public class ItemViewer : MonoBehaviour {
         }
     }
 
+    public RobustLerperSerialized OpenLerper;
+    private enum State { LerpingOpen, LerpingClosed, Open, Closed }
+    private State state = State.Closed;
+
+    void Update() {
+        OpenLerper.Update(Time.deltaTime);
+    }
+
     public void ShowItems(IEnumerable<Item> itemsToAdd, Action<Item> onClick) {
-        Clear();
-
-        gameObject.SetActive(true);
-
-
+        Open();
+       
         foreach(var item in itemsToAdd) {
             GameObject go = GameObject.Instantiate(ItemDisplayPrefab, Content.transform);
             InventoryItemDisplay iid = go.GetComponent<InventoryItemDisplay>();
@@ -83,7 +85,26 @@ public class ItemViewer : MonoBehaviour {
         items.Add(iid.gameObject);
     }
 
+    public void Open() {
+        Clear();
+        transform.SetAsLastSibling();
+        gameObject.SetActive(true);
+
+        if(state != State.Closed) {
+            OpenLerper.EndLerping(true);
+        } else {
+            state = State.LerpingOpen;
+            OpenLerper.StartLerping(() => {
+                state = State.Open;
+            });
+        }
+    }
+
     public void Close() {
-        gameObject.SetActive(false);
+        state = State.LerpingClosed;
+        OpenLerper.StartReverseLerp(() => {
+            state = State.Closed;
+            gameObject.SetActive(false);
+        });
     }
 }

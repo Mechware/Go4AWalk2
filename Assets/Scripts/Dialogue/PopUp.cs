@@ -16,6 +16,12 @@ namespace G4AW2.Dialogue {
 
 		public GameObject container;
 
+	    public RobustLerperSerialized LerpOpen;
+
+        private enum State { LerpingOpen, LerpingClosed, Open, Closed}
+
+	    private State state = State.Closed;
+
 		private static PopUp singleton;
 		private bool inUse = false;
 
@@ -23,6 +29,9 @@ namespace G4AW2.Dialogue {
 			singleton = this;
 		}
 
+	    void Update() {
+	        LerpOpen.Update(Time.deltaTime);
+	    }
 	    public static void Close() {
 	        singleton.container.SetActive(false);
 	    }
@@ -35,6 +44,16 @@ namespace G4AW2.Dialogue {
 		private bool SetPopUpPriv(string text, string[] options, Action[] responses) {
             transform.SetAsLastSibling();
 			container.SetActive(true);
+
+		    if (state != State.Closed) {
+                LerpOpen.EndLerping(true);
+		    }
+		    else {
+                state = State.LerpingOpen;
+		        LerpOpen.StartLerping(() => {
+		            state = State.Open;
+		        });
+		    }
 
 
 			if (inUse)
@@ -68,7 +87,13 @@ namespace G4AW2.Dialogue {
 		}
 
 		private void AddListener(Button b, int i, Action[] responses) {
-			b.onClick.AddListener(() => container.SetActive(false));
+			b.onClick.AddListener(() => {
+                state = State.LerpingClosed;
+                LerpOpen.StartReverseLerp(() => {
+                    state = State.Closed;
+			        container.SetActive(false);
+                });
+            });
 		    b.onClick.AddListener(() => responses[i]());
 		}
 

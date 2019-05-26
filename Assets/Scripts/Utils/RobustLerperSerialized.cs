@@ -81,7 +81,7 @@ public class RobustLerperSerialized {
         playing = true;
     }
 
-    public void EndLerping() {
+    public void EndLerping(bool silently = false) {
         playing = false;
 
         foreach(LerpObject lerper in Lerpers) {
@@ -89,7 +89,7 @@ public class RobustLerperSerialized {
         }
 
         OnEnd.Invoke();
-        currentLerpingAction?.Invoke();
+        if(!silently) currentLerpingAction?.Invoke();
     }
 
     public void EndReverseLerping() {

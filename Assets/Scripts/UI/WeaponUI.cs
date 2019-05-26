@@ -39,6 +39,10 @@ DAM {2}";
 
     public Inventory Inventory;
 
+    public RobustLerperSerialized OpenLerper;
+    private enum State { LerpingOpen, LerpingClosed, Open, Closed }
+    private State state = State.Closed;
+
     public void SetWeaponWithDefaults(Weapon w, Action onfinish=null) {
         SetWeapon(w, new[] {
             new ButtonAction() {Title= w.IsTrash() ? "Untrash" : "Trash", OnClick = () => { w.MarkedAsTrash = true; onfinish?.Invoke(); } },
@@ -139,10 +143,27 @@ DAM {2}";
     public void Open() {
         gameObject.SetActive(true);
         transform.SetAsLastSibling();
+
+        if(state != State.Closed) {
+            OpenLerper.EndLerping(true);
+        } else {
+            state = State.LerpingOpen;
+            OpenLerper.StartLerping(() => {
+                state = State.Open;
+            });
+        }
+    }
+
+    void Update() {
+        OpenLerper.Update(Time.deltaTime);
     }
 
     public void Close() {
-        gameObject.SetActive(false);
+        state = State.LerpingClosed;
+        OpenLerper.StartReverseLerp(() => {
+            state = State.Closed;
+            gameObject.SetActive(false);
+        });
     }
 
     public TextMeshProUGUI CompareToDescriptionText;
