@@ -12908,6 +12908,7 @@ Transform:
   - {fileID: 1992234738}
   - {fileID: 398981462}
   - {fileID: 1289403453}
+  - {fileID: 1155954840}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -12994,6 +12995,17 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1201876788}
         m_MethodName: QuestChanged
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1155954841}
+        m_MethodName: QuestUpdated
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -18629,6 +18641,12 @@ MonoBehaviour:
     ConstantValue: 4
     Variable: {fileID: 0}
   BaseDamageColor: {r: 1, g: 1, b: 1, a: 1}
+  ShowParryAndBlockColors:
+    UseConstant: 0
+    ConstantValue: 0
+    Variable: {fileID: 11400000, guid: 90d9cb1396cf64744a7e34275ca59cfd, type: 2}
+  ParryColor: {r: 1, g: 0, b: 0, a: 1}
+  BlockColor: {r: 0, g: 1, b: 0.97979045, a: 1}
   EnemyState: 0
   Enemy: {fileID: 11400000, guid: f9cb20d3635f5ec40935188217f021cd, type: 2}
   MaxHealth:
@@ -21052,6 +21070,52 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1153123813}
   m_CullTransparentMesh: 0
+--- !u!1 &1155954839
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1155954840}
+  - component: {fileID: 1155954841}
+  m_Layer: 0
+  m_Name: Tutorial Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1155954840
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1155954839}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 701840140}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1155954841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1155954839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d739d1d029f8fe41a71e6b076d95c36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowParryAndBlockColor: {fileID: 11400000, guid: 90d9cb1396cf64744a7e34275ca59cfd,
+    type: 2}
+  BlockingAndParryingTutorialStart: {fileID: 11400000, guid: 1813d7e0e7b53e14ea74a03ff6e2ceee,
+    type: 2}
+  BlockingAndParryingTutorialEnd: {fileID: 11400000, guid: d7da656351c83b446bdb11c78e5cc95e,
+    type: 2}
 --- !u!1 &1159586050
 GameObject:
   m_ObjectHideFlags: 0

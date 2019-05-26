@@ -24,10 +24,7 @@ MonoBehaviour:
       mark in the bottom right if you need assistance.
 
 
-      That goblin armor with your feathered hat will look amazing.
-
-
-      Also, you''re about to go back to the beginning.'
+      That goblin armor with your feathered hat will look amazing.'
     Speaker: {fileID: 21300000, guid: c27605eebf83392428128ddf89b5bd1f, type: 3}
   MinEnemyDropTime: 50
   MaxEnemyDropTime: 100

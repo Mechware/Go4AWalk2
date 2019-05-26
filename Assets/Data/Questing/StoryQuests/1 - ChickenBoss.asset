@@ -24,17 +24,13 @@ MonoBehaviour:
       you must simply tap on the screen.'
     Speaker: {fileID: 21300000, guid: c27605eebf83392428128ddf89b5bd1f, type: 3}
   EndConversation:
-    Text: 'Great job taking care of that chicken. Don''t worry about hurting the chicken,
-      it and all the others are just clones of me gone wrong that can''t feel anything.
-
-
-      For more combat training, try looking into Parrying and Blocking in the help
-      menu accessed through the question mark in the bottom right.'
+    Text: Great job taking care of that chicken. Don't worry about hurting the chicken,
+      it and all the others are just clones of me gone wrong that can't feel anything.
     Speaker: {fileID: 21300000, guid: c27605eebf83392428128ddf89b5bd1f, type: 3}
-  MinEnemyDropTime: 240
-  MaxEnemyDropTime: 480
-  MinEnemyDropDistance: 50
-  MaxEnemyDropDistance: 250
+  MinEnemyDropTime: 9999999
+  MaxEnemyDropTime: 100000000
+  MinEnemyDropDistance: 9999999
+  MaxEnemyDropDistance: 100000000
   Area: {fileID: 11400000, guid: 5e4d1ba5949749b44bc3427231ca82f2, type: 2}
   MiningPoints: []
   Enemies:

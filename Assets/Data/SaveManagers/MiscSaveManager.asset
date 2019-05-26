@@ -86,3 +86,5 @@ MonoBehaviour:
     OtherData: []
   - ObjectToSave: {fileID: 11400000, guid: 752c5759a3863d04dbf279b32fdf3c7c, type: 2}
     OtherData: []
+  - ObjectToSave: {fileID: 11400000, guid: 90d9cb1396cf64744a7e34275ca59cfd, type: 2}
+    OtherData: []

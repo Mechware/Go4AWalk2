@@ -8,6 +8,7 @@ using G4AW2.Data.DropSystem;
 using G4AW2.Events;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 namespace G4AW2.Combat {
 	[RequireComponent(typeof(Animator))]
@@ -32,6 +33,9 @@ namespace G4AW2.Combat {
         [Header("Settings")]
         public FloatReference StunDuration;
 	    public Color BaseDamageColor;
+	    public BoolReference ShowParryAndBlockColors;
+	    public Color ParryColor;
+	    public Color BlockColor;
 
         [Header("Data")]
 		public State EnemyState;
@@ -57,6 +61,15 @@ namespace G4AW2.Combat {
 
         private Animator MyAnimator;
 
+	    private Image im;
+	    private Image Image {
+	        get {
+	            if(im == null)
+	                im = GetComponent<Image>();
+	            return im;
+	        }
+	    }
+
 	    private RectTransform rt;
 	    private RectTransform RectTransform {
 	        get {
@@ -74,7 +87,7 @@ namespace G4AW2.Combat {
 
 		public void SetEnemy( EnemyData data) {
 			Enemy = data;
-
+            
 			MaxHealth.Value = data.MaxHealth;
 			CurrentHealth.Value = MaxHealth;
 
@@ -98,6 +111,8 @@ namespace G4AW2.Combat {
 		    r.x = data.SizeOfSprite.x;
 		    r.y = data.SizeOfSprite.y;
 		    RectTransform.sizeDelta = r;
+
+		    Image.color = Color.white;
 		}
 
 	    public void StartWalkingAnimation() {
@@ -129,6 +144,7 @@ namespace G4AW2.Combat {
 		public void Stun() {
 			StopAllCoroutines();
 		    MyAnimator.SetTrigger("Stun");
+		    Image.color = Color.white;
 			EnemyState = State.Stun;
 		    Timer.StartTimer(this, StunDuration, UnStun);
         }
@@ -148,6 +164,7 @@ namespace G4AW2.Combat {
 
 				EnemyState = State.BeforeAttack;
 			    MyAnimator.SetTrigger("AttackStart");
+			    if(ShowParryAndBlockColors) Image.color = BlockColor;
 
 				// Wind up
 				yield return new WaitForSeconds(Enemy.AttackPrepTime);
@@ -156,14 +173,16 @@ namespace G4AW2.Combat {
 
 
                 EnemyState = State.ExecuteAttack;
-
 			    MyAnimator.SetTrigger("AttackExecute");
+			    if(ShowParryAndBlockColors)
+			        Image.color = ParryColor;
 
                 // Perform the attack
                 yield return new WaitForSeconds(Enemy.AttackExecuteTime);
+			    if(ShowParryAndBlockColors)
+			        Image.color = Color.white;
 			    if(EnemyState == State.Dead)
 			        break;
-
 
                 EnemyState = State.AfterAttack;
 			    FightingLogic.OnEnemyHitPlayer(Enemy.Damage);
@@ -223,6 +242,7 @@ namespace G4AW2.Combat {
 
         private void Die() {
 	        EnemyState = State.Dead;
+            Image.color = Color.white;
 
 	        StopAllCoroutines();
 	        OnDeath.Invoke(Enemy);
