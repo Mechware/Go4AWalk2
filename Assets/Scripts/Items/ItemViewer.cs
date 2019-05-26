@@ -63,10 +63,6 @@ public class ItemViewer : MonoBehaviour {
     private enum State { LerpingOpen, LerpingClosed, Open, Closed }
     private State state = State.Closed;
 
-    void Update() {
-        OpenLerper.Update(Time.deltaTime);
-    }
-
     public void ShowItems(IEnumerable<Item> itemsToAdd, Action<Item> onClick) {
         Open();
        
@@ -83,6 +79,10 @@ public class ItemViewer : MonoBehaviour {
         InventoryItemDisplay iid = go.GetComponent<InventoryItemDisplay>();
         iid.SetData(it, amount, (it2) => onClick?.Invoke((T)it2.Item));
         items.Add(iid.gameObject);
+    }
+
+    void Update() {
+        OpenLerper.Update(Time.deltaTime);
     }
 
     public void Open() {

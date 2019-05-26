@@ -34,7 +34,7 @@ namespace G4AW2.Dialogue {
 				return;
 			}
 			if (dialogueQueue.Count == 0) {
-				gameObject.SetActive(false);
+			    Close();
 				return;
 			}
 
@@ -44,12 +44,41 @@ namespace G4AW2.Dialogue {
 			Person.sprite = currentConversation.convo.Speaker;
 			Text.text = currentConversation.convo.Text;
 
-			gameObject.SetActive(true);
+		    Open();
 		}
 
 		private class ConvoWithReturn {
 			public Conversation convo;
 			public Action OnReturn;
 		}
-	}
+
+	    public RobustLerperSerialized OpenLerper;
+	    private enum State { LerpingOpen, LerpingClosed, Open, Closed }
+	    private State state = State.Closed;
+
+        void Update() {
+	        OpenLerper.Update(Time.deltaTime);
+	    }
+
+	    public void Open() {
+	        gameObject.SetActive(true);
+
+	        if(state != State.Closed) {
+	            OpenLerper.EndLerping(true);
+	        } else {
+	            state = State.LerpingOpen;
+	            OpenLerper.StartLerping(() => {
+	                state = State.Open;
+	            });
+	        }
+	    }
+
+	    public void Close() {
+	        state = State.LerpingClosed;
+	        OpenLerper.StartReverseLerp(() => {
+	            state = State.Closed;
+	            gameObject.SetActive(false);
+	        });
+	    }
+    }
 }
