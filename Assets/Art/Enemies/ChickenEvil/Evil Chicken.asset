@@ -11,15 +11,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92ed46357c010e84ea5a3394f3ad888d, type: 3}
   m_Name: Evil Chicken
   m_EditorClassIdentifier: 
-  ID: 0
-  DisplayName: 
+  ID: 23
+  DisplayName: Chicken...?
   Portrait: {fileID: 21300000, guid: e869d03a759c2af4fa10d3eba0d75965, type: 3}
-  SizeOfSprite: {x: 32, y: 32}
+  SizeOfSprite: {x: 64, y: 64}
   SpaceBetweenEnemies: 32
   SideIdleAnimation: {fileID: 7400000, guid: 70d8f80c713f6764984a37b2185a5e70, type: 2}
   RandomAnimation: {fileID: 7400000, guid: c7265f0548f30954786dfa987b9c66a7, type: 2}
-  MinTimeBetweenRandomAnims: 30
-  MaxTimeBetweenRandomAnims: 180
+  MinTimeBetweenRandomAnims: 10
+  MaxTimeBetweenRandomAnims: 30
   Idle: {fileID: 7400000, guid: 74a0d7e8add18f140b6c496716925fa1, type: 2}
   Flinch: {fileID: 7400000, guid: 904b8243e23663e4f865a461133b2b6c, type: 2}
   BeforeAttack: {fileID: 7400000, guid: e78d4fc5d296541468be158538798445, type: 2}
@@ -29,11 +29,11 @@ MonoBehaviour:
   Dead: {fileID: 7400000, guid: 87c66e7184ee3f240bc72f05b8037053, type: 2}
   Walking: {fileID: 7400000, guid: 096a7924d69d9764ea71d999e50ad53d, type: 2}
   DeadSprite: {fileID: 21300054, guid: e869d03a759c2af4fa10d3eba0d75965, type: 3}
-  BaseHealth: 0
-  BaseDamage: 0
-  TimeBetweenAttacks: 0
-  AttackPrepTime: 0
-  AttackExecuteTime: 0
+  BaseHealth: 5
+  BaseDamage: 15
+  TimeBetweenAttacks: 3
+  AttackPrepTime: 0.75
+  AttackExecuteTime: 0.5
   HasElementalDamage: 0
   BaseElementalDamage: 0
   ElementalDamageType: {fileID: 0}
@@ -43,5 +43,17 @@ MonoBehaviour:
       Weaknesses: []
     Variable: {fileID: 0}
   Drops:
-    Items: []
+    Items:
+    - item: {fileID: 11400000, guid: dc820a69f03cdd143ab25de0aeea35e5, type: 2}
+      dropChance: 0.5
+    - item: {fileID: 11400000, guid: dc820a69f03cdd143ab25de0aeea35e5, type: 2}
+      dropChance: 0.5
+    - item: {fileID: 11400000, guid: dc820a69f03cdd143ab25de0aeea35e5, type: 2}
+      dropChance: 0.1
+    - item: {fileID: 11400000, guid: dc820a69f03cdd143ab25de0aeea35e5, type: 2}
+      dropChance: 0.1
+    - item: {fileID: 11400000, guid: c95e6bfd76411ee4ba7c1167255243a9, type: 2}
+      dropChance: 0.75
+    - item: {fileID: 11400000, guid: c95e6bfd76411ee4ba7c1167255243a9, type: 2}
+      dropChance: 0.5
   OneAndDoneAttacker: 0

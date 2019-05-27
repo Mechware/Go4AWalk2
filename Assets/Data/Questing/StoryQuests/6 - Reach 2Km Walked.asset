@@ -15,11 +15,20 @@ MonoBehaviour:
   DisplayName: Walk To Fire Zone
   NextQuest: {fileID: 11400000, guid: 68904e00581c0b14b86a002773fbf51b, type: 2}
   StartConversation:
-    Text: 
-    Speaker: {fileID: 0}
+    Text: 'Egad! During your goblin defeating spree a goblin champion in a far off
+      land threatened to fight you! You have to walk 2Km to get there, but I know
+      you can do it.
+
+
+      You may encounter a few new things on your way there. A few new species have
+      been discovered roaming around here and odd looking fellows may offer quests
+      during your travels, feel free to do them while you''re walking to the distant
+      lands.'
+    Speaker: {fileID: 21300000, guid: c27605eebf83392428128ddf89b5bd1f, type: 3}
   EndConversation:
-    Text: 
-    Speaker: {fileID: 0}
+    Text: Oh we are almost there, I can feel it! Just slowly blink and we should be
+      there.
+    Speaker: {fileID: 21300000, guid: c27605eebf83392428128ddf89b5bd1f, type: 3}
   MinEnemyDropTime: 50
   MaxEnemyDropTime: 100
   MinEnemyDropDistance: 15
@@ -48,7 +57,14 @@ MonoBehaviour:
       MinLevel: 5
       MaxLevel: 7
       DropChance: 3
+    - Follower: {fileID: 11400000, guid: e2ea2a9bb3cb6454fb68c82a76f56fa3, type: 2}
+      MinLevel: 0
+      MaxLevel: 0
+      DropChance: 1
+    - Follower: {fileID: 11400000, guid: e90a0a3db47957740b6326a2485c456b, type: 2}
+      MinLevel: 0
+      MaxLevel: 0
+      DropChance: 1
   QuestRewards: []
   TotalAmount: {fileID: 11400000, guid: 74f12590ab51f1d458ce51a019ae59e3, type: 2}
   AmountToReach: 2000
-  AmountSoFar: {fileID: 11400000, guid: 66d427283c1651346a2bb795dcaa50b7, type: 2}

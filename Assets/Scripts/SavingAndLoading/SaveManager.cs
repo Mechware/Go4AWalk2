@@ -81,8 +81,9 @@ namespace G4AW2.Saving {
             try {
                 LoadFromString(File.ReadAllText(saveFilePath));
                 success = true;
-            } catch(Exception) {
+            } catch(Exception e) {
                 ShowErrorPopUp();
+                Debug.LogError(e);
                 success = false;
             }
 
@@ -121,7 +122,7 @@ namespace G4AW2.Saving {
             bool error = false;
             SaveObject saveData = JsonUtility.FromJson<SaveObject>(loadText);
             foreach(KeyValuePairStringString kvp in saveData.VariableDictionary) {
-                ListObject soToOverwrite = ObjectsToSave.First(so => so.ObjectToSave.name.Equals(kvp.Key));
+                ListObject soToOverwrite = ObjectsToSave.FirstOrDefault(so => so.ObjectToSave.name.Equals(kvp.Key));
 
                 if(soToOverwrite == null) {
                     // Removed a variable?

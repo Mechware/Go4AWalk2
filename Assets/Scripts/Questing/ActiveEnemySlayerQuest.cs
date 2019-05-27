@@ -14,7 +14,7 @@ public class ActiveEnemySlayerQuest : ActiveQuest<int, IntVariable, UnityEventIn
     protected override void OnTotalChanged(int totalAmount) {
         AmountSoFar.Value = totalAmount - amountWhenStarted;
         if(IsFinished()) {
-            FinishQuest();
+            finished.Invoke(this);
         }
     }
 

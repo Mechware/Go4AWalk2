@@ -15,11 +15,15 @@ MonoBehaviour:
   DisplayName: Get a Gem
   NextQuest: {fileID: 11400000, guid: a1f342b0db0f6874081902b4d25ca172, type: 2}
   StartConversation:
-    Text: 
-    Speaker: {fileID: 0}
+    Text: Nice blink! We are here now. It's so hot and firey here. Oh, I've heard
+      there's <b>mining points</b> here!! They appear next to the trail, if you tap
+      on them you can break them open get gems that are inside them! They're good
+      for selling and enchanting weapons! Try and get one!
+    Speaker: {fileID: 21300000, guid: c27605eebf83392428128ddf89b5bd1f, type: 3}
   EndConversation:
-    Text: 
-    Speaker: {fileID: 0}
+    Text: Ohhhhhhhhhhh it's shiny and pretty! Use it to enchant your weapon and make
+      yourself more powerful.
+    Speaker: {fileID: 21300000, guid: c27605eebf83392428128ddf89b5bd1f, type: 3}
   MinEnemyDropTime: 999999
   MaxEnemyDropTime: 9999999
   MinEnemyDropDistance: 999999

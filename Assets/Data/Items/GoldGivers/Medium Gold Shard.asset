@@ -17,3 +17,4 @@ MonoBehaviour:
   Value: 10
   Description: A decently sized piece of gold, probably worth 10 at a fair merchant.
   Rarity: 0
+  SellWithTrash: 1

@@ -15,11 +15,14 @@ MonoBehaviour:
   DisplayName: Danger Noodle Slayer
   NextQuest: {fileID: 0}
   StartConversation:
-    Text: 
-    Speaker: {fileID: 0}
+    Text: Dirt snakes have been scaring children and eating chickens, specifically
+      spiffy ones, for many years. Try and get their numbers down a bit!
+    Speaker: {fileID: 21300002, guid: d1f4f2861a5493746a532113a8f1dfd1, type: 3}
   EndConversation:
-    Text: 
-    Speaker: {fileID: 0}
+    Text: Thank you for dealing with the noodles! I managed to gather some snake oils...
+      err snake COILS for you. I also found a knife lying around, so feel free to
+      take that too!
+    Speaker: {fileID: 21300002, guid: d1f4f2861a5493746a532113a8f1dfd1, type: 3}
   MinEnemyDropTime: 20
   MaxEnemyDropTime: 40
   MinEnemyDropDistance: 15
@@ -44,6 +47,9 @@ MonoBehaviour:
     Level: -1
     RandomRoll: -1
   - it: {fileID: 11400000, guid: 6b9584ef9e8e3814faf69e9f1efe1e8b, type: 2}
+    Level: -1
+    RandomRoll: -1
+  - it: {fileID: 0}
     Level: -1
     RandomRoll: -1
   TotalAmount: {fileID: 11400000, guid: fdbd90a93216918498014533588c8a22, type: 2}

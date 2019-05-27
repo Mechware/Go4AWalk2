@@ -28,7 +28,7 @@ namespace G4AW2.Questing {
         public List<Reward> QuestRewards;
 
         
-        protected Action<ActiveQuestBase> fininshed;
+        protected Action<ActiveQuestBase> finished;
 
         [Serializable]
         public class Reward {
@@ -39,13 +39,15 @@ namespace G4AW2.Questing {
         }
 
         public virtual void StartQuest(Action<ActiveQuestBase> onFinish) {
-            fininshed = onFinish;
+            finished = onFinish;
         }
 
         public virtual void ResumeQuest(Action<ActiveQuestBase> onFinish) {
-            fininshed = onFinish;
+            finished = onFinish;
         }
 
         public virtual bool IsFinished() { throw new NotImplementedException();}
+
+        public virtual void CleanUp() { /*Remove listeners*/ }
     }
 }

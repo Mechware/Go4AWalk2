@@ -14,7 +14,7 @@ public class ActiveWalkingQuest : ActiveQuest<float, FloatVariable, UnityEventFl
     protected override void OnTotalChanged(float totalAmount) {
         AmountSoFar.Value = totalAmount - amountWhenStarted;
         if (IsFinished()) {
-            FinishQuest();
+            finished(this);
         }
     }
     

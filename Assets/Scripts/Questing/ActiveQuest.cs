@@ -12,6 +12,7 @@ using UnityEngine.Events;
 namespace G4AW2.Questing {
 
     public class ActiveQuest<T, TVar, TEvent> : ActiveQuestBase, ISaveable
+        where T : IComparable
         where TEvent : UnityEvent<T>, ISerializationCallbackReceiver, new()
         where TVar : Variable<T, TEvent> {
 
@@ -23,21 +24,19 @@ namespace G4AW2.Questing {
 
         protected T amountWhenStarted;
 
-        protected Action<ActiveQuestBase> onFinish;
-
         public override bool IsFinished() {
             throw new NotImplementedException();
         }
 
         public override void StartQuest(Action<ActiveQuestBase> onFinish) {
-            this.onFinish = onFinish;
+            finished = onFinish;
             AmountSoFar.Value = default(T);
             amountWhenStarted = TotalAmount;
             TotalAmount.OnChange.AddListener(OnTotalChanged);
         }
 
         public override void ResumeQuest(Action<ActiveQuestBase> onFinish) {
-            this.onFinish = onFinish;
+            finished = onFinish;
             UpdateAmountOnStart();
             TotalAmount.OnChange.AddListener(OnTotalChanged);
         }
@@ -47,12 +46,11 @@ namespace G4AW2.Questing {
 
         protected virtual void OnTotalChanged(T totalAmount) {
             if(IsFinished()) {
-                FinishQuest();
+                finished.Invoke(this);
             }
         }
 
-        protected void FinishQuest() {
-            onFinish.Invoke(this);
+        public override void CleanUp() {
             TotalAmount.OnChange.RemoveListener(OnTotalChanged);
         }
 
@@ -75,10 +73,19 @@ namespace G4AW2.Questing {
 
         public override void SetData(string saveString, params object[] otherData) {
 
-            PersistentSetQuest quests = otherData[0] as PersistentSetQuest;
             DummySave ds = JsonUtility.FromJson<DummySave>(saveString);
 
-            ActiveQuest<T, TVar, TEvent> original = quests.First(q => q.ID == ds.ID) as ActiveQuest<T, TVar, TEvent>;
+            ActiveQuest<T, TVar, TEvent> original;
+
+            if (otherData[0] is PersistentSetQuest) {
+                PersistentSetQuest quests = otherData[0] as PersistentSetQuest;
+                original = quests.First(q => q.ID == ds.ID) as ActiveQuest<T, TVar, TEvent>;
+            } else if (otherData[0] is ActiveQuest<T, TVar, TEvent>) {
+                original = (ActiveQuest < T, TVar, TEvent > ) otherData[0];
+            }
+            else {
+                throw new Exception("Wtf");
+            }
 
             ID = original.ID;
             TotalAmount = original.TotalAmount;

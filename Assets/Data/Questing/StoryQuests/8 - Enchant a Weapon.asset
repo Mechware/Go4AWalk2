@@ -15,7 +15,7 @@ MonoBehaviour:
   DisplayName: Enchant a Weapon
   NextQuest: {fileID: 11400000, guid: d5a3181b25c7d8647bf8f2b64851bbe5, type: 2}
   StartConversation:
-    Text: 
+    Text: 'To enchant your weapon, all you have to do it '
     Speaker: {fileID: 0}
   EndConversation:
     Text: 
@@ -40,4 +40,3 @@ MonoBehaviour:
   QuestRewards: []
   TotalAmount: {fileID: 11400000, guid: 7d8fe6d2e7f33864b90fbc69e833b4c2, type: 2}
   AmountToReach: 1
-  AmountSoFar: {fileID: 11400000, guid: 66d427283c1651346a2bb795dcaa50b7, type: 2}

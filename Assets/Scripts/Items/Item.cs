@@ -28,6 +28,7 @@ namespace G4AW2.Data.DropSystem
         public int Value;
         public string Description;
         public Rarity Rarity;
+        public bool SellWithTrash = false;
 
         public Action DataChanged;
 

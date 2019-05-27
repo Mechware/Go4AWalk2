@@ -17,3 +17,4 @@ MonoBehaviour:
   Value: 1
   Description: Sell this for 1 whole piece of gold! You're almost rich!
   Rarity: 0
+  SellWithTrash: 1

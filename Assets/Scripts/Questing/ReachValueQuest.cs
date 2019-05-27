@@ -1,28 +1,37 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using CustomEvents;
-using G4AW2.Data.Area;
-using G4AW2.Dialogue;
 using G4AW2.Questing;
+using System;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Data/Quests/Active/Reach Value")]
-public class ReachValueQuest : ActiveQuest<int, IntVariable, UnityEventInt> {
+public class ReachValueQuest : ActiveQuestBase {
 
-    protected override void OnTotalChanged(int totalAmount) {
-        AmountSoFar.Value = totalAmount;
-        if(IsFinished()) {
-            FinishQuest();
-        }
+    public IntVariable TotalAmount;
+    public int AmountToReach;
+
+    public override void StartQuest(Action<ActiveQuestBase> onFinish) {
+        base.StartQuest(onFinish);
+        TotalAmount.OnChange.AddListener(OnTotalChange);
     }
 
-    protected override void UpdateAmountOnStart() {
+    public override void ResumeQuest(Action<ActiveQuestBase> onFinish) {
+        base.ResumeQuest(onFinish);
+        TotalAmount.OnChange.AddListener(OnTotalChange);
+    }
+
+    public override void CleanUp() {
+        base.CleanUp();
+        TotalAmount.OnChange.RemoveListener(OnTotalChange);
     }
 
     public override bool IsFinished() {
-        return AmountSoFar.Value >= AmountToReach;
+        return TotalAmount >= AmountToReach;
+    }
+
+    private void OnTotalChange(int val) {
+        if (val >= AmountToReach) {
+            finished.Invoke(this);
+        }
     }
 
 #if UNITY_EDITOR

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using CustomEvents;
 using G4AW2.Questing;
 using TMPro;
 using UnityEngine;
@@ -23,17 +24,18 @@ public class QuestingStatWatcher : MonoBehaviour {
             MaxText.text = "" + awq.AmountToReach;
             CurrentText.text = "" + awq.AmountSoFar.Value;
             awq.AmountSoFar.OnChange.AddListener(OnChange);
-        } else if (currentQuest is ActiveEnemySlayerQuest) {
-            ActiveEnemySlayerQuest awq = currentQuest as ActiveEnemySlayerQuest;
+        } else if (currentQuest is ActiveQuest<int, IntVariable, UnityEventInt>) {
+            ActiveQuest < int, IntVariable, UnityEventInt> awq = currentQuest as ActiveQuest<int, IntVariable, UnityEventInt>;
             MaxText.text = "" + awq.AmountToReach;
             CurrentText.text = "" + awq.AmountSoFar.Value;
             awq.AmountSoFar.OnChange.AddListener(OnChange);
-        } else if (currentQuest is ActiveItemCollectQuest) {
-            ActiveItemCollectQuest awq = currentQuest as ActiveItemCollectQuest;
-            MaxText.text = "" + awq.AmountToReach;
-            CurrentText.text = "" + awq.AmountSoFar.Value;
-            awq.AmountSoFar.OnChange.AddListener(OnChange);
-        } else if (currentQuest is BossQuest) {
+        } else if (currentQuest is ReachValueQuest) {
+            var q = currentQuest as ReachValueQuest;
+            MaxText.text = "" + q.AmountToReach;
+            CurrentText.text = "" + q.TotalAmount.Value;
+            q.TotalAmount.OnChange.AddListener(OnChange);
+        } 
+        else if (currentQuest is BossQuest) {
             MaxText.text = "1";
             CurrentText.text = "0";
         }
@@ -63,8 +65,12 @@ public class QuestingStatWatcher : MonoBehaviour {
 
     public Transform SpawnPointOfNumberIncreasePopUp;
 
+    private int prevVal = -1;
     void OnChange(int val) {
-        SmoothPopUpManager.ShowPopUp(SpawnPointOfNumberIncreasePopUp.position, "+1", Color.green, true);
+        if (prevVal != -1 && val > prevVal) {
+            SmoothPopUpManager.ShowPopUp(SpawnPointOfNumberIncreasePopUp.position, "+" + (val - prevVal), Color.green, true);
+        }
+        prevVal = val;
         CurrentText.text = "" + val;
     }
 }

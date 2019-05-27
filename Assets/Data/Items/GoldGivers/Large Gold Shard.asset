@@ -17,3 +17,4 @@ MonoBehaviour:
   Value: 25
   Description: A large gold shard. Could fetch 25 gold for this at any decent merchant!
   Rarity: 1
+  SellWithTrash: 1

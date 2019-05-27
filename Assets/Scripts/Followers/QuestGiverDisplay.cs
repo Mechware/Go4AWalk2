@@ -64,6 +64,8 @@ public class QuestGiverDisplay : MonoBehaviour, IPointerClickHandler {
     public RuntimeSetFollowerData ListOfCurrentFollowers;
     public RuntimeSetQuest ListOfOpenQuests;
 
+    public GameObject DismissButton;
+
     public void OnPointerClick(PointerEventData eventData) {
 
         PopUp.SetPopUp("Accept quest from quest giver? Title: " + follower.QuestToGive.DisplayName, new[] { "Yes", "No" }, new Action[] {
@@ -85,8 +87,16 @@ public class QuestGiverDisplay : MonoBehaviour, IPointerClickHandler {
 
                 StartCoroutine(WalkOffScreen());
 
-            }, () => { } });
+            }, () => {
+                DismissButton.SetActive(true);
+            } });
 
+    }
+
+    public void Dismiss() {
+        FinishInteraction.Invoke();
+        ListOfCurrentFollowers.Remove(follower);
+        StartCoroutine(WalkOffScreen());
     }
 
     [Header("Walk Off Parameters")]
@@ -94,7 +104,7 @@ public class QuestGiverDisplay : MonoBehaviour, IPointerClickHandler {
     public float WalkOffSpeed;
     public float ScrollSpeed;
     public BoolReference Scrolling;
-
+    
 
     IEnumerator WalkOffScreen() {
 

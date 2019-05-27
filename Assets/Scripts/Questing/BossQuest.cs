@@ -15,7 +15,7 @@ public class BossQuest : ActiveQuestBase {
     public int Level;
 
     public void Finish() {
-        fininshed(this);
+        finished(this);
     }
 
 #if UNITY_EDITOR

@@ -28,12 +28,20 @@ public class QuestManager : MonoBehaviour {
         if(CurrentQuest.Value.ID == 1) {
             SetCurrentQuest(CurrentQuest.Value);
         } else {
+
             CurrentQuest.Value.ResumeQuest(FinishQuest);
             AreaQuestChanged.Invoke(CurrentQuest.Value);
 
-            if(CurrentQuest.Value is BossQuest) {
+            if(CurrentQuest.Value.IsFinished()) {
+                CurrentQuest.Value.CleanUp();
+                if (CurrentQuest.Value.NextQuest != null) {
+                    Debug.LogWarning("Progressing quest?");
+                    AdvanceQuestAfterConversation();
+                }
+            } else if(CurrentQuest.Value is BossQuest) {
                 BossController.ResumeBossQuest();
             }
+            
         }
     }
 
@@ -86,11 +94,19 @@ public class QuestManager : MonoBehaviour {
         }
         else {
             Inventory.AddItems(todrops);
-            ItemDropManager.AddItems(todrops, AdvanceQuestAfterConversation);
+            int amount = 0;
+            ItemDropManager.AddItems(todrops, () => {
+                amount++;
+                if (amount >= todrops.Count) {
+                    AdvanceQuestAfterConversation();
+                }
+            });
         }
     }
 
     private void AdvanceQuestAfterConversation() {
+
+        CurrentQuest.Value.CleanUp();
 
         if(CurrentQuest.Value.NextQuest == null) {
             PopUp.SetPopUp(
@@ -129,6 +145,9 @@ public class QuestManager : MonoBehaviour {
                         if(quest is BossQuest) {
                             BossController.StartBossQuest();
                         }
+
+                        // Check that the quest isn't finished
+                        if(quest.IsFinished()) FinishQuest(quest);
                     });
                 });
             });
@@ -164,6 +183,7 @@ public class QuestManager : MonoBehaviour {
                             new[] {"Yep", "Nope"}, new Action[] {
                                 () => {
                                     CurrentQuests.Add(CurrentQuest);
+                                    CurrentQuest.Value.CleanUp();
                                     CurrentQuests.Remove(q);
                                     SetCurrentQuest((ActiveQuestBase) q);
                                 },
@@ -172,6 +192,7 @@ public class QuestManager : MonoBehaviour {
                     }
                     else {
                         // You've already completed the quest
+                        CurrentQuests.Remove(q);
                         SetCurrentQuest((ActiveQuestBase) q);
                     }
                 },

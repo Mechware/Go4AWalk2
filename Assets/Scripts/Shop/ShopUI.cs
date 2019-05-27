@@ -62,8 +62,11 @@ public class ShopUI : MonoBehaviour {
             if (i.Item is Armor && ((Armor) i.Item).IsMarkedTrash) {
                 sum += Mathf.RoundToInt(i.Item.GetValue() * i.Amount * (shopKeep.SellingPriceMultiplier));
             }
+            if (i.Item.SellWithTrash) {
+                sum += Mathf.RoundToInt(i.Item.GetValue() * i.Amount * (shopKeep.SellingPriceMultiplier));
+            }
         }
-        TrashButtonText.text = $"Sell Trash ({sum} gold)";
+        TrashButtonText.text = $"Sell Trash + Shards ({sum} gold)";
     }
 
     public void SellTrash() {
@@ -75,6 +78,10 @@ public class ShopUI : MonoBehaviour {
                 toRemove.Add(i);
             }
             if(i.Item is Armor && ((Armor) i.Item).IsMarkedTrash) {
+                sum += Mathf.RoundToInt(i.Item.GetValue() * i.Amount * (shopKeep.SellingPriceMultiplier));
+                toRemove.Add(i);
+            }
+            if(i.Item.SellWithTrash) {
                 sum += Mathf.RoundToInt(i.Item.GetValue() * i.Amount * (shopKeep.SellingPriceMultiplier));
                 toRemove.Add(i);
             }

@@ -15,11 +15,11 @@ MonoBehaviour:
   DisplayName: Bad Beetle Slayer
   NextQuest: {fileID: 0}
   StartConversation:
-    Text: 
-    Speaker: {fileID: 21300000, guid: c27605eebf83392428128ddf89b5bd1f, type: 3}
+    Text: You look stressed, try killing many beetles. That always helps me!
+    Speaker: {fileID: 21300002, guid: d1f4f2861a5493746a532113a8f1dfd1, type: 3}
   EndConversation:
-    Text: 
-    Speaker: {fileID: 0}
+    Text: Feel more relaxed now? If not, here's some sweet sweet loot.
+    Speaker: {fileID: 21300002, guid: d1f4f2861a5493746a532113a8f1dfd1, type: 3}
   MinEnemyDropTime: 20
   MaxEnemyDropTime: 40
   MinEnemyDropDistance: 15
@@ -45,6 +45,12 @@ MonoBehaviour:
     RandomRoll: -1
   - it: {fileID: 11400000, guid: 0304f5a168938d84ca86376587ce5bbb, type: 2}
     Level: -1
+    RandomRoll: -1
+  - it: {fileID: 11400000, guid: e569c822608e91343ad176ae5b1f744f, type: 2}
+    Level: 7
+    RandomRoll: -1
+  - it: {fileID: 11400000, guid: e569c822608e91343ad176ae5b1f744f, type: 2}
+    Level: 8
     RandomRoll: -1
   TotalAmount: {fileID: 11400000, guid: 84910e2cd9cfff349a5abf60fabe7caa, type: 2}
   AmountToReach: 5
