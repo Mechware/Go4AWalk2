@@ -11,15 +11,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92ed46357c010e84ea5a3394f3ad888d, type: 3}
   m_Name: Red Dragon
   m_EditorClassIdentifier: 
-  ID: 0
-  DisplayName: 
+  ID: 26
+  DisplayName: DURGON
   Portrait: {fileID: 21300000, guid: 8236ce9d0c418ba41af47e82cd2de3d7, type: 3}
-  SizeOfSprite: {x: 32, y: 32}
-  SpaceBetweenEnemies: 32
+  SizeOfSprite: {x: 128, y: 128}
+  SpaceBetweenEnemies: 96
   SideIdleAnimation: {fileID: 7400000, guid: 3837d6df79df8c84b9c5d4f7c87f7b03, type: 2}
   RandomAnimation: {fileID: 7400000, guid: df5b82432490712468f3093028e600c5, type: 2}
-  MinTimeBetweenRandomAnims: 30
-  MaxTimeBetweenRandomAnims: 180
+  MinTimeBetweenRandomAnims: 10
+  MaxTimeBetweenRandomAnims: 15
   Idle: {fileID: 7400000, guid: 7d655f2c5ecdc8f45801adeab5a7cb83, type: 2}
   Flinch: {fileID: 7400000, guid: e24368643355eb34a8df7471a5a4765b, type: 2}
   BeforeAttack: {fileID: 7400000, guid: 4825d5d9bc539ed49a5d5ec8be62c941, type: 2}
@@ -29,14 +29,15 @@ MonoBehaviour:
   Dead: {fileID: 7400000, guid: 1734d392aac58d14c8a3be95bfc505b2, type: 2}
   Walking: {fileID: 7400000, guid: 77b48e3860c4d7d489141836fabbb248, type: 2}
   DeadSprite: {fileID: 21300084, guid: 8236ce9d0c418ba41af47e82cd2de3d7, type: 3}
-  BaseHealth: 0
-  BaseDamage: 0
-  TimeBetweenAttacks: 0
-  AttackPrepTime: 0
-  AttackExecuteTime: 0
-  HasElementalDamage: 0
-  BaseElementalDamage: 0
-  ElementalDamageType: {fileID: 0}
+  BaseHealth: 100
+  BaseDamage: 50
+  TimeBetweenAttacks: 5
+  AttackPrepTime: 0.625
+  AttackExecuteTime: 0.425
+  HasElementalDamage: 1
+  BaseElementalDamage: 60
+  ElementalDamageType: {fileID: 11400000, guid: ac66ff0c16089c04d84fea70a9d11015,
+    type: 2}
   ElementalWeaknesses:
     UseConstant: 1
     ConstantValue:

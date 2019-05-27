@@ -15,11 +15,13 @@ MonoBehaviour:
   DisplayName: Enchant a Weapon
   NextQuest: {fileID: 11400000, guid: d5a3181b25c7d8647bf8f2b64851bbe5, type: 2}
   StartConversation:
-    Text: 'To enchant your weapon, all you have to do it '
-    Speaker: {fileID: 0}
+    Text: To enchant your weapon, all you have to do is click the top right anvil,
+      select the "Enchant" tab, and fill in what you want to enchant and then click
+      the enchant button!
+    Speaker: {fileID: 21300000, guid: c27605eebf83392428128ddf89b5bd1f, type: 3}
   EndConversation:
-    Text: 
-    Speaker: {fileID: 0}
+    Text: Ohhhh that's gonna be a good weapon to fight the goblin champion with...
+    Speaker: {fileID: 21300000, guid: c27605eebf83392428128ddf89b5bd1f, type: 3}
   MinEnemyDropTime: 999999
   MaxEnemyDropTime: 9999999
   MinEnemyDropDistance: 999999

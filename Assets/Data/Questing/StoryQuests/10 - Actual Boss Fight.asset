@@ -15,11 +15,11 @@ MonoBehaviour:
   DisplayName: Defeat Champion
   NextQuest: {fileID: 0}
   StartConversation:
-    Text: 
-    Speaker: {fileID: 0}
+    Text: GAH. HOW COULD YOU HURT MY PEOPLE WHO WERE TRYING TO HURT YOU?!?!
+    Speaker: {fileID: 21300000, guid: 6afa27fbfcbf46c439be7a9c9bfcb794, type: 3}
   EndConversation:
-    Text: 
-    Speaker: {fileID: 0}
+    Text: YOU SO STRONG FOR BEING SO LITTLE
+    Speaker: {fileID: 21300080, guid: 6afa27fbfcbf46c439be7a9c9bfcb794, type: 3}
   MinEnemyDropTime: 999999
   MaxEnemyDropTime: 9999999
   MinEnemyDropDistance: 999999

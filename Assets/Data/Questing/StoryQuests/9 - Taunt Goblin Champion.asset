@@ -15,11 +15,12 @@ MonoBehaviour:
   DisplayName: Defeat 7 Goblins
   NextQuest: {fileID: 11400000, guid: bf90e00dcd90ed34ca7f414c4f654636, type: 2}
   StartConversation:
-    Text: 
-    Speaker: {fileID: 0}
+    Text: Alright, to get the champions attention, lets defeat a few goblins and see
+      if he comes around.
+    Speaker: {fileID: 21300000, guid: c27605eebf83392428128ddf89b5bd1f, type: 3}
   EndConversation:
-    Text: 
-    Speaker: {fileID: 0}
+    Text: That should do the trick, he should show up momentarily.
+    Speaker: {fileID: 21300000, guid: c27605eebf83392428128ddf89b5bd1f, type: 3}
   MinEnemyDropTime: 30
   MaxEnemyDropTime: 50
   MinEnemyDropDistance: 20
