@@ -5,7 +5,7 @@ AnimationClip:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Evil ChickenSideIdle
+  m_Name: Gnome ChompyWalking
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -19,9 +19,11 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: e869d03a759c2af4fa10d3eba0d75965, type: 3}
+      value: {fileID: 21300066, guid: e0be62ea78b407d4a88f12efea2ca7d4, type: 3}
     - time: 0.125
-      value: {fileID: 21300002, guid: e869d03a759c2af4fa10d3eba0d75965, type: 3}
+      value: {fileID: 21300068, guid: e0be62ea78b407d4a88f12efea2ca7d4, type: 3}
+    - time: 0.25
+      value: {fileID: 21300070, guid: e0be62ea78b407d4a88f12efea2ca7d4, type: 3}
     attribute: m_Sprite
     path: 
     classID: 114
@@ -41,14 +43,15 @@ AnimationClip:
       customType: 0
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300000, guid: e869d03a759c2af4fa10d3eba0d75965, type: 3}
-    - {fileID: 21300002, guid: e869d03a759c2af4fa10d3eba0d75965, type: 3}
+    - {fileID: 21300066, guid: e0be62ea78b407d4a88f12efea2ca7d4, type: 3}
+    - {fileID: 21300068, guid: e0be62ea78b407d4a88f12efea2ca7d4, type: 3}
+    - {fileID: 21300070, guid: e0be62ea78b407d4a88f12efea2ca7d4, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.25
+    m_StopTime: 0.375
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
