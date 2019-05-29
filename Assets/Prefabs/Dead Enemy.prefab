@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 224948052653876720}
   - component: {fileID: 222144455332169672}
   - component: {fileID: 114537345767959102}
-  - component: {fileID: 114990555642542384}
   m_Layer: 5
   m_Name: Dead Enemy
   m_TagString: Untagged
@@ -56,24 +55,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114990555642542384
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1285678961603886}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a32ff8044f030f48a9dce8b96e4329b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Scrolling:
-    UseConstant: 0
-    ConstantValue: 0
-    Variable: {fileID: 11400000, guid: 2bae27228b26b7f41baf61a9ed0ff0ea, type: 2}
-  ScrollSpeed: 5
-  EndingPosition: -527
-  Image: {fileID: 114537345767959102}
 --- !u!222 &222144455332169672
 CanvasRenderer:
   m_ObjectHideFlags: 1

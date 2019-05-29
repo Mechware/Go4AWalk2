@@ -126,6 +126,7 @@ public class QuestManager : MonoBehaviour {
         AreaChangeInterpolater.Update(Time.deltaTime);
     }
 
+
     public void SetCurrentQuest(ActiveQuestBase quest) {
 
         ItemDropManager.Clear();
@@ -207,5 +208,11 @@ public class QuestManager : MonoBehaviour {
             });
     }
 
+    public ActiveQuestBase TestQuest;
 
+    [ContextMenu("Set Quest from test quest")]
+    public void SetQuestFromTestQuest() {
+        CurrentQuest.Value.CleanUp();
+        SetCurrentQuest(TestQuest);
+    }
 }

@@ -23,6 +23,7 @@ public class BossQuestController : MonoBehaviour {
     public int ScrollSpeedToBoss = 12;
     public int OriginalScrollSpeed = 5;
 
+    public DeadEnemyController DeadEnemyController;
     private RectTransformPositionSetter playerPositionSetter;
     private RectTransformPositionSetter enemyPositionSetter;
 
@@ -74,12 +75,14 @@ public class BossQuestController : MonoBehaviour {
     void Update() {
         if (scrolling) {
             playerPositionSetter.SetX(playerPositionSetter.GetX() - Time.deltaTime * BackgroundImages.ScrollSpeed);
+            DeadEnemyController.ScrollSpeed = BackgroundImages.ScrollSpeed;
             enemyPositionSetter.SetX(enemyPositionSetter.GetX() - Time.deltaTime * BackgroundImages.ScrollSpeed);
             if (enemyPositionSetter.GetX() < MinXForBoss) {
                 scrolling = false;
                 BackgroundImages.Pause();
                 OnWaitingStart.Invoke();
                 BackgroundImages.ScrollSpeed = OriginalScrollSpeed;
+                DeadEnemyController.ScrollSpeed = OriginalScrollSpeed;
             }
         }
 

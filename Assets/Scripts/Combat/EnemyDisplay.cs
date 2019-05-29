@@ -24,11 +24,10 @@ namespace G4AW2.Combat {
 	    public PlayerFightingLogic FightingLogic;
 	    public DamageNumberSpawner RegularDamageNumberSpawner;
 	    public DamageNumberSpawner ElementalDamageNumberSpawner;
-	    public GameObject DeadEnemyPrefab;
-	    public Transform DeadEnemyParent;
 	    public Player Player;
 	    public RuntimeSetFollowerData CurrentFollowers;
 	    public LerpToPosition WalkingToPosition;
+	    public DeadEnemyController DeadEnemyController;
 
         [Header("Settings")]
         public FloatReference StunDuration;
@@ -56,9 +55,6 @@ namespace G4AW2.Combat {
         public UnityEventIEnumerableLoot OnDropLoot;
 	    public UnityEvent CleanUp;
 
-        // This probably shouldn't be in this class
-	    private ObjectPrefabPool DeadEnemies;
-
         private Animator MyAnimator;
 
 	    private Image im;
@@ -79,7 +75,6 @@ namespace G4AW2.Combat {
 	    }
 
 	    void Awake() {
-	        DeadEnemies = new ObjectPrefabPool(DeadEnemyPrefab, DeadEnemyParent);
             MyAnimator = GetComponent<Animator>();
 	        rt = GetComponent<RectTransform>();
 			EnemyState = State.Disabled;
@@ -293,18 +288,10 @@ namespace G4AW2.Combat {
 	        OnDropLoot.Invoke(items);
         }
 
-	    public void ClearDeadEnemies() {
-	        DeadEnemies?.Reset();
-	    }
-
 	    private void AllDone() {
             PlayerAnimations.Spin(() => {
                 CleanUp.Invoke();
-                var go = DeadEnemies.GetObject();
-                DeadEnemy de = go.GetComponent<DeadEnemy>();
-                de.SetPosition(RectTransform.anchoredPosition.x, RectTransform.anchoredPosition.y, Enemy, e => {
-                    DeadEnemies.Return(e.gameObject);
-                });
+                DeadEnemyController.AddDeadEnemy(RectTransform.anchoredPosition.x, RectTransform.anchoredPosition.y, Enemy);
             });
         }
 
