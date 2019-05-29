@@ -23,7 +23,11 @@ public class BossQuestController : MonoBehaviour {
     public int ScrollSpeedToBoss = 12;
     public int OriginalScrollSpeed = 5;
 
+    public LerpToPosition WorldCameraLerper;
     public DeadEnemyController DeadEnemyController;
+
+    public GameObject EnemyArrow;
+
     private RectTransformPositionSetter playerPositionSetter;
     private RectTransformPositionSetter enemyPositionSetter;
 
@@ -33,6 +37,7 @@ public class BossQuestController : MonoBehaviour {
     }
 
     public void StartBossQuest() {
+
         BossQuest quest = (BossQuest) CurrentQuest.Value;
 
         // Set enemy display to boss
@@ -51,18 +56,28 @@ public class BossQuestController : MonoBehaviour {
         // Disallow scrolling
         BackgroundDraggable.Disable();
 
-        // 1. Start screen scroll if not started
-        BackgroundImages.Play();
-        BackgroundImages.ScrollSpeed = ScrollSpeedToBoss;
+        // Turn off enemy arrow (red one that indicates there's enemies)
+        EnemyArrow.SetActive(false);
 
-        // 2. Stop player from walking & drag player backwards
-        PlayerAnimations.StopWalking();
+        // Scroll to player
+        WorldCameraLerper.StartLerping(() => {
 
-        scrolling = true;
+            // 1. Start screen scroll if not started
+            BackgroundImages.Play();
+            BackgroundImages.ScrollSpeed = ScrollSpeedToBoss;
 
-        float widthOfEnemy = ((RectTransform) Enemy.transform).sizeDelta.x;
-        enemyPositionSetter.SetX(54 + widthOfEnemy/2);
-        Enemy.gameObject.SetActive(true);
+            // 2. Stop player from walking & drag player backwards
+            PlayerAnimations.StopWalking();
+
+            scrolling = true;
+
+            float widthOfEnemy = ((RectTransform) Enemy.transform).sizeDelta.x;
+            enemyPositionSetter.SetX(54 + widthOfEnemy / 2);
+            Enemy.gameObject.SetActive(true);
+
+        });
+
+        
     }
 
     public float MinXForBoss = 33;
@@ -138,6 +153,9 @@ public class BossQuestController : MonoBehaviour {
         enemyPositionSetter.SetX(MinXForBoss);
         playerPositionSetter.SetX(-20);
 
+        // Turn off enemy arrow (red one that indicates there's enemies)
+        EnemyArrow.SetActive(false);
+
         BackgroundImages.Pause();
         OnWaitingStart.Invoke();
     }
@@ -150,5 +168,6 @@ public class BossQuestController : MonoBehaviour {
     private void FinishBossQuest() {
         BossQuest quest = (BossQuest) CurrentQuest.Value;
         quest.Finish();
+        EnemyArrow.SetActive(true);
     }
 }

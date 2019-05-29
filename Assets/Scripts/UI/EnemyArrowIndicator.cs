@@ -1,4 +1,4 @@
-﻿using CustomEvents;
+using CustomEvents;
 using G4AW2.Data;
 using System.Collections;
 using System.Collections.Generic;

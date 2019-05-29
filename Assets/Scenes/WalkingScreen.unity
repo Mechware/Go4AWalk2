@@ -16908,7 +16908,6 @@ GameObject:
   - component: {fileID: 951186432}
   - component: {fileID: 951186431}
   - component: {fileID: 951186430}
-  - component: {fileID: 951186434}
   m_Layer: 5
   m_Name: Main Canvas
   m_TagString: Untagged
@@ -17002,46 +17001,6 @@ RectTransform:
   m_AnchoredPosition: {x: 139.5, y: 248}
   m_SizeDelta: {x: 108, y: 192.12938}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &951186434
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 951186429}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7db3a514faad94c46b4c0a0e9d28dd85, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnStart:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  OnReverseStart:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  OnUpdate:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  OnEnd:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  OnReverseEnd:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  EndBehaviour: 0
-  AutoStart: 0
-  LerpDuration: 0.2
-  Lerpers: []
 --- !u!1 &953969038
 GameObject:
   m_ObjectHideFlags: 0
@@ -39833,7 +39792,9 @@ MonoBehaviour:
   FightStarted: {fileID: 11400000, guid: 73bbe12f9e4b3af41b09a7d7868641e8, type: 2}
   ScrollSpeedToBoss: 12
   OriginalScrollSpeed: 5
+  WorldCameraLerper: {fileID: 1324188857}
   DeadEnemyController: {fileID: 842532801}
+  EnemyArrow: {fileID: 146199081}
   MinXForBoss: 33
   WalkSpeedOfPlayer: 35
   PlayerFightPosition: 12
