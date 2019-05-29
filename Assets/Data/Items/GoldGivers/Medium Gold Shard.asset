@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 61
   Name: Medium Gold Shard
-  Image: {fileID: 21300000, guid: 62edd366e4dca3f4f9a41bb319cb8a57, type: 3}
+  Image: {fileID: 21300000, guid: cf63014b99b82f94c8cdcf1cf7e94766, type: 3}
   Value: 10
   Description: A decently sized piece of gold, probably worth 10 at a fair merchant.
   Rarity: 0

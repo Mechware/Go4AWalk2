@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 62
   Name: Small Gold Shard
-  Image: {fileID: 21300000, guid: 62edd366e4dca3f4f9a41bb319cb8a57, type: 3}
+  Image: {fileID: 21300000, guid: e909176c33acaac419aef97636b3c098, type: 3}
   Value: 1
   Description: Sell this for 1 whole piece of gold! You're almost rich!
   Rarity: 0
