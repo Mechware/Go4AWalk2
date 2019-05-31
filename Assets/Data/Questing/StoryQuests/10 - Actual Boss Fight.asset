@@ -15,7 +15,7 @@ MonoBehaviour:
   DisplayName: Defeat Champion
   NextQuest: {fileID: 0}
   StartConversation:
-    Text: GAH. HOW COULD YOU HURT MY PEOPLE WHO WERE TRYING TO HURT YOU?!?!
+    Text: GAH. HOW DARE YOU HURT MY PEOPLE WHO WERE TRYING TO HURT YOU?!?!
     Speaker: {fileID: 21300000, guid: 6afa27fbfcbf46c439be7a9c9bfcb794, type: 3}
   EndConversation:
     Text: YOU SO STRONG FOR BEING SO LITTLE

@@ -16,14 +16,13 @@ MonoBehaviour:
   NextQuest: {fileID: 11400000, guid: 68904e00581c0b14b86a002773fbf51b, type: 2}
   StartConversation:
     Text: 'Egad! During your goblin defeating spree a goblin champion in a far off
-      land threatened to fight you! You have to walk 2Km to get there, but I know
+      land challenged you to a fight! You have to walk 2Km to get there, but I know
       you can do it.
 
 
       You may encounter a few new things on your way there. A few new species have
-      been discovered roaming around here and odd looking fellows may offer quests
-      during your travels, feel free to do them while you''re walking to the distant
-      lands.'
+      been spotted roaming around here and odd looking fellows may offer quests during
+      your travels, feel free to do them while you''re walking to the distant land.'
     Speaker: {fileID: 21300000, guid: c27605eebf83392428128ddf89b5bd1f, type: 3}
   EndConversation:
     Text: Oh we are almost there, I can feel it! Just slowly blink and we should be
