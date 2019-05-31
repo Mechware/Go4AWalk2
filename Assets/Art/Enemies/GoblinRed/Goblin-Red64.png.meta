@@ -32,6 +32,7 @@ TextureImporter:
     21300054: Goblin-Red64_27
     21300056: Goblin-Red64_28
     21300058: Goblin-Red64_29
+    21300060: Goblin-Red64_30
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -117,7 +118,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3dbbbba910342d540b51f28b977085aa
+      spriteID: 25b5ad77fb6559942826823bce1a1939
       vertices: []
       indices: 
       edges: []
@@ -137,7 +138,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6b634e79a7d36034e9e94aba496e1bb9
+      spriteID: 5b3d46df3b2df1e4994501b2bf2706bf
       vertices: []
       indices: 
       edges: []
@@ -157,7 +158,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 739bbf58f22fef74eb891cb118b255d5
+      spriteID: 76967fe1030b3d0419b16363d4f004da
       vertices: []
       indices: 
       edges: []
@@ -177,7 +178,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 458811ee1c8aaf3478e080a6ebfd6436
+      spriteID: 5fc6881321531f74ca8d07d2701d5371
       vertices: []
       indices: 
       edges: []
@@ -197,7 +198,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f87c6b3d098be9e44a3a92bc143def21
+      spriteID: d5ce0990050a3894998c5461c09ddfeb
       vertices: []
       indices: 
       edges: []
@@ -217,7 +218,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fb3caddbaba9bfc469ead2bd3f3fb6dd
+      spriteID: 09345edbd25863e469fd0a1bf73a0e53
       vertices: []
       indices: 
       edges: []
@@ -237,7 +238,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e647053123b11b6459ac0a8eb1b39e1b
+      spriteID: fd7e402b7fae7cc458bd915c040e7842
       vertices: []
       indices: 
       edges: []
@@ -257,7 +258,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ace07a908b68ab642a27c337bb46f8fb
+      spriteID: 790e543a7a5f5b04a9a4f264e128f641
       vertices: []
       indices: 
       edges: []
@@ -277,7 +278,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 83f8819babb70c2499a286f1860eff49
+      spriteID: 86f98afc235747349957ccdcf7fa180f
       vertices: []
       indices: 
       edges: []
@@ -297,7 +298,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 082f87e5b59ae9547861059fbcce5916
+      spriteID: 011aebc6e64e621489154f261aa96946
       vertices: []
       indices: 
       edges: []
@@ -317,7 +318,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b4f87673f35ff55419abc42f2bb85c9f
+      spriteID: 9f313d4dd05b3684cbcd7b4d14753047
       vertices: []
       indices: 
       edges: []
@@ -337,7 +338,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3be989f1b25966c43a9260410a3bc548
+      spriteID: 7b135c8b026d0cc409276cdcbc80c32a
       vertices: []
       indices: 
       edges: []
@@ -357,7 +358,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b85a19f2752d8924da2657e35f9910ca
+      spriteID: 4348476cd41360443aba74f1ee316bae
       vertices: []
       indices: 
       edges: []
@@ -377,7 +378,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8b36839b0abd87a41b2066f0da640d02
+      spriteID: 3fc9b3e94a7081947818b97bc81f0359
       vertices: []
       indices: 
       edges: []
@@ -397,7 +398,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2d34f5139b0e47b40a9ee74d24f6c652
+      spriteID: f215f867fc9e7ef45b026e76d3ab4e8e
       vertices: []
       indices: 
       edges: []
@@ -417,7 +418,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5a347aa340eae764ea44e31c8b461ae4
+      spriteID: 14b98c4430ccd3442806fa72112ca8cb
       vertices: []
       indices: 
       edges: []
@@ -437,7 +438,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a00b6a05b472f0246befb3ad2c7a04f5
+      spriteID: 2776340e182b11249a4ddad53dcb7601
       vertices: []
       indices: 
       edges: []
@@ -457,7 +458,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3df83575cd1b25a40bfb6d2a9bcb8786
+      spriteID: c3dce2f66eb5c6e45b23d60fabeb5e84
       vertices: []
       indices: 
       edges: []
@@ -477,7 +478,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6b762c29f490b274d916ffbfa2fdc562
+      spriteID: 2465749195dfbb641b9041b5456b864f
       vertices: []
       indices: 
       edges: []
@@ -497,7 +498,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 760f10d5f62b620429ea47812299c6d2
+      spriteID: ae00c75ca5ab8ba4da8fbb9701395bfa
       vertices: []
       indices: 
       edges: []
@@ -517,7 +518,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fb2c17c1288f8e440a986c9d28225728
+      spriteID: cecd95e7ce22fee48aa7ce7e061fbdb6
       vertices: []
       indices: 
       edges: []
@@ -537,7 +538,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5ec535252f01c69479daeb3d00d157b7
+      spriteID: 582106dad37dd044fa79d191a6c44368
       vertices: []
       indices: 
       edges: []
@@ -557,7 +558,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 060c0ce264a8fee498e15f5ab5308830
+      spriteID: 34744b64a737ac14cb075517b93eaabb
       vertices: []
       indices: 
       edges: []
@@ -577,7 +578,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4805dc6179619ec49b37d6807005ba44
+      spriteID: c4df316d0d8ee32449ce01b9a352ad56
       vertices: []
       indices: 
       edges: []
@@ -597,7 +598,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 41c021f09bebe7e488639fea80630e2a
+      spriteID: 79f532caf4e5c5f4aa357a8b18b6088e
       vertices: []
       indices: 
       edges: []
@@ -617,7 +618,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e174fdb595896f748a0b43f25d030118
+      spriteID: 3b8f26f250eb40f49aa15aebcdc8d9ca
       vertices: []
       indices: 
       edges: []
@@ -637,7 +638,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ddb295f013e6cc740a62d4e0024a3260
+      spriteID: da9d05c232eca4c44b9569e067242e57
       vertices: []
       indices: 
       edges: []
@@ -657,13 +658,33 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0783451b45f310145a722fe334e969dc
+      spriteID: 3d27e41a0a303474c98a96a4bd941aed
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
       name: Goblin-Red64_28
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f3bc7298b28fbc4a87be867ec4578d0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Goblin-Red64_29
       rect:
         serializedVersion: 2
         x: 0
@@ -677,13 +698,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0d8da31134cb1934fb189c7ad4ae7546
+      spriteID: 693adf41911c53743a2a637b68ddf3a7
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Goblin-Red64_29
+      name: Goblin-Red64_30
       rect:
         serializedVersion: 2
         x: 64
@@ -697,7 +718,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b1e0ea510dd75a54c966c81824c33a01
+      spriteID: fa537735d56d75a4e9de49fc98b89ab3
       vertices: []
       indices: 
       edges: []
