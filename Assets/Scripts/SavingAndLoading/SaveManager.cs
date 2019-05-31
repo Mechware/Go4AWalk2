@@ -2,6 +2,7 @@ using CustomEvents;
 using G4AW2.Dialogue;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using UnityEngine;
@@ -125,6 +126,10 @@ namespace G4AW2.Saving {
                 ListObject soToOverwrite = ObjectsToSave.FirstOrDefault(so => so.ObjectToSave.name.Equals(kvp.Key));
 
                 if(soToOverwrite == null) {
+                    if (kvp.Key.Equals("Time")) {
+                        LastTimePlayedUTC = DateTime.Parse(kvp.Value, null, DateTimeStyles.RoundtripKind);
+                        continue;
+                    }
                     // Removed a variable?
                     Debug.LogWarning("Could not find scriptable object matching name: " + kvp.Key);
                     continue;
@@ -156,6 +161,8 @@ namespace G4AW2.Saving {
             return JsonUtility.ToJson(GetSaveData());
         }
 
+        public static DateTime LastTimePlayedUTC = DateTime.UtcNow;
+
         private SaveObject GetSaveData() {
             List<KeyValuePairStringString> saveDictForVariables = new List<KeyValuePairStringString>();// = 
                                                                                                        //ObjectsToSave.Select(so => new KeyValuePairStringString(so.ObjectToSave.name, ((ISaveable)so.ObjectToSave).GetSaveString())).ToList();
@@ -167,6 +174,8 @@ namespace G4AW2.Saving {
 
                 saveDictForVariables.Add(new KeyValuePairStringString(key, value));
             }
+
+            saveDictForVariables.Add(new KeyValuePairStringString("Time", DateTime.UtcNow.ToString("o")));
 
             return new SaveObject {
                 VariableDictionary = saveDictForVariables,

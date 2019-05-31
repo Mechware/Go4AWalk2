@@ -1,10 +1,13 @@
+using System;
 using CustomEvents;
 using G4AW2.Data;
 using System.Collections.Generic;
 using System.Linq;
 using G4AW2.Data.Combat;
 using G4AW2.Questing;
+using G4AW2.Saving;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace G4AW2.Followers {
 	public class FollowerSpawner : MonoBehaviour {
@@ -22,6 +25,23 @@ namespace G4AW2.Followers {
 		void Awake() {
             CurrentQuest.OnChange.AddListener(QuestChanged);
 		}
+
+	    public void LoadFinished() {
+	        DateTime lastTimePlayedUTC = SaveManager.LastTimePlayedUTC;
+	        TimeSpan TimeSinceLastPlayed = DateTime.UtcNow - lastTimePlayedUTC;
+	        double secondsSinceLastPlayed = TimeSinceLastPlayed.TotalSeconds;
+            Debug.Log(secondsSinceLastPlayed);
+	        while (true) {
+	            secondsSinceLastPlayed -= Random.Range(CurrentQuest.Value.MinEnemyDropTime,
+	                CurrentQuest.Value.MaxEnemyDropTime) * 10;
+	            if (secondsSinceLastPlayed < 0) {
+	                break;
+	            }
+
+                AddFollower();
+	            if (CurrentFollowers.Value.Count == 10) return;
+	        }
+	    }
 
 	    void QuestChanged(ActiveQuestBase quest) {
 	        currentTime = 0;
