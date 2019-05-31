@@ -11,6 +11,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1aead6a38a3fcaa469634eee4d8a191f, type: 3}
   m_Name: Crafting Table
   m_EditorClassIdentifier: 
+  CurrentQuest: {fileID: 11400000, guid: 6e098017cb676d546bac9971eb358a4a, type: 2}
   Recipes: {fileID: 11400000, guid: 8bdd99410ec484d4e9464200db005cdc, type: 2}
-  AvailableRecipes: {fileID: 0}
   Inventory: {fileID: 11400000, guid: 26cb67b184c39ce41a042b44d325797c, type: 2}

@@ -5,6 +5,7 @@ namespace G4AW2.Questing {
 
         public int ID;
         public string DisplayName;
+        public int Level;
 
 #if UNITY_EDITOR
         [ContextMenu("Pick ID")]

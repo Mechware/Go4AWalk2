@@ -97,7 +97,6 @@ namespace G4AW2.Followers {
 			if (ListOfCurrentFollowers[0] == fd.Data) {
 				if (fd.Data is EnemyData) {
 					EnemyData ed = (EnemyData) fd.Data;
-					// TODO: Include stats
 
 				    string elemDmg = ed.HasElementalDamage ? ed.ElementalDamage.ToString() : "0";
 				    string elemColor = ed.HasElementalDamage ? ed.ElementalDamageType.DamageColor.ToCSharpColor() : "black";
