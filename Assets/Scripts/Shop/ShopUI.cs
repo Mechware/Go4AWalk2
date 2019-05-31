@@ -120,34 +120,36 @@ public class ShopUI : MonoBehaviour {
     private void ItemClickedBuying(ShopFollower.SellableItem it) {
         int price = GetBuyingPrice(it.Item);
 
-        string title = string.Format("Would you like to buy a {0} for {1} gold?\nDescription:{2}",
-            it.Item.GetName(),
-            price,
-            it.Item.GetDescription());
+        if (GoldAmount.Value < price) {
+            PopUp.SetPopUp("Not Enough Gold.", new[] {":(", "):"}, new Action[] {() => { }, () => { }});
+            return;
+        }
 
-        PopUp.SetPopUp(title, new string[] { "Yes", "No" },
+        string title =
+            $"Would you like to buy a {it.Item.GetName()} for {price} gold?\nAmount Left: {it.Amount}\n\n{it.Item.GetDescription()}";
+
+        PopUp.SetPopUp(title, new string[] { "Buy All", "Buy 1", "No" },
             new Action[] {
                 () => {
-                    if(GoldAmount.Value < price) {
-                        PopUp.SetPopUp("Not enough gold :(", new string[] {"ok"}, new Action[] {()=> { } });
-                        return;
+                    int amt = 0;
+                    while (it.Amount > 0 && GoldAmount >= price) {
+                        GoldAmount.Value -= price;
+                        Inventory.Add(it.Item, 1);
+                        it.Amount -= 1;
+                        if(it.Amount == 0) shopKeep.Items.Remove(it);
+                        amt++;
                     }
 
+                    RefreshBuyingList();
+                },
+                () => {
                     GoldAmount.Value -= price;
                     Inventory.Add(it.Item, 1);
                     it.Amount -= 1;
                     if(it.Amount == 0) shopKeep.Items.Remove(it);
-                    PopUp.SetPopUp("Success!", new[] {"Ok"}, new Action[] {
-                        () => {
-                            if (it.Amount > 0) {
-                                ItemClickedBuying(it);
-                            }
-                            else {
-                                RefreshBuyingList();
-                            }
-                        }
-                    });
 
+                    if (it.Amount > 0) ItemClickedBuying(it);
+                    RefreshBuyingList();
                 },
                 () => {
                     RefreshBuyingList();
@@ -184,35 +186,32 @@ public class ShopUI : MonoBehaviour {
 
         int price = GetSellingPrice(it.Item);
 
-        string title = string.Format("Would you like to sell a {0} for {1} gold?\nDescription:{2}",
-            it.Item.GetName(),
-            price,
-            it.Item.GetDescription());
+        string amountLeft = it.Amount > 1 ? $"Amount Left: {it.Amount}\n" : "";
 
-        PopUp.SetPopUp(title, new string[] { "Yes", "No" },
+        string title = string.Format($"Would you like to sell a {it.Item.GetName()} for {price} gold?\n{amountLeft}\n{it.Item.GetDescription()}");
+
+        PopUp.SetPopUp(title, new string[] { "Sell All", "Sell 1", "No" },
             new Action[] {
+                () => {
+                    while (it.Amount > 0) {
+                        GoldAmount.Value += price;
+                        Inventory.Remove(it.Item, 1);
+                    }
+                    RefreshSellingList();
+                },
                 () => {
                     GoldAmount.Value += price;
                     Inventory.Remove(it.Item, 1);
-
-                    PopUp.SetPopUp("Success!", new[] {"Ok"}, new Action[] {
-                        () => {
-                            if (it.Amount > 0) {
-                                ItemClickedSelling(it);
-                            }
-                            else {
-                                RefreshSellingList();
-                            }
-                        }
-                    });
-
+                    if (it.Amount != 0) {
+                        ItemClickedSelling(it);
+                    }
+                    RefreshSellingList();
                 },
                 () => {
                     RefreshSellingList();
                 }
             });
     }
-
 
     #endregion
 }

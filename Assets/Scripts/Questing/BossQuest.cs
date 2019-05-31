@@ -12,7 +12,6 @@ public class BossQuest : ActiveQuestBase {
 
     [Header("Boss Objective")]
     public EnemyData Enemy;
-    public int Level;
 
     public void Finish() {
         finished(this);

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 8
   DisplayName: Craft Feathered Hat
+  Level: 0
   NextQuest: {fileID: 11400000, guid: 3bdbfb305ca5b514fbfb60ae208f0bdc, type: 2}
   StartConversation:
     Text: Nice new sword! You know what would go great with that sword? A new hat!
@@ -28,8 +29,8 @@ MonoBehaviour:
       the bottom right can help you out if you get lost.\n\nIt won't actually help
       you in any way but you're gonna look so good. \n"
     Speaker: {fileID: 21300000, guid: c27605eebf83392428128ddf89b5bd1f, type: 3}
-  MinEnemyDropTime: 50
-  MaxEnemyDropTime: 100
+  MinEnemyDropTime: 30
+  MaxEnemyDropTime: 60
   MinEnemyDropDistance: 15
   MaxEnemyDropDistance: 50
   Area: {fileID: 11400000, guid: 5e4d1ba5949749b44bc3427231ca82f2, type: 2}

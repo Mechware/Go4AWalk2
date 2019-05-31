@@ -124,8 +124,11 @@ public class CraftingMenu : MonoBehaviour {
         RefreshList();
 
         string PostText = "";
-        if(it is Weapon)
+        if (it is Weapon) {
             PostText = $"\nDAM: {((Weapon) it).RawDamage}";
+        } else if (it is Armor) {
+            PostText = $"\nARM: {((Armor) it).ARMValue}";
+        }
 
         QuickPopUp.Show(cr.Result.Item.Image, $"<size=150%>Crafted!</size>\nYou successfully crafted a {it.GetName()}!{PostText}");
     }

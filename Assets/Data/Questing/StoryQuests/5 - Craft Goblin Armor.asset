@@ -13,6 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 10
   DisplayName: Craft Golbin Armor Armor
+  Level: 0
   NextQuest: {fileID: 11400000, guid: 9bb92d304139bd443a17fa212d7c7469, type: 2}
   StartConversation:
     Text: Now that you can defeat goblins <b>AND</b> craft things, you're unstoppable!
@@ -26,8 +27,8 @@ MonoBehaviour:
 
       That goblin armor with your feathered hat will look amazing.'
     Speaker: {fileID: 21300000, guid: c27605eebf83392428128ddf89b5bd1f, type: 3}
-  MinEnemyDropTime: 50
-  MaxEnemyDropTime: 100
+  MinEnemyDropTime: 30
+  MaxEnemyDropTime: 60
   MinEnemyDropDistance: 15
   MaxEnemyDropDistance: 50
   Area: {fileID: 11400000, guid: 5e4d1ba5949749b44bc3427231ca82f2, type: 2}

@@ -10,6 +10,7 @@ public class QuickPopUp : MonoBehaviour {
     public BoolVariable QuickPopUpAllowed;
     public RobustLerper PositionLerper;
     public RobustLerper AlphaLerper;
+    public RobustLerperSerialized ShakeLerper;
 
     public Image Image;
     public TextMeshProUGUI Text;
@@ -41,11 +42,16 @@ public class QuickPopUp : MonoBehaviour {
     }
 
     public static void Show(Sprite icon, string text) {
+        if (instance.alreadyActive) {
+            instance.Shake();
+        }
         instance.AddToQueue(icon, text);
         instance.StartPopUp();
     }
 
-    
+    public void Shake() {
+        ShakeLerper.StartLerping();
+    }
 
     private void AddToQueue(Sprite icon, string text) {
         PopUpsToShow.Enqueue(new PopUpData() { Icon = icon, Text = text });
