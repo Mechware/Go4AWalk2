@@ -22,6 +22,7 @@ public class DeadEnemyController : MonoBehaviour {
     }
 
     public void ClearEnemies() {
+        StopAllCoroutines();
         DeadEnemies.Reset();
     }
 

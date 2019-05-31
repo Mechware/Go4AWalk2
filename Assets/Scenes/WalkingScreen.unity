@@ -13436,6 +13436,8 @@ MonoBehaviour:
   QuestDialogUI: {fileID: 1907137927}
   CurrentQuests: {fileID: 11400000, guid: f271c820c327d174a9ff1c5439efe06e, type: 2}
   BossController: {fileID: 1992234737}
+  DraggableWorld: {fileID: 1324188856}
+  ScrollArrow: {fileID: 146199081}
   AreaQuestChanged:
     m_PersistentCalls:
       m_Calls:

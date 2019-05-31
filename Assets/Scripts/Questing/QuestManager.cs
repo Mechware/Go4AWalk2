@@ -16,6 +16,8 @@ public class QuestManager : MonoBehaviour {
 
     public RuntimeSetQuest CurrentQuests;
     public BossQuestController BossController;
+    public DragObject DraggableWorld;
+    public GameObject ScrollArrow;
 
     [Header("Events")]
     public UnityEventActiveQuestBase AreaQuestChanged;
@@ -36,23 +38,25 @@ public class QuestManager : MonoBehaviour {
                 CurrentQuest.Value.CleanUp();
                 if (CurrentQuest.Value.NextQuest != null) {
                     Debug.LogWarning("Progressing quest?");
-                    AdvanceQuestAfterConversation();
+                    AdvanceQuestAfterConversation(CurrentQuest.Value);
                 }
             } else if(CurrentQuest.Value is BossQuest) {
                 BossController.ResumeBossQuest();
             }
-            
         }
     }
 
     private void FinishQuest(ActiveQuestBase quest) {
-        QuestDialogUI.SetConversation(CurrentQuest.Value.EndConversation, () => DropRewardAndAdvanceConversation(quest));
+        quest.CleanUp();
+        if(quest.NextQuest != null) CurrentQuest.Value = quest.NextQuest;
+        QuestDialogUI.SetConversation(quest.EndConversation, () => DropRewardAndAdvanceConversation(quest));
     }
 
     public ItemDropBubbleManager ItemDropManager;
     public Inventory Inventory;
 
     private void DropRewardAndAdvanceConversation(ActiveQuestBase q) {
+
 
         List<Item> todrops = new List<Item>();
         foreach (var reward in q.QuestRewards) {
@@ -90,25 +94,32 @@ public class QuestManager : MonoBehaviour {
         }
 
         if (todrops.Count == 0) {
-            AdvanceQuestAfterConversation();
+            AdvanceQuestAfterConversation(q);
         }
         else {
+            ItemDropManager.Clear();
+
+            DraggableWorld.Disable2();
+            ScrollArrow.SetActive(false);
+
             Inventory.AddItems(todrops);
             int amount = 0;
             ItemDropManager.AddItems(todrops, () => {
                 amount++;
                 if (amount >= todrops.Count) {
-                    AdvanceQuestAfterConversation();
+                    ScrollArrow.SetActive(true);
+                    DraggableWorld.Enable2();
+                    AdvanceQuestAfterConversation(q);
                 }
             });
         }
     }
 
-    private void AdvanceQuestAfterConversation() {
+    private void AdvanceQuestAfterConversation(ActiveQuestBase q) {
 
-        CurrentQuest.Value.CleanUp();
+        q.CleanUp();
 
-        if(CurrentQuest.Value.NextQuest == null) {
+        if(q.NextQuest == null) {
             PopUp.SetPopUp(
                 "You finished the quest! You may either continue in this area or switch quests using the quest book on your screen.",
                 new[] { "ok" }, new Action[] {
@@ -117,7 +128,7 @@ public class QuestManager : MonoBehaviour {
             return;
         }
 
-        SetCurrentQuest(CurrentQuest.Value.NextQuest);
+        SetCurrentQuest(q.NextQuest);
     }
 
     public RobustLerperSerialized AreaChangeInterpolater;
@@ -130,6 +141,7 @@ public class QuestManager : MonoBehaviour {
     public void SetCurrentQuest(ActiveQuestBase quest) {
 
         ItemDropManager.Clear();
+        quest.CleanUp();
 
         if (quest.Area != currentArea) {
             AreaChangeInterpolater.StartLerping(() => {
@@ -147,7 +159,7 @@ public class QuestManager : MonoBehaviour {
                             BossController.StartBossQuest();
                         }
 
-                        // Check that the quest isn't finished
+                        // Check that the quest isn't finished (for reach quests)
                         if(quest.IsFinished()) FinishQuest(quest);
                     });
                 });

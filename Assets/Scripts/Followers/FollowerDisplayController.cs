@@ -99,7 +99,7 @@ namespace G4AW2.Followers {
 					EnemyData ed = (EnemyData) fd.Data;
 
 				    string elemDmg = ed.HasElementalDamage ? ed.ElementalDamage.ToString() : "0";
-				    string elemColor = ed.HasElementalDamage ? ed.ElementalDamageType.DamageColor.ToCSharpColor() : "black";
+				    string elemColor = ed.HasElementalDamage ? "#" + ColorUtility.ToHtmlStringRGB(ed.ElementalDamageType.DamageColor) : "black";
 
 
                     string description = $@"Fight a level {ed.Level} {ed.DisplayName}?

@@ -37,7 +37,18 @@ public class DragObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 	private Vector3 deltaPosition;
 	private Vector3 position;
 
-	private bool scrollingEnabled = true;
+    private bool scrollingEnabled2 = true;
+
+    public void Disable2() {
+        scrollingEnabled2 = false;
+    }
+
+    public void Enable2() {
+        scrollingEnabled2 = true;
+	    CheckReset();
+    }
+
+    private bool scrollingEnabled = true;
 
 	public void Disable() {
 		scrollingEnabled = false;
@@ -45,26 +56,36 @@ public class DragObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 
 	public void Enable() {
 		scrollingEnabled = true;
-	    if (IsAtEnd()) {
-	        OnReset.Invoke();
-        }
+	    CheckReset();
+
 	}
 
+    private void CheckReset() {
+        if(scrollingEnabled && scrollingEnabled2 && IsAtEnd())
+            OnReset.Invoke();
+    }
+
+    private bool startedScrolling = false;
+
 	public void OnBeginDrag(PointerEventData eventData) {
-		if (!scrollingEnabled)
-			return;
+	    if (!scrollingEnabled || !scrollingEnabled2) {
+	        startedScrolling = false;
+	        return;
+	    }
+
+        startedScrolling = true;
 
         OnDragEvent.Invoke();
 		eventData.Use();
 	}
 
 	public void OnDrag(PointerEventData eventData) {
-		if (!scrollingEnabled)
+	    if (!scrollingEnabled || !scrollingEnabled2 || !startedScrolling) {
+	        startedScrolling = false;
 			return;
+        }
 
-
-
-		deltaPosition = eventData.delta;
+        deltaPosition = eventData.delta;
 		deltaPosition.x = !MoveX ? 0 : Mathf.RoundToInt(deltaPosition.x) * ScaleFactor;
 		deltaPosition.y = !MoveY ? 0 : Mathf.RoundToInt(deltaPosition.y) * ScaleFactor;
 		deltaPosition.z = 0; // Just in case.
@@ -101,7 +122,8 @@ public class DragObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 	}
 
 	public void OnEndDrag(PointerEventData eventData) {
-		if (!scrollingEnabled)
+	    startedScrolling = false;
+		if (!scrollingEnabled || !scrollingEnabled2)
 			return;
 
 		if (IsAtEnd()) {

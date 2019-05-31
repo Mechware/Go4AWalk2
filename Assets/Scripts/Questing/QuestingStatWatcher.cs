@@ -56,6 +56,17 @@ public class QuestingStatWatcher : MonoBehaviour {
             ActiveItemCollectQuest awq = previousQuest as ActiveItemCollectQuest;
             awq.AmountSoFar.OnChange.RemoveListener(OnChange);
         }
+
+        if(previousQuest is ActiveWalkingQuest) {
+            ActiveWalkingQuest awq = previousQuest as ActiveWalkingQuest;
+            awq.AmountSoFar.OnChange.RemoveListener(OnChange);
+        } else if(previousQuest is ActiveQuest<int, IntVariable, UnityEventInt>) {
+            ActiveQuest<int, IntVariable, UnityEventInt> awq = previousQuest as ActiveQuest<int, IntVariable, UnityEventInt>;
+            awq.AmountSoFar.OnChange.RemoveListener(OnChange);
+        } else if(previousQuest is ReachValueQuest) {
+            var q = previousQuest as ReachValueQuest;
+            q.TotalAmount.OnChange.RemoveListener(OnChange);
+        }
     }
 
     void OnChange(float val) {
