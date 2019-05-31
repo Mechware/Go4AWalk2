@@ -191,17 +191,25 @@ public class QuestManager : MonoBehaviour {
                 () => {
                     // Set Active
                     if (!CurrentQuest.Value.IsFinished()) {
-                        PopUp.SetPopUp(
-                            "Are you sure you want to switch quests? You will lose all progress in this one.",
-                            new[] {"Yep", "Nope"}, new Action[] {
-                                () => {
-                                    CurrentQuests.Add(CurrentQuest);
-                                    CurrentQuest.Value.CleanUp();
-                                    CurrentQuests.Remove(q);
-                                    SetCurrentQuest((ActiveQuestBase) q);
-                                },
-                                () => { }
-                            });
+                        if (!(CurrentQuest.Value is ReachValueQuest)) {
+                            PopUp.SetPopUp(
+                                "Are you sure you want to switch quests? You will lose all progress in this one.",
+                                new[] {"Yep", "Nope"}, new Action[] {
+                                    () => {
+                                        CurrentQuests.Add(CurrentQuest);
+                                        CurrentQuest.Value.CleanUp();
+                                        CurrentQuests.Remove(q);
+                                        SetCurrentQuest((ActiveQuestBase) q);
+                                    },
+                                    () => { }
+                                });
+                        }
+                        else {
+                            CurrentQuests.Add(CurrentQuest);
+                            CurrentQuest.Value.CleanUp();
+                            CurrentQuests.Remove(q);
+                            SetCurrentQuest((ActiveQuestBase) q);
+                        }
                     }
                     else {
                         // You've already completed the quest
