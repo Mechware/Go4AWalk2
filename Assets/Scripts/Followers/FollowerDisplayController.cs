@@ -96,9 +96,19 @@ namespace G4AW2.Followers {
 			
 			if (ListOfCurrentFollowers[0] == fd.Data) {
 				if (fd.Data is EnemyData) {
-					//EnemyData ed = (EnemyData) fd;
+					EnemyData ed = (EnemyData) fd.Data;
 					// TODO: Include stats
-					PopUp.SetPopUp("Fight follower?", new[] {"Yes", "No"}, new Action[] {
+
+				    string elemDmg = ed.HasElementalDamage ? ed.ElementalDamage.ToString() : "0";
+				    string elemColor = ed.HasElementalDamage ? ed.ElementalDamageType.DamageColor.ToCSharpColor() : "black";
+
+
+                    string description = $@"Fight a level {ed.Level} {ed.DisplayName}?
+<color=green>Health: {ed.MaxHealth}</color>
+<color=red>Damage: {ed.Damage}</color>
+Elemental Damage: <color={elemColor}>{elemDmg}</color>";
+
+					PopUp.SetPopUp(description, new[] {"Yes", "No"}, new Action[] {
 					    () => {
                             
 					        FightFollower.Invoke((EnemyData)fd.Data);
