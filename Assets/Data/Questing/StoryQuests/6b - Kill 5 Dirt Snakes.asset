@@ -13,6 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 17
   DisplayName: Danger Noodle Slayer
+  Level: 0
   NextQuest: {fileID: 0}
   StartConversation:
     Text: Dirt snakes have been scaring children and eating chickens, specifically
@@ -47,9 +48,6 @@ MonoBehaviour:
     Level: -1
     RandomRoll: -1
   - it: {fileID: 11400000, guid: 6b9584ef9e8e3814faf69e9f1efe1e8b, type: 2}
-    Level: -1
-    RandomRoll: -1
-  - it: {fileID: 0}
     Level: -1
     RandomRoll: -1
   TotalAmount: {fileID: 11400000, guid: fdbd90a93216918498014533588c8a22, type: 2}
