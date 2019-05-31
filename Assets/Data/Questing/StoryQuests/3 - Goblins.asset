@@ -22,7 +22,7 @@ MonoBehaviour:
       Try and <b>defeat 5 of those goblins</b>.
     Speaker: {fileID: 21300000, guid: c27605eebf83392428128ddf89b5bd1f, type: 3}
   EndConversation:
-    Text: 'Nice work! For defeating a goblin, I present you with a <color=red><b>goblin
+    Text: 'Nice work! For defeating the goblins, I present you with a <color=red><b>goblin
       sword</b></color>. Use it wisely.
 
 

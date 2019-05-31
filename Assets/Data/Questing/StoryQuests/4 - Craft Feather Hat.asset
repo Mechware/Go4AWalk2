@@ -24,12 +24,10 @@ MonoBehaviour:
       to get the material.
     Speaker: {fileID: 21300000, guid: c27605eebf83392428128ddf89b5bd1f, type: 3}
   EndConversation:
-    Text: 'Good job! You can equip that hat through the journal (top right book),
+    Text: "Good job! You can equip that hat through the journal (top right book),
       going to the equip tab, and clicking the headgear box. The question mark in
-      the bottom right can help you out if you get lost.
-
-
-      You''re gonna look so good.'
+      the bottom right can help you out if you get lost.\n\nIt won't actually help
+      you in any way but you're gonna look so good. \n"
     Speaker: {fileID: 21300000, guid: c27605eebf83392428128ddf89b5bd1f, type: 3}
   MinEnemyDropTime: 30
   MaxEnemyDropTime: 60

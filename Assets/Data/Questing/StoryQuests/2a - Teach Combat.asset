@@ -17,11 +17,12 @@ MonoBehaviour:
   StartConversation:
     Text: "Now that you've gotten the hang of tapping you're probably wondering \"How
       can I protect myself from damage?\" Well have I got the solution for you! \n\nIn
-      combat you can <b>swipe towards the enemy to parry</b> their attack as their
-      attacking which causes them to deal no damage and take more damage. You can
-      also <b>swipe away from the enemy to block</b> their attack as their winding
-      up to attack which causes them to do less damage to you.\n\nThe chicken will
-      glow red when he is parryable and blue when his is blockable."
+      combat you can can also <b>swipe away from the enemy to block</b> their attack
+      as they are winding up to reduce damage taken. Alternatively, you can <b>swipe
+      towards the enemy to parry</b> their attack while they are in the middle their
+      attack to take no damage and stun the enemy, but mis-timing a parry can leave
+      you vulnerable!\n\nThe chicken will glow blue when it is blockable and red when
+      he is parryable."
     Speaker: {fileID: 21300000, guid: c27605eebf83392428128ddf89b5bd1f, type: 3}
   EndConversation:
     Text: "Good job! The enemies will continue to glow blue or red for the next few
