@@ -23,15 +23,17 @@ public class GPSMovingAverage : GPSStrategy {
 
 	private float currentAverageLat;
 	private float currentAverageLong;
-	private float lastUpdateTime;
+	private float lastGPSUpdateTime;
+    private float lastDistanceUpdateTime;
 
 	Queue<GPSUpdate> Updates = new Queue<GPSUpdate>();
 
 	public override void Initialize() {
 		Updates.Clear();
-		lastUpdateTime = Time.unscaledTime;
+		lastGPSUpdateTime = Time.unscaledTime;
+	    lastDistanceUpdateTime = Time.unscaledTime;
 
-		currentAverageLat = Input.location.lastData.latitude;
+        currentAverageLat = Input.location.lastData.latitude;
 		currentAverageLong = Input.location.lastData.longitude;
 	}
 
@@ -42,7 +44,7 @@ public class GPSMovingAverage : GPSStrategy {
 			Updates.Dequeue();
 		}
 
-		if (Time.unscaledTime > lastUpdateTime + TimeBetweenAverages) {
+		if (Time.unscaledTime > lastGPSUpdateTime + TimeBetweenAverages) {
 			int count = Updates.Count;
 			float totalLat = 0;
 			float totalLong = 0;
@@ -75,16 +77,20 @@ public class GPSMovingAverage : GPSStrategy {
 
 				// You've moved!
 				distanceMoved = Haversine(currentAverageLong, currentAverageLat, averageLong, averageLat);
-				OnDistanceUpdate(distanceMoved, Time.unscaledTime - TimeBetweenAverages);
+
+				OnDistanceUpdate(distanceMoved, Time.unscaledTime - lastDistanceUpdateTime);
 
 				currentAverageLat = averageLat;
 				currentAverageLong = averageLong;
+
+			    lastDistanceUpdateTime = Time.unscaledTime;
+
 			}
 			else {
 				distanceMoved = 0;
 			}
 
-			lastUpdateTime = Time.unscaledTime;
+			lastGPSUpdateTime = Time.unscaledTime;
 		}
 
 	}
@@ -94,7 +100,7 @@ public class GPSMovingAverage : GPSStrategy {
 
 	public override string GetTextUpdate() {
 		return "Number of Updates in window: " + Updates.Count + "\n" +
-		       "lastUpdateTime: " + lastUpdateTime + "\n" +
+		       "lastUpdateTime: " + lastGPSUpdateTime + "\n" +
 		       "last amount of distance moved: " + distanceMoved + "m\n";
 	}
 }

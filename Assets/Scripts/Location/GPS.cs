@@ -132,8 +132,19 @@ namespace G4AW2.GPS
 		}
 
 		private void OnStrategyUpdate(float distanceMoved, float timeTaken) {
-			GPSUpdated.Invoke(distanceMoved);
-		}
+		    if (distanceMoved < 5) {
+		        // Moved less than x meters, assume stationary.
+		    } else if (distanceMoved / timeTaken > 5.556f) { 
+                // speed > 20 km / h, assume in vehicle
+		        
+		    } else if (timeTaken > 60 * 10) {
+		        // > 10 min since last update, ignore this update. and reinitialize gps strat
+                GpsStrategy.Initialize();
+		    }
+		    else {
+		        GPSUpdated.Invoke(distanceMoved);
+            }
+        }
 
 		private string GetGpsData() {
 
