@@ -31,7 +31,7 @@ MonoBehaviour:
   DeadSprite: {fileID: 21300074, guid: 7a9eeb0c755d7df40b68236151ed26dd, type: 3}
   BaseHealth: 100
   BaseDamage: 1
-  TimeBetweenAttacks: 0
+  TimeBetweenAttacks: 3
   AttackPrepTime: 0.5
   AttackExecuteTime: 0.5
   HasElementalDamage: 1
