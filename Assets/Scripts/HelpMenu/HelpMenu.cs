@@ -9,7 +9,7 @@ public class HelpMenu : MonoBehaviour {
     public HelpMenuItem[] HelpItems;
     public GameObject HelpItemPrefab;
     public Transform HelpItemParent;
-
+    public ScrollRect MenuItems;
     public HelpMenuPopUp PopUp;
 
 	// Use this for initialization
@@ -20,6 +20,10 @@ public class HelpMenu : MonoBehaviour {
             SetClickHandler(go.GetComponent<Button>(), item);
 	    }
 	}
+
+    public void OnOpen() {
+        //MenuItems.normalizedPosition = new Vector2(0, 1);
+    }
 
     void SetClickHandler(Button b, HelpMenuItem item) {
         b.onClick.RemoveAllListeners();
