@@ -19,8 +19,8 @@ MonoBehaviour:
     Text: Nice new sword! You know what would go great with that sword? A new hat!
       You can craft a new feathered hat with a gnome hat and a feather by <b>tapping
       on the anvil in the top right</b> and then clicking on the crafting recipe that
-      requires 1 feather and 1 gnome hat! If there isn't one, you <b>may not have
-      enough materials</b>, so you'll have to <b>defeat a few chickens and gnomes</b>
+      requires 1 feather and 1 gnome hat! If you can't make one yet, you <b>may not
+      have enough materials</b>, so you'll have to <b>defeat a few chickens and gnomes</b>
       to get the material.
     Speaker: {fileID: 21300000, guid: c27605eebf83392428128ddf89b5bd1f, type: 3}
   EndConversation:
