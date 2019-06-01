@@ -59,7 +59,7 @@ namespace G4AW2.Followers {
             }
             if (Data is EnemyData) {
                 EnemyData e = (EnemyData) data;
-                followerID.text = $"{e.DisplayName}\n<size=75%>LVL {e.Level}";
+                followerID.text = $"LVL {e.Level}\n{e.DisplayName}";
             } else if (Data is ShopFollower) {
                 followerID.text = data.DisplayName;
             } else if (Data is QuestGiver) {

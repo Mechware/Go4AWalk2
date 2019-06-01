@@ -13,9 +13,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 1
   DisplayName: Defeat Chicken Boss
+  Level: 1
   NextQuest: {fileID: 11400000, guid: 7772697f7dd01f34b9f246fc0cdf5cbd, type: 2}
   StartConversation:
-    Text: 'Welcome to the <color=red>Adventure Trek Pre-Alpha!</color>
+    Text: 'Welcome to <color=red>Adventure Trek Pre-Alpha!</color>
 
 
       In this game you fight enemies and get cool loot!
@@ -41,4 +42,3 @@ MonoBehaviour:
     Drops: []
   QuestRewards: []
   Enemy: {fileID: 11400000, guid: f9cb20d3635f5ec40935188217f021cd, type: 2}
-  Level: 1

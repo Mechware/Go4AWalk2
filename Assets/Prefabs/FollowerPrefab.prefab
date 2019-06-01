@@ -116,14 +116,14 @@ MonoBehaviour:
     Chicken'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a7fe01646a3ae514e85cfec53b70445a, type: 2}
-  m_sharedMaterial: {fileID: 21681502487999386, guid: a7fe01646a3ae514e85cfec53b70445a,
+  m_sharedMaterial: {fileID: 21681502487999386, guid: 1ba124e0d483bea4aac70564f1f91140,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 4278190080
   m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_fontColorGradient:
@@ -145,8 +145,8 @@ MonoBehaviour:
   m_fontSizeBase: 3
   m_fontWeight: 400
   m_enableAutoSizing: 0
-  m_fontSizeMin: 3
-  m_fontSizeMax: 6
+  m_fontSizeMin: 1
+  m_fontSizeMax: 3
   m_fontStyle: 1
   m_textAlignment: 258
   m_isAlignmentEnumConverted: 1
@@ -194,9 +194,9 @@ MonoBehaviour:
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_subTextObjects:
   - {fileID: 0}
   - {fileID: 0}
@@ -270,5 +270,5 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 64, y: 15}
+  m_SizeDelta: {x: 28, y: 16}
   m_Pivot: {x: 0.5, y: 1}
