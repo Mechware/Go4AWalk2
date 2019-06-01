@@ -16,9 +16,9 @@ MonoBehaviour:
     level of the monster that dropped it and it cannot be changed. The mastery is
     your ability to use that type of weapon, so every ''Goblin Sword'' has the same
     mastery. Your mastery increases as you use the weapon type (so going from a level
-    5 normal goblin sword to a level 10 normal goblin sword has will only benefit
-    you because the mastery is the same). Finally, damage is the damage the weapon
-    does to the enemy if the enemy has no armor. There is an additional damage on
-    enchanted weapons which is elemental damage.'
+    5 normal goblin sword to a level 10 normal goblin sword will only benefit you
+    because the mastery is the same). Finally, damage is the damage the weapon does
+    to the enemy if the enemy has no armor and includes bonuses from mastery. There
+    is an additional damage on enchanted weapons which is elemental damage.'
   SeeAlso:
   - {fileID: 11400000, guid: c2f3a266a03b47a4a8d15c222a48c7a2, type: 2}

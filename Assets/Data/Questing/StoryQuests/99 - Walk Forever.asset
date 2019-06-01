@@ -13,9 +13,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 4
   DisplayName: The End.
+  Level: 0
   NextQuest: {fileID: 0}
   StartConversation:
-    Text: "Thank you for play testing <color=red>Adventure Trek</color>!\n\nWe hope
+    Text: "Thank you for play testing <color=red>Adventure Trek 2</color>!\n\nWe hope
       you enjoyed playing our game. There is obviously a lot of work still to do before
       we can say it is done but we hope you enjoyed what we have so far. \n\nWe would
       really appreciate it if you could click the link below to fill out a quick survey

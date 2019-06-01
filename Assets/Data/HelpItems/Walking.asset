@@ -14,4 +14,5 @@ MonoBehaviour:
   DisplayName: Walking
   Description: To get enemies to follow you quickly, you must walk in real life. They
     appear fairly often as you walk but will still appear even while you are not moving.
+    The game must be running and GPS enabled in order for the walking to register.
   SeeAlso: []
