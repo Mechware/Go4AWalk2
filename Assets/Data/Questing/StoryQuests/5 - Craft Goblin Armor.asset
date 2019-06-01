@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 10
   DisplayName: Craft Golbin Armor Armor
-  Level: 0
+  Level: 5
   NextQuest: {fileID: 11400000, guid: 9bb92d304139bd443a17fa212d7c7469, type: 2}
   StartConversation:
     Text: Now that you can defeat goblins <b>AND</b> craft things, you're unstoppable!

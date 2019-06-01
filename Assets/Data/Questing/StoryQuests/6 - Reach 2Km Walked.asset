@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 13
   DisplayName: Walk To Fire Zone
-  Level: 0
+  Level: 6
   NextQuest: {fileID: 11400000, guid: 68904e00581c0b14b86a002773fbf51b, type: 2}
   StartConversation:
     Text: 'Egad! During your goblin defeating spree a goblin champion in a far off

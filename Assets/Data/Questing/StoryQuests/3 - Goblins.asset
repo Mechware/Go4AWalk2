@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 3
   DisplayName: Defeat 5 Goblins
-  Level: 0
+  Level: 4
   NextQuest: {fileID: 11400000, guid: fc18e94318e97394291c84a4249c3c18, type: 2}
   StartConversation:
     Text: You're doing great! Those gnomes didn't stand a chance. Some stronger folks

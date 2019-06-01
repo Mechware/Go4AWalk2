@@ -13,6 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 2
   DisplayName: Defeat 5 Gnomes
+  Level: 2
   NextQuest: {fileID: 11400000, guid: 1813d7e0e7b53e14ea74a03ff6e2ceee, type: 2}
   StartConversation:
     Text: 'Now that you''ve got the basics of fighting, chickens and gnomes are going

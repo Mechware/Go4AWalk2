@@ -13,6 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 11
   DisplayName: Bad Beetle Slayer
+  Level: 6
   NextQuest: {fileID: 0}
   StartConversation:
     Text: You look stressed, try killing many beetles. That always helps me!

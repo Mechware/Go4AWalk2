@@ -13,6 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 14
   DisplayName: Get a Gem
+  Level: 7
   NextQuest: {fileID: 11400000, guid: a1f342b0db0f6874081902b4d25ca172, type: 2}
   StartConversation:
     Text: Nice blink! We are here now. It's so hot and firey here. Oh, I've heard

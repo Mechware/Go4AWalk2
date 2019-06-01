@@ -8,12 +8,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b312d8dc3e6ebbb4fa35f02bdc5d92a2, type: 3}
+  m_Script: {fileID: 11500000, guid: 5b2c329e95bdfd747b5a9a4dce04670b, type: 3}
   m_Name: 4 - Craft Feather Hat
   m_EditorClassIdentifier: 
   ID: 8
   DisplayName: Craft Feathered Hat
-  Level: 0
+  Level: 4
   NextQuest: {fileID: 11400000, guid: 3bdbfb305ca5b514fbfb60ae208f0bdc, type: 2}
   StartConversation:
     Text: Nice new sword! You know what would go great with that sword? A new hat!
@@ -48,4 +48,3 @@ MonoBehaviour:
   QuestRewards: []
   TotalAmount: {fileID: 11400000, guid: be36c9fe256f2e943ba7565f6c48e8fa, type: 2}
   AmountToReach: 1
-  AmountSoFar: {fileID: 11400000, guid: 66d427283c1651346a2bb795dcaa50b7, type: 2}

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 15
   DisplayName: Enchant a Weapon
+  Level: 7
   NextQuest: {fileID: 11400000, guid: d5a3181b25c7d8647bf8f2b64851bbe5, type: 2}
   StartConversation:
     Text: To enchant your weapon, all you have to do is click the top right anvil,

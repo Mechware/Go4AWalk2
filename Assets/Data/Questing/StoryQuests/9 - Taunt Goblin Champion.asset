@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 18
   DisplayName: Defeat 7 Goblins
-  Level: 0
+  Level: 9
   NextQuest: {fileID: 11400000, guid: bf90e00dcd90ed34ca7f414c4f654636, type: 2}
   StartConversation:
     Text: Alright, to get the champions attention, lets defeat a few goblins and see
@@ -31,16 +31,16 @@ MonoBehaviour:
   Enemies:
     Drops:
     - Follower: {fileID: 11400000, guid: 581f3693b61c6534881558b338b2fc3f, type: 2}
-      MinLevel: 6
-      MaxLevel: 8
+      MinLevel: 8
+      MaxLevel: 10
       DropChance: 10
     - Follower: {fileID: 11400000, guid: 6c8f3c7d1db4f8d4c8f328fecf3daa82, type: 2}
-      MinLevel: 6
-      MaxLevel: 8
+      MinLevel: 8
+      MaxLevel: 10
       DropChance: 4
     - Follower: {fileID: 11400000, guid: b9128b39a35b6774995edaeac41aee56, type: 2}
-      MinLevel: 6
-      MaxLevel: 8
+      MinLevel: 8
+      MaxLevel: 10
       DropChance: 1
   QuestRewards: []
   TotalAmount: {fileID: 11400000, guid: 23644b4fcc28bd84c8f14428da54e1f2, type: 2}
