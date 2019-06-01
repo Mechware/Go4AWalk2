@@ -12,6 +12,8 @@ public class HelpMenuPopUp : MonoBehaviour {
     public Transform SeeAlsoParent;
     public GameObject SeeAlsoPrefab;
 
+    public ScrollRect HelpScroll;
+
     private ObjectPrefabPool pool = null;
     private ObjectPrefabPool Pool {get{
             if(pool == null) pool = new ObjectPrefabPool(SeeAlsoPrefab, SeeAlsoParent, 8);
@@ -21,8 +23,9 @@ public class HelpMenuPopUp : MonoBehaviour {
 
     public void ShowItem(HelpMenuItem item) {
         gameObject.SetActive(true);
+        HelpScroll.normalizedPosition = new Vector2(0, 1);
 
-        
+
         Title.text = "Help: " + item.DisplayName;
         Text.text = item.Description;
 
