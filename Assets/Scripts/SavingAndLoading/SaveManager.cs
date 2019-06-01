@@ -119,7 +119,7 @@ namespace G4AW2.Saving {
         }
 
         private void LoadFromString(string loadText) {
-            string errorMessage = "Could not load the following:";
+            string errorMessage = "Could not load the following:\n";
             bool error = false;
             SaveObject saveData = JsonUtility.FromJson<SaveObject>(loadText);
             foreach(KeyValuePairStringString kvp in saveData.VariableDictionary) {
@@ -145,7 +145,7 @@ namespace G4AW2.Saving {
                 }
                 catch (Exception e) {
                     Debug.LogWarning(e.Message + "\n" + e.StackTrace);
-                    errorMessage += $"<b>{soToOverwrite.ObjectToSave.name}</b>\n";
+                    errorMessage += $"<b>{soToOverwrite.ObjectToSave.name}\n{e.Message}\n{e.StackTrace}</b>\n";
                     error = true;
                 }
             }
