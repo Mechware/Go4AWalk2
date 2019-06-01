@@ -35,13 +35,51 @@ public class DataManager : MonoBehaviour {
             StatTracker.ItemObtainedCount.Remove(v);
         }
     }
+
+    [ContextMenu("Ensure No ID Dups")]
+    public void EnsureNoIDDups() {
+        HashSet<int> ids = new HashSet<int>();
+        foreach (var thing in AllFollowers) {
+            if (ids.Contains(thing.ID)) {
+                Debug.LogWarning("Follower has same id as another: " + thing.name);
+                continue;
+            }
+            ids.Add(thing.ID);
+        }
+
+        ids.Clear();
+        foreach(var thing in AllItems) {
+            if(ids.Contains(thing.ID)) {
+                Debug.LogWarning("Item has same id as another: " + thing.name);
+            }
+            ids.Add(thing.ID);
+        }
+
+        ids.Clear();
+        foreach(var thing in AllQuests) {
+            if(ids.Contains(thing.ID)) {
+                Debug.LogWarning("Quest has same id as another: " + thing.name);
+            }
+            ids.Add(thing.ID);
+        }
+
+        ids.Clear();
+        foreach(var thing in AllRecipes) {
+            if(ids.Contains(thing.ID)) {
+                Debug.LogWarning("Recipe has same id as another: " + thing.name);
+            }
+            ids.Add(thing.ID);
+        }
+    }
 #else
      public void UpdateAll() {}
+    public void EnsureNoIDDups() {}
 #endif
 
     // Use this for initialization
     void Awake () {
 		UpdateAll();
+        EnsureNoIDDups();
 	}
 	
 	// Update is called once per frame
