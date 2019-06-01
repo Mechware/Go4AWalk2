@@ -17,6 +17,10 @@ public class BossQuest : ActiveQuestBase {
         finished(this);
     }
 
+    public override bool IsFinished() {
+        return false;
+    }
+
 #if UNITY_EDITOR
     [ContextMenu("Pick ID")]
     public new void PickID() {
