@@ -19,6 +19,7 @@ public class QuickPopUp : MonoBehaviour {
     private Queue<PopUpData> PopUpsToShow = new Queue<PopUpData>();
     private bool alphaLerpRunning = false;
 
+    public bool IsMainInstance = false;
 
     private static QuickPopUp instance;
 
@@ -28,7 +29,9 @@ public class QuickPopUp : MonoBehaviour {
     }
 
     void Awake() {
-        instance = this;
+        if(IsMainInstance) {
+            instance = this;
+        }
         QuickPopUpAllowed.OnChange.AddListener(QuickPopUpAllowedChanged);
     }
 
@@ -39,6 +42,14 @@ public class QuickPopUp : MonoBehaviour {
         else {
             // Do nothing, user has to dismiss current one
         }
+    }
+
+    public void ShowSprite(Sprite icon, string text) {
+        if(alreadyActive) {
+            Shake();
+        }
+        AddToQueue(icon, text);
+        StartPopUp();
     }
 
     public static void Show(Sprite icon, string text) {

@@ -119,6 +119,8 @@ public class CraftingMenu : MonoBehaviour {
         
     }
 
+    public QuickPopUp PopUp;
+
     private void MakeRecipe(CraftingRecipe cr) {
         Item it = CT.Make(cr);
         RefreshList();
@@ -130,6 +132,6 @@ public class CraftingMenu : MonoBehaviour {
             PostText = $"\nARM: {((Armor) it).ARMValue}";
         }
 
-        QuickPopUp.Show(cr.Result.Item.Image, $"<size=150%>Crafted!</size>\nYou successfully crafted a {it.GetName()}!{PostText}");
+        PopUp.ShowSprite(cr.Result.Item.Image, $"<size=150%>Crafted!</size>\nYou successfully crafted a {it.GetName()}!{PostText}");
     }
 }
