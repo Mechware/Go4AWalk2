@@ -29,13 +29,13 @@ MonoBehaviour:
   Dead: {fileID: 7400000, guid: 865c6b9b368d6e442b1082bcd64593eb, type: 2}
   Walking: {fileID: 7400000, guid: 75479a76a06b8cf4cbabfe23503f11fa, type: 2}
   DeadSprite: {fileID: 21300096, guid: a7f8f0b085a027f4eafde8abf8bd6516, type: 3}
-  BaseHealth: 125
-  BaseDamage: 15
+  HealthAtLevel0: 20000
+  DamageAtLevel0: 40
   TimeBetweenAttacks: 1.5
   AttackPrepTime: 0.625
   AttackExecuteTime: 0.375
   HasElementalDamage: 1
-  BaseElementalDamage: 15
+  ElementalDamageAtLevel0: 100
   ElementalDamageType: {fileID: 11400000, guid: 2b8306db4b1f89b46951140b9e7f9220,
     type: 2}
   ElementalWeaknesses:
@@ -47,6 +47,4 @@ MonoBehaviour:
     Items:
     - item: {fileID: 11400000, guid: d08d0756c736c2a4ab0d0954542e7fed, type: 2}
       dropChance: 0.1
-    - item: {fileID: 0}
-      dropChance: 0
   OneAndDoneAttacker: 0

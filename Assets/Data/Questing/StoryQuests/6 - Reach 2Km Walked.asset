@@ -17,7 +17,7 @@ MonoBehaviour:
   NextQuest: {fileID: 11400000, guid: 68904e00581c0b14b86a002773fbf51b, type: 2}
   StartConversation:
     Text: 'Egad! During your goblin defeating spree a goblin champion in a far off
-      land challenged you to a fight! You have to walk 2Km to get there, but I know
+      land challenged you to a fight! You have to walk 1500m to get there, but I know
       you can do it.
 
 
@@ -74,4 +74,4 @@ MonoBehaviour:
       DropChance: 1
   QuestRewards: []
   TotalAmount: {fileID: 11400000, guid: 74f12590ab51f1d458ce51a019ae59e3, type: 2}
-  AmountToReach: 2000
+  AmountToReach: 1500
