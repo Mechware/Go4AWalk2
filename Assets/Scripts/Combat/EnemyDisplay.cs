@@ -154,7 +154,8 @@ namespace G4AW2.Combat {
 		public IEnumerator DoAttack(bool first = false) {
 			for (; ; ) {
 				EnemyState = State.Idle;
-				yield return new WaitForSeconds(first ? Enemy.TimeBetweenAttacks / 4 : Enemy.TimeBetweenAttacks);
+                yield return new WaitForSeconds(first ? Enemy.TimeBetweenAttacks / 4 : Enemy.TimeBetweenAttacks);
+                first = false;
 			    if (EnemyState == State.Dead) break;
 
 				EnemyState = State.BeforeAttack;
