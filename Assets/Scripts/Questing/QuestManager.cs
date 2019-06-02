@@ -175,6 +175,9 @@ public class QuestManager : MonoBehaviour {
                 if(quest is BossQuest) {
                     BossController.StartBossQuest();
                 }
+
+                if(quest.IsFinished())
+                    FinishQuest(quest);
             });
         }
 
