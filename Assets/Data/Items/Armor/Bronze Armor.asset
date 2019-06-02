@@ -18,7 +18,7 @@ MonoBehaviour:
   Description: A sturdy piece of bronze armor.
   Rarity: 0
   SellWithTrash: 0
-  ArmorAtLevel0: 0
+  ArmorAtLevel0: 10
   ElementalWeakness:
     UseConstant: 1
     ConstantValue:
