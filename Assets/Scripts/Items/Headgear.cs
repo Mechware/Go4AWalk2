@@ -83,6 +83,8 @@ public class Headgear : Item, ITrashable, ISaveable {
             RollMod();
         }
 
+        SetValuesBasedOnRandom();
+
         if(CreatedFromOriginal)
             return;
 

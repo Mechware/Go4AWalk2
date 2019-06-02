@@ -60,21 +60,17 @@ public class InventoryItemDisplay : MonoBehaviour, IPointerClickHandler {
             AmountText.gameObject.SetActive(amount > 1);
             if(item is Weapon) {
                 Weapon w = (Weapon)item;
-                LevelText.text = " " + w.Mastery + "\n<size=50%>" + "LVL " + w.Level;
-                DamageText.text = "<size=50%> DAM <size=100%>" + w.RawDamage;
-                LevelText.gameObject.SetActive(true);
+                DamageText.text = $"<size=50%>DAM</size>\n<color=#c42c36>{w.RawDamage}</color>";
                 DamageText.gameObject.SetActive(true);
             }
             if (item is Armor) {
                 Armor a = (Armor)item;
-                //LevelText.text = " " + 3/*a.Mastery.ToString()*/ + "\n<size=50%>" + "LVL " + 3/*a.Level.ToString()*/;
-                DamageText.text = "<size=50%> ARM <size=100%>" + a.ARMValue;
-                //LevelText.gameObject.SetActive(true);
+                DamageText.text = $"<size=50%>ARM</size>\n<color=#13b2f2>{a.ARMValue}</color>";
                 DamageText.gameObject.SetActive(true);
             }
             if(item is Headgear) {
                 Headgear hg = (Headgear) item;
-                DamageText.text = "<size=50%> HEL <size=100%>" + hg.ExtraHealth;
+                DamageText.text = $"<size=50%>HP</size>\n<color=#7bcf5c>{hg.ExtraHealth}</color>";
                 DamageText.gameObject.SetActive(true);
             }
         }

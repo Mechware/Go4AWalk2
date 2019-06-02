@@ -138,8 +138,7 @@ DAM {2}";
         Button2.onClick.AddListener(Close);
         Button3.onClick.AddListener(Close);
 
-        if(compareWeapon == null)
-            SetCompare(PlayerWeapon);
+        SetCompare(PlayerWeapon);
     }
 
     public void Open() {

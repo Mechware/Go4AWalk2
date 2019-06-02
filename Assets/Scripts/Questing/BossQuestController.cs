@@ -37,6 +37,8 @@ public class BossQuestController : MonoBehaviour {
     }
 
     public void StartBossQuest() {
+        if(!(CurrentQuest.Value is BossQuest))
+            return;
 
         BossQuest quest = (BossQuest) CurrentQuest.Value;
 
@@ -129,6 +131,8 @@ public class BossQuestController : MonoBehaviour {
 
     [ContextMenu("Resume")]
     public void ResumeBossQuest() {
+        if(!(CurrentQuest.Value is BossQuest))
+            return;
 
         BossQuest quest = (BossQuest) CurrentQuest.Value;
 
