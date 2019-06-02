@@ -16,7 +16,7 @@ public class Inventory : ScriptableObject, IEnumerable<InventoryEntry>, ISaveabl
     public Sprite QuestionMark;
 
     public int GetAmountOf(Item it) {
-        return InventoryEntries.Sum(i => i.Item == it ? i.Amount : 0);
+        return InventoryEntries.Sum(i => i.Item.ID == it.ID ? i.Amount : 0);
     }
 
     public void AddItems(IEnumerable<Item> items) {
