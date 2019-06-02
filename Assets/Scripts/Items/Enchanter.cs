@@ -46,7 +46,7 @@ public class Enchanter : Item, ISaveable {
     }
 
     public override string GetDescription() {
-        return $"Type: {Type.name}\nValue: {GetValue()}\nLevel: {GetPrefix()}";
+        return $"Type: {Type.name}\nValue: {GetValue()}";
     }
 
     private class SaveObject {

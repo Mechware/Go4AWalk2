@@ -29,7 +29,7 @@ MonoBehaviour:
   Dead: {fileID: 7400000, guid: 27ca152491557ea4f921d128b45684aa, type: 2}
   Walking: {fileID: 7400000, guid: 144518af6c52ac7438580d128efef087, type: 2}
   DeadSprite: {fileID: 21300056, guid: d89c36434d5f4cf4fa9119e9d064eabb, type: 3}
-  HealthAtLevel0: 180000
+  HealthAtLevel0: 18000
   DamageAtLevel0: 100
   TimeBetweenAttacks: 6
   AttackPrepTime: 0.5

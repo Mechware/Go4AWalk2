@@ -26,11 +26,17 @@ MonoBehaviour:
   - Item: {fileID: 11400000, guid: f02a4360ffd63e2499d1222a338cd414, type: 2}
     Amount: 10
     Level: 0
-  - Item: {fileID: 11400000, guid: 93a734356920da24caaee99393399534, type: 2}
-    Amount: 1
-    Level: 3
-  - Item: {fileID: 11400000, guid: 1af2a214dc94bd644b379c4e893b37a2, type: 2}
+  - Item: {fileID: 11400000, guid: 0ad535ea489ac67408922f7ad87a90cc, type: 2}
     Amount: 1
     Level: 10
+  - Item: {fileID: 11400000, guid: 1af2a214dc94bd644b379c4e893b37a2, type: 2}
+    Amount: 1
+    Level: 5
+  - Item: {fileID: 11400000, guid: 0b6293aa8f7a5e04f9516f3a615032ae, type: 2}
+    Amount: 1
+    Level: 10
+  - Item: {fileID: 11400000, guid: 889c85b04c6825d4f9d5a09342506e45, type: 2}
+    Amount: 1
+    Level: 6
   BuyingPriceMultiplier: 1.5
   SellingPriceMultiplier: 0.5

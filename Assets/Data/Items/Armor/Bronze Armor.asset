@@ -14,10 +14,11 @@ MonoBehaviour:
   ID: 65
   Name: Bronze Armor
   Image: {fileID: 21300000, guid: 91ed9413abd4ad44b9eab86b4c76e606, type: 3}
-  Value: 100
+  Value: 50
   Description: A sturdy piece of bronze armor.
   Rarity: 0
-  BaseARMValue: 8
+  SellWithTrash: 0
+  ArmorAtLevel0: 0
   ElementalWeakness:
     UseConstant: 1
     ConstantValue:

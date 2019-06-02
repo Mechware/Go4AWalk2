@@ -14,7 +14,7 @@ MonoBehaviour:
   ID: 36
   Name: Bronze Saber
   Image: {fileID: 21300000, guid: f69bb5e00039bfb4dbe9ea18f9e4a8b2, type: 3}
-  Value: 15
+  Value: 20
   Description: A bronze blade, slightly more balanced than a traditional sword.
   Rarity: 0
   SellWithTrash: 0
