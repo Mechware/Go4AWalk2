@@ -19,9 +19,9 @@ MonoBehaviour:
     Text: "Thank you for play testing <color=red>Adventure Trek 2</color>!\n\nWe hope
       you enjoyed playing our game. There is obviously a lot of work still to do before
       we can say it is done but we hope you enjoyed what we have so far. \n\nWe would
-      really appreciate it if you could click the link below to fill out a quick survey
-      and give us your feedback on the game so we can improve it!\n\nThanks again!\n\n-Spiffy
-      Chicken Games\n"
+      really appreciate it if you could <link=\"https://www.surveymonkey.com/r/V7PWDVN\"><color=blue>click
+      this link</color></link> to fill out a quick survey and give us your feedback
+      on the game so we can improve it!\n\nThanks again!\n\n-Spiffy Chicken Games\n"
     Speaker: {fileID: 21300000, guid: e69d604f24b4c034cac690dde3906002, type: 3}
   EndConversation:
     Text: NANI?!

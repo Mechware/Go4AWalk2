@@ -24,9 +24,7 @@ MonoBehaviour:
 
       To start off, lets teach you about fighting. A chicken is going to approach
       you who has the intent to harm you. You must fight it! To defeat the evil chicken
-      you must simply tap on the screen.
-
-'
+      you must simply tap on the screen.'
     Speaker: {fileID: 21300000, guid: c27605eebf83392428128ddf89b5bd1f, type: 3}
   EndConversation:
     Text: Great job taking care of that chicken. Don't worry about hurting the chicken,
