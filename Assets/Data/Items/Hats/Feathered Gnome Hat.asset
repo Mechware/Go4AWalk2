@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Name: Feathered Gnome Hat
   m_EditorClassIdentifier: 
   ID: 42
+  Name: Feathered Gnome Hat
   Image: {fileID: 21300000, guid: 7e4bc59980edc22429b6c9a1f6557266, type: 3}
   Value: 10
   Description: Call it macaroni.
   Rarity: 1
+  SellWithTrash: 0
+  HealthGainedAtLevel0: 100

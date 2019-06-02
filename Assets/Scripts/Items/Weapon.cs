@@ -12,17 +12,14 @@ namespace G4AW2.Data.DropSystem
     [CreateAssetMenu(menuName = "Data/Items/Weapon")]
     public class Weapon : Item, ISaveable, ITrashable {
 
-        private const float DAMAGE_SCALING = 100;
-
         public PersistentSetItem AllItems;
 
-        public int RawDamage => Mathf.RoundToInt(DAMAGE_SCALING * (1 + Damage / 100f) * MasteryDamageMod * (1 + Level / 10f) * mod);
+        public int RawDamage => Mathf.RoundToInt(DamageAtLevel0 * MasteryDamageMod * (1 + Level / 10f) * mod);
         public int Mastery => Mathf.FloorToInt( ConfigObject.GetLevel(Rarity, MasteryLevels.GetTaps(ID)));
         public float RawMastery => ConfigObject.GetLevel(Rarity, MasteryLevels.GetTaps(ID));
         private float MasteryDamageMod => Mastery == 99 ? 2.15f : 1 + Mastery / 100f;
 
-        //[Range(0,100)]
-        public float Damage;
+        public float DamageAtLevel0;
 
         public bool IsEnchanted { get { return Enchantment != null; } }
         public Enchanter Enchantment { get; private set; }
@@ -109,28 +106,8 @@ namespace G4AW2.Data.DropSystem
         }
 
         public void SetValuesBasedOnRandom() {
-            if(Random == 0) {
-                mod = 0.5f;
-                nameMod = "Broken";
-            } else if(Random >= 1 && Random <= 10) {
-                mod = 0.7f;
-                nameMod = "Damaged";
-            } else if(Random >= 11 && Random <= 30) {
-                mod = 0.85f;
-                nameMod = "Inferior";
-            } else if(Random >= 31 && Random <= 70) {
-                mod = 1;
-                nameMod = "Normal";
-            } else if(Random >= 71 && Random <= 90) {
-                mod = 1.15f;
-                nameMod = "Fine";
-            } else if(Random >= 91 && Random <= 99) {
-                mod = 1.3f;
-                nameMod = "Exquisite";
-            } else if(Random == 100) {
-                mod = 1.5f;
-                nameMod = "Masterwork";
-            }
+            mod = ModRoll.GetMod(Random);
+            nameMod = ModRoll.GetName(Random);
         }
 
 
@@ -182,7 +159,7 @@ namespace G4AW2.Data.DropSystem
 
             // Copy Original Values
             base.CopyValues(original);
-            Damage = original.Damage;
+            DamageAtLevel0 = original.DamageAtLevel0;
             LevelUp = original.LevelUp;
             AllItems = original.AllItems;
 

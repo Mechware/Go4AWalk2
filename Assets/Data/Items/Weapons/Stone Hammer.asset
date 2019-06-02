@@ -18,6 +18,7 @@ MonoBehaviour:
   Description: A simple tool used since ancient times. Still just as effective as
     ever.
   Rarity: 1
+  SellWithTrash: 0
   AllItems: {fileID: 11400000, guid: f34cbb7c711f3c94f92aaeed3b937361, type: 2}
-  Damage: 32
+  DamageAtLevel0: 132
   LevelUp: {fileID: 11400000, guid: 1b44135a1b59bbf4193efb1137b4ab02, type: 2}

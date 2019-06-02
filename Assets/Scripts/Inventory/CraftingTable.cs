@@ -66,6 +66,10 @@ public class CraftingTable : ScriptableObject {
             if (it is Armor) {
                 ((Armor) it).Level = CurrentQuest.Value.Level;
             }
+
+            if(it is Headgear) {
+                ((Headgear) it).Level = CurrentQuest.Value.Level;
+            }
         }
 
         Inventory.Add(it, cr.Result.Amount);

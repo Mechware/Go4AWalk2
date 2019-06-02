@@ -72,6 +72,11 @@ public class InventoryItemDisplay : MonoBehaviour, IPointerClickHandler {
                 //LevelText.gameObject.SetActive(true);
                 DamageText.gameObject.SetActive(true);
             }
+            if(item is Headgear) {
+                Headgear hg = (Headgear) item;
+                DamageText.text = "<size=50%> HEL <size=100%>" + hg.ExtraHealth;
+                DamageText.gameObject.SetActive(true);
+            }
         }
 
 	    if (!showText) {

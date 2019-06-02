@@ -7,7 +7,8 @@ namespace G4AW2.Data.DropSystem {
     [CreateAssetMenu(menuName = "Data/Items/Armor")]
     public class Armor : Item, ISaveable, ITrashable {
 
-        public float BaseARMValue;
+        [Range(0, 50)]
+        public float ArmorAtLevel0;
         public ElementalWeaknessReference ElementalWeakness;
 
         [NonSerialized]
@@ -25,7 +26,7 @@ namespace G4AW2.Data.DropSystem {
         private float NoBlockModifierWithMod => Mathf.Max(1 - ARMValue / 100, 0);
         private float PerfectBlockModifierWithMod => Mathf.Max(0.25f - ARMValue / 400, 0); // at arm = 0, damage reduction is 75%
         private float MistimedBlockModifierWithMod => Mathf.Max(0.5f - ARMValue / 200, 0); // at arm = 0, damage reduction is 50%
-        public float ARMValue => Mathf.RoundToInt(BaseARMValue * mod * (1 + Level / 100f));
+        public float ARMValue => Mathf.RoundToInt(ArmorAtLevel0 * mod * (1 + Level / 100f));
 
         public enum BlockState { None, Blocking, PerfectlyBlocking, BadParry}
 
@@ -68,28 +69,8 @@ namespace G4AW2.Data.DropSystem {
         }
 
         public void SetValuesBasedOnRandom() {
-            if(Random == 0) {
-                mod = 0.5f;
-                nameMod = "Broken";
-            } else if(Random >= 1 && Random <= 10) {
-                mod = 0.7f;
-                nameMod = "Damaged";
-            } else if(Random >= 11 && Random <= 30) {
-                mod = 0.85f;
-                nameMod = "Inferior";
-            } else if(Random >= 31 && Random <= 70) {
-                mod = 1;
-                nameMod = "Normal";
-            } else if(Random >= 71 && Random <= 90) {
-                mod = 1.15f;
-                nameMod = "Fine";
-            } else if(Random >= 91 && Random <= 99) {
-                mod = 1.3f;
-                nameMod = "Exquisite";
-            } else if(Random == 100) {
-                mod = 1.5f;
-                nameMod = "Masterwork";
-            }
+            mod = ModRoll.GetMod(Random);
+            nameMod = ModRoll.GetName(Random);
         }
 
         private class DummySave {
@@ -129,7 +110,7 @@ namespace G4AW2.Data.DropSystem {
             // Copy Original Values
             //OnAfterObtained(original);
             base.CopyValues(original);
-            BaseARMValue = original.BaseARMValue;
+            ArmorAtLevel0 = original.ArmorAtLevel0;
             ElementalWeakness = original.ElementalWeakness;
         }
 

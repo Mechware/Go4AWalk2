@@ -42,4 +42,7 @@ MonoBehaviour:
   - it: {fileID: 11400000, guid: 2da6b9adf5d871c4a8c481d49c4b2092, type: 2}
     Level: 10
     RandomRoll: -1
+  - it: {fileID: 11400000, guid: f9ce8a3957c5c404bac197dc677cb6dd, type: 2}
+    Level: 10
+    RandomRoll: -1
   Enemy: {fileID: 11400000, guid: cda96108237db6e4d84dd6f435cc0239, type: 2}

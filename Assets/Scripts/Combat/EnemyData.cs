@@ -20,15 +20,9 @@ namespace G4AW2.Data.Combat {
 
 	    public Sprite DeadSprite;
 	    
-        private const float BASE_ENEMY_HEALTH_SCALING = 5000;
-	    private const float BASE_ENEMY_DAMAGE_SCALING = 50;
-	    private const float BASE_ENEMY_ELEM_DAMAGE_SCALING = 2.5f;
-
 	    [Header("Stats")]
-        [Range(0, 500)]
-        public float BaseHealth;
-        [Range(0, 500)]
-	    public float BaseDamage;
+        public float HealthAtLevel0;
+	    public float DamageAtLevel0;
 
 	    public float TimeBetweenAttacks;
         public float AttackPrepTime;
@@ -36,7 +30,7 @@ namespace G4AW2.Data.Combat {
 
         [Header("Elemental")]
 	    public bool HasElementalDamage;
-	    public float BaseElementalDamage;
+	    public float ElementalDamageAtLevel0;
 	    public ElementalType ElementalDamageType;
 	    public ElementalWeaknessReference ElementalWeaknesses;
 
@@ -46,11 +40,22 @@ namespace G4AW2.Data.Combat {
 
 	    [NonSerialized] public int Level;
 
-	    public int MaxHealth => Mathf.RoundToInt(BASE_ENEMY_HEALTH_SCALING * (1 + BaseHealth / 100) * (1 + Level / 10f));
-	    public int Damage => Mathf.RoundToInt(BASE_ENEMY_DAMAGE_SCALING *(1 + BaseDamage / 100) * (1 + Level / 10f));
-	    public int ElementalDamage => Mathf.RoundToInt(BASE_ENEMY_ELEM_DAMAGE_SCALING * (1 + BaseElementalDamage / 100) * (1 + Level / 10f));
+	    public int MaxHealth => Mathf.RoundToInt(HealthAtLevel0 * (1 + Level / 10f));
+	    public int Damage => Mathf.RoundToInt(DamageAtLevel0 * (1 + Level / 10f));
+	    public int ElementalDamage => Mathf.RoundToInt(ElementalDamageAtLevel0 * (1 + Level / 10f));
 
-	    public float GetElementalWeakness(ElementalType type) {
+#if UNITY_EDITOR
+        [ContextMenu("Print Stats")]
+        public void PrintStats() {
+            foreach(int i in new[] { 1, 5, 10, 15, 20, 25, 50, 100}) {
+                this.Level = i;
+                Debug.Log($"Stats at level {i}:\nHealth: {MaxHealth}\nDamage: {Damage}\nElemental Damage: {ElementalDamage}");
+            }
+            this.Level = 0;
+        }
+#endif
+
+        public float GetElementalWeakness(ElementalType type) {
 	        return ElementalWeaknesses.Value?[type] ?? 1;
 	    }
 

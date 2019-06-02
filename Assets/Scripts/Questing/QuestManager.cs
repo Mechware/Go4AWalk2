@@ -83,10 +83,11 @@ public class QuestManager : MonoBehaviour {
                 } else if(it is Headgear) {
                     Headgear a = ScriptableObject.Instantiate(it) as Headgear;
                     a.OnAfterObtained();
-                    //if(reward.RandomRoll != -1) {
-                    //    a.Random = reward.RandomRoll;
-                    //    a.SetValuesBasedOnRandom();
-                    //}
+                    a.Level = reward.Level;
+                    if(reward.RandomRoll != -1) {
+                        a.RandomRoll = reward.RandomRoll;
+                        a.SetValuesBasedOnRandom();
+                    }
                     it = a;
                 }
             }

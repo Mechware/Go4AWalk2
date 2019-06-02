@@ -265,6 +265,10 @@ namespace G4AW2.Combat {
 	                Armor armor = item as Armor;
 	                armor.Level = Enemy.Level;
 	            }
+                if(item is Headgear) {
+                    Headgear hg = item as Headgear;
+                    hg.Level = Enemy.Level;
+                }
             }
 
             int count = 0;

@@ -37,7 +37,7 @@ public class EnchantUI : MonoBehaviour {
 
     void WeaponClicked(Weapon w) {
         EnchantButton.interactable = Enchanter.Item.Item != null;
-        Weapon.SetData(w, 1, $"{w.GetName()}\nDAM: {w.Damage}", WeaponViewerClicked);
+        Weapon.SetData(w, 1, $"{w.GetName()}\nDAM: {w.DamageAtLevel0}", WeaponViewerClicked);
 		Result.SetData(null, 0, "Result of enchantment goes here.", () => {});
     }
 

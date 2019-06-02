@@ -130,6 +130,8 @@ public class CraftingMenu : MonoBehaviour {
             PostText = $"\nDAM: {((Weapon) it).RawDamage}";
         } else if (it is Armor) {
             PostText = $"\nARM: {((Armor) it).ARMValue}";
+        } else if (it is Headgear) {
+            PostText = $"\nHEL: {((Headgear) it).ExtraHealth}";
         }
 
         PopUp.ShowSprite(cr.Result.Item.Image, $"<size=150%>Crafted!</size>\nYou successfully crafted a {it.GetName()}!{PostText}");

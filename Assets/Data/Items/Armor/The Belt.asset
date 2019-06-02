@@ -9,18 +9,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3bb9eda6433449d4c84a56e96486fbbb, type: 3}
-  m_Name: Iron Armor
+  m_Name: The Belt
   m_EditorClassIdentifier: 
-  ID: 7
-  Name: Iron Armor
-  Image: {fileID: 21300000, guid: a418b25b5b25aa44dae4805800913f53, type: 3}
+  ID: 78
+  Name: The Belt
+  Image: {fileID: 21300000, guid: 31cc6e2b0059bb94dbd73e06efad6c51, type: 3}
   Value: 50
-  Description: 'A sturdy set of iron armor. '
-  Rarity: 1
+  Description: A belt worn by a champion.
+  Rarity: 2
   SellWithTrash: 0
-  ArmorAtLevel0: 12
+  ArmorAtLevel0: 10
   ElementalWeakness:
-    UseConstant: 0
+    UseConstant: 1
     ConstantValue:
       Weaknesses: []
-    Variable: {fileID: 11400000, guid: d59ed238d73e4f847a25d1c88b12e0e2, type: 2}
+    Variable: {fileID: 0}

@@ -69,6 +69,8 @@ namespace G4AW2.Data {
                         ((Weapon) it).Level = item.Level;
                     } else if (it is Armor) {
                         ((Armor) it).Level = item.Level;
+                    } else if (it is Headgear) {
+                        ((Headgear) it).Level = item.Level;
                     }
 
                     Items.Remove(item);

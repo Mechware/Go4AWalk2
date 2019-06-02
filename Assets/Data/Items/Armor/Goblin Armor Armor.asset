@@ -17,7 +17,8 @@ MonoBehaviour:
   Value: 30
   Description: Armor crafted from armor crafted by goblins.
   Rarity: 0
-  BaseARMValue: 5
+  SellWithTrash: 0
+  ArmorAtLevel0: 5
   ElementalWeakness:
     UseConstant: 1
     ConstantValue:

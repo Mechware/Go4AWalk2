@@ -24,12 +24,27 @@ namespace G4AW2.Combat {
 
         public WeaponReference Weapon;
         public ArmorReference Armor;
+        public HeadgearReference Headgear;
 
 		public void OnEnable() {
-		}
+            Headgear.Variable.BeforeChange += UnequipHeadgear;
+            Headgear.Variable.OnChange.AddListener(EquipHeadgear);
+
+        }
 
 		public void OnDisable() {
-		}
+            Headgear.Variable.BeforeChange -= UnequipHeadgear;
+            Headgear.Variable.OnChange.RemoveListener(EquipHeadgear);
+        }
+
+        public void UnequipHeadgear() {
+            if(Headgear.Value != null) 
+                MaxHealth.Value -= Headgear.Value.ExtraHealth;
+        }
+
+        public void EquipHeadgear(Headgear hg) {
+            MaxHealth.Value += Headgear.Value.ExtraHealth;
+        }
 
         public void DamagePlayer(int damage)
         {

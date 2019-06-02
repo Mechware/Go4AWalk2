@@ -23,6 +23,14 @@ MonoBehaviour:
     UseConstant: 0
     ConstantValue: 0
     Variable: {fileID: 11400000, guid: 270540f0df2b56e4086493e3e7066ace, type: 2}
+  Level:
+    UseConstant: 1
+    ConstantValue: 0
+    Variable: {fileID: 0}
+  Experience:
+    UseConstant: 1
+    ConstantValue: 0
+    Variable: {fileID: 0}
   PowerPerBlock:
     UseConstant: 1
     ConstantValue: 60
@@ -37,3 +45,7 @@ MonoBehaviour:
     UseConstant: 0
     ConstantValue: {fileID: 0}
     Variable: {fileID: 11400000, guid: aef2e70a37f2e9b4f8d5bf8624d26f8f, type: 2}
+  Headgear:
+    UseConstant: 0
+    ConstantValue: {fileID: 0}
+    Variable: {fileID: 11400000, guid: 51a1543524a270a45bc1d26cb08f360f, type: 2}

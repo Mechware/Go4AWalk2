@@ -17,7 +17,8 @@ MonoBehaviour:
   Value: 0
   Description: You're naked under this.
   Rarity: 0
-  BaseARMValue: 1
+  SellWithTrash: 0
+  ArmorAtLevel0: 1
   ElementalWeakness:
     UseConstant: 1
     ConstantValue:

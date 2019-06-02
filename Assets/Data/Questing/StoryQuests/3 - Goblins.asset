@@ -51,7 +51,7 @@ MonoBehaviour:
   QuestRewards:
   - it: {fileID: 11400000, guid: 2da6b9adf5d871c4a8c481d49c4b2092, type: 2}
     Level: 5
-    RandomRoll: 50
+    RandomRoll: 72
   TotalAmount: {fileID: 11400000, guid: 27ca57e927a9d564cbbc4aeac61c99bb, type: 2}
   AmountToReach: 5
   AmountSoFar: {fileID: 11400000, guid: 66d427283c1651346a2bb795dcaa50b7, type: 2}

@@ -17,6 +17,7 @@ MonoBehaviour:
   Value: 15
   Description: Its dull and rusty and kinda too small but hey, its better than a stick.
   Rarity: 0
+  SellWithTrash: 0
   AllItems: {fileID: 11400000, guid: f34cbb7c711f3c94f92aaeed3b937361, type: 2}
-  Damage: 12
+  DamageAtLevel0: 112
   LevelUp: {fileID: 11400000, guid: 1b44135a1b59bbf4193efb1137b4ab02, type: 2}

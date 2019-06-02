@@ -16,7 +16,7 @@ public class PostNewGameEventHandling : MonoBehaviour {
         PlayerWeapon.Value.CreatedFromOriginal = true;
         PlayerWeapon.Value.Level = 1;
         PlayerWeapon.Value.TapsWithWeapon.Value = 0;
-        PlayerWeapon.Value.Random = 50;
+        PlayerWeapon.Value.Random = 30;
         PlayerWeapon.Value.SetValuesBasedOnRandom();
 
         Armor originalArmor = PlayerArmor;

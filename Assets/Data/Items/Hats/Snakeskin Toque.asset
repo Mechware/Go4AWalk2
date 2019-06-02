@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Name: Snakeskin Toque
   m_EditorClassIdentifier: 
   ID: 44
+  Name: Snakeskin Toque
   Image: {fileID: 21300000, guid: ab4643efa00b54c468dd63b7096529f0, type: 3}
   Value: 10
   Description: Its neither warm nor comfortable, why are you wearing this?
   Rarity: 1
+  SellWithTrash: 0
+  HealthGainedAtLevel0: 150

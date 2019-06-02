@@ -17,7 +17,8 @@ MonoBehaviour:
   Value: 100
   Description: Offers a surprising amount of protection, and looks pretty cool too.
   Rarity: 2
-  BaseARMValue: 12
+  SellWithTrash: 0
+  ArmorAtLevel0: 15
   ElementalWeakness:
     UseConstant: 1
     ConstantValue:

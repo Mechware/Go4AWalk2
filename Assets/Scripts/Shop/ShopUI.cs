@@ -54,40 +54,36 @@ public class ShopUI : MonoBehaviour {
     }
 
     public void UpdateTrashButtonText() {
+        TrashButtonText.text = $"Sell Trash + Shards ({GetTrashSum()} gold)";
+    }
+
+    private int GetTrashSum() {
         int sum = 0;
-        foreach (var i in Inventory) {
-            if (i.Item is Weapon && ((Weapon)i.Item).MarkedAsTrash) {
+        foreach(var i in Inventory) {
+
+            if(i.Item is ITrashable && ((ITrashable) i.Item).IsTrash()) {
                 sum += Mathf.RoundToInt(i.Item.GetValue() * i.Amount * (shopKeep.SellingPriceMultiplier));
             }
-            if (i.Item is Armor && ((Armor) i.Item).IsMarkedTrash) {
-                sum += Mathf.RoundToInt(i.Item.GetValue() * i.Amount * (shopKeep.SellingPriceMultiplier));
-            }
-            if (i.Item.SellWithTrash) {
+
+            if(i.Item.SellWithTrash) {
                 sum += Mathf.RoundToInt(i.Item.GetValue() * i.Amount * (shopKeep.SellingPriceMultiplier));
             }
         }
-        TrashButtonText.text = $"Sell Trash + Shards ({sum} gold)";
+        return sum;
     }
 
     public void SellTrash() {
-        int sum = 0;
         List<InventoryEntry> toRemove = new List<InventoryEntry>();
         foreach(var i in Inventory) {
-            if(i.Item is Weapon && ((Weapon) i.Item).MarkedAsTrash) {
-                sum += Mathf.RoundToInt(i.Item.GetValue() * i.Amount * (shopKeep.SellingPriceMultiplier));
-                toRemove.Add(i);
-            }
-            if(i.Item is Armor && ((Armor) i.Item).IsMarkedTrash) {
-                sum += Mathf.RoundToInt(i.Item.GetValue() * i.Amount * (shopKeep.SellingPriceMultiplier));
+            if(i.Item is ITrashable && ((ITrashable) i.Item).IsTrash()) {
                 toRemove.Add(i);
             }
             if(i.Item.SellWithTrash) {
-                sum += Mathf.RoundToInt(i.Item.GetValue() * i.Amount * (shopKeep.SellingPriceMultiplier));
                 toRemove.Add(i);
             }
         }
 
-        GoldAmount.Value += sum;
+        GoldAmount.Value += GetTrashSum();
         toRemove.ForEach(i => Inventory.Remove(i));
 
         SetSellingTab();
