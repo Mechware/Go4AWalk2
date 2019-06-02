@@ -16,13 +16,13 @@ MonoBehaviour:
   Level: 2
   NextQuest: {fileID: 11400000, guid: 1813d7e0e7b53e14ea74a03ff6e2ceee, type: 2}
   StartConversation:
-    Text: 'Now that you''ve got the basics of fighting, chickens and gnomes are going
+    Text: "Now that you've got the basics of fighting, chickens and gnomes are going
       to start following you and they are going to try to fight you! To show that
-      you''re the boss, <b>defeat 5 gnomes</b>. Gnomes will gradually start following
-      you, but you can speed up the process by walking in real life.
-
-
-      Whenever a new enemy is following you, you will see a pop up to let you know.'
+      you're the boss, <b>defeat 5 gnomes</b>. Gnomes will gradually start following
+      you, but you can speed up the process by walking in real life.\n\nWhenever a
+      new enemy is following you, you will see a pop up to let you know. \n\nRemember,
+      if your health starts to get low you can just wait to gain health or walk in
+      real life to gain health faster."
     Speaker: {fileID: 21300000, guid: c27605eebf83392428128ddf89b5bd1f, type: 3}
   EndConversation:
     Text: Great job! If you're confused about anything try clicking the question mark
