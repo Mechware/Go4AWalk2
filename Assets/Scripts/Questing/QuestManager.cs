@@ -184,6 +184,8 @@ public class QuestManager : MonoBehaviour {
         currentArea = quest.Area;
     }
 
+    public GameObject Journal;
+
     public void QuestClicked(Quest q) {
         //TODO: Show some sort of info on the quest.
         if(!(q is ActiveQuestBase)) {
@@ -203,6 +205,7 @@ public class QuestManager : MonoBehaviour {
                                         CurrentQuests.Add(CurrentQuest);
                                         CurrentQuest.Value.CleanUp();
                                         CurrentQuests.Remove(q);
+
                                         SetCurrentQuest((ActiveQuestBase) q);
                                     },
                                     () => { }
@@ -220,6 +223,8 @@ public class QuestManager : MonoBehaviour {
                         CurrentQuests.Remove(q);
                         SetCurrentQuest((ActiveQuestBase) q);
                     }
+                    Journal.SetActive(false);
+
                 },
                 () => {
                     // Remove

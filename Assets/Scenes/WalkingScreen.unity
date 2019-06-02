@@ -14128,6 +14128,7 @@ MonoBehaviour:
             m_CallState: 2
         m_TypeName: CustomEvents.UnityEventFloat, Assembly-CSharp, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
+  Journal: {fileID: 1901185153}
   TestQuest: {fileID: 0}
 --- !u!1 &708668011
 GameObject:
