@@ -22,6 +22,7 @@ public class ItemDropBubble : MonoBehaviour, IPointerClickHandler {
 	public AnimationCurve YForce;
 
 	public Action<ItemDropBubble> ItemClicked;
+    public Action<ItemDropBubble> ItemAutoLooted;
 
 	private Rigidbody2D rb;
 
@@ -29,13 +30,14 @@ public class ItemDropBubble : MonoBehaviour, IPointerClickHandler {
 		rb = GetComponent<Rigidbody2D>();
 	}
 
-	public void SetData(Item it, Action<ItemDropBubble> OnClick) {
+	public void SetData(Item it, Action<ItemDropBubble> OnClick, Action<ItemDropBubble> OnAutoLoot) {
 		item = it;
         image.sprite = item.Image;
+        ItemClicked = OnClick;
+        ItemAutoLooted = OnAutoLoot;
         
         image.gameObject.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, item.Image.rect.width);
         image.gameObject.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, item.Image.rect.height);
-        ItemClicked = OnClick;
 		background.color = ConfigObject.GetColorFromRarity(it.Rarity);
 	}
 
@@ -47,4 +49,8 @@ public class ItemDropBubble : MonoBehaviour, IPointerClickHandler {
 	public void OnPointerClick(PointerEventData eventData) {
 		ItemClicked.Invoke(this);
 	}
+
+    public void OnAutoLoot() {
+        ItemAutoLooted.Invoke(this);
+    }
 }

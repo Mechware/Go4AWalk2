@@ -24,23 +24,23 @@ public class ItemDropBubbleManager : MonoBehaviour {
         Pool = new ObjectPrefabPool(ItemDropperPrefab, transform, 5);
     }
 
-    public void AddItems(IEnumerable<Item> items, Action onClick) {
+    public void AddItems(IEnumerable<Item> items, Action onClick, Action autoLooted = null) {
         List<Item> itemsList = items.ToList();
-        StartCoroutine(ShootItems(itemsList, onClick));
+        StartCoroutine(ShootItems(itemsList, onClick, autoLooted));
     }
 
 	public void AddItems( IEnumerable<Item> items ) {
 		List<Item> itemsList = items.ToList();
-		StartCoroutine(ShootItems(itemsList, null));
+		StartCoroutine(ShootItems(itemsList, null, null));
 	}
 
-	private IEnumerator ShootItems( IEnumerable<Item> items, Action onClick ) {
+	private IEnumerator ShootItems( IEnumerable<Item> items, Action onClick, Action autoLooted) {
 		foreach (Item it in items) {
 			yield return new WaitForSeconds(SpawnDelay);
 		    GameObject itemBubble = Pool.GetObject();
 		    itemBubble.transform.localPosition = Vector3.zero;
             itemBubble.transform.rotation = Quaternion.identity;
-            itemBubble.GetComponent<ItemDropBubble>().SetData(it, (i) => OnClick(i, onClick));
+            itemBubble.GetComponent<ItemDropBubble>().SetData(it, (i) => OnClick(i, onClick), (i) => OnAutoLoot(i, autoLooted));
 			itemBubble.GetComponent<ItemDropBubble>().Shoot();
 		}
 	}
@@ -64,13 +64,18 @@ public class ItemDropBubbleManager : MonoBehaviour {
 	    onClick?.Invoke();
     }
 
+    private void OnAutoLoot(ItemDropBubble it, Action onLooted) {
+        Pool.Return(it.gameObject);
+        onLooted?.Invoke();
+    }
+
     public void Clear() {
         if (Pool.InUse.Count == 0) return;
 
         Sprite s = null;
         foreach (var obj in Pool.InUse.ToArray()) {
             var bubble = obj.GetComponent<ItemDropBubble>();
-            bubble.OnPointerClick(null);
+            bubble.OnAutoLoot();
             string loot = bubble.Item.GetName() + "\n";
             QuickPopUp.Show(s, "<size=150%>Auto Collected Loot</size>\nLoot was auto collected for you. The following was picked up:\n" + loot);
             if(s == null) s = bubble.Item.Image;
