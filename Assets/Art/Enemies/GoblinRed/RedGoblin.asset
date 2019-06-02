@@ -46,5 +46,5 @@ MonoBehaviour:
   Drops:
     Items:
     - item: {fileID: 11400000, guid: 93a734356920da24caaee99393399534, type: 2}
-      dropChance: 0.4
+      dropChance: 0.1
   OneAndDoneAttacker: 0
