@@ -41,7 +41,11 @@ MonoBehaviour:
     - Follower: {fileID: 11400000, guid: b9128b39a35b6774995edaeac41aee56, type: 2}
       MinLevel: 8
       MaxLevel: 10
-      DropChance: 1
+      DropChance: 2
+    - Follower: {fileID: 11400000, guid: ad9b8d87849cbb443985f26909b572f2, type: 2}
+      MinLevel: 0
+      MaxLevel: 0
+      DropChance: 2
   QuestRewards: []
   TotalAmount: {fileID: 11400000, guid: 23644b4fcc28bd84c8f14428da54e1f2, type: 2}
   AmountToReach: 7
