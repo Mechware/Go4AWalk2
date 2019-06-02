@@ -67,15 +67,14 @@ public class ItemDropBubbleManager : MonoBehaviour {
     public void Clear() {
         if (Pool.InUse.Count == 0) return;
 
-        string loot = "";
         Sprite s = null;
         foreach (var obj in Pool.InUse.ToArray()) {
             var bubble = obj.GetComponent<ItemDropBubble>();
             bubble.OnPointerClick(null);
-            loot = bubble.Item.GetName() + "\n";
+            string loot = bubble.Item.GetName() + "\n";
+            QuickPopUp.Show(s, "<size=150%>Auto Collected Loot</size>\nLoot was auto collected for you. The following was picked up:\n" + loot);
             if(s == null) s = bubble.Item.Image;
         }
-        QuickPopUp.Show(s, "<size=150%>Auto Collected Loot</size>\nLoot was auto collected for you. The following was picked up:\n" + loot);
 
         Pool.Reset();
     }
