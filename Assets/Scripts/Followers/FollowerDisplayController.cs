@@ -20,6 +20,7 @@ namespace G4AW2.Followers {
         public RuntimeSetFollowerData ListOfCurrentFollowers;
 	    public FollowerDisplay DisplayPrefab;
 	    public LerpToPosition WorldCameraLerper;
+	    public Transform EnemyArrowPosition;
 
         [Header("Shop")]
 	    public LerpToPosition ShopperWalk;
@@ -62,7 +63,7 @@ namespace G4AW2.Followers {
 	    }
 
 	    private void OnAdd(FollowerData d) {
-	        QuickPopUp.Show(d.Portrait, $"<size=140%>Follower Appeared!</size>\n\nA {d.DisplayName} is now following you");
+            SmoothPopUpManager.ShowPopUp(EnemyArrowPosition.position, "<color=green>+1</color> " + d.DisplayName, Color.white, true);
             ResetFollowers();
         }
 
