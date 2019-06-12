@@ -12,7 +12,6 @@ using Random = UnityEngine.Random;
 namespace G4AW2.Followers {
 	public class FollowerSpawner : MonoBehaviour {
 
-        public FollowerDropData DropData;
         public RuntimeSetFollowerData CurrentFollowers;
 	    public ActiveQuestBaseVariable CurrentQuest;
 
@@ -39,7 +38,7 @@ namespace G4AW2.Followers {
 	            }
 
                 AddFollower();
-	            if (CurrentFollowers.Value.Count == 10) return;
+	            if (CurrentFollowers.Value.Count == 10) break;
 	        }
 	    }
 
@@ -79,7 +78,7 @@ namespace G4AW2.Followers {
             // randomly choose a follower!
 	        if (CurrentFollowers.Value.Count >= 10) return;
 
-	        FollowerData data = DropData.GetRandomFollower(true);
+	        FollowerData data = CurrentQuest.Value.Enemies.GetRandomFollower(true);
 	        if (data == null) return;
 
             CurrentFollowers.Add(data);

@@ -17,8 +17,6 @@ namespace G4AW2.UI.Areas {
 		public ScrollingImages clouds2;
 		public Image[] SkyImages;
 
-		public FollowerSpawner FollowerSpawner;
-
 		public void SetArea( Area area ) {
 			this.Area = area;
 
@@ -33,8 +31,6 @@ namespace G4AW2.UI.Areas {
 		public void SetAreaFromQuest(ActiveQuestBase quest) {
             if(quest.Area != Area)
 			    SetArea(quest.Area);
-
-		    FollowerSpawner.DropData = quest.Enemies;
         }
 
 	    [ContextMenu("Set Area")]

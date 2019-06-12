@@ -172,10 +172,7 @@ DAM {2}";
     public TextMeshProUGUI CompareToMasteryText;
     public TextMeshProUGUI CompareToSellAmountText;
 
-    private Weapon compareWeapon = null;
-
     public void SetCompare(Weapon w) {
-        compareWeapon = w;
         if(w.IsEnchanted) {
             CompareToDescriptionText.text = string.Format(
                 levelNameDAMstringWithElement,
