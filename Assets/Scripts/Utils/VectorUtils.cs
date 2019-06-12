@@ -22,6 +22,11 @@ namespace G4AW2.Utils {
 			return vec;
 		}
 
+	    public static Vector2 GetRandomDir() {
+	        float x = Random.value - 0.5f;
+	        float y = Random.value - 0.5f;
+            return new Vector2(x,y).normalized;
+	    }
 
 	}
 }

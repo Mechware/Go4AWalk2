@@ -141,7 +141,7 @@ namespace G4AW2.Combat {
 		    MyAnimator.SetTrigger("Stun");
 		    Image.color = Color.white;
 			EnemyState = State.Stun;
-		    Timer.StartTimer(this, StunDuration, UnStun);
+		    Timer.StartTimer(StunDuration, UnStun, this);
         }
 
         public void UnStun() {

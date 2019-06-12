@@ -2,12 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using G4AW2.Data.DropSystem;
+using G4AW2.Utils;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
-[RequireComponent(typeof(Rigidbody2D))]
 public class ItemDropBubble : MonoBehaviour, IPointerClickHandler {
 
 	public Item Item { get { return item; }}
@@ -16,21 +16,14 @@ public class ItemDropBubble : MonoBehaviour, IPointerClickHandler {
 	public Image image;
 	public Image background;
 
-	[Tooltip("A rng with roll a number between 0 and 1 and then get the value from this anim curve")]
-	public AnimationCurve XForce;
-	[Tooltip("A rng with roll a number between 0 and 1 and then get the value from this anim curve")]
-	public AnimationCurve YForce;
-
 	public Action<ItemDropBubble> ItemClicked;
     public Action<ItemDropBubble> ItemAutoLooted;
 
-	private Rigidbody2D rb;
+    public float MaxVelocity = 50;
+    public float MinVelocity = 20;
+    public float DecelerationMagnitude = 50f;
 
-	void Awake() {
-		rb = GetComponent<Rigidbody2D>();
-	}
-
-	public void SetData(Item it, Action<ItemDropBubble> OnClick, Action<ItemDropBubble> OnAutoLoot) {
+    public void SetData(Item it, Action<ItemDropBubble> OnClick, Action<ItemDropBubble> OnAutoLoot) {
 		item = it;
         image.sprite = item.Image;
         ItemClicked = OnClick;
@@ -43,8 +36,20 @@ public class ItemDropBubble : MonoBehaviour, IPointerClickHandler {
 
 	[ContextMenu("Shoot")]
 	public void Shoot() {
-		rb.AddForce(new Vector2(XForce.Evaluate(Random.value), YForce.Evaluate(Random.value)));
+	    float magnitude = Random.value * (MaxVelocity - MinVelocity) + MinVelocity;
+        StartCoroutine(_Shoot(VectorUtils.GetRandomDir() * magnitude));
 	}
+
+    private IEnumerator _Shoot(Vector2 velocity) {
+
+        Vector2 dir = velocity.normalized;
+
+        while (Vector2.Dot(velocity, dir) > 0) {
+            velocity -= dir * DecelerationMagnitude * Time.deltaTime;
+            ((RectTransform)transform).anchoredPosition += velocity * Time.deltaTime;
+            yield return null;
+        }
+    }
 
 	public void OnPointerClick(PointerEventData eventData) {
 		ItemClicked.Invoke(this);

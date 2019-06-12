@@ -69,14 +69,21 @@ public class ItemDropBubbleManager : MonoBehaviour {
         onLooted?.Invoke();
     }
 
+    public Transform AutoLootNotificationPosition;
+
     public void Clear() {
         if (Pool.InUse.Count == 0) return;
+
+        float delay = 0;
 
         foreach (var obj in Pool.InUse.ToArray()) {
             var bubble = obj.GetComponent<ItemDropBubble>();
             bubble.OnAutoLoot();
-            string loot = bubble.Item.GetName() + "\n";
-            QuickPopUp.Show(bubble.Item.Image, "<size=150%>Auto Collected Loot</size>\nLoot was auto collected for you. The following was picked up:\n" + loot);
+            Timer.StartTimer(delay, () => {
+                SmoothPopUpManager.ShowPopUp(AutoLootNotificationPosition.position,
+                    "<color=green>+1</color> " + bubble.Item.GetName(), Color.white, true);
+            });
+            delay += 1f;
         }
 
         Pool.Reset();

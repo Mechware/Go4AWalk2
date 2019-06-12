@@ -119,11 +119,11 @@ public class PlayerFightingLogic : MonoBehaviour {
         {
             BlockState = Armor.BlockState.BadParry;
             OnFailedParry.Invoke();
-            Timer.StartTimer(this, FailedParryStunTime, () =>
+            Timer.StartTimer(FailedParryStunTime, () =>
             {
                 OnFailedParryDone.Invoke();
                 BlockState = Armor.BlockState.None;
-            });
+            }, this);
         } else
         {
             EnemyDisplay.Stun();
