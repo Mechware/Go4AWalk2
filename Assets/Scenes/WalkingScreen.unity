@@ -14380,6 +14380,11 @@ Prefab:
       propertyPath: WeaponUI
       value: 
       objectReference: {fileID: 1186125109}
+    - target: {fileID: 114174548617117370, guid: 1c1c5654baf9b674d98643e199750762,
+        type: 2}
+      propertyPath: AutoLootNotificationPosition
+      value: 
+      objectReference: {fileID: 2131450111}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1c1c5654baf9b674d98643e199750762, type: 2}
   m_IsPrefabAsset: 0
@@ -39396,6 +39401,7 @@ GameObject:
   - component: {fileID: 1726539136}
   - component: {fileID: 1726539137}
   - component: {fileID: 1726539138}
+  - component: {fileID: 1726539139}
   m_Layer: 0
   m_Name: Misc
   m_TagString: Untagged
@@ -39489,6 +39495,17 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   Debugging: 0
+--- !u!114 &1726539139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1726539134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d435f9a3c9682d448de1ad6ba84c3b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1729066051
 GameObject:
   m_ObjectHideFlags: 0

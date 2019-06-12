@@ -34,6 +34,8 @@ public class DataManager : MonoBehaviour {
         foreach(var v in StatTracker.ItemObtainedCount.Where(ekc => ekc.Item == null)) {
             StatTracker.ItemObtainedCount.Remove(v);
         }
+
+        UnityEditor.AssetDatabase.SaveAssets();
     }
 
     [ContextMenu("Ensure No ID Dups")]
