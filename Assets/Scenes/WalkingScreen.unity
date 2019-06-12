@@ -5864,8 +5864,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c194123519c7ae440900526a95d41a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DropData:
-    Drops: []
   CurrentFollowers: {fileID: 11400000, guid: d9764a15526dace4899689a1b14b9b44, type: 2}
   CurrentQuest: {fileID: 11400000, guid: 6e098017cb676d546bac9971eb358a4a, type: 2}
 --- !u!114 &300978737
@@ -14507,7 +14505,6 @@ MonoBehaviour:
   - {fileID: 1214435378}
   - {fileID: 743468792}
   - {fileID: 1089084261}
-  FollowerSpawner: {fileID: 300978736}
 --- !u!4 &701840140
 Transform:
   m_ObjectHideFlags: 0

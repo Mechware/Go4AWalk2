@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using CustomEvents;
+using G4AW2.Saving;
 using UnityEngine;
 
 public class PlayerHealthIncreaser : MonoBehaviour {
@@ -14,6 +16,12 @@ public class PlayerHealthIncreaser : MonoBehaviour {
     public void OnGameStateLoaded() {
         DistanceWalked.OnChange.AddListener(AfterDistWalkedUpdate);
         distWalkedInternal = DistanceWalked;
+
+        // Fin
+        DateTime lastTimePlayedUTC = SaveManager.LastTimePlayedUTC;
+        TimeSpan TimeSinceLastPlayed = DateTime.UtcNow - lastTimePlayedUTC;
+        double secondsSinceLastPlayed = TimeSinceLastPlayed.TotalSeconds;
+        IncreaseHealthByTime((int)secondsSinceLastPlayed);
     }
 
     private void AfterDistWalkedUpdate(float amt) {
@@ -29,7 +37,34 @@ public class PlayerHealthIncreaser : MonoBehaviour {
 	void Update () {
 	    if (Time.time > updateTime) {
 	        updateTime += 1f;
-	        PlayerHealth.Value = Mathf.Min(Mathf.RoundToInt(PlayerHealth.Value + HealthPerSecond), PlayerMaxHealth.Value);
+	        IncreaseHealthByTime(1);
 	    }
 	}
+
+    public void IncreaseHealthByTime(float time) {
+	    PlayerHealth.Value = Mathf.Min(Mathf.RoundToInt(PlayerHealth.Value + time * HealthPerSecond), PlayerMaxHealth.Value);
+    }
+
+    private DateTime PauseTime = DateTime.MaxValue;
+
+    private void OnApplicationFocus(bool focus) {
+        if (focus) {
+            // Played
+            if (PauseTime == DateTime.MaxValue) {
+                Debug.LogWarning("Just played without pausing");
+                return;
+            }
+
+            TimeSpan diff = DateTime.Now - PauseTime;
+            IncreaseHealthByTime((float)diff.TotalSeconds);
+        }
+        else {
+            // Paused
+            PauseTime = DateTime.Now;
+        }
+    }
+
+    private void OnApplicationPause(bool pause) {
+        OnApplicationFocus(!pause);
+    }
 }
