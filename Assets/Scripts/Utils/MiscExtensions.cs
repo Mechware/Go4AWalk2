@@ -8,4 +8,44 @@ public static class MiscExtensions {
     {
         return Mathf.Abs(val - otherVal) < tolerance;
     }
+
+    public static Vector3 SetX(this Vector3 vec, float x) {
+        vec.x = x;
+        return vec;
+    }
+    
+    public static Vector3 SetY(this Vector3 vec, float y) {
+        vec.y = y;
+        return vec;
+    }
+    
+    public static Vector3 AddX(this Vector3 vec, float x) {
+        vec.x += x;
+        return vec;
+    }
+    
+    public static Vector3 AddY(this Vector3 vec, float y) {
+        vec.y += y;
+        return vec;
+    }
+    
+    public static Vector2 SetX(this Vector2 vec, float x) {
+        vec.x = x;
+        return vec;
+    }
+    
+    public static Vector2 SetY(this Vector2 vec, float y) {
+        vec.y = y;
+        return vec;
+    }
+    
+    public static Vector2 AddX(this Vector2 vec, float x) {
+        vec.x += x;
+        return vec;
+    }
+    
+    public static Vector2 AddY(this Vector2 vec, float y) {
+        vec.y += y;
+        return vec;
+    }
 }

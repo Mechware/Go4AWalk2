@@ -30,10 +30,8 @@ MonoBehaviour:
       quests to allow you to practice, but after that you'll be on your own. \n\nRemember
       to click the question mark in the bottom right if you need help."
     Speaker: {fileID: 21300000, guid: c27605eebf83392428128ddf89b5bd1f, type: 3}
-  MinEnemyDropTime: 20
-  MaxEnemyDropTime: 40
-  MinEnemyDropDistance: 10
-  MaxEnemyDropDistance: 50
+  MinEnemyDropTime: 60
+  MaxEnemyDropTime: 180
   Area: {fileID: 11400000, guid: 5e4d1ba5949749b44bc3427231ca82f2, type: 2}
   MiningPoints: []
   Enemies:
