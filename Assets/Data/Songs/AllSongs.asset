@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Name: AllSongs
   m_EditorClassIdentifier: 
   Value:
+  - {fileID: 11400000, guid: 5b87f5ba96910d347b5261e683d17660, type: 2}
   - {fileID: 11400000, guid: 8c050eae0c122f5488c2851041ec10ed, type: 2}
   OnAdd:
     m_PersistentCalls:

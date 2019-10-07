@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97f0775a2125ed8489e4a583c1b11b85, type: 3}
+  m_Name: GoblinSong
+  m_EditorClassIdentifier: 
+  PixelsPerSecond: 50
+  TopNotes:
+  - AppearTime: 0
+  - AppearTime: 1
+  - AppearTime: 2
+  MiddleNotes:
+  - AppearTime: 0
+  - AppearTime: 2
+  - AppearTime: 4
+  BottomNotes:
+  - AppearTime: 0.5
+  - AppearTime: 1.5
+  - AppearTime: 4
+  DropChances:
+  - Data: {fileID: 11400000, guid: 122dbbbf58a55ed4ea26d6db1f754cbb, type: 2}
+    MinAccuracy: 0.8
+    Chance: 0.9
+  - Data: {fileID: 11400000, guid: cda96108237db6e4d84dd6f435cc0239, type: 2}
+    MinAccuracy: 0.8
+    Chance: 0.1
+  - Data: {fileID: 11400000, guid: e75340b3bcfa1db4bae6e3c12eb51d0b, type: 2}
+    MinAccuracy: 0.95
+    Chance: 0.2
+  - Data: {fileID: 11400000, guid: 51d3cce514427d448a622c4b31127522, type: 2}
+    MinAccuracy: 0.6
+    Chance: 0.8
+  - Data: {fileID: 11400000, guid: 7c3e61303c6798748b00b115c31a54f4, type: 2}
+    MinAccuracy: 0.9
+    Chance: 0.5
+  - Data: {fileID: 11400000, guid: 581f3693b61c6534881558b338b2fc3f, type: 2}
+    MinAccuracy: 0.9
+    Chance: 0.5

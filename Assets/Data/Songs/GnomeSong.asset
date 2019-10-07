@@ -21,10 +21,9 @@ MonoBehaviour:
   - AppearTime: 2
   - AppearTime: 4
   BottomNotes:
-  - AppearTime: 0
   - AppearTime: 0.5
+  - AppearTime: 1.5
   - AppearTime: 4
-  - AppearTime: 8
   DropChances:
   - Data: {fileID: 11400000, guid: 396482660d9279a4294f369245325131, type: 2}
     MinAccuracy: 0.3
