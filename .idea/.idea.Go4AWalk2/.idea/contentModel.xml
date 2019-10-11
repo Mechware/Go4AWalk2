@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
     <e p="C:\Users\Mike\.Rider2019.2\system\extResources" t="IncludeRecursive" />
@@ -75,6 +75,7 @@
           <e p="DataManager.cs" t="Include" />
           <e p="Editor" t="Include">
             <e p="AnimationCreator.cs" t="Include" />
+            <e p="DrawIfPropertyDrawer.cs" t="Include" />
             <e p="EnemyImporter.cs" t="Include" />
             <e p="GameEventEditor.cs" t="Include" />
             <e p="ItemImporter.cs" t="Include" />
@@ -388,6 +389,7 @@
             <e p="CraftingMenu.cs" t="Include" />
             <e p="DamageNumberSpawner.cs" t="Include" />
             <e p="DebugMenu.cs" t="Include" />
+            <e p="DrawIfAttribute.cs" t="Include" />
             <e p="EnchantUI.cs" t="Include" />
             <e p="EnemyArrowIndicator.cs" t="Include" />
             <e p="HyperlinkOpener.cs" t="Include" />
@@ -395,6 +397,7 @@
             <e p="InventoryDisplay.cs" t="Include" />
             <e p="ItemHolderWithText.cs" t="Include" />
             <e p="MoveObject.cs" t="Include" />
+            <e p="MyButton.cs" t="Include" />
             <e p="ProgressBarController.cs" t="Include" />
             <e p="ProgressBarControllerFloat.cs" t="Include" />
             <e p="QuestViewer.cs" t="Include" />

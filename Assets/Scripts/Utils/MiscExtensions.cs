@@ -48,4 +48,10 @@ public static class MiscExtensions {
         vec.y += y;
         return vec;
     }
+    
+    public static Vector2 Add(this Vector2 vec, float x, float y) {
+        vec.x += x;
+        vec.y += y;
+        return vec;
+    }
 }
