@@ -48,6 +48,7 @@ public class QuestManager : MonoBehaviour {
 
     private void FinishQuest(ActiveQuestBase quest) {
         quest.CleanUp();
+        StatTracker.Instance.CompleteQuest(quest);
         if(quest.NextQuest != null) CurrentQuest.Value = quest.NextQuest;
         QuestDialogUI.SetConversation(quest.EndConversation, () => DropRewardAndAdvanceConversation(quest));
     }

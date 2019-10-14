@@ -31,7 +31,7 @@ namespace G4AW2.Followers {
 	        DateTime lastTimePlayedUTC = SaveManager.LastTimePlayedUTC;
 	        TimeSpan TimeSinceLastPlayed = DateTime.UtcNow - lastTimePlayedUTC;
 	        double secondsSinceLastPlayed = TimeSinceLastPlayed.TotalSeconds;
-            Debug.Log(secondsSinceLastPlayed);
+            Debug.Log("Time since last play: " + secondsSinceLastPlayed);
 
             if (secondsSinceLastPlayed > 5 * 60 && !CurrentFollowers.Any()) {
 	            AddFollower();

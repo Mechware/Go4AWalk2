@@ -4,7 +4,8 @@
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -12,20 +13,21 @@ MonoBehaviour:
   m_Name: AllSongs
   m_EditorClassIdentifier: 
   Value:
-  - {fileID: 11400000, guid: 5b87f5ba96910d347b5261e683d17660, type: 2}
   - {fileID: 11400000, guid: 8c050eae0c122f5488c2851041ec10ed, type: 2}
+  - {fileID: 11400000, guid: 5b87f5ba96910d347b5261e683d17660, type: 2}
+  - {fileID: 11400000, guid: dbd454b279571cd43b7ffc118184ad74, type: 2}
+  - {fileID: 11400000, guid: 2cb217544385c824f8dc45699d3c44f1, type: 2}
+  - {fileID: 11400000, guid: e56615974eab2694a85217926efa2678, type: 2}
+  - {fileID: 11400000, guid: 900f206d86ca0c14cbd8c5551c297850, type: 2}
+  - {fileID: 11400000, guid: f5f122a8588e4e14087d143e18087139, type: 2}
+  - {fileID: 11400000, guid: 56c34bad4b1c4ee419ca895adbc426a6, type: 2}
+  - {fileID: 11400000, guid: dff8172bf6169d94ab53824bd7c7b0dd, type: 2}
   OnAdd:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: CustomEvents.UnityEventSongData, Assembly-CSharp, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   OnRemove:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: CustomEvents.UnityEventSongData, Assembly-CSharp, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   OnChange:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: CustomEvents.UnityEventSongData, Assembly-CSharp, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null

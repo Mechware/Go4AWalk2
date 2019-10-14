@@ -5,6 +5,7 @@ using System.Linq;
 using CustomEvents;
 using G4AW2.Data.Combat;
 using G4AW2.Data.DropSystem;
+using G4AW2.Questing;
 using G4AW2.Saving;
 using UnityEngine;
 
@@ -14,6 +15,8 @@ using UnityEditor;
 
 public class StatTracker : MonoBehaviour {
 
+    public static StatTracker Instance; 
+    
     [Serializable]
     public class EnemyCounter {
         public EnemyData Enemy;
@@ -23,6 +26,8 @@ public class StatTracker : MonoBehaviour {
     public List<EnemyCounter> EnemyKillCount;
     private Dictionary<int, IntVariable> enemyDictionary;
 
+    public RuntimeSetQuest CompletedQuests;
+    
 
     [Serializable]
     public class ItemCounter {
@@ -34,6 +39,8 @@ public class StatTracker : MonoBehaviour {
     private Dictionary<int, IntVariable> itemDictionary;
 
     void Awake() {
+        Instance = this;
+        
         GameEventHandler.EnemyKilled += EnemyKilled;
         GameEventHandler.LootObtained += LootObtained;
 
@@ -60,7 +67,10 @@ public class StatTracker : MonoBehaviour {
         }
     }
 
-
+    public void CompleteQuest(ActiveQuestBase quest) {
+        CompletedQuests.Add(quest);
+    }
+    
 #if UNITY_EDITOR
     [ContextMenu("Create Variables For Enemies")]
     public void CreateVariablesToTrackEnemies() {

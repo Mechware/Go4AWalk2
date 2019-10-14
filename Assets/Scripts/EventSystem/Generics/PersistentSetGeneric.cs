@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 public class PersistentSetGeneric<T, TEvent> : ScriptableObject, IEnumerable<T> where TEvent : UnityEvent<T> {
-	[SerializeField] private List<T> Value;
+	[SerializeField] private List<T> Value = null;
 
 	public TEvent OnAdd, OnRemove, OnChange;
 

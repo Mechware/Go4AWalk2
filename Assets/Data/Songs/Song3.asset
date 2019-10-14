@@ -4,13 +4,15 @@
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 97f0775a2125ed8489e4a583c1b11b85, type: 3}
-  m_Name: GnomeSong
+  m_Name: Song3
   m_EditorClassIdentifier: 
+  DisplayName: $$$ Song
   PixelsPerSecond: 50
   TopNotes:
   - AppearTime: 0
@@ -25,9 +27,7 @@ MonoBehaviour:
   - AppearTime: 1.5
   - AppearTime: 4
   DropChances:
-  - Data: {fileID: 11400000, guid: 396482660d9279a4294f369245325131, type: 2}
-    MinAccuracy: 0.3
+  - Data: {fileID: 11400000, guid: ad9b8d87849cbb443985f26909b572f2, type: 2}
+    MinAccuracy: 0.8
     Chance: 1
-  - Data: {fileID: 11400000, guid: 1661ac05f43e068448b3f2960ac1d57f, type: 2}
-    MinAccuracy: 0.3
-    Chance: 1
+  QuestToUnlock: {fileID: 11400000, guid: 34332a3094c776547ab733c1126f5bc8, type: 2}

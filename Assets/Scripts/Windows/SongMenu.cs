@@ -8,7 +8,8 @@ using UnityEngine.UI;
 
 public class SongMenu : MonoBehaviour {
 
-	public RuntimeSetSongData Songs;
+	public RuntimeSetSongData UnlockedSongs;
+	public RuntimeSetSongData LockedSongs;
 	public Button SongPrefab;
 	public RectTransform Parent;
 	public FluteController Flute;
@@ -17,27 +18,48 @@ public class SongMenu : MonoBehaviour {
 	public PersistentSetSongData AllSongs;
 	
 	public void Start() {
-		// TODO: Figure out a better way to get songs
-		Songs.AddRange(AllSongs);
 		
-		Songs.OnAdd.AddListener((a) => {
+		LockedSongs.AddRange(AllSongs);
+		
+		UnlockedSongs.OnAdd.AddListener((a) => {
 			UpdateSongs();
 		});
 
 		UpdateSongs();
 	}
 
+	List<SongData> songsToRemove = new List<SongData>(); 
+
+	public void Update() {
+		
+		foreach (var song in LockedSongs) {
+			if (song.IsUnlocked) {
+				UnlockedSongs.Add(song);
+				songsToRemove.Add(song);
+			}
+		}
+		
+		if(songsToRemove.Count > 0) UpdateSongs();
+		
+		songsToRemove.ForEach(s => LockedSongs.Remove(s));
+		songsToRemove.Clear();
+	}
+	
 	public void UpdateSongs() {
-		foreach (var song in Songs) {
+		Parent.GetComponentsInChildren<RectTransform>().ForEach(f => {
+			if(f != Parent.transform) Destroy(f.gameObject);
+		});
+		
+		foreach (var song in UnlockedSongs) {
 			var button = Instantiate(SongPrefab, Parent, false);
+			
 			button.onClick.AddListener(() => {
-				
-				
 				Flute.StartSong(acc => {
 					Spawner.SpawnMonster(song, acc);
 				});
 			});
-			button.GetComponentInChildren<TextMeshProUGUI>().text = song.name;
+			
+			button.GetComponentInChildren<TextMeshProUGUI>().text = song.DisplayName;
 		}
 	}
 }
