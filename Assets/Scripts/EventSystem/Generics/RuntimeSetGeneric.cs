@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Sirenix.OdinInspector;
+using Unity.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -10,7 +10,7 @@ namespace CustomEvents {
 
 	public class RuntimeSetGeneric<T, TEvent> : ScriptableObject, IEnumerable<T>, ISaveable where TEvent : UnityEvent<T> {
 		public List<T> Value { get { return list; } }
-		[ShowInInspector][ReadOnly] private List<T> list = new List<T>();
+		[ReadOnly] private List<T> list = new List<T>();
 
 		public TEvent OnAdd, OnRemove, OnChange;
 

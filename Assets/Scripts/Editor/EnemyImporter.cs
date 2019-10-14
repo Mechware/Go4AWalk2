@@ -5,7 +5,6 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using G4AW2.Data.Combat;
-using Sirenix.Utilities;
 using UnityEditor;
 using UnityEditorInternal;
 using UnityEngine;

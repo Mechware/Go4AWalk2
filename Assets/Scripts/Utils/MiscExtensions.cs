@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -53,5 +54,11 @@ public static class MiscExtensions {
         vec.x += x;
         vec.y += y;
         return vec;
+    }
+
+    public static void ForEach<T>(this IEnumerable<T> arr, Action<T> func) {
+        foreach(var i in arr) {
+            func(i);
+        }
     }
 }

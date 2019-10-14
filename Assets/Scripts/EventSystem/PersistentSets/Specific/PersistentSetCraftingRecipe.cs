@@ -2,7 +2,6 @@
 using System.Linq;
 using G4AW2.Data.Crafting;
 using G4AW2.Data.DropSystem;
-using Sirenix.Utilities;
 using UnityEditor;
 using UnityEngine;
 
