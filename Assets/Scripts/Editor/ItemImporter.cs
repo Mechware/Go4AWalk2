@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEditor;
 using UnityEngine;
 
@@ -16,7 +17,7 @@ public class ItemImporter : EditorWindow {
     }
 
     private string itemName;
-    private Texture2D itemSprite;
+    [UsedImplicitly] private Texture2D itemSprite;
 
     void OnGUI() {
         itemName = EditorGUILayout.TextField("Item Name", itemName);

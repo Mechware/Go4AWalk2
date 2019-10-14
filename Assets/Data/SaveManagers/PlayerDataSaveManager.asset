@@ -4,7 +4,8 @@
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -25,8 +26,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   OnNewGame:
     m_PersistentCalls:
       m_Calls:
@@ -41,8 +40,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   OnSuccessfulLoad:
     m_PersistentCalls:
       m_Calls:
@@ -57,8 +54,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   OnSaveFinish:
     m_PersistentCalls:
       m_Calls:
@@ -73,8 +68,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   AllowSave:
     UseConstant: 0
     ConstantValue: 0
@@ -96,5 +89,6 @@ MonoBehaviour:
     - {fileID: 11400000, guid: f34cbb7c711f3c94f92aaeed3b937361, type: 2}
   - ObjectToSave: {fileID: 11400000, guid: 270540f0df2b56e4086493e3e7066ace, type: 2}
     OtherData: []
-  - ObjectToSave: {fileID: 11400000, guid: fccca33ee9801fb4286449995f40c3eb, type: 2}
-    OtherData: []
+  - ObjectToSave: {fileID: 11400000, guid: dc1f7d1ef061f254285d0a0b5801424a, type: 2}
+    OtherData:
+    - {fileID: 11400000, guid: 4ce95383b6b97674dbe5113af1ad007d, type: 2}

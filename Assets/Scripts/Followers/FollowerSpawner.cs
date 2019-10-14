@@ -19,42 +19,32 @@ namespace G4AW2.Followers {
 		private float currentDistanceToReach;
 
 		private float currentTime;
-		private float currentDistance;
 
+		public int MAX_QUEUE_SIZE = 5;
+		
 		void Awake() {
             CurrentQuest.OnChange.AddListener(QuestChanged);
+            Random.InitState(Mathf.RoundToInt(Time.deltaTime));
 		}
 
 	    public void LoadFinished() {
 	        DateTime lastTimePlayedUTC = SaveManager.LastTimePlayedUTC;
 	        TimeSpan TimeSinceLastPlayed = DateTime.UtcNow - lastTimePlayedUTC;
 	        double secondsSinceLastPlayed = TimeSinceLastPlayed.TotalSeconds;
-            Debug.Log(secondsSinceLastPlayed);
-	        while (true) {
-	            secondsSinceLastPlayed -= Random.Range(CurrentQuest.Value.MinEnemyDropTime,
-	                CurrentQuest.Value.MaxEnemyDropTime) * 10;
-	            if (secondsSinceLastPlayed < 0) {
-	                break;
-	            }
+            Debug.Log("Time since last play: " + secondsSinceLastPlayed);
 
-                AddFollower();
-	            if (CurrentFollowers.Value.Count == 10) break;
-	        }
+            if (secondsSinceLastPlayed > 5 * 60 && !CurrentFollowers.Any()) {
+	            AddFollower();
+            }
 	    }
 
 	    void QuestChanged(ActiveQuestBase quest) {
 	        currentTime = 0;
 	        currentTimeToReach = Random.Range(quest.MinEnemyDropTime, quest.MaxEnemyDropTime);
-	        currentDistanceToReach = Random.Range(quest.MinEnemyDropDistance, quest.MaxEnemyDropDistance);
         }
 
 		void Update() {
 			currentTime += Time.deltaTime;
-			CheckSpawns();
-		}
-
-		public void UpdateDistance(float travelled) {
-			currentDistance += travelled;
 			CheckSpawns();
 		}
 
@@ -65,18 +55,12 @@ namespace G4AW2.Followers {
                 AddFollower();
 				CheckSpawns();
 			}
-			if (currentDistance > currentDistanceToReach) {
-				currentDistance -= currentDistanceToReach;
-				currentDistanceToReach = Random.Range(CurrentQuest.Value.MinEnemyDropDistance, CurrentQuest.Value.MaxEnemyDropDistance);
-                AddFollower();
-				CheckSpawns();
-			}
 		}
 
 	    [ContextMenu("Add Follower")]
 		public void AddFollower() {
             // randomly choose a follower!
-	        if (CurrentFollowers.Value.Count >= 10) return;
+	        if (CurrentFollowers.Value.Count >= MAX_QUEUE_SIZE) return;
 
 	        FollowerData data = CurrentQuest.Value.Enemies.GetRandomFollower(true);
 	        if (data == null) return;
@@ -84,6 +68,17 @@ namespace G4AW2.Followers {
             CurrentFollowers.Add(data);
         }
 
+
+		public void SpawnMonster(SongData song, float acc) {
+			for (int i = 0; i < song.DropChances.Count(); i++) {
+				if (song.DropChances[i].Chance >= Random.value && song.DropChances[i].MinAccuracy <= acc) {
+					var follower = CurrentQuest.Value.Enemies.GetFollower(song.DropChances[i].Data);
+					if (follower == null) continue;
+					CurrentFollowers.Add(follower);
+				}
+			}
+		}
+		
 #if UNITY_EDITOR
 	    [ContextMenu("Clear Followers")]
 	    void ClearFollowers() {

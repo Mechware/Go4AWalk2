@@ -7,8 +7,6 @@ using G4AW2.Data;
 using G4AW2.Data.Combat;
 using G4AW2.Dialogue;
 using G4AW2.Events;
-using Sirenix.OdinInspector;
-using Sirenix.Utilities;
 using UnityEngine;
 using UnityEngine.Events;
 

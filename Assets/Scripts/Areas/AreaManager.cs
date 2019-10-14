@@ -4,7 +4,6 @@ using CustomEvents;
 using G4AW2.Data.Area;
 using G4AW2.Followers;
 using G4AW2.Questing;
-using Sirenix.Utilities;
 using UnityEngine;
 using UnityEngine.UI;
 

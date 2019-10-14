@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using Sirenix.OdinInspector;
+using Unity.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 

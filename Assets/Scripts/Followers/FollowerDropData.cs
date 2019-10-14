@@ -11,6 +11,23 @@ namespace G4AW2.Followers {
 
 		public List<FollowerDrop> Drops;
 
+		public FollowerData GetFollower(FollowerData enemy) {
+			foreach (var drop in Drops) {
+				if (drop.Follower == enemy) {
+					FollowerData data = Object.Instantiate(drop.Follower);
+					if (data is EnemyData) {
+						EnemyData d = data as EnemyData;
+						d.Level = Mathf.RoundToInt(Random.value * (drop.MaxLevel - drop.MinLevel) + drop.MinLevel);
+						data = d;
+					}
+					data.AfterCreated();
+					return data;
+				}
+			}
+
+			return null;
+		}
+		
 		public FollowerData GetRandomFollower(bool includeGlobal) {
 
 		    List<FollowerDrop> drops = includeGlobal ? Drops.Concat(GlobalFollowerDrops.GlobalDrops).ToList() : Drops;

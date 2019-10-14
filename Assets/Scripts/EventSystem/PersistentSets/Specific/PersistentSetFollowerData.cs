@@ -1,7 +1,6 @@
 
 using System.Linq;
 using G4AW2.Data;
-using Sirenix.Utilities;
 using UnityEngine;
 #if UNITY_EDITOR
 using UnityEditor;

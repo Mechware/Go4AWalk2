@@ -6,6 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class GameEventsManager : MonoBehaviour {
 
+	public static GameEventsManager Instance;
+	
+	
 	public UnityEvent OnSceneExitEvent;
 	public UnityEvent OnAwake;
     public UnityEvent OnOnEnable;
@@ -21,6 +24,7 @@ public class GameEventsManager : MonoBehaviour {
 
 
 	void Awake() {
+		Instance = this;
 		OnAwake.Invoke();
 	}
 
