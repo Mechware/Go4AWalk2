@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92ed46357c010e84ea5a3394f3ad888d, type: 3}
+  m_Name: Walrus
+  m_EditorClassIdentifier: 
+  ID: 27
+  DisplayName: Walrus
+  Portrait: {fileID: 21300000, guid: ec90460ffb7f02141b642d2bc8c78456, type: 3}
+  SizeOfSprite: {x: 64, y: 64}
+  SpaceBetweenEnemies: 42
+  SideIdleAnimation: {fileID: 7400000, guid: 1dfc29c6e5942f04a951bea0380b8513, type: 2}
+  RandomAnimation: {fileID: 7400000, guid: 3cff2103ce9cde643af4c0bb9fecb16c, type: 2}
+  MinTimeBetweenRandomAnims: 5
+  MaxTimeBetweenRandomAnims: 10
+  Idle: {fileID: 7400000, guid: 5d7d1beb5b024f740bfba7e2daf0356f, type: 2}
+  Flinch: {fileID: 7400000, guid: af6e09f4d559e5744ae88b6ce366817a, type: 2}
+  BeforeAttack: {fileID: 7400000, guid: aa4aef51cabd6014fbebb50a47b9bde2, type: 2}
+  AttackExecute: {fileID: 7400000, guid: b5536223677d94c4abbfd2528b3277c4, type: 2}
+  AfterAttack: {fileID: 7400000, guid: c128516fcb6bd134ebe8ab55e1af9f1b, type: 2}
+  Death: {fileID: 7400000, guid: d14a088b4df0400488c62aee54ed1820, type: 2}
+  Dead: {fileID: 7400000, guid: 30a78a2d4e9493b4780e7fa4a924cf76, type: 2}
+  Walking: {fileID: 7400000, guid: 2d979e0f7745ca640bd71804227091e1, type: 2}
+  DeadSprite: {fileID: 21300076, guid: ec90460ffb7f02141b642d2bc8c78456, type: 3}
+  HealthAtLevel0: 20000
+  DamageAtLevel0: 50
+  TimeBetweenAttacks: 6
+  AttackPrepTime: 0.5
+  AttackExecuteTime: 0.5
+  HasElementalDamage: 1
+  ElementalDamageAtLevel0: 15
+  ElementalDamageType: {fileID: 11400000, guid: 2e3d517a6eddcc14bb76e30ceae83a92,
+    type: 2}
+  ElementalWeaknesses:
+    UseConstant: 1
+    ConstantValue:
+      Weaknesses: []
+    Variable: {fileID: 0}
+  Drops:
+    Items: []
+  OneAndDoneAttacker: 0
