@@ -27,6 +27,12 @@ namespace G4AW2.Questing {
         public override bool IsFinished() {
             throw new NotImplementedException();
         }
+        
+        public override (double current, double max) GetProgress() {
+            T current = AmountSoFar.Value;
+            T max = AmountToReach;
+            return (double.Parse(current.ToString()), double.Parse(max.ToString())); // LOL
+        }
 
         public override void StartQuest(Action<ActiveQuestBase> onFinish) {
             finished = onFinish;

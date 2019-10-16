@@ -17,7 +17,13 @@ public class ActiveWalkingQuest : ActiveQuest<float, FloatVariable, UnityEventFl
             finished(this);
         }
     }
-    
+
+    public override (double current, double max) GetProgress() {
+        float current = AmountSoFar.Value;
+        float max = AmountToReach;
+        return (current, max);
+    }
+
     protected override void UpdateAmountOnStart() {
         amountWhenStarted = TotalAmount - AmountSoFar;
     }

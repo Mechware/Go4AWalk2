@@ -47,5 +47,9 @@ namespace G4AW2.Questing {
         public virtual bool IsFinished() { throw new NotImplementedException();}
 
         public virtual void CleanUp() { /*Remove listeners*/ }
+
+        public virtual (double current, double max) GetProgress() {
+            throw new NotImplementedException();
+        }
     }
 }

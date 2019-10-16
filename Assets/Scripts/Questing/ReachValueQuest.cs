@@ -18,6 +18,12 @@ public class ReachValueQuest : ActiveQuestBase {
         base.ResumeQuest(onFinish);
         TotalAmount.OnChange.AddListener(OnTotalChange);
     }
+    
+    public override (double current, double max) GetProgress() {
+        float current = TotalAmount.Value;
+        float max = AmountToReach;
+        return (current, max);
+    }
 
     public override void CleanUp() {
         base.CleanUp();

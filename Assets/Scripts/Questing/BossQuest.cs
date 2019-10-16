@@ -17,6 +17,10 @@ public class BossQuest : ActiveQuestBase {
         finished(this);
     }
 
+    public override (double current, double max) GetProgress() {
+        return (0, 1);
+    }
+
     public override bool IsFinished() {
         return false;
     }
