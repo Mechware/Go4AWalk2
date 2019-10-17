@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -56,6 +57,11 @@ public class TabController : MonoBehaviour {
         tab.Panel.SetActive(true);
 
         lastSelectedButton = tab;
+    }
+
+    public void OpenPanel(GameObject panel) {
+        var tab = Tabs.First(t => t.Panel == panel);
+        tab.Tab.onClick.Invoke();
     }
 
     [System.Serializable]
