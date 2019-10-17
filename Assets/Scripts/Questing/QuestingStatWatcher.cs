@@ -4,12 +4,14 @@ using CustomEvents;
 using G4AW2.Questing;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 public class QuestingStatWatcher : MonoBehaviour {
 
     public TextMeshProUGUI QuestTitle;
-    public TextMeshProUGUI MaxText;
-    public TextMeshProUGUI CurrentText;
+    public TextMeshProUGUI ProgressText;
+    public Image ProgressFill;
 
 
     private ActiveQuestBase previous;
@@ -18,28 +20,22 @@ public class QuestingStatWatcher : MonoBehaviour {
 
         RemoveListeners(previous);
 
-        QuestTitle.text = currentQuest.DisplayName;
         if (currentQuest is ActiveWalkingQuest) {
             ActiveWalkingQuest awq = currentQuest as ActiveWalkingQuest;
-            MaxText.text = "" + awq.AmountToReach;
-            CurrentText.text = "" + awq.AmountSoFar.Value;
             awq.AmountSoFar.OnChange.AddListener(OnChange);
         } else if (currentQuest is ActiveQuest<int, IntVariable, UnityEventInt>) {
             ActiveQuest < int, IntVariable, UnityEventInt> awq = currentQuest as ActiveQuest<int, IntVariable, UnityEventInt>;
-            MaxText.text = "" + awq.AmountToReach;
-            CurrentText.text = "" + awq.AmountSoFar.Value;
             awq.AmountSoFar.OnChange.AddListener(OnChange);
         } else if (currentQuest is ReachValueQuest) {
-            var q = currentQuest as ReachValueQuest;
-            MaxText.text = "" + q.AmountToReach;
-            CurrentText.text = "" + q.TotalAmount.Value;
-            q.TotalAmount.OnChange.AddListener(OnChange);
-        } 
-        else if (currentQuest is BossQuest) {
-            MaxText.text = "1";
-            CurrentText.text = "0";
+            var awq = currentQuest as ReachValueQuest;
+            awq.TotalAmount.OnChange.AddListener(OnChange);
         }
 
+        var prog = currentQuest.GetProgress();
+        ProgressText.text = $"{prog.current} / {prog.max}";
+        ProgressFill.rectTransform.anchorMax =
+            ProgressFill.rectTransform.anchorMax.SetX(Mathf.Clamp01((float) (prog.current / prog.max)));
+        QuestTitle.text = currentQuest.DisplayName;
         previous = currentQuest;
     }
 
@@ -70,8 +66,8 @@ public class QuestingStatWatcher : MonoBehaviour {
     }
 
     void OnChange(float val) {
-        //SmoothPopUpManager.ShowPopUp(((RectTransform)transform).anchoredPosition, "+1", Color.green);
-        CurrentText.text = "" + val;
+        SetQuest(previous);
+
     }
 
     public Transform SpawnPointOfNumberIncreasePopUp;
@@ -82,6 +78,10 @@ public class QuestingStatWatcher : MonoBehaviour {
             SmoothPopUpManager.ShowPopUp(SpawnPointOfNumberIncreasePopUp.position, "+" + (val - prevVal), Color.green, true);
         }
         prevVal = val;
-        CurrentText.text = "" + val;
+        var prog = previous.GetProgress();
+        ProgressText.text = $"{prog.current} / {prog.max}";
+        ProgressFill.rectTransform.anchorMax =
+            ProgressFill.rectTransform.anchorMax.SetX(Mathf.Clamp01((float) (prog.current / prog.max)));
+        
     }
 }
