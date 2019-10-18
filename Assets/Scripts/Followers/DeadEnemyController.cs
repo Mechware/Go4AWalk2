@@ -8,6 +8,8 @@ using UnityEngine.UI;
 
 public class DeadEnemyController : MonoBehaviour {
 
+    public static DeadEnemyController Instance;
+    
     public BoolReference Scrolling;
     public float ScrollSpeed = 5;
     public int EndingPosition = -527;
@@ -18,6 +20,7 @@ public class DeadEnemyController : MonoBehaviour {
     private ObjectPrefabPool DeadEnemies;
 
     void Awake() {
+        Instance = this;
         DeadEnemies = new ObjectPrefabPool(DeadEnemyPrefab, DeadEnemyParent);
     }
 

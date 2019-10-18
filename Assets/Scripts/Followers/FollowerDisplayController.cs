@@ -29,12 +29,6 @@ namespace G4AW2.Followers {
 	    public LerpToPosition QuestGiverWalk;
 	    public QuestGiverDisplay QuestGiver;
 
-	    [Header("Events")]
-	    public UnityEventEnemyData FightFollower;
-	    public UnityEvent ListChanged;
-	    public UnityEvent CameraDoneAfterScroll;
-	    public UnityEvent CameraDoneAfterScrollFighting;
-
 	    [NonSerialized] public ObjectPrefabPool FollowerPool;
 
 	    void Awake() {
@@ -75,7 +69,7 @@ namespace G4AW2.Followers {
 				AddDisplay(d, fd);
 			}
 
-            ListChanged.Invoke();
+            FollowerLayoutController.Instance.ChangeLayout();
 		}
 
         private void AddDisplay(FollowerDisplay display, FollowerData d) {
@@ -108,17 +102,13 @@ Elemental Damage: <color={elemColor}>{elemDmg}</color>";
 
 					PopUp.SetPopUp(description, new[] {"Yes", "No"}, new Action[] {
 					    () => {
-                            
-					        FightFollower.Invoke((EnemyData)fd.Data);
-                            WorldCameraLerper.StartLerping(() => {
-                                CameraDoneAfterScrollFighting.Invoke();
-                            });
+						    InteractionController.Instance.EnemyFight(ed);
 					    },
                         () => { }});
 				} else if (fd.Data is QuestGiver) {
 
 				    WorldCameraLerper.StartLerping(() => {
-				        CameraDoneAfterScroll.Invoke();
+					    PlayerAnimations.Instance.Spin();
                         QuestGiver.SetData(fd.Data);
 				        QuestGiver.StartWalking();
 				        QuestGiverWalk.StartLerping(() => {
@@ -130,7 +120,7 @@ Elemental Damage: <color={elemColor}>{elemDmg}</color>";
 				} else if (fd.Data is ShopFollower) {
 
 				    WorldCameraLerper.StartLerping(() => {
-				        CameraDoneAfterScroll.Invoke();
+					    PlayerAnimations.Instance.Spin();
 				        Shopper.SetData(fd.Data);
                         Shopper.StartWalking();
 				        ShopperWalk.StartLerping(() => {

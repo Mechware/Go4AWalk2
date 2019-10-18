@@ -5,34 +5,33 @@ using System;
 using System.Collections.Generic;
 using G4AW2.Data.Area;
 using G4AW2.Data.DropSystem;
+using G4AW2.UI.Areas;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class QuestManager : MonoBehaviour {
 
     public ActiveQuestBaseVariable CurrentQuest;
-
+    public RuntimeSetFollowerData Followers;
+    
     public Dialogue QuestDialogUI;
 
     public RuntimeSetQuest CurrentQuests;
-    public BossQuestController BossController;
     public DragObject DraggableWorld;
     public GameObject ScrollArrow;
-
-    [Header("Events")]
-    public UnityEventActiveQuestBase AreaQuestChanged;
-    public UnityEvent AreaChanged;
 
     private Area currentArea = null;
 
     public void Initialize() {
+        
         currentArea = CurrentQuest.Value.Area;
+        
         if(CurrentQuest.Value.ID == 1) {
             SetCurrentQuest(CurrentQuest.Value);
         } else {
 
             CurrentQuest.Value.ResumeQuest(FinishQuest);
-            AreaQuestChanged.Invoke(CurrentQuest.Value);
+            SetQuest(CurrentQuest.Value);
 
             if(CurrentQuest.Value.IsFinished()) {
                 CurrentQuest.Value.CleanUp();
@@ -40,8 +39,6 @@ public class QuestManager : MonoBehaviour {
                     Debug.LogWarning("Progressing quest?");
                     AdvanceQuestAfterConversation(CurrentQuest.Value);
                 }
-            } else if(CurrentQuest.Value is BossQuest) {
-                BossController.ResumeBossQuest();
             }
         }
     }
@@ -99,20 +96,17 @@ public class QuestManager : MonoBehaviour {
             AdvanceQuestAfterConversation(q);
         }
         else {
-            ItemDropManager.Clear();
 
             DraggableWorld.Disable2();
             ScrollArrow.SetActive(false);
 
-            Inventory.AddItems(todrops);
-            int amount = 0;
-            ItemDropManager.AddItems(todrops, () => {
-                amount++;
-                if (amount >= todrops.Count) {
-                    ScrollArrow.SetActive(true);
-                    DraggableWorld.Enable2();
-                    AdvanceQuestAfterConversation(q);
-                }
+            
+            ItemDropManager.AddItems(todrops, null, () => {
+                ScrollArrow.SetActive(true);
+                DraggableWorld.Enable2();
+                AdvanceQuestAfterConversation(q);
+                
+                Inventory.AddItems(todrops);
             });
         }
     }
@@ -133,6 +127,7 @@ public class QuestManager : MonoBehaviour {
         SetCurrentQuest(q.NextQuest);
     }
 
+    public GameObject AreaChangeAndFadeObject;
     public RobustLerperSerialized AreaChangeInterpolater;
 
     void Update() {
@@ -142,24 +137,22 @@ public class QuestManager : MonoBehaviour {
 
     public void SetCurrentQuest(ActiveQuestBase quest) {
 
-        ItemDropManager.Clear();
         quest.CleanUp();
 
         if (quest.Area != currentArea) {
+            AreaChangeAndFadeObject.SetActive(true);
             AreaChangeInterpolater.StartLerping(() => {
 
-                AreaChanged.Invoke();
+                Followers.Clear();
+                DeadEnemyController.Instance.ClearEnemies();
 
                 CurrentQuest.Value = quest;
-                AreaQuestChanged.Invoke(quest);
+                SetQuest(quest);
+                
                 quest.StartQuest(FinishQuest);
                 
                 AreaChangeInterpolater.StartReverseLerp(() => {
                     QuestDialogUI.SetConversation(quest.StartConversation, () => {
-
-                        if(quest is BossQuest) {
-                            BossController.StartBossQuest();
-                        }
 
                         // Check that the quest isn't finished (for reach quests)
                         if(quest.IsFinished()) FinishQuest(quest);
@@ -169,20 +162,25 @@ public class QuestManager : MonoBehaviour {
         }
         else {
             CurrentQuest.Value = quest;
-            AreaQuestChanged.Invoke(quest);
+            SetQuest(quest);
+
             quest.StartQuest(FinishQuest);
+            
             QuestDialogUI.SetConversation(quest.StartConversation, () => {
-
-                if(quest is BossQuest) {
-                    BossController.StartBossQuest();
-                }
-
+                
                 if(quest.IsFinished())
                     FinishQuest(quest);
             });
         }
 
         currentArea = quest.Area;
+    }
+
+    public void SetQuest(ActiveQuestBase quest) {
+        AreaManager.Instance.SetArea(quest.Area);
+        QuestingStatWatcher.Instance.SetQuest(quest);
+        MiningPoints.Instance.QuestChanged(quest);
+        TutorialManager.Instance.QuestUpdated(quest);
     }
 
     public GameObject Journal;

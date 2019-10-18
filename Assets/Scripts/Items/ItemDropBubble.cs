@@ -17,17 +17,15 @@ public class ItemDropBubble : MonoBehaviour, IPointerClickHandler {
 	public Image background;
 
 	public Action<ItemDropBubble> ItemClicked;
-    public Action<ItemDropBubble> ItemAutoLooted;
 
     public float MaxVelocity = 50;
     public float MinVelocity = 20;
     public float DecelerationMagnitude = 50f;
 
-    public void SetData(Item it, Action<ItemDropBubble> OnClick, Action<ItemDropBubble> OnAutoLoot) {
+    public void SetData(Item it, Action<ItemDropBubble> OnClick) {
 		item = it;
         image.sprite = item.Image;
         ItemClicked = OnClick;
-        ItemAutoLooted = OnAutoLoot;
         
         image.gameObject.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, item.Image.rect.width);
         image.gameObject.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, item.Image.rect.height);
@@ -54,8 +52,4 @@ public class ItemDropBubble : MonoBehaviour, IPointerClickHandler {
 	public void OnPointerClick(PointerEventData eventData) {
 		ItemClicked.Invoke(this);
 	}
-
-    public void OnAutoLoot() {
-        ItemAutoLooted.Invoke(this);
-    }
 }

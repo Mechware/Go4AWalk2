@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using CustomEvents;
@@ -9,12 +10,18 @@ using UnityEngine.UI;
 
 public class QuestingStatWatcher : MonoBehaviour {
 
+    public static QuestingStatWatcher Instance;
+    
     public TextMeshProUGUI QuestTitle;
     public TextMeshProUGUI ProgressText;
     public Image ProgressFill;
 
 
     private ActiveQuestBase previous;
+
+    private void Awake() {
+        Instance = this;
+    }
 
     public void SetQuest(ActiveQuestBase currentQuest) {
 

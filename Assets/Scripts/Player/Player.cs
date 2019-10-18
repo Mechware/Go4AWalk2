@@ -17,11 +17,6 @@ namespace G4AW2.Combat {
         public IntReference Level;
         public IntReference Experience;
 
-		public FloatReference PowerPerBlock;
-		public GameEvent OnPowerMax;
-
-	    public GameEvent PlayerDeath;
-
         public WeaponReference Weapon;
         public ArmorReference Armor;
         public HeadgearReference Headgear;
@@ -49,8 +44,8 @@ namespace G4AW2.Combat {
         public void DamagePlayer(int damage)
         {
             if (damage >= Health) {
-                PlayerDeath.Raise();
                 Health.Value = 0;
+                InteractionController.Instance.OnPlayerDeath();
             }
             else {
                 Health.Value -= damage;

@@ -6,10 +6,16 @@ using UnityEngine;
 
 public class TutorialManager : MonoBehaviour {
 
+    public static TutorialManager Instance;
+    
     public BoolVariable ShowParryAndBlockColor;
     public ActiveQuestBase BlockingAndParryingTutorialStart;
     public ActiveQuestBase BlockingAndParryingTutorialEnd;
 
+    void Awake() {
+        Instance = this;
+    }
+    
     public void QuestUpdated(ActiveQuestBase Quest) {
         if (Quest == BlockingAndParryingTutorialStart) {
             ShowParryAndBlockColor.Value = true;

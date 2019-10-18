@@ -83,9 +83,4 @@ public class DataManager : MonoBehaviour {
 		UpdateAll();
         EnsureNoIDDups();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }

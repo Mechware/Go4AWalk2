@@ -34,6 +34,7 @@
             <e p="Area.cs" t="Include" />
             <e p="AreaManager.cs" t="Include" />
           </e>
+          <e p="BattleUI.cs" t="Include" />
           <e p="Combat" t="Include">
             <e p="AttackArea.cs" t="Include" />
             <e p="ElementalType.cs" t="Include" />
@@ -274,6 +275,7 @@
           <e p="GameStats" t="Include">
             <e p="StatTracker.cs" t="Include" />
           </e>
+          <e p="InteractionController.cs" t="Include" />
           <e p="Inventory" t="Include">
             <e p="CraftingTable.cs" t="Include" />
             <e p="Inventory.cs" t="Include" />
@@ -322,7 +324,6 @@
             <e p="ActiveQuestBase.cs" t="Include" />
             <e p="ActiveWalkingQuest.cs" t="Include" />
             <e p="BossQuest.cs" t="Include" />
-            <e p="BossQuestController.cs" t="Include" />
             <e p="CollectItemQuest.cs" t="Include" />
             <e p="EnemySlayerQuest.cs" t="Include" />
             <e p="PassiveQuest.cs" t="Include" />

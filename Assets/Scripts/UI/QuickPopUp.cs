@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using CustomEvents;
@@ -7,7 +8,7 @@ using UnityEngine.UI;
 
 public class QuickPopUp : MonoBehaviour {
 
-    public BoolVariable QuickPopUpAllowed;
+    public static bool QuickPopUpAllowed;
     public RobustLerper PositionLerper;
     public RobustLerper AlphaLerper;
     public RobustLerperSerialized ShakeLerper;
@@ -21,7 +22,7 @@ public class QuickPopUp : MonoBehaviour {
 
     public bool IsMainInstance = false;
 
-    private static QuickPopUp instance;
+    public static QuickPopUp Instance;
 
     private class PopUpData {
         public Sprite Icon;
@@ -30,18 +31,12 @@ public class QuickPopUp : MonoBehaviour {
 
     void Awake() {
         if(IsMainInstance) {
-            instance = this;
+            Instance = this;
         }
-        QuickPopUpAllowed.OnChange.AddListener(QuickPopUpAllowedChanged);
     }
 
-    void QuickPopUpAllowedChanged(bool val) {
-        if (QuickPopUpAllowed) {
-            StartPopUp();
-        }
-        else {
-            // Do nothing, user has to dismiss current one
-        }
+    private void Update() {
+        if(QuickPopUpAllowed) StartPopUp();
     }
 
     public void ShowSprite(Sprite icon, string text) {
@@ -53,11 +48,11 @@ public class QuickPopUp : MonoBehaviour {
     }
 
     public static void Show(Sprite icon, string text) {
-        if (instance.alreadyActive) {
-            instance.Shake();
+        if (Instance.alreadyActive) {
+            Instance.Shake();
         }
-        instance.AddToQueue(icon, text);
-        instance.StartPopUp();
+        Instance.AddToQueue(icon, text);
+        Instance.StartPopUp();
     }
 
     public void Shake() {

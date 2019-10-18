@@ -15,12 +15,6 @@ public class RobustLerperSerialized {
         Reverse
     }
 
-    public UnityEvent OnStart;
-    public UnityEvent OnReverseStart;
-    public UnityEvent OnUpdate;
-    public UnityEvent OnEnd;
-    public UnityEvent OnReverseEnd;
-
     public LoopType EndBehaviour;
 
     public float LerpDuration = 1f;
@@ -51,8 +45,6 @@ public class RobustLerperSerialized {
         foreach(var lerper in Lerpers) {
             lerper.Update(0);
         }
-
-        OnStart.Invoke();
     }
 
     public void StartReverseLerp() {
@@ -73,8 +65,6 @@ public class RobustLerperSerialized {
         foreach(var lerper in Lerpers) {
             lerper.Update(LerpDuration);
         }
-
-        OnReverseStart.Invoke();
     }
 
     public void PauseLerp() {
@@ -88,7 +78,6 @@ public class RobustLerperSerialized {
             lerper.Update(LerpDuration);
         }
 
-        OnEnd.Invoke();
         if(!silently) currentLerpingAction?.Invoke();
     }
 
@@ -99,7 +88,6 @@ public class RobustLerperSerialized {
             lerper.Update(0);
         }
 
-        OnReverseEnd.Invoke();
         currentLerpingAction?.Invoke();
     }
 

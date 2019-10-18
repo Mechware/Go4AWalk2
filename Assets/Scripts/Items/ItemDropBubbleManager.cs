@@ -11,6 +11,7 @@ using UnityEngine.Events;
 
 public class ItemDropBubbleManager : MonoBehaviour {
 
+	public static ItemDropBubbleManager Instance;
     public Inventory Inventory;
     public WeaponVariable PlayerWeapon;
 
@@ -21,33 +22,48 @@ public class ItemDropBubbleManager : MonoBehaviour {
     private ObjectPrefabPool Pool;
 
     void Awake() {
+	    Instance = this;
         Pool = new ObjectPrefabPool(ItemDropperPrefab, transform, 5);
     }
 
-    public void AddItems(IEnumerable<Item> items, Action onClick) {
-        List<Item> itemsList = items.ToList();
-        StartCoroutine(ShootItems(itemsList, onClick));
+    public void AddItems(List<Item> items, Action onClick, Action onDone) {
+        StartCoroutine(ShootItems(items, onClick, onDone));
     }
 
-	public void AddItems( IEnumerable<Item> items ) {
-		List<Item> itemsList = items.ToList();
-		StartCoroutine(ShootItems(itemsList, null));
-	}
+    private IEnumerator ShootItems( List<Item> items, Action onClick, Action onDone) {
+		
+		if (Pool.InUse.Count > 0) {
+			Debug.LogError("Tried to add items to item dropper when there's still items");
+		}
 
-	private IEnumerator ShootItems( IEnumerable<Item> items, Action onClick) {
+		int count = items.Count;
+		if (!items.Any()) {
+			onDone?.Invoke();
+			yield break;
+		}
+
+		
+		
 		foreach (Item it in items) {
 			yield return new WaitForSeconds(SpawnDelay);
 		    GameObject itemBubble = Pool.GetObject();
 		    itemBubble.transform.localPosition = Vector3.zero;
             itemBubble.transform.rotation = Quaternion.identity;
-            itemBubble.GetComponent<ItemDropBubble>().SetData(it, (i) => OnClick(i, onClick), (i) => OnAutoLoot(i, onClick));
+            itemBubble.GetComponent<ItemDropBubble>().SetData(it, (i) => {
+	            count--;
+	            OnClick(i, onClick, onDone);
+	            
+	            if (count == 0) {
+		            onDone?.Invoke();
+	            }
+            });
 			itemBubble.GetComponent<ItemDropBubble>().Shoot();
 		}
 	}
 
     public WeaponUI WeaponUI;
 
-	private void OnClick(ItemDropBubble it, Action onClick) {
+	private void OnClick(ItemDropBubble it, Action onClick, Action onDone) {
 
         SmoothPopUpManager.ShowPopUp(it.transform.localPosition, $"<color=green>+1</color> {it.Item.GetName()}", ConfigObject.GetColorFromRarity(it.Item.Rarity));
 
@@ -64,36 +80,11 @@ public class ItemDropBubbleManager : MonoBehaviour {
 	    onClick?.Invoke();
     }
 
-    private void OnAutoLoot(ItemDropBubble it, Action onLooted) {
-        Pool.Return(it.gameObject);
-        onLooted?.Invoke();
-    }
-
-    public Transform AutoLootNotificationPosition;
-
-    public void Clear() {
-        if (Pool.InUse.Count == 0) return;
-
-        float delay = 0;
-
-        foreach (var obj in Pool.InUse.ToArray()) {
-            var bubble = obj.GetComponent<ItemDropBubble>();
-            bubble.OnAutoLoot();
-            Timer.StartTimer(delay, () => {
-                SmoothPopUpManager.ShowPopUp(AutoLootNotificationPosition.position,
-                    "<color=green>+1</color> " + bubble.Item.GetName(), Color.white, true);
-            });
-            delay += 1f;
-        }
-
-        Pool.Reset();
-    }
-
     [Header("Debug")] public ItemDropper Dropper;
 #if UNITY_EDITOR
 	[ContextMenu("Drop Items")]
 	public void DropItems() {
-		AddItems(Dropper.GetItems(true));
+		AddItems(Dropper.GetItems(true), null, null);
 	}
 
 #endif

@@ -14,21 +14,16 @@ namespace G4AW2.Combat {
 	[RequireComponent(typeof(Animator))]
     public class EnemyDisplay : MonoBehaviour {
 
+	    public static EnemyDisplay Instance;
+	    
 		public enum State {
 			Idle, BeforeAttack, ExecuteAttack, AfterAttack, Stun, Disabled, Dead
 		}
 
         [Header("Misc References")]
-	    public PlayerAnimations PlayerAnimations;
-	    public ItemDropBubbleManager ItemBubbleManager;
-	    public PlayerFightingLogic FightingLogic;
 	    public DamageNumberSpawner RegularDamageNumberSpawner;
 	    public DamageNumberSpawner ElementalDamageNumberSpawner;
-	    public Player Player;
-	    public RuntimeSetFollowerData CurrentFollowers;
-	    public LerpToPosition WalkingToPosition;
-	    public DeadEnemyController DeadEnemyController;
-
+	    
         [Header("Settings")]
         public FloatReference StunDuration;
 	    public Color BaseDamageColor;
@@ -44,17 +39,6 @@ namespace G4AW2.Combat {
 		public IntReference MaxHealth;
 	    public IntReference CurrentHealth;
 
-        // Events
-        [Header("Events")]
-        public UnityEvent OnStartWalking;
-        public UnityEvent OnWalkingDone;
-        public UnityEventInt OnHit;
-		public UnityEventInt OnElementalHit;
-        public UnityEventEnemyData OnDeath;
-	    public UnityEventEnemyData OnKilled;
-        public UnityEventIEnumerableLoot OnDropLoot;
-	    public UnityEvent CleanUp;
-
         private Animator MyAnimator;
 
 	    private Image im;
@@ -67,7 +51,7 @@ namespace G4AW2.Combat {
 	    }
 
 	    private RectTransform rt;
-	    private RectTransform RectTransform {
+	    public RectTransform RectTransform {
 	        get {
 	            if (rt == null) rt = GetComponent<RectTransform>();
 	            return rt;
@@ -75,9 +59,11 @@ namespace G4AW2.Combat {
 	    }
 
 	    void Awake() {
+		    Instance = this;
             MyAnimator = GetComponent<Animator>();
 	        rt = GetComponent<RectTransform>();
 			EnemyState = State.Disabled;
+			gameObject.SetActive(false);
         }
 
 		public void SetEnemy( EnemyData data) {
@@ -111,25 +97,13 @@ namespace G4AW2.Combat {
 		}
 
 	    public void StartWalkingAnimation() {
-	        StopAllCoroutines();
-            MyAnimator.SetTrigger("Walking");
+		    StopAllCoroutines();
+		    MyAnimator.SetTrigger("Walking");
         }
 
-	    public void StartWalking(Action donewalking) {
-	        StopAllCoroutines();
-	        OnStartWalking.Invoke();
-	        MyAnimator.SetTrigger("Walking");
-	        WalkingToPosition.StartLerping(() => {
-	            StartAttacking();
-	            MyAnimator.SetTrigger("DoneWalking");
-	            OnWalkingDone.Invoke();
-	            donewalking?.Invoke();
-	        });
-        }
-
-        public void StartWalking() {
-            StartWalking(null);
-        }
+	    public void StopWalking() {
+		    MyAnimator.SetTrigger("DoneWalking");
+	    }
 
 		public void StartAttacking() {
 			StopAllCoroutines();
@@ -148,8 +122,6 @@ namespace G4AW2.Combat {
 			StartCoroutine(DoAttack());
             MyAnimator.SetTrigger("StunOver");
         }
-
-        #region Attack
 
 		public IEnumerator DoAttack(bool first = false) {
 			for (; ; ) {
@@ -181,23 +153,13 @@ namespace G4AW2.Combat {
 			        break;
 
                 EnemyState = State.AfterAttack;
-			    FightingLogic.OnEnemyHitPlayer(Enemy.Damage);
+			    PlayerFightingLogic.Instance.OnEnemyHitPlayer(Enemy.Damage);
 			    if (Enemy.HasElementalDamage) {
-			        FightingLogic.OnEnemyHitPlayerElemental(Enemy.ElementalDamage, Enemy.ElementalDamageType);
+				    PlayerFightingLogic.Instance.OnEnemyHitPlayerElemental(Enemy.ElementalDamage, Enemy.ElementalDamageType);
 			    }
 
                 if (Enemy.OneAndDoneAttacker) {
-			        EnemyState = State.Dead;
-
-			        OnDeath.Invoke(Enemy);
-
-			        if (Player.Health.Value > 0) {
-			            yield return new WaitForSeconds(1);
-                        PlayerAnimations.ResetAttack();
-                        PlayerAnimations.Spin(() => {
-			                CleanUp.Invoke();
-			            });
-			        }
+	                Die(true);
 			        break;
 			    }
 
@@ -210,11 +172,10 @@ namespace G4AW2.Combat {
 		        return;
 
             RegularDamageNumberSpawner.SpawnNumber(amount, BaseDamageColor);
-		    OnHit.Invoke(amount);
 
             CurrentHealth.Value -= amount;
 			if (CurrentHealth.Value <= 0) {
-			    Die();
+			    Die(false);
 			} else {
                 MyAnimator.SetTrigger("Flinch");
             }
@@ -226,82 +187,23 @@ namespace G4AW2.Combat {
 
             amount = Mathf.RoundToInt(amount * Enemy.GetElementalWeakness(type));
 	        ElementalDamageNumberSpawner.SpawnNumber(amount, type.DamageColor);
-	        OnElementalHit.Invoke(amount);
 
             CurrentHealth.Value -= amount;
 	        if(CurrentHealth.Value <= 0) {
-	            Die();
+	            Die(false);
 	        } else {
 	            MyAnimator.SetTrigger("Flinch");
 	        }
 	    }
 
-        private void Die() {
+        private void Die(bool suicide) {
 	        EnemyState = State.Dead;
             Image.color = Color.white;
-
 	        StopAllCoroutines();
-	        OnDeath.Invoke(Enemy);
-	        OnKilled.Invoke(Enemy);
-
-            bool celebrateDone = false;
-	        bool bubblesDone = false;
-
-	        PlayerAnimations.ResetAttack();
-	        PlayerAnimations.Celebrate(() => {
-	            celebrateDone = true;
-	            if(bubblesDone && celebrateDone) {
-	                AllDone();
-	            }
-	        });
+	        InteractionController.Instance.EnemyDeath(Enemy, suicide);
 
 	        MyAnimator.SetTrigger("Death");
-	        List<Item> items = Enemy.Drops.GetItems(true);
-	        foreach(Item item in items) {
-	            if(item is Weapon) {
-	                Weapon weapon = item as Weapon;
-	                weapon.Level = Enemy.Level;
-	            }
-	            if(item is Armor) {
-	                Armor armor = item as Armor;
-	                armor.Level = Enemy.Level;
-	            }
-                if(item is Headgear) {
-                    Headgear hg = item as Headgear;
-                    hg.Level = Enemy.Level;
-                }
-            }
-
-            int count = 0;
-            if (items.Count == 0) {
-                bubblesDone = true;
-                if(bubblesDone && celebrateDone) {
-                    AllDone();
-                }
-            }
-
-	        ItemBubbleManager.AddItems(items, () => {
-	            count++;
-	            if (count == items.Count) {
-	                bubblesDone = true;
-	                if(bubblesDone && celebrateDone) {
-	                    AllDone();
-	                }
-                }
-	        });
-
-	        OnDropLoot.Invoke(items);
         }
-
-	    private void AllDone() {
-            PlayerAnimations.Spin(() => {
-                CleanUp.Invoke();
-                DeadEnemyController.AddDeadEnemy(RectTransform.anchoredPosition.x, RectTransform.anchoredPosition.y, Enemy);
-            });
-        }
-
-		#endregion
-
 
 #if UNITY_EDITOR
 		[ContextMenu("Reload Enemy")]

@@ -1,25 +1,24 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(Animator))]
 public class PlayerAnimations : MonoBehaviour {
 
+    public static PlayerAnimations Instance;
     public Animator animator;
     public Animator armAnimator;
     public Animator armourAnimator;
     public Animator weaponAnimator;
 
-    public UnityEvent StoppedWalking;
-    public UnityEvent StartedWalking;
-    public UnityEvent Spun;
-
     private Action celebrationFinished;
 
     // Use this for initialization
     void Awake () {
+        Instance = this;
         animator = GetComponent<Animator>();
 	}
 	
@@ -30,7 +29,6 @@ public class PlayerAnimations : MonoBehaviour {
         armAnimator.SetBool("Walking", true);
         armourAnimator.SetBool("Walking", true);
         weaponAnimator.SetBool("Walking", true);
-        StartedWalking.Invoke();
 
     }
 
@@ -41,7 +39,6 @@ public class PlayerAnimations : MonoBehaviour {
         armAnimator.SetBool("Walking", false);
         armourAnimator.SetBool("Walking", false);
         weaponAnimator.SetBool("Walking", false);
-        StoppedWalking.Invoke();
     }
 
     [ContextMenu("Spin")]
@@ -62,12 +59,12 @@ public class PlayerAnimations : MonoBehaviour {
         weaponAnimator.SetTrigger("Spin");
     }
 
-    public void SpinDone()
+    public void SpinDone(int forceScale = 0)
     {
         Vector3 scale = transform.localScale;
-        scale.x *= -1;
+        if (forceScale != 0) scale.x = forceScale;
+        else scale.x *= -1;
         transform.localScale = scale;
-        Spun.Invoke();
         spinDone?.Invoke();
     }
 

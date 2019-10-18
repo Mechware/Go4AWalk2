@@ -1,3 +1,4 @@
+using System;
 using G4AW2.Combat;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,6 +9,8 @@ using UnityEngine.Events;
 
 public class PlayerFightingLogic : MonoBehaviour {
 
+    public static PlayerFightingLogic Instance;
+    
 	public Player Player;
 	public EnemyDisplay EnemyDisplay;
 	public FloatReference MinSwipeDistance;
@@ -19,7 +22,6 @@ public class PlayerFightingLogic : MonoBehaviour {
     public UnityEvent OnFailedParry;
     public UnityEvent OnFailedParryDone;
     public UnityEvent OnSuccessfulParry;
-    public UnityEvent Attacked;
 
     public DamageNumberSpawner PlayerDamageNumberSpawner;
     public Color DamageColor;
@@ -27,7 +29,11 @@ public class PlayerFightingLogic : MonoBehaviour {
     private bool AbleToAttack => BlockState == Armor.BlockState.None;
     private Armor.BlockState BlockState = Armor.BlockState.None;
 
-	public void OnEnemyHitPlayer(int damage) {
+    private void Awake() {
+        Instance = this;
+    }
+
+    public void OnEnemyHitPlayer(int damage) {
 
         float fdamage = Player.Armor.Value.GetDamage(damage, BlockState);
 
@@ -63,7 +69,7 @@ public class PlayerFightingLogic : MonoBehaviour {
 	public void PlayerAttemptToHitEnemy() {
         if(AbleToAttack)
         {
-            Attacked.Invoke();
+            PlayerAnimations.Instance.Attack();
 
             float damageMultipler = EnemyDisplay.EnemyState == EnemyDisplay.State.Stun ? StunnedDamageMultiplier : 1;
 

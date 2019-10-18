@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using G4AW2.Followers;
 using UnityEngine;
@@ -5,12 +6,16 @@ using UnityEngine;
 public class FollowerLayoutController : MonoBehaviour {
 
 
+    public static FollowerLayoutController Instance;
     public FollowerDisplayController FollowerController;
     public float StartX = 16;
     public float StartY = 32;
     public float XGap = 32;
     public float YGap = 0;
 
+    private void Awake() {
+        Instance = this;
+    }
 
     [ContextMenu("Apply Layout")]
     public void ChangeLayout() {
