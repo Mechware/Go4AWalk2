@@ -112,8 +112,9 @@ public class CraftingMenu : MonoBehaviour {
             }
 
             holder.SetData(recipe.Result.Item, 1, text, () => {
-                CraftingRecipesMade.RecipesMade.Add(recipe.ID);
-                MakeRecipe(recipe);
+                if (MakeRecipe(recipe)) {
+                    CraftingRecipesMade.RecipesMade.Add(recipe.ID);
+                }
             }, QuestionMark, false);
         }
         
@@ -121,8 +122,9 @@ public class CraftingMenu : MonoBehaviour {
 
     public QuickPopUp PopUp;
 
-    private void MakeRecipe(CraftingRecipe cr) {
+    private bool MakeRecipe(CraftingRecipe cr) {
         Item it = CT.Make(cr);
+        if (it == null) return false;
         RefreshList();
 
         string PostText = "";
@@ -135,5 +137,6 @@ public class CraftingMenu : MonoBehaviour {
         }
 
         PopUp.ShowSprite(cr.Result.Item.Image, $"<size=150%>Crafted!</size>\nYou successfully crafted a {it.GetName()}!{PostText}");
+        return true;
     }
 }

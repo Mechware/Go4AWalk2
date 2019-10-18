@@ -4,7 +4,8 @@
 AnimatorOverrideController:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: ShopGiver
   m_Controller: {fileID: 9100000, guid: 8333a7118c53657408bea94f9272ca08, type: 2}
   m_Clips:

@@ -17,7 +17,7 @@ public class HelpMenu : MonoBehaviour {
 	    foreach (var item in HelpItems) {
 	        var go = Instantiate(HelpItemPrefab, HelpItemParent);
 	        go.GetComponentInChildren<TextMeshProUGUI>().text = item.DisplayName;
-            SetClickHandler(go.GetComponent<Button>(), item);
+            SetClickHandler(go.GetComponent<MyButton>(), item);
 	    }
 	}
 
@@ -25,7 +25,7 @@ public class HelpMenu : MonoBehaviour {
         //MenuItems.normalizedPosition = new Vector2(0, 1);
     }
 
-    void SetClickHandler(Button b, HelpMenuItem item) {
+    void SetClickHandler(MyButton b, HelpMenuItem item) {
         b.onClick.RemoveAllListeners();
         b.onClick.AddListener(() => {
             PopUp.ShowItem(item);
