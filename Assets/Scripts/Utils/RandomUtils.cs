@@ -8,6 +8,11 @@ namespace G4AW2.Utils
 {
     public static class RandomUtils {
 
+        public static double GetTime() {
+            TimeSpan t = DateTime.UtcNow - DateTime.MinValue;
+            return t.TotalSeconds;
+        }
+        
         public static int GetValueInRange(int min, int max)
         {
             float minf = min - 0.5f;

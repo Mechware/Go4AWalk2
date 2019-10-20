@@ -4,11 +4,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using Material = G4AW2.Data.DropSystem.Material;
 
 public class ItemViewer : MonoBehaviour {
 
+    public static ItemViewer Instance;
     public GameObject ItemDisplayPrefab;
 
     public GameObject Content;
@@ -17,33 +19,41 @@ public class ItemViewer : MonoBehaviour {
 
     public Inventory Inventory;
 
-    public void ShowItemsFromInventory<T>(bool showAmounts, bool showTrash, Action<T> onClick, bool showNull = false) where T : Item, ITrashable {
-        ShowItems(Inventory.Where(e => e.Item is T && (showTrash || !((T) e.Item).IsTrash())), i => onClick((T) i), showAmounts, showNull);
+    public TextMeshProUGUI Title;
+    
+    public void Init() {
+        Instance = this;
+    }
+    
+    public void ShowItemsFromInventory<T>(string title, bool showAmounts, bool showTrash, Action<T> onClick, bool showNull = false) where T : Item, ITrashable {
+        ShowItems(title, Inventory.Where(e => e.Item is T && (showTrash || !((T) e.Item).IsTrash())), i => onClick((T) i), showAmounts, showNull);
     }
 
-    public void ShowItemsFromInventoryWhere<T>(Func<InventoryEntry, bool> selection, bool showAmounts, Action<T> onClick, bool showNull = false) where T : Item {
-        ShowItems(Inventory.Where(e => e.Item is T).Where(selection), i => onClick((T) i), showAmounts, showNull);
+    public void ShowItemsFromInventoryWhere<T>(string title, Func<InventoryEntry, bool> selection, bool showAmounts, Action<T> onClick, bool showNull = false) where T : Item {
+        ShowItems(title, Inventory.Where(e => e.Item is T).Where(selection), i => onClick((T) i), showAmounts, showNull);
     }
 
-    public void ShowItemsFromInventory<T>(bool showAmounts, Action<T> onClick, bool showNull = false) where T : Item {
-        ShowItems(Inventory.Where(e => e.Item is T), i => onClick((T) i), showAmounts, showNull);
+    public void ShowItemsFromInventory<T>(string title, bool showAmounts, Action<T> onClick, bool showNull = false) where T : Item {
+        ShowItems(title, Inventory.Where(e => e.Item is T), i => onClick((T) i), showAmounts, showNull);
     }
 
-    public void ShowMaterialFromInventory(MaterialType type, bool showAmounts, Action<Item> onClick, bool showNull = false) {
-        ShowItems(Inventory.Where((e) => e.Item is Material && ((Material)e.Item).Type == type), onClick, showAmounts, showNull);
+    public void ShowMaterialFromInventory(string title, MaterialType type, bool showAmounts, Action<Item> onClick, bool showNull = false) {
+        ShowItems(title, Inventory.Where((e) => e.Item is Material && ((Material)e.Item).Type == type), onClick, showAmounts, showNull);
     }
 
-    public void ShowAllMaterialFromInventory(bool showAmounts, Action<Item> onClick, bool showNull = false) {
-        ShowItems(Inventory, onClick, showAmounts, showNull);
+    public void ShowAllMaterialFromInventory(string title, bool showAmounts, Action<Item> onClick, bool showNull = false) {
+        ShowItems(title, Inventory, onClick, showAmounts, showNull);
     }
 
     public void Clear() {
         items.ForEach(it => Destroy(it)); // TODO: Pool Items
     }
 
-    public void ShowItems(IEnumerable<InventoryEntry> itemsToAdd, Action<Item> onClick, bool showAmount, bool showNull = false) {
+    public void ShowItems(string title, IEnumerable<InventoryEntry> itemsToAdd, Action<Item> onClick, bool showAmount, bool showNull = false) {
         Open();
 
+        Title.text = title;
+        
         foreach(var entry in itemsToAdd) {
             GameObject go = GameObject.Instantiate(ItemDisplayPrefab, Content.transform);
             InventoryItemDisplay iid = go.GetComponent<InventoryItemDisplay>();
@@ -60,8 +70,8 @@ public class ItemViewer : MonoBehaviour {
     }
 
     public RobustLerperSerialized OpenLerper;
-    private enum State { LerpingOpen, LerpingClosed, Open, Closed }
-    private State state = State.Closed;
+    public enum State { LerpingOpen, LerpingClosed, Open, Closed }
+    public State state = State.Closed;
 
     public void ShowItems(IEnumerable<Item> itemsToAdd, Action<Item> onClick) {
         Open();

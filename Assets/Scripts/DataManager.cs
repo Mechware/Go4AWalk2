@@ -2,16 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using CustomEvents;
+using G4AW2.Combat;
 using UnityEngine;
 
 public class DataManager : MonoBehaviour {
 
+    public static DataManager Instance; 
+    public RuntimeSetFollowerData Followers;
+    public Player Player;
+    public Inventory Inventory;
+    
     public PersistentSetFollowerData AllFollowers;
     public StatTracker StatTracker;
     public PersistentSetCraftingRecipe AllRecipes;
     public PersistentSetItem AllItems;
     public PersistentSetQuest AllQuests;
-
+    
 #if UNITY_EDITOR
     public void UpdateAll() {
         AllFollowers.AddAllOfType();
@@ -80,6 +86,7 @@ public class DataManager : MonoBehaviour {
 
     // Use this for initialization
     void Awake () {
+        Instance = this;
 		UpdateAll();
         EnsureNoIDDups();
 	}

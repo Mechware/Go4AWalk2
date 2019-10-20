@@ -5,13 +5,11 @@ using G4AW2.Dialogue;
 
 public class ChangeItemWeapon : ChangeItemBase<Weapon, WeaponReference, WeaponVariable, UnityEventWeapon> {
 
-    public WeaponUI WeaponUI;
-
     protected override void Onclick(InventoryItemDisplay inventoryItemDisplay) {
 
-        Viewer.ShowItemsFromInventory<Weapon>(false, ShowTrash, it => {
+        Viewer.ShowItemsFromInventory<Weapon>(Title, false, ShowTrash, it => {
 
-            WeaponUI.SetWeapon(it, new [] {
+            WeaponUI.Instance.SetWeapon(it, new [] {
                 new WeaponUI.ButtonAction() {Title = "Equip", OnClick = () => {
                     Inventory.Add(Item.Value);
                     Item.Value = it;

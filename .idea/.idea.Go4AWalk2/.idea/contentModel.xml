@@ -34,7 +34,6 @@
             <e p="Area.cs" t="Include" />
             <e p="AreaManager.cs" t="Include" />
           </e>
-          <e p="BattleUI.cs" t="Include" />
           <e p="Combat" t="Include">
             <e p="AttackArea.cs" t="Include" />
             <e p="ElementalType.cs" t="Include" />
@@ -275,6 +274,21 @@
           <e p="GameStats" t="Include">
             <e p="StatTracker.cs" t="Include" />
           </e>
+          <e p="GameUI" t="Include">
+            <e p="ChangeItemArmor.cs" t="Include" />
+            <e p="ChangeItemBase.cs" t="Include" />
+            <e p="ChangeItemHeadgear.cs" t="Include" />
+            <e p="ChangeItemWeapon.cs" t="Include" />
+            <e p="CraftingMenu.cs" t="Include" />
+            <e p="DebugMenu.cs" t="Include" />
+            <e p="EnchantUI.cs" t="Include" />
+            <e p="EnemyArrowIndicator.cs" t="Include" />
+            <e p="MainUI.cs" t="Include" />
+            <e p="PlayerClickController.cs" t="Include" />
+            <e p="QuestViewer.cs" t="Include" />
+            <e p="WeaponUI.cs" t="Include" />
+          </e>
+          <e p="InstrumentData.cs" t="Include" />
           <e p="InteractionController.cs" t="Include" />
           <e p="Inventory" t="Include">
             <e p="CraftingTable.cs" t="Include" />
@@ -344,6 +358,7 @@
             <e p="SaveableVariableWithSaveable.cs" t="Include" />
             <e p="SaveManager.cs" t="Include" />
           </e>
+          <e p="SongBuffController.cs" t="Include" />
           <e p="SongData.cs" t="Include" />
           <e p="Testing" t="Include">
             <e p="AnimationTesting.cs" t="Include" />
@@ -358,18 +373,10 @@
           <e p="UI" t="Include">
             <e p="AlphaOfAllChildren.cs" t="Include" />
             <e p="ButtonText.cs" t="Include" />
-            <e p="ChangeItemArmor.cs" t="Include" />
-            <e p="ChangeItemBase.cs" t="Include" />
-            <e p="ChangeItemHeadgear.cs" t="Include" />
-            <e p="ChangeItemWeapon.cs" t="Include" />
             <e p="Checkbox.cs" t="Include" />
             <e p="ClickReceiver.cs" t="Include" />
-            <e p="CraftingMenu.cs" t="Include" />
             <e p="DamageNumberSpawner.cs" t="Include" />
-            <e p="DebugMenu.cs" t="Include" />
             <e p="DrawIfAttribute.cs" t="Include" />
-            <e p="EnchantUI.cs" t="Include" />
-            <e p="EnemyArrowIndicator.cs" t="Include" />
             <e p="HyperlinkOpener.cs" t="Include" />
             <e p="IconWithTextController.cs" t="Include" />
             <e p="InventoryDisplay.cs" t="Include" />
@@ -378,7 +385,6 @@
             <e p="MyButton.cs" t="Include" />
             <e p="ProgressBarController.cs" t="Include" />
             <e p="ProgressBarControllerFloat.cs" t="Include" />
-            <e p="QuestViewer.cs" t="Include" />
             <e p="QuickPopUp.cs" t="Include" />
             <e p="SetImageFromItem.cs" t="Include" />
             <e p="SmoothPopUpManager.cs" t="Include" />
@@ -386,7 +392,6 @@
             <e p="TextPopulator.cs" t="Include" />
             <e p="TextPopulatorFloat.cs" t="Include" />
             <e p="TextPopulatorInt.cs" t="Include" />
-            <e p="WeaponUI.cs" t="Include" />
           </e>
           <e p="Utils" t="Include">
             <e p="CustomTap.cs" t="Include" />

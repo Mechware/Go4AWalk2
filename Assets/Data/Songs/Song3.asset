@@ -26,8 +26,11 @@ MonoBehaviour:
   - AppearTime: 0.5
   - AppearTime: 1.5
   - AppearTime: 4
+  QuestToUnlock: {fileID: 11400000, guid: 34332a3094c776547ab733c1126f5bc8, type: 2}
+  BuffDuration: 20
   DropChances:
   - Data: {fileID: 11400000, guid: ad9b8d87849cbb443985f26909b572f2, type: 2}
     MinAccuracy: 0.8
     Chance: 1
-  QuestToUnlock: {fileID: 11400000, guid: 34332a3094c776547ab733c1126f5bc8, type: 2}
+  MinDropTime: 3
+  MaxDropTime: 10

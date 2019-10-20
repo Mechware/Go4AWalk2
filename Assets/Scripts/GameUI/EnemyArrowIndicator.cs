@@ -9,6 +9,8 @@ using TMPro;
 
 public class EnemyArrowIndicator : MonoBehaviour {
 
+    public static EnemyArrowIndicator Instance;
+    
     public RuntimeSetFollowerData Followers;
     public Image Arrow;
     public TextMeshProUGUI NumberofFollowersText;
@@ -17,6 +19,7 @@ public class EnemyArrowIndicator : MonoBehaviour {
     public bool HasFollowers = true;
 
     private void Awake() {
+        Instance = this;
         Followers.OnChange.AddListener(FollowersChanged);
     }
 

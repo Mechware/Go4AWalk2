@@ -22,16 +22,19 @@ public class ChangeItemBase<T, TRef, TVar, TEvent> : MonoBehaviour
     public ItemViewer Viewer;
     public BoolReference ShowTrash;
 
-
+    public string Title;
+    
     // Use this for initialization
     public void Awake() {
 
         Item.Variable.BeforeChange += () => { if(Item.Value != null) Item.Value.DataChanged -= Refresh; };
         Item.Variable.OnChange.AddListener((it) => { Refresh(); });
-
-        Refresh();
     }
 
+    void Start() {
+        Refresh();
+    }
+    
     public void Refresh() {
         if (Item.Value != null) {
             Item.Value.DataChanged -= Refresh;
@@ -42,7 +45,7 @@ public class ChangeItemBase<T, TRef, TVar, TEvent> : MonoBehaviour
 
     protected virtual void Onclick(InventoryItemDisplay inventoryItemDisplay) {
 
-        Viewer.ShowItemsFromInventory<T>(false, ShowTrash, it => {
+        Viewer.ShowItemsFromInventory<T>(Title, false, ShowTrash, it => {
             PopUp.SetPopUp($"{it.GetName()}\n{it.GetDescription()}", new string[] {"Equip", it.IsTrash() ? "Untrash" : "Trash", "Cancel"}, new Action[] {
                 () => {
                     if(Item.Value != null)

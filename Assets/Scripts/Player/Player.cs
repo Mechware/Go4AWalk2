@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using CustomEvents;
 using UnityEngine;
 using G4AW2.Data.DropSystem;
@@ -21,6 +22,8 @@ namespace G4AW2.Combat {
         public ArmorReference Armor;
         public HeadgearReference Headgear;
 
+        public InstrumentData Instrument; 
+        
 		public void OnEnable() {
             Headgear.Variable.BeforeChange += UnequipHeadgear;
             Headgear.Variable.OnChange.AddListener(EquipHeadgear);

@@ -21,6 +21,16 @@ namespace G4AW2.Data.DropSystem
 
         public float DamageAtLevel0;
 
+        public int GetDamage(int? mastery = null, float? damageAtLevel0 = null, int? level = null, float? mod = null) {
+            mastery = mastery ?? Mastery;
+            float masteryMod = mastery.Value == 99 ? 2.15f : 1 + mastery.Value / 100f;
+            damageAtLevel0 = damageAtLevel0 ?? DamageAtLevel0;
+            mod = mod ?? this.mod;
+            level = level ?? Level;
+            int rawDamage = Mathf.RoundToInt(damageAtLevel0.Value * masteryMod * (1 + level.Value / 10f) * mod.Value);
+            return rawDamage;
+        }
+        
         public bool IsEnchanted { get { return Enchantment != null; } }
         public Enchanter Enchantment { get; private set; }
 

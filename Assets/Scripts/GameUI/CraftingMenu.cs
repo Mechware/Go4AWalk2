@@ -36,7 +36,7 @@ public class CraftingMenu : MonoBehaviour {
     }
 
     void OnItemDisplayClicked(InventoryItemDisplay iid) {
-        ItemSelector.ShowAllMaterialFromInventory(false, OnItemFilterItemSelected, true);
+        ItemSelector.ShowAllMaterialFromInventory("Materials", false, OnItemFilterItemSelected, true);
     }
 
     void OnItemFilterItemSelected(Item it) {
