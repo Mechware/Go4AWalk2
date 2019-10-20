@@ -30,6 +30,9 @@ public class QuestManager : MonoBehaviour {
             SetCurrentQuest(CurrentQuest.Value);
         } else {
 
+            if (CurrentQuest.Value is BossQuest) {
+                InteractionController.Instance.StartBossFight();
+            }
             CurrentQuest.Value.ResumeQuest(FinishQuest);
             SetQuest(CurrentQuest.Value);
 

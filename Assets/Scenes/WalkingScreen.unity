@@ -2283,40 +2283,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 91897026}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 4f874425d7ca7c544b4f28d0172303c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Highlighted
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 91897029}
-  m_OnClick:
+  MoveAmount: 1
+  InteractionType: 0
+  DefaultSprite: {fileID: 21300000, guid: d234d0188c498a349835a585a2079d71, type: 3}
+  ClickedSprite: {fileID: 21300000, guid: 2d32ff7f44497e945b66e697cb36a3b8, type: 3}
+  DisabledSprite: {fileID: 21300000, guid: 2d32ff7f44497e945b66e697cb36a3b8, type: 3}
+  DefaultTint: {r: 0, g: 0, b: 0, a: 0}
+  ClickedTint: {r: 0, g: 0, b: 0, a: 0}
+  DisabledTint: {r: 0, g: 0, b: 0, a: 0}
+  onClick:
     m_PersistentCalls:
       m_Calls: []
+  image: {fileID: 0}
 --- !u!114 &91897029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2335,7 +2316,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9f69b64489a0e8b49a53117d5ee5bb43, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d234d0188c498a349835a585a2079d71, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3184,40 +3165,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 149810747}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 4f874425d7ca7c544b4f28d0172303c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Highlighted
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 149810750}
-  m_OnClick:
+  MoveAmount: 1
+  InteractionType: 0
+  DefaultSprite: {fileID: 21300000, guid: d234d0188c498a349835a585a2079d71, type: 3}
+  ClickedSprite: {fileID: 21300000, guid: 2d32ff7f44497e945b66e697cb36a3b8, type: 3}
+  DisabledSprite: {fileID: 21300000, guid: 2d32ff7f44497e945b66e697cb36a3b8, type: 3}
+  DefaultTint: {r: 0, g: 0, b: 0, a: 0}
+  ClickedTint: {r: 0, g: 0, b: 0, a: 0}
+  DisabledTint: {r: 0, g: 0, b: 0, a: 0}
+  onClick:
     m_PersistentCalls:
       m_Calls: []
+  image: {fileID: 0}
 --- !u!114 &149810750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3236,7 +3198,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9f69b64489a0e8b49a53117d5ee5bb43, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d234d0188c498a349835a585a2079d71, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3902,7 +3864,7 @@ RectTransform:
   - {fileID: 994579975}
   - {fileID: 164211337}
   m_Father: {fileID: 624037510}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -7061,13 +7023,13 @@ RectTransform:
   - {fileID: 239834757}
   - {fileID: 1852199740}
   - {fileID: 1305075569}
-  m_Father: {fileID: 624037510}
+  m_Father: {fileID: 1186125108}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -3, y: 0}
-  m_SizeDelta: {x: 35, y: -16}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -15.000096, y: -39}
+  m_SizeDelta: {x: 35, y: 44}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!1 &352565342
 GameObject:
@@ -10700,7 +10662,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 624037510}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -12806,19 +12768,18 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 719353}
-  - {fileID: 346001043}
   - {fileID: 525882829}
-  - {fileID: 2085344039}
   - {fileID: 184131075}
+  - {fileID: 2085344039}
   - {fileID: 1936317005}
   - {fileID: 1369039291}
   - {fileID: 838079170}
   m_Father: {fileID: 1186125108}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -15, y: 0}
+  m_AnchoredPosition: {x: 0, y: 31.4}
   m_SizeDelta: {x: 70, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &624037511
@@ -13172,40 +13133,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 639865394}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 4f874425d7ca7c544b4f28d0172303c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Highlighted
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 639865397}
-  m_OnClick:
+  MoveAmount: 1
+  InteractionType: 0
+  DefaultSprite: {fileID: 21300000, guid: d234d0188c498a349835a585a2079d71, type: 3}
+  ClickedSprite: {fileID: 21300000, guid: 2d32ff7f44497e945b66e697cb36a3b8, type: 3}
+  DisabledSprite: {fileID: 21300000, guid: 2d32ff7f44497e945b66e697cb36a3b8, type: 3}
+  DefaultTint: {r: 0, g: 0, b: 0, a: 0}
+  ClickedTint: {r: 0, g: 0, b: 0, a: 0}
+  DisabledTint: {r: 0, g: 0, b: 0, a: 0}
+  onClick:
     m_PersistentCalls:
       m_Calls: []
+  image: {fileID: 0}
 --- !u!114 &639865397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13224,7 +13166,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9f69b64489a0e8b49a53117d5ee5bb43, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d234d0188c498a349835a585a2079d71, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -15976,7 +15918,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 624037510}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -17794,40 +17736,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 938662718}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 4f874425d7ca7c544b4f28d0172303c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Highlighted
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 938662721}
-  m_OnClick:
+  MoveAmount: 1
+  InteractionType: 0
+  DefaultSprite: {fileID: 21300000, guid: d234d0188c498a349835a585a2079d71, type: 3}
+  ClickedSprite: {fileID: 21300000, guid: 2d32ff7f44497e945b66e697cb36a3b8, type: 3}
+  DisabledSprite: {fileID: 21300000, guid: 2d32ff7f44497e945b66e697cb36a3b8, type: 3}
+  DefaultTint: {r: 0, g: 0, b: 0, a: 0}
+  ClickedTint: {r: 0, g: 0, b: 0, a: 0}
+  DisabledTint: {r: 0, g: 0, b: 0, a: 0}
+  onClick:
     m_PersistentCalls:
       m_Calls: []
+  image: {fileID: 0}
 --- !u!114 &938662721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17846,7 +17769,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9f69b64489a0e8b49a53117d5ee5bb43, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d234d0188c498a349835a585a2079d71, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -20176,7 +20099,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1424e34d477079e409801e795bb85c69, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9f69b64489a0e8b49a53117d5ee5bb43, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -22680,6 +22603,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1706075654}
+  - {fileID: 346001043}
   - {fileID: 624037510}
   m_Father: {fileID: 767931480}
   m_RootOrder: 0
@@ -25922,7 +25846,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 624037510}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -31913,40 +31837,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 1441656256}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 4f874425d7ca7c544b4f28d0172303c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Highlighted
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 1441656259}
-  m_OnClick:
+  MoveAmount: 1
+  InteractionType: 0
+  DefaultSprite: {fileID: 21300000, guid: d234d0188c498a349835a585a2079d71, type: 3}
+  ClickedSprite: {fileID: 21300000, guid: 2d32ff7f44497e945b66e697cb36a3b8, type: 3}
+  DisabledSprite: {fileID: 21300000, guid: 2d32ff7f44497e945b66e697cb36a3b8, type: 3}
+  DefaultTint: {r: 0, g: 0, b: 0, a: 0}
+  ClickedTint: {r: 0, g: 0, b: 0, a: 0}
+  DisabledTint: {r: 0, g: 0, b: 0, a: 0}
+  onClick:
     m_PersistentCalls:
       m_Calls: []
+  image: {fileID: 0}
 --- !u!114 &1441656259
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31965,7 +31870,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9f69b64489a0e8b49a53117d5ee5bb43, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d234d0188c498a349835a585a2079d71, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -35274,7 +35179,7 @@ MonoBehaviour:
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
   - {fileID: 0}
@@ -37827,7 +37732,7 @@ MonoBehaviour:
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
   - {fileID: 0}
@@ -38159,7 +38064,7 @@ MonoBehaviour:
   BottomParent: {fileID: 1308672982}
   MissArea: {fileID: 24543189}
   Song: {fileID: 11400000, guid: 8c050eae0c122f5488c2851041ec10ed, type: 2}
-  StartX: 94
+  StartX: 110
   Blocker: {fileID: 594957667}
   Area: {fileID: 94791870}
 --- !u!1 &1754478796
@@ -39966,7 +39871,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 624037510}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -42516,40 +42421,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 2091496644}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 4f874425d7ca7c544b4f28d0172303c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Highlighted
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 2091496647}
-  m_OnClick:
+  MoveAmount: 1
+  InteractionType: 0
+  DefaultSprite: {fileID: 21300000, guid: d234d0188c498a349835a585a2079d71, type: 3}
+  ClickedSprite: {fileID: 21300000, guid: 2d32ff7f44497e945b66e697cb36a3b8, type: 3}
+  DisabledSprite: {fileID: 21300000, guid: 2d32ff7f44497e945b66e697cb36a3b8, type: 3}
+  DefaultTint: {r: 0, g: 0, b: 0, a: 0}
+  ClickedTint: {r: 0, g: 0, b: 0, a: 0}
+  DisabledTint: {r: 0, g: 0, b: 0, a: 0}
+  onClick:
     m_PersistentCalls:
       m_Calls: []
+  image: {fileID: 0}
 --- !u!114 &2091496647
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42568,7 +42454,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9f69b64489a0e8b49a53117d5ee5bb43, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d234d0188c498a349835a585a2079d71, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1

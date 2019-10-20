@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class QuickPopUp : MonoBehaviour {
 
-    public static bool QuickPopUpAllowed;
+    public static bool QuickPopUpAllowed = true;
     public RobustLerper PositionLerper;
     public RobustLerper AlphaLerper;
     public RobustLerperSerialized ShakeLerper;

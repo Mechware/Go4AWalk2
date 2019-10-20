@@ -9,9 +9,9 @@ namespace G4AW2.Dialogue {
 	public class PopUp : MonoBehaviour {
 
 		public TextMeshProUGUI Text;
-		public Button SingleResponseButton;
-		public Button[] TwoResponseButtons;
-		public Button[] ThreeResponseButtons;
+		public MyButton SingleResponseButton;
+		public MyButton[] TwoResponseButtons;
+		public MyButton[] ThreeResponseButtons;
 
 		public GameObject container;
 
@@ -64,13 +64,13 @@ namespace G4AW2.Dialogue {
 
 			Text.text = text;
 
-			Button[] single = {SingleResponseButton};
+			MyButton[] single = {SingleResponseButton};
 
 			single.ForEach(b => b.gameObject.SetActive(false));
 			TwoResponseButtons.ForEach(b => b.gameObject.SetActive(false));
 			ThreeResponseButtons.ForEach(b => b.gameObject.SetActive(false));
 
-			Button[] response = null;
+			MyButton[] response = null;
 			if (options.Length == 1) response = single;
 			else if (options.Length == 2) response = TwoResponseButtons;
 			else if (options.Length == 3) response = ThreeResponseButtons;
@@ -85,7 +85,7 @@ namespace G4AW2.Dialogue {
 			return true;
 		}
 
-		private void AddListener(Button b, int i, Action[] responses) {
+		private void AddListener(MyButton b, int i, Action[] responses) {
 			b.onClick.AddListener(() => {
                 state = State.LerpingClosed;
                 LerpOpen.StartReverseLerp(() => {

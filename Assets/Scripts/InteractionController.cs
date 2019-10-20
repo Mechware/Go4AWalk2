@@ -54,7 +54,7 @@ public class InteractionController : MonoBehaviour {
         StartCoroutine(_StartBossFight());
 
         IEnumerator _StartBossFight() {
-            
+            DeadEnemyController.Instance.ClearEnemies();
             QuickPopUp.QuickPopUpAllowed = false;
             
             // Disable being able to move the world but keep scrolling
