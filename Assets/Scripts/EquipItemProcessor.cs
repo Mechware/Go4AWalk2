@@ -70,6 +70,19 @@ public class EquipItemProcessor : MonoBehaviour {
                     onDone?.Invoke();
                 }
             });
+        } else if (it is InstrumentData i) {
+            PopUp.SetPopUp($"{it.GetName()}\n{it.GetDescription()}", new string[] {"Equip", "Cancel"}, new Action[] {
+                () => {
+                    if(Player.Instrument.Value != null)
+                        Inventory.Add(Player.Instrument.Value);
+                    Player.Instrument.Value = i;
+                    Inventory.Remove(i);
+                    onDone?.Invoke();
+                },
+                () => {
+                    onDone?.Invoke();
+                }
+            });
         }
         else {
             onDone?.Invoke();

@@ -80,6 +80,7 @@
                   <e p="ElementalWeaknessPropertyDrawer.cs" t="Include" />
                   <e p="FollowerDataPropertyDrawer.cs" t="Include" />
                   <e p="HeadgearPropertyDrawer.cs" t="Include" />
+                  <e p="InstrumentDataPropertyDrawer.cs" t="Include" />
                   <e p="ItemPropertyDrawer.cs" t="Include" />
                   <e p="PassiveQuestPropertyDrawer.cs" t="Include" />
                   <e p="SongDataPropertyDrawer.cs" t="Include" />
@@ -183,6 +184,7 @@
                 <e p="ElementalWeaknessReference.cs" t="Include" />
                 <e p="FollowerDataReference.cs" t="Include" />
                 <e p="HeadgearReference.cs" t="Include" />
+                <e p="InstrumentDataReference.cs" t="Include" />
                 <e p="ItemReference.cs" t="Include" />
                 <e p="PassiveQuestReference.cs" t="Include" />
                 <e p="SongDataReference.cs" t="Include" />
@@ -223,6 +225,7 @@
                 <e p="UnityEventFollowerData.cs" t="Include" />
                 <e p="UnityEventHeadgear.cs" t="Include" />
                 <e p="UnityEventIEnumerableLoot.cs" t="Include" />
+                <e p="UnityEventInstrumentData.cs" t="Include" />
                 <e p="UnityEventItem.cs" t="Include" />
                 <e p="UnityEventPassiveQuest.cs" t="Include" />
                 <e p="UnityEventQuest.cs" t="Include" />
@@ -248,6 +251,7 @@
                 <e p="ElementalWeaknessVariable.cs" t="Include" />
                 <e p="FollowerDataVariable.cs" t="Include" />
                 <e p="HeadgearVariable.cs" t="Include" />
+                <e p="InstrumentDataVariable.cs" t="Include" />
                 <e p="ItemVariable.cs" t="Include" />
                 <e p="PassiveQuestVariable.cs" t="Include" />
                 <e p="SongDataVariable.cs" t="Include" />

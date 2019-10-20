@@ -79,6 +79,7 @@ public class SongBuffController : MonoBehaviour {
 
     public FollowerData GetDrop(float acc, SongData song, InstrumentData instrumentData) {
         int total = song.DropChances.Where(d => d.MinAccuracy <= acc).Sum(d => d.Chance);
+        if (total == 0) return null;
 
         if (instrumentData != null) {
             total += (instrumentData.MonsterDropBoost.Where(d => d.MinAccuracy <= acc).Sum(d => d.Chance));
