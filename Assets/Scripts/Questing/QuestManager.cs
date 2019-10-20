@@ -152,11 +152,18 @@ public class QuestManager : MonoBehaviour {
                 quest.StartQuest(FinishQuest);
                 
                 AreaChangeInterpolater.StartReverseLerp(() => {
+                    
                     QuestDialogUI.SetConversation(quest.StartConversation, () => {
 
                         // Check that the quest isn't finished (for reach quests)
                         if(quest.IsFinished()) FinishQuest(quest);
+
+                        if (quest is BossQuest) {
+                            InteractionController.Instance.StartBossFight();
+                        }
+                        
                     });
+                    
                 });
             });
         }
@@ -170,6 +177,10 @@ public class QuestManager : MonoBehaviour {
                 
                 if(quest.IsFinished())
                     FinishQuest(quest);
+                
+                if (quest is BossQuest) {
+                    InteractionController.Instance.StartBossFight();
+                }
             });
         }
 

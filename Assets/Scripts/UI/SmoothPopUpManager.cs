@@ -66,6 +66,7 @@ public class SmoothPopUpManager : MonoBehaviour {
     }
 
     public static void ShowPopUp(Vector2 canvasSpaceStartPosition, string text, Color color, bool worldCoords = false) {
+        if (!QuickPopUp.QuickPopUpAllowed) return;
         instance.ShowPopUpPrivate(canvasSpaceStartPosition, text, color, worldCoords);
     }
 }
