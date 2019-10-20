@@ -7,16 +7,22 @@ using UnityEngine.UI;
 public class AlphaOfAllChildren : MonoBehaviour {
 
 	public void SetAlphaOfAllChildren(float alpha) {
-        Image[] ims = GetComponentsInChildren<Image>();
+		SetAlphaOfAllChildren(gameObject, alpha);
+	}
+
+	public static void SetAlphaOfAllChildren(GameObject rt, float alpha, Color? tint = null) {
+        Image[] ims = rt.GetComponentsInChildren<Image>();
         foreach(Image im in ims) {
             Color c = im.color;
+            if (tint.HasValue) c = tint.Value;
             c.a = alpha;
             im.color = c;
         }
 
-        TextMeshProUGUI []texts = GetComponentsInChildren<TextMeshProUGUI>();
+        TextMeshProUGUI []texts = rt.GetComponentsInChildren<TextMeshProUGUI>();
 	    foreach(TextMeshProUGUI text in texts) {
 	        Color c = text.faceColor;
+	        if (tint.HasValue) c = tint.Value;
 	        c.a = alpha;
 	        text.faceColor = c;
 	        Color o = text.outlineColor;
@@ -24,7 +30,7 @@ public class AlphaOfAllChildren : MonoBehaviour {
 	        text.outlineColor = o;
 	    }
     }
-
+	
     public void SetAlphaOfAllImages(float alpha) {
         Image[] ims = GetComponentsInChildren<Image>();
         foreach(Image im in ims) {
