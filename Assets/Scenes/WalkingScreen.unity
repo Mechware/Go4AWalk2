@@ -1126,7 +1126,7 @@ MonoBehaviour:
     UseConstant: 0
     ConstantValue: 0
     Variable: {fileID: 11400000, guid: 23469a624f854c641b92a910b8cbb50e, type: 2}
-  Title: 
+  Title: Equip Headgear
 --- !u!1 &38939721
 GameObject:
   m_ObjectHideFlags: 0
@@ -11567,7 +11567,7 @@ MonoBehaviour:
     UseConstant: 0
     ConstantValue: 0
     Variable: {fileID: 11400000, guid: 23469a624f854c641b92a910b8cbb50e, type: 2}
-  Title: 
+  Title: Equip Weapon
 --- !u!1 &536271068
 GameObject:
   m_ObjectHideFlags: 0
@@ -17575,7 +17575,7 @@ MonoBehaviour:
     UseConstant: 0
     ConstantValue: 0
     Variable: {fileID: 11400000, guid: 23469a624f854c641b92a910b8cbb50e, type: 2}
-  Title: 
+  Title: Equip Armor
 --- !u!1 &880343784
 GameObject:
   m_ObjectHideFlags: 0
@@ -35963,6 +35963,16 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114123212110939996, guid: 622cc16dd4201ae408b9bcd243bd0f6e,
+        type: 3}
+      propertyPath: OpenLerper.Lerpers.Array.data[0].Values.m_Curve.Array.data[0].value
+      value: -40
+      objectReference: {fileID: 0}
+    - target: {fileID: 114123212110939996, guid: 622cc16dd4201ae408b9bcd243bd0f6e,
+        type: 3}
+      propertyPath: OpenLerper.Lerpers.Array.data[0].Values.m_Curve.Array.data[1].value
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 224653487007099254, guid: 622cc16dd4201ae408b9bcd243bd0f6e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -36077,6 +36087,41 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5200865992531680556, guid: 622cc16dd4201ae408b9bcd243bd0f6e,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5200865992531680556, guid: 622cc16dd4201ae408b9bcd243bd0f6e,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5200865992531680556, guid: 622cc16dd4201ae408b9bcd243bd0f6e,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5200865992531680556, guid: 622cc16dd4201ae408b9bcd243bd0f6e,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5200865992531680556, guid: 622cc16dd4201ae408b9bcd243bd0f6e,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 108
+      objectReference: {fileID: 0}
+    - target: {fileID: 5200865992531680556, guid: 622cc16dd4201ae408b9bcd243bd0f6e,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 192
+      objectReference: {fileID: 0}
+    - target: {fileID: 5200865992531680556, guid: 622cc16dd4201ae408b9bcd243bd0f6e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 6.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 622cc16dd4201ae408b9bcd243bd0f6e, type: 3}

@@ -70,8 +70,8 @@ public class ItemViewer : MonoBehaviour {
     }
 
     public RobustLerperSerialized OpenLerper;
-    private enum State { LerpingOpen, LerpingClosed, Open, Closed }
-    private State state = State.Closed;
+    public enum State { LerpingOpen, LerpingClosed, Open, Closed }
+    public State state = State.Closed;
 
     public void ShowItems(IEnumerable<Item> itemsToAdd, Action<Item> onClick) {
         Open();
