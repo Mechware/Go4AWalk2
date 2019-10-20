@@ -7,7 +7,7 @@ public class ChangeItemWeapon : ChangeItemBase<Weapon, WeaponReference, WeaponVa
 
     protected override void Onclick(InventoryItemDisplay inventoryItemDisplay) {
 
-        Viewer.ShowItemsFromInventory<Weapon>(false, ShowTrash, it => {
+        Viewer.ShowItemsFromInventory<Weapon>(Title, false, ShowTrash, it => {
 
             WeaponUI.Instance.SetWeapon(it, new [] {
                 new WeaponUI.ButtonAction() {Title = "Equip", OnClick = () => {

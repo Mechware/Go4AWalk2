@@ -213,7 +213,7 @@ DAM {2}";
     public WeaponVariable PlayerWeapon;
 
     public void SwapWeapon() {
-        ItemViewer.ShowItemsFromInventory<Weapon>(false, false, w => { SetCompare(w); ItemViewer.Close(); });
+        ItemViewer.ShowItemsFromInventory<Weapon>("Weapon To Compare", false, false, w => { SetCompare(w); ItemViewer.Close(); });
         ItemViewer.Add<Weapon>(PlayerWeapon, 0, w => { SetCompare(w); ItemViewer.Close(); });
     }
 }

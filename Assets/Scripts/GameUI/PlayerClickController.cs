@@ -25,7 +25,7 @@ public class PlayerClickController : MonoBehaviour {
     void Start()
     {
         PlayerHeadgear.onClick.AddListener(() => {
-            ItemViewer.Instance.ShowItemsFromInventory<Headgear>(false, false, it => {
+            ItemViewer.Instance.ShowItemsFromInventory<Headgear>("Equip Headgear", false, false, it => {
                 PopUp.SetPopUp($"{it.GetName()}\n{it.GetDescription()}", new string[] {"Equip", it.IsTrash() ? "Untrash" : "Trash", "Cancel"}, new Action[] {
                     () => {
                         if(HeadgearReference.Value != null)
@@ -44,7 +44,7 @@ public class PlayerClickController : MonoBehaviour {
         });  
         
         PlayerArmor.onClick.AddListener(() => {
-            ItemViewer.Instance.ShowItemsFromInventory<Armor>(false, false, it => {
+            ItemViewer.Instance.ShowItemsFromInventory<Armor>("Equip Armor", false, false, it => {
                 PopUp.SetPopUp($"{it.GetName()}\n{it.GetDescription()}", new string[] {"Equip", it.IsTrash() ? "Untrash" : "Trash", "Cancel"}, new Action[] {
                     () => {
                         if(HeadgearReference.Value != null)
@@ -63,7 +63,7 @@ public class PlayerClickController : MonoBehaviour {
         });
 
         PlayerWeapon.onClick.AddListener(() => {
-            ItemViewer.Instance.ShowItemsFromInventory<Weapon>(false, false, it => {
+            ItemViewer.Instance.ShowItemsFromInventory<Weapon>("Equip Weapon", false, false, it => {
 
                 WeaponUI.Instance.SetWeapon(it, new [] {
                     new WeaponUI.ButtonAction() {Title = "Equip", OnClick = () => {

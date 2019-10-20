@@ -26,7 +26,6 @@ public class InventoryDisplay : MonoBehaviour {
 
     private void OnEnable() {
         Refresh();
-        Debug.Log("OnENable");
     }
 
     public void Refresh() {

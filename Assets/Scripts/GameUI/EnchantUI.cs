@@ -30,7 +30,7 @@ public class EnchantUI : MonoBehaviour {
     }
 
     void WeaponViewerClicked() {
-        ItemViewer.ShowItemsFromInventoryWhere<Weapon>(ie => !((Weapon)ie.Item).IsEnchanted && !((Weapon) ie.Item).IsTrash(), false, WeaponClicked);
+        ItemViewer.ShowItemsFromInventoryWhere<Weapon>("Enchantable Weapons", ie => !((Weapon)ie.Item).IsEnchanted && !((Weapon) ie.Item).IsTrash(), false, WeaponClicked);
         if(!PlayerWeapon.Value.IsEnchanted)
             ItemViewer.Add<Weapon>(PlayerWeapon, 0, WeaponClicked);
     }
@@ -42,7 +42,7 @@ public class EnchantUI : MonoBehaviour {
     }
 
     void EnchantViewerClicked() {
-        ItemViewer.ShowItemsFromInventory<Enchanter>(false, EnchantClicked);
+        ItemViewer.ShowItemsFromInventory<Enchanter>("Enchantments", false, EnchantClicked);
     }
 
     void EnchantClicked(Enchanter e) {
