@@ -12,7 +12,6 @@ using UnityEngine.Events;
 public class QuestManager : MonoBehaviour {
 
     public ActiveQuestBaseVariable CurrentQuest;
-    public RuntimeSetFollowerData Followers;
     
     public Dialogue QuestDialogUI;
 
@@ -146,7 +145,8 @@ public class QuestManager : MonoBehaviour {
             AreaChangeAndFadeObject.SetActive(true);
             AreaChangeInterpolater.StartLerping(() => {
 
-                Followers.Clear();
+
+                DataManager.Instance.Followers.Clear();
                 DeadEnemyController.Instance.ClearEnemies();
 
                 CurrentQuest.Value = quest;
@@ -156,6 +156,8 @@ public class QuestManager : MonoBehaviour {
                 
                 AreaChangeInterpolater.StartReverseLerp(() => {
                     
+                    AreaChangeAndFadeObject.SetActive(false);
+
                     QuestDialogUI.SetConversation(quest.StartConversation, () => {
 
                         // Check that the quest isn't finished (for reach quests)

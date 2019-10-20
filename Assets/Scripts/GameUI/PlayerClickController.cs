@@ -47,8 +47,8 @@ public class PlayerClickController : MonoBehaviour {
             ItemViewer.Instance.ShowItemsFromInventory<Armor>("Equip Armor", false, false, it => {
                 PopUp.SetPopUp($"{it.GetName()}\n{it.GetDescription()}", new string[] {"Equip", it.IsTrash() ? "Untrash" : "Trash", "Cancel"}, new Action[] {
                     () => {
-                        if(HeadgearReference.Value != null)
-                            DataManager.Instance.Inventory.Add(HeadgearReference.Value);
+                        if(ArmorReference.Value != null)
+                            DataManager.Instance.Inventory.Add(ArmorReference.Value);
                         ArmorReference.Value = it;
                         DataManager.Instance.Inventory.Remove(it);
                         ItemViewer.Instance.Close();

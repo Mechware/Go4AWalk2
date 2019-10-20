@@ -286,7 +286,6 @@
             <e p="MainUI.cs" t="Include" />
             <e p="PlayerClickController.cs" t="Include" />
             <e p="QuestViewer.cs" t="Include" />
-            <e p="SongBuffUI.cs" t="Include" />
             <e p="WeaponUI.cs" t="Include" />
           </e>
           <e p="InstrumentData.cs" t="Include" />
