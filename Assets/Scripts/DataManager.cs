@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using CustomEvents;
+using G4AW2.Combat;
 using UnityEngine;
 
 public class DataManager : MonoBehaviour {
 
     public static DataManager Instance; 
     public RuntimeSetFollowerData Followers;
-
+    public Player Player;
     
     
     public PersistentSetFollowerData AllFollowers;
