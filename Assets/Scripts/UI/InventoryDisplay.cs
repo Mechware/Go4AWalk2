@@ -46,6 +46,10 @@ public class InventoryDisplay : MonoBehaviour {
         text += $"Value: {it.Item.GetValue()}\n";
         text += $"'{it.Item.Description}'";
         ItemText.SetText(text);
+        
+        EquipItemProcessor.Instance.ProcessItem(it.Item, () => {
+            Refresh();            
+        });
     }
 
 }

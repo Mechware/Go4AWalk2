@@ -13,6 +13,10 @@ public class MainUI : MonoBehaviour {
     public ItemViewer ItemViewer;
     public WeaponUI WeaponViewer;
 
+    public InventoryItemDisplay Weapon;
+    public InventoryItemDisplay Armor;
+    public InventoryItemDisplay Headgear;
+    
     void Awake() {
         ItemViewer.Init();
         WeaponViewer.Init();
@@ -42,5 +46,21 @@ public class MainUI : MonoBehaviour {
             MasteryBeginText.text = $"{weapon.Mastery} ({currentDamage})";
             MasteryEndText.text = $"{weapon.Mastery+1} ({nextLevelDamage})";
         }
+        
+        Weapon.SetData(DataManager.Instance.Player.Weapon.Value, 0, ChangeWeapon, null, true);
+        Armor.SetData(DataManager.Instance.Player.Armor.Value, 0, ChangeArmor, null, true);
+        Headgear.SetData(DataManager.Instance.Player.Headgear.Value, 0, ChangeHeadgear, null, true);
+    }
+
+    public void ChangeWeapon(InventoryItemDisplay it) {
+        PlayerClickController.ChangePlayerWeapon();
+    }
+    
+    public void ChangeArmor(InventoryItemDisplay it) {
+        PlayerClickController.ChangePlayerArmor();
+    }
+    
+    public void ChangeHeadgear(InventoryItemDisplay it) {
+        PlayerClickController.ChangePlayerHeadgear();
     }
 }

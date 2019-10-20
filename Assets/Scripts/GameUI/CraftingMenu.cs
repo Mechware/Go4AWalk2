@@ -5,6 +5,7 @@ using System.Linq;
 using CustomEvents;
 using G4AW2.Data.Crafting;
 using G4AW2.Data.DropSystem;
+using G4AW2.Dialogue;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -120,23 +121,27 @@ public class CraftingMenu : MonoBehaviour {
         
     }
 
-    public QuickPopUp PopUp;
+    //public QuickPopUp PopUp;
 
     private bool MakeRecipe(CraftingRecipe cr) {
         Item it = CT.Make(cr);
         if (it == null) return false;
         RefreshList();
 
-        string PostText = "";
+        /*
+        string desc = "";
         if (it is Weapon) {
-            PostText = $"\nDAM: {((Weapon) it).RawDamage}";
+            desc = $"\nDAM: {((Weapon) it).GetDescription()}";
         } else if (it is Armor) {
-            PostText = $"\nARM: {((Armor) it).ARMValue}";
+            desc = $"\nARM: {((Armor) it).GetDescription()}";
         } else if (it is Headgear) {
-            PostText = $"\nHP: {((Headgear) it).ExtraHealth}";
-        }
+            desc = $"\nHP: {((Headgear) it).GetDescription()}";
+        }*/
 
-        PopUp.ShowSprite(cr.Result.Item.Image, $"<size=150%>Crafted!</size>\nYou successfully crafted a {it.GetName()}!{PostText}");
+        //PopUp.ShowSprite(cr.Result.Item.Image, $"<size=150%>Crafted!</size>\nYou successfully crafted a {it.GetName()}!{PostText}");
+
+        EquipItemProcessor.Instance.ProcessItem(it, null);
+        
         return true;
     }
 }

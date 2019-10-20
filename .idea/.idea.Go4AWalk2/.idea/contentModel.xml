@@ -57,6 +57,7 @@
             <e p="GameEventEditor.cs" t="Include" />
             <e p="ItemImporter.cs" t="Include" />
           </e>
+          <e p="EquipItemProcessor.cs" t="Include" />
           <e p="EventSystem" t="Include">
             <e p="Editor" t="Include">
               <e p="NewType.cs" t="Include" />
@@ -275,10 +276,6 @@
             <e p="StatTracker.cs" t="Include" />
           </e>
           <e p="GameUI" t="Include">
-            <e p="ChangeItemArmor.cs" t="Include" />
-            <e p="ChangeItemBase.cs" t="Include" />
-            <e p="ChangeItemHeadgear.cs" t="Include" />
-            <e p="ChangeItemWeapon.cs" t="Include" />
             <e p="CraftingMenu.cs" t="Include" />
             <e p="DebugMenu.cs" t="Include" />
             <e p="EnchantUI.cs" t="Include" />
