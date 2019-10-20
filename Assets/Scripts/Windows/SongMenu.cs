@@ -55,7 +55,7 @@ public class SongMenu : MonoBehaviour {
 			
 			button.onClick.AddListener(() => {
 				Flute.StartSong(acc => {
-					Spawner.SpawnMonster(song, acc);
+					SongBuffController.Instance.OnSongFinish(song, acc);
 				});
 			});
 			

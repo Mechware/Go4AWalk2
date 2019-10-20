@@ -12,6 +12,8 @@ using Random = UnityEngine.Random;
 namespace G4AW2.Followers {
 	public class FollowerSpawner : MonoBehaviour {
 
+		public static FollowerSpawner Instance;
+		
         public RuntimeSetFollowerData CurrentFollowers;
 	    public ActiveQuestBaseVariable CurrentQuest;
 
@@ -23,6 +25,7 @@ namespace G4AW2.Followers {
 		public int MAX_QUEUE_SIZE = 5;
 		
 		void Awake() {
+			Instance = this;
             CurrentQuest.OnChange.AddListener(QuestChanged);
             Random.InitState(Mathf.RoundToInt(Time.deltaTime));
 		}
@@ -68,17 +71,15 @@ namespace G4AW2.Followers {
             CurrentFollowers.Add(data);
         }
 
+		public void Drop(FollowerData data) {
+			if (CurrentFollowers.Value.Count >= MAX_QUEUE_SIZE) return;
 
-		public void SpawnMonster(SongData song, float acc) {
-			for (int i = 0; i < song.DropChances.Count(); i++) {
-				if (song.DropChances[i].Chance >= Random.value && song.DropChances[i].MinAccuracy <= acc) {
-					var follower = CurrentQuest.Value.Enemies.GetFollower(song.DropChances[i].Data);
-					if (follower == null) continue;
-					CurrentFollowers.Add(follower);
-				}
-			}
+			var follower = CurrentQuest.Value.Enemies.GetFollower(data, true);
+			if (follower == null) return;
+
+			CurrentFollowers.Add(follower);
 		}
-		
+
 #if UNITY_EDITOR
 	    [ContextMenu("Clear Followers")]
 	    void ClearFollowers() {

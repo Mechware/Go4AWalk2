@@ -286,8 +286,10 @@
             <e p="MainUI.cs" t="Include" />
             <e p="PlayerClickController.cs" t="Include" />
             <e p="QuestViewer.cs" t="Include" />
+            <e p="SongBuffUI.cs" t="Include" />
             <e p="WeaponUI.cs" t="Include" />
           </e>
+          <e p="InstrumentData.cs" t="Include" />
           <e p="InteractionController.cs" t="Include" />
           <e p="Inventory" t="Include">
             <e p="CraftingTable.cs" t="Include" />
@@ -357,6 +359,7 @@
             <e p="SaveableVariableWithSaveable.cs" t="Include" />
             <e p="SaveManager.cs" t="Include" />
           </e>
+          <e p="SongBuffController.cs" t="Include" />
           <e p="SongData.cs" t="Include" />
           <e p="Testing" t="Include">
             <e p="AnimationTesting.cs" t="Include" />

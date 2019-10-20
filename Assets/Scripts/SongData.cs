@@ -8,6 +8,7 @@ using G4AW2.Data.Combat;
 using G4AW2.Data.DropSystem;
 using G4AW2.Questing;
 using UnityEngine;
+using Random = System.Random;
 
 [CreateAssetMenu(menuName = "Data/Song")]
 public class SongData : ScriptableObject {
@@ -18,11 +19,24 @@ public class SongData : ScriptableObject {
 	public List<NoteData> MiddleNotes;
 	public List<NoteData> BottomNotes;
 
-	public List<Drop> DropChances;
 
 	public ActiveQuestBase QuestToUnlock;
 
 	public bool IsUnlocked => QuestToUnlock == null || StatTracker.Instance.CompletedQuests.Any(q => q.ID == QuestToUnlock.ID);
+
+	[Header("Buff")]
+	public float BuffDuration;
+	public List<Drop> DropChances;
+	public float MinDropTime;
+	public float MaxDropTime;
+
+
+	public float GetSpawnTime(float acc) {
+		
+		return MinDropTime + (1f - acc) * (MaxDropTime - MinDropTime) +
+				UnityEngine.Random.Range(-0.5f, 0.5f) * (MaxDropTime - MinDropTime);
+	}
+	
 }
 
 
@@ -35,5 +49,5 @@ public class NoteData {
 public class Drop {
 	public FollowerData Data;
 	public float MinAccuracy;
-	public float Chance;
+	public int Chance;
 }
