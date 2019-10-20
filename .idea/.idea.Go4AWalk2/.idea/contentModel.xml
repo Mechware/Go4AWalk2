@@ -284,6 +284,7 @@
             <e p="EnchantUI.cs" t="Include" />
             <e p="EnemyArrowIndicator.cs" t="Include" />
             <e p="MainUI.cs" t="Include" />
+            <e p="PlayerClickController.cs" t="Include" />
             <e p="QuestViewer.cs" t="Include" />
             <e p="WeaponUI.cs" t="Include" />
           </e>

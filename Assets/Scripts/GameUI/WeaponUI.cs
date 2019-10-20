@@ -21,6 +21,8 @@ DAM {4}+<color=#{1}>{5}</color>";
 DAM {2}";
 
 
+    public static WeaponUI Instance;
+    
     public Button Button1;
     public Button Button2;
     public Button Button3;
@@ -43,6 +45,10 @@ DAM {2}";
     private enum State { LerpingOpen, LerpingClosed, Open, Closed }
     private State state = State.Closed;
 
+    public void Init() {
+        Instance = this;
+    }
+    
     public void SetWeaponWithDefaults(Weapon w, Action onfinish=null) {
         SetWeapon(w, new[] {
             new ButtonAction() {Title= w.IsTrash() ? "Untrash" : "Trash", OnClick = () => { w.MarkedAsTrash = true; onfinish?.Invoke(); } },

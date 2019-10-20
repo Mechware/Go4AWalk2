@@ -28,10 +28,12 @@ public class ChangeItemBase<T, TRef, TVar, TEvent> : MonoBehaviour
 
         Item.Variable.BeforeChange += () => { if(Item.Value != null) Item.Value.DataChanged -= Refresh; };
         Item.Variable.OnChange.AddListener((it) => { Refresh(); });
-
-        Refresh();
     }
 
+    void Start() {
+        Refresh();
+    }
+    
     public void Refresh() {
         if (Item.Value != null) {
             Item.Value.DataChanged -= Refresh;

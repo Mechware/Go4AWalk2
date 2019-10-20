@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using G4AW2.Combat;
+using G4AW2.Data.DropSystem;
 using TMPro;
 using UnityEngine;
 
@@ -8,7 +9,14 @@ public class MainUI : MonoBehaviour {
     public RectTransform MasteryFill;
     public TextMeshProUGUI MasteryBeginText;
     public TextMeshProUGUI MasteryEndText;
-    
+
+    public ItemViewer ItemViewer;
+    public WeaponUI WeaponViewer;
+
+    void Awake() {
+        ItemViewer.Init();
+        WeaponViewer.Init();
+    }
     
     // Start is called before the first frame update
     void Start()
@@ -34,8 +42,5 @@ public class MainUI : MonoBehaviour {
             MasteryBeginText.text = $"{weapon.Mastery} ({currentDamage})";
             MasteryEndText.text = $"{weapon.Mastery+1} ({nextLevelDamage})";
         }
-        
-        
-        
     }
 }

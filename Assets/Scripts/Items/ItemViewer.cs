@@ -9,6 +9,7 @@ using Material = G4AW2.Data.DropSystem.Material;
 
 public class ItemViewer : MonoBehaviour {
 
+    public static ItemViewer Instance;
     public GameObject ItemDisplayPrefab;
 
     public GameObject Content;
@@ -17,6 +18,10 @@ public class ItemViewer : MonoBehaviour {
 
     public Inventory Inventory;
 
+    public void Init() {
+        Instance = this;
+    }
+    
     public void ShowItemsFromInventory<T>(bool showAmounts, bool showTrash, Action<T> onClick, bool showNull = false) where T : Item, ITrashable {
         ShowItems(Inventory.Where(e => e.Item is T && (showTrash || !((T) e.Item).IsTrash())), i => onClick((T) i), showAmounts, showNull);
     }

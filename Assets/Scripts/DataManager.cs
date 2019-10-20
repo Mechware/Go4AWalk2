@@ -10,7 +10,7 @@ public class DataManager : MonoBehaviour {
     public static DataManager Instance; 
     public RuntimeSetFollowerData Followers;
     public Player Player;
-    
+    public Inventory Inventory;
     
     public PersistentSetFollowerData AllFollowers;
     public StatTracker StatTracker;

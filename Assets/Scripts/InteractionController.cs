@@ -54,6 +54,7 @@ public class InteractionController : MonoBehaviour {
         StartCoroutine(_StartBossFight());
 
         IEnumerator _StartBossFight() {
+            PlayerClickController.Instance.SetEnabled(false);
             DeadEnemyController.Instance.ClearEnemies();
             QuickPopUp.QuickPopUpAllowed = false;
             
@@ -162,7 +163,7 @@ public class InteractionController : MonoBehaviour {
     }
     
     public void EnemyFight(EnemyData enemy) {
-
+        PlayerClickController.Instance.SetEnabled(false);
         QuickPopUp.QuickPopUpAllowed = false;
         World.Disable();
         BattleUi.gameObject.SetActive(true);
@@ -270,12 +271,14 @@ public class InteractionController : MonoBehaviour {
                 Inventory.AddItems(items);
                 World.Enable();
 
-
+                PlayerClickController.Instance.SetEnabled(true);
                 
                 // Note: If the boss quest is to fight a chicken and you kill any chicken (not just the boss) then the quest gets completed
                 if (CurrentQuest.Value is BossQuest quest && quest.Enemy.ID == data.ID) {
                     quest.Finish();
                 }
+                
+                
             });
         }
     }
