@@ -217,6 +217,8 @@ public class InteractionController : MonoBehaviour {
                 yield break;
             }
         
+            SoundManager.Instance.PlaySound(SoundManager.Instance.Celebrate, 0.8f);
+            
             bool celebrateDone = false;
             bool bubblesDone = false;
         

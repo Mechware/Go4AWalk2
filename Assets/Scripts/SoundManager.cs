@@ -11,6 +11,7 @@ public class SoundManager : MonoBehaviour {
 
     public AudioClip PaperFlip;
     public AudioClip PickUp;
+    public AudioClip Celebrate;
     
     void Awake() {
         Instance = this;
@@ -19,5 +20,9 @@ public class SoundManager : MonoBehaviour {
     
     public void PlaySound(AudioClip sound, float volume) {
         SoundEffectsSource.PlayOneShot(sound, volume);
+    }
+
+    public void PlaySoundHalfVolume(AudioClip sound) {
+        SoundEffectsSource.PlayOneShot(sound, 0.5f);
     }
 }

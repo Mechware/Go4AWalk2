@@ -15640,6 +15640,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1720511489}
+        m_MethodName: PlaySoundHalfVolume
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: 312c5d050c8486140bd00c63ac21e14b,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnSwipeStart:
     m_PersistentCalls:
       m_Calls:
@@ -15674,6 +15686,18 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1720511489}
+        m_MethodName: PlaySoundHalfVolume
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: f254ee91e7b2c9f4e9ca5685b62e4434,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -32739,6 +32763,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 114177810431131692, guid: 8c9a538fe802327488362ee36573c91a,
         type: 3}
+      propertyPath: OnStart.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114177810431131692, guid: 8c9a538fe802327488362ee36573c91a,
+        type: 3}
       propertyPath: Lerpers.Array.data[1].OnUpdate.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
       value: 1
       objectReference: {fileID: 0}
@@ -32752,6 +32781,41 @@ PrefabInstance:
       propertyPath: Lerpers.Array.data[1].OnUpdate.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 70712741}
+    - target: {fileID: 114177810431131692, guid: 8c9a538fe802327488362ee36573c91a,
+        type: 3}
+      propertyPath: OnStart.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114177810431131692, guid: 8c9a538fe802327488362ee36573c91a,
+        type: 3}
+      propertyPath: OnStart.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114177810431131692, guid: 8c9a538fe802327488362ee36573c91a,
+        type: 3}
+      propertyPath: OnStart.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114177810431131692, guid: 8c9a538fe802327488362ee36573c91a,
+        type: 3}
+      propertyPath: OnStart.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1720511487}
+    - target: {fileID: 114177810431131692, guid: 8c9a538fe802327488362ee36573c91a,
+        type: 3}
+      propertyPath: OnStart.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: PlayOneShot
+      objectReference: {fileID: 0}
+    - target: {fileID: 114177810431131692, guid: 8c9a538fe802327488362ee36573c91a,
+        type: 3}
+      propertyPath: OnStart.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.AudioClip, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114177810431131692, guid: 8c9a538fe802327488362ee36573c91a,
+        type: 3}
+      propertyPath: OnStart.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 8300000, guid: 4526de36b5b79ba4086cefac82c6c409, type: 3}
     - target: {fileID: 114022674714677384, guid: 8c9a538fe802327488362ee36573c91a,
         type: 3}
       propertyPath: m_fontAsset
@@ -37839,8 +37903,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BackgroundMusic: {fileID: 8300000, guid: f26c41aefc9c3d744bee65351f6173fd, type: 3}
   SoundEffectsSource: {fileID: 1720511487}
-  PaperFlip: {fileID: 0}
-  PickUp: {fileID: 0}
+  PaperFlip: {fileID: 8300000, guid: 8357b161e03cc7e4694407b817c6bd80, type: 3}
+  PickUp: {fileID: 8300000, guid: 4c7dcf1dffdefcc48945c943b63801d3, type: 3}
+  Celebrate: {fileID: 8300000, guid: f2cee388fbb5bc6429725623c68bf625, type: 3}
 --- !u!1 &1720632273
 GameObject:
   m_ObjectHideFlags: 0
