@@ -17,7 +17,7 @@ public class EquipItemProcessor : MonoBehaviour {
         Instance = this;
     }
 
-    public void ProcessItem(Item it, Action onDone) {
+    public bool ProcessItem(Item it, Action onDone) {
 
         if (it is Weapon w) {
             PopUp.SetPopUp($"{it.GetName()}\n{it.GetDescription()}", new string[] {"Equip", w.IsTrash() ? "Untrash" : "Trash", "Cancel"}, new Action[] {
@@ -36,7 +36,10 @@ public class EquipItemProcessor : MonoBehaviour {
                     onDone?.Invoke();
                 }
             });
-        } else if (it is Armor a) {
+            return true;
+        } 
+        
+        if (it is Armor a) {
             PopUp.SetPopUp($"{it.GetName()}\n{it.GetDescription()}", new string[] {"Equip", a.IsTrash() ? "Untrash" : "Trash", "Cancel"}, new Action[] {
                 () => {
                     if(Player.Armor.Value != null)
@@ -53,7 +56,11 @@ public class EquipItemProcessor : MonoBehaviour {
                     onDone?.Invoke();
                 }
             });
-        } else if (it is Headgear h) {
+            return true;
+
+        } 
+        
+        if (it is Headgear h) {
             PopUp.SetPopUp($"{it.GetName()}\n{it.GetDescription()}", new string[] {"Equip", h.IsTrash() ? "Untrash" : "Trash", "Cancel"}, new Action[] {
                 () => {
                     if(Player.Headgear.Value != null)
@@ -70,7 +77,11 @@ public class EquipItemProcessor : MonoBehaviour {
                     onDone?.Invoke();
                 }
             });
-        } else if (it is InstrumentData i) {
+            return true;
+
+        } 
+        
+        if (it is InstrumentData i) {
             PopUp.SetPopUp($"{it.GetName()}\n{it.GetDescription()}", new string[] {"Equip", "Cancel"}, new Action[] {
                 () => {
                     if(Player.Instrument.Value != null)
@@ -83,9 +94,10 @@ public class EquipItemProcessor : MonoBehaviour {
                     onDone?.Invoke();
                 }
             });
+            return true;
         }
-        else {
-            onDone?.Invoke();
-        }
+        
+        onDone?.Invoke();
+        return false;
     }
 }

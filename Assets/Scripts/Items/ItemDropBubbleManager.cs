@@ -65,10 +65,12 @@ public class ItemDropBubbleManager : MonoBehaviour {
 
         SmoothPopUpManager.ShowPopUp(it.transform.localPosition, $"<color=green>+1</color> {it.Item.GetName()}", ConfigObject.GetColorFromRarity(it.Item.Rarity));
 
-	    EquipItemProcessor.Instance.ProcessItem(it.Item, () => {
-		    Pool.Return(it.gameObject);
-		    onClick?.Invoke();    
-	    });
+        if (!EquipItemProcessor.Instance.ProcessItem(it.Item, () => {
+	        Pool.Return(it.gameObject);
+	        onClick?.Invoke();
+        })) {
+	        SoundManager.Instance.PlaySound(SoundManager.Instance.PickUp, 1);
+        }
     }
 
     [Header("Debug")] public ItemDropper Dropper;

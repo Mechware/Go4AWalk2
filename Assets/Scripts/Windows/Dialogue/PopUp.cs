@@ -16,7 +16,8 @@ namespace G4AW2.Dialogue {
 		public GameObject container;
 
 	    public RobustLerperSerialized LerpOpen;
-
+	    public AudioClip PaperFlip;
+	    
         private enum State { LerpingOpen, LerpingClosed, Open, Closed}
 
 	    private State state = State.Closed;
@@ -41,6 +42,8 @@ namespace G4AW2.Dialogue {
 		}
 
 		private bool SetPopUpPriv(string text, string[] options, Action[] responses) {
+			SoundManager.Instance.PlaySound(PaperFlip, 1f);
+
             transform.SetAsLastSibling();
 			container.SetActive(true);
 

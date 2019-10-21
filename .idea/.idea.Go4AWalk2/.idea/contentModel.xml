@@ -361,6 +361,7 @@
           </e>
           <e p="SongBuffController.cs" t="Include" />
           <e p="SongData.cs" t="Include" />
+          <e p="SoundManager.cs" t="Include" />
           <e p="Testing" t="Include">
             <e p="AnimationTesting.cs" t="Include" />
             <e p="Editor" t="Include">
