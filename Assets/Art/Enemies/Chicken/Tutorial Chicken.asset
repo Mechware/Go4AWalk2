@@ -4,7 +4,8 @@
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -14,34 +15,45 @@ MonoBehaviour:
   ID: 22
   DisplayName: Tutorial Chicken
   Portrait: {fileID: 21300000, guid: c27605eebf83392428128ddf89b5bd1f, type: 3}
-  SizeOfSprite: {x: 32, y: 32}
+  SizeOfSprite: {x: 64, y: 64}
   SpaceBetweenEnemies: 32
-  SideIdleAnimation: {fileID: 7400000, guid: 1d4de40d339b49b4d98b6be002df9a49, type: 2}
-  RandomAnimation: {fileID: 7400000, guid: f032d3e5988a563498a3647c02b6e8c0, type: 2}
+  SideIdleAnimation: {fileID: 7400000, guid: 70d8f80c713f6764984a37b2185a5e70, type: 2}
+  RandomAnimation: {fileID: 7400000, guid: c7265f0548f30954786dfa987b9c66a7, type: 2}
   MinTimeBetweenRandomAnims: 3
-  MaxTimeBetweenRandomAnims: 12
-  Idle: {fileID: 7400000, guid: 8018041f9b6ecfa49bafd078a44bf523, type: 2}
-  Flinch: {fileID: 7400000, guid: 87fe2da240b857346b63f3effeed812a, type: 2}
-  BeforeAttack: {fileID: 7400000, guid: 8d1c456069660d14ebb2162523848869, type: 2}
-  AttackExecute: {fileID: 7400000, guid: 971d976a4153a5e4b9459bd9b52228f1, type: 2}
-  AfterAttack: {fileID: 7400000, guid: 16ee3da12834d16448e12c35284b3ff0, type: 2}
-  Death: {fileID: 7400000, guid: 9be3681b890b5c14c9343ad1f4c61ee2, type: 2}
-  Dead: {fileID: 7400000, guid: 68b8cc7874e7bc24385a1ef59242232d, type: 2}
-  Walking: {fileID: 7400000, guid: 2a140d8f52d2e274a9f93313a970fc1f, type: 2}
-  DeadSprite: {fileID: 21300046, guid: c27605eebf83392428128ddf89b5bd1f, type: 3}
+  MaxTimeBetweenRandomAnims: 4
+  Idle: {fileID: 7400000, guid: 74a0d7e8add18f140b6c496716925fa1, type: 2}
+  Flinch: {fileID: 7400000, guid: 904b8243e23663e4f865a461133b2b6c, type: 2}
+  BeforeAttack: {fileID: 7400000, guid: e78d4fc5d296541468be158538798445, type: 2}
+  AttackExecute: {fileID: 7400000, guid: a1b8cdcc43e214c44a9643c0558f2f45, type: 2}
+  AfterAttack: {fileID: 7400000, guid: 590ce52766ebd7044b07cf0e9ec3e8ee, type: 2}
+  Death: {fileID: 7400000, guid: be27bab89cd597e4293b1ed1a48e1606, type: 2}
+  Dead: {fileID: 7400000, guid: 87c66e7184ee3f240bc72f05b8037053, type: 2}
+  Walking: {fileID: 7400000, guid: 096a7924d69d9764ea71d999e50ad53d, type: 2}
+  DeadSprite: {fileID: 21300054, guid: e869d03a759c2af4fa10d3eba0d75965, type: 3}
   HealthAtLevel0: 10000
   DamageAtLevel0: 10
   TimeBetweenAttacks: 2
   AttackPrepTime: 1
   AttackExecuteTime: 0.75
-  HasElementalDamage: 0
-  ElementalDamageAtLevel0: 0
-  ElementalDamageType: {fileID: 0}
+  HasElementalDamage: 1
+  ElementalDamageAtLevel0: 1
+  ElementalDamageType: {fileID: 11400000, guid: 2b8306db4b1f89b46951140b9e7f9220,
+    type: 2}
   ElementalWeaknesses:
     UseConstant: 1
     ConstantValue:
       Weaknesses: []
     Variable: {fileID: 0}
   Drops:
-    Items: []
+    Items:
+    - item: {fileID: 11400000, guid: dc820a69f03cdd143ab25de0aeea35e5, type: 2}
+      dropChance: 1
+    - item: {fileID: 11400000, guid: dc820a69f03cdd143ab25de0aeea35e5, type: 2}
+      dropChance: 0.5
+    - item: {fileID: 11400000, guid: dc820a69f03cdd143ab25de0aeea35e5, type: 2}
+      dropChance: 0.5
+    - item: {fileID: 11400000, guid: 3b3b3aae3ef904f4fa27af0aa93725d8, type: 2}
+      dropChance: 1
+    - item: {fileID: 11400000, guid: 3b3b3aae3ef904f4fa27af0aa93725d8, type: 2}
+      dropChance: 1
   OneAndDoneAttacker: 0

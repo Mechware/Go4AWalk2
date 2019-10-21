@@ -4,7 +4,8 @@
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -16,20 +17,22 @@ MonoBehaviour:
   Level: 4
   NextQuest: {fileID: 11400000, guid: fc18e94318e97394291c84a4249c3c18, type: 2}
   StartConversation:
-    Text: You're doing great! Those gnomes didn't stand a chance. Some stronger folks
-      heard about how strong you are and want a piece so you're gonna have to fight
-      tougher enemies. The goblins are a ruthless bunch and are coming after you.
-      Try and <b>defeat 5 of those goblins</b>.
+    Text: "Hey! You're starting to make a name for yourself out there! You've attracted
+      the attention of some goblins. Now despite what you're probably thinking I actually
+      like goblins, they're pretty cool guys. Love to fight though.\n\nTake a few
+      of them out and show them whose the top dog around here. \n\nThere are also
+      some more of those annoying gnomes around too, take 'em out for me. I hear they
+      have really sharp teeth too, might be useful."
     Speaker: {fileID: 21300000, guid: c27605eebf83392428128ddf89b5bd1f, type: 3}
   EndConversation:
-    Text: 'Nice work! For defeating the goblins, I present you with a <color=red><b>goblin
-      sword</b></color>. Use it wisely.
+    Text: 'Nice work! I found a <color=red><b>goblin sword</b></color> one of them
+      dropped. Use it wisely.
 
 
       Just kidding, hit everything with it.'
     Speaker: {fileID: 21300000, guid: c27605eebf83392428128ddf89b5bd1f, type: 3}
-  MinEnemyDropTime: 60
-  MaxEnemyDropTime: 180
+  MinEnemyDropTime: 15
+  MaxEnemyDropTime: 45
   Area: {fileID: 11400000, guid: 5e4d1ba5949749b44bc3427231ca82f2, type: 2}
   MiningPoints:
   - MinDistanceBetween: 50
@@ -48,7 +51,7 @@ MonoBehaviour:
     - Follower: {fileID: 11400000, guid: 396482660d9279a4294f369245325131, type: 2}
       MinLevel: 1
       MaxLevel: 4
-      DropChance: 2
+      DropChance: 1
     - Follower: {fileID: 11400000, guid: 51d3cce514427d448a622c4b31127522, type: 2}
       MinLevel: 1
       MaxLevel: 4
