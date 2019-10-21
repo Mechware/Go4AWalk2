@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.3731193, g: 0.38073996, b: 0.35872698, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -11462,6 +11462,11 @@ PrefabInstance:
       propertyPath: m_RaycastTarget
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114125859325579986, guid: 443b0094fc267f64bbf4b08d4837ff39,
+        type: 3}
+      propertyPath: Item
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 114807331115502966, guid: 443b0094fc267f64bbf4b08d4837ff39,
         type: 3}
       propertyPath: m_Sprite
@@ -11512,11 +11517,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.x
       value: -4
-      objectReference: {fileID: 0}
-    - target: {fileID: 114125859325579986, guid: 443b0094fc267f64bbf4b08d4837ff39,
-        type: 3}
-      propertyPath: Item
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 443b0094fc267f64bbf4b08d4837ff39, type: 3}
@@ -17470,6 +17470,11 @@ PrefabInstance:
       propertyPath: m_RaycastTarget
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114125859325579986, guid: 443b0094fc267f64bbf4b08d4837ff39,
+        type: 3}
+      propertyPath: Item
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 114807331115502966, guid: 443b0094fc267f64bbf4b08d4837ff39,
         type: 3}
       propertyPath: m_Sprite
@@ -17520,11 +17525,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.x
       value: -4
-      objectReference: {fileID: 0}
-    - target: {fileID: 114125859325579986, guid: 443b0094fc267f64bbf4b08d4837ff39,
-        type: 3}
-      propertyPath: Item
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 443b0094fc267f64bbf4b08d4837ff39, type: 3}
@@ -39682,7 +39682,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: -0.0001373291}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 8}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1824567019
 MonoBehaviour:
@@ -40361,7 +40361,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1901185154
 RectTransform:
   m_ObjectHideFlags: 0

@@ -24,8 +24,8 @@ namespace G4AW2.Data.DropSystem {
 
         
         private float NoBlockModifierWithMod => Mathf.Max(1 - ARMValue / 100, 0);
-        private float PerfectBlockModifierWithMod => Mathf.Max(0.25f - ARMValue / 400, 0); // at arm = 0, damage reduction is 75%
-        private float MistimedBlockModifierWithMod => Mathf.Max(0.5f - ARMValue / 200, 0); // at arm = 0, damage reduction is 50%
+        private float PerfectBlockModifierWithMod => (-1*(ARMValue/25)); // blocking heals
+        private float MistimedBlockModifierWithMod => (-1*(ARMValue/50)); // blocking heals
         public float ARMValue => Mathf.RoundToInt(ArmorAtLevel0 * mod * (1 + Level / 100f));
 
         public enum BlockState { None, Blocking, PerfectlyBlocking, BadParry}

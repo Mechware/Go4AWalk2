@@ -51,4 +51,10 @@ MonoBehaviour:
       dropChance: 0.2
     - item: {fileID: 11400000, guid: fa96b3e9303ec5749a21f90630e57f59, type: 2}
       dropChance: 0.01
+    - item: {fileID: 11400000, guid: dc820a69f03cdd143ab25de0aeea35e5, type: 2}
+      dropChance: 1
+    - item: {fileID: 11400000, guid: dc820a69f03cdd143ab25de0aeea35e5, type: 2}
+      dropChance: 0.5
+    - item: {fileID: 11400000, guid: dc820a69f03cdd143ab25de0aeea35e5, type: 2}
+      dropChance: 0.5
   OneAndDoneAttacker: 0

@@ -4,7 +4,8 @@
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -16,9 +17,12 @@ MonoBehaviour:
   Level: 5
   NextQuest: {fileID: 11400000, guid: 9bb92d304139bd443a17fa212d7c7469, type: 2}
   StartConversation:
-    Text: Now that you can defeat goblins <b>AND</b> craft things, you're unstoppable!
-      <b>Gather 12 goblin armors</b> from the corpses of goblins (or otherwise...)
-      and <b>craft some goblin armor Armor</b>!
+    Text: 'Those goblins are back and in more numbers this time! Let''s use this to
+      our advantage and take this opportunity to score some of that cool goblin armor.
+
+
+      The armor they wear is too small on its own but if you got enough of it you
+      could probably get funky with the needle and craft some people-size  armor.'
     Speaker: {fileID: 21300000, guid: c27605eebf83392428128ddf89b5bd1f, type: 3}
   EndConversation:
     Text: 'Great job! You can equip your new armor through the journal. Use the question
@@ -27,8 +31,8 @@ MonoBehaviour:
 
       That goblin armor with your feathered hat will look amazing.'
     Speaker: {fileID: 21300000, guid: c27605eebf83392428128ddf89b5bd1f, type: 3}
-  MinEnemyDropTime: 60
-  MaxEnemyDropTime: 180
+  MinEnemyDropTime: 15
+  MaxEnemyDropTime: 45
   Area: {fileID: 11400000, guid: 5e4d1ba5949749b44bc3427231ca82f2, type: 2}
   MiningPoints:
   - MinDistanceBetween: 100
@@ -43,7 +47,7 @@ MonoBehaviour:
     - Follower: {fileID: 11400000, guid: 51d3cce514427d448a622c4b31127522, type: 2}
       MinLevel: 5
       MaxLevel: 10
-      DropChance: 5
+      DropChance: 6
     - Follower: {fileID: 11400000, guid: ad9b8d87849cbb443985f26909b572f2, type: 2}
       MinLevel: 5
       MaxLevel: 10
@@ -51,7 +55,7 @@ MonoBehaviour:
     - Follower: {fileID: 11400000, guid: 396482660d9279a4294f369245325131, type: 2}
       MinLevel: 5
       MaxLevel: 10
-      DropChance: 2
+      DropChance: 1
     - Follower: {fileID: 11400000, guid: f9cb20d3635f5ec40935188217f021cd, type: 2}
       MinLevel: 5
       MaxLevel: 10
