@@ -12,8 +12,6 @@ namespace G4AW2.Data.DropSystem
     [CreateAssetMenu(menuName = "Data/Items/Weapon")]
     public class Weapon : Item, ISaveable, ITrashable {
 
-        public PersistentSetItem AllItems;
-
         public int RawDamage => Mathf.RoundToInt(DamageAtLevel0 * MasteryDamageMod * (1 + Level / 10f) * mod);
         public int Mastery => Mathf.FloorToInt( ConfigObject.GetLevel(Rarity, MasteryLevels.GetTaps(ID)));
         public float RawMastery => ConfigObject.GetLevel(Rarity, MasteryLevels.GetTaps(ID));
@@ -146,7 +144,7 @@ namespace G4AW2.Data.DropSystem
             Level = ds.Level;
 
             if(ds.EnchantID != -1 && CreatedFromOriginal) {
-                Enchanter og = AllItems.First(it => it.ID == ds.EnchantID) as Enchanter;
+                Enchanter og = DataManager.Instance.AllItems.First(it => it.ID == ds.EnchantID) as Enchanter;
                 Enchantment = Instantiate(og);
                 Enchantment.CreatedFromOriginal = true;
                 Enchantment.SetData(ds.EnchantSave, og);
@@ -171,10 +169,9 @@ namespace G4AW2.Data.DropSystem
             base.CopyValues(original);
             DamageAtLevel0 = original.DamageAtLevel0;
             LevelUp = original.LevelUp;
-            AllItems = original.AllItems;
 
             if(ds.EnchantID != -1) {
-                Enchanter og = AllItems.First(it => it.ID == ds.EnchantID) as Enchanter;
+                Enchanter og = DataManager.Instance.AllItems.First(it => it.ID == ds.EnchantID) as Enchanter;
                 Enchantment = Instantiate(og);
                 Enchantment.CreatedFromOriginal = true;
                 Enchantment.SetData(ds.EnchantSave, og);

@@ -24,64 +24,38 @@ public class PlayerClickController : MonoBehaviour {
     // Start is called before the first frame update
     void Start()
     {
-        PlayerHeadgear.onClick.AddListener(() => {
-            ItemViewer.Instance.ShowItemsFromInventory<Headgear>("Equip Headgear", false, false, it => {
-                PopUp.SetPopUp($"{it.GetName()}\n{it.GetDescription()}", new string[] {"Equip", it.IsTrash() ? "Untrash" : "Trash", "Cancel"}, new Action[] {
-                    () => {
-                        if(HeadgearReference.Value != null)
-                            DataManager.Instance.Inventory.Add(HeadgearReference.Value);
-                        HeadgearReference.Value = it;
-                        DataManager.Instance.Inventory.Remove(it);
-                        ItemViewer.Instance.Close();
-                    },
-                    () => {
-                        it.SetTrash(!it.IsTrash());
-                        ItemViewer.Instance.Close();
-                    },
-                    () => { }
-                });
-            }); 
-        });  
+        PlayerHeadgear.onClick.AddListener(ChangePlayerHeadgear);  
         
-        PlayerArmor.onClick.AddListener(() => {
-            ItemViewer.Instance.ShowItemsFromInventory<Armor>("Equip Armor", false, false, it => {
-                PopUp.SetPopUp($"{it.GetName()}\n{it.GetDescription()}", new string[] {"Equip", it.IsTrash() ? "Untrash" : "Trash", "Cancel"}, new Action[] {
-                    () => {
-                        if(ArmorReference.Value != null)
-                            DataManager.Instance.Inventory.Add(ArmorReference.Value);
-                        ArmorReference.Value = it;
-                        DataManager.Instance.Inventory.Remove(it);
-                        ItemViewer.Instance.Close();
-                    },
-                    () => {
-                        it.SetTrash(!it.IsTrash());
-                        ItemViewer.Instance.Close();
-                    },
-                    () => { }
-                });
-            }); 
-        });
+        PlayerArmor.onClick.AddListener(ChangePlayerArmor);
 
-        PlayerWeapon.onClick.AddListener(() => {
-            ItemViewer.Instance.ShowItemsFromInventory<Weapon>("Equip Weapon", false, false, it => {
+        PlayerWeapon.onClick.AddListener(ChangePlayerWeapon);
+    }
 
-                WeaponUI.Instance.SetWeapon(it, new [] {
-                    new WeaponUI.ButtonAction() {Title = "Equip", OnClick = () => {
-                        DataManager.Instance.Inventory.Add(WeaponReference.Value);
-                        WeaponReference.Value = it;
-                        DataManager.Instance.Inventory.Remove(it);
-                        ItemViewer.Instance.Close();
-                    }},
-                    new WeaponUI.ButtonAction() {Title = it.IsTrash() ? "Untrash" : "Trash", OnClick = () => {
-                        it.SetTrash(!it.IsTrash());
-                        ItemViewer.Instance.Close();
-                    }},
-                    new WeaponUI.ButtonAction() {Title = "Close", OnClick = () => {}}
-                });
+    public static void ChangePlayerHeadgear() {
+        ItemViewer.Instance.ShowItemsFromInventory<Headgear>("Equip Headgear", false, false, it => {
+            EquipItemProcessor.Instance.ProcessItem(it, () => {
+                ItemViewer.Instance.Close();
+            });
+        }); 
+    }
+
+    public static void ChangePlayerArmor() {
+        ItemViewer.Instance.ShowItemsFromInventory<Armor>("Equip Armor", false, false, it => {
+            EquipItemProcessor.Instance.ProcessItem(it, () => {
+                ItemViewer.Instance.Close();
+            });
+        }); 
+    }
+
+    public static void ChangePlayerWeapon() {
+        ItemViewer.Instance.ShowItemsFromInventory<Weapon>("Equip Weapon", false, false, it => {
+            EquipItemProcessor.Instance.ProcessItem(it, () => {
+                ItemViewer.Instance.Close();
             });
         });
     }
-
+    
+    
     public void SetEnabled(bool enabled) {
         PlayerWeapon.enabled = enabled;
         PlayerArmor.enabled = enabled;

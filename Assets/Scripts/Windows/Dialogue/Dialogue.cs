@@ -40,7 +40,7 @@ namespace G4AW2.Dialogue {
 
 			playingConversation = true;
 			currentConversation = dialogueQueue.Dequeue();
-
+			SoundManager.Instance.PlaySound(SoundManager.Instance.PaperFlip, 1);
 			Person.sprite = currentConversation.convo.Speaker;
 			Text.text = currentConversation.convo.Text;
 

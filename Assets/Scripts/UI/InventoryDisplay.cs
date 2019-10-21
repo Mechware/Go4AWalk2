@@ -35,6 +35,7 @@ public class InventoryDisplay : MonoBehaviour {
             var go = pool.GetObject();
             var id = go.GetComponent<InventoryItemDisplay>();
             id.SetData(item.Item, item.Amount, ItemClicked);
+            id.gameObject.transform.SetAsLastSibling();
         }
     }
 
@@ -46,6 +47,8 @@ public class InventoryDisplay : MonoBehaviour {
         text += $"Value: {it.Item.GetValue()}\n";
         text += $"'{it.Item.Description}'";
         ItemText.SetText(text);
+
+        EquipItemProcessor.Instance.ProcessItem(it.Item, Refresh);
     }
 
 }

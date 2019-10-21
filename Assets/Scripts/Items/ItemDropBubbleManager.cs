@@ -61,23 +61,16 @@ public class ItemDropBubbleManager : MonoBehaviour {
 		}
 	}
 
-    public WeaponUI WeaponUI;
-
 	private void OnClick(ItemDropBubble it, Action onClick, Action onDone) {
 
         SmoothPopUpManager.ShowPopUp(it.transform.localPosition, $"<color=green>+1</color> {it.Item.GetName()}", ConfigObject.GetColorFromRarity(it.Item.Rarity));
 
-	    if (it.Item is Weapon) {
-
-	        WeaponUI.SetWeaponWithDefaults((Weapon)it.Item, () => {
-	            Pool.Return(it.gameObject);
-	            onClick?.Invoke();
-            });
-	        return;
-	    }
-
-        Pool.Return(it.gameObject);
-	    onClick?.Invoke();
+        if (!EquipItemProcessor.Instance.ProcessItem(it.Item, () => {
+	        Pool.Return(it.gameObject);
+	        onClick?.Invoke();
+        })) {
+	        SoundManager.Instance.PlaySound(SoundManager.Instance.PickUp, 1);
+        }
     }
 
     [Header("Debug")] public ItemDropper Dropper;

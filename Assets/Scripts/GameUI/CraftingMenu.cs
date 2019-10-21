@@ -5,6 +5,7 @@ using System.Linq;
 using CustomEvents;
 using G4AW2.Data.Crafting;
 using G4AW2.Data.DropSystem;
+using G4AW2.Dialogue;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -16,67 +17,7 @@ public class CraftingMenu : MonoBehaviour {
 
     public List<GameObject> Children;
 
-    public InventoryItemDisplay ItemDisplay;
-
-    public ItemViewer ItemSelector;
-
     public Sprite QuestionMark;
-
-    private Item itemFilter;
-
-    private enum FilterType {
-        Craftable = 0,
-        HaveSomeMaterials = 1
-    };
-
-    private FilterType filter = FilterType.Craftable;
-
-    void Start() {
-        ItemDisplay.SetData(null, 0, OnItemDisplayClicked);
-    }
-
-    void OnItemDisplayClicked(InventoryItemDisplay iid) {
-        ItemSelector.ShowAllMaterialFromInventory("Materials", false, OnItemFilterItemSelected, true);
-    }
-
-    void OnItemFilterItemSelected(Item it) {
-        itemFilter = it;
-        ItemDisplay.SetData(itemFilter, 0, OnItemDisplayClicked);
-        RefreshList();
-        ItemSelector.Close();
-    }
-
-    public void SortOptionChanged(int i) {
-        filter = (FilterType)i;
-        RefreshList();
-    }
-
-    public IEnumerable<CraftingRecipe> GetItemsToShow() {
-
-        IEnumerable<CraftingRecipe> recipesToShow;
-
-        if (itemFilter == null) {
-            recipesToShow = CT.Recipes;
-        }
-        else {
-            recipesToShow = CT.Recipes.Where(r => r.Components.Any(c => c.Item.ID == itemFilter.ID));
-        }
-
-        if(filter == FilterType.Craftable) {
-            recipesToShow = recipesToShow.Where(r => r.IsCraftable(CT.Inventory));
-        } else if (filter == FilterType.HaveSomeMaterials) {
-            if (itemFilter == null) {
-                recipesToShow =
-                    recipesToShow.Where(
-                        recipe => recipe.Components.Any(component => CT.Inventory.Contains(component.Item)));
-            }
-        }
-        else {
-            throw  new Exception("Invalid filter selection");
-        }
-
-        return recipesToShow;
-    }
 
     public void RefreshList() {
         foreach (GameObject child in Children) {
@@ -85,11 +26,16 @@ public class CraftingMenu : MonoBehaviour {
 
         Children.Clear();
 
-        foreach (var r in GetItemsToShow()) {
-            var go = GameObject.Instantiate(ItemPrefab, ParentOfItems.transform);
+        foreach (var r in CT.Recipes) {
+            var go = Instantiate(ItemPrefab, ParentOfItems.transform);
             Children.Add(go);
+            
             var holder = go.GetComponent<IconWithTextController>();
             SetItem(holder, r);
+            
+            if (!r.IsCraftable(CT.Inventory)) {
+                AlphaOfAllChildren.SetAlphaOfAllChildren(go, 1, Color.gray);
+            }
         }
     }
 
@@ -120,23 +66,27 @@ public class CraftingMenu : MonoBehaviour {
         
     }
 
-    public QuickPopUp PopUp;
+    //public QuickPopUp PopUp;
 
     private bool MakeRecipe(CraftingRecipe cr) {
         Item it = CT.Make(cr);
         if (it == null) return false;
         RefreshList();
 
-        string PostText = "";
+        /*
+        string desc = "";
         if (it is Weapon) {
-            PostText = $"\nDAM: {((Weapon) it).RawDamage}";
+            desc = $"\nDAM: {((Weapon) it).GetDescription()}";
         } else if (it is Armor) {
-            PostText = $"\nARM: {((Armor) it).ARMValue}";
+            desc = $"\nARM: {((Armor) it).GetDescription()}";
         } else if (it is Headgear) {
-            PostText = $"\nHP: {((Headgear) it).ExtraHealth}";
-        }
+            desc = $"\nHP: {((Headgear) it).GetDescription()}";
+        }*/
 
-        PopUp.ShowSprite(cr.Result.Item.Image, $"<size=150%>Crafted!</size>\nYou successfully crafted a {it.GetName()}!{PostText}");
+        //PopUp.ShowSprite(cr.Result.Item.Image, $"<size=150%>Crafted!</size>\nYou successfully crafted a {it.GetName()}!{PostText}");
+
+        EquipItemProcessor.Instance.ProcessItem(it, null);
+        
         return true;
     }
 }

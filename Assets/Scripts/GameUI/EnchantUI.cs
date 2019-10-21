@@ -39,6 +39,7 @@ public class EnchantUI : MonoBehaviour {
         EnchantButton.interactable = Enchanter.Item.Item != null;
         Weapon.SetData(w, 1, $"{w.GetName()}\nDAM: {w.DamageAtLevel0}", WeaponViewerClicked);
 		Result.SetData(null, 0, "Result of enchantment goes here.", () => {});
+        ItemViewer.Close();
     }
 
     void EnchantViewerClicked() {
@@ -47,9 +48,9 @@ public class EnchantUI : MonoBehaviour {
 
     void EnchantClicked(Enchanter e) {
         EnchantButton.interactable = Weapon.Item.Item != null;
-        ItemViewer.Close();
         Enchanter.SetData(e, 1, $"{e.GetName()}\n{e.GetDescription()}", EnchantViewerClicked);
 		Result.SetData(null, 0, "Result of enchantment goes here.", () => {});
+        ItemViewer.Close();
     }
 
     public WeaponUI WeaponUI;
@@ -68,5 +69,6 @@ public class EnchantUI : MonoBehaviour {
         Start();
 
         Result.SetData(w, 1, "Enchant Damage: " + w.GetEnchantDamage(), () => { WeaponUI.SetWeaponWithDefaults(w); });
+        EquipItemProcessor.Instance.ProcessItem(w, null);
     }
 }

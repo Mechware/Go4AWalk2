@@ -100,6 +100,8 @@ namespace G4AW2.Combat {
 	    public void StartWalkingAnimation() {
 		    StopAllCoroutines();
 		    MyAnimator.SetTrigger("Walking");
+
+		    
         }
 
 	    public void StopWalking() {
