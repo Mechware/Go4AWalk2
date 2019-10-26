@@ -9,117 +9,76 @@ using G4AW2.Utils;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class SongBuffController : MonoBehaviour {
+public class BaitBuffController : MonoBehaviour {
 
-    public static SongBuffController Instance;
+    public static BaitBuffController Instance;
 
+    [NonSerialized] public List<SingleBaitData> SaveData;
+    
     private void Awake() {
         Instance = this;
     }
 
-    public SongBuffData CurrentBuffs;
     public InstrumentData CurrentInstrument => DataManager.Instance.Player.Instrument;
 
     private void Update() {
 
         double currentTime = RandomUtils.GetTime();
         
-        for(int i = 0; i < CurrentBuffs.Buffs.Count; i++) {
-            var buff = CurrentBuffs.Buffs[i];
+        for(int i = 0; i < SaveData.Count; i++) {
+            var buff = SaveData[i];
 
             if (currentTime > buff.BuffEndTime) {
                 // Buff is done, but want to check if you could spawn any other monsters
                 
                 while (buff.NextSpawnTime < buff.BuffEndTime) {
                     // Pick a monster that you can spawn
-                    var monster = GetDrop(buff.Accuracy, buff.Song, buff.Instrument);
+                    var monster = GetDrop(buff.Bait);
 
                     // Drop it
                     FollowerSpawner.Instance.Drop(monster);
-                    buff.NextSpawnTime += buff.Song.GetSpawnTime(buff.Accuracy);
+                    buff.NextSpawnTime += buff.Bait.GetSpawnTime(buff.Accuracy);
                     
                 }
-                CurrentBuffs.Buffs.RemoveAt(i);
+                SaveData.RemoveAt(i);
                 i--;
                 continue;
             }
             
             if (currentTime > buff.NextSpawnTime) {
                 // Pick a monster that you can spawn
-                var monster = GetDrop(buff.Accuracy, buff.Song, buff.Instrument);
+                var monster = GetDrop(buff.Bait);
 
                 // Check if it is in the list
                 FollowerSpawner.Instance.Drop(monster);   
-                buff.NextSpawnTime += buff.Song.GetSpawnTime(buff.Accuracy);
+                buff.NextSpawnTime += buff.Bait.GetSpawnTime(buff.Accuracy);
             }
         }
     }
 
-    public void OnSongFinish(SongData song, float accuracy) {
-        if (accuracy < 0.01f) return;
-        
-        SingleSongBuffData data = new SingleSongBuffData();
-        data.Instrument = CurrentInstrument;
-        data.Song = song;
-        data.Accuracy = accuracy;
-        if (CurrentInstrument != null) {
-            data.Accuracy += CurrentInstrument.SongAccuracyAdd;
-        }
-        
-        float instrumentBuff = 1;
-        if (CurrentInstrument != null) {
-            instrumentBuff = CurrentInstrument.BoostDurationMultiplier;
-        }
-
-        data.BuffEndTime = RandomUtils.GetTime() + song.BuffDuration * instrumentBuff;
-        data.NextSpawnTime = RandomUtils.GetTime() + song.GetSpawnTime(accuracy) / 2f; // Spawn first one more quickly
-        
-        CurrentBuffs.Buffs.Add(data);
-    }
-
-    public FollowerData GetDrop(float acc, SongData song, InstrumentData instrumentData) {
-        int total = song.DropChances.Where(d => d.MinAccuracy <= acc).Sum(d => d.Chance);
+    public FollowerData GetDrop(Bait bait) {
+        int total = bait.DropChances.Sum(d => d.Chance);
         if (total == 0) return null;
-
-        if (instrumentData != null) {
-            total += (instrumentData.MonsterDropBoost.Where(d => d.MinAccuracy <= acc).Sum(d => d.Chance));
-        }
 
         int roll = Random.Range(1, total + 1);
 
-        foreach (var drop in song.DropChances) {
-            if (drop.MinAccuracy > acc) continue;
+        foreach (var drop in bait.DropChances) {
             roll -= drop.Chance;
             if (roll <= 0) {
                 return drop.Data;
             }
         }
 
-        if (instrumentData != null) {
-            foreach (var drop in instrumentData.MonsterDropBoost) {
-                if (drop.MinAccuracy > acc) continue;
-                roll -= drop.Chance;
-                if (roll <= 0) {
-                    return drop.Data;
-                }
-            }
-        }
-
-        Debug.LogError($"Could not find a drop from song: {name}");
         return null;
     }
 
 }
 
 [Serializable]
-public class SongBuffData {
-    public List<SingleSongBuffData> Buffs;
-}
-[Serializable]
-public class SingleSongBuffData {
+public class SingleBaitData {
     public double BuffEndTime;
     public double NextSpawnTime;
     public float Accuracy;
-    public SongData Song;
+    public Bait Bait;
     public InstrumentData Instrument;
 }

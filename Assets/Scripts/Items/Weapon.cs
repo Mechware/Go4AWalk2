@@ -12,24 +12,37 @@ namespace G4AW2.Data.DropSystem
     [CreateAssetMenu(menuName = "Data/Items/Weapon")]
     public class Weapon : Item, ISaveable, ITrashable {
 
-        public int RawDamage => Mathf.RoundToInt(DamageAtLevel0 * MasteryDamageMod * (1 + Level / 10f) * mod);
+        public int RawDamage => GetDamage();
         public int Mastery => Mathf.FloorToInt( ConfigObject.GetLevel(Rarity, MasteryLevels.GetTaps(ID)));
         public float RawMastery => ConfigObject.GetLevel(Rarity, MasteryLevels.GetTaps(ID));
-        private float MasteryDamageMod => Mastery == 99 ? 2.15f : 1 + Mastery / 100f;
 
         public float DamageAtLevel0;
 
-        public int GetDamage(int? mastery = null, float? damageAtLevel0 = null, int? level = null, float? mod = null) {
-            mastery = mastery ?? Mastery;
-            float masteryMod = mastery.Value == 99 ? 2.15f : 1 + mastery.Value / 100f;
-            damageAtLevel0 = damageAtLevel0 ?? DamageAtLevel0;
-            mod = mod ?? this.mod;
-            level = level ?? Level;
-            int rawDamage = Mathf.RoundToInt(damageAtLevel0.Value * masteryMod * (1 + level.Value / 10f) * mod.Value);
-            return rawDamage;
+        [NonSerialized] public float AdditiveDamage = 0;
+        [NonSerialized] public float DamageMultiple = 1;
+        
+        public int GetDamage(int? mastery = null, float? damageAtLevel0 = null, int? level = null, float? mod = null, float? additiveDamage = null, float? damageMultiple = null) {
+            int imastery = mastery ?? Mastery;
+            float fadditiveDamage = additiveDamage ?? AdditiveDamage;
+            float fdamageMultiple = damageMultiple ?? DamageMultiple;
+            float fdamageAtLevel0 = damageAtLevel0 ?? DamageAtLevel0;
+            float fmod = mod ?? this.mod;
+            float ilevel = level ?? Level;
+            
+            float masteryMod = imastery == 99 ? 2.15f : 1 + imastery / 100f;
+            float baseRawDamage = fdamageAtLevel0 * masteryMod * (1 + ilevel / 10f) * fmod;
+            baseRawDamage = baseRawDamage * fdamageMultiple + fadditiveDamage;
+            return Mathf.RoundToInt(baseRawDamage);
+        }
+
+        public int GetDamage() {
+            float masteryMod = Mastery == 99 ? 2.15f : 1 + Mastery / 100f;
+            float baseRawDamage = DamageAtLevel0 * masteryMod * (1 + Level / 10f) * mod;
+            baseRawDamage = baseRawDamage * DamageMultiple + AdditiveDamage;
+            return Mathf.RoundToInt(baseRawDamage);
         }
         
-        public bool IsEnchanted { get { return Enchantment != null; } }
+        public bool IsEnchanted => Enchantment != null;
         public Enchanter Enchantment { get; private set; }
 
         public GameEventWeapon LevelUp;
