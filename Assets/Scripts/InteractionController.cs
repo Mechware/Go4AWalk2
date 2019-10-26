@@ -198,7 +198,8 @@ public class InteractionController : MonoBehaviour {
         StartCoroutine(_EnemyDeath());
         
         IEnumerator _EnemyDeath() {
-
+            
+            
             Followers.Remove(data);
             AttackArea.SetActive(false);
         

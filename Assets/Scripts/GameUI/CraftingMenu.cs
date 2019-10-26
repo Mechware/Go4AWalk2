@@ -86,7 +86,8 @@ public class CraftingMenu : MonoBehaviour {
         //PopUp.ShowSprite(cr.Result.Item.Image, $"<size=150%>Crafted!</size>\nYou successfully crafted a {it.GetName()}!{PostText}");
 
         EquipItemProcessor.Instance.ProcessItem(it, null);
-        
+        RefreshList();
+
         return true;
     }
 }

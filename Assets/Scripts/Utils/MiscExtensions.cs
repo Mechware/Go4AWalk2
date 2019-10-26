@@ -61,4 +61,9 @@ public static class MiscExtensions {
             func(i);
         }
     }
+
+    public static Color SetA(this Color c, float alpha) {
+        c.a = alpha;
+        return c;
+    }
 }

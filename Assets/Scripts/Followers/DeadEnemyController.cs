@@ -51,12 +51,21 @@ public class DeadEnemyController : MonoBehaviour {
     IEnumerator ScrollOff(GameObject go) {
 
         RectTransform rt = go.GetComponent<RectTransform>();
-
+        Image im = go.GetComponent<Image>();
+        float grayness = 1f;
+        im.color = new Color(grayness, grayness, grayness, 1);
+        
         while(rt.anchoredPosition.x > EndingPosition) {
+            if (grayness > 0.6f) {
+                im.color = new Color(grayness, grayness, grayness, 1);
+                grayness -= 0.8f * Time.deltaTime;
+            }
+            
             if(Scrolling) {
                 Vector3 pos = rt.anchoredPosition;
                 pos.x -= ScrollSpeed * Time.deltaTime;
                 rt.anchoredPosition = pos;
+                
             }
             yield return null;
         }

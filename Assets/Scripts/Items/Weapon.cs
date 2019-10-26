@@ -66,7 +66,8 @@ namespace G4AW2.Data.DropSystem
             MasteryLevels.Tap(ID);
 
             if (Mastery != lastLevel) {
-                LevelUp.Raise(this);
+                
+                MainUI.Instance.MasteryPopUp($"Mastery Level {Mastery}");
                 DataChanged?.Invoke();
                 lastLevel = Mastery;
             }
