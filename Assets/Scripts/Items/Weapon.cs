@@ -20,27 +20,20 @@ namespace G4AW2.Data.DropSystem
 
         public float DamageAtLevel0;
 
-        [NonSerialized] public float AdditiveDamage = 0;
-        [NonSerialized] public float DamageMultiple = 1;
-        
         public int GetDamage(int? mastery = null, float? damageAtLevel0 = null, int? level = null, float? mod = null, float? additiveDamage = null, float? damageMultiple = null) {
             int imastery = mastery ?? Mastery;
-            float fadditiveDamage = additiveDamage ?? AdditiveDamage;
-            float fdamageMultiple = damageMultiple ?? DamageMultiple;
             float fdamageAtLevel0 = damageAtLevel0 ?? DamageAtLevel0;
             float fmod = mod ?? this.mod;
             float ilevel = level ?? Level;
             
             float masteryMod = imastery == 99 ? 2.15f : 1 + imastery / 100f;
             float baseRawDamage = fdamageAtLevel0 * masteryMod * (1 + ilevel / 10f) * fmod;
-            baseRawDamage = baseRawDamage * fdamageMultiple + fadditiveDamage;
             return Mathf.RoundToInt(baseRawDamage);
         }
 
         public int GetDamage() {
             float masteryMod = Mastery == 99 ? 2.15f : 1 + Mastery / 100f;
             float baseRawDamage = DamageAtLevel0 * masteryMod * (1 + Level / 10f) * mod;
-            baseRawDamage = baseRawDamage * DamageMultiple + AdditiveDamage;
             return Mathf.RoundToInt(baseRawDamage);
         }
         

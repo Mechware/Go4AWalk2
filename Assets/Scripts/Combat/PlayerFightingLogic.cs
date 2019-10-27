@@ -70,9 +70,9 @@ public class PlayerFightingLogic : MonoBehaviour {
 	public void PlayerAttemptToHitEnemy() {
         if(AbleToAttack)
         {
-            PlayerAnimations.Instance.SetAttackSpeed(Player.Weapon.Value.TapSpeed);
+            PlayerAnimations.Instance.SetAttackSpeed(Player.GetAttackSpeed());
 
-            NextAttackTime = Time.time + 1f / Player.Weapon.Value.TapSpeed;
+            NextAttackTime = Time.time + 1f / Player.GetAttackSpeed();
 
             PlayerAnimations.Instance.Attack();
 

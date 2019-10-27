@@ -42,6 +42,8 @@ namespace G4AW2.Combat {
             MaxHealth.Value += Headgear.Value.ExtraHealth;
         }
 
+
+
         public void DamagePlayer(int damage)
         {
             if (damage >= Health) {
@@ -63,16 +65,26 @@ namespace G4AW2.Combat {
 	        PopUp.SetPopUp($"You died! You lost: {oldAmount - newAmount} gold.", new string[] {"Ok"}, new Action[] {() => { }});
 	    }
 
-		public int GetLightDamage() {
-            return Weapon.Value.RawDamage;
+        [NonSerialized] public float DamageMultiplier = 1f;
+        [NonSerialized] public float DamageAdditive = 0f;
+
+        [NonSerialized] public float SpeedMultiplier = 1f;
+        [NonSerialized] public float SpeedAdditive = 0f;
+
+        public int GetLightDamage() {
+            return Mathf.RoundToInt(Weapon.Value.RawDamage * DamageMultiplier + DamageAdditive);
 		}
 
 	    public int GetElementalDamage() {
 	        return Weapon.Value.GetEnchantDamage();
 	    }
 
+        public float GetAttackSpeed() {
+            return Weapon.Value.TapSpeed * SpeedMultiplier + SpeedAdditive;
+        }
+
 #if UNITY_EDITOR
-		[ContextMenu("Restore Health")]
+        [ContextMenu("Restore Health")]
 		private void ResetHealth() {
 			Health.Value = MaxHealth;
 		}

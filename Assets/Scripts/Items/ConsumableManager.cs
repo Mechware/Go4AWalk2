@@ -49,6 +49,7 @@ namespace Items {
             }
 
             if (c.Type == Consumable.ConsumableType.Speed) {
+                UseSpeedPotion(c);
                 return true;
             }
             
@@ -87,7 +88,7 @@ namespace Items {
 
         public void UseDamagePotion(Consumable c) {
             var player = DataManager.Instance.Player;
-            player.Weapon.Value.DamageMultiple *= c.Affect;
+            player.DamageMultiplier *= c.Affect;
             SaveData.Add(new ConsumableSaveData {
                 EndTime = RandomUtils.GetTime() + c.Duration,
                 Id = c.ID
@@ -96,10 +97,20 @@ namespace Items {
 
         public void FinishDamagePotion(Consumable c) {
             var player = DataManager.Instance.Player;
-            player.Weapon.Value.DamageMultiple /= c.Affect;
+            player.DamageMultiplier /= c.Affect;
         }
         
-        public void FinishSpeed(Consumable c) { }
+        public void UseSpeedPotion(Consumable c) {
+            DataManager.Instance.Player.SpeedMultiplier *= c.Affect;
+            SaveData.Add(new ConsumableSaveData {
+                EndTime = RandomUtils.GetTime() + c.Duration,
+                Id = c.ID
+            });
+        }
+
+        public void FinishSpeed(Consumable c) {
+            DataManager.Instance.Player.SpeedMultiplier /= c.Affect;
+        }
         
     }
 

@@ -20,8 +20,9 @@ public class ConsumableUi : MonoBehaviour
 
     public void Refresh()
     {
-        while(RegularConsumableParent.childCount > 0)
-            Destroy(RegularConsumableParent.GetChild(0));
+        int child = 0;
+        while(child < RegularConsumableParent.childCount)
+            Destroy(RegularConsumableParent.GetChild(child++).gameObject);
 
         foreach(var data in ConsumableManager.Instance.SaveData) {
             var it = Instantiate(RegularConsumablePrefab, RegularConsumableParent);
