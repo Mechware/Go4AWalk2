@@ -83,8 +83,19 @@ public class EquipItemProcessor : MonoBehaviour {
         } 
 
         if(it is Consumable c) {
-            ConsumableManager.Instance.UseConsumable(c);
-            Inventory.Remove(c);
+            PopUp.SetPopUp($"{c.GetName()}\n{it.GetDescription()}\nDuration:{c.Duration}", new string[] { "Use", "Close" }, new Action[] {
+                () => {
+                    if(ConsumableManager.Instance.UseConsumable(c)) {
+                        ConsumableUi.Instance.Refresh();
+                    }
+                    Inventory.Remove(c);
+                    onDone?.Invoke();
+                },
+                () => {
+                    onDone?.Invoke();
+                }
+            });
+            return true;
         }
         
         onDone?.Invoke();

@@ -66,4 +66,12 @@ public static class MiscExtensions {
         c.a = alpha;
         return c;
     }
+
+    public static GameObject GetChild(this GameObject t, string childName) {
+        foreach(Transform child in t.transform) {
+            if(child.name == childName)
+                return child.gameObject;
+        }
+        return null;
+    }
 }

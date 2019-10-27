@@ -49,6 +49,7 @@ public class BaitBuffController : MonoBehaviour {
                 }
                 SaveData.RemoveAt(i);
                 i--;
+                ConsumableUi.Instance.Refresh();
                 continue;
             }
             

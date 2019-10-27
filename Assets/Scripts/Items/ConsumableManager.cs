@@ -8,7 +8,7 @@ namespace Items {
     public class ConsumableManager : MonoBehaviour {
     
         [NonSerialized] public List<ConsumableSaveData> SaveData = new List<ConsumableSaveData>();
-        [NonSerialized] public static ConsumableManager Instance;
+        public static ConsumableManager Instance;
 
 
         private void Awake() {
@@ -22,8 +22,9 @@ namespace Items {
                     UseConsumable((Consumable) DataManager.Instance.AllItems.First(it => it.ID == consumeable.Id));
                 }
             }
+            ConsumableUi.Instance.Refresh();
         }
-        
+
         public void Update() {
             for (int index = 0; index < SaveData.Count; index++) {
                 var consumeable = SaveData[index];
@@ -31,6 +32,7 @@ namespace Items {
                     SaveData.RemoveAt(index);
                     index--;
                     FinishConsumable((Consumable) DataManager.Instance.AllItems.First(it => it.ID == consumeable.Id));
+                    ConsumableUi.Instance.Refresh();
                 }
             }
         }
@@ -38,7 +40,7 @@ namespace Items {
         public bool UseConsumable(Consumable c) {
             if (c.Type == Consumable.ConsumableType.Health) {
                 UseHealthPotion(c);
-                return true;
+                return false;
             }
 
             if (c.Type == Consumable.ConsumableType.Damage) {
@@ -47,7 +49,7 @@ namespace Items {
             }
 
             if (c.Type == Consumable.ConsumableType.Speed) {
-                return false;
+                return true;
             }
             
             if (c.Type == Consumable.ConsumableType.Bait) {
