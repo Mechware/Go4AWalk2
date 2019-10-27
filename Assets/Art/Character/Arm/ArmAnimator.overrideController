@@ -4,17 +4,18 @@
 AnimatorOverrideController:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: ArmAnimator
   m_Controller: {fileID: 9100000, guid: 74c22cd1c804f184aa9223155999d63b, type: 2}
   m_Clips:
-  - m_OriginalClip: {fileID: 7400000, guid: ad2173d52cf5b944ea849be61b1d3493, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: d746c3b0e143e3c4cb8b94fb0641d12c, type: 2}
-  - m_OriginalClip: {fileID: 7400000, guid: 8f1a53a22f429a84783d959006a7c9b2, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: 6aaec8c1d7e59fe439db8fee9284ee34, type: 2}
-  - m_OriginalClip: {fileID: 7400000, guid: 4638e8188514d1349ac75a13994fbc11, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: c2715e81a6a14364db9c5380350dbc38, type: 2}
-  - m_OriginalClip: {fileID: 7400000, guid: 23428d93d61f8b341a701eaca8d836a3, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: 1f775024e35f94b47ba2f00e1c842e18, type: 2}
-  - m_OriginalClip: {fileID: 7400000, guid: b646a08433812bf4bb564b8fcf555155, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: 377cda27fecf31149a0446995e398424, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 0ef1bee80dcbf174b97d825fd6c9ab99, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: b90f2526b47091e48be649d9b86d2340, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 28acd8e1a2456f54a996a91085895436, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 6142f075cd092c840a7b09d719e5edc6, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 393424274bc790f41a0c5e4fe0915ca3, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: a0c9750758466b344bfeb159de389d74, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 7352585a9e6602c40972399b83f1c61c, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 4f98fdabb3e39ea47b34b5d6d994d65f, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: aa74eda345f57c64a977c61638890a03, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: e985d502c27b13a48b697634bb1abb16, type: 2}

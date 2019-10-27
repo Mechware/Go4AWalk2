@@ -4,7 +4,8 @@
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -12,7 +13,7 @@ MonoBehaviour:
   m_Name: PlayerHat
   m_EditorClassIdentifier: 
   DeveloperDescription: 
-  InitialValue: {fileID: 11400000, guid: 212b5a7b5274ba54eafbf973b21ed3f8, type: 2}
+  InitialValue: {fileID: 11400000, guid: dcad32ca3f8515641b6dcbb27b130edf, type: 2}
   OnChange:
     m_PersistentCalls:
       m_Calls:
@@ -27,6 +28,4 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: CustomEvents.UnityEventHeadgear, Assembly-CSharp, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  _value: {fileID: 0}
+  _value: {fileID: 11400000, guid: dcad32ca3f8515641b6dcbb27b130edf, type: 2}

@@ -4,7 +4,8 @@
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -12,7 +13,7 @@ MonoBehaviour:
   m_Name: PlayerWeapon
   m_EditorClassIdentifier: 
   DeveloperDescription: 
-  InitialValue: {fileID: 11400000, guid: 37922c7fca4096e48a04b7094a8a3449, type: 2}
+  InitialValue: {fileID: 11400000, guid: 4175e8c690e58f944b474453684e36aa, type: 2}
   OnChange:
     m_PersistentCalls:
       m_Calls:
@@ -27,6 +28,4 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: CustomEvents.UnityEventWeapon, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
-  _value: {fileID: 0}
+  _value: {fileID: 11400000, guid: 4175e8c690e58f944b474453684e36aa, type: 2}

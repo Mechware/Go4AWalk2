@@ -4,7 +4,18 @@
 AnimatorOverrideController:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: Headgear
   m_Controller: {fileID: 9100000, guid: 74c22cd1c804f184aa9223155999d63b, type: 2}
-  m_Clips: []
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 28acd8e1a2456f54a996a91085895436, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: d5a7cf3cf4489c540a87c935bfb4003b, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 393424274bc790f41a0c5e4fe0915ca3, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 0bc41a574d860d647a94d513c84de5fe, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: aa74eda345f57c64a977c61638890a03, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: dc4958b576bf37b418d9aa66fb6b62a8, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 7352585a9e6602c40972399b83f1c61c, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 4e050699437d77542b47f2a7445b1a50, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 0ef1bee80dcbf174b97d825fd6c9ab99, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 47a78c22a80f8e043b11b206c6fca9b4, type: 2}
