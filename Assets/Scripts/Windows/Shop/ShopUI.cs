@@ -182,12 +182,13 @@ public class ShopUI : MonoBehaviour {
 
         int price = GetSellingPrice(it.Item);
 
-        string amountLeft = it.Amount > 1 ? $"Amount Left: {it.Amount}\n" : "";
+        if(it.Amount > 1) {
+            string amountLeft = it.Amount > 1 ? $"Amount Left: {it.Amount}\n" : "";
 
-        string title = string.Format($"Would you like to sell a {it.Item.GetName()} for {price} gold?\n{amountLeft}\n{it.Item.GetDescription()}");
+            string title = string.Format($"Would you like to sell a {it.Item.GetName()} for {price} gold?\n{amountLeft}\n{it.Item.GetDescription()}");
 
-        PopUp.SetPopUp(title, new string[] { "Sell All", "Sell 1", "No" },
-            new Action[] {
+            PopUp.SetPopUp(title, new string[] { "Sell All", "Sell 1", "No" },
+                new Action[] {
                 () => {
                     while (it.Amount > 0) {
                         GoldAmount.Value += price;
@@ -204,9 +205,25 @@ public class ShopUI : MonoBehaviour {
                     RefreshSellingList();
                 },
                 () => {
-                    RefreshSellingList();
                 }
-            });
+           });
+        } else {
+            string title = string.Format($"Confirm sale of {it.Item.GetName()} for {price} gold?\n{it.Item.GetDescription()}");
+
+            PopUp.SetPopUp(title, new string[] { "Sell", "Cancel" },
+               new Action[] {
+                () => {
+                    GoldAmount.Value += price;
+                    Inventory.Remove(it.Item, 1);
+                    RefreshSellingList();
+                },
+                () => {
+                    
+                },
+          });
+        }
+
+        
     }
 
     #endregion
