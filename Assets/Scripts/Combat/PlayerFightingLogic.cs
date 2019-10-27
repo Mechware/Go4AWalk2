@@ -26,8 +26,9 @@ public class PlayerFightingLogic : MonoBehaviour {
     public DamageNumberSpawner PlayerDamageNumberSpawner;
     public Color DamageColor;
 
-    private bool AbleToAttack => BlockState == Armor.BlockState.None;
+    private bool AbleToAttack => BlockState == Armor.BlockState.None && Time.time > NextAttackTime;
     private Armor.BlockState BlockState = Armor.BlockState.None;
+    private float NextAttackTime = 0;
 
     private void Awake() {
         Instance = this;
@@ -69,6 +70,10 @@ public class PlayerFightingLogic : MonoBehaviour {
 	public void PlayerAttemptToHitEnemy() {
         if(AbleToAttack)
         {
+            PlayerAnimations.Instance.SetAttackSpeed(Player.Weapon.Value.TapSpeed);
+
+            NextAttackTime = Time.time + 1f / Player.Weapon.Value.TapSpeed;
+
             PlayerAnimations.Instance.Attack();
 
             float damageMultipler = EnemyDisplay.EnemyState == EnemyDisplay.State.Stun ? StunnedDamageMultiplier : 1;

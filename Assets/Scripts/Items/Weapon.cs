@@ -12,6 +12,8 @@ namespace G4AW2.Data.DropSystem
     [CreateAssetMenu(menuName = "Data/Items/Weapon")]
     public class Weapon : Item, ISaveable, ITrashable {
 
+        public float TapSpeed = 2f;
+
         public int RawDamage => GetDamage();
         public int Mastery => Mathf.FloorToInt( ConfigObject.GetLevel(Rarity, MasteryLevels.GetTaps(ID)));
         public float RawMastery => ConfigObject.GetLevel(Rarity, MasteryLevels.GetTaps(ID));
