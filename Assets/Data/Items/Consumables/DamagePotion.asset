@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1b0a6844e1a33624fae58cf2391391fc, type: 3}
-  m_Name: HealthPotion
+  m_Name: DamagePotion
   m_EditorClassIdentifier: 
-  ID: 5
-  Name: Health Potion
+  ID: 87
+  Name: Damage Potion
   Image: {fileID: 21300000, guid: 09f935aaee218424c912860a0651b6c4, type: 3}
   Value: 10
-  Description: Heals you
+  Description: Gives yah a damage boost
   Rarity: 0
   SellWithTrash: 0
-  Duration: 0
-  Affect: 500
-  Type: 0
+  Duration: 60
+  Affect: 2
+  Type: 1

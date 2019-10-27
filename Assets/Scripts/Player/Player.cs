@@ -21,7 +21,6 @@ namespace G4AW2.Combat {
         public WeaponReference Weapon;
         public ArmorReference Armor;
         public HeadgearReference Headgear;
-        public InstrumentDataReference Instrument;
         
 		public void OnEnable() {
             Headgear.Variable.BeforeChange += UnequipHeadgear;

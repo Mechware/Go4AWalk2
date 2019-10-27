@@ -8,6 +8,12 @@ namespace Items {
     public class ConsumableManager : MonoBehaviour {
     
         [NonSerialized] public List<ConsumableSaveData> SaveData = new List<ConsumableSaveData>();
+        [NonSerialized] public static ConsumableManager Instance;
+
+
+        private void Awake() {
+            Instance = this;
+        }
 
         public void OnLoad() {
             for (int index = 0; index < SaveData.Count; index++) {
@@ -22,8 +28,8 @@ namespace Items {
             for (int index = 0; index < SaveData.Count; index++) {
                 var consumeable = SaveData[index];
                 if (RandomUtils.GetTime() > consumeable.EndTime) {
-                    index--;
                     SaveData.RemoveAt(index);
+                    index--;
                     FinishConsumable((Consumable) DataManager.Instance.AllItems.First(it => it.ID == consumeable.Id));
                 }
             }
@@ -45,7 +51,8 @@ namespace Items {
             }
             
             if (c.Type == Consumable.ConsumableType.Bait) {
-                return false;
+                BaitBuffController.Instance.StartBuff((Bait) c);
+                return true;
             }
 
             return false;
@@ -63,11 +70,11 @@ namespace Items {
             }
 
             if (c.Type == Consumable.ConsumableType.Bait) {
-                //?
+                // Do nothing because bait controller handles this
             }
 
             if (c.Type == Consumable.ConsumableType.Speed) {
-                
+                FinishSpeed(c);
             }
         }
     
@@ -91,8 +98,6 @@ namespace Items {
         }
         
         public void FinishSpeed(Consumable c) { }
-        
-        public void FinishBait(Consumable c){ }
         
     }
 

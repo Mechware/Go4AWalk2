@@ -13,13 +13,19 @@ public class BaitBuffController : MonoBehaviour {
 
     public static BaitBuffController Instance;
 
-    [NonSerialized] public List<SingleBaitData> SaveData;
+    [NonSerialized] public List<SingleBaitData> SaveData = new List<SingleBaitData>();
     
     private void Awake() {
         Instance = this;
     }
 
-    public InstrumentData CurrentInstrument => DataManager.Instance.Player.Instrument;
+    public void StartBuff(Bait buff) {
+        SingleBaitData data = new SingleBaitData();
+        data.BaitId = buff.ID;
+        data.BuffEndTime = RandomUtils.GetTime() + buff.Duration;
+        data.NextSpawnTime = RandomUtils.GetTime() + buff.MinDropTime;
+        SaveData.Add(data);
+    }
 
     private void Update() {
 
@@ -33,11 +39,12 @@ public class BaitBuffController : MonoBehaviour {
                 
                 while (buff.NextSpawnTime < buff.BuffEndTime) {
                     // Pick a monster that you can spawn
-                    var monster = GetDrop(buff.Bait);
+                    var bait = (Bait) DataManager.Instance.AllItems.First(it => it.ID == buff.BaitId);
+                    var monster = GetDrop(bait);
 
                     // Drop it
                     FollowerSpawner.Instance.Drop(monster);
-                    buff.NextSpawnTime += buff.Bait.GetSpawnTime(buff.Accuracy);
+                    buff.NextSpawnTime += bait.GetSpawnTime();
                     
                 }
                 SaveData.RemoveAt(i);
@@ -47,11 +54,12 @@ public class BaitBuffController : MonoBehaviour {
             
             if (currentTime > buff.NextSpawnTime) {
                 // Pick a monster that you can spawn
-                var monster = GetDrop(buff.Bait);
+                var bait = (Bait) DataManager.Instance.AllItems.First(it => it.ID == buff.BaitId);
+                var monster = GetDrop(bait);
 
                 // Check if it is in the list
                 FollowerSpawner.Instance.Drop(monster);   
-                buff.NextSpawnTime += buff.Bait.GetSpawnTime(buff.Accuracy);
+                buff.NextSpawnTime += bait.GetSpawnTime();
             }
         }
     }
@@ -78,7 +86,5 @@ public class BaitBuffController : MonoBehaviour {
 public class SingleBaitData {
     public double BuffEndTime;
     public double NextSpawnTime;
-    public float Accuracy;
-    public Bait Bait;
-    public InstrumentData Instrument;
+    public int BaitId;
 }
