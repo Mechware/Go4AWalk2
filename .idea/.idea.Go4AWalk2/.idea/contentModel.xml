@@ -299,7 +299,9 @@
           </e>
           <e p="Items" t="Include">
             <e p="Armor.cs" t="Include" />
+            <e p="Bait.cs" t="Include" />
             <e p="Consumable.cs" t="Include" />
+            <e p="ConsumableManager.cs" t="Include" />
             <e p="CraftingRecipe.cs" t="Include" />
             <e p="Enchanter.cs" t="Include" />
             <e p="Headgear.cs" t="Include" />
@@ -314,7 +316,6 @@
             <e p="ITrashable.cs" t="Include" />
             <e p="Material.cs" t="Include" />
             <e p="ModRoll.cs" t="Include" />
-            <e p="QuickItem.cs" t="Include" />
             <e p="Weapon.cs" t="Include" />
           </e>
           <e p="MasteryLevels.cs" t="Include" />

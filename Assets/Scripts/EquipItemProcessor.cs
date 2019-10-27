@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using G4AW2.Combat;
 using G4AW2.Data.DropSystem;
 using G4AW2.Dialogue;
+using Items;
 using UnityEditor;
 using UnityEngine;
 
@@ -80,14 +81,14 @@ public class EquipItemProcessor : MonoBehaviour {
             return true;
 
         } 
-        
-        if (it is InstrumentData i) {
-            PopUp.SetPopUp($"{it.GetName()}\n{it.GetDescription()}", new string[] {"Equip", "Cancel"}, new Action[] {
+
+        if(it is Consumable c) {
+            PopUp.SetPopUp($"{c.GetName()}\n{it.GetDescription()}\nDuration:{c.Duration}", new string[] { "Use", "Close" }, new Action[] {
                 () => {
-                    if(Player.Instrument.Value != null)
-                        Inventory.Add(Player.Instrument.Value);
-                    Player.Instrument.Value = i;
-                    Inventory.Remove(i);
+                    if(ConsumableManager.Instance.UseConsumable(c)) {
+                        ConsumableUi.Instance.Refresh();
+                    }
+                    Inventory.Remove(c);
                     onDone?.Invoke();
                 },
                 () => {

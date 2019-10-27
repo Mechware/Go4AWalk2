@@ -44,10 +44,3 @@ public class SongData : ScriptableObject {
 public class NoteData {
 	public float AppearTime;
 }
-
-[Serializable]
-public class Drop {
-	public FollowerData Data;
-	public float MinAccuracy;
-	public int Chance;
-}

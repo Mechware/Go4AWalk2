@@ -22,7 +22,8 @@ namespace G4AW2.Data.DropSystem {
         private float mod = 1;
         private string nameMod;
 
-        
+
+        private float BadParryMod = 0.5f;
         private float NoBlockModifierWithMod => Mathf.Max(1 - ARMValue / 100, 0);
         private float PerfectBlockModifierWithMod => (-1*(ARMValue/25)); // blocking heals
         private float MistimedBlockModifierWithMod => (-1*(ARMValue/50)); // blocking heals
@@ -43,7 +44,7 @@ namespace G4AW2.Data.DropSystem {
             }
 
             if(state == BlockState.BadParry) {
-                return fdamage;
+                return fdamage * BadParryMod * NoBlockModifierWithMod;
             }
 
             return fdamage * NoBlockModifierWithMod;

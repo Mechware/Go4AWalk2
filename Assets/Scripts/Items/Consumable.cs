@@ -7,6 +7,15 @@ using UnityEngine.Events;
 [CreateAssetMenu(menuName ="Data/Items/Consumable")]
 public class Consumable : Item {
 
-    public UnityEvent OnUse;
-
+    public enum ConsumableType {
+        Health,
+        Damage,
+        Speed,
+        Bait,
+        
+    }
+    
+    public float Duration;
+    public float Affect;
+    public ConsumableType Type;
 }

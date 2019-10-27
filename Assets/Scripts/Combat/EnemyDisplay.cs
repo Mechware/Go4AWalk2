@@ -6,6 +6,7 @@ using System.Linq;
 using CustomEvents;
 using G4AW2.Data.DropSystem;
 using G4AW2.Events;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -23,6 +24,7 @@ namespace G4AW2.Combat {
         [Header("Misc References")]
 	    public DamageNumberSpawner RegularDamageNumberSpawner;
 	    public DamageNumberSpawner ElementalDamageNumberSpawner;
+	    public TextMeshProUGUI EnemyInfo;
 	    
         [Header("Settings")]
         public FloatReference StunDuration;
@@ -95,6 +97,8 @@ namespace G4AW2.Combat {
 		    RectTransform.sizeDelta = r;
 
 		    Image.color = Color.white;
+
+		    EnemyInfo.text = $"{data.DisplayName}\nLevel {data.Level}";
 		}
 
 	    public void StartWalkingAnimation() {

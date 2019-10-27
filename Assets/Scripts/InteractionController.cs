@@ -13,6 +13,8 @@ public class InteractionController : MonoBehaviour {
 
     public static InteractionController Instance;
 
+    public bool Fighting = false;
+
     public DragObject World;
     public ScrollingImages BackgroundImages;
 
@@ -54,6 +56,7 @@ public class InteractionController : MonoBehaviour {
         StartCoroutine(_StartBossFight());
 
         IEnumerator _StartBossFight() {
+            Fighting = true;
             PlayerClickController.Instance.SetEnabled(false);
             DeadEnemyController.Instance.ClearEnemies();
             QuickPopUp.QuickPopUpAllowed = false;
@@ -198,7 +201,8 @@ public class InteractionController : MonoBehaviour {
         StartCoroutine(_EnemyDeath());
         
         IEnumerator _EnemyDeath() {
-
+            
+            
             Followers.Remove(data);
             AttackArea.SetActive(false);
         
@@ -279,8 +283,8 @@ public class InteractionController : MonoBehaviour {
                 if (CurrentQuest.Value is BossQuest quest && quest.Enemy.ID == data.ID) {
                     quest.Finish();
                 }
-                
-                
+
+                Fighting = false;
             });
         }
     }
@@ -299,6 +303,8 @@ public class InteractionController : MonoBehaviour {
         
         //Lerp
         DeathCover.StartLerping(() => {
+            Fighting = false;
+
             // Set battle ui to inactive
             BattleUi.gameObject.SetActive(false);
             // Set windows to active (?)

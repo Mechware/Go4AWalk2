@@ -6,9 +6,11 @@ using TMPro;
 using UnityEngine;
 
 public class MainUI : MonoBehaviour {
+
+    public static MainUI Instance;
+    
     public RectTransform MasteryFill;
-    public TextMeshProUGUI MasteryBeginText;
-    public TextMeshProUGUI MasteryEndText;
+    public TextMeshProUGUI MasteryText;
 
     public ItemViewer ItemViewer;
     public WeaponUI WeaponViewer;
@@ -18,6 +20,7 @@ public class MainUI : MonoBehaviour {
     public InventoryItemDisplay Headgear;
     
     void Awake() {
+        Instance = this;
         ItemViewer.Init();
         WeaponViewer.Init();
     }
@@ -34,17 +37,15 @@ public class MainUI : MonoBehaviour {
         
         float currentDamage = weapon.RawDamage;
         
+        MasteryText.text = $"Weapon Mastery {weapon.Mastery}";
+        
         if(weapon.Mastery == 99) {
             MasteryFill.anchorMax = MasteryFill.anchorMax.SetX(1);
-            MasteryBeginText.text = $"{weapon.Mastery} ({currentDamage})";
-            MasteryEndText.text = $"";
         }
         else {
             float masteryProgress = weapon.RawMastery - Mathf.Floor(weapon.RawMastery);
             float nextLevelDamage = weapon.GetDamage(mastery: weapon.Mastery+1);
             MasteryFill.anchorMax = MasteryFill.anchorMax.SetX(masteryProgress);
-            MasteryBeginText.text = $"{weapon.Mastery} ({currentDamage})";
-            MasteryEndText.text = $"{weapon.Mastery+1} ({nextLevelDamage})";
         }
         
         Weapon.SetData(DataManager.Instance.Player.Weapon.Value, 0, ChangeWeapon, null, true);
@@ -62,5 +63,12 @@ public class MainUI : MonoBehaviour {
     
     public void ChangeHeadgear(InventoryItemDisplay it) {
         PlayerClickController.ChangePlayerHeadgear();
+    }
+
+    public RobustLerper MasteryPopUpLerp;
+    public TextMeshProUGUI MasteryPopUpText;
+    public void MasteryPopUp(string popUp) {
+        MasteryPopUpText.text = popUp;
+        MasteryPopUpLerp.StartLerping();
     }
 }

@@ -4,7 +4,8 @@
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -25,12 +26,10 @@ MonoBehaviour:
     Speaker: {fileID: 21300000, guid: c27605eebf83392428128ddf89b5bd1f, type: 3}
   MinEnemyDropTime: 999999
   MaxEnemyDropTime: 9999999
-  MinEnemyDropDistance: 999999
-  MaxEnemyDropDistance: 9999999
   Area: {fileID: 11400000, guid: de6df770e5018c44db6db97474277957, type: 2}
   MiningPoints:
-  - MinDistanceBetween: 100
-    MaxDistanceBetween: 2000
+  - MinDistanceBetween: 54
+    MaxDistanceBetween: 70
     Image: {fileID: 21300000, guid: 2521e10b9b3e294408f50f3827d7a705, type: 3}
     Drops:
       Items:

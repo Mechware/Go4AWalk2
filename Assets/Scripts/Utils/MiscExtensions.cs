@@ -61,4 +61,17 @@ public static class MiscExtensions {
             func(i);
         }
     }
+
+    public static Color SetA(this Color c, float alpha) {
+        c.a = alpha;
+        return c;
+    }
+
+    public static GameObject GetChild(this GameObject t, string childName) {
+        foreach(Transform child in t.transform) {
+            if(child.name == childName)
+                return child.gameObject;
+        }
+        return null;
+    }
 }

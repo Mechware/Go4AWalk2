@@ -107,4 +107,12 @@ public class PlayerAnimations : MonoBehaviour {
         armourAnimator.ResetTrigger("Attack");
         weaponAnimator.ResetTrigger("Attack");
     }
+
+    public void SetAttackSpeed(float tapsPerSecond) {
+        float speed = tapsPerSecond / 2;
+        animator.SetFloat("AttackSpeed", speed);
+        armAnimator.SetFloat("AttackSpeed", speed);
+        armourAnimator.SetFloat("AttackSpeed", speed);
+        weaponAnimator.SetFloat("AttackSpeed", speed);
+    }
 }
