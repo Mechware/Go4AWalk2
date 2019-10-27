@@ -12033,7 +12033,7 @@ RectTransform:
   - {fileID: 584992440}
   - {fileID: 686834990}
   m_Father: {fileID: 1324188855}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
@@ -22696,7 +22696,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1324188855}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -24533,8 +24533,8 @@ RectTransform:
   m_Children:
   - {fileID: 1792501019}
   - {fileID: 2094348962}
-  - {fileID: 1201876787}
   - {fileID: 581060206}
+  - {fileID: 1201876787}
   - {fileID: 794008228}
   - {fileID: 1497022281}
   m_Father: {fileID: 951186433}
@@ -40334,6 +40334,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45b0683316596984eacf1327e5c264ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Fighting: 0
   World: {fileID: 1324188856}
   BackgroundImages: {fileID: 2094348963}
   CurrentQuest: {fileID: 11400000, guid: 6e098017cb676d546bac9971eb358a4a, type: 2}

@@ -86,6 +86,10 @@ public class MiningPoints : MonoBehaviour {
     void AddListener(ClickReceiver cr, MiningPoint point) {
         cr.MouseClick2D.RemoveAllListeners();
         cr.MouseClick2D.AddListener((v) => {
+
+            if(InteractionController.Instance.Fighting)
+                return;
+
             var items = point.Drops.GetItems(false);
             string itemText = "";
             foreach (var item in items) {
