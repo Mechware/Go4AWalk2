@@ -11665,7 +11665,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -12, y: 0}
+  m_AnchoredPosition: {x: -11, y: 0}
   m_SizeDelta: {x: 24, y: 24}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &552008587
@@ -16529,7 +16529,7 @@ MonoBehaviour:
     UseConstant: 0
     ConstantValue: 0
     Variable: {fileID: 11400000, guid: 2bae27228b26b7f41baf61a9ed0ff0ea, type: 2}
-  ScrollSpeed: 5
+  ScrollSpeed: 10
   EndingPosition: -527
   DeadEnemyPrefab: {fileID: 1285678961603886, guid: ca49dedaaeffb1347bdc96ae6fb1272f,
     type: 3}
@@ -18698,7 +18698,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3a76271245399764e9b60c5d9e8f2b10, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a418b25b5b25aa44dae4805800913f53, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -22874,7 +22874,7 @@ MonoBehaviour:
   Parent: {fileID: 1201876787}
   ScrollSpeed:
     UseConstant: 1
-    ConstantValue: 5
+    ConstantValue: 10
     Variable: {fileID: 0}
   IsScrolling:
     UseConstant: 0
@@ -39246,7 +39246,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.9999714, y: 3.0000534}
+  m_AnchoredPosition: {x: -2, y: -16}
   m_SizeDelta: {x: 24, y: 24}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1933517927
@@ -42195,7 +42195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fdd21c31cd64004a8b474989568c3e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ScrollSpeed: 5
+  ScrollSpeed: 10
   ImagePrefab: {fileID: 114641620729033318, guid: 4b6f38bf42e27444c806521343e93e5b,
     type: 3}
   NumberRepeats: 6

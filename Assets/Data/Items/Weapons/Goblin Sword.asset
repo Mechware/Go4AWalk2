@@ -19,6 +19,6 @@ MonoBehaviour:
   Description: Its dull and rusty and kinda too small but hey, its better than a stick.
   Rarity: 0
   SellWithTrash: 0
-  TapSpeed: 8
+  TapSpeed: 4
   DamageAtLevel0: 112
   LevelUp: {fileID: 11400000, guid: 1b44135a1b59bbf4193efb1137b4ab02, type: 2}
