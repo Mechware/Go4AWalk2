@@ -6,6 +6,6 @@ using UnityEngine.Events;
 
 namespace CustomEvents
 {
-    public class GameEventListenerItem : GameEventListenerGeneric<Item, GameEventItem, UnityEventItem> { }
+    public class GameEventListenerItem : GameEventListenerGeneric<ItemConfig, GameEventItem, UnityEventItem> { }
 }
 

@@ -12,8 +12,6 @@ using UnityEngine.Events;
 public class ItemDropBubbleManager : MonoBehaviour {
 
 	public static ItemDropBubbleManager Instance;
-    public Inventory Inventory;
-    public WeaponVariable PlayerWeapon;
 
 	public GameObject ItemDropperPrefab;
 
@@ -26,11 +24,11 @@ public class ItemDropBubbleManager : MonoBehaviour {
         Pool = new ObjectPrefabPool(ItemDropperPrefab, transform, 5);
     }
 
-    public void AddItems(List<Item> items, Action onClick, Action onDone) {
+    public void AddItems(List<ItemInstance> items, Action onClick, Action onDone) {
         StartCoroutine(ShootItems(items, onClick, onDone));
     }
 
-    private IEnumerator ShootItems( List<Item> items, Action onClick, Action onDone) {
+    private IEnumerator ShootItems( List<ItemInstance> items, Action onClick, Action onDone) {
 		
 		if (Pool.InUse.Count > 0) {
 			Debug.LogError("Tried to add items to item dropper when there's still items");
@@ -44,7 +42,7 @@ public class ItemDropBubbleManager : MonoBehaviour {
 
 		
 		
-		foreach (Item it in items) {
+		foreach (ItemInstance it in items) {
 			yield return new WaitForSeconds(SpawnDelay);
 		    GameObject itemBubble = Pool.GetObject();
 		    itemBubble.transform.localPosition = Vector3.zero;
@@ -63,7 +61,7 @@ public class ItemDropBubbleManager : MonoBehaviour {
 
 	private void OnClick(ItemDropBubble it, Action onClick, Action onDone) {
 
-        SmoothPopUpManager.ShowPopUp(it.transform.localPosition, $"<color=green>+1</color> {it.Item.GetName()}", ConfigObject.GetColorFromRarity(it.Item.Rarity));
+        SmoothPopUpManager.ShowPopUp(it.transform.localPosition, $"<color=green>+1</color> {it.Item.GetName()}", ConfigObject.GetColorFromRarity(it.Item.Config.Rarity));
 
         if (!EquipItemProcessor.Instance.ProcessItem(it.Item, () => {
 	        Pool.Return(it.gameObject);
@@ -72,13 +70,4 @@ public class ItemDropBubbleManager : MonoBehaviour {
 	        SoundManager.Instance.PlaySound(SoundManager.Instance.PickUp, 1);
         }
     }
-
-    [Header("Debug")] public ItemDropper Dropper;
-#if UNITY_EDITOR
-	[ContextMenu("Drop Items")]
-	public void DropItems() {
-		AddItems(Dropper.GetItems(true), null, null);
-	}
-
-#endif
 }

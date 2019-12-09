@@ -10,7 +10,7 @@ namespace G4AW2.Data {
     [CreateAssetMenu(menuName = "Data/Quests/Passive/Collecting")]
     public class CollectItemQuest : PassiveQuest {
 
-        public Item Item;
+        public ItemConfig ItemConfig;
         public int AmountToCollect;
         public IntVariable TotalCollected;
 
@@ -36,7 +36,7 @@ namespace G4AW2.Data {
         public override void FinishQuest() {
             base.FinishQuest();
             TotalCollected.OnChange.RemoveListener(CountChanged);
-            Debug.Log("Collected " + AmountToCollect + " " + Item.name + "s.");
+            Debug.Log("Collected " + AmountToCollect + " " + ItemConfig.name + "s.");
         }
 
         [Serializable]
@@ -59,7 +59,7 @@ namespace G4AW2.Data {
             startAmount = ds.StartAmount;
 
             ID = original.ID;
-            Item = original.Item;
+            ItemConfig = original.ItemConfig;
             AmountToCollect = original.AmountToCollect;
             startAmount = original.startAmount;
             TotalCollected = original.TotalCollected;

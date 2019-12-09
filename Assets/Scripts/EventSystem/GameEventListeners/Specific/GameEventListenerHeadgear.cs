@@ -1,6 +1,6 @@
 
 
 namespace CustomEvents {
-    public class GameEventListenerHeadgear : GameEventListenerGeneric<Headgear, GameEventHeadgear, UnityEventHeadgear> {
+    public class GameEventListenerHeadgear : GameEventListenerGeneric<HeadgearConfig, GameEventHeadgear, UnityEventHeadgear> {
     }
 }

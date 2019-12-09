@@ -12,7 +12,7 @@ namespace G4AW2.Followers {
 
 	[RequireComponent(typeof(Animator))]
 	public class FollowerDisplay : MonoBehaviour, IPointerClickHandler {
-		[NonSerialized] public FollowerData Data;
+		[NonSerialized] public FollowerInstance Instance;
 
 		public AnimatorOverrideController BaseController;
         public TextMeshProUGUI followerID;
@@ -30,43 +30,42 @@ namespace G4AW2.Followers {
 			aoc = new AnimatorOverrideController(BaseController);
 			Animator.runtimeAnimatorController = aoc;
 
-			if (Data != null) {
-				aoc["Idle"] = Data.SideIdleAnimation;
-				if (Data.HasRandomAnimation)
-					aoc["Random"] = Data.RandomAnimation;
+			if (Instance != null) {
+				aoc["Idle"] = Instance.Config.SideIdleAnimation;
+				if (Instance.Config.HasRandomAnimation)
+					aoc["Random"] = Instance.Config.RandomAnimation;
 			}
 			
 		}
 		void Update() {
-			if (Data.HasRandomAnimation) {
+			if (Instance.Config.HasRandomAnimation) {
 				currentTime += Time.deltaTime;
 				if (currentTime > doRandomTime) {
 					currentTime = 0;
 					Animator.SetTrigger("Random");
-					doRandomTime = Random.Range(Data.MinTimeBetweenRandomAnims, Data.MaxTimeBetweenRandomAnims);
+					doRandomTime = Random.Range(Instance.Config.MinTimeBetweenRandomAnims, Instance.Config.MaxTimeBetweenRandomAnims);
 				}
 			}
 		}
 
-		public void SetData(FollowerData data) {
-			Data = data;
+		public void SetData(FollowerInstance instance) {
+			Instance = instance;
 
-			aoc["Idle"] = Data.SideIdleAnimation;
-			if (Data.HasRandomAnimation) {
-				aoc["Random"] = Data.RandomAnimation;
-				doRandomTime = Random.Range(Data.MinTimeBetweenRandomAnims, Data.MaxTimeBetweenRandomAnims);
-		        currentTime = 0;
-            }
-            if (Data is EnemyData) {
-                EnemyData e = (EnemyData) data;
-                followerID.text = $"LVL {e.Level}\n{e.DisplayName}";
-            } else if (Data is ShopFollower) {
-                followerID.text = data.DisplayName;
-            } else if (Data is QuestGiver) {
-                followerID.text = data.DisplayName;
-            } else {
-                followerID.text = "";
-            }
+			aoc["Idle"] = Instance.Config.SideIdleAnimation;
+			if (Instance.Config.HasRandomAnimation) {
+				aoc["Random"] = Instance.Config.RandomAnimation;
+				doRandomTime = Random.Range(Instance.Config.MinTimeBetweenRandomAnims,
+					Instance.Config.MaxTimeBetweenRandomAnims);
+				currentTime = 0;
+			}
+
+			if (Instance is EnemyInstance) {
+				EnemyInstance e = (EnemyInstance) instance;
+				followerID.text = $"LVL {e.SaveData.Level}\n{e.Config.DisplayName}";
+			}
+			else {
+				followerID.text = Instance.Config.DisplayName;
+			}
 		}
 
 		public void OnPointerClick(PointerEventData eventData) {

@@ -6,7 +6,7 @@ using UnityEngine.Events;
 
 namespace G4AW2.Events {
 	[System.Serializable]
-	public class UnityEventEnemyData : UnityEvent<EnemyData> {
+	public class UnityEventEnemyData : UnityEvent<EnemyConfig> {
 	}
 }
 

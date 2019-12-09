@@ -5,13 +5,17 @@ using System;
 using System.Collections.Generic;
 using G4AW2.Data.Area;
 using G4AW2.Data.DropSystem;
+using G4AW2.Followers;
 using G4AW2.UI.Areas;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class QuestManager : MonoBehaviour {
 
-    public ActiveQuestBaseVariable CurrentQuest;
+    public static QuestManager Instance;
+    
+    public ActiveQuestBase CurrentQuest;
+    public Action OnQuestChange;
     
     public Dialogue QuestDialogUI;
 
@@ -21,25 +25,29 @@ public class QuestManager : MonoBehaviour {
 
     private Area currentArea = null;
 
+    private void Awake() {
+        Instance = this;
+    }
+
     public void Initialize() {
         
-        currentArea = CurrentQuest.Value.Area;
+        currentArea = CurrentQuest.Area;
         
-        if(CurrentQuest.Value.ID == 1) {
-            SetCurrentQuest(CurrentQuest.Value);
+        if(CurrentQuest.ID == 1) {
+            SetCurrentQuest(CurrentQuest);
         } else {
 
-            if (CurrentQuest.Value is BossQuest) {
+            if (CurrentQuest is BossQuest) {
                 InteractionController.Instance.StartBossFight();
             }
-            CurrentQuest.Value.ResumeQuest(FinishQuest);
-            SetQuest(CurrentQuest.Value);
+            CurrentQuest.ResumeQuest(FinishQuest);
+            SetQuest(CurrentQuest);
 
-            if(CurrentQuest.Value.IsFinished()) {
-                CurrentQuest.Value.CleanUp();
-                if (CurrentQuest.Value.NextQuest != null) {
+            if(CurrentQuest.IsFinished()) {
+                CurrentQuest.CleanUp();
+                if (CurrentQuest.NextQuest != null) {
                     Debug.LogWarning("Progressing quest?");
-                    AdvanceQuestAfterConversation(CurrentQuest.Value);
+                    AdvanceQuestAfterConversation(CurrentQuest);
                 }
             }
         }
@@ -48,7 +56,7 @@ public class QuestManager : MonoBehaviour {
     private void FinishQuest(ActiveQuestBase quest) {
         quest.CleanUp();
         StatTracker.Instance.CompleteQuest(quest);
-        if(quest.NextQuest != null) CurrentQuest.Value = quest.NextQuest;
+        if(quest.NextQuest != null) CurrentQuest = quest.NextQuest;
         QuestDialogUI.SetConversation(quest.EndConversation, () => DropRewardAndAdvanceConversation(quest));
     }
 
@@ -58,40 +66,11 @@ public class QuestManager : MonoBehaviour {
     private void DropRewardAndAdvanceConversation(ActiveQuestBase q) {
 
 
-        List<Item> todrops = new List<Item>();
+        List<ItemInstance> todrops = new List<ItemInstance>();
         foreach (var reward in q.QuestRewards) {
-            Item it = reward.it;
-            if(it.ShouldCreateNewInstanceWhenPlayerObtained()) {
-                if(it is Weapon) {
-                    Weapon w = ScriptableObject.Instantiate(it) as Weapon;
-                    w.OnAfterObtained();
-                    w.Level = reward.Level;
-                    if(reward.RandomRoll != -1) {
-                        w.Random = reward.RandomRoll;
-                        w.SetValuesBasedOnRandom();
-                    }
-                    it = w;
-                } else if(it is Armor) {
-                    Armor a = ScriptableObject.Instantiate(it) as Armor;
-                    a.OnAfterObtained();
-                    a.Level = reward.Level;
-                    if(reward.RandomRoll != -1) {
-                        a.Random = reward.RandomRoll;
-                        a.SetValuesBasedOnRandom();
-                    }
-                    it = a;
-                } else if(it is Headgear) {
-                    Headgear a = ScriptableObject.Instantiate(it) as Headgear;
-                    a.OnAfterObtained();
-                    a.Level = reward.Level;
-                    if(reward.RandomRoll != -1) {
-                        a.RandomRoll = reward.RandomRoll;
-                        a.SetValuesBasedOnRandom();
-                    }
-                    it = a;
-                }
-            }
-            todrops.Add(it);
+            ItemConfig it = reward.it;
+            var instance = ItemFactory.GetInstance(it, reward.Level, reward.RandomRoll);
+            todrops.Add(instance);
         }
 
         if (todrops.Count == 0) {
@@ -107,8 +86,8 @@ public class QuestManager : MonoBehaviour {
                 ScrollArrow.SetActive(true);
                 DraggableWorld.Enable2();
                 AdvanceQuestAfterConversation(q);
-                
-                Inventory.AddItems(todrops);
+
+                todrops.ForEach(Inventory.Add);
             });
         }
     }
@@ -146,10 +125,10 @@ public class QuestManager : MonoBehaviour {
             AreaChangeInterpolater.StartLerping(() => {
 
 
-                DataManager.Instance.Followers.Clear();
+                FollowerManager.Instance.Followers.Clear();
                 DeadEnemyController.Instance.ClearEnemies();
 
-                CurrentQuest.Value = quest;
+                CurrentQuest = quest;
                 SetQuest(quest);
                 
                 quest.StartQuest(FinishQuest);
@@ -173,7 +152,8 @@ public class QuestManager : MonoBehaviour {
             });
         }
         else {
-            CurrentQuest.Value = quest;
+            CurrentQuest = quest;
+            OnQuestChange();
             SetQuest(quest);
 
             quest.StartQuest(FinishQuest);
@@ -197,6 +177,7 @@ public class QuestManager : MonoBehaviour {
         QuestingStatWatcher.Instance.SetQuest(quest);
         MiningPoints.Instance.QuestChanged(quest);
         TutorialManager.Instance.QuestUpdated(quest);
+        FollowerManager.Instance.QuestChanged(quest);
     }
 
     public GameObject Journal;
@@ -211,14 +192,14 @@ public class QuestManager : MonoBehaviour {
             new Action[] {
                 () => {
                     // Set Active
-                    if (!CurrentQuest.Value.IsFinished()) {
-                        if (!(CurrentQuest.Value is ReachValueQuest)) {
+                    if (!CurrentQuest.IsFinished()) {
+                        if (!(CurrentQuest is ReachValueQuest)) {
                             PopUp.SetPopUp(
                                 "Are you sure you want to switch quests? You will lose all progress in this one.",
                                 new[] {"Yep", "Nope"}, new Action[] {
                                     () => {
                                         CurrentQuests.Add(CurrentQuest);
-                                        CurrentQuest.Value.CleanUp();
+                                        CurrentQuest.CleanUp();
                                         CurrentQuests.Remove(q);
 
                                         SetCurrentQuest((ActiveQuestBase) q);
@@ -228,7 +209,7 @@ public class QuestManager : MonoBehaviour {
                         }
                         else {
                             CurrentQuests.Add(CurrentQuest);
-                            CurrentQuest.Value.CleanUp();
+                            CurrentQuest.CleanUp();
                             CurrentQuests.Remove(q);
                             SetCurrentQuest((ActiveQuestBase) q);
                         }
@@ -256,7 +237,7 @@ public class QuestManager : MonoBehaviour {
 
     [ContextMenu("Set Quest from test quest")]
     public void SetQuestFromTestQuest() {
-        CurrentQuest.Value.CleanUp();
+        CurrentQuest.CleanUp();
         SetCurrentQuest(TestQuest);
     }
 }

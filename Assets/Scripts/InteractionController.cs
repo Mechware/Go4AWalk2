@@ -6,6 +6,7 @@ using CustomEvents;
 using G4AW2.Combat;
 using G4AW2.Data.Combat;
 using G4AW2.Data.DropSystem;
+using G4AW2.Followers;
 using G4AW2.Questing;
 using UnityEngine;
 
@@ -18,8 +19,6 @@ public class InteractionController : MonoBehaviour {
     public DragObject World;
     public ScrollingImages BackgroundImages;
 
-    public ActiveQuestBaseVariable CurrentQuest;
-    public RuntimeSetFollowerData Followers;
     public Player Player;
     public Inventory Inventory;
     public LerpToPosition LerperToBattleArea;
@@ -66,15 +65,16 @@ public class InteractionController : MonoBehaviour {
             EnemyArrowIndicator.Instance.SetOnMainScreen(false);
         
             // Put boss where they should be
-            var bossQuest = (BossQuest) CurrentQuest.Value;
+            var bossQuest = (BossQuest) QuestManager.Instance.CurrentQuest;
             
-            EnemyData boss = (EnemyData) Followers.FirstOrDefault(f => f.ID == bossQuest.Enemy.ID);
-            if (boss == null) {
-                boss = Instantiate(bossQuest.Enemy);
-                boss.Level = bossQuest.Level;
-                boss.AfterCreated();
-                Followers.Add(boss);
+            FollowerInstance bossf = FollowerManager.Instance.Followers.FirstOrDefault(f => f.Config.ID == bossQuest.Enemy.ID);
+            
+            if (bossf == null) {
+                EnemyInstance ei = new EnemyInstance(bossQuest.Enemy, bossQuest.Level);
+                bossf = ei;
             }
+            
+            EnemyInstance boss = (EnemyInstance) bossf;
 
             EnemyDisplay.Instance.gameObject.SetActive(true);
             EnemyDisplay.Instance.SetEnemy(boss);
@@ -165,7 +165,7 @@ public class InteractionController : MonoBehaviour {
         }
     }
     
-    public void EnemyFight(EnemyData enemy) {
+    public void EnemyFight(EnemyInstance enemy) {
         PlayerClickController.Instance.SetEnabled(false);
         QuickPopUp.QuickPopUpAllowed = false;
         World.Disable();
@@ -192,7 +192,7 @@ public class InteractionController : MonoBehaviour {
         });
     }
 
-    public void EnemyDeath(EnemyData data, bool suicide = false) {
+    public void EnemyDeath(EnemyInstance instance, bool suicide = false) {
 
         QuickPopUp.QuickPopUpAllowed = true;
         BattleUiLerper.StartReverseLerp();
@@ -203,20 +203,20 @@ public class InteractionController : MonoBehaviour {
         IEnumerator _EnemyDeath() {
             
             
-            Followers.Remove(data);
+            FollowerManager.Instance.Followers.Remove(instance);
             AttackArea.SetActive(false);
         
-            if (Player.Health.Value <= 0) {
+            if (Player.Health <= 0) {
                 OnPlayerDeath();
                 yield break;    
             }
             
-            if (data.OneAndDoneAttacker && suicide) {
+            if (instance.Config.OneAndDoneAttacker && suicide) {
                 PlayerAnimations.Instance.ResetAttack();
                 
                 yield return new WaitForSeconds(1); // Wait for suicide animation to complete
                 PlayerAnimations.Instance.Spin(() => {
-                    _Done(new List<Item>());
+                    _Done(new List<ItemInstance>());
                 });
                 yield break;
             }
@@ -226,21 +226,7 @@ public class InteractionController : MonoBehaviour {
             bool celebrateDone = false;
             bool bubblesDone = false;
         
-            List<Item> items = data.Drops.GetItems(true);
-            foreach(Item item in items) {
-                if(item is Weapon) {
-                    Weapon weapon = item as Weapon;
-                    weapon.Level = data.Level;
-                }
-                if(item is Armor) {
-                    Armor armor = item as Armor;
-                    armor.Level = data.Level;
-                }
-                if(item is Headgear) {
-                    Headgear hg = item as Headgear;
-                    hg.Level = data.Level;
-                }
-            }
+            List<ItemInstance> items = instance.Config.Drops.GetItems(true, instance.SaveData.Level);
 
             // Wait for player celebration to be done and all items to be picked up
             PlayerAnimations.Instance.ResetAttack();
@@ -260,7 +246,7 @@ public class InteractionController : MonoBehaviour {
         }
         
 
-        void _Done(List<Item> items) {
+        void _Done(List<ItemInstance> items) {
             PlayerAnimations.Instance.Spin(() => {
             
                 // Enable world to be interactable again
@@ -271,16 +257,16 @@ public class InteractionController : MonoBehaviour {
                 DeadEnemyController.Instance.AddDeadEnemy(
                     EnemyDisplay.Instance.RectTransform.anchoredPosition.x, 
                     EnemyDisplay.Instance.RectTransform.anchoredPosition.y, 
-                    data);
+                    instance);
                 
-                GameEventHandler.Singleton.OnEnemyKilled(data);
-                Inventory.AddItems(items);
+                GameEventHandler.Singleton.OnEnemyKilled(instance);
+                items.ForEach(it => Inventory.Add(it));
                 World.Enable();
 
                 PlayerClickController.Instance.SetEnabled(true);
                 
                 // Note: If the boss quest is to fight a chicken and you kill any chicken (not just the boss) then the quest gets completed
-                if (CurrentQuest.Value is BossQuest quest && quest.Enemy.ID == data.ID) {
+                if (QuestManager.Instance.CurrentQuest is BossQuest quest && quest.Enemy == instance.Config) {
                     quest.Finish();
                 }
 

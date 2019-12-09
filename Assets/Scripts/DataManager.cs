@@ -8,7 +8,6 @@ using UnityEngine;
 public class DataManager : MonoBehaviour {
 
     public static DataManager Instance; 
-    public RuntimeSetFollowerData Followers;
     public Player Player;
     public Inventory Inventory;
     
@@ -37,7 +36,7 @@ public class DataManager : MonoBehaviour {
         foreach (var v in StatTracker.EnemyKillCount.Where(ekc => ekc.Enemy == null)) {
             StatTracker.EnemyKillCount.Remove(v);
         }
-        foreach(var v in StatTracker.ItemObtainedCount.Where(ekc => ekc.Item == null)) {
+        foreach(var v in StatTracker.ItemObtainedCount.Where(ekc => ekc.ItemConfig == null)) {
             StatTracker.ItemObtainedCount.Remove(v);
         }
 
@@ -57,10 +56,10 @@ public class DataManager : MonoBehaviour {
 
         ids.Clear();
         foreach(var thing in AllItems) {
-            if(ids.Contains(thing.ID)) {
+            if(ids.Contains(thing.Id)) {
                 Debug.LogWarning("Item has same id as another: " + thing.name);
             }
-            ids.Add(thing.ID);
+            ids.Add(thing.Id);
         }
 
         ids.Clear();

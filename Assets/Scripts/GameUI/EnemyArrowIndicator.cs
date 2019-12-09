@@ -3,6 +3,7 @@ using G4AW2.Data;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using G4AW2.Followers;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -11,7 +12,6 @@ public class EnemyArrowIndicator : MonoBehaviour {
 
     public static EnemyArrowIndicator Instance;
     
-    public RuntimeSetFollowerData Followers;
     public Image Arrow;
     public TextMeshProUGUI NumberofFollowersText;
 
@@ -20,16 +20,16 @@ public class EnemyArrowIndicator : MonoBehaviour {
 
     private void Awake() {
         Instance = this;
-        Followers.OnChange.AddListener(FollowersChanged);
+        FollowerManager.Instance.FollowerAdded += FollowersChanged;
     }
 
-    public void FollowersChanged(FollowerData data) {
-        HasFollowers = Followers.Value.Count > 0;
+    public void FollowersChanged(FollowerInstance instance) {
+        HasFollowers = FollowerManager.Instance.Followers.Count > 0;
 
         Arrow.enabled = OnMainScreen && HasFollowers;
         NumberofFollowersText.gameObject.SetActive(OnMainScreen && HasFollowers);
        
-        NumberofFollowersText.text = "x" + Followers.Value.Count;
+        NumberofFollowersText.text = "x" + FollowerManager.Instance.Followers.Count;
     }
 
     public void SetOnMainScreen(bool val) {

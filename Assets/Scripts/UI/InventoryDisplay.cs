@@ -34,21 +34,21 @@ public class InventoryDisplay : MonoBehaviour {
         foreach(var item in Inventory) {
             var go = pool.GetObject();
             var id = go.GetComponent<InventoryItemDisplay>();
-            id.SetData(item.Item, item.Amount, ItemClicked);
+            id.SetDataInstance(item, 1, ItemClicked);
             id.gameObject.transform.SetAsLastSibling();
         }
     }
 
     public void ItemClicked(InventoryItemDisplay it) {
-        ItemDisplay.SetData(it.Item, 1, null);
+        ItemDisplay.SetDataInstance(it.CurrentItem, 1, null);
         string text = "";
-        text += $"Name: {it.Item.GetName()}\n";
-        text += $"Type: {it.Item.GetType().Name}\n";
-        text += $"Value: {it.Item.GetValue()}\n";
-        text += $"'{it.Item.Description}'";
+        text += $"Name: {it.CurrentItem.GetName()}\n";
+        text += $"Type: {it.CurrentItem.GetType().Name}\n";
+        text += $"Value: {it.CurrentItem.GetValue()}\n";
+        text += $"'{it.CurrentItem.GetDescription()}'";
         ItemText.SetText(text);
 
-        EquipItemProcessor.Instance.ProcessItem(it.Item, Refresh);
+        EquipItemProcessor.Instance.ProcessItem(it.CurrentItem, Refresh);
     }
 
 }

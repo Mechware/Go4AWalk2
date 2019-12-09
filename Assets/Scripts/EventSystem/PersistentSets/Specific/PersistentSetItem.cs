@@ -7,16 +7,16 @@ using UnityEngine;
 
 namespace CustomEvents {
 	[UnityEngine.CreateAssetMenu(menuName = "SO Architecture/Persistent Set/Specific/Item")]
-		public class PersistentSetItem : PersistentSetGeneric<Item, UnityEventItem> {
+		public class PersistentSetItem : PersistentSetGeneric<ItemConfig, UnityEventItem> {
 #if UNITY_EDITOR
 		[ContextMenu("Add all items")]
 		public void AddAllOfType() {
-			string[] paths = AssetDatabase.FindAssets("t:" + typeof(Item).Name);
+			string[] paths = AssetDatabase.FindAssets("t:" + typeof(ItemConfig).Name);
 			for (int i = 0; i < paths.Length; i++) {
 				paths[i] = AssetDatabase.GUIDToAssetPath(paths[i]);
 			}
 
-			paths.Select(AssetDatabase.LoadAssetAtPath<Item>).ForEach(Add);
+			paths.Select(AssetDatabase.LoadAssetAtPath<ItemConfig>).ForEach(Add);
 		}
 #endif
 	}

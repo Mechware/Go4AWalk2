@@ -21,7 +21,7 @@ public class Bait : Consumable
 
 [Serializable]
 public class Drop {
-    public FollowerData Data;
+    public FollowerConfig Config;
     public int Chance;
 }
 

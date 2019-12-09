@@ -14,9 +14,9 @@ public class QuestGiverDisplay : MonoBehaviour, IPointerClickHandler {
     public UnityEvent StartedWalking;
     public UnityEvent FinishInteraction;
 
-    private QuestGiver follower;
+    private QuestGiverInstance follower;
 
-    public void SetData(FollowerData follower) {
+    public void SetData(QuestGiverInstance follower) {
 
         RectTransform rt = (RectTransform) transform;
 
@@ -28,12 +28,12 @@ public class QuestGiverDisplay : MonoBehaviour, IPointerClickHandler {
         pivot.x = 1;
         rt.pivot = pivot;
 
-        this.follower = (QuestGiver) follower;
+        this.follower = follower;
         gameObject.SetActive(true);
 
         Vector2 r = ((RectTransform) transform).sizeDelta;
-        r.x = follower.SizeOfSprite.x;
-        r.y = follower.SizeOfSprite.y;
+        r.x = follower.Config.SizeOfSprite.x;
+        r.y = follower.Config.SizeOfSprite.y;
         ((RectTransform) transform).sizeDelta = r;
 
         Vector3 pos = transform.localPosition;
@@ -43,10 +43,10 @@ public class QuestGiverDisplay : MonoBehaviour, IPointerClickHandler {
         AnimatorOverrideController aoc =
             (AnimatorOverrideController) GetComponent<Animator>().runtimeAnimatorController;
 
-        aoc["Idle"] = this.follower.SideIdleAnimation;
-        aoc["Walk Up"] = this.follower.WalkingAnimation;
-        aoc["Random"] = this.follower.RandomAnimation;
-        aoc["QuestGiving"] = this.follower.GivingQuest;
+        aoc["Idle"] = follower.Config.SideIdleAnimation;
+        aoc["Walk Up"] = follower.Config.WalkingAnimation;
+        aoc["Random"] = follower.Config.RandomAnimation;
+        aoc["QuestGiving"] = follower.Config.GivingQuest;
     }
 
     public void StartWalking() {
@@ -61,17 +61,16 @@ public class QuestGiverDisplay : MonoBehaviour, IPointerClickHandler {
         GetComponent<Animator>().SetBool("Giving", true);
     }
 
-    public RuntimeSetFollowerData ListOfCurrentFollowers;
     public RuntimeSetQuest ListOfOpenQuests;
 
     public GameObject DismissButton;
 
     public void OnPointerClick(PointerEventData eventData) {
 
-        PopUp.SetPopUp("Accept quest from quest giver? Title: " + follower.QuestToGive.DisplayName, new[] { "Yes", "No" }, new Action[] {
+        PopUp.SetPopUp("Accept quest from quest giver? Title: " + follower.Config.QuestToGive.DisplayName, new[] { "Yes", "No" }, new Action[] {
             () => {
-                ListOfOpenQuests.Add(follower.QuestToGive);
-                ListOfCurrentFollowers.Remove(follower);
+                ListOfOpenQuests.Add(follower.Config.QuestToGive);
+                FollowerManager.Instance.Followers.Remove(follower);
 
                 // Flip Giver
                 RectTransform rt = (RectTransform) transform;
@@ -95,7 +94,7 @@ public class QuestGiverDisplay : MonoBehaviour, IPointerClickHandler {
 
     public void Dismiss() {
         FinishInteraction.Invoke();
-        ListOfCurrentFollowers.Remove(follower);
+        FollowerManager.Instance.Followers.Remove(follower);
         StartCoroutine(WalkOffScreen());
     }
 

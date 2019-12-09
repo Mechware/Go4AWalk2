@@ -33,7 +33,7 @@ public class MainUI : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        var weapon = DataManager.Instance.Player.Weapon.Value;
+        var weapon = Player.Instance.Weapon;
         
         float currentDamage = weapon.RawDamage;
         
@@ -48,9 +48,9 @@ public class MainUI : MonoBehaviour {
             MasteryFill.anchorMax = MasteryFill.anchorMax.SetX(masteryProgress);
         }
         
-        Weapon.SetData(DataManager.Instance.Player.Weapon.Value, 0, ChangeWeapon, null, true);
-        Armor.SetData(DataManager.Instance.Player.Armor.Value, 0, ChangeArmor, null, true);
-        Headgear.SetData(DataManager.Instance.Player.Headgear.Value, 0, ChangeHeadgear, null, true);
+        Weapon.SetDataInstance(Player.Instance.Weapon, 0, ChangeWeapon, null, true);
+        Armor.SetDataInstance(Player.Instance.Armor, 0, ChangeArmor, null, true);
+        Headgear.SetDataInstance(Player.Instance.Headgear, 0, ChangeHeadgear, null, true);
     }
 
     public void ChangeWeapon(InventoryItemDisplay it) {

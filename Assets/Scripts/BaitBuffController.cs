@@ -21,7 +21,7 @@ public class BaitBuffController : MonoBehaviour {
 
     public void StartBuff(Bait buff) {
         SingleBaitData data = new SingleBaitData();
-        data.BaitId = buff.ID;
+        data.BaitId = buff.Id;
         data.BuffEndTime = RandomUtils.GetTime() + buff.Duration;
         data.NextSpawnTime = RandomUtils.GetTime() + buff.MinDropTime;
         SaveData.Add(data);
@@ -39,11 +39,11 @@ public class BaitBuffController : MonoBehaviour {
                 
                 while (buff.NextSpawnTime < buff.BuffEndTime) {
                     // Pick a monster that you can spawn
-                    var bait = (Bait) DataManager.Instance.AllItems.First(it => it.ID == buff.BaitId);
+                    var bait = (Bait) DataManager.Instance.AllItems.First(it => it.Id == buff.BaitId);
                     var monster = GetDrop(bait);
 
                     // Drop it
-                    FollowerSpawner.Instance.Drop(monster);
+                    FollowerManager.Instance.Drop(monster);
                     buff.NextSpawnTime += bait.GetSpawnTime();
                     
                 }
@@ -55,17 +55,17 @@ public class BaitBuffController : MonoBehaviour {
             
             if (currentTime > buff.NextSpawnTime) {
                 // Pick a monster that you can spawn
-                var bait = (Bait) DataManager.Instance.AllItems.First(it => it.ID == buff.BaitId);
+                var bait = (Bait) DataManager.Instance.AllItems.First(it => it.Id == buff.BaitId);
                 var monster = GetDrop(bait);
 
                 // Check if it is in the list
-                FollowerSpawner.Instance.Drop(monster);   
+                FollowerManager.Instance.Drop(monster);   
                 buff.NextSpawnTime += bait.GetSpawnTime();
             }
         }
     }
 
-    public FollowerData GetDrop(Bait bait) {
+    public FollowerConfig GetDrop(Bait bait) {
         int total = bait.DropChances.Sum(d => d.Chance);
         if (total == 0) return null;
 
@@ -74,7 +74,7 @@ public class BaitBuffController : MonoBehaviour {
         foreach (var drop in bait.DropChances) {
             roll -= drop.Chance;
             if (roll <= 0) {
-                return drop.Data;
+                return drop.Config;
             }
         }
 

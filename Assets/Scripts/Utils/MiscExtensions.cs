@@ -74,4 +74,14 @@ public static class MiscExtensions {
         }
         return null;
     }
+
+    public static string StringSeparate<T>(this List<T> list, string seperator = ", ") {
+        string s = "";
+        for (int i = 0; i < list.Count; i++) {
+            s += list[i].ToString();
+            if (i != list.Count - 1) s += seperator;
+        }
+
+        return s;
+    }
 }

@@ -10,8 +10,8 @@ using Random = UnityEngine.Random;
 
 public class ItemDropBubble : MonoBehaviour, IPointerClickHandler {
 
-	public Item Item { get { return item; }}
-	private Item item;
+	public ItemInstance Item { get { return item; }}
+	private ItemInstance item;
 
 	public Image image;
 	public Image background;
@@ -22,14 +22,14 @@ public class ItemDropBubble : MonoBehaviour, IPointerClickHandler {
     public float MinVelocity = 20;
     public float DecelerationMagnitude = 50f;
 
-    public void SetData(Item it, Action<ItemDropBubble> OnClick) {
+    public void SetData(ItemInstance it, Action<ItemDropBubble> OnClick) {
 		item = it;
-        image.sprite = item.Image;
+        image.sprite = item.Config.Image;
         ItemClicked = OnClick;
         
-        image.gameObject.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, item.Image.rect.width);
-        image.gameObject.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, item.Image.rect.height);
-		background.color = ConfigObject.GetColorFromRarity(it.Rarity);
+        image.gameObject.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, item.Config.Image.rect.width);
+        image.gameObject.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, item.Config.Image.rect.height);
+		background.color = ConfigObject.GetColorFromRarity(it.Config.Rarity);
 	}
 
 	[ContextMenu("Shoot")]

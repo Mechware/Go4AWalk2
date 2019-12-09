@@ -30,7 +30,7 @@ namespace G4AW2.Questing {
 
         [Serializable]
         public class Reward {
-            public Item it;
+            public ItemConfig it;
             public int Level = -1;
             [Tooltip("-1 means roll it on creation")]
             public int RandomRoll = -1; 

@@ -6,5 +6,5 @@ using UnityEngine.Events;
 
 namespace G4AW2.Events {
 	[System.Serializable]
-	public class UnityEventIEnumerableLoot : UnityEvent<IEnumerable<Item>> { }
+	public class UnityEventIEnumerableLoot : UnityEvent<IEnumerable<ItemConfig>> { }
 }

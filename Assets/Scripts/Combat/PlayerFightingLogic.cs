@@ -26,8 +26,8 @@ public class PlayerFightingLogic : MonoBehaviour {
     public DamageNumberSpawner PlayerDamageNumberSpawner;
     public Color DamageColor;
 
-    private bool AbleToAttack => BlockState == Armor.BlockState.None && Time.time > NextAttackTime;
-    private Armor.BlockState BlockState = Armor.BlockState.None;
+    private bool AbleToAttack => BlockState == BlockState.None && Time.time > NextAttackTime;
+    private BlockState BlockState = BlockState.None;
     private float NextAttackTime = 0;
 
     private void Awake() {
@@ -36,16 +36,16 @@ public class PlayerFightingLogic : MonoBehaviour {
 
     public void OnEnemyHitPlayer(int damage) {
 
-        float fdamage = Player.Armor.Value.GetDamage(damage, BlockState);
+        float fdamage = Player.Armor.GetDamage(damage, BlockState);
 
-        if(BlockState == Armor.BlockState.Blocking || BlockState == Armor.BlockState.PerfectlyBlocking)
+        if(BlockState == BlockState.Blocking || BlockState == BlockState.PerfectlyBlocking)
         {
-            if(BlockState == Armor.BlockState.PerfectlyBlocking)
+            if(BlockState == BlockState.PerfectlyBlocking)
                 OnPerfectBlock.Invoke();
 
             blockTimer.Stop();
             OnBlockEnd.Invoke();
-            BlockState = Armor.BlockState.None;
+            BlockState = BlockState.None;
         }
 
         damage = Mathf.RoundToInt(fdamage);
@@ -56,8 +56,8 @@ public class PlayerFightingLogic : MonoBehaviour {
     public void OnEnemyHitPlayerElemental(int damage, ElementalType damageType) {
 
         float mod = 1;
-        if (Player.Armor.Value.ElementalWeakness.Value != null)
-            mod = Player.Armor.Value.ElementalWeakness.Value[damageType];
+        if (Player.Armor.Config.ElementalWeakness.Value != null)
+            mod = Player.Armor.Config.ElementalWeakness.Value[damageType];
         float fdamage = damage * mod;
 
         damage = Mathf.RoundToInt(fdamage);
@@ -79,9 +79,10 @@ public class PlayerFightingLogic : MonoBehaviour {
             float damageMultipler = EnemyDisplay.EnemyState == EnemyDisplay.State.Stun ? StunnedDamageMultiplier : 1;
 
             EnemyDisplay.ApplyDamage(Mathf.RoundToInt(Player.GetLightDamage() * damageMultipler));
-            if(Player.Weapon.Value.IsEnchanted)
-                EnemyDisplay.ApplyElementalDamage(Player.GetElementalDamage(), Player.Weapon.Value.Enchantment.Type);
-            Player.Weapon.Value.TapsWithWeapon.Value++;
+            if(Player.Weapon.IsEnchanted)
+                EnemyDisplay.ApplyElementalDamage(Player.GetElementalDamage(), Player.Weapon.Enchantment.Config.Type);
+            
+            Player.Weapon.SaveData.Taps++;
         }
     }
 
@@ -109,16 +110,16 @@ public class PlayerFightingLogic : MonoBehaviour {
     private UpdateTimer blockTimer = new UpdateTimer();
 
 	public void PlayerBlocked() {
-        BlockState = Armor.BlockState.Blocking;
+        BlockState = BlockState.Blocking;
 
 	    blockTimer.Start(MaxBlockDuration, () => {
-            BlockState = Armor.BlockState.None;
+            BlockState = BlockState.None;
 	        OnBlockEnd.Invoke();
 	    }, null);
 
 
         if (EnemyDisplay.EnemyState == EnemyDisplay.State.BeforeAttack) {
-            BlockState = Armor.BlockState.PerfectlyBlocking;
+            BlockState = BlockState.PerfectlyBlocking;
         }
         OnBlockStart.Invoke();
 	}
@@ -128,12 +129,12 @@ public class PlayerFightingLogic : MonoBehaviour {
 
         if (!success)
         {
-            BlockState = Armor.BlockState.BadParry;
+            BlockState = BlockState.BadParry;
             OnFailedParry.Invoke();
             Timer.StartTimer(FailedParryStunTime, () =>
             {
                 OnFailedParryDone.Invoke();
-                BlockState = Armor.BlockState.None;
+                BlockState = BlockState.None;
             }, this);
         } else
         {

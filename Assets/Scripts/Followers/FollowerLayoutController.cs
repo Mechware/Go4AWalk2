@@ -27,7 +27,7 @@ public class FollowerLayoutController : MonoBehaviour {
 
         foreach(FollowerDisplay followerDisplay in FollowerController.FollowerPool.InUse.Select(f => f.GetComponent<FollowerDisplay>())) {
             RectTransform rectChild = (RectTransform) followerDisplay.transform;
-            int distBetween = followerDisplay.Data.SpaceBetweenEnemies;
+            int distBetween = followerDisplay.Instance.Config.SpaceBetweenEnemies;
 
             Vector3 pos = rectChild.anchoredPosition;
             pos.x = x - distBetween / 2;

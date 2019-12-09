@@ -3,6 +3,7 @@ using G4AW2.Data.DropSystem;
 using System.Collections;
 using System.Collections.Generic;
 using CustomEvents;
+using G4AW2.Combat;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -49,16 +50,16 @@ DAM {2}";
         Instance = this;
     }
     
-    public void SetWeaponWithDefaults(Weapon w, Action onfinish=null) {
+    public void SetWeaponWithDefaults(WeaponInstance w, Action onfinish=null) {
         SetWeapon(w, new[] {
-            new ButtonAction() {Title= w.IsTrash() ? "Untrash" : "Trash", OnClick = () => { w.MarkedAsTrash = true; onfinish?.Invoke(); } },
+            new ButtonAction() {Title= w.SaveData.MarkedAsTrash ? "Untrash" : "Trash", OnClick = () => { w.SaveData.MarkedAsTrash = true; onfinish?.Invoke(); } },
             new ButtonAction() {
                 Title ="Equip",
                 OnClick = () => {
-                    if (PlayerWeapon.Value == w) return;
+                    if (Player.Instance.Weapon == w) return;
 
-                    Inventory.Add(PlayerWeapon.Value);
-                    PlayerWeapon.Value = w;
+                    Inventory.Add(Player.Instance.Weapon);
+                    Player.Instance.Weapon = w;
                     Inventory.Remove(w);
                     onfinish?.Invoke();
                 }
@@ -70,11 +71,11 @@ DAM {2}";
         });
     }
 
-    public void SetWeapon(Weapon w, ButtonAction[] actions) {
+    public void SetWeapon(WeaponInstance w, ButtonAction[] actions) {
 
         Open();
 
-        WeaponDisplay.SetData(w, 1, null, null, false);
+        WeaponDisplay.SetDataInstance(w, 1, null, null, false);
         MasteryString.text = "M" + w.Mastery;
 
         MasteryProgressBar.SetMax(1);
@@ -83,8 +84,8 @@ DAM {2}";
         if (w.IsEnchanted) {
             LevelNameDAMText.text = string.Format(
                 levelNameDAMstringWithElement,
-                w.Level,
-                ColorUtility.ToHtmlStringRGB(w.Enchantment.Type.DamageColor),
+                w.SaveData.Level,
+                ColorUtility.ToHtmlStringRGB(w.Enchantment.Config.Type.DamageColor),
                 w.Enchantment.GetPrefix(),
                 w.GetName(false, true),
                 w.RawDamage,
@@ -94,14 +95,14 @@ DAM {2}";
         else {
             LevelNameDAMText.text = string.Format(
                 levelNameDAMstringWithoutElement,
-                w.Level,
+                w.SaveData.Level,
                 w.GetName(),
                 w.RawDamage,
                 w.GetEnchantDamage()
             );
         }
 
-        DescriptionText.text = w.Description;
+        DescriptionText.text = w.Config.Description;
         SellAmountText.text = "Sell: " + w.GetValue();
 
         if (actions.Length == 0) {
@@ -144,7 +145,7 @@ DAM {2}";
         Button2.onClick.AddListener(Close);
         Button3.onClick.AddListener(Close);
 
-        SetCompare(PlayerWeapon);
+        SetCompare(Player.Instance.Weapon);
     }
 
     public void Open() {
@@ -178,12 +179,12 @@ DAM {2}";
     public TextMeshProUGUI CompareToMasteryText;
     public TextMeshProUGUI CompareToSellAmountText;
 
-    public void SetCompare(Weapon w) {
+    public void SetCompare(WeaponInstance w) {
         if(w.IsEnchanted) {
             CompareToDescriptionText.text = string.Format(
                 levelNameDAMstringWithElement,
-                w.Level,
-                ColorUtility.ToHtmlStringRGB(w.Enchantment.Type.DamageColor),
+                w.SaveData.Level,
+                ColorUtility.ToHtmlStringRGB(w.Enchantment.Config.Type.DamageColor),
                 w.Enchantment.GetPrefix(),
                 w.GetName(false, true),
                 w.RawDamage,
@@ -192,7 +193,7 @@ DAM {2}";
         } else {
             CompareToDescriptionText.text = string.Format(
                 levelNameDAMstringWithoutElement,
-                w.Level,
+                w.SaveData.Level,
                 w.GetName(),
                 w.RawDamage,
                 w.GetEnchantDamage()
@@ -210,10 +211,9 @@ DAM {2}";
     }
 
     public ItemViewer ItemViewer;
-    public WeaponVariable PlayerWeapon;
 
     public void SwapWeapon() {
-        ItemViewer.ShowItemsFromInventory<Weapon>("Weapon To Compare", false, false, w => { SetCompare(w); ItemViewer.Close(); });
-        ItemViewer.Add<Weapon>(PlayerWeapon, 0, w => { SetCompare(w); ItemViewer.Close(); });
+        ItemViewer.ShowItemsFromInventory<WeaponInstance>("Weapon To Compare", w => { SetCompare((WeaponInstance)w); ItemViewer.Close(); }, false);
+        ItemViewer.Add(Player.Instance.Weapon, 0, w => { SetCompare((WeaponInstance)w); ItemViewer.Close(); });
     }
 }

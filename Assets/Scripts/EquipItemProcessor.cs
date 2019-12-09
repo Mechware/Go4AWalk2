@@ -11,26 +11,27 @@ using UnityEngine;
 public class EquipItemProcessor : MonoBehaviour {
     public static EquipItemProcessor Instance;
 
-    public Inventory Inventory => DataManager.Instance.Inventory;
-    public Player Player => DataManager.Instance.Player;
     
     void Awake() {
         Instance = this;
     }
 
-    public bool ProcessItem(Item it, Action onDone) {
+    public bool ProcessItem(object it, Action onDone) {
 
-        if (it is Weapon w) {
-            PopUp.SetPopUp($"{it.GetName()}\n{it.GetDescription()}", new string[] {"Equip", w.IsTrash() ? "Untrash" : "Trash", "Cancel"}, new Action[] {
+        Player p = Player.Instance;
+        Inventory i = Inventory.Instance;
+        
+        if (it is WeaponInstance w) {
+            PopUp.SetPopUp($"{w.GetName(true, true)}\n{w.GetDescription()}", new string[] {"Equip", w.SaveData.MarkedAsTrash ? "Untrash" : "Trash", "Cancel"}, new Action[] {
                 () => {
-                    if(Player.Weapon.Value != null)
-                        Inventory.Add(Player.Weapon.Value);
-                    Player.Weapon.Value = w;
-                    Inventory.Remove(w);
+                    if(p.Weapon != null)
+                        i.Add(p.Weapon);
+                    p.Weapon = w;
+                    i.Remove(w);
                     onDone?.Invoke();
                 },
                 () => {
-                    w.SetTrash(!w.IsTrash());
+                    w.SaveData.MarkedAsTrash = !w.SaveData.MarkedAsTrash;
                     onDone?.Invoke();
                 },
                 () => {
@@ -40,17 +41,17 @@ public class EquipItemProcessor : MonoBehaviour {
             return true;
         } 
         
-        if (it is Armor a) {
-            PopUp.SetPopUp($"{it.GetName()}\n{it.GetDescription()}", new string[] {"Equip", a.IsTrash() ? "Untrash" : "Trash", "Cancel"}, new Action[] {
+        if (it is ArmorInstance a) {
+            PopUp.SetPopUp($"{a.GetName()}\n{a.GetDescription()}", new string[] {"Equip", a.SaveData.MarkedAsTrash ? "Untrash" : "Trash", "Cancel"}, new Action[] {
                 () => {
-                    if(Player.Armor.Value != null)
-                        Inventory.Add(Player.Armor.Value);
-                    Player.Armor.Value = a;
-                    Inventory.Remove(a);
+                    if(p.Armor != null)
+                        i.Add(p.Armor);
+                    p.Armor = a;
+                    i.Remove(a);
                     onDone?.Invoke();
                 },
                 () => {
-                    a.SetTrash(!a.IsTrash());
+                    a.SaveData.MarkedAsTrash = !a.SaveData.MarkedAsTrash;
                     onDone?.Invoke();
                 },
                 () => {
@@ -61,17 +62,17 @@ public class EquipItemProcessor : MonoBehaviour {
 
         } 
         
-        if (it is Headgear h) {
-            PopUp.SetPopUp($"{it.GetName()}\n{it.GetDescription()}", new string[] {"Equip", h.IsTrash() ? "Untrash" : "Trash", "Cancel"}, new Action[] {
+        if (it is HeadgearInstance h) {
+            PopUp.SetPopUp($"{h.GetName()}\n{h.GetDescription()}", new string[] {"Equip", h.SaveData.MarkedAsTrash ? "Untrash" : "Trash", "Cancel"}, new Action[] {
                 () => {
-                    if(Player.Headgear.Value != null)
-                        Inventory.Add(Player.Headgear.Value);
-                    Player.Headgear.Value = h;
-                    Inventory.Remove(h);
+                    if(p.Headgear != null)
+                        i.Add(p.Headgear);
+                    p.Headgear = h;
+                    i.Remove(h);
                     onDone?.Invoke();
                 },
                 () => {
-                    h.SetTrash(!h.IsTrash());
+                    h.SaveData.MarkedAsTrash = !h.SaveData.MarkedAsTrash;
                     onDone?.Invoke();
                 },
                 () => {
@@ -79,9 +80,9 @@ public class EquipItemProcessor : MonoBehaviour {
                 }
             });
             return true;
-
         } 
 
+        /*
         if(it is Consumable c) {
             PopUp.SetPopUp($"{c.GetName()}\n{it.GetDescription()}\nDuration:{c.Duration}", new string[] { "Use", "Close" }, new Action[] {
                 () => {
@@ -96,7 +97,7 @@ public class EquipItemProcessor : MonoBehaviour {
                 }
             });
             return true;
-        }
+        }*/
         
         onDone?.Invoke();
         return false;

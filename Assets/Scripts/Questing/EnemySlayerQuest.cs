@@ -9,7 +9,7 @@ namespace G4AW2.Data {
     [CreateAssetMenu(menuName = "Data/Quests/Passive/Slaying")]
     public class EnemySlayerQuest : PassiveQuest {
        
-        public EnemyData Enemy;
+        public EnemyConfig Enemy;
         public int TotalToKill;
         public IntVariable KilledCount;
 

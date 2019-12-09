@@ -2,14 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using CustomEvents;
+using G4AW2.Combat;
 using G4AW2.Data.DropSystem;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class EnchantUI : MonoBehaviour {
-
-    public Inventory Inventory;
-    public WeaponReference PlayerWeapon;
 
     public IconWithTextController Weapon;
     public IconWithTextController Enchanter;
@@ -23,52 +21,55 @@ public class EnchantUI : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		Weapon.SetData(null, 0, "Put weapon to enchant here.", WeaponViewerClicked);
-		Enchanter.SetData(null, 0, "Put item to enchant weapon with here.", EnchantViewerClicked);
-		Result.SetData(null, 0, "Result of enchantment goes here.", () => {});
+		Weapon.SetDataInstance(null, 0, "Put weapon to enchant here.", WeaponViewerClicked, null, true);
+		Enchanter.SetDataInstance(null, 0, "Put item to enchant weapon with here.", EnchantViewerClicked, null, true);
+		Result.SetDataConfig(null, 0, "Result of enchantment goes here.", () => {});
         EnchantButton.interactable = false;
     }
 
     void WeaponViewerClicked() {
-        ItemViewer.ShowItemsFromInventoryWhere<Weapon>("Enchantable Weapons", ie => !((Weapon)ie.Item).IsEnchanted && !((Weapon) ie.Item).IsTrash(), false, WeaponClicked);
-        if(!PlayerWeapon.Value.IsEnchanted)
-            ItemViewer.Add<Weapon>(PlayerWeapon, 0, WeaponClicked);
+        ItemViewer.ShowItems("Enchantable Weapons", Inventory.Instance.Where(w => w is WeaponInstance instance && !instance.IsEnchanted), WeaponClicked, false);
+        
+        if(!Player.Instance.Weapon.IsEnchanted)
+            ItemViewer.Add(Player.Instance.Weapon, 0, WeaponClicked);
     }
 
-    void WeaponClicked(Weapon w) {
-        EnchantButton.interactable = Enchanter.Item.Item != null;
-        Weapon.SetData(w, 1, $"{w.GetName()}\nDAM: {w.DamageAtLevel0}", WeaponViewerClicked);
-		Result.SetData(null, 0, "Result of enchantment goes here.", () => {});
+    void WeaponClicked(ItemInstance o ) {
+        WeaponInstance w = (WeaponInstance) o;
+        EnchantButton.interactable = Enchanter.Item.CurrentItem != null;
+        Weapon.SetDataInstance(w, 1, $"{w.GetName(true, true)}\nDAM: {w.GetDamage()}", WeaponViewerClicked);
+		Result.SetDataConfig(null, 0, "Result of enchantment goes here.", () => {});
         ItemViewer.Close();
     }
 
     void EnchantViewerClicked() {
-        ItemViewer.ShowItemsFromInventory<Enchanter>("Enchantments", false, EnchantClicked);
+        ItemViewer.ShowItems("Enchantments", Inventory.Instance, EnchantClicked, false);
     }
 
-    void EnchantClicked(Enchanter e) {
-        EnchantButton.interactable = Weapon.Item.Item != null;
-        Enchanter.SetData(e, 1, $"{e.GetName()}\n{e.GetDescription()}", EnchantViewerClicked);
-		Result.SetData(null, 0, "Result of enchantment goes here.", () => {});
+    void EnchantClicked(ItemInstance o) {
+        EnchanterInstance e = (EnchanterInstance) o;
+        EnchantButton.interactable = Weapon.Item.CurrentItem != null;
+        Enchanter.SetDataInstance(e, 1, $"{e.GetName()}\n{e.GetDescription()}", EnchantViewerClicked);
+		Result.SetDataConfig(null, 0, "Result of enchantment goes here.", () => {});
         ItemViewer.Close();
     }
 
     public WeaponUI WeaponUI;
 
     public void Enchant() {
-        Weapon w = Weapon.Item.Item as Weapon;
-        Enchanter e = Enchanter.Item.Item as Enchanter;
+        WeaponInstance w = Weapon.Item.CurrentItem as WeaponInstance;
+        EnchanterInstance e = Enchanter.Item.CurrentItem as EnchanterInstance;
 
         if (w == null || e == null) return;
 
         NumberOfEnchantedWeapons.Value++;
 
-        Inventory.Remove(e);
+        Inventory.Instance.Remove(e);
         w.Enchant(e);
 
         Start();
 
-        Result.SetData(w, 1, "Enchant Damage: " + w.GetEnchantDamage(), () => { WeaponUI.SetWeaponWithDefaults(w); });
+        Result.SetDataInstance(w, 1, "Enchant Damage: " + w.GetEnchantDamage(), () => { WeaponUI.SetWeaponWithDefaults(w); });
         EquipItemProcessor.Instance.ProcessItem(w, null);
     }
 }

@@ -19,7 +19,7 @@ namespace Items {
             for (int index = 0; index < SaveData.Count; index++) {
                 var consumeable = SaveData[index];
                 if (RandomUtils.GetTime() < consumeable.EndTime) {
-                    UseConsumable((Consumable) DataManager.Instance.AllItems.First(it => it.ID == consumeable.Id));
+                    UseConsumable((Consumable) DataManager.Instance.AllItems.First(it => it.Id == consumeable.Id));
                 }
             }
             ConsumableUi.Instance.Refresh();
@@ -31,7 +31,7 @@ namespace Items {
                 if (RandomUtils.GetTime() > consumeable.EndTime) {
                     SaveData.RemoveAt(index);
                     index--;
-                    FinishConsumable((Consumable) DataManager.Instance.AllItems.First(it => it.ID == consumeable.Id));
+                    FinishConsumable((Consumable) DataManager.Instance.AllItems.First(it => it.Id == consumeable.Id));
                     ConsumableUi.Instance.Refresh();
                 }
             }
@@ -83,7 +83,7 @@ namespace Items {
     
         public void UseHealthPotion(Consumable c) {
             var player = DataManager.Instance.Player;
-            player.Health.Value = Mathf.Min(player.Health + (int)c.Affect, player.MaxHealth);
+            player.Health = Mathf.Min(player.Health + (int)c.Affect, player.MaxHealth);
         }
 
         public void UseDamagePotion(Consumable c) {
@@ -91,7 +91,7 @@ namespace Items {
             player.DamageMultiplier *= c.Affect;
             SaveData.Add(new ConsumableSaveData {
                 EndTime = RandomUtils.GetTime() + c.Duration,
-                Id = c.ID
+                Id = c.Id
             });
         }
 
@@ -104,7 +104,7 @@ namespace Items {
             DataManager.Instance.Player.SpeedMultiplier *= c.Affect;
             SaveData.Add(new ConsumableSaveData {
                 EndTime = RandomUtils.GetTime() + c.Duration,
-                Id = c.ID
+                Id = c.Id
             });
         }
 

@@ -15,14 +15,13 @@ namespace G4AW2.Followers {
 	public class FollowerDisplayController : MonoBehaviour {
 
         [Header("Misc References")]
-        public RuntimeSetFollowerData ListOfCurrentFollowers;
 	    public FollowerDisplay DisplayPrefab;
 	    public LerpToPosition WorldCameraLerper;
 	    public Transform EnemyArrowPosition;
 
         [Header("Shop")]
 	    public LerpToPosition ShopperWalk;
-	    public ShopGiverDisplay Shopper;
+	    public ShopKeeperDisplay Shopper;
         
 
 	    [Header("Quest Giver")]
@@ -35,35 +34,31 @@ namespace G4AW2.Followers {
 	        FollowerPool = new ObjectPrefabPool(DisplayPrefab.gameObject, transform);
 	    }
 
+	    void Start() {
+		    FollowerManager.Instance.FollowerAdded += OnAdd;
+		    FollowerManager.Instance.FollowerRemoved += ResetFollowersWithDummyParam;
+		    
+	    }
+	    
         public void AfterLoadEvent() {
 
 	        ResetFollowers();
+        }
 
-            // Remove listeneres
-            ListOfCurrentFollowers.OnAdd.RemoveListener(OnAdd);
-			ListOfCurrentFollowers.OnRemove.RemoveListener(ResetFollowersWithDummyParam);
-			ListOfCurrentFollowers.OnChange.RemoveListener(ResetFollowersWithDummyParam);
-
-            // Add listeners
-			ListOfCurrentFollowers.OnAdd.AddListener(OnAdd);
-			ListOfCurrentFollowers.OnRemove.AddListener(ResetFollowersWithDummyParam);
-			ListOfCurrentFollowers.OnChange.AddListener(ResetFollowersWithDummyParam);
-		}
-
-	    private void ResetFollowersWithDummyParam(FollowerData d) {
+	    private void ResetFollowersWithDummyParam(FollowerInstance d) {
 	        ResetFollowers();
 	    }
 
-	    private void OnAdd(FollowerData d) {
-            SmoothPopUpManager.ShowPopUp(EnemyArrowPosition.position, "<color=green>+1</color> " + d.DisplayName, Color.white, true);
+	    private void OnAdd(FollowerInstance d) {
+            SmoothPopUpManager.ShowPopUp(EnemyArrowPosition.position, "<color=green>+1</color> " + d.Config.DisplayName, Color.white, true);
             ResetFollowers();
         }
 
 		private void ResetFollowers() {
 			FollowerPool.Reset();
 
-			for (int i = 0; i < ListOfCurrentFollowers.Value.Count; i++) {
-				FollowerData fd = ListOfCurrentFollowers[i];
+			for (int i = 0; i < FollowerManager.Instance.Followers.Count; i++) {
+				FollowerInstance fd = FollowerManager.Instance.Followers[i];
 			    GameObject go = FollowerPool.GetObject();
 			    FollowerDisplay d = go.GetComponent<FollowerDisplay>();
 				AddDisplay(d, fd);
@@ -72,11 +67,11 @@ namespace G4AW2.Followers {
             FollowerLayoutController.Instance.ChangeLayout();
 		}
 
-        private void AddDisplay(FollowerDisplay display, FollowerData d) {
+        private void AddDisplay(FollowerDisplay display, FollowerInstance d) {
 			display.transform.SetAsFirstSibling();
 		    Vector2 r = ((RectTransform) display.transform).sizeDelta;
-		    r.x = d.SizeOfSprite.x;
-		    r.y = d.SizeOfSprite.y;
+		    r.x = d.Config.SizeOfSprite.x;
+		    r.y = d.Config.SizeOfSprite.y;
 		    ((RectTransform) display.transform).sizeDelta = r;
 
             display.SetData(d);
@@ -87,15 +82,15 @@ namespace G4AW2.Followers {
 		public void FollowerClicked(FollowerDisplay fd) {
 			// Show some info on them.
 			
-			if (ListOfCurrentFollowers[0] == fd.Data) {
-				if (fd.Data is EnemyData) {
-					EnemyData ed = (EnemyData) fd.Data;
+			if (FollowerManager.Instance.Followers[0] == fd.Instance) {
+				if (fd.Instance is EnemyInstance) {
+					EnemyInstance ed = (EnemyInstance) fd.Instance;
 
-				    string elemDmg = ed.HasElementalDamage ? ed.ElementalDamage.ToString() : "0";
-				    string elemColor = ed.HasElementalDamage ? "#" + ColorUtility.ToHtmlStringRGB(ed.ElementalDamageType.DamageColor) : "black";
+				    string elemDmg = ed.Config.HasElementalDamage ? ed.ElementalDamage.ToString() : "0";
+				    string elemColor = ed.Config.HasElementalDamage ? "#" + ColorUtility.ToHtmlStringRGB(ed.Config.ElementalDamageType.DamageColor) : "black";
 
 
-                    string description = $@"Fight a level {ed.Level} {ed.DisplayName}?
+                    string description = $@"Fight a level {ed.SaveData.Level} {ed.Config.DisplayName}?
 <color=green>Health: {ed.MaxHealth}</color>
 <color=red>Damage: {ed.Damage}</color>
 Elemental Damage: <color={elemColor}>{elemDmg}</color>";
@@ -105,11 +100,11 @@ Elemental Damage: <color={elemColor}>{elemDmg}</color>";
 						    InteractionController.Instance.EnemyFight(ed);
 					    },
                         () => { }});
-				} else if (fd.Data is QuestGiver) {
+				} else if (fd.Instance is QuestGiverInstance q) {
 
 				    WorldCameraLerper.StartLerping(() => {
 					    PlayerAnimations.Instance.Spin();
-                        QuestGiver.SetData(fd.Data);
+                        QuestGiver.SetData(q);
 				        QuestGiver.StartWalking();
 				        QuestGiverWalk.StartLerping(() => {
 				            QuestGiver.StopWalking();
@@ -117,11 +112,11 @@ Elemental Damage: <color={elemColor}>{elemDmg}</color>";
 				        });
 				    });
 
-				} else if (fd.Data is ShopFollower) {
+				} else if (fd.Instance is ShopFollowerInstance shop) {
 
 				    WorldCameraLerper.StartLerping(() => {
 					    PlayerAnimations.Instance.Spin();
-				        Shopper.SetData(fd.Data);
+				        Shopper.SetData(shop);
                         Shopper.StartWalking();
 				        ShopperWalk.StartLerping(() => {
 				            Shopper.StopWalking();

@@ -7,5 +7,5 @@ using G4AW2.Data.DropSystem;
 
 namespace CustomEvents {
     [Serializable][CreateAssetMenu(menuName = "SO Architecture/Events/Specific/Item")]
-    public class GameEventItem : GameEventGeneric<Item, GameEventItem, UnityEventItem> { }
+    public class GameEventItem : GameEventGeneric<ItemConfig, GameEventItem, UnityEventItem> { }
 }

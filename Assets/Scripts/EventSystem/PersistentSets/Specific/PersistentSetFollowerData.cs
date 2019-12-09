@@ -8,16 +8,16 @@ using UnityEditor;
 
 namespace CustomEvents {
 	[UnityEngine.CreateAssetMenu(menuName = "SO Architecture/Persistent Set/Specific/FollowerData")]
-		public class PersistentSetFollowerData : PersistentSetGeneric<FollowerData, UnityEventFollowerData> {
+		public class PersistentSetFollowerData : PersistentSetGeneric<FollowerConfig, UnityEventFollowerData> {
 #if UNITY_EDITOR
 		[ContextMenu("Add all followers")]
 		public void AddAllOfType() {
-			string[] paths = AssetDatabase.FindAssets("t:" + typeof(FollowerData).Name);
+			string[] paths = AssetDatabase.FindAssets("t:" + typeof(FollowerConfig).Name);
 			for (int i = 0; i < paths.Length; i++) {
 				paths[i] = AssetDatabase.GUIDToAssetPath(paths[i]);
 			}
 
-			paths.Select(AssetDatabase.LoadAssetAtPath<FollowerData>).ForEach(Add);
+			paths.Select(AssetDatabase.LoadAssetAtPath<FollowerConfig>).ForEach(Add);
 		}
 #endif
 	}

@@ -6,13 +6,13 @@ using CustomEvents;
 using G4AW2.Data;
 using G4AW2.Data.DropSystem;
 using G4AW2.Dialogue;
+using G4AW2.Followers;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class ShopUI : MonoBehaviour {
 
-    public RuntimeSetFollowerData Followers;
     public Inventory Inventory;
     public IntReference GoldAmount;
 
@@ -24,14 +24,14 @@ public class ShopUI : MonoBehaviour {
 
     public UnityEvent OnFinish;
 
-    private ShopFollower shopKeep;
+    private ShopFollowerInstance shopKeep;
 
     private List<GameObject> buyingItems = new List<GameObject>();
     private List<GameObject> sellingItems = new List<GameObject>();
 
     private Action actionOnSendAway;
 
-    public void OpenShop(ShopFollower shopKeep, Action actionOnSendAway) {
+    public void OpenShop(ShopFollowerInstance shopKeep, Action actionOnSendAway) {
         this.actionOnSendAway = actionOnSendAway;
         this.shopKeep = shopKeep;
         gameObject.SetActive(true);
@@ -43,7 +43,7 @@ public class ShopUI : MonoBehaviour {
 
     public void Finish() {
         actionOnSendAway?.Invoke();
-        Followers.Remove(shopKeep);
+        FollowerManager.Instance.Followers.Remove(shopKeep);
         GetComponent<RobustLerper>().StartReverseLerp();
         OnFinish.Invoke();
     }
@@ -59,26 +59,19 @@ public class ShopUI : MonoBehaviour {
 
     private int GetTrashSum() {
         int sum = 0;
-        foreach(var i in Inventory) {
+        foreach(ItemInstance i in Inventory) {
 
-            if(i.Item is ITrashable && ((ITrashable) i.Item).IsTrash()) {
-                sum += Mathf.RoundToInt(i.Item.GetValue() * i.Amount * (shopKeep.SellingPriceMultiplier));
-            }
-
-            if(i.Item.SellWithTrash) {
-                sum += Mathf.RoundToInt(i.Item.GetValue() * i.Amount * (shopKeep.SellingPriceMultiplier));
+            if(i.SaveData.MarkedAsTrash || i.Config.SellWithTrash) {
+                sum += Mathf.RoundToInt(i.GetValue() * (shopKeep.Config.SellingPriceMultiplier));
             }
         }
         return sum;
     }
 
     public void SellTrash() {
-        List<InventoryEntry> toRemove = new List<InventoryEntry>();
+        List<ItemInstance> toRemove = new List<ItemInstance>();
         foreach(var i in Inventory) {
-            if(i.Item is ITrashable && ((ITrashable) i.Item).IsTrash()) {
-                toRemove.Add(i);
-            }
-            if(i.Item.SellWithTrash) {
+            if(i.SaveData.MarkedAsTrash || i.Config.SellWithTrash) {
                 toRemove.Add(i);
             }
         }
@@ -102,19 +95,19 @@ public class ShopUI : MonoBehaviour {
         }
     }
 
-    private int GetBuyingPrice(Item i) {
-        return Mathf.Max(Mathf.RoundToInt(i.GetValue() * shopKeep.BuyingPriceMultiplier), 1);
+    private int GetBuyingPrice(ItemInstance i) {
+        return Mathf.Max(Mathf.RoundToInt(i.GetValue() * shopKeep.Config.BuyingPriceMultiplier), 1);
     }
 
-    private void SetDataBuying(IconWithTextController itc, ShopFollower.SellableItem iid) {
-        int price = GetBuyingPrice(iid.Item);
+    private void SetDataBuying(IconWithTextController itc, ItemInstance iid) {
+        int price = GetBuyingPrice(iid);
 
-        string text = $"{iid.Item.GetName()}\n{price} gold each";
-        itc.SetData(iid.Item, iid.Amount, text, () => ItemClickedBuying(iid));
+        string text = $"{iid.GetName()}\n{price} gold each";
+        itc.SetDataInstance(iid, 1, text, () => ItemClickedBuying(iid));
     }
 
-    private void ItemClickedBuying(ShopFollower.SellableItem it) {
-        int price = GetBuyingPrice(it.Item);
+    private void ItemClickedBuying(ItemInstance it) {
+        int price = GetBuyingPrice(it);
 
         if (GoldAmount.Value < price) {
             PopUp.SetPopUp("Not Enough Gold.", new[] {":(", "):"}, new Action[] {() => { }, () => { }});
@@ -122,29 +115,14 @@ public class ShopUI : MonoBehaviour {
         }
 
         string title =
-            $"Would you like to buy a {it.Item.GetName()} for {price} gold?\nAmount Left: {it.Amount}\n\n{it.Item.GetDescription()}";
+            $"Would you like to buy a {it.GetName()} for {price} gold?\n{it.GetDescription()}";
 
-        PopUp.SetPopUp(title, new string[] { "Buy All", "Buy 1", "No" },
+        PopUp.SetPopUp(title, new [] { "Buy", "Cancel" },
             new Action[] {
                 () => {
-                    int amt = 0;
-                    while (it.Amount > 0 && GoldAmount >= price) {
-                        GoldAmount.Value -= price;
-                        Inventory.Add(it.Item, 1);
-                        it.Amount -= 1;
-                        if(it.Amount == 0) shopKeep.Items.Remove(it);
-                        amt++;
-                    }
-
-                    RefreshBuyingList();
-                },
-                () => {
                     GoldAmount.Value -= price;
-                    Inventory.Add(it.Item, 1);
-                    it.Amount -= 1;
-                    if(it.Amount == 0) shopKeep.Items.Remove(it);
-
-                    if (it.Amount > 0) ItemClickedBuying(it);
+                    Inventory.Add(it);
+                    shopKeep.Items.Remove(it);
                     RefreshBuyingList();
                 },
                 () => {
@@ -169,59 +147,33 @@ public class ShopUI : MonoBehaviour {
         }
     }
 
-    private int GetSellingPrice(Item i) {
-        return Mathf.Max(Mathf.RoundToInt(i.GetValue() * shopKeep.SellingPriceMultiplier), 1);
+    private int GetSellingPrice(ItemInstance i) {
+        return Mathf.Max(Mathf.RoundToInt(i.GetValue() * shopKeep.Config.SellingPriceMultiplier), 1);
     }
 
-    private void SetDataSelling(IconWithTextController itc, InventoryEntry iid) {
-        string text = iid.Item.GetName() + "\n" + GetSellingPrice(iid.Item) + " gold each";
-        itc.SetData(iid.Item, iid.Amount, text, () => ItemClickedSelling(iid));
+    private void SetDataSelling(IconWithTextController itc, ItemInstance iid) {
+        string text = iid.GetName() + "\n" + GetSellingPrice(iid) + " gold each";
+        itc.SetDataInstance(iid, 1, text, () => ItemClickedSelling(iid));
     }
 
-    private void ItemClickedSelling(InventoryEntry it) {
+    private void ItemClickedSelling(ItemInstance it) {
 
-        int price = GetSellingPrice(it.Item);
+        int price = GetSellingPrice(it);
+        
+        string title = string.Format($"Confirm sale of {it.GetName()} for {price} gold?\n{it.GetDescription()}");
 
-        if(it.Amount > 1) {
-            string amountLeft = it.Amount > 1 ? $"Amount Left: {it.Amount}\n" : "";
-
-            string title = string.Format($"Would you like to sell a {it.Item.GetName()} for {price} gold?\n{amountLeft}\n{it.Item.GetDescription()}");
-
-            PopUp.SetPopUp(title, new string[] { "Sell All", "Sell 1", "No" },
-                new Action[] {
-                () => {
-                    while (it.Amount > 0) {
-                        GoldAmount.Value += price;
-                        Inventory.Remove(it.Item, 1);
-                    }
-                    RefreshSellingList();
+        PopUp.SetPopUp(title, new string[] { "Sell", "Cancel" },
+           new Action[] {
+            () => {
+                GoldAmount.Value += price;
+                Inventory.Instance.Remove(it);
+                RefreshSellingList();
                 },
-                () => {
-                    GoldAmount.Value += price;
-                    Inventory.Remove(it.Item, 1);
-                    if (it.Amount != 0) {
-                        ItemClickedSelling(it);
-                    }
-                    RefreshSellingList();
+            () => {
+                
                 },
-                () => {
-                }
-           });
-        } else {
-            string title = string.Format($"Confirm sale of {it.Item.GetName()} for {price} gold?\n{it.Item.GetDescription()}");
-
-            PopUp.SetPopUp(title, new string[] { "Sell", "Cancel" },
-               new Action[] {
-                () => {
-                    GoldAmount.Value += price;
-                    Inventory.Remove(it.Item, 1);
-                    RefreshSellingList();
-                },
-                () => {
-                    
-                },
-          });
-        }
+            }
+        );
 
         
     }

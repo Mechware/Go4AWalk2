@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [CreateAssetMenu(menuName ="Data/Items/Consumable")]
-public class Consumable : Item {
+public class Consumable : ItemConfig {
 
     public enum ConsumableType {
         Health,

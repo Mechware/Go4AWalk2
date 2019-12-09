@@ -1,5 +1,5 @@
 
 
 namespace CustomEvents {
-	[System.Serializable] public class UnityEventHeadgear : GenericUnityEvent<Headgear> { }
+	[System.Serializable] public class UnityEventHeadgear : GenericUnityEvent<HeadgearConfig> { }
 }

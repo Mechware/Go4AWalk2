@@ -35,7 +35,7 @@ namespace G4AW2.Combat {
 
         [Header("Data")]
 		public State EnemyState;
-		public EnemyData Enemy;
+		public EnemyInstance Enemy;
 
         [Header("Readable Data")]
 		public IntReference MaxHealth;
@@ -68,22 +68,22 @@ namespace G4AW2.Combat {
 			gameObject.SetActive(false);
         }
 
-		public void SetEnemy( EnemyData data) {
+		public void SetEnemy( EnemyInstance instance) {
 			EnemyState = State.Idle;
-			Enemy = data;
+			Enemy = instance;
             
-			MaxHealth.Value = data.MaxHealth;
+			MaxHealth.Value = instance.MaxHealth;
 			CurrentHealth.Value = MaxHealth;
 
 			AnimatorOverrideController aoc = (AnimatorOverrideController)GetComponent<Animator>().runtimeAnimatorController;
-			aoc["Death"] = Enemy.Death;
-			aoc["Dead"] = Enemy.Dead;
-			aoc["Flinch"] = Enemy.Flinch;
-			aoc["BeforeAttack"] = Enemy.BeforeAttack;
-			aoc["AttackExecute"] = Enemy.AttackExecute;
-			aoc["AfterAttack"] = Enemy.AfterAttack;
-			aoc["Idle"] = Enemy.Idle;
-            aoc["Walking"] = Enemy.Walking;
+			aoc["Death"] = Enemy.Config.Death;
+			aoc["Dead"] = Enemy.Config.Dead;
+			aoc["Flinch"] = Enemy.Config.Flinch;
+			aoc["BeforeAttack"] = Enemy.Config.BeforeAttack;
+			aoc["AttackExecute"] = Enemy.Config.AttackExecute;
+			aoc["AfterAttack"] = Enemy.Config.AfterAttack;
+			aoc["Idle"] = Enemy.Config.Idle;
+            aoc["Walking"] = Enemy.Config.Walking;
 
 
             // TODO: Find a better way to do this
@@ -92,13 +92,13 @@ namespace G4AW2.Combat {
             transform.localPosition = pos;
 
 		    Vector2 r = RectTransform.sizeDelta;
-		    r.x = data.SizeOfSprite.x;
-		    r.y = data.SizeOfSprite.y;
+		    r.x = Enemy.Config.SizeOfSprite.x;
+		    r.y = Enemy.Config.SizeOfSprite.y;
 		    RectTransform.sizeDelta = r;
 
 		    Image.color = Color.white;
 
-		    EnemyInfo.text = $"{data.DisplayName}\nLevel {data.Level}";
+		    EnemyInfo.text = $"{Enemy.Config.DisplayName}\nLevel {Enemy.SaveData.Level}";
 		}
 
 	    public void StartWalkingAnimation() {
@@ -133,7 +133,7 @@ namespace G4AW2.Combat {
 		public IEnumerator DoAttack(bool first = false) {
 			for (; ; ) {
 				EnemyState = State.Idle;
-                yield return new WaitForSeconds(first ? Enemy.TimeBetweenAttacks / 4 : Enemy.TimeBetweenAttacks);
+                yield return new WaitForSeconds(first ? Enemy.Config.TimeBetweenAttacks / 4 : Enemy.Config.TimeBetweenAttacks);
                 first = false;
 			    if (EnemyState == State.Dead) break;
 
@@ -142,7 +142,7 @@ namespace G4AW2.Combat {
 			    if(ShowParryAndBlockColors) Image.color = BlockColor;
 
 				// Wind up
-				yield return new WaitForSeconds(Enemy.AttackPrepTime);
+				yield return new WaitForSeconds(Enemy.Config.AttackPrepTime);
 			    if(EnemyState == State.Dead)
 			        break;
 
@@ -153,7 +153,7 @@ namespace G4AW2.Combat {
 			        Image.color = ParryColor;
 
                 // Perform the attack
-                yield return new WaitForSeconds(Enemy.AttackExecuteTime);
+                yield return new WaitForSeconds(Enemy.Config.AttackExecuteTime);
 			    if(ShowParryAndBlockColors)
 			        Image.color = Color.white;
 			    if(EnemyState == State.Dead)
@@ -161,11 +161,11 @@ namespace G4AW2.Combat {
 
                 EnemyState = State.AfterAttack;
 			    PlayerFightingLogic.Instance.OnEnemyHitPlayer(Enemy.Damage);
-			    if (Enemy.HasElementalDamage) {
-				    PlayerFightingLogic.Instance.OnEnemyHitPlayerElemental(Enemy.ElementalDamage, Enemy.ElementalDamageType);
+			    if (Enemy.Config.HasElementalDamage) {
+				    PlayerFightingLogic.Instance.OnEnemyHitPlayerElemental(Enemy.ElementalDamage, Enemy.Config.ElementalDamageType);
 			    }
 
-                if (Enemy.OneAndDoneAttacker) {
+                if (Enemy.Config.OneAndDoneAttacker) {
 	                Die(true);
 			        break;
 			    }

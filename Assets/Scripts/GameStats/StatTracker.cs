@@ -19,7 +19,7 @@ public class StatTracker : MonoBehaviour {
     
     [Serializable]
     public class EnemyCounter {
-        public EnemyData Enemy;
+        public EnemyConfig Enemy;
         public IntVariable Count;
     }
 
@@ -31,7 +31,7 @@ public class StatTracker : MonoBehaviour {
 
     [Serializable]
     public class ItemCounter {
-        public Item Item;
+        public ItemConfig ItemConfig;
         public IntVariable Count;
     }
 
@@ -46,7 +46,7 @@ public class StatTracker : MonoBehaviour {
 
         itemDictionary = new Dictionary<int, IntVariable>();
         foreach(ItemCounter item in ItemObtainedCount) {
-            itemDictionary.Add(item.Item.ID, item.Count);
+            itemDictionary.Add(item.ItemConfig.Id, item.Count);
         }
 
         enemyDictionary = new Dictionary<int, IntVariable>();
@@ -55,15 +55,15 @@ public class StatTracker : MonoBehaviour {
         }
     }
 
-    private void LootObtained(Item item) {
-        if(itemDictionary.ContainsKey(item.ID)) {
-            itemDictionary[item.ID].Value++;
+    private void LootObtained(ItemConfig itemConfig) {
+        if(itemDictionary.ContainsKey(itemConfig.Id)) {
+            itemDictionary[itemConfig.Id].Value++;
         }
     }
 
-    private void EnemyKilled(EnemyData enemyData) {
-        if(enemyDictionary.ContainsKey(enemyData.ID)) {
-            enemyDictionary[enemyData.ID].Value++;
+    private void EnemyKilled(EnemyInstance enemy) {
+        if(enemyDictionary.ContainsKey(enemy.Config.ID)) {
+            enemyDictionary[enemy.Config.ID].Value++;
         }
     }
 
@@ -74,12 +74,12 @@ public class StatTracker : MonoBehaviour {
 #if UNITY_EDITOR
     [ContextMenu("Create Variables For Enemies")]
     public void CreateVariablesToTrackEnemies() {
-        string[] paths = AssetDatabase.FindAssets("t:" + typeof(EnemyData).Name);
+        string[] paths = AssetDatabase.FindAssets("t:" + typeof(EnemyConfig).Name);
         for(int i = 0; i < paths.Length; i++) {
             paths[i] = AssetDatabase.GUIDToAssetPath(paths[i]);
         }
 
-        List<EnemyData> enemies = paths.Select(AssetDatabase.LoadAssetAtPath<EnemyData>).ToList();
+        List<EnemyConfig> enemies = paths.Select(AssetDatabase.LoadAssetAtPath<EnemyConfig>).ToList();
 
         foreach (var enemyData in enemies) {
             string variableTitle = $"{enemyData.DisplayName}sKilled";
@@ -99,12 +99,12 @@ public class StatTracker : MonoBehaviour {
 
     [ContextMenu("Create Variables For Items")]
     public void CreateVariablesToTrackItems() {
-        string[] paths = AssetDatabase.FindAssets("t:" + typeof(Item).Name);
+        string[] paths = AssetDatabase.FindAssets("t:" + typeof(ItemConfig).Name);
         for(int i = 0; i < paths.Length; i++) {
             paths[i] = AssetDatabase.GUIDToAssetPath(paths[i]);
         }
 
-        List<Item> items = paths.Select(AssetDatabase.LoadAssetAtPath<Item>).ToList();
+        List<ItemConfig> items = paths.Select(AssetDatabase.LoadAssetAtPath<ItemConfig>).ToList();
 
         foreach(var item in items) {
             string variableTitle = $"{item.Name}sCollected";
@@ -116,7 +116,7 @@ public class StatTracker : MonoBehaviour {
 
             AssetDatabase.CreateAsset(variable, $"Assets/Data/StatVariables/Collected/{variableTitle}.asset");
             ItemObtainedCount.Add(new ItemCounter() {
-                Item = item,
+                ItemConfig = item,
                 Count = variable
             });
         }

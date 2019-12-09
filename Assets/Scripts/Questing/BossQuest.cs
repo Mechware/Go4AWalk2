@@ -11,7 +11,7 @@ using UnityEngine;
 public class BossQuest : ActiveQuestBase {
 
     [Header("Boss Objective")]
-    public EnemyData Enemy;
+    public EnemyConfig Enemy;
 
     public override void StartQuest(Action<ActiveQuestBase> onFinish) {
         base.StartQuest(onFinish);

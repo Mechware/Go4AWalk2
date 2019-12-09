@@ -12,13 +12,15 @@ public class CraftingTable : ScriptableObject {
 
     public ActiveQuestBaseVariable CurrentQuest;
     public PersistentSetCraftingRecipe Recipes;
-    public Inventory Inventory;
 
+    private List<CraftingRecipe> currentRecipes = null;
+
+    
     public List<CraftingRecipe> GetPossibleRecipes() {
-        return GetPossibleRecipesWhereResultIs<Item>();
+        return GetPossibleRecipesWhereResultIs<ItemConfig>();
     }
 
-    public List<CraftingRecipe> GetPossibleRecipesWhereResultIs<T>() where T : Item {
+    public List<CraftingRecipe> GetPossibleRecipesWhereResultIs<T>() where T : ItemConfig {
 
         List<CraftingRecipe> recipes = new List<CraftingRecipe>();
 
@@ -29,8 +31,8 @@ public class CraftingTable : ScriptableObject {
             bool canMake = true;
 
             foreach(var component in recipe.Components) {
-                InventoryEntry ie = Inventory.FirstOrDefault(e => e.Item.ID == component.Item.ID);
-                if(ie == default(InventoryEntry) || ie.Amount < component.Amount) {
+                var amt = Inventory.Instance.GetAmountOf(component.Item);
+                if(amt < component.Amount) {
                     canMake = false;
                     break;
                 }
@@ -42,37 +44,53 @@ public class CraftingTable : ScriptableObject {
         return recipes;
     }
 
-    public Item Make(CraftingRecipe cr) {
-        if (cr.Components.Any(comp => !Inventory.Contains(comp))) {
+    public List<ItemInstance> Make(CraftingRecipe cr) {
+        if (cr.Components.Any(comp => !Inventory.Instance.Contains(comp.Item))) {
             Debug.LogError("Tried to craft something you could not make");
             return null;
         }
 
         foreach(var comp in cr.Components) {
-            Inventory.Remove(comp);
+            int amount = comp.Amount;
+            var item = comp.Item;
+            while (amount > 0) {
+                if (!Inventory.Instance.Remove(item.Id)) {
+                    Debug.LogError("Tried to remove item from inventory but was unable to. id: " + item.Id);
+                    return null;
+                }
+                amount--;
+            }
         }
 
-        Item it = cr.Result.Item;
+        List<ItemInstance> items = new List<ItemInstance>();
+        for (int i = 0; i < cr.Result.Amount; i++) {
+            ItemInstance it = ItemFactory.GetInstance(cr.Result.Item, QuestManager.Instance.CurrentQuest.Level);
+            Inventory.Instance.Add(it);
+            items.Add(it);
+        }
         
-        if (it.ShouldCreateNewInstanceWhenPlayerObtained()) {
-            it = ScriptableObject.Instantiate(cr.Result.Item);
-            it.CreatedFromOriginal = true;
-            it.OnAfterObtained();
+        return items;
+    }
+    
+    public Sprite QuestionMark;
 
-            if (it is Weapon) {
-                ((Weapon) it).Level = CurrentQuest.Value.Level;
+    public void CheckNewRecipes() {
+        // Check if a new recipe is makeable
+        if (currentRecipes == null) {
+            currentRecipes = GetPossibleRecipes();
+        } else {
+            List<CraftingRecipe> recipes = GetPossibleRecipes();
+            foreach(var recipe in recipes) {
+                if(!currentRecipes.Contains(recipe) && !CraftingRecipesMade.RecipesMade.Contains(recipe.ID)) {
+                    string postText = "";
+                    foreach(var component in recipe.Components) {
+                        postText +=
+                            $"{component.Amount} {component.Item.Name}{(component.Amount > 1 ? "s" : "")}\n";
+                    }
+                    QuickPopUp.Show(QuestionMark, $"<size=150%>New Craftable Recipe!</size>\nA new recipe is now craftable!\nRequires:{postText}");
+                }
             }
-
-            if (it is Armor) {
-                ((Armor) it).Level = CurrentQuest.Value.Level;
-            }
-
-            if(it is Headgear) {
-                ((Headgear) it).Level = CurrentQuest.Value.Level;
-            }
+            currentRecipes = recipes;
         }
-
-        Inventory.Add(it, cr.Result.Amount);
-        return it;
     }
 }

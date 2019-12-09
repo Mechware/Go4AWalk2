@@ -33,7 +33,7 @@ public class CraftingMenu : MonoBehaviour {
             var holder = go.GetComponent<IconWithTextController>();
             SetItem(holder, r);
             
-            if (!r.IsCraftable(CT.Inventory)) {
+            if (!r.IsCraftable()) {
                 AlphaOfAllChildren.SetAlphaOfAllChildren(go, 1, Color.gray);
             }
         }
@@ -42,22 +42,22 @@ public class CraftingMenu : MonoBehaviour {
     private void SetItem(IconWithTextController holder, CraftingRecipe recipe) {
 
         if (CraftingRecipesMade.RecipesMade.Contains(recipe.ID)) {
-            string text = $"{recipe.Result.Item.GetName()}\n<size=50%>";
+            string text = $"{recipe.Result.Item.Name}\n<size=50%>";
             foreach (var r in recipe.Components) {
-                text += $"{r.Item.GetName()} - {CT.Inventory.GetAmountOf(r.Item)} / {r.Amount}\n";
+                text += $"{r.Item.Name} - {Inventory.Instance.GetAmountOf(r.Item)} / {r.Amount}\n";
             }
 
-            holder.SetData(recipe.Result.Item, 1, text, () => {
+            holder.SetDataConfig(recipe.Result.Item, 1, text, () => {
                 MakeRecipe(recipe);
             }, showText:false);
         }
         else {
             string text = $"???\n<size=50%>";
             foreach(var r in recipe.Components) {
-                text += $"{r.Item.GetName()} - {CT.Inventory.GetAmountOf(r.Item)} / {r.Amount}\n";
+                text += $"{r.Item.Name} - {Inventory.Instance.GetAmountOf(r.Item)} / {r.Amount}\n";
             }
 
-            holder.SetData(recipe.Result.Item, 1, text, () => {
+            holder.SetDataConfig(recipe.Result.Item, 1, text, () => {
                 if (MakeRecipe(recipe)) {
                     CraftingRecipesMade.RecipesMade.Add(recipe.ID);
                     RefreshList();
@@ -70,8 +70,8 @@ public class CraftingMenu : MonoBehaviour {
     //public QuickPopUp PopUp;
 
     private bool MakeRecipe(CraftingRecipe cr) {
-        Item it = CT.Make(cr);
-        if (it == null) return false;
+        var its = CT.Make(cr);
+        if (its == null) return false;
 
         /*
         string desc = "";
@@ -85,7 +85,7 @@ public class CraftingMenu : MonoBehaviour {
 
         //PopUp.ShowSprite(cr.Result.Item.Image, $"<size=150%>Crafted!</size>\nYou successfully crafted a {it.GetName()}!{PostText}");
 
-        EquipItemProcessor.Instance.ProcessItem(it, null);
+        EquipItemProcessor.Instance.ProcessItem(its, null);
         RefreshList();
 
         return true;
