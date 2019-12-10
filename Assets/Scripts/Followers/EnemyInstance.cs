@@ -14,7 +14,6 @@ public class EnemyInstance : FollowerInstance {
 
     public EnemyInstance(EnemyConfig config, int level) {
         base.SaveData = new EnemySaveData();
-        SaveGame.Instance.Followers.Add(SaveData);
         SaveData.Id = Config.ID;
         SaveData.Level = level;
     } 

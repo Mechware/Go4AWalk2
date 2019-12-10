@@ -14,8 +14,8 @@ public class WeaponInstance : ItemInstance {
     public new WeaponSaveData SaveData => (WeaponSaveData) base.SaveData;
     
     public int RawDamage => GetDamage();
-    public int Mastery => Mathf.FloorToInt( ConfigObject.GetLevel(Config.Rarity, MasteryLevels.GetTaps(Config.Id)));
-    public float RawMastery => ConfigObject.GetLevel(Config.Rarity, MasteryLevels.GetTaps(Config.Id));
+    public int Mastery => Mathf.FloorToInt( RarityDefines.GetLevel(Config.Rarity, SaveGame.SaveData.IdsToNumberOfTaps.GetOrInsertDefault(Config.Id, 0)));
+    public float RawMastery => RarityDefines.GetLevel(Config.Rarity, SaveGame.SaveData.IdsToNumberOfTaps.GetOrInsertDefault(Config.Id, 0));
     
     public bool IsEnchanted => Enchantment != null;
     public EnchanterInstance Enchantment { get; private set; }
@@ -25,7 +25,7 @@ public class WeaponInstance : ItemInstance {
 
 
     public WeaponInstance(WeaponSaveData saveData) {
-        base.Config = Configs.Instance.ItemConfigs.First(w => w.Id == saveData.Id);
+        base.Config = Configs.Instance.Items.First(w => w.Id == saveData.Id);
         base.SaveData = saveData;
 
         if (saveData.EnchanterId > 0) {
@@ -61,24 +61,16 @@ public class WeaponInstance : ItemInstance {
         return Mathf.RoundToInt(baseRawDamage);
     }
     
-    private int lastLevel = -1;
-    
     // TODO(Mike): Move this.
     void TapsChanged(int amount) {
 
-        if (!MasteryLevels.Loaded) return;
-
-        if (lastLevel == -1) {
-            lastLevel = Mastery;
-            return;
-        }
-
-        MasteryLevels.Tap(Config.Id);
+        int lastLevel = Mastery;
+        
+        SaveGame.SaveData.IdsToNumberOfTaps.GetOrInsertDefault(Config.Id, 0);
+        SaveGame.SaveData.IdsToNumberOfTaps[Config.Id]++;
 
         if (Mastery != lastLevel) {
-            
             MainUI.Instance.MasteryPopUp($"Mastery Level {Mastery}");
-            lastLevel = Mastery;
         }
     }
 

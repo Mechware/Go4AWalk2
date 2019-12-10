@@ -39,7 +39,7 @@ public class BaitBuffController : MonoBehaviour {
                 
                 while (buff.NextSpawnTime < buff.BuffEndTime) {
                     // Pick a monster that you can spawn
-                    var bait = (Bait) DataManager.Instance.AllItems.First(it => it.Id == buff.BaitId);
+                    var bait = (Bait) Configs.Instance.Items.First(it => it.Id == buff.BaitId);
                     var monster = GetDrop(bait);
 
                     // Drop it
@@ -55,7 +55,7 @@ public class BaitBuffController : MonoBehaviour {
             
             if (currentTime > buff.NextSpawnTime) {
                 // Pick a monster that you can spawn
-                var bait = (Bait) DataManager.Instance.AllItems.First(it => it.Id == buff.BaitId);
+                var bait = (Bait) Configs.Instance.Items.First(it => it.Id == buff.BaitId);
                 var monster = GetDrop(bait);
 
                 // Check if it is in the list

@@ -12,7 +12,7 @@ public class EnchanterInstance : ItemInstance {
 
     
     public EnchanterInstance(EnchanterSaveData saveData) {
-        base.Config = Configs.Instance.ItemConfigs.First(w => w.Id == saveData.Id);
+        base.Config = Configs.Instance.Items.First(w => w.Id == saveData.Id);
         base.SaveData = saveData;
     }
 

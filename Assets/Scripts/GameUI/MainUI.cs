@@ -9,6 +9,9 @@ public class MainUI : MonoBehaviour {
 
     public static MainUI Instance;
     
+    public RectTransform PlayerHealthFill;
+    public TextMeshProUGUI PlayerHealthText;
+    
     public RectTransform MasteryFill;
     public TextMeshProUGUI MasteryText;
 
@@ -47,6 +50,10 @@ public class MainUI : MonoBehaviour {
             float nextLevelDamage = weapon.GetDamage(mastery: weapon.Mastery+1);
             MasteryFill.anchorMax = MasteryFill.anchorMax.SetX(masteryProgress);
         }
+
+        float playerHealth = Mathf.Clamp01(Player.Instance.Health / (float) Player.Instance.MaxHealth);
+        PlayerHealthFill.anchorMax = PlayerHealthFill.anchorMax.SetX(playerHealth);
+        PlayerHealthText.text = $"{Player.Instance.Health} / {Player.Instance.MaxHealth}";        
         
         Weapon.SetDataInstance(Player.Instance.Weapon, 0, ChangeWeapon, null, true);
         Armor.SetDataInstance(Player.Instance.Armor, 0, ChangeArmor, null, true);

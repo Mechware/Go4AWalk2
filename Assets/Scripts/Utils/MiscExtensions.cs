@@ -84,4 +84,10 @@ public static class MiscExtensions {
 
         return s;
     }
+
+    public static TValue GetOrInsertDefault<TKey, TValue>(this Dictionary<TKey, TValue> dict, TKey key, TValue Default) {
+        if (dict.ContainsKey(key)) return dict[key];
+        dict[key] = Default;
+        return dict[key];
+    }
 }

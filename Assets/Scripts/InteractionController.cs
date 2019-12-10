@@ -19,8 +19,6 @@ public class InteractionController : MonoBehaviour {
     public DragObject World;
     public ScrollingImages BackgroundImages;
 
-    public Player Player;
-    public Inventory Inventory;
     public LerpToPosition LerperToBattleArea;
     public LerpToPosition EnemyPositionLerper;
     public GameObject AttackArea;
@@ -206,7 +204,7 @@ public class InteractionController : MonoBehaviour {
             FollowerManager.Instance.Followers.Remove(instance);
             AttackArea.SetActive(false);
         
-            if (Player.Health <= 0) {
+            if (Player.Instance.Health <= 0) {
                 OnPlayerDeath();
                 yield break;    
             }
@@ -259,8 +257,8 @@ public class InteractionController : MonoBehaviour {
                     EnemyDisplay.Instance.RectTransform.anchoredPosition.y, 
                     instance);
                 
-                GameEventHandler.Singleton.OnEnemyKilled(instance);
-                items.ForEach(it => Inventory.Add(it));
+                GameEventHandler.Instance.OnEnemyKilled(instance);
+                items.ForEach(it => Inventory.Instance.Add(it));
                 World.Enable();
 
                 PlayerClickController.Instance.SetEnabled(true);
@@ -307,7 +305,7 @@ public class InteractionController : MonoBehaviour {
                 // Reset + Enable world scrolling
                 World.Enable();
                 // Player.DeathFinished
-                Player.OnDeathFinished();
+                Player.Instance.OnDeathFinished();
                 ProcessingDeath = false;
             });
             

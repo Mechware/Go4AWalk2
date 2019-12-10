@@ -13,7 +13,6 @@ using UnityEngine.Events;
 
 public class ShopUI : MonoBehaviour {
 
-    public Inventory Inventory;
     public IntReference GoldAmount;
 
     public GameObject IconWithTextPrefab;
@@ -59,7 +58,7 @@ public class ShopUI : MonoBehaviour {
 
     private int GetTrashSum() {
         int sum = 0;
-        foreach(ItemInstance i in Inventory) {
+        foreach(ItemInstance i in Inventory.Instance) {
 
             if(i.SaveData.MarkedAsTrash || i.Config.SellWithTrash) {
                 sum += Mathf.RoundToInt(i.GetValue() * (shopKeep.Config.SellingPriceMultiplier));
@@ -70,14 +69,14 @@ public class ShopUI : MonoBehaviour {
 
     public void SellTrash() {
         List<ItemInstance> toRemove = new List<ItemInstance>();
-        foreach(var i in Inventory) {
+        foreach(var i in Inventory.Instance) {
             if(i.SaveData.MarkedAsTrash || i.Config.SellWithTrash) {
                 toRemove.Add(i);
             }
         }
 
         GoldAmount.Value += GetTrashSum();
-        toRemove.ForEach(i => Inventory.Remove(i));
+        toRemove.ForEach(i => Inventory.Instance.Remove(i));
 
         SetSellingTab();
     }
@@ -121,7 +120,7 @@ public class ShopUI : MonoBehaviour {
             new Action[] {
                 () => {
                     GoldAmount.Value -= price;
-                    Inventory.Add(it);
+                    Inventory.Instance.Add(it);
                     shopKeep.Items.Remove(it);
                     RefreshBuyingList();
                 },
@@ -139,7 +138,7 @@ public class ShopUI : MonoBehaviour {
         sellingItems.ForEach(Destroy);
         sellingItems.Clear();
 
-        foreach(var item in Inventory) {
+        foreach(var item in Inventory.Instance) {
             var go = Instantiate(IconWithTextPrefab, SellingScrollPanelContent.transform);
             var itemDisplay = go.GetComponent<IconWithTextController>();
             SetDataSelling(itemDisplay, item);

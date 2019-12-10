@@ -27,13 +27,13 @@ public class ConsumableUi : MonoBehaviour
         foreach(var data in ConsumableManager.Instance.SaveData) {
             var it = Instantiate(RegularConsumablePrefab, RegularConsumableParent);
             var consumable = UiRef.Init<ConsumableItem>(it.gameObject);
-            consumable.Icon.sprite = DataManager.Instance.AllItems.First(item => item.Id == data.Id).Image;
+            consumable.Icon.sprite = Configs.Instance.Items.First(item => item.Id == data.Id).Image;
         }
 
         foreach(var data in BaitBuffController.Instance.SaveData) {
             var it = Instantiate(RegularConsumablePrefab, RegularConsumableParent);
             var consumable = UiRef.Init<ConsumableItem>(it.gameObject);
-            consumable.Icon.sprite = DataManager.Instance.AllItems.First(item => item.Id == data.BaitId).Image;
+            consumable.Icon.sprite = Configs.Instance.Items.First(item => item.Id == data.BaitId).Image;
         }
     }
 }

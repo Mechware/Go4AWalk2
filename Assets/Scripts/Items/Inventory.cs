@@ -14,13 +14,16 @@ public class Inventory : MonoBehaviour, IEnumerable<ItemInstance> {
         Instance = this;
     }
 
+    public void Initialize() {
+    }
+
     public void Add(ItemInstance item) {
-        SaveGame.Instance.Items.Add(item.SaveData);
+        SaveGame.SaveData.Inventory.Add(item.SaveData);
         items.Add(item);
     }
 
     public void Remove(ItemInstance item) {
-        SaveGame.Instance.Items.Remove(item.SaveData);
+        SaveGame.SaveData.Inventory.Remove(item.SaveData);
         items.Remove(item);
     }
 

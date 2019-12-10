@@ -61,7 +61,7 @@ public class ItemDropBubbleManager : MonoBehaviour {
 
 	private void OnClick(ItemDropBubble it, Action onClick, Action onDone) {
 
-        SmoothPopUpManager.ShowPopUp(it.transform.localPosition, $"<color=green>+1</color> {it.Item.GetName()}", ConfigObject.GetColorFromRarity(it.Item.Config.Rarity));
+        SmoothPopUpManager.ShowPopUp(it.transform.localPosition, $"<color=green>+1</color> {it.Item.GetName()}", RarityDefines.GetColorFromRarity(it.Item.Config.Rarity));
 
         if (!EquipItemProcessor.Instance.ProcessItem(it.Item, () => {
 	        Pool.Return(it.gameObject);

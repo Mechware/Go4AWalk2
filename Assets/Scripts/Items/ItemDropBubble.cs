@@ -29,7 +29,7 @@ public class ItemDropBubble : MonoBehaviour, IPointerClickHandler {
         
         image.gameObject.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, item.Config.Image.rect.width);
         image.gameObject.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, item.Config.Image.rect.height);
-		background.color = ConfigObject.GetColorFromRarity(it.Config.Rarity);
+		background.color = RarityDefines.GetColorFromRarity(it.Config.Rarity);
 	}
 
 	[ContextMenu("Shoot")]

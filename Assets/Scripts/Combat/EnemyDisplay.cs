@@ -29,7 +29,6 @@ namespace G4AW2.Combat {
         [Header("Settings")]
         public FloatReference StunDuration;
 	    public Color BaseDamageColor;
-	    public BoolReference ShowParryAndBlockColors;
 	    public Color ParryColor;
 	    public Color BlockColor;
 
@@ -139,7 +138,7 @@ namespace G4AW2.Combat {
 
 				EnemyState = State.BeforeAttack;
 			    MyAnimator.SetTrigger("AttackStart");
-			    if(ShowParryAndBlockColors) Image.color = BlockColor;
+			    if(SaveGame.SaveData.ShowParryAndBlockColors) Image.color = BlockColor;
 
 				// Wind up
 				yield return new WaitForSeconds(Enemy.Config.AttackPrepTime);
@@ -149,12 +148,12 @@ namespace G4AW2.Combat {
 
                 EnemyState = State.ExecuteAttack;
 			    MyAnimator.SetTrigger("AttackExecute");
-			    if(ShowParryAndBlockColors)
+			    if(SaveGame.SaveData.ShowParryAndBlockColors)
 			        Image.color = ParryColor;
 
                 // Perform the attack
                 yield return new WaitForSeconds(Enemy.Config.AttackExecuteTime);
-			    if(ShowParryAndBlockColors)
+			    if(SaveGame.SaveData.ShowParryAndBlockColors)
 			        Image.color = Color.white;
 			    if(EnemyState == State.Dead)
 			        break;

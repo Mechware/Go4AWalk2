@@ -14,6 +14,9 @@ namespace G4AW2.Followers {
 
 	public class FollowerDisplayController : MonoBehaviour {
 
+		public static FollowerDisplayController Instance;
+		
+		
         [Header("Misc References")]
 	    public FollowerDisplay DisplayPrefab;
 	    public LerpToPosition WorldCameraLerper;
@@ -31,6 +34,7 @@ namespace G4AW2.Followers {
 	    [NonSerialized] public ObjectPrefabPool FollowerPool;
 
 	    void Awake() {
+		    Instance = this;
 	        FollowerPool = new ObjectPrefabPool(DisplayPrefab.gameObject, transform);
 	    }
 
@@ -40,8 +44,7 @@ namespace G4AW2.Followers {
 		    
 	    }
 	    
-        public void AfterLoadEvent() {
-
+        public void Initialize() {
 	        ResetFollowers();
         }
 

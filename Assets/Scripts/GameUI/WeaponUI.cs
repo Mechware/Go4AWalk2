@@ -40,8 +40,6 @@ DAM {2}";
         public Action OnClick;
     }
 
-    public Inventory Inventory;
-
     public RobustLerperSerialized OpenLerper;
     private enum State { LerpingOpen, LerpingClosed, Open, Closed }
     private State state = State.Closed;
@@ -58,9 +56,9 @@ DAM {2}";
                 OnClick = () => {
                     if (Player.Instance.Weapon == w) return;
 
-                    Inventory.Add(Player.Instance.Weapon);
+                    Inventory.Instance.Add(Player.Instance.Weapon);
                     Player.Instance.Weapon = w;
-                    Inventory.Remove(w);
+                    Inventory.Instance.Remove(w);
                     onfinish?.Invoke();
                 }
             },

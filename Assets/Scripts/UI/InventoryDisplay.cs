@@ -7,10 +7,8 @@ using UnityEngine;
 
 public class InventoryDisplay : MonoBehaviour {
 
-    public Inventory Inventory;
     public Transform ItemsParent;
     public GameObject ItemPrefab;
-    public Player p;
 
     public InventoryItemDisplay ItemDisplay;
     public TextMeshProUGUI ItemText;
@@ -31,7 +29,7 @@ public class InventoryDisplay : MonoBehaviour {
     public void Refresh() {
         pool.Reset();
 
-        foreach(var item in Inventory) {
+        foreach(var item in Inventory.Instance) {
             var go = pool.GetObject();
             var id = go.GetComponent<InventoryItemDisplay>();
             id.SetDataInstance(item, 1, ItemClicked);

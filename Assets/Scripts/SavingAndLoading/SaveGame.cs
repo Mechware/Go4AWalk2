@@ -5,19 +5,50 @@ using UnityEngine;
 
 public class SaveGame : MonoBehaviour {
     public static SaveGame Instance;
+    public static SaveData SaveData;
 
     private void Awake() {
         Instance = this;
     }
-
-
-    public List<ItemSaveData> Items = new List<ItemSaveData>();
-    public List<FollowerSaveData> Followers = new List<FollowerSaveData>();
-
-    public bool Load() {
-
+    
+    public bool Save() {
         return true;
     }
+    
+    public bool Load() {
+        return true;
+    }
+
+    private void OnApplicationPause(bool pauseStatus) {
+        Save();
+    }
+
+    private void OnApplicationQuit() {
+        Save();
+    }
+}
+
+public class SaveData {
+    public List<ItemSaveData> Inventory = new List<ItemSaveData>();
+    public List<FollowerSaveData> CurrentFollowers = new List<FollowerSaveData>();
+    public Dictionary<int, int> IdsToNumberOfTaps = new Dictionary<int, int>();
+    public List<int> CraftingRecipesMade = new List<int>();
+    public bool ShowParryAndBlockColors;
+    
+    
+    public int ActiveQuestId;
+    public float ProgressInCurrentQuest;
+    public List<int> CurrentQuests = new List<int>();
+
+    public int PlayerHealth;
+    public int PlayerGold;
+    public List<int> CompletedQuests = new List<int>();
+
+    public bool ShowTrashChecked;
+
+    public Dictionary<int, int> EnemyKills = new Dictionary<int, int>();
+
+    public List<int> LockedSongs = new List<int>();
 }
 
 public class ItemSaveData {

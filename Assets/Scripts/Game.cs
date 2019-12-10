@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using G4AW2.Combat;
 using G4AW2.Data.DropSystem;
+using G4AW2.Followers;
 using UnityEngine;
 
 public class Game : MonoBehaviour {
@@ -18,6 +19,15 @@ public class Game : MonoBehaviour {
             Player.Instance.Armor = new ArmorInstance(StartArmor, 1);
             Player.Instance.Armor.SaveData.Random = 30;
         }
+        
+        //TODO: Load int/float variables
+        
+        AchievementManager.Instance.InitAchievements();
+        QuestManager.Instance.Initialize();
+        FollowerDisplayController.Instance.Initialize();
+        FollowerManager.Instance.Initialize();
+        PlayerHealthIncreaser.Instance.Initialize();
+        TutorialManager.Instance.Initialize();
     }
 
     void Update()

@@ -21,8 +21,6 @@ public class MiningPoints : MonoBehaviour {
     public FloatReference ScrollSpeed;
     public BoolReference IsScrolling;
 
-    public Inventory PlayerInventory;
-
     private ObjectPrefabPool Pool;
 
     private List<MiningPoint> areaPoints = new List<MiningPoint>();
@@ -94,7 +92,7 @@ public class MiningPoints : MonoBehaviour {
             string itemText = "";
             foreach (var item in items) {
                 itemText += $"A {item.GetName()}\n";
-                PlayerInventory.Add(item);
+                Inventory.Instance.Add(item);
             }
             if (items.Count == 0) {
                 PopUp.SetPopUp("The mining point breaks apart and you get nothing :(", new[] {"Shucks!"}, new Action[] {() => { }});

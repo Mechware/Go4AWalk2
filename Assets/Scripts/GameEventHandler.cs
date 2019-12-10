@@ -8,14 +8,14 @@ using UnityEngine;
 
 public class GameEventHandler : MonoBehaviour {
 
-    public static GameEventHandler Singleton;
+    public static GameEventHandler Instance;
 
     public static Action<ActiveQuestBase> QuestChanged;
     public static Action<EnemyInstance> EnemyKilled;
-    public static Action<ItemConfig> LootObtained;
+    public static Action<ItemInstance> LootObtained;
 
     void Awake() {
-        Singleton = this;
+        Instance = this;
     }
 
     public void OnQuestChanged(ActiveQuestBase quest) {
@@ -26,15 +26,15 @@ public class GameEventHandler : MonoBehaviour {
         EnemyKilled?.Invoke(ed);
     }
 
-    public void OnLootObtained(IEnumerable<ItemConfig> its) {
+    public void OnLootObtained(IEnumerable<ItemInstance> its) {
         foreach(var it in its) OnLootObtained(it);
     }
 
-    public void OnLootObtained(ItemConfig it) {
+    public void OnLootObtained(ItemInstance it) {
         LootObtained?.Invoke(it);
     }
 
-    public void OnLootObtained(ItemConfig it, int amount) {
+    public void OnLootObtained(ItemInstance it, int amount) {
         for (int i = 0; i < amount; i++) LootObtained?.Invoke(it);
     }
 }

@@ -5,8 +5,8 @@ using System.Linq;
 using G4AW2.Data.DropSystem;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Data/Config Settings")]
-public class ConfigObject : ScriptableObject {
+[Serializable]
+public class RarityDefines {
 
 	[System.Serializable]
 	public class RarityColorDefines {
@@ -15,7 +15,7 @@ public class ConfigObject : ScriptableObject {
         public AnimationCurve WeaponLevelPerTap;
 	}
 
-	private  static ConfigObject Singleton;
+	private  static RarityDefines Singleton;
 	public List<RarityColorDefines> RarityToColor;
 	
     public static float GetLevel(Rarity r, int taps) {

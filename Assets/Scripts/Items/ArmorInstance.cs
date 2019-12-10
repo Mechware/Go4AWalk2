@@ -14,7 +14,7 @@ public class ArmorInstance : ItemInstance {
 
     
     public ArmorInstance(ArmorSaveData saveData) {
-        base.Config = Configs.Instance.ItemConfigs.First(w => w.Id == saveData.Id);
+        base.Config = Configs.Instance.Items.First(w => w.Id == saveData.Id);
         base.SaveData = saveData;
     }
 

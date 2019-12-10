@@ -10,7 +10,13 @@ public class PlayerHealthIncreaser : MonoBehaviour {
     public IntVariable PlayerHealth;
     public IntVariable PlayerMaxHealth;
 
-    public void OnGameStateLoaded() {
+    public static PlayerHealthIncreaser Instance;
+
+    private void Awake() {
+        Instance = this;
+    }
+
+    public void Initialize() {
 
         // Fin
         DateTime lastTimePlayedUTC = SaveManager.LastTimePlayedUTC;

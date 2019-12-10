@@ -65,22 +65,22 @@ public class InventoryItemDisplay : MonoBehaviour, IPointerClickHandler {
             AmountText.gameObject.SetActive(false);
         } else {
             if(item.Rarity == Rarity.Common) {
-                Background.color = ConfigObject.GetColorFromRarity(Rarity.Common);
+                Background.color = RarityDefines.GetColorFromRarity(Rarity.Common);
             }
             else if (item.Rarity == Rarity.Uncommon) {
-                Background.color = ConfigObject.GetColorFromRarity(Rarity.Uncommon);
+                Background.color = RarityDefines.GetColorFromRarity(Rarity.Uncommon);
             } 
             else if (item.Rarity == Rarity.Rare) {
-                Background.color = ConfigObject.GetColorFromRarity(Rarity.Rare);
+                Background.color = RarityDefines.GetColorFromRarity(Rarity.Rare);
             } 
             else if (item.Rarity == Rarity.VeryRare) {
-                Background.color = ConfigObject.GetColorFromRarity(Rarity.VeryRare);
+                Background.color = RarityDefines.GetColorFromRarity(Rarity.VeryRare);
             } 
             else if (item.Rarity == Rarity.Legendary) {
-                Background.color = ConfigObject.GetColorFromRarity(Rarity.Legendary);
+                Background.color = RarityDefines.GetColorFromRarity(Rarity.Legendary);
             } 
             else if (item.Rarity == Rarity. Mythical) {
-                Background.color = ConfigObject.GetColorFromRarity(Rarity.Mythical);
+                Background.color = RarityDefines.GetColorFromRarity(Rarity.Mythical);
             }
 
             ItemSprite.sprite = spriteOverride ?? item.Image;
