@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 using G4AW2.Data.Combat;
 using G4AW2.Questing;
-using G4AW2.Saving;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -31,7 +30,7 @@ namespace G4AW2.Followers {
 		}
 
 	    public void Initialize() {
-	        DateTime lastTimePlayedUTC = SaveManager.LastTimePlayedUTC;
+	        DateTime lastTimePlayedUTC = SaveGame.SaveData.LastTimePlayedUTC;
 	        TimeSpan TimeSinceLastPlayed = DateTime.UtcNow - lastTimePlayedUTC;
 	        double secondsSinceLastPlayed = TimeSinceLastPlayed.TotalSeconds;
 
@@ -43,9 +42,9 @@ namespace G4AW2.Followers {
             }
 	    }
 
-	    public void QuestChanged(ActiveQuestBase quest) {
+	    public void SetQuest(QuestConfig questConfig) {
 	        currentTime = 0;
-	        currentTimeToReach = Random.Range(quest.MinEnemyDropTime, quest.MaxEnemyDropTime);
+	        currentTimeToReach = Random.Range(questConfig.MinEnemyDropTime, questConfig.MaxEnemyDropTime);
         }
 
 		void Update() {
@@ -56,7 +55,7 @@ namespace G4AW2.Followers {
 		private void CheckSpawns() {
 			if (currentTime > currentTimeToReach) {
 				currentTime -= currentTimeToReach;
-				currentTimeToReach = Random.Range(QuestManager.Instance.CurrentQuest.MinEnemyDropTime, QuestManager.Instance.CurrentQuest.MaxEnemyDropTime);
+				currentTimeToReach = Random.Range(QuestManager.Instance.CurrentQuestConfig.MinEnemyDropTime, QuestManager.Instance.CurrentQuestConfig.MaxEnemyDropTime);
                 AddFollower();
 				CheckSpawns();
 			}
@@ -67,7 +66,7 @@ namespace G4AW2.Followers {
             // randomly choose a follower!
 	        if (Followers.Count >= MAX_QUEUE_SIZE) return;
 
-	        FollowerInstance instance = QuestManager.Instance.CurrentQuest.Enemies.GetRandomFollower(true);
+	        FollowerInstance instance = QuestManager.Instance.CurrentQuestConfig.Enemies.GetRandomFollower(true);
 	        if (instance == null) return;
 
 	        Followers.Add(instance);
@@ -77,7 +76,7 @@ namespace G4AW2.Followers {
 		public void Drop(FollowerConfig config) {
 			if (Followers.Count >= MAX_QUEUE_SIZE) return;
 
-			var follower = QuestManager.Instance.CurrentQuest.Enemies.GetFollower(config, true);
+			var follower = QuestManager.Instance.CurrentQuestConfig.Enemies.GetFollower(config, true);
 			if (follower == null) return;
 
 			Followers.Add(follower);

@@ -60,12 +60,11 @@ public class InteractionController : MonoBehaviour {
             
             // Disable being able to move the world but keep scrolling
             World.Disable();
-            EnemyArrowIndicator.Instance.SetOnMainScreen(false);
         
             // Put boss where they should be
-            var bossQuest = (BossQuest) QuestManager.Instance.CurrentQuest;
+            var bossQuest = (BossQuestConfig) QuestManager.Instance.CurrentQuestConfig;
             
-            FollowerInstance bossf = FollowerManager.Instance.Followers.FirstOrDefault(f => f.Config.ID == bossQuest.Enemy.ID);
+            FollowerInstance bossf = FollowerManager.Instance.Followers.FirstOrDefault(f => f.Config.Id == bossQuest.Enemy.ID);
             
             if (bossf == null) {
                 EnemyInstance ei = new EnemyInstance(bossQuest.Enemy, bossQuest.Level);
@@ -190,11 +189,13 @@ public class InteractionController : MonoBehaviour {
         });
     }
 
+    public Action<(EnemyInstance enemy, bool isSuicide)> OnEnemyDeath;
+    
     public void EnemyDeath(EnemyInstance instance, bool suicide = false) {
 
         QuickPopUp.QuickPopUpAllowed = true;
         BattleUiLerper.StartReverseLerp();
-
+        OnEnemyDeath?.Invoke((instance, suicide));
         
         StartCoroutine(_EnemyDeath());
         
@@ -264,7 +265,7 @@ public class InteractionController : MonoBehaviour {
                 PlayerClickController.Instance.SetEnabled(true);
                 
                 // Note: If the boss quest is to fight a chicken and you kill any chicken (not just the boss) then the quest gets completed
-                if (QuestManager.Instance.CurrentQuest is BossQuest quest && quest.Enemy == instance.Config) {
+                if (QuestManager.Instance.CurrentQuestConfig is BossQuestConfig quest && quest.Enemy == instance.Config) {
                     quest.Finish();
                 }
 

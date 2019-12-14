@@ -14,13 +14,11 @@ public class EnemyInstance : FollowerInstance {
 
     public EnemyInstance(EnemyConfig config, int level) {
         base.SaveData = new EnemySaveData();
-        SaveData.Id = Config.ID;
+        SaveData.Id = Config.Id;
         SaveData.Level = level;
     } 
 
-    
-    
     public float GetElementalWeakness(ElementalType type) {
-        return Config.ElementalWeaknesses.Value?[type] ?? 1;
+        return Config.ElementalWeaknesses?[type] ?? 1;
     }
 }

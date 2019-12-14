@@ -5,7 +5,7 @@ using G4AW2.Data;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Data/Items/Bait")]
-public class Bait : Consumable
+public class Bait : ConsumableConfig
 {
     public List<Drop> DropChances;
     public float MinDropTime;

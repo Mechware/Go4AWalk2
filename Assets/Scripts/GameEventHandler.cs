@@ -10,7 +10,7 @@ public class GameEventHandler : MonoBehaviour {
 
     public static GameEventHandler Instance;
 
-    public static Action<ActiveQuestBase> QuestChanged;
+    public static Action<QuestConfig> QuestChanged;
     public static Action<EnemyInstance> EnemyKilled;
     public static Action<ItemInstance> LootObtained;
 
@@ -18,8 +18,8 @@ public class GameEventHandler : MonoBehaviour {
         Instance = this;
     }
 
-    public void OnQuestChanged(ActiveQuestBase quest) {
-        QuestChanged?.Invoke(quest);
+    public void OnQuestChanged(QuestConfig questConfig) {
+        QuestChanged?.Invoke(questConfig);
     }
 
     public void OnEnemyKilled(EnemyInstance ed) {

@@ -3,6 +3,7 @@ using G4AW2.Dialogue;
 using G4AW2.Questing;
 using System;
 using System.Collections.Generic;
+using G4AW2.Combat;
 using G4AW2.Data.Area;
 using G4AW2.Data.DropSystem;
 using G4AW2.Followers;
@@ -14,136 +15,161 @@ public class QuestManager : MonoBehaviour {
 
     public static QuestManager Instance;
     
-    public ActiveQuestBase CurrentQuest;
-    public Action OnQuestChange;
+    public QuestInstance CurrentQuest;
     
     public Dialogue QuestDialogUI;
 
-    public RuntimeSetQuest CurrentQuests;
     public DragObject DraggableWorld;
     public GameObject ScrollArrow;
 
-    private Area currentArea = null;
-
+    public GameObject AreaChangeAndFadeObject;
+    public RobustLerperSerialized AreaChangeInterpolater;
+    
+    public GameObject Journal;
+    public QuestConfig TestQuestConfig;
+    
     private void Awake() {
         Instance = this;
     }
 
     public void Initialize() {
         
-        currentArea = CurrentQuest.Area;
-        
-        if(CurrentQuest.ID == 1) {
+        if(CurrentQuest.Config.Id == 1) {
             SetCurrentQuest(CurrentQuest);
         } else {
 
-            if (CurrentQuest is BossQuest) {
+            if (CurrentQuest.Config.QuestType is QuestType.Boss) {
                 InteractionController.Instance.StartBossFight();
             }
-            CurrentQuest.ResumeQuest(FinishQuest);
-            SetQuest(CurrentQuest);
 
-            if(CurrentQuest.IsFinished()) {
-                CurrentQuest.CleanUp();
-                if (CurrentQuest.NextQuest != null) {
-                    Debug.LogWarning("Progressing quest?");
-                    AdvanceQuestAfterConversation(CurrentQuest);
-                }
+            SetQuest(CurrentQuest.Config);
+        }
+
+        InteractionController.Instance.OnEnemyDeath += (res) => {
+            var (enemy, suicide) = res;
+            if (CurrentQuest.Config.QuestType != QuestType.Boss &&
+                CurrentQuest.Config.QuestType != QuestType.EnemySlaying) {
+                return;
             }
-        }
-    }
 
-    private void FinishQuest(ActiveQuestBase quest) {
-        quest.CleanUp();
-        SaveGame.SaveData.CompletedQuests.Add(quest.ID);
-        if(quest.NextQuest != null) CurrentQuest = quest.NextQuest;
-        QuestDialogUI.SetConversation(quest.EndConversation, () => DropRewardAndAdvanceConversation(quest));
-    }
-
-
-    private void DropRewardAndAdvanceConversation(ActiveQuestBase q) {
-
-
-        List<ItemInstance> todrops = new List<ItemInstance>();
-        foreach (var reward in q.QuestRewards) {
-            ItemConfig it = reward.it;
-            var instance = ItemFactory.GetInstance(it, reward.Level, reward.RandomRoll);
-            todrops.Add(instance);
-        }
-
-        if (todrops.Count == 0) {
-            AdvanceQuestAfterConversation(q);
-        }
-        else {
-
-            DraggableWorld.Disable2();
-            ScrollArrow.SetActive(false);
-
+            if (enemy.Config != CurrentQuest.Config.QuestParam) return;
             
-            ItemDropBubbleManager.Instance.AddItems(todrops, null, () => {
-                ScrollArrow.SetActive(true);
-                DraggableWorld.Enable2();
-                AdvanceQuestAfterConversation(q);
+            if (!suicide) {
+                CurrentQuest.SaveData.Progress += 1;
+            }
 
-                todrops.ForEach(Inventory.Instance.Add);
-            });
-        }
+            if (CurrentQuest.IsFinished()) {
+                FinishCurrentQuest();
+            }
+        };
+
+        Inventory.Instance.OnItemObtained += it => {
+            if (CurrentQuest.Config.QuestType != QuestType.ItemCollecting &&
+                CurrentQuest.Config.QuestType != QuestType.ItemGiving) {
+                return;
+            }
+
+            if (it.Config != CurrentQuest.Config.QuestParam) return;
+
+            if (CurrentQuest.Config.QuestType == QuestType.ItemCollecting) {
+                CurrentQuest.SaveData.Progress += 1;
+            }
+            else if (CurrentQuest.Config.QuestType == QuestType.ItemGiving) {
+                CurrentQuest.SaveData.Progress =
+                    Inventory.Instance.GetAmountOf((ItemConfig) CurrentQuest.Config.QuestParam);
+            }
+        };
     }
-
-    private void AdvanceQuestAfterConversation(ActiveQuestBase q) {
-
-        q.CleanUp();
-
-        if(q.NextQuest == null) {
-            PopUp.SetPopUp(
-                "You finished the quest! You may either continue in this area or switch quests using the quest book on your screen.",
-                new[] { "ok" }, new Action[] {
-                    () => { }
-                });
-            return;
-        }
-
-        SetCurrentQuest(q.NextQuest);
-    }
-
-    public GameObject AreaChangeAndFadeObject;
-    public RobustLerperSerialized AreaChangeInterpolater;
-
+    
     void Update() {
         AreaChangeInterpolater.Update(Time.deltaTime);
     }
+    
+    public void GiveQuest(QuestConfig config) {
+        QuestInstance qi = new QuestInstance(config);
+        SaveGame.SaveData.CurrentQuests.Add(qi.SaveData);
+    }
+    
+    private void FinishCurrentQuest() {
+        var config = CurrentQuest.Config;
+        
+        QuestDialogUI.SetConversation(config.EndConversation, () => {
+
+            List<ItemInstance> todrops = new List<ItemInstance>();
+            foreach (var reward in config.QuestRewards) {
+                ItemConfig it = reward.it;
+                var instance = ItemFactory.GetInstance(it, reward.Level, reward.RandomRoll);
+                todrops.Add(instance);
+            }
+
+            if (todrops.Count == 0) {
+                _TryAdvanceQuest();
+            }
+            else {
+
+                DraggableWorld.Disable2();
+                ScrollArrow.SetActive(false);
+            
+                ItemDropBubbleManager.Instance.AddItems(todrops, null, () => {
+                    ScrollArrow.SetActive(true);
+                    DraggableWorld.Enable2();
+                    
+                    
+                    _TryAdvanceQuest();
+                    
+                    todrops.ForEach(Inventory.Instance.Add);
+                });
+            }
+        });
 
 
-    public void SetCurrentQuest(ActiveQuestBase quest) {
+        void _TryAdvanceQuest() {
 
-        quest.CleanUp();
+            CurrentQuest.SaveData.Complete = true;
 
-        if (quest.Area != currentArea) {
+            
+            if(config.NextQuestConfig == null) {
+                PopUp.SetPopUp(
+                    "You finished the quest! You may either continue in this area or switch quests using the quest book on your screen.",
+                    new[] { "ok" }, new Action[] {
+                        () => { }
+                    });
+            }
+            else {
+                SetCurrentQuest(new QuestInstance(CurrentQuest.Config.NextQuestConfig));
+            }
+        }
+    }
+    
+    public void SetCurrentQuest(QuestInstance quest) {
+
+        if (CurrentQuest.SaveData.Complete) {
+            CurrentQuest.SaveData.Active = false;
+            SaveGame.SaveData.CompletedQuests.Add(CurrentQuest.SaveData);
+            SaveGame.SaveData.CurrentQuests.Remove(CurrentQuest.SaveData);    
+        }
+
+        quest.SaveData.Active = true;
+        
+        if (quest.Config.Area != AreaManager.Instance.Area) {
             AreaChangeAndFadeObject.SetActive(true);
             AreaChangeInterpolater.StartLerping(() => {
-
 
                 FollowerManager.Instance.Followers.Clear();
                 DeadEnemyController.Instance.ClearEnemies();
 
                 CurrentQuest = quest;
-                SetQuest(quest);
-                
-                quest.StartQuest(FinishQuest);
+                SetQuest(quest.Config);
                 
                 AreaChangeInterpolater.StartReverseLerp(() => {
                     
                     AreaChangeAndFadeObject.SetActive(false);
 
-                    QuestDialogUI.SetConversation(quest.StartConversation, () => {
+                    QuestDialogUI.SetConversation(quest.Config.StartConversation, () => {
 
-                        // Check that the quest isn't finished (for reach quests)
-                        if(quest.IsFinished()) FinishQuest(quest);
-
-                        if (quest is BossQuest) {
+                        if (quest.Config.QuestType == QuestType.Boss) {
                             InteractionController.Instance.StartBossFight();
                         }
-                        
                     });
                     
                 });
@@ -151,93 +177,60 @@ public class QuestManager : MonoBehaviour {
         }
         else {
             CurrentQuest = quest;
-            OnQuestChange();
-            SetQuest(quest);
+            SetQuest(quest.Config);
 
-            quest.StartQuest(FinishQuest);
-            
-            QuestDialogUI.SetConversation(quest.StartConversation, () => {
-                
-                if(quest.IsFinished())
-                    FinishQuest(quest);
-                
-                if (quest is BossQuest) {
+            QuestDialogUI.SetConversation(quest.Config.StartConversation, () => {
+
+                if (quest.Config.QuestType == QuestType.Boss) {
                     InteractionController.Instance.StartBossFight();
                 }
             });
         }
-
-        currentArea = quest.Area;
     }
 
-    public void SetQuest(ActiveQuestBase quest) {
-        AreaManager.Instance.SetArea(quest.Area);
-        QuestingStatWatcher.Instance.SetQuest(quest);
-        MiningPoints.Instance.QuestChanged(quest);
-        TutorialManager.Instance.QuestUpdated(quest);
-        FollowerManager.Instance.QuestChanged(quest);
+    public void SetQuest(QuestConfig questConfig) {
+        AreaManager.Instance.SetArea(questConfig.Area);
+        QuestingStatWatcher.Instance.SetQuest(questConfig);
+        MiningPoints.Instance.SetQuest(questConfig);
+        TutorialManager.Instance.SetQuest(questConfig);
+        FollowerManager.Instance.SetQuest(questConfig);
     }
 
-    public Action<ActiveQuestBase> QuestUpdated;
-    
-    public GameObject Journal;
+    public void QuestClicked(QuestInstance q) {
 
-    public void QuestClicked(Quest q) {
-        //TODO: Show some sort of info on the quest.
-        if(!(q is ActiveQuestBase)) {
-            return;
-        }
-
-        PopUp.SetPopUp($"{q.DisplayName}\nWhat would you like to do?", new[] {"Set Active", "Remove", "Cancel"},
+        PopUp.SetPopUp($"{q.Config.DisplayName}\nWhat would you like to do?", new[] {"Set Active", "Remove", "Cancel"},
             new Action[] {
                 () => {
                     // Set Active
-                    if (!CurrentQuest.IsFinished()) {
-                        if (!(CurrentQuest is ReachValueQuest)) {
-                            PopUp.SetPopUp(
-                                "Are you sure you want to switch quests? You will lose all progress in this one.",
-                                new[] {"Yep", "Nope"}, new Action[] {
-                                    () => {
-                                        CurrentQuests.Add(CurrentQuest);
-                                        CurrentQuest.CleanUp();
-                                        CurrentQuests.Remove(q);
-
-                                        SetCurrentQuest((ActiveQuestBase) q);
-                                    },
-                                    () => { }
-                                });
-                        }
-                        else {
-                            CurrentQuests.Add(CurrentQuest);
-                            CurrentQuest.CleanUp();
-                            CurrentQuests.Remove(q);
-                            SetCurrentQuest((ActiveQuestBase) q);
-                        }
+                    if (!CurrentQuest.SaveData.Complete) {
+                        PopUp.SetPopUp(
+                            "Are you sure you want to switch quests? You will lose all progress in this one.",
+                            new[] {"Yep", "Nope"}, new Action[] {
+                                () => {
+                                    SetCurrentQuest(q);
+                                },
+                                () => { }
+                            });
                     }
                     else {
                         // You've already completed the quest
-                        CurrentQuests.Remove(q);
-                        SetCurrentQuest((ActiveQuestBase) q);
+                        SetCurrentQuest(q);
                     }
                     Journal.SetActive(false);
 
                 },
                 () => {
                     // Remove
-                    CurrentQuests.Remove(q);
+                    SaveGame.SaveData.CurrentQuests.Remove(q.SaveData);
                 },
                 () => {
                     // Cancel
-
                 }
             });
     }
-
-    public ActiveQuestBase TestQuest;
-
+    
     [ContextMenu("Set Quest from test quest")]
     public void SetQuestFromTestQuest() {
-        CurrentQuest.CleanUp();
-        SetCurrentQuest(TestQuest);
+        SetCurrentQuest(new QuestInstance(TestQuestConfig));
     }
 }

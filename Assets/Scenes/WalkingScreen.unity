@@ -2177,7 +2177,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 333959406}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2680,59 +2680,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 142364679}
   m_CullTransparentMesh: 0
---- !u!1 &146199081
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 146199082}
-  - component: {fileID: 146199083}
-  m_Layer: 5
-  m_Name: EnemyArrowHolder
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &146199082
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 146199081}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 333959406}
-  m_Father: {fileID: 1821739197}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0, y: 0.5}
---- !u!114 &146199083
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 146199081}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dcf3bcaebab10904586b27b8d86ee2eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Arrow: {fileID: 333959409}
-  NumberofFollowersText: {fileID: 838795934}
-  OnMainScreen: 1
-  HasFollowers: 0
 --- !u!1 &146347017
 GameObject:
   m_ObjectHideFlags: 0
@@ -6273,8 +6220,6 @@ GameObject:
   - component: {fileID: 333959406}
   - component: {fileID: 333959410}
   - component: {fileID: 333959409}
-  - component: {fileID: 333959408}
-  - component: {fileID: 333959407}
   - component: {fileID: 333959411}
   m_Layer: 5
   m_Name: Enemy Arrow
@@ -6282,7 +6227,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &333959406
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6294,98 +6239,16 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 503513818}
   - {fileID: 838795936}
   - {fileID: 92514401}
-  m_Father: {fileID: 146199082}
-  m_RootOrder: 0
+  m_Father: {fileID: 1821739197}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 11.25, y: 29.91}
   m_SizeDelta: {x: 10, y: 9}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &333959407
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 333959405}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba4fb422472dffa439bdadb77140b026, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &333959408
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 333959405}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7db3a514faad94c46b4c0a0e9d28dd85, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnStart:
-    m_PersistentCalls:
-      m_Calls: []
-  OnReverseStart:
-    m_PersistentCalls:
-      m_Calls: []
-  OnUpdate:
-    m_PersistentCalls:
-      m_Calls: []
-  OnEnd:
-    m_PersistentCalls:
-      m_Calls: []
-  OnReverseEnd:
-    m_PersistentCalls:
-      m_Calls: []
-  EndBehaviour: 3
-  AutoStart: 1
-  LerpDuration: 1
-  Lerpers:
-  - Values:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 9.012512
-        inSlope: -0.12004405
-        outSlope: -0.12004405
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0.04050834
-      - serializedVersion: 3
-        time: 1
-        value: 13.017334
-        inSlope: 0.37518343
-        outSlope: 0.37518343
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.05162829
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    OnUpdate:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 333959407}
-          m_MethodName: SetX
-          m_Mode: 0
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!114 &333959409
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6393,7 +6256,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 333959405}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -6439,18 +6302,7 @@ MonoBehaviour:
       m_Calls: []
   MouseClick2D:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 503513819}
-        m_MethodName: StartLerping
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   MouseDown2D:
     m_PersistentCalls:
       m_Calls: []
@@ -9513,144 +9365,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 484489486}
   m_CullTransparentMesh: 0
---- !u!1 &503513817
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 503513818}
-  - component: {fileID: 503513819}
-  m_Layer: 5
-  m_Name: ScrollToCharacter
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &503513818
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 503513817}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 333959406}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &503513819
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 503513817}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7db3a514faad94c46b4c0a0e9d28dd85, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnStart:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1324188856}
-        m_MethodName: InvokeDragEvent
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1324188856}
-        m_MethodName: Disable
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnReverseStart:
-    m_PersistentCalls:
-      m_Calls: []
-  OnUpdate:
-    m_PersistentCalls:
-      m_Calls: []
-  OnEnd:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1324188856}
-        m_MethodName: Enable
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnReverseEnd:
-    m_PersistentCalls:
-      m_Calls: []
-  EndBehaviour: 0
-  AutoStart: 0
-  LerpDuration: 1
-  Lerpers:
-  - Values:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: -6.235417
-        outSlope: -6.235417
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0.043685466
-      - serializedVersion: 3
-        time: 1
-        value: 75
-        inSlope: 1.9375242
-        outSlope: 1.9375242
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.046862602
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    OnUpdate:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1324188858}
-          m_MethodName: SetX
-          m_Mode: 0
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1 &503923647
 GameObject:
   m_ObjectHideFlags: 0
@@ -14007,7 +13721,7 @@ MonoBehaviour:
   QuestDialogUI: {fileID: 1907137927}
   CurrentQuests: {fileID: 0}
   DraggableWorld: {fileID: 1324188856}
-  ScrollArrow: {fileID: 146199081}
+  ScrollArrow: {fileID: 0}
   AreaChangeAndFadeObject: {fileID: 361289737}
   AreaChangeInterpolater:
     EndBehaviour: 0
@@ -15828,7 +15542,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &838795934
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15857,7 +15571,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 4278190080
   m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -15960,7 +15674,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 333959406}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -23996,7 +23710,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 146199083}
+      - m_Target: {fileID: 0}
         m_MethodName: SetOnMainScreen
         m_Mode: 6
         m_Arguments:
@@ -24032,7 +23746,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 146199083}
+      - m_Target: {fileID: 0}
         m_MethodName: SetOnMainScreen
         m_Mode: 6
         m_Arguments:
@@ -31703,7 +31417,7 @@ PrefabInstance:
     - target: {fileID: 224192881274409064, guid: 8c9a538fe802327488362ee36573c91a,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 224192881274409064, guid: 8c9a538fe802327488362ee36573c91a,
         type: 3}
@@ -37244,7 +36958,7 @@ RectTransform:
   m_Children:
   - {fileID: 1833632509}
   - {fileID: 244994213}
-  - {fileID: 146199082}
+  - {fileID: 333959406}
   - {fileID: 237099814}
   - {fileID: 884530007}
   - {fileID: 1660650156}
@@ -37293,6 +37007,10 @@ MonoBehaviour:
   Weapon: {fileID: 533907246}
   Armor: {fileID: 876765480}
   Headgear: {fileID: 36339005}
+  ArrowReceiver: {fileID: 333959411}
+  Arrow: {fileID: 333959409}
+  NumberOfFollowersText: {fileID: 838795934}
+  WorldView: {fileID: 1324188856}
   MasteryPopUpLerp: {fileID: 884530010}
   MasteryPopUpText: {fileID: 70712742}
 --- !u!114 &1821739201

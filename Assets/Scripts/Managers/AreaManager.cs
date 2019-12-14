@@ -25,7 +25,7 @@ namespace G4AW2.UI.Areas {
 		}
 
 		public void SetArea( Area area ) {
-			this.Area = area;
+			Area = area;
 
             backgrounds.Images.ForEach(im => im.sprite = area.Background);
 			clouds1.Images.ForEach(i => i.sprite = area.Clouds1);
@@ -33,12 +33,6 @@ namespace G4AW2.UI.Areas {
 			SkyImages.ForEach(i => i.sprite = area.Sky);
 
 		}
-
-		// Must do this due to Unity events... Is there a better way to do this?
-		public void SetAreaFromQuest(ActiveQuestBase quest) {
-            if(quest.Area != Area)
-			    SetArea(quest.Area);
-        }
 
 	    [ContextMenu("Set Area")]
 	    public void SetArea() {

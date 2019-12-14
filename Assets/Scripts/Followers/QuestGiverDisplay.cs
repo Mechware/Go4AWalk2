@@ -5,6 +5,7 @@ using CustomEvents;
 using G4AW2.Data;
 using G4AW2.Dialogue;
 using G4AW2.Followers;
+using G4AW2.Questing;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
@@ -61,15 +62,13 @@ public class QuestGiverDisplay : MonoBehaviour, IPointerClickHandler {
         GetComponent<Animator>().SetBool("Giving", true);
     }
 
-    public RuntimeSetQuest ListOfOpenQuests;
-
     public GameObject DismissButton;
 
     public void OnPointerClick(PointerEventData eventData) {
 
-        PopUp.SetPopUp("Accept quest from quest giver? Title: " + follower.Config.QuestToGive.DisplayName, new[] { "Yes", "No" }, new Action[] {
+        PopUp.SetPopUp("Accept quest from quest giver? Title: " + follower.Config.QuestConfigToGive.DisplayName, new[] { "Yes", "No" }, new Action[] {
             () => {
-                ListOfOpenQuests.Add(follower.Config.QuestToGive);
+                QuestManager.Instance.GiveQuest(follower.Config.QuestConfigToGive);                
                 FollowerManager.Instance.Followers.Remove(follower);
 
                 // Flip Giver

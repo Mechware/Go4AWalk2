@@ -26,7 +26,7 @@ public class CraftingMenu : MonoBehaviour {
 
         Children.Clear();
 
-        foreach (var r in CT.Recipes) {
+        foreach (var r in Configs.Instance.Recipes) {
             var go = Instantiate(ItemPrefab, ParentOfItems.transform);
             Children.Add(go);
             
@@ -41,7 +41,7 @@ public class CraftingMenu : MonoBehaviour {
 
     private void SetItem(IconWithTextController holder, CraftingRecipe recipe) {
 
-        if (CraftingRecipesMade.RecipesMade.Contains(recipe.ID)) {
+        if (SaveGame.SaveData.CraftingRecipesMade.Contains(recipe.Id)) {
             string text = $"{recipe.Result.Item.Name}\n<size=50%>";
             foreach (var r in recipe.Components) {
                 text += $"{r.Item.Name} - {Inventory.Instance.GetAmountOf(r.Item)} / {r.Amount}\n";
@@ -59,7 +59,7 @@ public class CraftingMenu : MonoBehaviour {
 
             holder.SetDataConfig(recipe.Result.Item, 1, text, () => {
                 if (MakeRecipe(recipe)) {
-                    CraftingRecipesMade.RecipesMade.Add(recipe.ID);
+                    SaveGame.SaveData.CraftingRecipesMade.Add(recipe.Id);
                     RefreshList();
                 }
             }, QuestionMark, false);

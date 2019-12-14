@@ -17,57 +17,57 @@ public class QuestingStatWatcher : MonoBehaviour {
     public Image ProgressFill;
 
 
-    private ActiveQuestBase previous;
+    private QuestConfig previous;
 
     private void Awake() {
         Instance = this;
     }
 
-    public void SetQuest(ActiveQuestBase currentQuest) {
+    public void SetQuest(QuestConfig currentQuestConfig) {
 
         RemoveListeners(previous);
 
-        if (currentQuest is ActiveWalkingQuest) {
-            ActiveWalkingQuest awq = currentQuest as ActiveWalkingQuest;
+        if (currentQuestConfig is ActiveWalkingQuestConfig) {
+            ActiveWalkingQuestConfig awq = currentQuestConfig as ActiveWalkingQuestConfig;
             awq.AmountSoFar.OnChange.AddListener(OnChange);
-        } else if (currentQuest is ActiveQuest<int, IntVariable, UnityEventInt>) {
-            ActiveQuest < int, IntVariable, UnityEventInt> awq = currentQuest as ActiveQuest<int, IntVariable, UnityEventInt>;
+        } else if (currentQuestConfig is ActiveQuestConfig<int, IntVariable, UnityEventInt>) {
+            ActiveQuestConfig < int, IntVariable, UnityEventInt> awq = currentQuestConfig as ActiveQuestConfig<int, IntVariable, UnityEventInt>;
             awq.AmountSoFar.OnChange.AddListener(OnChange);
-        } else if (currentQuest is ReachValueQuest) {
-            var awq = currentQuest as ReachValueQuest;
+        } else if (currentQuestConfig is ReachValueQuestConfig) {
+            var awq = currentQuestConfig as ReachValueQuestConfig;
             awq.TotalAmount.OnChange.AddListener(OnChange);
         }
 
-        var prog = currentQuest.GetProgress();
+        var prog = currentQuestConfig.GetProgress();
         ProgressText.text = $"{prog.current} / {prog.max}";
         ProgressFill.rectTransform.anchorMax =
             ProgressFill.rectTransform.anchorMax.SetX(Mathf.Clamp01((float) (prog.current / prog.max)));
-        QuestTitle.text = currentQuest.DisplayName;
-        previous = currentQuest;
+        QuestTitle.text = currentQuestConfig.DisplayName;
+        previous = currentQuestConfig;
     }
 
-    void RemoveListeners(ActiveQuestBase previousQuest) {
-        if (previousQuest == null) return;
+    void RemoveListeners(QuestConfig previousQuestConfig) {
+        if (previousQuestConfig == null) return;
 
-        if(previousQuest is ActiveWalkingQuest) {
-            ActiveWalkingQuest awq = previousQuest as ActiveWalkingQuest;
+        if(previousQuestConfig is ActiveWalkingQuestConfig) {
+            ActiveWalkingQuestConfig awq = previousQuestConfig as ActiveWalkingQuestConfig;
             awq.AmountSoFar.OnChange.RemoveListener(OnChange);
-        } else if(previousQuest is ActiveEnemySlayerQuest) {
-            ActiveEnemySlayerQuest awq = previousQuest as ActiveEnemySlayerQuest;
+        } else if(previousQuestConfig is ActiveEnemySlayerQuestConfig) {
+            ActiveEnemySlayerQuestConfig awq = previousQuestConfig as ActiveEnemySlayerQuestConfig;
             awq.AmountSoFar.OnChange.RemoveListener(OnChange);
-        } else if(previousQuest is ActiveItemCollectQuest) {
-            ActiveItemCollectQuest awq = previousQuest as ActiveItemCollectQuest;
+        } else if(previousQuestConfig is ActiveItemCollectQuestConfig) {
+            ActiveItemCollectQuestConfig awq = previousQuestConfig as ActiveItemCollectQuestConfig;
             awq.AmountSoFar.OnChange.RemoveListener(OnChange);
         }
 
-        if(previousQuest is ActiveWalkingQuest) {
-            ActiveWalkingQuest awq = previousQuest as ActiveWalkingQuest;
+        if(previousQuestConfig is ActiveWalkingQuestConfig) {
+            ActiveWalkingQuestConfig awq = previousQuestConfig as ActiveWalkingQuestConfig;
             awq.AmountSoFar.OnChange.RemoveListener(OnChange);
-        } else if(previousQuest is ActiveQuest<int, IntVariable, UnityEventInt>) {
-            ActiveQuest<int, IntVariable, UnityEventInt> awq = previousQuest as ActiveQuest<int, IntVariable, UnityEventInt>;
+        } else if(previousQuestConfig is ActiveQuestConfig<int, IntVariable, UnityEventInt>) {
+            ActiveQuestConfig<int, IntVariable, UnityEventInt> awq = previousQuestConfig as ActiveQuestConfig<int, IntVariable, UnityEventInt>;
             awq.AmountSoFar.OnChange.RemoveListener(OnChange);
-        } else if(previousQuest is ReachValueQuest) {
-            var q = previousQuest as ReachValueQuest;
+        } else if(previousQuestConfig is ReachValueQuestConfig) {
+            var q = previousQuestConfig as ReachValueQuestConfig;
             q.TotalAmount.OnChange.RemoveListener(OnChange);
         }
     }

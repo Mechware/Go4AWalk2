@@ -24,7 +24,7 @@ public class ConsumableUi : MonoBehaviour
         while(child < RegularConsumableParent.childCount)
             Destroy(RegularConsumableParent.GetChild(child++).gameObject);
 
-        foreach(var data in ConsumableManager.Instance.SaveData) {
+        foreach(var data in SaveGame.SaveData.Consumables) {
             var it = Instantiate(RegularConsumablePrefab, RegularConsumableParent);
             var consumable = UiRef.Init<ConsumableItem>(it.gameObject);
             consumable.Icon.sprite = Configs.Instance.Items.First(item => item.Id == data.Id).Image;

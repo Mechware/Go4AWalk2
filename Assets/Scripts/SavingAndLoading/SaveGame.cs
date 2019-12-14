@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Items;
 using UnityEngine;
 
 public class SaveGame : MonoBehaviour {
@@ -29,24 +30,28 @@ public class SaveGame : MonoBehaviour {
 }
 
 public class SaveData {
+    public DateTime LastTimePlayedUTC;
+    
     public List<ItemSaveData> Inventory = new List<ItemSaveData>();
     public List<FollowerSaveData> CurrentFollowers = new List<FollowerSaveData>();
     public Dictionary<int, int> IdsToNumberOfTaps = new Dictionary<int, int>();
     public List<int> CraftingRecipesMade = new List<int>();
+    public List<ConsumableSaveData> Consumables = new List<ConsumableSaveData>();
     public bool ShowParryAndBlockColors;
     
+    // Questing
+    public List<QuestSaveData> CurrentQuests = new List<QuestSaveData>();
+    public List<QuestSaveData> CompletedQuests = new List<QuestSaveData>();
     
-    public int ActiveQuestId;
-    public float ProgressInCurrentQuest;
-    public List<int> CurrentQuests = new List<int>();
-
     public int PlayerHealth;
     public int PlayerGold;
-    public List<int> CompletedQuests = new List<int>();
+
+
 
     public bool ShowTrashChecked;
 
     public Dictionary<int, int> EnemyKills = new Dictionary<int, int>();
+    public Dictionary<int, int> ItemsCollected = new Dictionary<int, int>();
 
     public List<int> LockedSongs = new List<int>();
 }
@@ -90,4 +95,16 @@ public class ShopFollowerSaveData : FollowerSaveData {
 public class EnemySaveData : FollowerSaveData{
     public int Level;
     
+}
+
+public class ConsumableSaveData {
+    public int Id;
+    public double EndTime;
+}
+
+public class QuestSaveData {
+    public int Id;
+    public int Progress;
+    public bool Active;
+    public bool Complete;
 }

@@ -9,7 +9,7 @@ namespace G4AW2.Data.DropSystem {
 
         [Range(0, 50)]
         public float ArmorAtLevel0;
-        public ElementalWeaknessReference ElementalWeakness;
+        public ElementalWeakness ElementalWeakness;
     }
 }
 

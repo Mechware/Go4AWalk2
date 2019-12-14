@@ -26,7 +26,7 @@ public class Game : MonoBehaviour {
         QuestManager.Instance.Initialize();
         FollowerDisplayController.Instance.Initialize();
         FollowerManager.Instance.Initialize();
-        PlayerHealthIncreaser.Instance.Initialize();
+        Player.Instance.Initialize();
         TutorialManager.Instance.Initialize();
     }
 

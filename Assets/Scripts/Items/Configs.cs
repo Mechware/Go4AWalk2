@@ -28,7 +28,7 @@ public class Configs : MonoBehaviour {
     public List<ItemConfig> Items; 
     public List<FollowerConfig> Followers;
     public List<CraftingRecipe> Recipes;
-    public List<ActiveQuestBase> Quests;
+    public List<QuestConfig> Quests;
 
     public RarityDefines Rarities;
 
@@ -56,20 +56,20 @@ public class Configs : MonoBehaviour {
 
         ids.Clear();
         foreach(var thing in Followers) {
-            if (ids.ContainsKey(thing.ID)) {
-                Debug.LogWarning($"Followers have same id as each other: {thing.name} and {ids[thing.ID].name}");
+            if (ids.ContainsKey(thing.Id)) {
+                Debug.LogWarning($"Followers have same id as each other: {thing.name} and {ids[thing.Id].name}");
                 continue;
             }
-            ids.Add(thing.ID, thing);
+            ids.Add(thing.Id, thing);
         }
 
         ids.Clear();
         foreach(var thing in Recipes) {
-            if (ids.ContainsKey(thing.ID)) {
-                Debug.LogWarning($"Recipes have same id as each other: {thing.name} and {ids[thing.ID].name}");
+            if (ids.ContainsKey(thing.Id)) {
+                Debug.LogWarning($"Recipes have same id as each other: {thing.name} and {ids[thing.Id].name}");
                 continue;
             }
-            ids.Add(thing.ID, thing);
+            ids.Add(thing.Id, thing);
         }
 
         ids.Clear();

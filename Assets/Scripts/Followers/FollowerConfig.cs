@@ -14,7 +14,7 @@ namespace G4AW2.Data {
 
 	public abstract class FollowerConfig : ScriptableObject {
 
-		public int ID;
+		public int Id;
 	    public string DisplayName;
 	    public Sprite Portrait;
 

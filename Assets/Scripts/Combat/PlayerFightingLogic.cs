@@ -56,8 +56,8 @@ public class PlayerFightingLogic : MonoBehaviour {
     public void OnEnemyHitPlayerElemental(int damage, ElementalType damageType) {
 
         float mod = 1;
-        if (Player.Armor.Config.ElementalWeakness.Value != null)
-            mod = Player.Armor.Config.ElementalWeakness.Value[damageType];
+        if (Player.Armor.Config.ElementalWeakness != null)
+            mod = Player.Armor.Config.ElementalWeakness[damageType];
         float fdamage = damage * mod;
 
         damage = Mathf.RoundToInt(fdamage);

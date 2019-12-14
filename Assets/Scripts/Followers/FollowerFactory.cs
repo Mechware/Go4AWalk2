@@ -20,7 +20,7 @@ public class FollowerFactory : MonoBehaviour
             return new ShopFollowerInstance(s);
         }
 
-        Debug.LogError("Tried to create a follower instance from config: " + config.ID);
+        Debug.LogError("Tried to create a follower instance from config: " + config.Id);
         return new FollowerInstance();
     }
 }

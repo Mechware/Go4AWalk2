@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using CustomEvents;
 using G4AW2.Questing;
 using TMPro;
@@ -9,42 +10,32 @@ using UnityEngine.UI;
 
 public class QuestListUI : MonoBehaviour {
 
-	public UnityEventQuest QuestClicked; 
 	public GameObject ListItemPrefab;
 	public GameObject ListParent;
 
-	private List<Quest> quests = new List<Quest>();
 	private List<GameObject> questItems = new List<GameObject>();
-
-    public RuntimeSetQuest CurrentQuests;
-
-    public void Awake() {
-        CurrentQuests.OnChange.AddListener(q => RefreshList());
-    }
 
     public void RefreshList() {
         Clear();
-        CurrentQuests.Value.ForEach(AddItem);
+        QuestManager.Instance.ActiveQuests.ForEach(AddItem);
     }
 
-	public void AddItem(Quest info) {
-		quests.Add(info);
+	public void AddItem(QuestInstance info) {
 		var gameobject = GameObject.Instantiate(ListItemPrefab);
 		gameobject.transform.SetParent(ListParent.transform, false);
 
 		questItems.Add(gameobject);
 		gameobject.GetComponent<Button>().onClick.RemoveAllListeners();
-		gameobject.GetComponent<Button>().onClick.AddListener(() => QuestClicked.Invoke(info));
+		gameobject.GetComponent<Button>().onClick.AddListener(() => QuestManager.Instance.QuestClicked(info));
 
 		SetContent(info, gameobject);
 	}
 
-	private void SetContent(Quest info, GameObject go) {
-		go.GetComponentInChildren<TextMeshProUGUI>().text = info.DisplayName;
+	private void SetContent(QuestInstance info, GameObject go) {
+		go.GetComponentInChildren<TextMeshProUGUI>().text = info.Config.DisplayName;
 	}
 
 	public void Clear() {
-		quests.Clear();
 		questItems.ForEach(Destroy);
 		questItems.Clear();
 	}

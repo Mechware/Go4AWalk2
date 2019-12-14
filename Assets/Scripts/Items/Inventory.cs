@@ -7,6 +7,8 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour, IEnumerable<ItemInstance> {
     private List<ItemInstance> items = new List<ItemInstance>();
+
+    public Action<ItemInstance> OnItemObtained;
     
     public static Inventory Instance;
 
@@ -20,6 +22,7 @@ public class Inventory : MonoBehaviour, IEnumerable<ItemInstance> {
     public void Add(ItemInstance item) {
         SaveGame.SaveData.Inventory.Add(item.SaveData);
         items.Add(item);
+        OnItemObtained?.Invoke(item);
     }
 
     public void Remove(ItemInstance item) {

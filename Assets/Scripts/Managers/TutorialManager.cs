@@ -8,22 +8,22 @@ public class TutorialManager : MonoBehaviour {
 
     public static TutorialManager Instance;
     
-    public ActiveQuestBase BlockingAndParryingTutorialStart;
-    public ActiveQuestBase BlockingAndParryingTutorialEnd;
+    public QuestConfig BlockingAndParryingTutorialStart;
+    public QuestConfig BlockingAndParryingTutorialEnd;
 
     void Awake() {
         Instance = this;
     }
 
     public void Initialize() {
-        QuestManager.Instance.QuestUpdated += QuestUpdated;
+        QuestManager.Instance.QuestUpdated += SetQuest;
     }
     
-    public void QuestUpdated(ActiveQuestBase quest) {
-        if (quest == BlockingAndParryingTutorialStart) {
+    public void SetQuest(QuestConfig questConfig) {
+        if (questConfig == BlockingAndParryingTutorialStart) {
             SaveGame.SaveData.ShowParryAndBlockColors = true;
         }
-        if (quest == BlockingAndParryingTutorialEnd) {
+        if (questConfig == BlockingAndParryingTutorialEnd) {
             SaveGame.SaveData.ShowParryAndBlockColors = false;
         }
     }

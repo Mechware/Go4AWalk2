@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using G4AW2.Combat;
 using G4AW2.Data.DropSystem;
+using G4AW2.Followers;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MainUI : MonoBehaviour {
 
@@ -21,11 +24,31 @@ public class MainUI : MonoBehaviour {
     public InventoryItemDisplay Weapon;
     public InventoryItemDisplay Armor;
     public InventoryItemDisplay Headgear;
+
+    public ClickReceiver ArrowReceiver;
+    public Image Arrow;
+    public TextMeshProUGUI NumberOfFollowersText;
+
+    public DragObject WorldView;
     
     void Awake() {
         Instance = this;
         ItemViewer.Init();
         WeaponViewer.Init();
+
+        Arrow.rectTransform.anchoredPosition = Arrow.rectTransform.anchoredPosition.SetX(9);
+        Arrow.rectTransform.DOAnchorPosX(13, 1).SetLoops(-1, LoopType.Yoyo);
+        
+        ArrowReceiver.MouseClick2D.AddListener(a => {
+            WorldView.InvokeDragEvent();
+            WorldView.Disable();
+            var rt = ((RectTransform) WorldView.transform);
+            DOTween.Sequence()
+                .Append(rt.DOAnchorPosX(75, 1))
+                .AppendCallback(() => {
+                    WorldView.Enable();
+                });
+        });
     }
     
     // Start is called before the first frame update
@@ -58,6 +81,12 @@ public class MainUI : MonoBehaviour {
         Weapon.SetDataInstance(Player.Instance.Weapon, 0, ChangeWeapon, null, true);
         Armor.SetDataInstance(Player.Instance.Armor, 0, ChangeArmor, null, true);
         Headgear.SetDataInstance(Player.Instance.Headgear, 0, ChangeHeadgear, null, true);
+        
+        
+        bool HasFollowers = FollowerManager.Instance.Followers.Count > 0;
+
+        NumberOfFollowersText.text = $"x{FollowerManager.Instance.Followers.Count}";
+        Arrow.gameObject.SetActive(WorldView.IsAtEnd() && HasFollowers && WorldView.ScrollingEnabled);
     }
 
     public void ChangeWeapon(InventoryItemDisplay it) {

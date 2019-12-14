@@ -10,9 +10,6 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Data/CraftingTable")]
 public class CraftingTable : ScriptableObject {
 
-    public ActiveQuestBaseVariable CurrentQuest;
-    public PersistentSetCraftingRecipe Recipes;
-
     private List<CraftingRecipe> currentRecipes = null;
 
     
@@ -24,7 +21,7 @@ public class CraftingTable : ScriptableObject {
 
         List<CraftingRecipe> recipes = new List<CraftingRecipe>();
 
-        foreach(var recipe in Recipes) {
+        foreach(var recipe in Configs.Instance.Recipes) {
             if(!(recipe.Result.Item is T))
                 continue;
 
@@ -64,7 +61,7 @@ public class CraftingTable : ScriptableObject {
 
         List<ItemInstance> items = new List<ItemInstance>();
         for (int i = 0; i < cr.Result.Amount; i++) {
-            ItemInstance it = ItemFactory.GetInstance(cr.Result.Item, QuestManager.Instance.CurrentQuest.Level);
+            ItemInstance it = ItemFactory.GetInstance(cr.Result.Item, QuestManager.Instance.CurrentQuestConfig.Level);
             Inventory.Instance.Add(it);
             items.Add(it);
         }
@@ -81,7 +78,7 @@ public class CraftingTable : ScriptableObject {
         } else {
             List<CraftingRecipe> recipes = GetPossibleRecipes();
             foreach(var recipe in recipes) {
-                if(!currentRecipes.Contains(recipe) && !CraftingRecipesMade.RecipesMade.Contains(recipe.ID)) {
+                if(!currentRecipes.Contains(recipe) && !SaveGame.SaveData.CraftingRecipesMade.Contains(recipe.Id)) {
                     string postText = "";
                     foreach(var component in recipe.Components) {
                         postText +=

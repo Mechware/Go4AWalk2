@@ -28,7 +28,7 @@ public class MiningPoints : MonoBehaviour {
 
     private Area currentArea;
 
-    public void QuestChanged(ActiveQuestBase a) {
+    public void SetQuest(QuestConfig a) {
         if (currentArea != a.Area) {
             currentArea = a.Area;
             Pool.Reset();

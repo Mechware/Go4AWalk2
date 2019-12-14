@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 using CustomEvents;
 using G4AW2.Data.DropSystem;
-using G4AW2.Events;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
