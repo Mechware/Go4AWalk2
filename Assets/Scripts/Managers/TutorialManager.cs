@@ -15,10 +15,6 @@ public class TutorialManager : MonoBehaviour {
         Instance = this;
     }
 
-    public void Initialize() {
-        QuestManager.Instance.QuestUpdated += SetQuest;
-    }
-    
     public void SetQuest(QuestConfig questConfig) {
         if (questConfig == BlockingAndParryingTutorialStart) {
             SaveGame.SaveData.ShowParryAndBlockColors = true;

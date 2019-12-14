@@ -27,7 +27,6 @@ public class Game : MonoBehaviour {
         FollowerDisplayController.Instance.Initialize();
         FollowerManager.Instance.Initialize();
         Player.Instance.Initialize();
-        TutorialManager.Instance.Initialize();
     }
 
     void Update()

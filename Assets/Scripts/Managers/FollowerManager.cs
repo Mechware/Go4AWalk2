@@ -55,7 +55,7 @@ namespace G4AW2.Followers {
 		private void CheckSpawns() {
 			if (currentTime > currentTimeToReach) {
 				currentTime -= currentTimeToReach;
-				currentTimeToReach = Random.Range(QuestManager.Instance.CurrentQuestConfig.MinEnemyDropTime, QuestManager.Instance.CurrentQuestConfig.MaxEnemyDropTime);
+				currentTimeToReach = Random.Range(QuestManager.Instance.CurrentQuest.Config.MinEnemyDropTime, QuestManager.Instance.CurrentQuest.Config.MaxEnemyDropTime);
                 AddFollower();
 				CheckSpawns();
 			}
@@ -66,7 +66,7 @@ namespace G4AW2.Followers {
             // randomly choose a follower!
 	        if (Followers.Count >= MAX_QUEUE_SIZE) return;
 
-	        FollowerInstance instance = QuestManager.Instance.CurrentQuestConfig.Enemies.GetRandomFollower(true);
+	        FollowerInstance instance = QuestManager.Instance.CurrentQuest.Config.Enemies.GetRandomFollower(true);
 	        if (instance == null) return;
 
 	        Followers.Add(instance);
@@ -76,7 +76,7 @@ namespace G4AW2.Followers {
 		public void Drop(FollowerConfig config) {
 			if (Followers.Count >= MAX_QUEUE_SIZE) return;
 
-			var follower = QuestManager.Instance.CurrentQuestConfig.Enemies.GetFollower(config, true);
+			var follower = QuestManager.Instance.CurrentQuest.Config.Enemies.GetFollower(config, true);
 			if (follower == null) return;
 
 			Followers.Add(follower);

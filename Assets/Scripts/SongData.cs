@@ -22,7 +22,7 @@ public class SongData : ScriptableObject {
 
 	public QuestConfig QuestConfigToUnlock;
 
-	public bool IsUnlocked => QuestConfigToUnlock == null || SaveGame.SaveData.CompletedQuests.Any(id => id == QuestConfigToUnlock.ID);
+	public bool IsUnlocked => QuestConfigToUnlock == null || SaveGame.SaveData.CompletedQuests.Any(id => id.Id == QuestConfigToUnlock.Id);
 
 	[Header("Buff")]
 	public float BuffDuration;

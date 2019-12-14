@@ -61,7 +61,7 @@ public class CraftingTable : ScriptableObject {
 
         List<ItemInstance> items = new List<ItemInstance>();
         for (int i = 0; i < cr.Result.Amount; i++) {
-            ItemInstance it = ItemFactory.GetInstance(cr.Result.Item, QuestManager.Instance.CurrentQuestConfig.Level);
+            ItemInstance it = ItemFactory.GetInstance(cr.Result.Item, QuestManager.Instance.CurrentQuest.Config.Level);
             Inventory.Instance.Add(it);
             items.Add(it);
         }

@@ -62,12 +62,12 @@ public class InteractionController : MonoBehaviour {
             World.Disable();
         
             // Put boss where they should be
-            var bossQuest = (BossQuestConfig) QuestManager.Instance.CurrentQuestConfig;
-            
-            FollowerInstance bossf = FollowerManager.Instance.Followers.FirstOrDefault(f => f.Config.Id == bossQuest.Enemy.ID);
+            var bossQuest = QuestManager.Instance.CurrentQuest.Config;
+            var enemy = (EnemyConfig) bossQuest.QuestParam;
+            FollowerInstance bossf = FollowerManager.Instance.Followers.FirstOrDefault(f => f.Config.Id == enemy.Id);
             
             if (bossf == null) {
-                EnemyInstance ei = new EnemyInstance(bossQuest.Enemy, bossQuest.Level);
+                EnemyInstance ei = new EnemyInstance(enemy, bossQuest.Level);
                 bossf = ei;
             }
             
@@ -264,11 +264,6 @@ public class InteractionController : MonoBehaviour {
 
                 PlayerClickController.Instance.SetEnabled(true);
                 
-                // Note: If the boss quest is to fight a chicken and you kill any chicken (not just the boss) then the quest gets completed
-                if (QuestManager.Instance.CurrentQuestConfig is BossQuestConfig quest && quest.Enemy == instance.Config) {
-                    quest.Finish();
-                }
-
                 Fighting = false;
             });
         }

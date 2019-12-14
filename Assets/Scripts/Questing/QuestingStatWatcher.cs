@@ -17,78 +17,28 @@ public class QuestingStatWatcher : MonoBehaviour {
     public Image ProgressFill;
 
 
+    private int prevVal = -1;
     private QuestConfig previous;
+    public Transform SpawnPointOfNumberIncreasePopUp;
 
     private void Awake() {
         Instance = this;
     }
 
-    public void SetQuest(QuestConfig currentQuestConfig) {
+    public void Update() {
 
-        RemoveListeners(previous);
+        int current = QuestManager.Instance.CurrentQuest.SaveData.Progress;
+        int max = QuestManager.Instance.CurrentQuest.Config.ValueToReach;
 
-        if (currentQuestConfig is ActiveWalkingQuestConfig) {
-            ActiveWalkingQuestConfig awq = currentQuestConfig as ActiveWalkingQuestConfig;
-            awq.AmountSoFar.OnChange.AddListener(OnChange);
-        } else if (currentQuestConfig is ActiveQuestConfig<int, IntVariable, UnityEventInt>) {
-            ActiveQuestConfig < int, IntVariable, UnityEventInt> awq = currentQuestConfig as ActiveQuestConfig<int, IntVariable, UnityEventInt>;
-            awq.AmountSoFar.OnChange.AddListener(OnChange);
-        } else if (currentQuestConfig is ReachValueQuestConfig) {
-            var awq = currentQuestConfig as ReachValueQuestConfig;
-            awq.TotalAmount.OnChange.AddListener(OnChange);
-        }
-
-        var prog = currentQuestConfig.GetProgress();
-        ProgressText.text = $"{prog.current} / {prog.max}";
+        ProgressText.text = $"{current} / {max}";
         ProgressFill.rectTransform.anchorMax =
-            ProgressFill.rectTransform.anchorMax.SetX(Mathf.Clamp01((float) (prog.current / prog.max)));
-        QuestTitle.text = currentQuestConfig.DisplayName;
-        previous = currentQuestConfig;
-    }
+            ProgressFill.rectTransform.anchorMax.SetX(Mathf.Clamp01((float) (current / max)));
+        QuestTitle.text = QuestManager.Instance.CurrentQuest.Config.DisplayName;
 
-    void RemoveListeners(QuestConfig previousQuestConfig) {
-        if (previousQuestConfig == null) return;
-
-        if(previousQuestConfig is ActiveWalkingQuestConfig) {
-            ActiveWalkingQuestConfig awq = previousQuestConfig as ActiveWalkingQuestConfig;
-            awq.AmountSoFar.OnChange.RemoveListener(OnChange);
-        } else if(previousQuestConfig is ActiveEnemySlayerQuestConfig) {
-            ActiveEnemySlayerQuestConfig awq = previousQuestConfig as ActiveEnemySlayerQuestConfig;
-            awq.AmountSoFar.OnChange.RemoveListener(OnChange);
-        } else if(previousQuestConfig is ActiveItemCollectQuestConfig) {
-            ActiveItemCollectQuestConfig awq = previousQuestConfig as ActiveItemCollectQuestConfig;
-            awq.AmountSoFar.OnChange.RemoveListener(OnChange);
-        }
-
-        if(previousQuestConfig is ActiveWalkingQuestConfig) {
-            ActiveWalkingQuestConfig awq = previousQuestConfig as ActiveWalkingQuestConfig;
-            awq.AmountSoFar.OnChange.RemoveListener(OnChange);
-        } else if(previousQuestConfig is ActiveQuestConfig<int, IntVariable, UnityEventInt>) {
-            ActiveQuestConfig<int, IntVariable, UnityEventInt> awq = previousQuestConfig as ActiveQuestConfig<int, IntVariable, UnityEventInt>;
-            awq.AmountSoFar.OnChange.RemoveListener(OnChange);
-        } else if(previousQuestConfig is ReachValueQuestConfig) {
-            var q = previousQuestConfig as ReachValueQuestConfig;
-            q.TotalAmount.OnChange.RemoveListener(OnChange);
+        if(prevVal != -1 && current> prevVal) {
+            SmoothPopUpManager.ShowPopUp(SpawnPointOfNumberIncreasePopUp.position, "+" + (current - prevVal), Color.green, true);
+            prevVal = current;
         }
     }
 
-    void OnChange(float val) {
-        SetQuest(previous);
-
-    }
-
-    public Transform SpawnPointOfNumberIncreasePopUp;
-
-    private int prevVal = -1;
-    void OnChange(int val) {
-        if (prevVal != -1 && val > prevVal) {
-            SmoothPopUpManager.ShowPopUp(SpawnPointOfNumberIncreasePopUp.position, "+" + (val - prevVal), Color.green, true);
-        }
-        prevVal = val;
-        var prog = previous.GetProgress();
-        ProgressText.text = $"{prog.current} / {prog.max}";
-        ProgressFill.rectTransform.anchorMax =
-            ProgressFill.rectTransform.anchorMax.SetX(Mathf.Clamp01((float) (prog.current / prog.max)));
-        
-    }
 }

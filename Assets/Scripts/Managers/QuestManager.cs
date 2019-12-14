@@ -190,7 +190,6 @@ public class QuestManager : MonoBehaviour {
 
     public void SetQuest(QuestConfig questConfig) {
         AreaManager.Instance.SetArea(questConfig.Area);
-        QuestingStatWatcher.Instance.SetQuest(questConfig);
         MiningPoints.Instance.SetQuest(questConfig);
         TutorialManager.Instance.SetQuest(questConfig);
         FollowerManager.Instance.SetQuest(questConfig);

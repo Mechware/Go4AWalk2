@@ -74,11 +74,11 @@ public class Configs : MonoBehaviour {
 
         ids.Clear();
         foreach(var thing in Quests) {
-            if (ids.ContainsKey(thing.ID)) {
-                Debug.LogWarning($"Quests have same id as each other: {thing.name} and {ids[thing.ID].name}");
+            if (ids.ContainsKey(thing.Id)) {
+                Debug.LogWarning($"Quests have same id as each other: {thing.name} and {ids[thing.Id].name}");
                 continue;
             }
-            ids.Add(thing.ID, thing);
+            ids.Add(thing.Id, thing);
         }
         
         AssetDatabase.SaveAssets();
