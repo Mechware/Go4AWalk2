@@ -32,4 +32,24 @@ public class ItemFactory
 
         return new ItemInstance(config);
     }
+
+    public static ItemInstance GetInstance(ItemSaveData config) {
+        if(config is WeaponSaveData w) {
+            return new WeaponInstance(w);
+        }
+
+        if(config is ArmorSaveData a) {
+            return new ArmorInstance(a);
+        }
+
+        if(config is HeadgearSaveData hg) {
+            return new HeadgearInstance(hg);
+        }
+
+        if(config is EnchanterSaveData e) {
+            return new EnchanterInstance(e);
+        }
+
+        return new ItemInstance(config);
+    }
 }

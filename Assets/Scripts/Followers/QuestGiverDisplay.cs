@@ -66,9 +66,9 @@ public class QuestGiverDisplay : MonoBehaviour, IPointerClickHandler {
 
     public void OnPointerClick(PointerEventData eventData) {
 
-        PopUp.SetPopUp("Accept quest from quest giver? Title: " + follower.Config.QuestConfigToGive.DisplayName, new[] { "Yes", "No" }, new Action[] {
+        PopUp.SetPopUp("Accept quest from quest giver? Title: " + follower.QuestToGive.DisplayName, new[] { "Yes", "No" }, new Action[] {
             () => {
-                QuestManager.Instance.GiveQuest(follower.Config.QuestConfigToGive);                
+                QuestManager.Instance.GiveQuest(follower.QuestToGive);                
                 FollowerManager.Instance.Followers.Remove(follower);
 
                 // Flip Giver

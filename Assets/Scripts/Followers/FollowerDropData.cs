@@ -48,26 +48,8 @@ namespace G4AW2.Followers {
 
 		public FollowerInstance GetInstanceFromFollowerDrop(FollowerDrop drop) {
 
-			if (drop == null) {
-				Debug.LogError("Drop is null");
-				return null;
-			}
-			
-			FollowerInstance instance = null;
-					
-			if (drop.Follower is ShopFollowerConfig s) {
-						
-				ShopFollowerInstance shop = new ShopFollowerInstance(s);
-						
-				instance = shop;
-
-			} else if (drop.Follower is EnemyConfig e) {
-				// Enemy instance
-				int Level = Mathf.RoundToInt(Random.value * (drop.MaxLevel - drop.MinLevel) + drop.MinLevel);
-
-			}
-					
-			return instance;
+			int Level = Mathf.RoundToInt(Random.value * (drop.MaxLevel - drop.MinLevel) + drop.MinLevel);
+            return FollowerFactory.GetInstance(drop.Follower, Level);
 		}
 	}
 }

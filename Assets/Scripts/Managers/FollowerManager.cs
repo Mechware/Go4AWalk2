@@ -36,7 +36,11 @@ namespace G4AW2.Followers {
 
 	        Debug.Log("Time since last play: " + secondsSinceLastPlayed);
 
-	        // If you have no followers and you were idling away, add a new follower (???)
+            foreach(var sd in SaveGame.SaveData.CurrentFollowers) {
+                Followers.Add(FollowerFactory.GetInstance(sd));
+            }
+
+            // If you have no followers and you were idling away, add a new follower (???)
             if (secondsSinceLastPlayed > 5 * 60 && !Followers.Any()) {
 	            AddFollower();
             }

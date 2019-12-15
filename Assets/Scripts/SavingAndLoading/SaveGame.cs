@@ -108,3 +108,7 @@ public class QuestSaveData {
     public bool Active;
     public bool Complete;
 }
+
+public class QuestGiverSaveData : FollowerSaveData {
+    public int QuestToGiveId;
+}

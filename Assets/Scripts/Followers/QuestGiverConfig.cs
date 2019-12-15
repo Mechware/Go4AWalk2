@@ -8,7 +8,7 @@ namespace G4AW2.Followers {
 	[CreateAssetMenu(menuName = "Data/Follower/QuestGiver")]
 	public class QuestGiverConfig : FollowerConfig {
 
-		public QuestConfig QuestConfigToGive;
+		public List<QuestConfig> QuestConfigToGive;
 		public AnimationClip GivingQuest;
 	    public AnimationClip WalkingAnimation;
 	}

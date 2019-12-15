@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using G4AW2.Data;
 using G4AW2.Data.DropSystem;
 using UnityEngine;
@@ -13,17 +14,19 @@ public class ShopFollowerInstance : FollowerInstance {
     
     public ShopFollowerInstance(ShopFollowerConfig config) {
         foreach (var conf in config.Items) {
-            if (conf.ItemConfig is ArmorConfig a) {
-                var armor = new ArmorInstance(a, conf.Level);
-                Items.Add(armor);
-                SaveData.Items.Add(armor.SaveData);
-            }
-            else if (conf.ItemConfig is WeaponConfig w) {
-                var weapon = new WeaponInstance(w, conf.Level);
-                Items.Add(weapon);
-                SaveData.Items.Add(weapon.SaveData);
-            }
+            var instance = ItemFactory.GetInstance(conf.ItemConfig, conf.Level);
+            Items.Add(instance);
+            SaveData.Items.Add(instance.SaveData);
         }
+    }
+
+    public ShopFollowerInstance(ShopFollowerSaveData saveData) {
+        base.Config = Configs.Instance.Followers.First(f => f.Id == saveData.Id);
+        foreach(var itemData in SaveData.Items) {
+            var instance = ItemFactory.GetInstance(itemData);
+            Items.Add(instance);
+        }
+
     }
 
 }

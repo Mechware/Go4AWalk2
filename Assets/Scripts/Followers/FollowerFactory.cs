@@ -23,4 +23,21 @@ public class FollowerFactory : MonoBehaviour
         Debug.LogError("Tried to create a follower instance from config: " + config.Id);
         return new FollowerInstance();
     }
+
+    public static FollowerInstance GetInstance(FollowerSaveData saveData) {
+        if(saveData is EnemySaveData e) {
+            return new EnemyInstance(e);
+        }
+
+        if(saveData is QuestGiverSaveData q) {
+            return new QuestGiverInstance(q);
+        }
+
+        if(saveData is ShopFollowerSaveData s) {
+            return new ShopFollowerInstance(s);
+        }
+
+        Debug.LogError("Tried to create a follower instance from config: " + saveData.Id);
+        return new FollowerInstance();
+    }
 }
