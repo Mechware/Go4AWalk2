@@ -19,7 +19,7 @@ public class ArmorInstance : ItemInstance {
     }
 
     public ArmorInstance(ArmorConfig config, int level) {
-        
+        base.Config = config;
         base.SaveData = new ArmorSaveData();
         SaveData.Id = config.Id;
         SaveData.Random = UnityEngine.Random.Range(0, 101);
@@ -34,22 +34,9 @@ public class ArmorInstance : ItemInstance {
     private float MistimedBlockModifierWithMod => (-1*(ArmValue/50)); // blocking heals
 
 
-    public float GetDamage(int damage, BlockState state) {
+    public float GetDamage(int damage) {
         float fdamage = damage;
         fdamage = Mathf.Max(0, fdamage);
-
-        if(state == BlockState.PerfectlyBlocking) {
-            return fdamage * PerfectBlockModifierWithMod;
-        }
-
-        if(state == BlockState.Blocking) {
-            return fdamage * MistimedBlockModifierWithMod;
-        }
-
-        if(state == BlockState.BadParry) {
-            return fdamage * BadParryMod * NoBlockModifierWithMod;
-        }
-
         return fdamage * NoBlockModifierWithMod;
     }
 
@@ -68,4 +55,3 @@ public class ArmorInstance : ItemInstance {
 
 }
 
-public enum BlockState { None, Blocking, PerfectlyBlocking, BadParry}

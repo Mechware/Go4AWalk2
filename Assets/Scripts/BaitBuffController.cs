@@ -43,7 +43,7 @@ public class BaitBuffController : MonoBehaviour {
                     var monster = GetDrop(bait);
 
                     // Drop it
-                    FollowerManager.Instance.Drop(monster);
+                    // Tell combat controller to drop this enemy next
                     buff.NextSpawnTime += bait.GetSpawnTime();
                     
                 }
@@ -59,7 +59,7 @@ public class BaitBuffController : MonoBehaviour {
                 var monster = GetDrop(bait);
 
                 // Check if it is in the list
-                FollowerManager.Instance.Drop(monster);   
+                // Tell combat controller to drop this enemy next 
                 buff.NextSpawnTime += bait.GetSpawnTime();
             }
         }

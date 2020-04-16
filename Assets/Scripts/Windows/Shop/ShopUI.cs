@@ -42,7 +42,6 @@ public class ShopUI : MonoBehaviour {
 
     public void Finish() {
         actionOnSendAway?.Invoke();
-        FollowerManager.Instance.Followers.Remove(shopKeep);
         GetComponent<RobustLerper>().StartReverseLerp();
         OnFinish.Invoke();
     }

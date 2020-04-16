@@ -30,7 +30,7 @@ public class DeadEnemyController : MonoBehaviour {
     }
 
     public void AddDeadEnemy(float x, float y, EnemyInstance s) {
-
+        return; // None of this for now
         GameObject go = DeadEnemies.GetObject();
 
         go.GetComponent<Image>().sprite = s.Config.DeadSprite;

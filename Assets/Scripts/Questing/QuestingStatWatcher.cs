@@ -21,11 +21,11 @@ public class QuestingStatWatcher : MonoBehaviour {
     private QuestConfig previous;
     public Transform SpawnPointOfNumberIncreasePopUp;
 
-    private void Awake() {
+    public void Awake() {
         Instance = this;
     }
 
-    public void Update() {
+    public void MyUpdate() {
 
         int current = QuestManager.Instance.CurrentQuest.SaveData.Progress;
         int max = QuestManager.Instance.CurrentQuest.Config.ValueToReach;

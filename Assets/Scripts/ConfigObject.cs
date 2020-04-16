@@ -15,11 +15,10 @@ public class RarityDefines {
         public AnimationCurve WeaponLevelPerTap;
 	}
 
-	private  static RarityDefines Singleton;
 	public List<RarityColorDefines> RarityToColor;
 	
     public static float GetLevel(Rarity r, int taps) {
-        var thing = Singleton.RarityToColor.FirstOrDefault(rcd => rcd.Rarity == r);
+        var thing = Configs.Instance.Rarities.RarityToColor.FirstOrDefault(rcd => rcd.Rarity == r);
         if(thing == null) {
             throw new Exception("No color define for rarity");
         }
@@ -27,16 +26,10 @@ public class RarityDefines {
     }
 
 	public static Color GetColorFromRarity(Rarity r) {
-		var thing = Singleton.RarityToColor.FirstOrDefault(rcd => rcd.Rarity == r);
+		var thing = Configs.Instance.Rarities.RarityToColor.FirstOrDefault(rcd => rcd.Rarity == r);
 		if (thing == null) {
 			throw new Exception("No color define for rarity");
 		}
 		return thing.Color;
-	}
-
-	[ContextMenu("Register Changes")]
-	public void RegisterChanges() {
-		Debug.Log("Registering changes");
-		Singleton = this;
 	}
 }

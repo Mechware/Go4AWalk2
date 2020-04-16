@@ -30,7 +30,7 @@ public class DebugMenu : MonoBehaviour {
 	    var level = int.Parse(EnemyLevel.text);
 	    var config = Configs.Instance.Followers.ElementAt(EnemyDropdown.value);
         FollowerInstance fi = FollowerFactory.GetInstance(config, level);
-        FollowerManager.Instance.Followers.Add(fi);
+        // Drop enemy?
     }
 
     #endregion

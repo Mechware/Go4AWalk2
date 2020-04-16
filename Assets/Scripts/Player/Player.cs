@@ -43,8 +43,6 @@ namespace G4AW2.Combat {
 	        // Fin
 	        DateTime lastTimePlayedUTC = SaveGame.SaveData.LastTimePlayedUTC;
 	        TimeSpan TimeSinceLastPlayed = DateTime.UtcNow - lastTimePlayedUTC;
-	        double secondsSinceLastPlayed = TimeSinceLastPlayed.TotalSeconds;
-	        IncreaseHealthByTime((int)secondsSinceLastPlayed);
         }
         
 		public void EquipHeadgear(HeadgearInstance headgear) {
@@ -69,13 +67,7 @@ namespace G4AW2.Combat {
         }
 
 	    public void OnDeathFinished() {
-	        int oldAmount = Gold;
-	        int newAmount = oldAmount - Mathf.RoundToInt(oldAmount * 0.2f);
-	        newAmount = Mathf.Max(newAmount, 0);
-	        Gold = newAmount;
-
             Health = MaxHealth;
-	        PopUp.SetPopUp($"You died! You lost: {oldAmount - newAmount} gold.", new string[] {"Ok"}, new Action[] {() => { }});
 	    }
 
 
@@ -98,12 +90,7 @@ namespace G4AW2.Combat {
 	        updateTime -= Time.deltaTime;
 	        if (updateTime < 0) {
 		        updateTime = 1f;
-		        IncreaseHealthByTime(1);
 	        }
-        }
-
-        public void IncreaseHealthByTime(float time) {
-	        Health = Mathf.Min(Mathf.RoundToInt(Health + time * HealthPerSecond), MaxHealth);
         }
 
         private DateTime PauseTime = DateTime.MaxValue;
@@ -115,9 +102,6 @@ namespace G4AW2.Combat {
 			        Debug.LogWarning("Just played without pausing");
 			        return;
 		        }
-
-		        TimeSpan diff = DateTime.Now - PauseTime;
-		        IncreaseHealthByTime((float)diff.TotalSeconds);
 	        }
 	        else {
 		        // Paused

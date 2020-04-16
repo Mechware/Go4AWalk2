@@ -90,4 +90,17 @@ public static class MiscExtensions {
         dict[key] = Default;
         return dict[key];
     }
+
+    public static void SafeFire(this Action a) {
+        if (a == null) return;
+        
+        foreach (var i in a.GetInvocationList()) {
+            try {
+                i.DynamicInvoke();
+            }
+            catch (Exception e) {
+                Debug.LogException(e);
+            }
+        }
+    }
 }

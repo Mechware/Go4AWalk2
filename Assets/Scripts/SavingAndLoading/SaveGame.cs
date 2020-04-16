@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class SaveGame : MonoBehaviour {
     public static SaveGame Instance;
-    public static SaveData SaveData;
+    public static SaveData SaveData = new SaveData();
 
     private void Awake() {
         Instance = this;
@@ -45,8 +45,6 @@ public class SaveData {
     
     public int PlayerHealth;
     public int PlayerGold;
-
-
 
     public bool ShowTrashChecked;
 

@@ -37,7 +37,7 @@ public class WeaponInstance : ItemInstance {
     }
 
     public WeaponInstance(WeaponConfig config, int level) {
-        
+        base.Config = config;
         base.SaveData = new WeaponSaveData();
         SaveData.Id = config.Id;
         SaveData.Random = UnityEngine.Random.Range(0, 101);

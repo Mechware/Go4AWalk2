@@ -36,8 +36,8 @@ namespace G4AW2.Combat {
 		public EnemyInstance Enemy;
 
         [Header("Readable Data")]
-		public IntReference MaxHealth;
-	    public IntReference CurrentHealth;
+		public double MaxHealth;
+	    public double CurrentHealth;
 
         private Animator MyAnimator;
 
@@ -70,8 +70,8 @@ namespace G4AW2.Combat {
 			EnemyState = State.Idle;
 			Enemy = instance;
             
-			MaxHealth.Value = instance.MaxHealth;
-			CurrentHealth.Value = MaxHealth;
+			MaxHealth = instance.MaxHealth;
+			CurrentHealth = MaxHealth;
 
 			AnimatorOverrideController aoc = (AnimatorOverrideController)GetComponent<Animator>().runtimeAnimatorController;
 			aoc["Death"] = Enemy.Config.Death;
@@ -102,8 +102,6 @@ namespace G4AW2.Combat {
 	    public void StartWalkingAnimation() {
 		    StopAllCoroutines();
 		    MyAnimator.SetTrigger("Walking");
-
-		    
         }
 
 	    public void StopWalking() {
@@ -178,8 +176,8 @@ namespace G4AW2.Combat {
 
             RegularDamageNumberSpawner.SpawnNumber(amount, BaseDamageColor);
 
-            CurrentHealth.Value -= amount;
-			if (CurrentHealth.Value <= 0) {
+            CurrentHealth -= amount;
+			if (CurrentHealth <= 0) {
 			    Die(false);
 			} else {
                 MyAnimator.SetTrigger("Flinch");
@@ -193,8 +191,8 @@ namespace G4AW2.Combat {
             amount = Mathf.RoundToInt(amount * Enemy.GetElementalWeakness(type));
 	        ElementalDamageNumberSpawner.SpawnNumber(amount, type.DamageColor);
 
-            CurrentHealth.Value -= amount;
-	        if(CurrentHealth.Value <= 0) {
+            CurrentHealth -= amount;
+	        if(CurrentHealth <= 0) {
 	            Die(false);
 	        } else {
 	            MyAnimator.SetTrigger("Flinch");

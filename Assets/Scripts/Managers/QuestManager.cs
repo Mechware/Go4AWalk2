@@ -37,11 +37,6 @@ public class QuestManager : MonoBehaviour {
         if(CurrentQuest.Config.Id == 1) {
             SetCurrentQuest(CurrentQuest);
         } else {
-
-            if (CurrentQuest.Config.QuestType is QuestType.Boss) {
-                InteractionController.Instance.StartBossFight();
-            }
-
             SetQuest(CurrentQuest.Config);
         }
 
@@ -81,7 +76,7 @@ public class QuestManager : MonoBehaviour {
         };
     }
     
-    void Update() {
+    public void MyUpdate() {
         AreaChangeInterpolater.Update(Time.deltaTime);
     }
     
@@ -155,7 +150,6 @@ public class QuestManager : MonoBehaviour {
             AreaChangeAndFadeObject.SetActive(true);
             AreaChangeInterpolater.StartLerping(() => {
 
-                FollowerManager.Instance.Followers.Clear();
                 DeadEnemyController.Instance.ClearEnemies();
 
                 CurrentQuest = quest;
@@ -166,10 +160,6 @@ public class QuestManager : MonoBehaviour {
                     AreaChangeAndFadeObject.SetActive(false);
 
                     QuestDialogUI.SetConversation(quest.Config.StartConversation, () => {
-
-                        if (quest.Config.QuestType == QuestType.Boss) {
-                            InteractionController.Instance.StartBossFight();
-                        }
                     });
                     
                 });
@@ -180,10 +170,6 @@ public class QuestManager : MonoBehaviour {
             SetQuest(quest.Config);
 
             QuestDialogUI.SetConversation(quest.Config.StartConversation, () => {
-
-                if (quest.Config.QuestType == QuestType.Boss) {
-                    InteractionController.Instance.StartBossFight();
-                }
             });
         }
     }
@@ -192,7 +178,6 @@ public class QuestManager : MonoBehaviour {
         AreaManager.Instance.SetArea(questConfig.Area);
         MiningPoints.Instance.SetQuest(questConfig);
         TutorialManager.Instance.SetQuest(questConfig);
-        FollowerManager.Instance.SetQuest(questConfig);
     }
 
     public void QuestClicked(QuestInstance q) {

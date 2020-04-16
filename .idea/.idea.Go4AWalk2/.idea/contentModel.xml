@@ -218,12 +218,9 @@
             <e p="DeadEnemyController.cs" t="Include" />
             <e p="EnemyInstance.cs" t="Include" />
             <e p="FollowerConfig.cs" t="Include" />
-            <e p="FollowerDisplay.cs" t="Include" />
-            <e p="FollowerDisplayController.cs" t="Include" />
             <e p="FollowerDropData.cs" t="Include" />
             <e p="FollowerFactory.cs" t="Include" />
             <e p="FollowerInstance.cs" t="Include" />
-            <e p="FollowerLayoutController.cs" t="Include" />
             <e p="GlobalFollowerDrops.cs" t="Include" />
             <e p="QuestGiverConfig.cs" t="Include" />
             <e p="QuestGiverDisplay.cs" t="Include" />
@@ -278,7 +275,6 @@
             <e p="AchievementManager.cs" t="Include" />
             <e p="AreaManager.cs" t="Include" />
             <e p="ConsumableManager.cs" t="Include" />
-            <e p="FollowerManager.cs" t="Include" />
             <e p="QuestManager.cs" t="Include" />
             <e p="TutorialManager.cs" t="Include" />
           </e>
@@ -360,6 +356,7 @@
             <e p="ScrollingImages.cs" t="Include" />
             <e p="SetImageAlpha.cs" t="Include" />
             <e p="StartUpEvent.cs" t="Include" />
+            <e p="TextMeshProExtensions.cs" t="Include" />
             <e p="Timer.cs" t="Include" />
             <e p="ToggleActive.cs" t="Include" />
             <e p="TransformToCanvas.cs" t="Include" />

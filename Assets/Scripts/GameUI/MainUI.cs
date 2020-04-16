@@ -30,9 +30,15 @@ public class MainUI : MonoBehaviour {
     public TextMeshProUGUI NumberOfFollowersText;
 
     public DragObject WorldView;
-    
-    void Awake() {
+
+    public RectTransform EnemyHealth;
+    public TextMeshProUGUI EnemyHealthText;
+
+    public void Awake() {
         Instance = this;
+    }
+    
+    public void Initialize() {
         ItemViewer.Init();
         WeaponViewer.Init();
 
@@ -50,15 +56,8 @@ public class MainUI : MonoBehaviour {
                 });
         });
     }
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update() {
+    public void MyUpdate() {
         var weapon = Player.Instance.Weapon;
         
         float currentDamage = weapon.RawDamage;
@@ -80,13 +79,13 @@ public class MainUI : MonoBehaviour {
         
         Weapon.SetDataInstance(Player.Instance.Weapon, 0, ChangeWeapon, null, true);
         Armor.SetDataInstance(Player.Instance.Armor, 0, ChangeArmor, null, true);
-        Headgear.SetDataInstance(Player.Instance.Headgear, 0, ChangeHeadgear, null, true);
+        if(Player.Instance.Headgear != null) Headgear.SetDataInstance(Player.Instance.Headgear, 0, ChangeHeadgear, null, true);
         
         
-        bool HasFollowers = FollowerManager.Instance.Followers.Count > 0;
-
-        NumberOfFollowersText.text = $"x{FollowerManager.Instance.Followers.Count}";
-        Arrow.gameObject.SetActive(WorldView.IsAtEnd() && HasFollowers && WorldView.ScrollingEnabled);
+        EnemyHealth.anchorMax =
+            EnemyHealth.anchorMax.SetX((float)(EnemyDisplay.Instance.CurrentHealth / EnemyDisplay.Instance.MaxHealth));
+        
+        EnemyHealthText.Replace(("{current}", EnemyDisplay.Instance.CurrentHealth.ToString()), ("{max}", EnemyDisplay.Instance.MaxHealth.ToString()));
     }
 
     public void ChangeWeapon(InventoryItemDisplay it) {

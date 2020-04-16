@@ -69,7 +69,6 @@ public class QuestGiverDisplay : MonoBehaviour, IPointerClickHandler {
         PopUp.SetPopUp("Accept quest from quest giver? Title: " + follower.QuestToGive.DisplayName, new[] { "Yes", "No" }, new Action[] {
             () => {
                 QuestManager.Instance.GiveQuest(follower.QuestToGive);                
-                FollowerManager.Instance.Followers.Remove(follower);
 
                 // Flip Giver
                 RectTransform rt = (RectTransform) transform;
@@ -93,7 +92,6 @@ public class QuestGiverDisplay : MonoBehaviour, IPointerClickHandler {
 
     public void Dismiss() {
         FinishInteraction.Invoke();
-        FollowerManager.Instance.Followers.Remove(follower);
         StartCoroutine(WalkOffScreen());
     }
 

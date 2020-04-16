@@ -15,7 +15,7 @@ namespace Items {
             Instance = this;
         }
 
-        public void OnLoad() {
+        public void Initialize() {
             for (int index = 0; index < SaveGame.SaveData.Consumables.Count; index++) {
                 var consumeable = SaveGame.SaveData.Consumables[index];
                 if (RandomUtils.GetTime() < consumeable.EndTime) {
@@ -25,7 +25,7 @@ namespace Items {
             ConsumableUi.Instance.Refresh();
         }
 
-        public void Update() {
+        public void MyUpdate() {
             for (int index = 0; index < SaveGame.SaveData.Consumables.Count; index++) {
                 var consumeable = SaveGame.SaveData.Consumables[index];
                 if (RandomUtils.GetTime() > consumeable.EndTime) {
