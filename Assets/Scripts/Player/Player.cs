@@ -13,14 +13,9 @@ namespace G4AW2.Combat {
 
 		public static Player Instance;
 
-
+		[NonSerialized] public PlayerSaveData SaveData;
+		
 		[NonSerialized] public double MaxHealth;
-
-		[NonSerialized] public double Health;
-		[NonSerialized] public int Gold;
-
-		[NonSerialized] public int Level;
-		[NonSerialized] public int Experience;
 
         public WeaponInstance Weapon;
         public ArmorInstance Armor;
@@ -31,6 +26,8 @@ namespace G4AW2.Combat {
 
         [NonSerialized] public float SpeedMultiplier = 1f;
         [NonSerialized] public float SpeedAdditive = 0f;
+
+        [NonSerialized] public float Weight;
         
         public int HealthPerSecond = 1;
         private float updateTime = 1f;
@@ -41,9 +38,8 @@ namespace G4AW2.Combat {
         
         public void Initialize() {
 
-	        // Fin
-	        DateTime lastTimePlayedUTC = SaveGame.SaveData.LastTimePlayedUTC;
-	        TimeSpan TimeSinceLastPlayed = DateTime.UtcNow - lastTimePlayedUTC;
+	        SaveData = SaveGame.SaveData.Player;
+	        Weight = Weapon.Config.Weight + Armor.Config.Weight;
         }
         
 		public void EquipHeadgear(HeadgearInstance headgear) {
@@ -58,17 +54,17 @@ namespace G4AW2.Combat {
 
         public void DamagePlayer(double damage)
         {
-            if (damage >= Health) {
-                Health = 0;
+            if (damage >= SaveData.Health) {
+                SaveData.Health = 0;
                 InteractionController.Instance.OnPlayerDeath();
             }
             else {
-                Health -= damage;
+	            SaveData.Health -= damage;
             }
         }
 
 	    public void OnDeathFinished() {
-            Health = MaxHealth;
+		    SaveData.Health = MaxHealth;
 	    }
 
         public double GetDamage() {
@@ -83,6 +79,9 @@ namespace G4AW2.Combat {
             return Random.Range(Weapon.Config.SpeedMin, Weapon.Config.SpeedMax) * SpeedMultiplier + SpeedAdditive;
         }
 
+        public bool Dodge(float incomingSpeed) {
+	        return Formulas.Dodge(Weight, incomingSpeed, SaveData.PerkDodge); 
+        }
         
         // Update is called once per frame
         void Update () {
@@ -116,7 +115,7 @@ namespace G4AW2.Combat {
 #if UNITY_EDITOR
         [ContextMenu("Restore Health")]
 		private void ResetHealth() {
-			Health = MaxHealth;
+			SaveData.Health = MaxHealth;
 		}
 #endif
 	}

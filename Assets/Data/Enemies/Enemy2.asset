@@ -12,13 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b76c2b9e51faf4c469d1e2c8d0189215, type: 3}
   m_Name: Enemy2
   m_EditorClassIdentifier: 
-  Id: 0
+  Id: 1
   HealthAtLevel0: 40
   DamageAtLevel0: 4
   MinTimeBetweenAttacks: 2
   MaxTimeBetweenAttacks: 2.5
-  AttackPrepTime: 0
-  AttackExecuteTime: 0
   HasElementalDamage: 0
   ElementalDamageAtLevel0: 0
   ElementalDamageType: {fileID: 0}
@@ -37,3 +35,5 @@ MonoBehaviour:
       dropChance: 0.2
   OneAndDoneAttacker: 0
   Art: {fileID: 11400000, guid: 51d3cce514427d448a622c4b31127522, type: 2}
+  Weight: 80
+  DodgePerk: 0

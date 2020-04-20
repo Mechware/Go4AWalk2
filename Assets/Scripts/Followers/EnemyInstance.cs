@@ -28,7 +28,11 @@ public class EnemyInstance {
         return Config.ElementalWeaknesses?[type] ?? 1;
     }
 
-    public float GetRandomAttackTime() {
-        return Random.Range(Config.MinTimeBetweenAttacks, Config.MaxTimeBetweenAttacks);
+    public float GetRandomAttackSpeed() {
+        return Random.Range(Config.MinAttackSpeed, Config.MaxAttackSpeed);
+    }
+
+    public bool Dodge(float incomingSpeed) {
+        return Formulas.Dodge(Config.Weight, incomingSpeed, Config.DodgePerk);
     }
 }

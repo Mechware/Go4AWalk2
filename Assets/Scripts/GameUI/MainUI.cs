@@ -26,8 +26,6 @@ public class MainUI : MonoBehaviour {
     public InventoryItemDisplay Armor;
     public InventoryItemDisplay Headgear;
 
-    public ClickReceiver ArrowReceiver;
-
     public DragObject WorldView;
 
     public RectTransform EnemyHealth;
@@ -40,17 +38,6 @@ public class MainUI : MonoBehaviour {
     public void Initialize() {
         ItemViewer.Init();
         WeaponViewer.Init();
-
-        ArrowReceiver.MouseClick2D.AddListener(a => {
-            WorldView.InvokeDragEvent();
-            WorldView.Disable();
-            var rt = ((RectTransform) WorldView.transform);
-            DOTween.Sequence()
-                .Append(rt.DOAnchorPosX(75, 1))
-                .AppendCallback(() => {
-                    WorldView.Enable();
-                });
-        });
     }
 
     public void MyUpdate() {
@@ -69,9 +56,9 @@ public class MainUI : MonoBehaviour {
             MasteryFill.anchorMax = MasteryFill.anchorMax.SetX(masteryProgress);
         }
 
-        float playerHealth = Mathf.Clamp01((float)(Player.Instance.Health / Player.Instance.MaxHealth));
+        float playerHealth = Mathf.Clamp01((float)(Player.Instance.SaveData.Health / Player.Instance.MaxHealth));
         PlayerHealthFill.anchorMax = PlayerHealthFill.anchorMax.SetX(playerHealth);
-        PlayerHealthText.text = $"{Player.Instance.Health} / {Player.Instance.MaxHealth}";        
+        PlayerHealthText.text = $"{Player.Instance.SaveData.Health} / {Player.Instance.MaxHealth}";        
         
         Weapon.SetDataInstance(Player.Instance.Weapon, 0, ChangeWeapon, null, true);
         Armor.SetDataInstance(Player.Instance.Armor, 0, ChangeArmor, null, true);

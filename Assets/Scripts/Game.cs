@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using G4AW2.Combat;
 using G4AW2.Data.DropSystem;
@@ -17,7 +18,7 @@ public class Game : MonoBehaviour {
 
         if (newGame) {
             Player.Instance.MaxHealth = 100;
-            Player.Instance.Health = Player.Instance.MaxHealth;
+            SaveGame.SaveData.Player.Health = Player.Instance.MaxHealth;
             
             Player.Instance.Weapon = new WeaponInstance(StartWeapon, 1);
             Player.Instance.Weapon.SaveData.Random = 30;
@@ -28,11 +29,14 @@ public class Game : MonoBehaviour {
             QuestManager.Instance.CurrentQuest = new QuestInstance(StartQuest);
         }
         
-        //TODO: Load int/float variables
+        Player.Instance.Initialize();
+        
+        // TODO: Idle
+        DateTime lastTimePlayedUTC = SaveGame.SaveData.LastTimePlayedUTC;
+        TimeSpan TimeSinceLastPlayed = DateTime.UtcNow - lastTimePlayedUTC;
         
         //AchievementManager.Instance.InitAchievements();
         QuestManager.Instance.Initialize();
-        Player.Instance.Initialize();
         MainUI.Instance.Initialize();
         ConsumableManager.Instance.Initialize();
         PlayerFightingLogic.Instance.Initialize();

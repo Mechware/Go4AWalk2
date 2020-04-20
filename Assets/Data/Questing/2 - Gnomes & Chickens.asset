@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 2 - Gnomes & Chickens
   m_EditorClassIdentifier: 
   Id: 0
-  DisplayName: 
+  DisplayName: Defeat 5 goblins
   Description: 
   NextQuestConfig: {fileID: 11400000, guid: 1813d7e0e7b53e14ea74a03ff6e2ceee, type: 2}
   StartConversation:

@@ -129,7 +129,8 @@ namespace G4AW2.Combat {
 		public IEnumerator DoAttack(bool first = false) {
 			for (; ; ) {
 				EnemyState = State.Idle;
-                yield return new WaitForSeconds(Enemy.GetRandomAttackTime());
+				float attackSpeed = Enemy.GetRandomAttackSpeed();
+                yield return new WaitForSeconds(1f/attackSpeed);
                 first = false;
 			    if (EnemyState == State.Dead) break;
 
@@ -137,9 +138,9 @@ namespace G4AW2.Combat {
 			    
 			    yield return new WaitForSeconds(Enemy.Config.Art.AttackDurationUntilDamage);
 			    
-			    PlayerFightingLogic.Instance.OnEnemyHitPlayer(Enemy.Damage);
+			    PlayerFightingLogic.Instance.OnEnemyHitPlayer(attackSpeed, Enemy.Damage);
 			    if (Enemy.Config.HasElementalDamage) {
-				    PlayerFightingLogic.Instance.OnEnemyHitPlayerElemental(Enemy.ElementalDamage, Enemy.Config.ElementalDamageType);
+				    PlayerFightingLogic.Instance.OnEnemyHitPlayerElemental(attackSpeed, Enemy.ElementalDamage, Enemy.Config.ElementalDamageType);
 			    }
 
                 if (Enemy.Config.OneAndDoneAttacker) {

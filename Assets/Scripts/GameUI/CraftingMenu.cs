@@ -11,7 +11,6 @@ using UnityEngine.Events;
 
 public class CraftingMenu : MonoBehaviour {
 
-    public CraftingTable CT;
     public GameObject ItemPrefab;
     public Transform ParentOfItems;
 
@@ -70,7 +69,7 @@ public class CraftingMenu : MonoBehaviour {
     //public QuickPopUp PopUp;
 
     private bool MakeRecipe(CraftingRecipe cr) {
-        var its = CT.Make(cr);
+        var its = CraftingTable.Make(cr);
         if (its == null) return false;
 
         /*

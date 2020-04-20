@@ -17,8 +17,6 @@ MonoBehaviour:
   DamageAtLevel0: 3
   MinTimeBetweenAttacks: 1.5
   MaxTimeBetweenAttacks: 2
-  AttackPrepTime: 0.3
-  AttackExecuteTime: 0.1
   HasElementalDamage: 0
   ElementalDamageAtLevel0: 0
   ElementalDamageType: {fileID: 0}
@@ -28,12 +26,14 @@ MonoBehaviour:
     - ItemConfig: {fileID: 11400000, guid: 212b5a7b5274ba54eafbf973b21ed3f8, type: 2}
       dropChance: 0.01
     - ItemConfig: {fileID: 11400000, guid: aadd84ecb64a69d438a811a67a041056, type: 2}
-      dropChance: 0.2
+      dropChance: 0.6
     - ItemConfig: {fileID: 11400000, guid: aadd84ecb64a69d438a811a67a041056, type: 2}
-      dropChance: 0.2
+      dropChance: 0.8
     - ItemConfig: {fileID: 11400000, guid: 3b3b3aae3ef904f4fa27af0aa93725d8, type: 2}
       dropChance: 0.5
     - ItemConfig: {fileID: 11400000, guid: 3b3b3aae3ef904f4fa27af0aa93725d8, type: 2}
       dropChance: 0.2
   OneAndDoneAttacker: 0
   Art: {fileID: 11400000, guid: 396482660d9279a4294f369245325131, type: 2}
+  Weight: 50
+  DodgePerk: 0

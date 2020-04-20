@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 1 - ChickenBoss
   m_EditorClassIdentifier: 
   Id: 0
-  DisplayName: 
+  DisplayName: Defeat 5 Chickens
   Description: 
   NextQuestConfig: {fileID: 11400000, guid: 7772697f7dd01f34b9f246fc0cdf5cbd, type: 2}
   StartConversation:

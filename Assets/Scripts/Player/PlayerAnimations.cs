@@ -90,16 +90,10 @@ public class PlayerAnimations : MonoBehaviour {
     public void CelebrationDone() {
         celebrationFinished?.Invoke();
     }
-
-    private double dmg = 0;
-    private double elemdmg = 0;
-    private ElementalType elemType = null;
+    
     private Action hitCallback;
     [ContextMenu("Attack")]
-    public void Attack(double damage, double elemDamage, ElementalType type, Action onHit) {
-        dmg = damage;
-        elemdmg = elemDamage;
-        elemType = type;
+    public void Attack(Action onHit) {
         hitCallback = onHit;
         
         animator.SetTrigger("Attack");
@@ -109,8 +103,6 @@ public class PlayerAnimations : MonoBehaviour {
     }
 
     public void OnHit() {
-        EnemyDisplay.Instance.RegularDamageNumberSpawner.SpawnNumber(dmg, EnemyDisplay.Instance.BaseDamageColor);
-        if(elemType != null) EnemyDisplay.Instance.ElementalDamageNumberSpawner.SpawnNumber(elemdmg, elemType.DamageColor);
         hitCallback?.Invoke();
     }
 

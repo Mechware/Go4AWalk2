@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
 
@@ -31,13 +32,13 @@ public class DamageNumberSpawner : MonoBehaviour {
         }
     }
 
-    public void SpawnNumber(double number, Color c) {
+    public void SpawnText(string text, Color c) {
 
         GameObject damageNumber = pool.GetObject();
         ((RectTransform) damageNumber.transform).anchoredPosition = new Vector2(0,0);
         TextMeshProUGUI tmpugui = damageNumber.GetComponent<TextMeshProUGUI>();
 
-        tmpugui.SetText(number.ToString(CultureInfo.InvariantCulture));
+        tmpugui.SetText(text);
         tmpugui.faceColor = c;
 
         Color outline = Color.black;
@@ -57,9 +58,9 @@ public class DamageNumberSpawner : MonoBehaviour {
     }
 
 #if UNITY_EDITOR
-    [ContextMenu("Spawn Test")]
-    public void SpawnNumberTest() {
-        SpawnNumber(Random.Range(1,1000), Color.black);
+    [Button("Spawn Test")]
+    public void SpawnNumberTest(string text) {
+        SpawnText(text, Color.black);
     }
 #endif
 }

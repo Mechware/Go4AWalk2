@@ -1689,7 +1689,7 @@ RectTransform:
   - {fileID: 724563346}
   - {fileID: 1683403188}
   m_Father: {fileID: 1821739197}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -2124,6 +2124,60 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -2, y: -2}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &139270957
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 139270958}
+  - component: {fileID: 139270959}
+  m_Layer: 0
+  m_Name: AreaManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &139270958
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 139270957}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 701840140}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &139270959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 139270957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90838cfabbff90647a593e9cd76f988b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Background: {fileID: 11400000, guid: 5e4d1ba5949749b44bc3427231ca82f2, type: 2}
+  backgrounds: {fileID: 2094348963}
+  clouds1: {fileID: 1112439896}
+  clouds2: {fileID: 471963650}
+  SkyImages:
+  - {fileID: 206570941}
+  - {fileID: 1395125819}
+  - {fileID: 547478150}
+  - {fileID: 1214435378}
+  - {fileID: 743468792}
+  - {fileID: 1089084261}
 --- !u!1 &141797544
 GameObject:
   m_ObjectHideFlags: 0
@@ -3928,7 +3982,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 5, y: -1.7}
+  m_AnchoredPosition: {x: 5, y: -1.7000122}
   m_SizeDelta: {x: 100, y: 12}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &244994214
@@ -10855,7 +10909,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3456d07bfd300a498ba0cae36e197f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CT: {fileID: 0}
   ItemPrefab: {fileID: 1929706737343030, guid: c504a1b86105a28498ed63009741eac9, type: 3}
   ParentOfItems: {fileID: 1958790811}
   Children: []
@@ -11470,7 +11523,6 @@ GameObject:
   m_Component:
   - component: {fileID: 701840140}
   - component: {fileID: 701840142}
-  - component: {fileID: 701840139}
   - component: {fileID: 701840145}
   - component: {fileID: 701840143}
   - component: {fileID: 701840141}
@@ -11481,29 +11533,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &701840139
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 701840138}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90838cfabbff90647a593e9cd76f988b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Background: {fileID: 11400000, guid: 5e4d1ba5949749b44bc3427231ca82f2, type: 2}
-  backgrounds: {fileID: 2094348963}
-  clouds1: {fileID: 1112439896}
-  clouds2: {fileID: 471963650}
-  SkyImages:
-  - {fileID: 206570941}
-  - {fileID: 1395125819}
-  - {fileID: 547478150}
-  - {fileID: 1214435378}
-  - {fileID: 743468792}
-  - {fileID: 1089084261}
 --- !u!4 &701840140
 Transform:
   m_ObjectHideFlags: 0
@@ -11527,6 +11556,8 @@ Transform:
   - {fileID: 905601585}
   - {fileID: 1088454873}
   - {fileID: 1292096112}
+  - {fileID: 139270958}
+  - {fileID: 2066193845}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -11578,10 +11609,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3cd3cc6eaa8df734db7ef0699c67d055, type: 2}
   - {fileID: 11400000, guid: c95db40fef0530548972ce5e8819e0e3, type: 2}
   - {fileID: 11400000, guid: f9ce8a3957c5c404bac197dc677cb6dd, type: 2}
-  - {fileID: 11400000, guid: f06fc87a2d638a1459b130947b24059e, type: 2}
   - {fileID: 11400000, guid: e07390ddb28996449a4e0c9f645c4e5e, type: 2}
-  - {fileID: 11400000, guid: 11fbe90a2780405449ad82a1ae93b06e, type: 2}
-  - {fileID: 11400000, guid: e8ac2ee84af3a8a49a66b87904d008d6, type: 2}
   - {fileID: 11400000, guid: fd886c20d53e5f64bac06680e5b49012, type: 2}
   - {fileID: 11400000, guid: c95e6bfd76411ee4ba7c1167255243a9, type: 2}
   - {fileID: 11400000, guid: 3b3b3aae3ef904f4fa27af0aa93725d8, type: 2}
@@ -11661,38 +11689,26 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d138635bc5b52cb42af404429ba71ab4, type: 2}
   - {fileID: 11400000, guid: d053d65b8f09c264983e32e3a535f101, type: 2}
   Followers:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  Shops: []
+  - {fileID: 11400000, guid: 5f10233c4dfd99243bfa521994996c04, type: 2}
+  - {fileID: 11400000, guid: 935b03271a5eba14b9c6b87042c58934, type: 2}
+  Shops:
+  - {fileID: 11400000, guid: ad9b8d87849cbb443985f26909b572f2, type: 2}
   QuestGivers: []
-  Recipes: []
+  Recipes:
+  - {fileID: 11400000, guid: 128b157d035595440a47f7a3c180ed5f, type: 2}
+  - {fileID: 11400000, guid: 1f38a8f2ab5462e4c8094957fa6b55d7, type: 2}
+  - {fileID: 11400000, guid: daef55885666f33488304f39111816b6, type: 2}
+  - {fileID: 11400000, guid: 680518cb458edd6468add539c52f80f6, type: 2}
+  - {fileID: 11400000, guid: b6022d09d71f2eb48bca80462bf9fbf0, type: 2}
+  - {fileID: 11400000, guid: a9c40887ed0f2104ba31522faf2d5e52, type: 2}
+  - {fileID: 11400000, guid: fd8fb0930082e514cb183b60ddfe17b6, type: 2}
+  - {fileID: 11400000, guid: 4e242135ba3c1fd4f95bb292e287aa82, type: 2}
+  - {fileID: 11400000, guid: 50b2708768728e34a85fc2346e74790a, type: 2}
+  - {fileID: 11400000, guid: 355bd553debe8f848b42c7e465d33c56, type: 2}
+  - {fileID: 11400000, guid: def46f832889c3c438d6f853843dcb3b, type: 2}
+  - {fileID: 11400000, guid: 40f078097944c434590c3daa4eaf6c7e, type: 2}
+  - {fileID: 11400000, guid: 072e8c50f688c06488d21d9bc70ab89c, type: 2}
   Quests:
-  - {fileID: 0}
   - {fileID: 11400000, guid: d0b1a45baf6b3d242a6af33d66b443b7, type: 2}
   - {fileID: 11400000, guid: 7772697f7dd01f34b9f246fc0cdf5cbd, type: 2}
   - {fileID: 11400000, guid: 1813d7e0e7b53e14ea74a03ff6e2ceee, type: 2}
@@ -11707,8 +11723,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d5a3181b25c7d8647bf8f2b64851bbe5, type: 2}
   - {fileID: 11400000, guid: bf90e00dcd90ed34ca7f414c4f654636, type: 2}
   - {fileID: 11400000, guid: 5a8fb4e0461e96b418512cc266283e09, type: 2}
-  - {fileID: 0}
-  - {fileID: 0}
   Rarities:
     RarityToColor:
     - Rarity: 0
@@ -11723,6 +11737,7 @@ MonoBehaviour:
       Color: {r: 1, g: 1, b: 0, a: 1}
     - Rarity: 5
       Color: {r: 0, g: 0, b: 0, a: 1}
+  QuestionMark: {fileID: 0}
 --- !u!114 &701840145
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30295,7 +30310,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 5.003, y: -17.2}
+  m_AnchoredPosition: {x: 5.0029907, y: -17.200012}
   m_SizeDelta: {x: 99.997, y: 12.49}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1649016526
@@ -32544,8 +32559,8 @@ RectTransform:
   - {fileID: 1833632509}
   - {fileID: 244994213}
   - {fileID: 237099814}
-  - {fileID: 884530007}
   - {fileID: 73772313}
+  - {fileID: 884530007}
   - {fileID: 1974577347}
   - {fileID: 1642138240}
   - {fileID: 1681567733}
@@ -32591,9 +32606,6 @@ MonoBehaviour:
   Weapon: {fileID: 533907246}
   Armor: {fileID: 876765480}
   Headgear: {fileID: 36339005}
-  ArrowReceiver: {fileID: 0}
-  Arrow: {fileID: 0}
-  NumberOfFollowersText: {fileID: 0}
   WorldView: {fileID: 1324188856}
   EnemyHealth: {fileID: 1544815333}
   EnemyHealthText: {fileID: 1490104174}
@@ -35692,6 +35704,97 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2065547254}
   m_CullTransparentMesh: 0
+--- !u!1 &2066193844
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2066193845}
+  - component: {fileID: 2066193846}
+  m_Layer: 0
+  m_Name: QuestManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2066193845
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2066193844}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 701840140}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2066193846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2066193844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47c88f692059e204c955c5a70baa8f18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  QuestDialogUI: {fileID: 1907137927}
+  DraggableWorld: {fileID: 1324188856}
+  ScrollArrow: {fileID: 0}
+  AreaChangeAndFadeObject: {fileID: 361289737}
+  AreaChangeInterpolater:
+    EndBehaviour: 0
+    LerpDuration: 1
+    Lerpers:
+    - Values:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 3.47645
+          outSlope: 3.47645
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0.020958085
+        - serializedVersion: 3
+          time: 1
+          value: 1.0018234
+          inSlope: 0.13829874
+          outSlope: 0.13829874
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.06586826
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      OnUpdate:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 361289739}
+            m_MethodName: SetAlpha
+            m_Mode: 0
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+  Journal: {fileID: 1901185153}
+  TestQuestConfig: {fileID: 0}
 --- !u!1 &2083756276
 GameObject:
   m_ObjectHideFlags: 0

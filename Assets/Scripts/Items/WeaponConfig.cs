@@ -28,6 +28,11 @@ namespace G4AW2.Data.DropSystem
         /// Maximum attacks per second
         /// </summary>
         public float SpeedMax;
+
+        /// <summary>
+        /// The weight of the weapon
+        /// </summary>
+        public float Weight;
     }
 }
 

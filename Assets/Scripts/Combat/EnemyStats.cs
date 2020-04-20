@@ -12,8 +12,14 @@ public class EnemyStats : ScriptableObject {
     public float HealthAtLevel0;
     public float DamageAtLevel0;
 
-    public float MinTimeBetweenAttacks = 0.5f;
-    public float MaxTimeBetweenAttacks = 4f;
+    /// <summary>
+    /// Minimum attacks per second
+    /// </summary>
+    public float MinAttackSpeed = 0.5f;
+    /// <summary>
+    /// Maximum attacks per second
+    /// </summary>
+    public float MaxAttackSpeed = 4f;
 
     [Header("Elemental")]
     public bool HasElementalDamage;
@@ -26,4 +32,7 @@ public class EnemyStats : ScriptableObject {
     public bool OneAndDoneAttacker = false;
 
     public EnemyConfig Art;
+
+    public float Weight = 0;
+    public int DodgePerk = 0;
 }

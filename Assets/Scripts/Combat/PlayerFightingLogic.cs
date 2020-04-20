@@ -2,6 +2,7 @@ using System;
 using G4AW2.Combat;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using CustomEvents;
 using G4AW2.Data.DropSystem;
 using UnityEngine;
@@ -27,15 +28,25 @@ public class PlayerFightingLogic : MonoBehaviour {
         PlayerAnimations.Instance.SetAttackSpeed(1);
     }
     
-    public void OnEnemyHitPlayer(double damage) {
+    public void OnEnemyHitPlayer(float attackSpeed, double damage) {
 
+        if (Player.Instance.Dodge(attackSpeed)) {
+            PlayerDamageNumberSpawner.SpawnText("DODGE", DamageColor);
+            return;
+        }
+        
         double fdamage = Player.Instance.Armor.GetDamage(damage);
         Player.Instance.DamagePlayer(fdamage);
-	    PlayerDamageNumberSpawner.SpawnNumber(damage, DamageColor);
+	    PlayerDamageNumberSpawner.SpawnText(damage.ToString(CultureInfo.InvariantCulture), DamageColor);
     }
 
-    public void OnEnemyHitPlayerElemental(int damage, ElementalType damageType) {
+    public void OnEnemyHitPlayerElemental(float attackSpeed, int damage, ElementalType damageType) {
 
+        if (Player.Instance.Dodge(attackSpeed)) {
+            PlayerDamageNumberSpawner.SpawnText("DODGE", damageType.DamageColor);
+            return;
+        }
+        
         float mod = 1;
         if (Player.Instance.Armor.Config.ElementalWeakness != null)
             mod = Player.Instance.Armor.Config.ElementalWeakness[damageType];
@@ -43,7 +54,7 @@ public class PlayerFightingLogic : MonoBehaviour {
 
         damage = Mathf.RoundToInt(fdamage);
         Player.Instance.DamagePlayer(damage);
-        PlayerDamageNumberSpawner.SpawnNumber(damage, damageType.DamageColor);
+        PlayerDamageNumberSpawner.SpawnText(damage.ToString(), damageType.DamageColor);
     }
 
     public float StunnedDamageMultiplier = 1.15f;
@@ -61,13 +72,19 @@ public class PlayerFightingLogic : MonoBehaviour {
         double elemDmg = Player.Instance.GetElementalDamage();
         ElementalType type = Player.Instance.Weapon.Enchantment?.Config.Type;
         
-        PlayerAnimations.Instance.Attack(dmg, elemDmg, type, _OnDone);
+        PlayerAnimations.Instance.Attack(_OnDone);
 
 
         void _OnDone() {
+
+            if (EnemyDisplay.Enemy.Dodge(attkSpeed)) {
+                EnemyDisplay.RegularDamageNumberSpawner.SpawnText("DODGE", EnemyDisplay.BaseDamageColor);
+                return;
+            }
+            EnemyDisplay.RegularDamageNumberSpawner.SpawnText(dmg.ToString(CultureInfo.CurrentCulture), EnemyDisplay.BaseDamageColor);
+            if(type != null) EnemyDisplay.Instance.ElementalDamageNumberSpawner.SpawnText(elemDmg.ToString(CultureInfo.CurrentCulture), type.DamageColor);
             
             EnemyDisplay.ApplyDamage(dmg);
-
             if(type != null)
                 EnemyDisplay.ApplyElementalDamage(elemDmg, type);
 

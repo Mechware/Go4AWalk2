@@ -33,18 +33,16 @@ public class SaveData {
     public DateTime LastTimePlayedUTC;
     
     public List<ItemSaveData> Inventory = new List<ItemSaveData>();
-    public List<FollowerSaveData> CurrentFollowers = new List<FollowerSaveData>();
     public Dictionary<int, double> IdsToNumberOfTaps = new Dictionary<int, double>();
     public List<int> CraftingRecipesMade = new List<int>();
     public List<ConsumableSaveData> Consumables = new List<ConsumableSaveData>();
-    public bool ShowParryAndBlockColors;
     
     // Questing
     public List<QuestSaveData> CurrentQuests = new List<QuestSaveData>();
     public List<QuestSaveData> CompletedQuests = new List<QuestSaveData>();
-    
-    public int PlayerHealth;
-    public int PlayerGold;
+
+
+    public PlayerSaveData Player = new PlayerSaveData();
 
     public bool ShowTrashChecked;
 
@@ -52,6 +50,19 @@ public class SaveData {
     public Dictionary<int, int> ItemsCollected = new Dictionary<int, int>();
 
     public List<int> LockedSongs = new List<int>();
+}
+
+public class PlayerSaveData {
+    public double Health;
+    public int Gold;
+    public int Level;
+    public double XP;
+
+    public int PerkHealth = 0;
+    public int PerkMasteryGain = 0;
+    public int PerkMasteryStart = 0;
+    public int PerkSpeed = 0;
+    public int PerkDodge = 0;
 }
 
 public class ItemSaveData {

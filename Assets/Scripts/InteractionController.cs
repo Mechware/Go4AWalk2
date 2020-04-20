@@ -95,7 +95,7 @@ public class InteractionController : MonoBehaviour {
             
             AttackArea.SetActive(false);
         
-            if (Player.Instance.Health <= 0) {
+            if (Player.Instance.SaveData.Health <= 0) {
                 OnPlayerDeath();
                 yield break;    
             }

@@ -7,17 +7,15 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Data/CraftingTable")]
-public class CraftingTable : ScriptableObject {
+public static class CraftingTable {
 
-    private List<CraftingRecipe> currentRecipes = null;
-
+    private static List<CraftingRecipe> currentRecipes = null;
     
-    public List<CraftingRecipe> GetPossibleRecipes() {
+    public static List<CraftingRecipe> GetPossibleRecipes() {
         return GetPossibleRecipesWhereResultIs<ItemConfig>();
     }
 
-    public List<CraftingRecipe> GetPossibleRecipesWhereResultIs<T>() where T : ItemConfig {
+    public static List<CraftingRecipe> GetPossibleRecipesWhereResultIs<T>() where T : ItemConfig {
 
         List<CraftingRecipe> recipes = new List<CraftingRecipe>();
 
@@ -41,7 +39,7 @@ public class CraftingTable : ScriptableObject {
         return recipes;
     }
 
-    public List<ItemInstance> Make(CraftingRecipe cr) {
+    public static List<ItemInstance> Make(CraftingRecipe cr) {
         if (cr.Components.Any(comp => !Inventory.Instance.Contains(comp.Item))) {
             Debug.LogError("Tried to craft something you could not make");
             return null;
@@ -69,9 +67,7 @@ public class CraftingTable : ScriptableObject {
         return items;
     }
     
-    public Sprite QuestionMark;
-
-    public void CheckNewRecipes() {
+    public static void CheckNewRecipes() {
         // Check if a new recipe is makeable
         if (currentRecipes == null) {
             currentRecipes = GetPossibleRecipes();
@@ -84,7 +80,7 @@ public class CraftingTable : ScriptableObject {
                         postText +=
                             $"{component.Amount} {component.Item.Name}{(component.Amount > 1 ? "s" : "")}\n";
                     }
-                    QuickPopUp.Show(QuestionMark, $"<size=150%>New Craftable Recipe!</size>\nA new recipe is now craftable!\nRequires:{postText}");
+                    QuickPopUp.Show(Configs.Instance.QuestionMark, $"<size=150%>New Craftable Recipe!</size>\nA new recipe is now craftable!\nRequires:{postText}");
                 }
             }
             currentRecipes = recipes;

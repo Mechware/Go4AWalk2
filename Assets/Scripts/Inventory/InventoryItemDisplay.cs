@@ -28,8 +28,6 @@ public class InventoryItemDisplay : MonoBehaviour, IPointerClickHandler {
 
         CurrentItem = obj;
 
-        ItemConfig item = obj.Config;
-        
         if (obj is WeaponInstance w) {
             DamageText.text = $"<size=50%>DAM</size>\n<color=#c42c36>{w.RawDamage}</color>";
             DamageText.gameObject.SetActive(true);
@@ -50,13 +48,11 @@ public class InventoryItemDisplay : MonoBehaviour, IPointerClickHandler {
         Sprite spriteOverride = null,
         bool showText = true) {
 
-        CurrentItem = null;
 	    ItemSprite.color = Color.white;
 
         LevelText.gameObject.SetActive(false);
         DamageText.gameObject.SetActive(false);
 
-        
         ItemConfig item = obj;
         
         if(item == null) {

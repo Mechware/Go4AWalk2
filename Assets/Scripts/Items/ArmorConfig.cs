@@ -12,6 +12,8 @@ namespace G4AW2.Data.DropSystem {
         public float ArmorScaling;
         
         public ElementalWeakness ElementalWeakness;
+
+        public float Weight;
     }
 }
 

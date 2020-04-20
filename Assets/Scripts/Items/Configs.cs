@@ -35,7 +35,7 @@ public class Configs : MonoBehaviour {
 
     public RarityDefines Rarities;
 
-    
+    public Sprite QuestionMark;
     
     #if UNITY_EDITOR
     [Button("Refresh")]
@@ -45,6 +45,7 @@ public class Configs : MonoBehaviour {
         AddAllOfType(Followers);
         AddAllOfType(Shops);
         AddAllOfType(Quests);
+        AddAllOfType(Recipes);
     }
 
     [Button("Ensure No Duplicate Ids")]
