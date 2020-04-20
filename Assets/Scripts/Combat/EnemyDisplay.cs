@@ -74,29 +74,29 @@ namespace G4AW2.Combat {
 			CurrentHealth = MaxHealth;
 
 			AnimatorOverrideController aoc = (AnimatorOverrideController)GetComponent<Animator>().runtimeAnimatorController;
-			aoc["Death"] = Enemy.Config.Death;
-			aoc["Dead"] = Enemy.Config.Dead;
-			aoc["Flinch"] = Enemy.Config.Flinch;
-			aoc["BeforeAttack"] = Enemy.Config.BeforeAttack;
-			aoc["AttackExecute"] = Enemy.Config.AttackExecute;
-			aoc["AfterAttack"] = Enemy.Config.AfterAttack;
-			aoc["Idle"] = Enemy.Config.Idle;
-            aoc["Walking"] = Enemy.Config.Walking;
+			aoc["Death"] = Enemy.Config.Art.Death;
+			aoc["Dead"] = Enemy.Config.Art.Dead;
+			aoc["Flinch"] = Enemy.Config.Art.Flinch;
+			aoc["BeforeAttack"] = Enemy.Config.Art.BeforeAttack;
+			aoc["AttackExecute"] = Enemy.Config.Art.AttackExecute;
+			aoc["AfterAttack"] = Enemy.Config.Art.AfterAttack;
+			aoc["Idle"] = Enemy.Config.Art.Idle;
+            aoc["Walking"] = Enemy.Config.Art.Walking;
 
 
             // TODO: Find a better way to do this
             Vector3 pos = transform.localPosition;
-            pos.x = -70;
+            pos.x = 70;
             transform.localPosition = pos;
 
 		    Vector2 r = RectTransform.sizeDelta;
-		    r.x = Enemy.Config.SizeOfSprite.x;
-		    r.y = Enemy.Config.SizeOfSprite.y;
+		    r.x = Enemy.Config.Art.SizeOfSprite.x;
+		    r.y = Enemy.Config.Art.SizeOfSprite.y;
 		    RectTransform.sizeDelta = r;
 
 		    Image.color = Color.white;
 
-		    EnemyInfo.text = $"{Enemy.Config.DisplayName}\nLevel {Enemy.SaveData.Level}";
+		    EnemyInfo.text = $"{Enemy.Config.Art.DisplayName}\nLevel {Enemy.SaveData.Level}";
 		}
 
 	    public void StartWalkingAnimation() {
@@ -129,33 +129,14 @@ namespace G4AW2.Combat {
 		public IEnumerator DoAttack(bool first = false) {
 			for (; ; ) {
 				EnemyState = State.Idle;
-                yield return new WaitForSeconds(first ? Enemy.Config.TimeBetweenAttacks / 4 : Enemy.Config.TimeBetweenAttacks);
+                yield return new WaitForSeconds(Enemy.GetRandomAttackTime());
                 first = false;
 			    if (EnemyState == State.Dead) break;
 
-				EnemyState = State.BeforeAttack;
 			    MyAnimator.SetTrigger("AttackStart");
-			    if(SaveGame.SaveData.ShowParryAndBlockColors) Image.color = BlockColor;
-
-				// Wind up
-				yield return new WaitForSeconds(Enemy.Config.AttackPrepTime);
-			    if(EnemyState == State.Dead)
-			        break;
-
-
-                EnemyState = State.ExecuteAttack;
-			    MyAnimator.SetTrigger("AttackExecute");
-			    if(SaveGame.SaveData.ShowParryAndBlockColors)
-			        Image.color = ParryColor;
-
-                // Perform the attack
-                yield return new WaitForSeconds(Enemy.Config.AttackExecuteTime);
-			    if(SaveGame.SaveData.ShowParryAndBlockColors)
-			        Image.color = Color.white;
-			    if(EnemyState == State.Dead)
-			        break;
-
-                EnemyState = State.AfterAttack;
+			    
+			    yield return new WaitForSeconds(Enemy.Config.Art.AttackDurationUntilDamage);
+			    
 			    PlayerFightingLogic.Instance.OnEnemyHitPlayer(Enemy.Damage);
 			    if (Enemy.Config.HasElementalDamage) {
 				    PlayerFightingLogic.Instance.OnEnemyHitPlayerElemental(Enemy.ElementalDamage, Enemy.Config.ElementalDamageType);
@@ -170,11 +151,10 @@ namespace G4AW2.Combat {
             }
         }
 
-		public void ApplyDamage( int amount) {
+		public void ApplyDamage( double amount) {
 		    if(EnemyState == State.Dead)
 		        return;
 
-            RegularDamageNumberSpawner.SpawnNumber(amount, BaseDamageColor);
 
             CurrentHealth -= amount;
 			if (CurrentHealth <= 0) {
@@ -184,12 +164,11 @@ namespace G4AW2.Combat {
             }
         }
 
-	    public void ApplyElementalDamage(int amount, ElementalType type) {
+	    public void ApplyElementalDamage(double amount, ElementalType type) {
 	        if(EnemyState == State.Dead)
 	            return;
 
-            amount = Mathf.RoundToInt(amount * Enemy.GetElementalWeakness(type));
-	        ElementalDamageNumberSpawner.SpawnNumber(amount, type.DamageColor);
+            amount = amount * Enemy.GetElementalWeakness(type);
 
             CurrentHealth -= amount;
 	        if(CurrentHealth <= 0) {

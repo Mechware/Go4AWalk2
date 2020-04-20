@@ -13,9 +13,13 @@ public class WeaponInstance : ItemInstance {
     public new WeaponConfig Config => (WeaponConfig) base.Config;
     public new WeaponSaveData SaveData => (WeaponSaveData) base.SaveData;
     
-    public int RawDamage => GetDamage();
-    public int Mastery => Mathf.FloorToInt( RarityDefines.GetLevel(Config.Rarity, SaveGame.SaveData.IdsToNumberOfTaps.GetOrInsertDefault(Config.Id, 0)));
-    public float RawMastery => RarityDefines.GetLevel(Config.Rarity, SaveGame.SaveData.IdsToNumberOfTaps.GetOrInsertDefault(Config.Id, 0));
+    public double RawDamage => GetMaxDamage();
+    public int MasteryLevel => Mathf.FloorToInt(RawMasteryLevel);
+    public float RawMasteryLevel =>
+        Formulas.GetMasteryFromTaps(TapsWithWeapon);
+    
+    public double TapsWithWeapon => 
+        SaveGame.SaveData.IdsToNumberOfTaps.GetOrInsertDefault(Config.Id, 0);
     
     public bool IsEnchanted => Enchantment != null;
     public EnchanterInstance Enchantment { get; private set; }
@@ -43,35 +47,18 @@ public class WeaponInstance : ItemInstance {
         SaveData.Random = UnityEngine.Random.Range(0, 101);
         SaveData.Level = level;
     }
-    
-    public int GetDamage(int? mastery = null, float? damageAtLevel0 = null, int? level = null, float? mod = null, float? additiveDamage = null, float? damageMultiple = null) {
-        int imastery = mastery ?? Mastery;
-        float fdamageAtLevel0 = damageAtLevel0 ?? Config.DamageAtLevel0;
-        float fmod = mod ?? Mod;
-        float ilevel = level ?? SaveData.Level;
-            
-        float masteryMod = imastery == 99 ? 2.15f : 1 + imastery / 100f;
-        float baseRawDamage = fdamageAtLevel0 * masteryMod * (1 + ilevel / 10f) * fmod;
-        return Mathf.RoundToInt(baseRawDamage);
-    }
 
-    public int GetDamage() {
-        float masteryMod = Mastery == 99 ? 2.15f : 1 + Mastery / 100f;
-        float baseRawDamage = Config.DamageAtLevel0 * masteryMod * (1 + SaveData.Level / 10f) * Mod;
-        return Mathf.RoundToInt(baseRawDamage);
+    public double GetRandomDamage() {
+        // TODO: Fix this so they aren't just set to floats
+        return UnityEngine.Random.Range((float)GetMinDamage(), (float)GetMaxDamage());
     }
     
-    // TODO(Mike): Move this.
-    void TapsChanged(int amount) {
-
-        int lastLevel = Mastery;
-        
-        SaveGame.SaveData.IdsToNumberOfTaps.GetOrInsertDefault(Config.Id, 0);
-        SaveGame.SaveData.IdsToNumberOfTaps[Config.Id]++;
-
-        if (Mastery != lastLevel) {
-            MainUI.Instance.MasteryPopUp($"Mastery Level {Mastery}");
-        }
+    public double GetMinDamage() {
+        return Formulas.MultiplierFromMaster(MasteryLevel) * GetMaxDamage();
+    }
+    
+    public double GetMaxDamage() {
+        return Config.BaseDamage + Config.DamageScaling * SaveData.Level;
     }
 
     public override string GetName() {
@@ -96,9 +83,9 @@ public class WeaponInstance : ItemInstance {
 
     public override string GetDescription() {
         if (IsEnchanted) {
-            return $"Level: {SaveData.Level}\nMastery: {Mastery}\nDamage: {RawDamage}\n{Enchantment.Config.Type.name} Damage: {GetEnchantDamage()}\nValue: {GetValue()}\n{Config.Description}";
+            return $"Level: {SaveData.Level}\nMastery: {MasteryLevel}\nDamage: {RawDamage}\n{Enchantment.Config.Type.name} Damage: {GetEnchantDamage()}\nValue: {GetValue()}\n{Config.Description}";
         }
-        return $"Level: {SaveData.Level}\nMastery: {Mastery}\nDamage: {RawDamage}\nValue: {GetValue()}\n{Config.Description}";
+        return $"Level: {SaveData.Level}\nMastery: {MasteryLevel}\nDamage: {RawDamage}\nValue: {GetValue()}\n{Config.Description}";
     }
 
     public override int GetValue() {

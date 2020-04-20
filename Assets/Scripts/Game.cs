@@ -16,7 +16,7 @@ public class Game : MonoBehaviour {
         bool newGame = SaveGame.Instance.Load();
 
         if (newGame) {
-            Player.Instance.MaxHealth = 1000;
+            Player.Instance.MaxHealth = 100;
             Player.Instance.Health = Player.Instance.MaxHealth;
             
             Player.Instance.Weapon = new WeaponInstance(StartWeapon, 1);
@@ -35,6 +35,7 @@ public class Game : MonoBehaviour {
         Player.Instance.Initialize();
         MainUI.Instance.Initialize();
         ConsumableManager.Instance.Initialize();
+        PlayerFightingLogic.Instance.Initialize();
         InteractionController.Instance.InitializeAndStart();
     }
 

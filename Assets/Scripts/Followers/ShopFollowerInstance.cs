@@ -5,10 +5,10 @@ using G4AW2.Data;
 using G4AW2.Data.DropSystem;
 using UnityEngine;
 
-public class ShopFollowerInstance : FollowerInstance {
+public class ShopFollowerInstance {
 
-    public new ShopFollowerConfig Config => (ShopFollowerConfig) base.Config;
-    public new ShopFollowerSaveData SaveData => (ShopFollowerSaveData) base.SaveData;
+    public ShopFollowerConfig Config;
+    public ShopFollowerSaveData SaveData;
 
     public List<ItemInstance> Items;
     
@@ -21,7 +21,7 @@ public class ShopFollowerInstance : FollowerInstance {
     }
 
     public ShopFollowerInstance(ShopFollowerSaveData saveData) {
-        base.Config = Configs.Instance.Followers.First(f => f.Id == saveData.Id);
+        Config = Configs.Instance.Shops.First(f => f.Id == saveData.Id);
         foreach(var itemData in SaveData.Items) {
             var instance = ItemFactory.GetInstance(itemData);
             Items.Add(instance);

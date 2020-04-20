@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\Users\Mike\.Rider2019.2\system\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\Mike\.Rider2019.2\system\resharper-host\Local\Transient\ReSharperHost\v192\SolutionCaches\_Go4AWalk2.549452501.00" t="ExcludeRecursive" />
+    <e p="C:\Users\Mike\AppData\Local\JetBrains\Rider2020.1\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\Mike\AppData\Local\JetBrains\Rider2020.1\resharper-host\Local\Transient\ReSharperHost\v201\SolutionCaches\_Go4AWalk2.549452501.00" t="ExcludeRecursive" />
     <e p="C:\Users\Mike\Documents\Projects\Go4AWalk2" t="IncludeRecursive">
       <e p="Assembly-CSharp-Editor-firstpass.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
@@ -86,7 +86,7 @@
         </e>
         <e p="Scripts" t="Include">
           <e p="Areas" t="Include">
-            <e p="Area.cs" t="Include" />
+            <e p="Background.cs" t="Include" />
           </e>
           <e p="BaitBuffController.cs" t="Include" />
           <e p="Combat" t="Include">
@@ -95,6 +95,7 @@
             <e p="ElementalWeakness.cs" t="Include" />
             <e p="EnemyConfig.cs" t="Include" />
             <e p="EnemyDisplay.cs" t="Include" />
+            <e p="EnemyStats.cs" t="Include" />
             <e p="PlayerFightingLogic.cs" t="Include" />
             <e p="Swiping" t="Include">
               <e p="SwipeDrawer.cs" t="Include" />
@@ -219,7 +220,6 @@
             <e p="EnemyInstance.cs" t="Include" />
             <e p="FollowerConfig.cs" t="Include" />
             <e p="FollowerDropData.cs" t="Include" />
-            <e p="FollowerFactory.cs" t="Include" />
             <e p="FollowerInstance.cs" t="Include" />
             <e p="GlobalFollowerDrops.cs" t="Include" />
             <e p="QuestGiverConfig.cs" t="Include" />

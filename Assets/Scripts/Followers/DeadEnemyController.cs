@@ -33,11 +33,11 @@ public class DeadEnemyController : MonoBehaviour {
         return; // None of this for now
         GameObject go = DeadEnemies.GetObject();
 
-        go.GetComponent<Image>().sprite = s.Config.DeadSprite;
+        go.GetComponent<Image>().sprite = s.Config.Art.DeadSprite;
         RectTransform rt = ((RectTransform) go.transform);
         Vector2 r = rt.sizeDelta;
-        r.x = s.Config.SizeOfSprite.x;
-        r.y = s.Config.SizeOfSprite.y;
+        r.x = s.Config.Art.SizeOfSprite.x;
+        r.y = s.Config.Art.SizeOfSprite.y;
         rt.sizeDelta = r;
 
         Vector3 pos = rt.anchoredPosition;

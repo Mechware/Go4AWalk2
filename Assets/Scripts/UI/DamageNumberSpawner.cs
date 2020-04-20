@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using TMPro;
 using UnityEngine;
@@ -30,13 +31,13 @@ public class DamageNumberSpawner : MonoBehaviour {
         }
     }
 
-    public void SpawnNumber(int number, Color c) {
+    public void SpawnNumber(double number, Color c) {
 
         GameObject damageNumber = pool.GetObject();
         ((RectTransform) damageNumber.transform).anchoredPosition = new Vector2(0,0);
         TextMeshProUGUI tmpugui = damageNumber.GetComponent<TextMeshProUGUI>();
 
-        tmpugui.SetText(number.ToString());
+        tmpugui.SetText(number.ToString(CultureInfo.InvariantCulture));
         tmpugui.faceColor = c;
 
         Color outline = Color.black;

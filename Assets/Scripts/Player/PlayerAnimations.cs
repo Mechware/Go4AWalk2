@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using G4AW2.Combat;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -90,13 +91,27 @@ public class PlayerAnimations : MonoBehaviour {
         celebrationFinished?.Invoke();
     }
 
+    private double dmg = 0;
+    private double elemdmg = 0;
+    private ElementalType elemType = null;
+    private Action hitCallback;
     [ContextMenu("Attack")]
-    public void Attack()
-    {
+    public void Attack(double damage, double elemDamage, ElementalType type, Action onHit) {
+        dmg = damage;
+        elemdmg = elemDamage;
+        elemType = type;
+        hitCallback = onHit;
+        
         animator.SetTrigger("Attack");
         armAnimator.SetTrigger("Attack");
         armourAnimator.SetTrigger("Attack");
         weaponAnimator.SetTrigger("Attack");
+    }
+
+    public void OnHit() {
+        EnemyDisplay.Instance.RegularDamageNumberSpawner.SpawnNumber(dmg, EnemyDisplay.Instance.BaseDamageColor);
+        if(elemType != null) EnemyDisplay.Instance.ElementalDamageNumberSpawner.SpawnNumber(elemdmg, elemType.DamageColor);
+        hitCallback?.Invoke();
     }
 
     [ContextMenu("ResetAttack")]
@@ -108,8 +123,7 @@ public class PlayerAnimations : MonoBehaviour {
         weaponAnimator.ResetTrigger("Attack");
     }
 
-    public void SetAttackSpeed(float tapsPerSecond) {
-        float speed = tapsPerSecond / 2;
+    public void SetAttackSpeed(float speed) {
         animator.SetFloat("AttackSpeed", speed);
         armAnimator.SetFloat("AttackSpeed", speed);
         armourAnimator.SetFloat("AttackSpeed", speed);

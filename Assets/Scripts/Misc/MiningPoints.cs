@@ -26,11 +26,11 @@ public class MiningPoints : MonoBehaviour {
     private List<MiningPoint> areaPoints = new List<MiningPoint>();
     private List<float> nextSpawnDistance = new List<float>();
 
-    private Area currentArea;
+    private Background currentBackground;
 
     public void SetQuest(QuestConfig a) {
-        if (currentArea != a.Area) {
-            currentArea = a.Area;
+        if (currentBackground != a.Background) {
+            currentBackground = a.Background;
             Pool.Reset();
         }
 

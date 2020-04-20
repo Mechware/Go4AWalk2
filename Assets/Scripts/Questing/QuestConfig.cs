@@ -26,7 +26,7 @@ namespace G4AW2.Questing {
         [Header("Area Definitions")]
         public float MinEnemyDropTime = 240;
         public float MaxEnemyDropTime = 480;
-        public Area Area;
+        public Background Background;
         public List<MiningPoint> MiningPoints;
         public FollowerDropData Enemies;
         public List<Reward> QuestRewards;

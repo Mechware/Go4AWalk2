@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee10126d9cee7da4fa524ad35982edd6, type: 3}
-  m_Name: 6 - Fight 10 Monsters
+  m_Name: 6a - Kill 5 Bad Beetles
   m_EditorClassIdentifier: 
   Id: 0
   DisplayName: 
@@ -24,7 +24,7 @@ MonoBehaviour:
     Speaker: {fileID: 0}
   MinEnemyDropTime: 240
   MaxEnemyDropTime: 480
-  Area: {fileID: 0}
+  Background: {fileID: 11400000, guid: 5e4d1ba5949749b44bc3427231ca82f2, type: 2}
   MiningPoints: []
   Enemies:
     Drops: []

@@ -11,7 +11,7 @@ namespace G4AW2.Followers {
 
 		public List<FollowerDrop> Drops;
 
-		public FollowerInstance GetFollower(FollowerConfig enemy, bool includeGlobal) {
+		public EnemyInstance GetFollower(FollowerConfig enemy, bool includeGlobal) {
 			
 			List<FollowerDrop> drops = includeGlobal ? Drops.Concat(GlobalFollowerDrops.GlobalDrops).ToList() : Drops;
 			
@@ -24,7 +24,7 @@ namespace G4AW2.Followers {
 			return null;
 		}
 		
-		public FollowerInstance GetRandomFollower(bool includeGlobal) {
+		public EnemyInstance GetRandomFollower(bool includeGlobal) {
 
 		    List<FollowerDrop> drops = includeGlobal ? Drops.Concat(GlobalFollowerDrops.GlobalDrops).ToList() : Drops;
 
@@ -46,10 +46,10 @@ namespace G4AW2.Followers {
 			return GetInstanceFromFollowerDrop(d);
 		}
 
-		public FollowerInstance GetInstanceFromFollowerDrop(FollowerDrop drop) {
+		public EnemyInstance GetInstanceFromFollowerDrop(FollowerDrop drop) {
 
 			int Level = Mathf.RoundToInt(Random.value * (drop.MaxLevel - drop.MinLevel) + drop.MinLevel);
-            return FollowerFactory.GetInstance(drop.Follower, Level);
+			return new EnemyInstance(drop.Follower, Level);
 		}
 	}
 }

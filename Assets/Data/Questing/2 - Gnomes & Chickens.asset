@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee10126d9cee7da4fa524ad35982edd6, type: 3}
-  m_Name: 7 - Get a Gem
+  m_Name: 2 - Gnomes & Chickens
   m_EditorClassIdentifier: 
   Id: 0
   DisplayName: 
   Description: 
-  NextQuestConfig: {fileID: 0}
+  NextQuestConfig: {fileID: 11400000, guid: 1813d7e0e7b53e14ea74a03ff6e2ceee, type: 2}
   StartConversation:
     Text: 
     Speaker: {fileID: 0}
@@ -24,12 +24,20 @@ MonoBehaviour:
     Speaker: {fileID: 0}
   MinEnemyDropTime: 240
   MaxEnemyDropTime: 480
-  Area: {fileID: 0}
+  Background: {fileID: 11400000, guid: 5e4d1ba5949749b44bc3427231ca82f2, type: 2}
   MiningPoints: []
   Enemies:
-    Drops: []
+    Drops:
+    - Follower: {fileID: 11400000, guid: 5f10233c4dfd99243bfa521994996c04, type: 2}
+      MinLevel: 1
+      MaxLevel: 1
+      DropChance: 1
+    - Follower: {fileID: 11400000, guid: 935b03271a5eba14b9c6b87042c58934, type: 2}
+      MinLevel: 1
+      MaxLevel: 1
+      DropChance: 2
   QuestRewards: []
   QuestType: 0
-  QuestParam: {fileID: 0}
-  ValueToReach: 0
-  Level: 0
+  QuestParam: {fileID: 11400000, guid: 935b03271a5eba14b9c6b87042c58934, type: 2}
+  ValueToReach: 3
+  Level: 1

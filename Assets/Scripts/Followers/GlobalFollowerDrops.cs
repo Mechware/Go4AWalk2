@@ -9,7 +9,7 @@ public static class GlobalFollowerDrops {
 
 [System.Serializable]
 public class FollowerDrop {
-    public FollowerConfig Follower;
+    public EnemyStats Follower;
     public int MinLevel;
     public int MaxLevel;
     public int DropChance;

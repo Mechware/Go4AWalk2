@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using G4AW2.Combat;
@@ -26,8 +27,6 @@ public class MainUI : MonoBehaviour {
     public InventoryItemDisplay Headgear;
 
     public ClickReceiver ArrowReceiver;
-    public Image Arrow;
-    public TextMeshProUGUI NumberOfFollowersText;
 
     public DragObject WorldView;
 
@@ -42,9 +41,6 @@ public class MainUI : MonoBehaviour {
         ItemViewer.Init();
         WeaponViewer.Init();
 
-        Arrow.rectTransform.anchoredPosition = Arrow.rectTransform.anchoredPosition.SetX(9);
-        Arrow.rectTransform.DOAnchorPosX(13, 1).SetLoops(-1, LoopType.Yoyo);
-        
         ArrowReceiver.MouseClick2D.AddListener(a => {
             WorldView.InvokeDragEvent();
             WorldView.Disable();
@@ -60,20 +56,20 @@ public class MainUI : MonoBehaviour {
     public void MyUpdate() {
         var weapon = Player.Instance.Weapon;
         
-        float currentDamage = weapon.RawDamage;
+        //float currentDamage = weapon.RawDamage;
         
-        MasteryText.text = $"Weapon Mastery {weapon.Mastery}";
+        MasteryText.text = $"Weapon Mastery {weapon.MasteryLevel}";
         
-        if(weapon.Mastery == 99) {
+        if(weapon.MasteryLevel == 99) {
             MasteryFill.anchorMax = MasteryFill.anchorMax.SetX(1);
         }
         else {
-            float masteryProgress = weapon.RawMastery - Mathf.Floor(weapon.RawMastery);
-            float nextLevelDamage = weapon.GetDamage(mastery: weapon.Mastery+1);
+            float masteryProgress = weapon.RawMasteryLevel - Mathf.Floor(weapon.RawMasteryLevel);
+            //float nextLevelDamage = weapon.GetDamage(mastery: weapon.Mastery+1);
             MasteryFill.anchorMax = MasteryFill.anchorMax.SetX(masteryProgress);
         }
 
-        float playerHealth = Mathf.Clamp01(Player.Instance.Health / (float) Player.Instance.MaxHealth);
+        float playerHealth = Mathf.Clamp01((float)(Player.Instance.Health / Player.Instance.MaxHealth));
         PlayerHealthFill.anchorMax = PlayerHealthFill.anchorMax.SetX(playerHealth);
         PlayerHealthText.text = $"{Player.Instance.Health} / {Player.Instance.MaxHealth}";        
         

@@ -12,8 +12,22 @@ namespace G4AW2.Data.DropSystem
     [CreateAssetMenu(menuName = "Data/Items/Weapon")]
     public class WeaponConfig : ItemConfig {
 
-        public float TapSpeed = 2f;
-        public float DamageAtLevel0;
+        /// <summary>
+        /// The damage at level 1
+        /// </summary>
+        public double BaseDamage;
+        /// <summary>
+        /// How much damage is added per level increase.
+        /// </summary>
+        public double DamageScaling;
+        /// <summary>
+        /// Minimum attacks per second
+        /// </summary>
+        public float SpeedMin;
+        /// <summary>
+        /// Maximum attacks per second
+        /// </summary>
+        public float SpeedMax;
     }
 }
 

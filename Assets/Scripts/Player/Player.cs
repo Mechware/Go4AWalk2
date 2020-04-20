@@ -5,6 +5,7 @@ using UnityEngine;
 using G4AW2.Data.DropSystem;
 using G4AW2.Dialogue;
 using Debug = UnityEngine.Debug;
+using Random = UnityEngine.Random;
 
 namespace G4AW2.Combat {
 
@@ -13,9 +14,9 @@ namespace G4AW2.Combat {
 		public static Player Instance;
 
 
-		[NonSerialized] public int MaxHealth;
+		[NonSerialized] public double MaxHealth;
 
-		[NonSerialized] public int Health;
+		[NonSerialized] public double Health;
 		[NonSerialized] public int Gold;
 
 		[NonSerialized] public int Level;
@@ -55,7 +56,7 @@ namespace G4AW2.Combat {
 				MaxHealth += Headgear.ExtraHealth;
 		}
 
-        public void DamagePlayer(int damage)
+        public void DamagePlayer(double damage)
         {
             if (damage >= Health) {
                 Health = 0;
@@ -70,18 +71,16 @@ namespace G4AW2.Combat {
             Health = MaxHealth;
 	    }
 
-
-
-        public int GetLightDamage() {
-            return Mathf.RoundToInt(Weapon.RawDamage * DamageMultiplier + DamageAdditive);
-		}
+        public double GetDamage() {
+	        return Weapon.GetRandomDamage();
+        }
 
 	    public int GetElementalDamage() {
 	        return Weapon.GetEnchantDamage();
 	    }
 
         public float GetAttackSpeed() {
-            return Weapon.Config.TapSpeed * SpeedMultiplier + SpeedAdditive;
+            return Random.Range(Weapon.Config.SpeedMin, Weapon.Config.SpeedMax) * SpeedMultiplier + SpeedAdditive;
         }
 
         

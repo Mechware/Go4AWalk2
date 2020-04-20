@@ -34,7 +34,7 @@ public class SaveData {
     
     public List<ItemSaveData> Inventory = new List<ItemSaveData>();
     public List<FollowerSaveData> CurrentFollowers = new List<FollowerSaveData>();
-    public Dictionary<int, int> IdsToNumberOfTaps = new Dictionary<int, int>();
+    public Dictionary<int, double> IdsToNumberOfTaps = new Dictionary<int, double>();
     public List<int> CraftingRecipesMade = new List<int>();
     public List<ConsumableSaveData> Consumables = new List<ConsumableSaveData>();
     public bool ShowParryAndBlockColors;

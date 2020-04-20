@@ -5,6 +5,7 @@ using System.Linq;
 using G4AW2.Data;
 using G4AW2.Data.Crafting;
 using G4AW2.Data.DropSystem;
+using G4AW2.Followers;
 using G4AW2.Questing;
 using Sirenix.OdinInspector;
 #if UNITY_EDITOR
@@ -26,7 +27,9 @@ public class Configs : MonoBehaviour {
     }
 
     public List<ItemConfig> Items; 
-    public List<FollowerConfig> Followers;
+    public List<EnemyStats> Followers;
+    public List<ShopFollowerConfig> Shops;
+    public List<QuestGiverConfig> QuestGivers;
     public List<CraftingRecipe> Recipes;
     public List<QuestConfig> Quests;
 
@@ -40,6 +43,7 @@ public class Configs : MonoBehaviour {
         Debug.Log("Refreshing Configs!");
         AddAllOfType(Items);
         AddAllOfType(Followers);
+        AddAllOfType(Shops);
         AddAllOfType(Quests);
     }
 

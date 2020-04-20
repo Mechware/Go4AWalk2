@@ -34,7 +34,7 @@ public class InventoryItemDisplay : MonoBehaviour, IPointerClickHandler {
             DamageText.text = $"<size=50%>DAM</size>\n<color=#c42c36>{w.RawDamage}</color>";
             DamageText.gameObject.SetActive(true);
         } else if (obj is ArmorInstance a) {
-            DamageText.text = $"<size=50%>ARM</size>\n<color=#13b2f2>{a.ArmValue}</color>";
+            DamageText.text = $"<size=50%>ARM</size>\n<color=#13b2f2>{a.SubtractiveAmount}</color>";
             DamageText.gameObject.SetActive(true);
         } else if (obj is HeadgearInstance h) {
             DamageText.text = $"<size=50%>HP</size>\n<color=#7bcf5c>{h.ExtraHealth}</color>";

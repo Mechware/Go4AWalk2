@@ -1,8 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using G4AW2.Data.DropSystem;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class ArmorInstance : ItemInstance {
 
@@ -22,22 +24,15 @@ public class ArmorInstance : ItemInstance {
         base.Config = config;
         base.SaveData = new ArmorSaveData();
         SaveData.Id = config.Id;
-        SaveData.Random = UnityEngine.Random.Range(0, 101);
+        SaveData.Random = Random.Range(0, 101);
         SaveData.Level = level;
     }
     
     
-    private float BadParryMod = 0.5f;
-    public float ArmValue => Mathf.RoundToInt(Config.ArmorAtLevel0 * Mod * (1 + SaveData.Level / 100f));
-    private float NoBlockModifierWithMod => Mathf.Max(1 - ArmValue / 100, 0);
-    private float PerfectBlockModifierWithMod => (-1*(ArmValue/25)); // blocking heals
-    private float MistimedBlockModifierWithMod => (-1*(ArmValue/50)); // blocking heals
+    public float SubtractiveAmount => Config.ArmorAtLevel0 +  Config.ArmorScaling * SaveData.Level;
 
-
-    public float GetDamage(int damage) {
-        float fdamage = damage;
-        fdamage = Mathf.Max(0, fdamage);
-        return fdamage * NoBlockModifierWithMod;
+    public double GetDamage(double damage) {
+        return Math.Max(damage - SubtractiveAmount, 0);
     }
 
     public override string GetName() {
@@ -45,7 +40,7 @@ public class ArmorInstance : ItemInstance {
     }
 
     public override string GetDescription() {
-        return $"ARM Value: {ArmValue}\n" +
+        return $"ARM Value: {SubtractiveAmount}\n" +
                $"{Config.Description}";
     }
 

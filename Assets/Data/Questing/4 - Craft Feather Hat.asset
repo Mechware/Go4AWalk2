@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee10126d9cee7da4fa524ad35982edd6, type: 3}
-  m_Name: 2a - Teach Combat
+  m_Name: 4 - Craft Feather Hat
   m_EditorClassIdentifier: 
   Id: 0
   DisplayName: 
   Description: 
-  NextQuestConfig: {fileID: 11400000, guid: 34332a3094c776547ab733c1126f5bc8, type: 2}
+  NextQuestConfig: {fileID: 0}
   StartConversation:
     Text: 
     Speaker: {fileID: 0}
@@ -24,7 +24,7 @@ MonoBehaviour:
     Speaker: {fileID: 0}
   MinEnemyDropTime: 240
   MaxEnemyDropTime: 480
-  Area: {fileID: 0}
+  Background: {fileID: 11400000, guid: 5e4d1ba5949749b44bc3427231ca82f2, type: 2}
   MiningPoints: []
   Enemies:
     Drops: []

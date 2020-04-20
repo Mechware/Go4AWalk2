@@ -23,12 +23,14 @@ public class PlayerFightingLogic : MonoBehaviour {
         Instance = this;
     }
 
-    public void OnEnemyHitPlayer(int damage) {
+    public void Initialize() {
+        PlayerAnimations.Instance.SetAttackSpeed(1);
+    }
+    
+    public void OnEnemyHitPlayer(double damage) {
 
-        float fdamage = Player.Instance.Armor.GetDamage(damage);
-
-        damage = Mathf.RoundToInt(fdamage);
-        Player.Instance.DamagePlayer(damage);
+        double fdamage = Player.Instance.Armor.GetDamage(damage);
+        Player.Instance.DamagePlayer(fdamage);
 	    PlayerDamageNumberSpawner.SpawnNumber(damage, DamageColor);
     }
 
@@ -47,21 +49,34 @@ public class PlayerFightingLogic : MonoBehaviour {
     public float StunnedDamageMultiplier = 1.15f;
 
 	public void PlayerAttemptToHitEnemy() {
-        if(AbleToAttack)
-        {
-            PlayerAnimations.Instance.SetAttackSpeed(Player.Instance.GetAttackSpeed());
+        if (!AbleToAttack) return;
+        float attkSpeed = Player.Instance.GetAttackSpeed();
 
-            NextAttackTime = Time.time + 1f / Player.Instance.GetAttackSpeed();
+        NextAttackTime = Time.time + 1f / attkSpeed;
 
-            PlayerAnimations.Instance.Attack();
 
-            float damageMultipler = EnemyDisplay.EnemyState == EnemyDisplay.State.Stun ? StunnedDamageMultiplier : 1;
+        float damageMultipler = EnemyDisplay.EnemyState == EnemyDisplay.State.Stun ? StunnedDamageMultiplier : 1;
+        double dmg = Math.Round(Player.Instance.GetDamage() * damageMultipler);
+        
+        double elemDmg = Player.Instance.GetElementalDamage();
+        ElementalType type = Player.Instance.Weapon.Enchantment?.Config.Type;
+        
+        PlayerAnimations.Instance.Attack(dmg, elemDmg, type, _OnDone);
 
-            EnemyDisplay.ApplyDamage(Mathf.RoundToInt(Player.Instance.GetLightDamage() * damageMultipler));
-            if(Player.Instance.Weapon.IsEnchanted)
-                EnemyDisplay.ApplyElementalDamage(Player.Instance.GetElementalDamage(), Player.Instance.Weapon.Enchantment.Config.Type);
+
+        void _OnDone() {
+            
+            EnemyDisplay.ApplyDamage(dmg);
+
+            if(type != null)
+                EnemyDisplay.ApplyElementalDamage(elemDmg, type);
+
             
             Player.Instance.Weapon.SaveData.Taps++;
+            if (!SaveGame.SaveData.IdsToNumberOfTaps.ContainsKey(Player.Instance.Weapon.Config.Id))
+                SaveGame.SaveData.IdsToNumberOfTaps[Player.Instance.Weapon.Config.Id] = 0;
+        
+            SaveGame.SaveData.IdsToNumberOfTaps[Player.Instance.Weapon.Config.Id] += 1;
         }
     }
 }

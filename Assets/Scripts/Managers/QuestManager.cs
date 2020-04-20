@@ -146,7 +146,7 @@ public class QuestManager : MonoBehaviour {
 
         quest.SaveData.Active = true;
         
-        if (quest.Config.Area != AreaManager.Instance.Area) {
+        if (quest.Config.Background != AreaManager.Instance.Background) {
             AreaChangeAndFadeObject.SetActive(true);
             AreaChangeInterpolater.StartLerping(() => {
 
@@ -175,7 +175,7 @@ public class QuestManager : MonoBehaviour {
     }
 
     public void SetQuest(QuestConfig questConfig) {
-        AreaManager.Instance.SetArea(questConfig.Area);
+        AreaManager.Instance.SetArea(questConfig.Background);
         MiningPoints.Instance.SetQuest(questConfig);
         TutorialManager.Instance.SetQuest(questConfig);
     }

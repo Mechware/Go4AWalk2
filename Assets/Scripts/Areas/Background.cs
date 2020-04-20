@@ -6,9 +6,9 @@ using UnityEngine;
 using UnityEngine.UI;
 
 namespace G4AW2.Data.Area {
-	[CreateAssetMenu(menuName = "Data/Area")]
-	public class Area : ScriptableObject {
-		public Sprite Background;
+	[CreateAssetMenu(menuName = "Data/Background")]
+	public class Background : ScriptableObject {
+		public Sprite Sprite;
 		public Sprite Sky;
 		public Sprite Clouds1;
 		public Sprite Clouds2;

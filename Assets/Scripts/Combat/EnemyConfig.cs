@@ -6,8 +6,15 @@ using UnityEngine;
 
 namespace G4AW2.Data.Combat {
 	[CreateAssetMenu(menuName = "Data/Follower/Enemy")]
-    public class EnemyConfig : FollowerConfig {
+    public class EnemyConfig : ScriptableObject {
 
+	    public string DisplayName;
+	    public Sprite Portrait;
+
+	    public Vector2 SizeOfSprite = new Vector2(32,32);
+	    public AnimationClip SideIdleAnimation;
+	    public AnimationClip RandomAnimation;
+	    
 		[Header("Animations")]
 		public AnimationClip Idle;
 		public AnimationClip Flinch;
@@ -19,24 +26,8 @@ namespace G4AW2.Data.Combat {
         public AnimationClip Walking;
 
 	    public Sprite DeadSprite;
-	    
-	    [Header("Stats")]
-        public float HealthAtLevel0;
-	    public float DamageAtLevel0;
 
-	    public float TimeBetweenAttacks;
-        public float AttackPrepTime;
-        public float AttackExecuteTime;
-
-        [Header("Elemental")]
-	    public bool HasElementalDamage;
-	    public float ElementalDamageAtLevel0;
-	    public ElementalType ElementalDamageType;
-	    public ElementalWeakness ElementalWeaknesses;
-
-        [Header("Misc")]
-		public ItemDropper Drops;
-	    public bool OneAndDoneAttacker = false;
+	    public float AttackDurationUntilDamage = 0.2f;
     }
 }
 

@@ -9,6 +9,8 @@ namespace G4AW2.Data.DropSystem {
 
         [Range(0, 50)]
         public float ArmorAtLevel0;
+        public float ArmorScaling;
+        
         public ElementalWeakness ElementalWeakness;
     }
 }

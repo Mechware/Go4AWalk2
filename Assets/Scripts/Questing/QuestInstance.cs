@@ -22,6 +22,6 @@ public class QuestInstance {
     }
 
     public bool IsFinished() {
-        return Config.ValueToReach >= SaveData.Progress;
+        return Config.ValueToReach <= SaveData.Progress;
     }
 }

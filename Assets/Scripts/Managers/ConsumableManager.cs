@@ -83,7 +83,6 @@ namespace Items {
     
         public void UseHealthPotion(ConsumableConfig c) {
             var player = Player.Instance;
-            player.Health = Mathf.Min(player.Health + (int)c.Affect, player.MaxHealth);
         }
 
         public void UseDamagePotion(ConsumableConfig c) {

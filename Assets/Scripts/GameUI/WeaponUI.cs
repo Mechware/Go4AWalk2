@@ -74,10 +74,10 @@ DAM {2}";
         Open();
 
         WeaponDisplay.SetDataInstance(w, 1, null, null, false);
-        MasteryString.text = "M" + w.Mastery;
+        MasteryString.text = "M" + w.MasteryLevel;
 
         MasteryProgressBar.SetMax(1);
-        MasteryProgressBar.SetCurrent(w.RawMastery - Mathf.Floor(w.RawMastery));
+        MasteryProgressBar.SetCurrent(w.RawMasteryLevel - Mathf.Floor(w.RawMasteryLevel));
 
         if (w.IsEnchanted) {
             LevelNameDAMText.text = string.Format(
@@ -199,9 +199,9 @@ DAM {2}";
         }
 
         CompareToLevelProgress.SetMax(1);
-        CompareToLevelProgress.SetCurrent(w.RawMastery - Mathf.Floor(w.RawMastery));
+        CompareToLevelProgress.SetCurrent(w.RawMasteryLevel - Mathf.Floor(w.RawMasteryLevel));
 
-        CompareToMasteryText.text = "M" + w.Mastery;
+        CompareToMasteryText.text = "M" + w.MasteryLevel;
 
         CompareToSellAmountText.text = "Sell: " + w.GetValue();
 

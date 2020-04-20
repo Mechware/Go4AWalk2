@@ -14,6 +14,7 @@ public class InteractionController : MonoBehaviour {
 
     public static InteractionController Instance;
 
+    public bool InteractionActive = false;
     public bool Fighting = false;
 
     public DragObject World;
@@ -23,7 +24,9 @@ public class InteractionController : MonoBehaviour {
     public RobustLerperSerialized BattleUiLerper;
     public AlphaOfAllChildren BattleUi;
     public RobustLerper DeathCover;
-
+    public ScrollingImages BG;
+    
+    
     private void Awake() {
         Instance = this;
     }
@@ -37,23 +40,14 @@ public class InteractionController : MonoBehaviour {
     {
         while (true) {
             // Load next thing to appear
-            FollowerInstance fi = QuestManager.Instance.CurrentQuest.Config.Enemies.GetRandomFollower(true);
+            EnemyInstance fi = QuestManager.Instance.CurrentQuest.Config.Enemies.GetRandomFollower(true);
 
-            if (fi is EnemyInstance ei) {
-                EnemyFight(ei);
-                while (Fighting) {
-                    yield return null;
-                }    
-            }
-            // else if (fi is ShopFollowerInstance sfi) {
-            //    ShopFollowerInstance
-            //} else if (fi is QuestGiverInstance qgi) {
-
-            //}
-            
-            Player.Instance.Health = Player.Instance.MaxHealth;
-
-            
+            EnemyFight(fi);
+            while (InteractionActive) {
+                if(Fighting)
+                    PlayerFightingLogic.Instance.PlayerAttemptToHitEnemy();
+                yield return null;
+            }    
         }
     }
 
@@ -62,12 +56,15 @@ public class InteractionController : MonoBehaviour {
     }
     
     public void EnemyFight(EnemyInstance enemy) {
-        Fighting = true;
+        InteractionActive = true;
         PlayerClickController.Instance.SetEnabled(false);
         QuickPopUp.QuickPopUpAllowed = false;
         World.Disable();
         BattleUi.gameObject.SetActive(true);
         BattleUi.SetAlphaOfAllChildren(0);
+        BG.ScrollSpeed = 0;
+        PlayerAnimations.Instance.StopWalking();
+        
         
         EnemyDisplay.Instance.gameObject.SetActive(true);
         EnemyDisplay.Instance.SetEnemy(enemy);
@@ -75,6 +72,7 @@ public class InteractionController : MonoBehaviour {
         EnemyPositionLerper.StartLerping(() => {
             
             // Start Combat
+            Fighting = true;
             EnemyDisplay.Instance.StopWalking();
             EnemyDisplay.Instance.StartAttacking();
             BattleUiLerper.StartLerping();
@@ -86,7 +84,7 @@ public class InteractionController : MonoBehaviour {
     public Action<(EnemyInstance enemy, bool isSuicide)> OnEnemyDeath;
     
     public void EnemyDeath(EnemyInstance instance, bool suicide = false) {
-
+        Fighting = false;
         QuickPopUp.QuickPopUpAllowed = true;
         BattleUiLerper.StartReverseLerp();
         OnEnemyDeath?.Invoke((instance, suicide));
@@ -104,49 +102,47 @@ public class InteractionController : MonoBehaviour {
         
             SoundManager.Instance.PlaySound(SoundManager.Instance.Celebrate, 0.8f);
             
-            bool celebrateDone = false;
-            bool bubblesDone = false;
-        
             List<ItemInstance> items = instance.Config.Drops.GetItems(true, instance.SaveData.Level);
 
+            int count = 3;
+            
             // Wait for player celebration to be done and all items to be picked up
             PlayerAnimations.Instance.ResetAttack();
-            PlayerAnimations.Instance.Celebrate(() => {
-                celebrateDone = true;
-                if(bubblesDone && celebrateDone) {
-                    _Done(items);
-                }
-            });
+            PlayerAnimations.Instance.Celebrate(_TaskDone);
             
-            ItemDropBubbleManager.Instance.AddItems(items, null, () => {
-                bubblesDone = true;
-                if(bubblesDone && celebrateDone) {
-                    _Done(items);
+            ItemDropBubbleManager.Instance.AddItems(items, null, _TaskDone);
+            
+            yield return new WaitForSeconds(2);
+            _TaskDone();
+
+            void _TaskDone() {
+                count--;
+                if (count != 0) {
+                    return;
                 }
-            });
+                
+                // Enable world to be interactable again
+                // Turn off enemy fight.
+                EnemyDisplay.Instance.gameObject.SetActive(false);
+                // Call combat end event (nah)
+        
+                DeadEnemyController.Instance.AddDeadEnemy(
+                    EnemyDisplay.Instance.RectTransform.anchoredPosition.x, 
+                    EnemyDisplay.Instance.RectTransform.anchoredPosition.y, 
+                    instance);
+            
+                GameEventHandler.Instance.OnEnemyKilled(instance);
+                items.ForEach(it => Inventory.Instance.Add(it));
+                World.Enable();
+
+                PlayerClickController.Instance.SetEnabled(true);
+            
+                InteractionActive = false;
+            }
         }
         
 
-        void _Done(List<ItemInstance> items) {
-            
-            // Enable world to be interactable again
-            // Turn off enemy fight.
-            EnemyDisplay.Instance.gameObject.SetActive(false);
-            // Call combat end event (nah)
         
-            DeadEnemyController.Instance.AddDeadEnemy(
-                EnemyDisplay.Instance.RectTransform.anchoredPosition.x, 
-                EnemyDisplay.Instance.RectTransform.anchoredPosition.y, 
-                instance);
-            
-            GameEventHandler.Instance.OnEnemyKilled(instance);
-            items.ForEach(it => Inventory.Instance.Add(it));
-            World.Enable();
-
-            PlayerClickController.Instance.SetEnabled(true);
-            
-            Fighting = false;
-        }
     }
 
 
@@ -155,6 +151,8 @@ public class InteractionController : MonoBehaviour {
 
         if (ProcessingDeath) return;
         ProcessingDeath = true;
+
+        Fighting = false;
         
         // Set death thing to active
         DeathCover.gameObject.SetActive(true);
@@ -174,6 +172,8 @@ public class InteractionController : MonoBehaviour {
             // Disable enemy fighter
             EnemyDisplay.Instance.StopAllCoroutines();
             EnemyDisplay.Instance.gameObject.SetActive(false);
+            PlayerAnimations.Instance.StopWalking();
+            
             // Reverse this lerp
             DeathCover.StartReverseLerp(() => {
                 // Reset + Enable world scrolling
@@ -181,7 +181,7 @@ public class InteractionController : MonoBehaviour {
                 // Player.DeathFinished
                 Player.Instance.OnDeathFinished();
                 ProcessingDeath = false;
-                Fighting = false;
+                InteractionActive = false;
             });
         });
     }
