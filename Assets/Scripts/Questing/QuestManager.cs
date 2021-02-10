@@ -18,6 +18,10 @@ public class QuestManager : MonoBehaviour {
     public RuntimeSetQuest CurrentQuests;
     public DragObject DraggableWorld;
     public GameObject ScrollArrow;
+    public ItemDropBubbleManager ItemDropManager;
+    public Inventory Inventory;
+
+    public Action<ActiveQuestBase> OnQuestSet;
 
     private Area currentArea = null;
 
@@ -33,7 +37,7 @@ public class QuestManager : MonoBehaviour {
                 InteractionController.Instance.StartBossFight();
             }
             CurrentQuest.Value.ResumeQuest(FinishQuest);
-            SetQuest(CurrentQuest.Value);
+            OnQuestSet?.Invoke(CurrentQuest.Value);
 
             if(CurrentQuest.Value.IsFinished()) {
                 CurrentQuest.Value.CleanUp();
@@ -51,9 +55,6 @@ public class QuestManager : MonoBehaviour {
         if(quest.NextQuest != null) CurrentQuest.Value = quest.NextQuest;
         QuestDialogUI.SetConversation(quest.EndConversation, () => DropRewardAndAdvanceConversation(quest));
     }
-
-    public ItemDropBubbleManager ItemDropManager;
-    public Inventory Inventory;
 
     private void DropRewardAndAdvanceConversation(ActiveQuestBase q) {
 
@@ -150,7 +151,7 @@ public class QuestManager : MonoBehaviour {
                 DeadEnemyController.Instance.ClearEnemies();
 
                 CurrentQuest.Value = quest;
-                SetQuest(quest);
+                OnQuestSet?.Invoke(quest);
                 
                 quest.StartQuest(FinishQuest);
                 
@@ -174,7 +175,7 @@ public class QuestManager : MonoBehaviour {
         }
         else {
             CurrentQuest.Value = quest;
-            SetQuest(quest);
+            OnQuestSet?.Invoke(quest);
 
             quest.StartQuest(FinishQuest);
             
@@ -190,13 +191,6 @@ public class QuestManager : MonoBehaviour {
         }
 
         currentArea = quest.Area;
-    }
-
-    public void SetQuest(ActiveQuestBase quest) {
-        AreaManager.Instance.SetArea(quest.Area);
-        QuestingStatWatcher.Instance.SetQuest(quest);
-        MiningPoints.Instance.QuestChanged(quest);
-        TutorialManager.Instance.QuestUpdated(quest);
     }
 
     public GameObject Journal;

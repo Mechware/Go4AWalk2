@@ -14,6 +14,7 @@ public class Inventory : ScriptableObject, IEnumerable<InventoryEntry>, ISaveabl
     public PersistentSetItem AllItems;
     public CraftingTable CraftingTable;
     public Sprite QuestionMark;
+    public Action<Item, int> OnLootObtained;
 
     public int GetAmountOf(Item it) {
         return InventoryEntries.Sum(i => i.Item.ID == it.ID ? i.Amount : 0);
@@ -32,7 +33,6 @@ public class Inventory : ScriptableObject, IEnumerable<InventoryEntry>, ISaveabl
     public void Add(Item it, int amount) {
 
         InventoryEntry entry = InventoryEntries.FirstOrDefault(e => e.Item == it);
-        GameEventHandler.Singleton.OnLootObtained(it, amount);
 
         if(entry == default(InventoryEntry)) {
             InventoryEntries.Add(new InventoryEntry() { Item = it, Amount = amount});

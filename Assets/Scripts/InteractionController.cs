@@ -42,7 +42,9 @@ public class InteractionController : MonoBehaviour {
     public Transform EnemyFightPosition;
 
     public float EnemyAndPlayerWalkSpeed;
-    
+
+    public Action<EnemyData> OnEnemyKilled;
+
     private void Awake() {
         Instance = this;
     }
@@ -272,8 +274,8 @@ public class InteractionController : MonoBehaviour {
                     EnemyDisplay.Instance.RectTransform.anchoredPosition.x, 
                     EnemyDisplay.Instance.RectTransform.anchoredPosition.y, 
                     data);
-                
-                GameEventHandler.Singleton.OnEnemyKilled(data);
+
+                OnEnemyKilled?.Invoke(data);
                 Inventory.AddItems(items);
                 World.Enable();
 

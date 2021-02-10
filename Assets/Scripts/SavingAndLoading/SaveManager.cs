@@ -12,15 +12,8 @@ namespace G4AW2.Saving {
     [CreateAssetMenu(menuName = "Misc/Save Manager")]
     public class SaveManager : ScriptableObject {
 
-        public UnityEvent OnLoadNotSuccessful;
-        public UnityEvent OnNewGame;
-        public UnityEvent OnSuccessfulLoad;
-        public UnityEvent OnSaveFinish;
-
         private string saveFile;
         private string backUpFile;
-
-        public BoolReference AllowSave;
 
         public List<ListObject> ObjectsToSave;
 
@@ -37,8 +30,6 @@ namespace G4AW2.Saving {
 
         [ContextMenu("Save")]
         public void Save() {
-            if (!AllowSave) return;
-
             if(File.Exists(saveFile)) {
                 if(File.Exists(backUpFile)) {
                     File.Delete(backUpFile);
@@ -57,19 +48,17 @@ namespace G4AW2.Saving {
             string saveString = GetSaveString();
 
             File.WriteAllText(saveFile, saveString);
-            OnSaveFinish?.Invoke();
         }
 
         [ContextMenu("Load")]
-        public void Load() {
+        public (bool noFile, bool failed) Load() {
             string saveFilePath;
             if(!File.Exists(saveFile)) {
 
                 Debug.LogWarning("Could not find save file. Attempting to load back up");
                 if(!File.Exists(backUpFile)) {
                     Debug.LogWarning("Could not find back up file.");
-                    OnNewGame?.Invoke();
-                    return;
+                    return (true, false);
                 } else {
                     saveFilePath = backUpFile;
                 }
@@ -89,13 +78,13 @@ namespace G4AW2.Saving {
             }
 
             if(!success) {
-                OnLoadNotSuccessful?.Invoke();
-            } else {
-                OnSuccessfulLoad?.Invoke();
-            }
-
+                return (false, true);
+            } 
+                
+            return (false, false);
         }
 
+        // TODO: Rework all of this to go through another script. Isolate saving and loading.
         private void ShowErrorPopUp() {
             PopUp.SetPopUp("Could not load save data. Try closing the game and reopening. If the problem persists please contact support.", new[] { "Ok", "Other" },
                 new Action[] {
@@ -108,7 +97,6 @@ namespace G4AW2.Saving {
                             new Action[] {
                                 () => {
                                     ClearSaveData();
-                                    AllowSave.Value = false;
                                 },
                                 () => {
                                     ShowErrorPopUp();
@@ -200,11 +188,6 @@ namespace G4AW2.Saving {
         void ClearSaveData() {
             File.Delete(saveFile);
             File.Delete(backUpFile);
-        }
-
-        public void ClearDataAndPreventFromSaving() {
-            ClearSaveData();
-            AllowSave.Value = false;
         }
 
 #if UNITY_EDITOR
