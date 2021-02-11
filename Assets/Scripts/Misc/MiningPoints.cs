@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using CustomEvents;
 using G4AW2.Data.Area;
+using G4AW2.Data.DropSystem;
 using G4AW2.Dialogue;
 using G4AW2.Questing;
 using UnityEngine;
@@ -13,15 +14,14 @@ public class MiningPoints : MonoBehaviour {
 
 	public static MiningPoints Instance;
 
-    public int ReturnToPoolXValue;
+    [SerializeField] private int ReturnToPoolXValue;
 
-    public GameObject PointPrefab;
-    public Transform Parent;
+    [SerializeField] private GameObject PointPrefab;
+    [SerializeField] private Transform Parent;
 
-    public FloatReference ScrollSpeed;
-    public BoolReference IsScrolling;
+    [SerializeField] private bool IsScrolling;
 
-    public Inventory PlayerInventory;
+    public Action<Item> OnItemReceived;
 
     private ObjectPrefabPool Pool;
 
@@ -48,40 +48,40 @@ public class MiningPoints : MonoBehaviour {
         Pool = new ObjectPrefabPool(PointPrefab, Parent, 3);
     }
 
-	// Update is called once per frame
-	void Update () {
-	    if (IsScrolling) {
-	        float scrollSpeed = ScrollSpeed;
+    public void Scroll(float distance)
+    {
+        for (int i = 0; i < nextSpawnDistance.Count; i++)
+        {
+            nextSpawnDistance[i] -= distance;
+            if (nextSpawnDistance[i] <= 0)
+            {
+                MiningPoint point = areaPoints[i];
+                GameObject go = Pool.GetObject();
+                Image im = go.GetComponent<Image>();
+                im.sprite = point.Image;
+                im.SetNativeSize();
+                AddListener(go.GetComponent<ClickReceiver>(), point);
 
-	        for (int i = 0; i < nextSpawnDistance.Count; i++) {
-	            nextSpawnDistance[i] -= scrollSpeed * Time.deltaTime;
-	            if (nextSpawnDistance[i] <= 0) {
-	                MiningPoint point = areaPoints[i];
-	                GameObject go = Pool.GetObject();
-                    Image im = go.GetComponent<Image>();
-                    im.sprite = point.Image;
-                    im.SetNativeSize();
-	                AddListener(go.GetComponent<ClickReceiver>(), point);
+                Vector3 pos = go.transform.localPosition;
+                pos.x = 79;
+                go.transform.localPosition = pos;
 
-	                Vector3 pos = go.transform.localPosition;
-	                pos.x = 79;
-	                go.transform.localPosition = pos;
-
-                    nextSpawnDistance[i] = Random.Range(point.MinDistanceBetween, point.MaxDistanceBetween);
-	            }
-	        }
-
-	        foreach (var point in Pool.InUse.ToArray()) {
-	            Vector3 pos = point.transform.localPosition;
-	            pos.x -= scrollSpeed * Time.deltaTime;
-	            if (pos.x <= ReturnToPoolXValue) {
-	                Pool.Return(point);
-	            }
-
-	            point.transform.localPosition = pos;
-	        }
+                nextSpawnDistance[i] = Random.Range(point.MinDistanceBetween, point.MaxDistanceBetween);
+            }
         }
-	}
+
+        foreach (var point in Pool.InUse.ToArray())
+        {
+            Vector3 pos = point.transform.localPosition;
+            pos.x -= distance;
+            if (pos.x <= ReturnToPoolXValue)
+            {
+                Pool.Return(point);
+            }
+
+            point.transform.localPosition = pos;
+        }
+    }
 
     void AddListener(ClickReceiver cr, MiningPoint point) {
         cr.MouseClick2D.RemoveAllListeners();
@@ -94,7 +94,7 @@ public class MiningPoints : MonoBehaviour {
             string itemText = "";
             foreach (var item in items) {
                 itemText += $"A {item.GetName()}\n";
-                PlayerInventory.Add(item);
+                OnItemReceived?.Invoke(item);
             }
             if (items.Count == 0) {
                 PopUp.SetPopUp("The mining point breaks apart and you get nothing :(", new[] {"Shucks!"}, new Action[] {() => { }});

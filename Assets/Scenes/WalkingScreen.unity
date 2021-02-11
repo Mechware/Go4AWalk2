@@ -9349,14 +9349,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ScrollSpeed: 1
-  ImagePrefab: {fileID: 114209787008106616, guid: bec9d08eb5122f24f98ffb55c93d9887,
-    type: 3}
-  NumberRepeats: 6
-  Playing:
-    UseConstant: 1
-    ConstantValue: 1
-    Variable: {fileID: 0}
-  ForceInt: 0
+  _forceInt: 0
   Images:
   - {fileID: 575431613}
   - {fileID: 1006470405}
@@ -9364,6 +9357,8 @@ MonoBehaviour:
   - {fileID: 302137433}
   - {fileID: 484489488}
   - {fileID: 1764765955}
+  _numberRepeats: 6
+  _imagePrefab: {fileID: 575431613}
 --- !u!114 &471963651
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13871,6 +13866,9 @@ MonoBehaviour:
   _followerSpawner: {fileID: 300978736}
   _playerHealthIncreaser: {fileID: 398981465}
   _interactions: {fileID: 1995099795}
+  _bait: {fileID: 1046128186}
+  _consumables: {fileID: 1623730302}
+  _gameWorld: {fileID: 951186434}
 --- !u!114 &701840142
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15970,15 +15968,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 826335729ebd67744bb59ef3c5e68b17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Scrolling:
-    UseConstant: 0
-    ConstantValue: 0
-    Variable: {fileID: 11400000, guid: 2bae27228b26b7f41baf61a9ed0ff0ea, type: 2}
-  ScrollSpeed: 10
   EndingPosition: -527
   DeadEnemyPrefab: {fileID: 1285678961603886, guid: ca49dedaaeffb1347bdc96ae6fb1272f,
     type: 3}
   DeadEnemyParent: {fileID: 842532800}
+  _minGray: 0.6
+  _fadeRate: 0.05
+  _fadeDelay: 2
 --- !u!1 &845011326
 GameObject:
   m_ObjectHideFlags: 0
@@ -17663,6 +17659,7 @@ GameObject:
   - component: {fileID: 951186432}
   - component: {fileID: 951186431}
   - component: {fileID: 951186430}
+  - component: {fileID: 951186434}
   m_Layer: 5
   m_Name: Main Canvas
   m_TagString: Untagged
@@ -17750,6 +17747,25 @@ RectTransform:
   m_AnchoredPosition: {x: 139.5, y: 248}
   m_SizeDelta: {x: 108, y: 192.12938}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &951186434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 951186429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0f4190f359d77e408db86d809920930, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dragger: {fileID: 1324188856}
+  _player: {fileID: 11400000, guid: 6d079e86c36b66d4c88947d754ae6e3e, type: 2}
+  _playerAnims: {fileID: 1550784727}
+  _arrow: {fileID: 146199083}
+  _background: {fileID: 2094348963}
+  _deadEnemies: {fileID: 842532801}
+  _miningPoints: {fileID: 1201876788}
 --- !u!1 &953969038
 GameObject:
   m_ObjectHideFlags: 0
@@ -20449,14 +20465,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ScrollSpeed: 1
-  ImagePrefab: {fileID: 114906568690272914, guid: 0f33f82df8af29b46915c33fa36d5fe1,
-    type: 3}
-  NumberRepeats: 6
-  Playing:
-    UseConstant: 1
-    ConstantValue: 1
-    Variable: {fileID: 0}
-  ForceInt: 0
+  _forceInt: 0
   Images:
   - {fileID: 359639186}
   - {fileID: 1237992089}
@@ -20464,6 +20473,8 @@ MonoBehaviour:
   - {fileID: 1319821729}
   - {fileID: 430484022}
   - {fileID: 575442783}
+  _numberRepeats: 0
+  _imagePrefab: {fileID: 359639186}
 --- !u!114 &1112439897
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22183,15 +22194,7 @@ MonoBehaviour:
   PointPrefab: {fileID: 1022596312918108, guid: 4a308e3820cae7f4785a209a976af3a0,
     type: 3}
   Parent: {fileID: 1201876787}
-  ScrollSpeed:
-    UseConstant: 1
-    ConstantValue: 10
-    Variable: {fileID: 0}
-  IsScrolling:
-    UseConstant: 0
-    ConstantValue: 0
-    Variable: {fileID: 11400000, guid: 2bae27228b26b7f41baf61a9ed0ff0ea, type: 2}
-  PlayerInventory: {fileID: 11400000, guid: 26cb67b184c39ce41a042b44d325797c, type: 2}
+  IsScrolling: 0
 --- !u!1 &1205135991
 GameObject:
   m_ObjectHideFlags: 0
@@ -23920,84 +23923,6 @@ MonoBehaviour:
   sliderMaxBounds: {x: 0, y: 0}
   sliderMinBounds: {x: 0, y: 0}
   ScaleFactor: 0.1
-  OnDragEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2094348963}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: Pause
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1550784727}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: StopWalking
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 146199083}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: SetOnMainScreen
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnReset:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2094348963}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: Play
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1550784727}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: StartWalking
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 146199083}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: SetOnMainScreen
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
   slider: {fileID: 0}
 --- !u!114 &1324188857
 MonoBehaviour:
@@ -41035,15 +40960,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fdd21c31cd64004a8b474989568c3e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ScrollSpeed: 10
-  ImagePrefab: {fileID: 114641620729033318, guid: 4b6f38bf42e27444c806521343e93e5b,
-    type: 3}
-  NumberRepeats: 6
-  Playing:
-    UseConstant: 0
-    ConstantValue: 0
-    Variable: {fileID: 11400000, guid: 2bae27228b26b7f41baf61a9ed0ff0ea, type: 2}
-  ForceInt: 0
+  ScrollSpeed: 8
+  _forceInt: 0
   Images:
   - {fileID: 708668013}
   - {fileID: 2057215557}
@@ -41051,6 +40969,8 @@ MonoBehaviour:
   - {fileID: 1016068159}
   - {fileID: 1416663157}
   - {fileID: 1556846226}
+  _numberRepeats: 6
+  _imagePrefab: {fileID: 708668013}
 --- !u!114 &2094348964
 MonoBehaviour:
   m_ObjectHideFlags: 0

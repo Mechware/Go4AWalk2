@@ -8,6 +8,7 @@ using Items;
 using UnityEditor;
 using UnityEngine;
 
+// TODO: Figure out wtf this class is for
 public class EquipItemProcessor : MonoBehaviour {
     public static EquipItemProcessor Instance;
 

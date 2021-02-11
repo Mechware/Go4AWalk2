@@ -10,8 +10,6 @@ public class DeadEnemyController : MonoBehaviour {
 
     public static DeadEnemyController Instance;
     
-    public BoolReference Scrolling;
-    public float ScrollSpeed = 5;
     public int EndingPosition = -527;
 
     public GameObject DeadEnemyPrefab;
@@ -45,31 +43,47 @@ public class DeadEnemyController : MonoBehaviour {
         pos.y = y;
         rt.anchoredPosition = pos;
 
-        StartCoroutine(ScrollOff(go));
+        StartCoroutine(Fade(go));
     }
 
-    IEnumerator ScrollOff(GameObject go) {
+    private List<GameObject> _toReturn = new List<GameObject>();
+    public void Scroll(float distance)
+    {
+        foreach(var go in DeadEnemies.InUse)
+        {
+            RectTransform rt = go.GetComponent<RectTransform>();
+            Vector3 pos = rt.anchoredPosition;
+            pos.x -= distance;
+            rt.anchoredPosition = pos;
 
-        RectTransform rt = go.GetComponent<RectTransform>();
+            if(rt.anchoredPosition.x <= EndingPosition)
+            {
+                _toReturn.Add(go);
+            }
+        }
+
+        foreach(var enemy in _toReturn) DeadEnemies.Return(enemy);
+        _toReturn.Clear();
+
+    }
+
+    [Header("Fade out")]
+    [SerializeField] private float _minGray = 0.6f;
+    [SerializeField] private float _fadeRate = 0.1f;
+    [SerializeField] private float _fadeDelay = 2;
+
+    IEnumerator Fade(GameObject go) {
+
         Image im = go.GetComponent<Image>();
         float grayness = 1f;
         im.color = new Color(grayness, grayness, grayness, 1);
-        
-        while(rt.anchoredPosition.x > EndingPosition) {
-            if (grayness > 0.6f) {
-                im.color = new Color(grayness, grayness, grayness, 1);
-                grayness -= 0.8f * Time.deltaTime;
-            }
-            
-            if(Scrolling) {
-                Vector3 pos = rt.anchoredPosition;
-                pos.x -= ScrollSpeed * Time.deltaTime;
-                rt.anchoredPosition = pos;
-                
-            }
+
+        yield return new WaitForSeconds(_fadeDelay);
+
+        while(grayness > _minGray) {
+            im.color = new Color(grayness, grayness, grayness, 1);
+            grayness -= _fadeRate * Time.deltaTime;
             yield return null;
         }
-
-        DeadEnemies.Return(go);
     }
 }

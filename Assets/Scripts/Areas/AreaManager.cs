@@ -27,9 +27,9 @@ namespace G4AW2.UI.Areas {
 		public void SetArea( Area area ) {
 			this.Area = area;
 
-            backgrounds.Images.ForEach(im => im.sprite = area.Background);
-			clouds1.Images.ForEach(i => i.sprite = area.Clouds1);
-			clouds2.Images.ForEach(i => i.sprite = area.Clouds2);
+            backgrounds.SetImages(area.Background);
+			clouds1.SetImages(area.Clouds1);
+			clouds2.SetImages(area.Clouds2);
 			SkyImages.ForEach(i => i.sprite = area.Sky);
 
 		}

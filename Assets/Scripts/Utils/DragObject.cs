@@ -6,6 +6,7 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using CustomEvents;
 using UnityEngine.UI;
+using System;
 
 public class DragObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler {
 
@@ -19,8 +20,8 @@ public class DragObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 
     public float ScaleFactor;
 
-    public UnityEvent OnDragEvent;
-    public UnityEvent OnReset;
+    public Action OnDragEvent;
+    public Action OnReset;
     public GameObject slider;
 
    // public GameEvent moving;

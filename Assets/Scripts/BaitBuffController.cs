@@ -27,7 +27,7 @@ public class BaitBuffController : MonoBehaviour {
         SaveData.Add(data);
     }
 
-    private void Update() {
+    public void MyUpdate() {
 
         double currentTime = RandomUtils.GetTime();
         

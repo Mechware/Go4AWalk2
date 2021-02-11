@@ -3,6 +3,7 @@ using G4AW2.Data.DropSystem;
 using G4AW2.Followers;
 using G4AW2.Saving;
 using G4AW2.UI.Areas;
+using Items;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -38,6 +39,11 @@ public class Game : MonoBehaviour
     [SerializeField] private InteractionController _interactions;
 
 
+    [SerializeField] private BaitBuffController _bait;
+    [SerializeField] private ConsumableManager _consumables;
+
+    [SerializeField] private GameWorld _gameWorld;
+
 
     private bool _allowedToSave = true;
 
@@ -58,6 +64,7 @@ public class Game : MonoBehaviour
         _events.OnAfterLoad += _quests.Initialize;
         _events.OnAfterLoad += _passiveQuests.Initialize;
         _events.OnAfterLoad += _playerHealthIncreaser.OnGameStateLoaded;
+        _events.OnAfterLoad += _consumables.OnLoad;
 
         _events.OnSceneExitEvent += Save;
         _events.OnPause += Save;
@@ -133,11 +140,13 @@ public class Game : MonoBehaviour
     {
         Load();
         _events.OnAfterLoad.Invoke();
+
+        _gameWorld.Initialize(_inventory);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        _bait.MyUpdate();
     }
 }
