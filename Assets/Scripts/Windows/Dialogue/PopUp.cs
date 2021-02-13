@@ -36,10 +36,16 @@ namespace G4AW2.Dialogue {
 	        singleton.container.SetActive(false);
 	    }
 
+		[Obsolete]
 		/// Set pop up text, returns a bool values based off of whether or not it is in use
 		public static bool SetPopUp(string text, string[] options, Action[] responses) {
 			return singleton.SetPopUpPriv(text, options, responses);
 		}
+
+		public bool SetPopUpNew(string text, string[] options, Action[] responses)
+        {
+			return SetPopUpPriv(text, options, responses);
+        }
 
 		private bool SetPopUpPriv(string text, string[] options, Action[] responses) {
 			SoundManager.Instance.PlaySound(PaperFlip, 1f);

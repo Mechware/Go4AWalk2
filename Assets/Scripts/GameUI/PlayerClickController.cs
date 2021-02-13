@@ -16,9 +16,13 @@ public class PlayerClickController : MonoBehaviour {
     public WeaponReference WeaponReference;
 
     public static PlayerClickController Instance;
-    
+
+    public InteractionController _controller;
+
     void Awake() {
         Instance = this;
+        _controller.OnFightEnter += () => SetEnabled(false);
+        _controller.OnEnemyDeathFinished += (e) => SetEnabled(true);
     }
     
     // Start is called before the first frame update

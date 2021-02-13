@@ -33,8 +33,8 @@ public class QuestManager : MonoBehaviour {
             SetCurrentQuest(CurrentQuest.Value);
         } else {
 
-            if (CurrentQuest.Value is BossQuest) {
-                InteractionController.Instance.StartBossFight();
+            if (CurrentQuest.Value is BossQuest bq) {
+                InteractionController.Instance.StartBossFight(bq);
             }
             CurrentQuest.Value.ResumeQuest(FinishQuest);
             OnQuestSet?.Invoke(CurrentQuest.Value);
@@ -164,8 +164,8 @@ public class QuestManager : MonoBehaviour {
                         // Check that the quest isn't finished (for reach quests)
                         if(quest.IsFinished()) FinishQuest(quest);
 
-                        if (quest is BossQuest) {
-                            InteractionController.Instance.StartBossFight();
+                        if (quest is BossQuest bq) {
+                            InteractionController.Instance.StartBossFight(bq);
                         }
                         
                     });
@@ -184,8 +184,8 @@ public class QuestManager : MonoBehaviour {
                 if(quest.IsFinished())
                     FinishQuest(quest);
                 
-                if (quest is BossQuest) {
-                    InteractionController.Instance.StartBossFight();
+                if (quest is BossQuest bq) {
+                    InteractionController.Instance.StartBossFight(bq);
                 }
             });
         }

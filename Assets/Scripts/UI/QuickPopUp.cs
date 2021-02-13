@@ -8,7 +8,6 @@ using UnityEngine.UI;
 
 public class QuickPopUp : MonoBehaviour {
 
-    public static bool QuickPopUpAllowed = true;
     public RobustLerper PositionLerper;
     public RobustLerper AlphaLerper;
     public RobustLerperSerialized ShakeLerper;
@@ -22,21 +21,32 @@ public class QuickPopUp : MonoBehaviour {
 
     public bool IsMainInstance = false;
 
-    public static QuickPopUp Instance;
+    private bool _active = true;
 
     private class PopUpData {
         public Sprite Icon;
         public string Text;
     }
 
-    void Awake() {
-        if(IsMainInstance) {
-            Instance = this;
-        }
+    public void Enable()
+    {
+        _active = true;
+        ProcessNext();
+    }
+    public void Disable()
+    {
+        _active = false;
+        Hide();
     }
 
-    private void Update() {
-        if(QuickPopUpAllowed) StartPopUp();
+    private void Hide()
+    {
+        if (!alreadyActive) return;
+
+        PositionLerper.StartReverseLerp();
+        AlphaLerper.StartLerping();
+        alreadyActive = false;
+        alphaLerpRunning = false;
     }
 
     public void ShowSprite(Sprite icon, string text) {
@@ -45,14 +55,6 @@ public class QuickPopUp : MonoBehaviour {
         }
         AddToQueue(icon, text);
         StartPopUp();
-    }
-
-    public static void Show(Sprite icon, string text) {
-        if (Instance.alreadyActive) {
-            Instance.Shake();
-        }
-        Instance.AddToQueue(icon, text);
-        Instance.StartPopUp();
     }
 
     public void Shake() {
@@ -65,32 +67,22 @@ public class QuickPopUp : MonoBehaviour {
 
     private void StartPopUp() {
 
-        if (!QuickPopUpAllowed || PopUpsToShow.Count == 0) return;
+        if (!_active || alreadyActive || PopUpsToShow.Count == 0) return;
 
-        // Note: Text can be rich text
-        if (!alreadyActive) {
-            PositionLerper.StartLerping();
-            AlphaLerper.StartReverseLerp();
+        PositionLerper.StartLerping();
+        AlphaLerper.StartReverseLerp();
 
-            alreadyActive = true;
+        alreadyActive = true;
 
-            var data = PopUpsToShow.Dequeue();
-            Image.sprite = data.Icon;
-            Text.text = data.Text;
-        }
+        var data = PopUpsToShow.Dequeue();
+        Image.sprite = data.Icon;
+        Text.text = data.Text;
     }
 
+    [Obsolete("TODO: Replace this with a coroutine")]
     private void ProcessNext() {
 
-        if (!QuickPopUpAllowed && alreadyActive) {
-            PositionLerper.StartReverseLerp();
-            AlphaLerper.StartLerping();
-            alreadyActive = false;
-            alphaLerpRunning = false;
-            return;
-        }
-
-        if(!QuickPopUpAllowed)
+        if(!_active)
             return;
 
         if(alphaLerpRunning) {
@@ -117,9 +109,8 @@ public class QuickPopUp : MonoBehaviour {
             AlphaLerper.StartReverseLerp();
         });
     }
-
-
     public void PopUpClicked() {
+
         ProcessNext();
     }
 }

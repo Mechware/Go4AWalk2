@@ -1,3 +1,4 @@
+using G4AW2.Combat;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -16,11 +17,18 @@ public class PlayerAnimations : MonoBehaviour {
 
     private Action celebrationFinished;
 
+    private Player _player;
+
     // Use this for initialization
     void Awake () {
         Instance = this;
         animator = GetComponent<Animator>();
 	}
+
+    public void Initialize(Player p)
+    {
+        _player = p;
+    }
 	
     [ContextMenu("StartWalking")]
 	public void StartWalking()
@@ -93,6 +101,12 @@ public class PlayerAnimations : MonoBehaviour {
     [ContextMenu("Attack")]
     public void Attack()
     {
+        float speed = _player.GetAttackSpeed() / 2f;
+        animator.SetFloat("AttackSpeed", speed);
+        armAnimator.SetFloat("AttackSpeed", speed);
+        armourAnimator.SetFloat("AttackSpeed", speed);
+        weaponAnimator.SetFloat("AttackSpeed", speed);
+
         animator.SetTrigger("Attack");
         armAnimator.SetTrigger("Attack");
         armourAnimator.SetTrigger("Attack");
@@ -106,13 +120,5 @@ public class PlayerAnimations : MonoBehaviour {
         armAnimator.ResetTrigger("Attack");
         armourAnimator.ResetTrigger("Attack");
         weaponAnimator.ResetTrigger("Attack");
-    }
-
-    public void SetAttackSpeed(float tapsPerSecond) {
-        float speed = tapsPerSecond / 2;
-        animator.SetFloat("AttackSpeed", speed);
-        armAnimator.SetFloat("AttackSpeed", speed);
-        armourAnimator.SetFloat("AttackSpeed", speed);
-        weaponAnimator.SetFloat("AttackSpeed", speed);
     }
 }

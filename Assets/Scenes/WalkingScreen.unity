@@ -7625,55 +7625,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Shop: {fileID: 1122872034}
-  StartedWalking:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1324188856}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: Disable
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  FinishInteraction:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1324188856}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: Enable
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1550784727}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: Spin
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
   End: -527
   WalkOffSpeed: 10
-  ScrollSpeed: 5
-  Scrolling:
-    UseConstant: 0
-    ConstantValue: 0
-    Variable: {fileID: 11400000, guid: 2bae27228b26b7f41baf61a9ed0ff0ea, type: 2}
 --- !u!95 &405046111
 Animator:
   serializedVersion: 3
@@ -9397,7 +9350,7 @@ GameObject:
   - component: {fileID: 474011221}
   - component: {fileID: 474011222}
   m_Layer: 5
-  m_Name: QuickPopUp
+  m_Name: MainQuickPopUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13844,6 +13797,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5aaca0f67c2c5444bddaee77c6ac67e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _player: {fileID: 11400000, guid: 6d079e86c36b66d4c88947d754ae6e3e, type: 2}
   _playerWeapon: {fileID: 11400000, guid: ddec0eaf5ab10b542b2cca79d5614413, type: 2}
   _playerArmor: {fileID: 11400000, guid: aef2e70a37f2e9b4f8d5bf8624d26f8f, type: 2}
   _events: {fileID: 493081881}
@@ -13869,6 +13823,7 @@ MonoBehaviour:
   _bait: {fileID: 1046128186}
   _consumables: {fileID: 1623730302}
   _gameWorld: {fileID: 951186434}
+  _gameUI: {fileID: 1381393129}
 --- !u!114 &701840142
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17766,6 +17721,14 @@ MonoBehaviour:
   _background: {fileID: 2094348963}
   _deadEnemies: {fileID: 842532801}
   _miningPoints: {fileID: 1201876788}
+  _shop: {fileID: 405046110}
+  _questGiver: {fileID: 1379573188}
+  _questGiverDismissUI: {fileID: 57825706}
+  _enemy: {fileID: 999456374}
+  _interactionController: {fileID: 1995099795}
+  _playerDisplay: {fileID: 1550784726}
+  _attackArea: {fileID: 794008227}
+  _followers: {fileID: 11400000, guid: d9764a15526dace4899689a1b14b9b44, type: 2}
 --- !u!1 &953969038
 GameObject:
   m_ObjectHideFlags: 0
@@ -19138,8 +19101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e867138000182e84abd90819f3968476, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RegularDamageNumberSpawner: {fileID: 340642938}
-  ElementalDamageNumberSpawner: {fileID: 340642938}
+  _stunnedDamageMultiplier: 1.15
   EnemyInfo: {fileID: 480560836}
   StunDuration:
     UseConstant: 1
@@ -24899,71 +24861,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40ab152c023b7944d832d4da469c6dd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartedWalking:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1324188856}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: Disable
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  FinishInteraction:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1324188856}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: Enable
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1550784727}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: Spin
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 57825706}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
   ListOfCurrentFollowers: {fileID: 11400000, guid: d9764a15526dace4899689a1b14b9b44,
     type: 2}
   ListOfOpenQuests: {fileID: 11400000, guid: f271c820c327d174a9ff1c5439efe06e, type: 2}
   DismissButton: {fileID: 57825706}
   End: -527
   WalkOffSpeed: 10
-  ScrollSpeed: 5
-  Scrolling:
-    UseConstant: 0
-    ConstantValue: 0
-    Variable: {fileID: 11400000, guid: 2bae27228b26b7f41baf61a9ed0ff0ea, type: 2}
 --- !u!114 &1379573189
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25098,6 +25001,7 @@ GameObject:
   - component: {fileID: 1381393128}
   - component: {fileID: 1381393127}
   - component: {fileID: 1381393126}
+  - component: {fileID: 1381393129}
   m_Layer: 5
   m_Name: UI Canvas
   m_TagString: Untagged
@@ -25185,6 +25089,73 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 1
   m_TargetDisplay: 0
+--- !u!114 &1381393129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1381393124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27cb9c99d5eb2cb46a72c5569194e49b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _deathPopUp: {fileID: 1589775613}
+  _enemy: {fileID: 999456374}
+  _playerDamageNumberSpawner: {fileID: 1179473444}
+  _enemyDamageNumberSpawner: {fileID: 340642938}
+  _quickPopUps:
+  - {fileID: 474011222}
+  - {fileID: 1706160525}
+  _mainQuickPopUp: {fileID: 474011222}
+  _arrowIndicator: {fileID: 146199083}
+  _battleUi: {fileID: 1166863776}
+  _battleUiLerper:
+    EndBehaviour: 0
+    LerpDuration: 1
+    Lerpers:
+    - Values:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 0
+      OnUpdate:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 1166863776}
+            m_TargetAssemblyTypeName: AlphaOfAllChildren, Assembly-CSharp
+            m_MethodName: SetAlphaOfAllChildren
+            m_Mode: 0
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+  _questionMark: {fileID: 21300000, guid: afcffb3aa82f3b147b7df77048db2a74, type: 3}
+  _smoothPopUps: {fileID: 1686129831}
 --- !u!1 &1395125817
 GameObject:
   m_ObjectHideFlags: 0
@@ -32510,13 +32481,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c127ee1e91ec73c4ab8f1677dda5e211, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 11400000, guid: 6d079e86c36b66d4c88947d754ae6e3e, type: 2}
-  EnemyDisplay: {fileID: 999456374}
-  MinSwipeDistance:
-    UseConstant: 0
-    ConstantValue: 0
-    Variable: {fileID: 11400000, guid: db9a167cbd9a72e438e6d302c360dfc3, type: 2}
-  FailedParryStunTime: 1.25
   OnBlockStart:
     m_PersistentCalls:
       m_Calls:
@@ -32631,10 +32595,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  PlayerDamageNumberSpawner: {fileID: 1179473444}
-  DamageColor: {r: 1, g: 1, b: 1, a: 1}
-  StunnedDamageMultiplier: 1.15
-  MaxBlockDuration: 4
+  _minSwipeDistance: 3
+  _failedParryStunTime: 1.25
+  _maxBlockDuration: 4
 --- !u!114 &1550784727
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32690,6 +32653,7 @@ MonoBehaviour:
     UseConstant: 0
     ConstantValue: {fileID: 0}
     Variable: {fileID: 11400000, guid: ddec0eaf5ab10b542b2cca79d5614413, type: 2}
+  _controller: {fileID: 1995099795}
 --- !u!1 &1551169955
 GameObject:
   m_ObjectHideFlags: 0
@@ -39050,61 +39014,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45b0683316596984eacf1327e5c264ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Fighting: 0
-  World: {fileID: 1324188856}
-  BackgroundImages: {fileID: 2094348963}
   CurrentQuest: {fileID: 11400000, guid: 6e098017cb676d546bac9971eb358a4a, type: 2}
   Followers: {fileID: 11400000, guid: d9764a15526dace4899689a1b14b9b44, type: 2}
   Player: {fileID: 11400000, guid: 6d079e86c36b66d4c88947d754ae6e3e, type: 2}
   Inventory: {fileID: 11400000, guid: 26cb67b184c39ce41a042b44d325797c, type: 2}
   LerperToBattleArea: {fileID: 1324188857}
   EnemyPositionLerper: {fileID: 999456378}
-  AttackArea: {fileID: 794008227}
-  BattleUiLerper:
-    EndBehaviour: 0
-    LerpDuration: 1
-    Lerpers:
-    - Values:
-        serializedVersion: 2
-        m_Curve:
-        - serializedVersion: 3
-          time: 0
-          value: 0
-          inSlope: 1
-          outSlope: 1
-          tangentMode: 34
-          weightedMode: 0
-          inWeight: 0
-          outWeight: 0
-        - serializedVersion: 3
-          time: 1
-          value: 1
-          inSlope: 1
-          outSlope: 1
-          tangentMode: 34
-          weightedMode: 0
-          inWeight: 0
-          outWeight: 0
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 0
-      OnUpdate:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 1166863776}
-            m_TargetAssemblyTypeName: 
-            m_MethodName: SetAlphaOfAllChildren
-            m_Mode: 0
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-  BattleUi: {fileID: 1166863776}
   DeathCover: {fileID: 1709589734}
+  _enemy: {fileID: 999456374}
+  _backgroundImages: {fileID: 2094348963}
+  _playerAnims: {fileID: 1550784727}
+  _itemDropper: {fileID: 1497022282}
   BossStartPosition: {fileID: 1564121474}
   BossEndPosition: {fileID: 686834990}
   ScrollSpeed: 10

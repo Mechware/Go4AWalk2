@@ -13,9 +13,8 @@ public class Inventory : ScriptableObject, IEnumerable<InventoryEntry>, ISaveabl
     private List<InventoryEntry> InventoryEntries = new List<InventoryEntry>();
     public PersistentSetItem AllItems;
     public CraftingTable CraftingTable;
-    public Sprite QuestionMark;
     public Action<Item, int> OnLootObtained;
-
+    public Action<CraftingRecipe> OnNewRecipeCraftable;
     public int GetAmountOf(Item it) {
         return InventoryEntries.Sum(i => i.Item.ID == it.ID ? i.Amount : 0);
     }
@@ -48,12 +47,7 @@ public class Inventory : ScriptableObject, IEnumerable<InventoryEntry>, ISaveabl
             List<CraftingRecipe> recipes = CraftingTable.GetPossibleRecipes();
             foreach(var recipe in recipes) {
                 if(!currentRecipes.Contains(recipe) && !CraftingRecipesMade.RecipesMade.Contains(recipe.ID)) {
-                    string postText = "";
-                    foreach(var component in recipe.Components) {
-                        postText +=
-                            $"{component.Amount} {component.Item.GetName()}{(component.Amount > 1 ? "s" : "")}\n";
-                    }
-                    QuickPopUp.Show(QuestionMark, $"<size=150%>New Craftable Recipe!</size>\nA new recipe is now craftable!\nRequires:{postText}");
+                    OnNewRecipeCraftable?.Invoke(recipe);
                 }
             }
             currentRecipes = recipes;

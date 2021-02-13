@@ -21,8 +21,18 @@ namespace G4AW2.Combat {
         public WeaponReference Weapon;
         public ArmorReference Armor;
         public HeadgearReference Headgear;
-        
-		public void OnEnable() {
+
+        /// <summary>
+        /// Float parameter is the gold loss
+        /// </summary>
+        public Action<float> OnDeath;
+
+        /// <summary>
+        /// Param is damage dealt
+        /// </summary>
+        public Action<int, ElementalType> OnDamageTaken;
+
+        public void OnEnable() {
             Headgear.Variable.BeforeChange += UnequipHeadgear;
             Headgear.Variable.OnChange.AddListener(EquipHeadgear);
 
@@ -42,28 +52,36 @@ namespace G4AW2.Combat {
             MaxHealth.Value += Headgear.Value.ExtraHealth;
         }
 
-
-
-        public void DamagePlayer(int damage)
+        public void DamagePlayer(float dmg, ElementalType type)
         {
+            float mod = 1;
+            if (Armor.Value.ElementalWeakness.Value != null && type != null)
+                mod = Armor.Value.ElementalWeakness.Value[type];
+            dmg *= mod;
+
+            int damage = Mathf.RoundToInt(dmg);
+
+            OnDamageTaken?.Invoke(damage, type);
+
             if (damage >= Health) {
                 Health.Value = 0;
-                InteractionController.Instance.OnPlayerDeath();
+                Die();
             }
             else {
                 Health.Value -= damage;
             }
         }
 
-	    public void OnDeathFinished() {
-	        int oldAmount = Gold;
-	        int newAmount = oldAmount - Mathf.RoundToInt(oldAmount * 0.2f);
-	        newAmount = Mathf.Max(newAmount, 0);
-	        Gold.Value = newAmount;
+        public void Die()
+        {
+            int oldAmount = Gold;
+            int newAmount = oldAmount - Mathf.RoundToInt(oldAmount * 0.2f);
+            newAmount = Mathf.Max(newAmount, 0);
+            Gold.Value = newAmount;
 
             Health.Value = MaxHealth;
-	        PopUp.SetPopUp($"You died! You lost: {oldAmount - newAmount} gold.", new string[] {"Ok"}, new Action[] {() => { }});
-	    }
+            OnDeath?.Invoke(oldAmount - newAmount);
+        }
 
         [NonSerialized] public float DamageMultiplier = 1f;
         [NonSerialized] public float DamageAdditive = 0f;

@@ -13,10 +13,7 @@ public class InteractionController : MonoBehaviour {
 
     public static InteractionController Instance;
 
-    public bool Fighting = false;
-
-    public DragObject World;
-    public ScrollingImages BackgroundImages;
+    public bool Fighting { private set; get; }
 
     public ActiveQuestBaseVariable CurrentQuest;
     public RuntimeSetFollowerData Followers;
@@ -24,10 +21,12 @@ public class InteractionController : MonoBehaviour {
     public Inventory Inventory;
     public LerpToPosition LerperToBattleArea;
     public LerpToPosition EnemyPositionLerper;
-    public GameObject AttackArea;
-    public RobustLerperSerialized BattleUiLerper;
-    public AlphaOfAllChildren BattleUi;
     public RobustLerper DeathCover;
+
+    [SerializeField] private EnemyDisplay _enemy;
+    [SerializeField] private ScrollingImages _backgroundImages;
+    [SerializeField] private PlayerAnimations _playerAnims;
+    [SerializeField] private ItemDropBubbleManager _itemDropper;
 
     [Header("Boss References")]
     public Transform BossStartPosition;
@@ -43,33 +42,32 @@ public class InteractionController : MonoBehaviour {
 
     public float EnemyAndPlayerWalkSpeed;
 
-    public Action<EnemyData> OnEnemyKilled;
+    public Action<EnemyData> OnEnemyDeathFinished;
+    public Action OnBossFightStarted;
+    public Action OnFightEnter;
+    public Action OnFightStart;
+    public Action<(EnemyData enemy, bool suicide)> OnEnemyDeath;
+    public Action OnPlayerDeath;
+    public Action OnPlayerDeathReset;
+    public Action<float> OnPlayerDeathDone;
 
     private void Awake() {
         Instance = this;
     }
 
     void Update() {
-        BattleUiLerper.Update(Time.deltaTime);
     }
     
-    public void StartBossFight() {
+    public void StartBossFight(BossQuest bossQuest) {
 
         StartCoroutine(_StartBossFight());
 
         IEnumerator _StartBossFight() {
             Fighting = true;
-            PlayerClickController.Instance.SetEnabled(false);
-            DeadEnemyController.Instance.ClearEnemies();
-            QuickPopUp.QuickPopUpAllowed = false;
+            OnFightEnter?.Invoke();
+            OnBossFightStarted?.Invoke();
             
-            // Disable being able to move the world but keep scrolling
-            World.Disable();
-            EnemyArrowIndicator.Instance.SetOnMainScreen(false);
-        
             // Put boss where they should be
-            var bossQuest = (BossQuest) CurrentQuest.Value;
-            
             EnemyData boss = (EnemyData) Followers.FirstOrDefault(f => f.ID == bossQuest.Enemy.ID);
             if (boss == null) {
                 boss = Instantiate(bossQuest.Enemy);
@@ -78,19 +76,16 @@ public class InteractionController : MonoBehaviour {
                 Followers.Add(boss);
             }
 
-            EnemyDisplay.Instance.gameObject.SetActive(true);
-            EnemyDisplay.Instance.SetEnemy(boss);
+            _enemy.gameObject.SetActive(true);
+            _enemy.SetEnemy(boss);
             
-            var bossRT = EnemyDisplay.Instance.RectTransform; 
+            var bossRT = _enemy.RectTransform; 
             bossRT.position = BossStartPosition.position;
-
-            // Ensure player isn't moving.
-            PlayerAnimations.Instance.StopWalking();
             // Ensure boss is facing the right direction
             bossRT.localScale = bossRT.localScale.SetX(-1);
 
-            int oldScrollSpeed = BackgroundImages.ScrollSpeed;
-            BackgroundImages.ScrollSpeed = ScrollSpeed;
+            int oldScrollSpeed = _backgroundImages.ScrollSpeed;
+            _backgroundImages.ScrollSpeed = ScrollSpeed;
             
             // Wait until boss is in proper position
             while (bossRT.position.x > BossEndPosition.position.x) {
@@ -100,8 +95,8 @@ public class InteractionController : MonoBehaviour {
                 yield return null;
             }
 
-            BackgroundImages.ScrollSpeed = oldScrollSpeed;
-            BackgroundImages.Pause();
+            _backgroundImages.ScrollSpeed = oldScrollSpeed;
+            _backgroundImages.Pause();
 
             
             // Pop up Fight button and wait for click
@@ -116,10 +111,10 @@ public class InteractionController : MonoBehaviour {
             });
 
             while (!fightClicked) yield return null;
-            
+
             // Make boss & player switch positions
-            PlayerAnimations.Instance.StartWalking();
-            EnemyDisplay.Instance.StartWalkingAnimation();
+            _playerAnims.StartWalking();
+            _enemy.StartWalkingAnimation();
 
             bool playerReady = false;
             bool playerSpinning = false;
@@ -127,9 +122,9 @@ public class InteractionController : MonoBehaviour {
             while (!playerReady || !enemyReady) {
                 if (!playerReady && !playerSpinning) {
                     if (PlayerRT.position.x >= PlayerFightPosition.position.x) {
-                        PlayerAnimations.Instance.StopWalking();
+                        _playerAnims.StopWalking();
                         playerSpinning = true;
-                        PlayerAnimations.Instance.Spin(() => {
+                        _playerAnims.Spin(() => {
                             playerReady = true;
                             playerSpinning = false;
                         });
@@ -145,7 +140,7 @@ public class InteractionController : MonoBehaviour {
                     if (bossRT.position.x <= EnemyFightPosition.position.x) {
                         bossRT.localScale = bossRT.localScale.SetX(1);
                         enemyReady = true;
-                        EnemyDisplay.Instance.StopWalking();
+                        _enemy.StopWalking();
                     }
                     else {
                         float dist = -Time.deltaTime * EnemyAndPlayerWalkSpeed;
@@ -156,68 +151,50 @@ public class InteractionController : MonoBehaviour {
                 yield return null;
             }
             
-            
-            
             // Once boss and player show up in proper places, start the fight like regular.
-            EnemyDisplay.Instance.StartAttacking();
-            BattleUi.gameObject.SetActive(true);
-            BattleUi.SetAlphaOfAllChildren(0);
-            BattleUiLerper.StartLerping();
-            AttackArea.SetActive(true);
+            _enemy.StartAttacking();
+            OnFightStart?.Invoke();
         }
     }
     
     public void EnemyFight(EnemyData enemy) {
-        PlayerClickController.Instance.SetEnabled(false);
-        QuickPopUp.QuickPopUpAllowed = false;
-        World.Disable();
-        BattleUi.gameObject.SetActive(true);
-        BattleUi.SetAlphaOfAllChildren(0);
+        OnFightEnter?.Invoke();
         
         // Scroll to fight area
         LerperToBattleArea.StartLerping(() => {
-            PlayerAnimations.Instance.Spin();
+            _playerAnims.Spin();
             
-            EnemyDisplay.Instance.gameObject.SetActive(true);
-            EnemyDisplay.Instance.SetEnemy(enemy);
-            EnemyDisplay.Instance.StartWalkingAnimation();
+            _enemy.gameObject.SetActive(true);
+            _enemy.SetEnemy(enemy);
+            _enemy.StartWalkingAnimation();
             EnemyPositionLerper.StartLerping(() => {
-                
+
                 // Start Combat
-                EnemyDisplay.Instance.StopWalking();
-                EnemyDisplay.Instance.StartAttacking();
-                BattleUiLerper.StartLerping();
-                AttackArea.SetActive(true);
-                // Update enemy health bar?
-                
+                _enemy.StopWalking();
+                _enemy.StartAttacking();
+                OnFightStart?.Invoke();
             });
         });
     }
 
+
     public void EnemyDeath(EnemyData data, bool suicide = false) {
 
-        QuickPopUp.QuickPopUpAllowed = true;
-        BattleUiLerper.StartReverseLerp();
-
-        
         StartCoroutine(_EnemyDeath());
         
         IEnumerator _EnemyDeath() {
-            
-            
-            Followers.Remove(data);
-            AttackArea.SetActive(false);
-        
+
+            OnEnemyDeath?.Invoke((data, suicide));
+
             if (Player.Health.Value <= 0) {
-                OnPlayerDeath();
                 yield break;    
             }
             
             if (data.OneAndDoneAttacker && suicide) {
-                PlayerAnimations.Instance.ResetAttack();
+                _playerAnims.ResetAttack();
                 
                 yield return new WaitForSeconds(1); // Wait for suicide animation to complete
-                PlayerAnimations.Instance.Spin(() => {
+                _playerAnims.Spin(() => {
                     _Done(new List<Item>());
                 });
                 yield break;
@@ -245,15 +222,15 @@ public class InteractionController : MonoBehaviour {
             }
 
             // Wait for player celebration to be done and all items to be picked up
-            PlayerAnimations.Instance.ResetAttack();
-            PlayerAnimations.Instance.Celebrate(() => {
+            _playerAnims.ResetAttack();
+            _playerAnims.Celebrate(() => {
                 celebrateDone = true;
                 if(bubblesDone && celebrateDone) {
                     _Done(items);
                 }
             });
-            
-            ItemDropBubbleManager.Instance.AddItems(items, null, () => {
+
+            _itemDropper.AddItems(items, null, () => {
                 bubblesDone = true;
                 if(bubblesDone && celebrateDone) {
                     _Done(items);
@@ -263,24 +240,13 @@ public class InteractionController : MonoBehaviour {
         
 
         void _Done(List<Item> items) {
-            PlayerAnimations.Instance.Spin(() => {
+            _playerAnims.Spin(() => {
             
-                // Enable world to be interactable again
-                // Turn off enemy fight.
-                EnemyDisplay.Instance.gameObject.SetActive(false);
-                // Call combat end event (nah)
+                _enemy.gameObject.SetActive(false);
             
-                DeadEnemyController.Instance.AddDeadEnemy(
-                    EnemyDisplay.Instance.RectTransform.anchoredPosition.x, 
-                    EnemyDisplay.Instance.RectTransform.anchoredPosition.y, 
-                    data);
-
-                OnEnemyKilled?.Invoke(data);
+                OnEnemyDeathFinished?.Invoke(data);
                 Inventory.AddItems(items);
-                World.Enable();
 
-                PlayerClickController.Instance.SetEnabled(true);
-                
                 // Note: If the boss quest is to fight a chicken and you kill any chicken (not just the boss) then the quest gets completed
                 if (CurrentQuest.Value is BossQuest quest && quest.Enemy.ID == data.ID) {
                     quest.Finish();
@@ -291,43 +257,29 @@ public class InteractionController : MonoBehaviour {
         }
     }
 
-
-    private bool ProcessingDeath = false;
-    public void OnPlayerDeath() {
-
-        if (ProcessingDeath) return;
-        ProcessingDeath = true;
+    public void PlayerDied(float goldLoss) {
         
         // Set death thing to active
         DeathCover.gameObject.SetActive(true);
-        // Disable attack area
-        AttackArea.SetActive(false);
-        
+
+        OnPlayerDeath?.Invoke();
+
         //Lerp
         DeathCover.StartLerping(() => {
             Fighting = false;
 
-            // Set battle ui to inactive
-            BattleUi.gameObject.SetActive(false);
-            // Set windows to active (?)
-            
-            // Call PlayerAnimation.SpinDone (to force player to spin)
-            PlayerAnimations.Instance.SpinDone(1);
-            // Reset world position
-            World.ResetScrolling();
+            OnPlayerDeathReset?.Invoke();
+
             // Disable enemy fighter
-            EnemyDisplay.Instance.StopAllCoroutines();
-            EnemyDisplay.Instance.gameObject.SetActive(false);
+            _playerAnims.SpinDone(1);
+            _playerAnims.StopAllCoroutines();
+            _playerAnims.gameObject.SetActive(false);
+
             // Reverse this lerp
             DeathCover.StartReverseLerp(() => {
-                // Reset + Enable world scrolling
-                World.Enable();
                 // Player.DeathFinished
-                Player.OnDeathFinished();
-                ProcessingDeath = false;
+                OnPlayerDeathDone?.Invoke(goldLoss);
             });
-            
         });
-            
     }
 }

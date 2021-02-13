@@ -21,9 +21,13 @@ namespace G4AW2.Combat {
 			Idle, BeforeAttack, ExecuteAttack, AfterAttack, Stun, Disabled, Dead
 		}
 
+		[SerializeField] private float _stunnedDamageMultiplier = 1.15f;
+
+		public Action<int, ElementalType> OnDamageTaken;
+		public Action<int, ElementalType> OnAttack;
+		
+
         [Header("Misc References")]
-	    public DamageNumberSpawner RegularDamageNumberSpawner;
-	    public DamageNumberSpawner ElementalDamageNumberSpawner;
 	    public TextMeshProUGUI EnemyInfo;
 	    
         [Header("Settings")]
@@ -101,11 +105,39 @@ namespace G4AW2.Combat {
 		    EnemyInfo.text = $"{data.DisplayName}\nLevel {data.Level}";
 		}
 
-	    public void StartWalkingAnimation() {
+		public void OnHit(float damage, ElementalType type)
+        {
+			if (EnemyState == State.Dead)
+				return;
+
+			float mod = 1;
+			if(type == null)
+            {
+				mod = EnemyState == State.Stun ? _stunnedDamageMultiplier : 1;
+			} 
+			else
+            {
+				mod = Enemy.GetElementalWeakness(type);
+			}
+
+			int amount = Mathf.RoundToInt(damage * mod);
+
+			OnDamageTaken?.Invoke(amount, type);
+
+			CurrentHealth.Value -= amount;
+			if (CurrentHealth.Value <= 0)
+			{
+				Die(false);
+			}
+			else
+			{
+				MyAnimator.SetTrigger("Flinch");
+			}
+		}
+
+		public void StartWalkingAnimation() {
 		    StopAllCoroutines();
 		    MyAnimator.SetTrigger("Walking");
-
-		    
         }
 
 	    public void StopWalking() {
@@ -160,9 +192,9 @@ namespace G4AW2.Combat {
 			        break;
 
                 EnemyState = State.AfterAttack;
-			    PlayerFightingLogic.Instance.OnEnemyHitPlayer(Enemy.Damage);
+				OnAttack?.Invoke(Enemy.Damage, null);
 			    if (Enemy.HasElementalDamage) {
-				    PlayerFightingLogic.Instance.OnEnemyHitPlayerElemental(Enemy.ElementalDamage, Enemy.ElementalDamageType);
+					OnAttack?.Invoke(Enemy.ElementalDamage, Enemy.ElementalDamageType);
 			    }
 
                 if (Enemy.OneAndDoneAttacker) {
@@ -173,35 +205,6 @@ namespace G4AW2.Combat {
 			    MyAnimator.SetTrigger("AttackEnd");
             }
         }
-
-		public void ApplyDamage( int amount) {
-		    if(EnemyState == State.Dead)
-		        return;
-
-            RegularDamageNumberSpawner.SpawnNumber(amount, BaseDamageColor);
-
-            CurrentHealth.Value -= amount;
-			if (CurrentHealth.Value <= 0) {
-			    Die(false);
-			} else {
-                MyAnimator.SetTrigger("Flinch");
-            }
-        }
-
-	    public void ApplyElementalDamage(int amount, ElementalType type) {
-	        if(EnemyState == State.Dead)
-	            return;
-
-            amount = Mathf.RoundToInt(amount * Enemy.GetElementalWeakness(type));
-	        ElementalDamageNumberSpawner.SpawnNumber(amount, type.DamageColor);
-
-            CurrentHealth.Value -= amount;
-	        if(CurrentHealth.Value <= 0) {
-	            Die(false);
-	        } else {
-	            MyAnimator.SetTrigger("Flinch");
-	        }
-	    }
 
         private void Die(bool suicide) {
 	        EnemyState = State.Dead;

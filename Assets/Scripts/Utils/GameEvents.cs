@@ -1,3 +1,4 @@
+using G4AW2.Data;
 using G4AW2.Data.Combat;
 using G4AW2.Data.DropSystem;
 using G4AW2.Questing;
@@ -25,6 +26,7 @@ public class GameEvents : MonoBehaviour {
 	public Action<ActiveQuestBase> QuestChanged;
 	public Action<EnemyData> EnemyKilled;
 	public Action<Item> LootObtained;
+	public Action<Achievement> AchievementObtained;
 
 	void Start () {
         OnStart?.Invoke();
@@ -66,6 +68,8 @@ public class GameEvents : MonoBehaviour {
 	{
 		EnemyKilled?.Invoke(ed);
 	}
+
+	public void OnAchievementObtained(Achievement a) => AchievementObtained?.Invoke(a);
 
 	public void OnLootObtained(IEnumerable<Item> its)
 	{

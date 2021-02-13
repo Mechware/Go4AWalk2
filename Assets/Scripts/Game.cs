@@ -1,9 +1,12 @@
 ﻿using CustomEvents;
+using G4AW2.Combat;
+using G4AW2.Data;
 using G4AW2.Data.DropSystem;
 using G4AW2.Followers;
 using G4AW2.Saving;
 using G4AW2.UI.Areas;
 using Items;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,6 +14,7 @@ using UnityEngine;
 public class Game : MonoBehaviour
 {
     // TODO: Move these into player?
+    [SerializeField] private Player _player;
     [SerializeField] private WeaponVariable _playerWeapon;
     [SerializeField] private ArmorVariable _playerArmor;
 
@@ -43,13 +47,13 @@ public class Game : MonoBehaviour
     [SerializeField] private ConsumableManager _consumables;
 
     [SerializeField] private GameWorld _gameWorld;
+    [SerializeField] private GameUI _gameUI;
 
 
     private bool _allowedToSave = true;
 
     private void Awake()
     {
-        
         // TODO: Look into why this is required
         _configs.RegisterChanges();
         _masteryLevels.Register();
@@ -71,7 +75,6 @@ public class Game : MonoBehaviour
         _events.OnQuit += Save;
 
         // Game specific events:
-
         _events.OnQuestSet += q =>
         {
             // TODO: Pass the event manager into these objects and let these items deal with this 
@@ -82,8 +85,10 @@ public class Game : MonoBehaviour
             _tutorial.QuestUpdated(q);
         };
 
-        _interactions.OnEnemyKilled += _events.OnEnemyKilled;
+        _interactions.OnEnemyDeathFinished += _events.OnEnemyKilled;
         _inventory.OnLootObtained += _events.OnLootObtained;
+
+        _achievements.OnAchievementObtained += _events.OnAchievementObtained;
     }
 
     public void OnNewGame()
@@ -142,6 +147,7 @@ public class Game : MonoBehaviour
         _events.OnAfterLoad.Invoke();
 
         _gameWorld.Initialize(_inventory);
+        _gameUI.Initialize(_player, _interactions, _inventory, _events);
     }
 
     // Update is called once per frame
@@ -149,4 +155,10 @@ public class Game : MonoBehaviour
     {
         _bait.MyUpdate();
     }
+}
+
+
+public class Pipes
+{
+    public Action<Achievement> OnAchievementObtained;
 }

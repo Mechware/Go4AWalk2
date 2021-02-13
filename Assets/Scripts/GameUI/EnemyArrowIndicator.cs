@@ -9,8 +9,6 @@ using TMPro;
 
 public class EnemyArrowIndicator : MonoBehaviour {
 
-    public static EnemyArrowIndicator Instance;
-    
     public RuntimeSetFollowerData Followers;
     public Image Arrow;
     public TextMeshProUGUI NumberofFollowersText;
@@ -18,25 +16,40 @@ public class EnemyArrowIndicator : MonoBehaviour {
     public bool OnMainScreen = true;
     public bool HasFollowers = true;
 
+    private bool _enabled = true;
+
     private void Awake() {
-        Instance = this;
         Followers.OnChange.AddListener(FollowersChanged);
     }
 
     public void FollowersChanged(FollowerData data) {
+        NumberofFollowersText.text = "x" + Followers.Value.Count;
         HasFollowers = Followers.Value.Count > 0;
 
-        Arrow.enabled = OnMainScreen && HasFollowers;
-        NumberofFollowersText.gameObject.SetActive(OnMainScreen && HasFollowers);
-       
-        NumberofFollowersText.text = "x" + Followers.Value.Count;
+        RefreshShowing();
     }
 
     public void SetOnMainScreen(bool val) {
         OnMainScreen = val;
+        RefreshShowing();
+    }
 
-        Arrow.enabled = OnMainScreen && HasFollowers;
-        NumberofFollowersText.gameObject.SetActive(OnMainScreen && HasFollowers);
+    public void Disable()
+    {
+        _enabled = false;
+        Arrow.enabled = false;
+    }
 
+    public void Enable()
+    {
+        _enabled = true;
+        RefreshShowing();
+    }
+
+    private void RefreshShowing()
+    {
+        bool show = OnMainScreen && HasFollowers && _enabled;
+        Arrow.enabled = show;
+        NumberofFollowersText.gameObject.SetActive(show);
     }
 }

@@ -47,6 +47,7 @@ public class SmoothPopUpManager : MonoBehaviour {
     }
 
     private void ShowPopUpPrivate(Vector2 canvasSpaceStartPosition, string text, Color color, bool worldCoords) {
+        if (!_enabled) return;
         var go = popUpPool.GetObject();
 
         TextMeshProUGUI t = go.GetComponent<TextMeshProUGUI>();
@@ -66,7 +67,17 @@ public class SmoothPopUpManager : MonoBehaviour {
     }
 
     public static void ShowPopUp(Vector2 canvasSpaceStartPosition, string text, Color color, bool worldCoords = false) {
-        if (!QuickPopUp.QuickPopUpAllowed) return;
         instance.ShowPopUpPrivate(canvasSpaceStartPosition, text, color, worldCoords);
+    }
+
+    private bool _enabled = false;
+    public void Enable()
+    {
+        _enabled = true;
+    }
+
+    public void Disable()
+    {
+        _enabled = false;
     }
 }

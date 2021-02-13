@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using CustomEvents;
@@ -9,8 +10,8 @@ using UnityEngine.EventSystems;
 public class ShopGiverDisplay : MonoBehaviour, IPointerClickHandler {
 
     public ShopUI Shop;
-    public UnityEvent StartedWalking;
-    public UnityEvent FinishInteraction;
+    public Action StartedWalking;
+    public Action FinishInteraction;
 
     private ShopFollower follower;
 
@@ -78,28 +79,35 @@ public class ShopGiverDisplay : MonoBehaviour, IPointerClickHandler {
     }
 
     [Header("Walk Off Parameters")]
-    public float End;
-    public float WalkOffSpeed;
-    public float ScrollSpeed;
-    public BoolReference Scrolling;
+    [SerializeField] private float End;
+    [SerializeField] private float WalkOffSpeed;
+    private bool _walkingOff;
+    public void OnScroll(float distance)
+    {
+        if (!_walkingOff) return;
 
+        RectTransform rt = (RectTransform)transform;
+        Vector3 pos = rt.localPosition;
+        pos.x -= distance;
+        rt.localPosition = pos;
+    }
 
     IEnumerator WalkOffScreen() {
 
         GetComponent<Animator>().SetBool("Walking", true);
 
         RectTransform rt = (RectTransform) transform;
-
+        _walkingOff = true;
         while (true) {
 
             Vector3 pos = rt.localPosition;
             pos.x -= WalkOffSpeed * Time.deltaTime;
-            pos.x -= Scrolling ? ScrollSpeed * Time.deltaTime : 0;
             rt.localPosition = pos;
 
             if (pos.x < End) break;
 
             yield return null;
         }
+        _walkingOff = false;
     }
 }
