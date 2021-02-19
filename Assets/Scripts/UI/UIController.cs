@@ -5,7 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameUI : MonoBehaviour
+public class UIController : MonoBehaviour
 {
     
     [SerializeField] private PopUp _deathPopUp;
@@ -22,17 +22,15 @@ public class GameUI : MonoBehaviour
 
     [SerializeField] private Sprite _questionMark;
     [SerializeField] private SmoothPopUpManager _smoothPopUps;
-
+    [SerializeField] private InteractionController _interactionController;
 
     private Player _player;
     private Inventory _inventory;
-    private InteractionController _interactionController;
     private GameEvents _events;
 
-    public void Initialize(Player player, InteractionController controller, Inventory inventory, GameEvents events)
+    public void Initialize(Player player, Inventory inventory, GameEvents events)
     {
         _player = player;
-        _interactionController = controller;
         _inventory = inventory;
         _events = events;
 
@@ -86,12 +84,12 @@ public class GameUI : MonoBehaviour
                 postText +=
                     $"{component.Amount} {component.Item.GetName()}{(component.Amount > 1 ? "s" : "")}\n";
             }
-            _mainQuickPopUp.ShowSprite(_questionMark, $"<size=150%>New Craftable Recipe!</size>\nA new recipe is now craftable!\nRequires:{postText}");
+            _mainQuickPopUp.Show(_questionMark, $"<size=150%>New Craftable Recipe!</size>\nA new recipe is now craftable!\nRequires:{postText}");
         };
 
         _events.AchievementObtained += a =>
         {
-            _mainQuickPopUp.ShowSprite(a.AchievementIcon, "<size=150%>Achievement!</size>\n" + a.AchievementCompletedText);
+            _mainQuickPopUp.Show(a.AchievementIcon, "<size=150%>Achievement!</size>\n" + a.AchievementCompletedText);
         };
     }
 

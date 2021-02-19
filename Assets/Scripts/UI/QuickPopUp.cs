@@ -8,109 +8,71 @@ using UnityEngine.UI;
 
 public class QuickPopUp : MonoBehaviour {
 
-    public RobustLerper PositionLerper;
-    public RobustLerper AlphaLerper;
-    public RobustLerperSerialized ShakeLerper;
-
     public Image Image;
     public TextMeshProUGUI Text;
+    public ClickReceiver Button;
 
-    private bool alreadyActive = false;
+    [SerializeField] private Animator animator;
     private Queue<PopUpData> PopUpsToShow = new Queue<PopUpData>();
-    private bool alphaLerpRunning = false;
 
-    public bool IsMainInstance = false;
+    private static readonly int NumberOfPopUpsHash = Animator.StringToHash("NumberOfPopUps");
+    private static readonly int DisabledHash = Animator.StringToHash("DisabledHash");
+    private static readonly int TappedHash = Animator.StringToHash("Tapped");
 
-    private bool _active = true;
+    private enum State
+    {
+        Active,
+        Enabled,
+        AlphaRunning
+    }
 
     private class PopUpData {
         public Sprite Icon;
         public string Text;
     }
 
+    private void Awake()
+    {
+        Button.MouseClick2D.AddListener(_ =>
+        {
+            animator.SetTrigger(TappedHash);
+        });
+    }
+
     public void Enable()
     {
-        _active = true;
-        ProcessNext();
+        animator.SetBool(DisabledHash, false);
     }
     public void Disable()
     {
-        _active = false;
-        Hide();
+        animator.SetBool(DisabledHash, true);
     }
 
-    private void Hide()
-    {
-        if (!alreadyActive) return;
-
-        PositionLerper.StartReverseLerp();
-        AlphaLerper.StartLerping();
-        alreadyActive = false;
-        alphaLerpRunning = false;
-    }
-
-    public void ShowSprite(Sprite icon, string text) {
-        if(alreadyActive) {
-            Shake();
-        }
-        AddToQueue(icon, text);
-        StartPopUp();
-    }
-
-    public void Shake() {
-        ShakeLerper.StartLerping();
-    }
-
-    private void AddToQueue(Sprite icon, string text) {
+    public void Show(Sprite icon, string text) {
         PopUpsToShow.Enqueue(new PopUpData() { Icon = icon, Text = text });
+        animator.SetInteger(NumberOfPopUpsHash, PopUpsToShow.Count);
     }
+    public void AdvancePopUps()
+    {
+        if(PopUpsToShow.Count == 0)
+        {
+            Debug.LogError("Tried to advance pop ups when none are left");
+            return;
+        }
 
-    private void StartPopUp() {
-
-        if (!_active || alreadyActive || PopUpsToShow.Count == 0) return;
-
-        PositionLerper.StartLerping();
-        AlphaLerper.StartReverseLerp();
-
-        alreadyActive = true;
-
-        var data = PopUpsToShow.Dequeue();
+        PopUpData data = PopUpsToShow.Dequeue();
         Image.sprite = data.Icon;
         Text.text = data.Text;
+
+        animator.SetInteger(NumberOfPopUpsHash, PopUpsToShow.Count);
+        animator.ResetTrigger(TappedHash);
     }
 
-    [Obsolete("TODO: Replace this with a coroutine")]
-    private void ProcessNext() {
-
-        if(!_active)
-            return;
-
-        if(alphaLerpRunning) {
-            PopUpData data = PopUpsToShow.Dequeue();
-            Image.sprite = data.Icon;
-            Text.text = data.Text;
-        }
-
-        if (PopUpsToShow.Count == 0) {
-            PositionLerper.StartReverseLerp();
-            AlphaLerper.StartLerping();
-            alreadyActive = false;
-            alphaLerpRunning = false;
-            return;
-        }
-
-        alphaLerpRunning = true;
-        AlphaLerper.StartLerping(() => {
-            alphaLerpRunning = false;
-            PopUpData data = PopUpsToShow.Dequeue();
-            Image.sprite = data.Icon;
-            Text.text = data.Text;
-
-            AlphaLerper.StartReverseLerp();
-        });
-    }
-    public void PopUpClicked() {
-
-        ProcessNext();
+    [SerializeField] private Sprite TestSprite;
+    [SerializeField] private string TestString;
+    [ContextMenu("Add test")]
+    public void AddTest()
+    {
+        Show(TestSprite, TestString);
     }
 }

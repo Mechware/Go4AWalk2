@@ -9,11 +9,10 @@ using UnityEngine;
 /// <summary>
 /// Responsible for everything that appears in the game world
 /// </summary>
-public class GameWorld : MonoBehaviour
+public class GameController : MonoBehaviour
 {
     [SerializeField] private DragObject _dragger;
-    [SerializeField] private Player _player;
-    [SerializeField] private PlayerAnimations _playerAnims;
+    
     [SerializeField] private EnemyArrowIndicator _arrow;
     [SerializeField] private ScrollingImages _background;
 
@@ -34,7 +33,8 @@ public class GameWorld : MonoBehaviour
 
     [SerializeField] private RuntimeSetFollowerData _followers;
 
-
+    [SerializeField] private Player _player;
+    [SerializeField] private PlayerAnimations _playerAnims;
 
     private Inventory _inventory;
 

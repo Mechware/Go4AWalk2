@@ -46,8 +46,8 @@ public class Game : MonoBehaviour
     [SerializeField] private BaitBuffController _bait;
     [SerializeField] private ConsumableManager _consumables;
 
-    [SerializeField] private GameWorld _gameWorld;
-    [SerializeField] private GameUI _gameUI;
+    [SerializeField] private GameController _gameWorld;
+    [SerializeField] private UIController _gameUI;
 
 
     private bool _allowedToSave = true;
@@ -147,7 +147,7 @@ public class Game : MonoBehaviour
         _events.OnAfterLoad.Invoke();
 
         _gameWorld.Initialize(_inventory);
-        _gameUI.Initialize(_player, _interactions, _inventory, _events);
+        _gameUI.Initialize(_player, _inventory, _events);
     }
 
     // Update is called once per frame

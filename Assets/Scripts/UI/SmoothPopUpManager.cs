@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ public class SmoothPopUpManager : MonoBehaviour {
     public GameObject PopUpPrefab;
 
     private ObjectPrefabPool popUpPool;
-    private static SmoothPopUpManager instance;
+    [Obsolete("Stop using a singleton")] private static SmoothPopUpManager instance;
 
     public AnimationCurve HeightCurve;
     public AnimationCurve OpacityCurve;
@@ -66,8 +67,14 @@ public class SmoothPopUpManager : MonoBehaviour {
         currentLerpers.Add(data);
     }
 
+    [Obsolete("Don't use a static")]
     public static void ShowPopUp(Vector2 canvasSpaceStartPosition, string text, Color color, bool worldCoords = false) {
         instance.ShowPopUpPrivate(canvasSpaceStartPosition, text, color, worldCoords);
+    }
+
+    public void ShowPopUpNew(Vector2 canvasSpaceStartPosition, string text, Color color, bool worldCoords = false)
+    {
+        ShowPopUpPrivate(canvasSpaceStartPosition, text, color, worldCoords);
     }
 
     private bool _enabled = false;

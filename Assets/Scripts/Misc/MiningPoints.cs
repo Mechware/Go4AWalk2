@@ -12,8 +12,6 @@ using Random = UnityEngine.Random;
 
 public class MiningPoints : MonoBehaviour {
 
-	public static MiningPoints Instance;
-
     [SerializeField] private int ReturnToPoolXValue;
 
     [SerializeField] private GameObject PointPrefab;
@@ -44,7 +42,6 @@ public class MiningPoints : MonoBehaviour {
     }
 
     void Awake() {
-	    Instance = this;
         Pool = new ObjectPrefabPool(PointPrefab, Parent, 3);
     }
 

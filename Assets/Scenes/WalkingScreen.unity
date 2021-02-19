@@ -9349,6 +9349,8 @@ GameObject:
   - component: {fileID: 474011220}
   - component: {fileID: 474011221}
   - component: {fileID: 474011222}
+  - component: {fileID: 474011224}
+  - component: {fileID: 474011223}
   m_Layer: 5
   m_Name: MainQuickPopUp
   m_TagString: Untagged
@@ -9402,15 +9404,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39de2c2d1d5da8440a2b6be126d2b7ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PositionLerper: {fileID: 2115823801}
-  AlphaLerper: {fileID: 266055279}
-  ShakeLerper:
-    EndBehaviour: 0
-    LerpDuration: 1
-    Lerpers: []
   Image: {fileID: 956645798}
   Text: {fileID: 994664440}
-  IsMainInstance: 1
+  Button: {fileID: 1160199343}
+  animator: {fileID: 474011224}
+  TestSprite: {fileID: 21300000, guid: 63e9704cb574e3043a68f6d5cdf30343, type: 3}
+  TestString: TESTIN
+--- !u!225 &474011223
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 474011219}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!95 &474011224
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 474011219}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3dd456c805cfdf544a46c166ab5b4ba6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &480560834
 GameObject:
   m_ObjectHideFlags: 0
@@ -12953,19 +12983,7 @@ MonoBehaviour:
       m_Calls: []
   MouseClick2D:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1706160525}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: PopUpClicked
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   MouseDown2D:
     m_PersistentCalls:
       m_Calls: []
@@ -17715,8 +17733,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dragger: {fileID: 1324188856}
-  _player: {fileID: 11400000, guid: 6d079e86c36b66d4c88947d754ae6e3e, type: 2}
-  _playerAnims: {fileID: 1550784727}
   _arrow: {fileID: 146199083}
   _background: {fileID: 2094348963}
   _deadEnemies: {fileID: 842532801}
@@ -17729,6 +17745,8 @@ MonoBehaviour:
   _playerDisplay: {fileID: 1550784726}
   _attackArea: {fileID: 794008227}
   _followers: {fileID: 11400000, guid: d9764a15526dace4899689a1b14b9b44, type: 2}
+  _player: {fileID: 11400000, guid: 6d079e86c36b66d4c88947d754ae6e3e, type: 2}
+  _playerAnims: {fileID: 1550784727}
 --- !u!1 &953969038
 GameObject:
   m_ObjectHideFlags: 0
@@ -21499,19 +21517,7 @@ MonoBehaviour:
       m_Calls: []
   MouseClick2D:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 474011222}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: PopUpClicked
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   MouseDown2D:
     m_PersistentCalls:
       m_Calls: []
@@ -25156,6 +25162,7 @@ MonoBehaviour:
             m_CallState: 2
   _questionMark: {fileID: 21300000, guid: afcffb3aa82f3b147b7df77048db2a74, type: 3}
   _smoothPopUps: {fileID: 1686129831}
+  _interactionController: {fileID: 1995099795}
 --- !u!1 &1395125817
 GameObject:
   m_ObjectHideFlags: 0
@@ -35642,6 +35649,7 @@ GameObject:
   - component: {fileID: 1706160524}
   - component: {fileID: 1706160526}
   - component: {fileID: 1706160525}
+  - component: {fileID: 1706160527}
   m_Layer: 5
   m_Name: QuickPopUp
   m_TagString: Untagged
@@ -35683,15 +35691,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39de2c2d1d5da8440a2b6be126d2b7ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PositionLerper: {fileID: 605882689}
-  AlphaLerper: {fileID: 118109456}
-  ShakeLerper:
-    EndBehaviour: 0
-    LerpDuration: 1
-    Lerpers: []
   Image: {fileID: 2133317979}
   Text: {fileID: 183838776}
-  IsMainInstance: 0
+  Button: {fileID: 648253981}
+  animator: {fileID: 0}
+  TestSprite: {fileID: 0}
+  TestString: 
 --- !u!114 &1706160526
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35704,6 +35709,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1845bdaedab14ef409d856162638b0a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &1706160527
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1706160523}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1706259275
 GameObject:
   m_ObjectHideFlags: 0

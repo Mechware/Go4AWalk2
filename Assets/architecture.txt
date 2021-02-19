@@ -1,0 +1,10 @@
+The architecture of this game:
+    Game is the entry point
+        GameController controls the main world of the game
+        UIController controls the UI of the game
+        GameEvents handles important events that occur in the game
+
+Thoughts while rewriting architecture:        
+    Controllers are used to control components. They generally emit events for other controllers to listen to (normally world controllers emit events that UI listens to, but occasionally the other way happens).
+    Regular components should only emit events (that the controllers listen to) and read/write to data (that may trigger other events)
+    Things that are just data should be passed through initializers on controllers/components. This way they can be easily switched from Unity objects to pure C# or be passed in test data.
