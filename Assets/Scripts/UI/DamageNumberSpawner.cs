@@ -16,8 +16,8 @@ public class DamageNumberSpawner : MonoBehaviour {
         pool = new ObjectPrefabPool(DamageNumberPrefab, damageNumberParent, 5);
         timers = new GenericPool<UpdateTimer>(() => new UpdateTimer());
     }
-
-    void OnEnable() {
+    void OnDisable()
+    {
         pool.Reset();
         timers.Reset();
     }

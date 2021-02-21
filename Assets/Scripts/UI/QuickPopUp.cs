@@ -16,7 +16,7 @@ public class QuickPopUp : MonoBehaviour {
     private Queue<PopUpData> PopUpsToShow = new Queue<PopUpData>();
 
     private static readonly int NumberOfPopUpsHash = Animator.StringToHash("NumberOfPopUps");
-    private static readonly int DisabledHash = Animator.StringToHash("DisabledHash");
+    private static readonly int DisabledHash = Animator.StringToHash("Disabled");
     private static readonly int TappedHash = Animator.StringToHash("Tapped");
 
     private enum State

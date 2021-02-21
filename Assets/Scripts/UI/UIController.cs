@@ -11,18 +11,19 @@ public class UIController : MonoBehaviour
     [SerializeField] private PopUp _deathPopUp;
     [SerializeField] private EnemyDisplay _enemy;
 
-    [SerializeField] private DamageNumberSpawner _playerDamageNumberSpawner;
-    [SerializeField] private DamageNumberSpawner _enemyDamageNumberSpawner;
+    [Obsolete("Create a battle ui class that deals with this")] [SerializeField] private DamageNumberSpawner _playerDamageNumberSpawner;
+    [Obsolete("Create a battle ui class that deals with this")] [SerializeField] private DamageNumberSpawner _enemyDamageNumberSpawner;
     [SerializeField] private QuickPopUp[] _quickPopUps;
     [SerializeField] private QuickPopUp _mainQuickPopUp;
     [SerializeField] private EnemyArrowIndicator _arrowIndicator;
 
-    [Obsolete("Create a battle ui class that deals with this")] [SerializeField] private AlphaOfAllChildren _battleUi;
-    [Obsolete("Create a battle ui class that deals with this")] [SerializeField] private RobustLerperSerialized _battleUiLerper;
+    [Obsolete("Create a battle ui class that deals with this")] [SerializeField] private Animator _battleAnim;
+    private static readonly int ShowHash = Animator.StringToHash("Showing");
 
     [SerializeField] private Sprite _questionMark;
     [SerializeField] private SmoothPopUpManager _smoothPopUps;
     [SerializeField] private InteractionController _interactionController;
+    [SerializeField] private WalkingUIController _walkingController;
 
     private Player _player;
     private Inventory _inventory;
@@ -57,23 +58,23 @@ public class UIController : MonoBehaviour
 
         _interactionController.OnFightEnter += _arrowIndicator.Disable;
 
+        _battleAnim.SetBool(ShowHash, false);
         _interactionController.OnFightStart += () =>
         {
-            _battleUi.gameObject.SetActive(true);
-            _battleUi.SetAlphaOfAllChildren(0);
-            _battleUiLerper.StartLerping();
+            _battleAnim.SetBool(ShowHash, true);
+            
         };
 
         _interactionController.OnEnemyDeath += (it) =>
         {
             _smoothPopUps.Enable();
             _quickPopUps.ForEach(q => q.Enable());
-            _battleUiLerper.StartReverseLerp();
+            _battleAnim.SetBool(ShowHash, false);
         };
 
         _interactionController.OnPlayerDeathReset += () =>
         {
-            _battleUi.gameObject.SetActive(false);
+            _battleAnim.SetBool(ShowHash, false);
         };
 
         _inventory.OnNewRecipeCraftable += recipe =>
@@ -91,10 +92,7 @@ public class UIController : MonoBehaviour
         {
             _mainQuickPopUp.Show(a.AchievementIcon, "<size=150%>Achievement!</size>\n" + a.AchievementCompletedText);
         };
-    }
 
-    private void Update()
-    {
-        _battleUiLerper.Update(Time.deltaTime);
+        _walkingController.Initialize();
     }
 }

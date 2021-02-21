@@ -1,14 +1,16 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using G4AW2.Combat;
 using G4AW2.Data.DropSystem;
 using TMPro;
 using UnityEngine;
 
-public class MainUI : MonoBehaviour {
+public class WalkingUIController : MonoBehaviour {
 
-    public static MainUI Instance;
-    
+    [Obsolete("Singleton")]
+    public static WalkingUIController Instance;
+
     public RectTransform MasteryFill;
     public TextMeshProUGUI MasteryText;
 
@@ -18,17 +20,45 @@ public class MainUI : MonoBehaviour {
     public InventoryItemDisplay Weapon;
     public InventoryItemDisplay Armor;
     public InventoryItemDisplay Headgear;
-    
+
+    [SerializeField] private Animator animator;
+    private static readonly int ShowHash = Animator.StringToHash("Showing");
+
+    [SerializeField] private InteractionController _interactionController;
     void Awake() {
         Instance = this;
-        ItemViewer.Init();
-        WeaponViewer.Init();
     }
     
-    // Start is called before the first frame update
-    void Start()
+    public void Show()
     {
-        
+        animator.SetBool(ShowHash, true);
+    }
+
+    public void Hide()
+    {
+        animator.SetBool(ShowHash, false);
+    }
+
+    public void Initialize()
+    {
+        Show();
+        _interactionController.OnFightStart += () =>
+        {
+            Hide();
+        };
+
+        _interactionController.OnEnemyDeathFinished += e =>
+        {
+            Show();
+        };
+
+        _interactionController.OnPlayerDeathReset += () =>
+        {
+            Show();
+        };
+
+        ItemViewer.Init();
+        WeaponViewer.Init();
     }
 
     // Update is called once per frame

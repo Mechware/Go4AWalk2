@@ -15,7 +15,7 @@ public class QuestingStatWatcher : MonoBehaviour {
     public TextMeshProUGUI QuestTitle;
     public TextMeshProUGUI ProgressText;
     public Image ProgressFill;
-
+    public SmoothPopUpManager PopUps;
 
     private ActiveQuestBase previous;
 
@@ -82,7 +82,7 @@ public class QuestingStatWatcher : MonoBehaviour {
     private int prevVal = -1;
     void OnChange(int val) {
         if (prevVal != -1 && val > prevVal) {
-            SmoothPopUpManager.ShowPopUp(SpawnPointOfNumberIncreasePopUp.position, "+" + (val - prevVal), Color.green, true);
+            PopUps.ShowPopUpNew(SpawnPointOfNumberIncreasePopUp.position, "+" + (val - prevVal), Color.green, true);
         }
         prevVal = val;
         var prog = previous.GetProgress();

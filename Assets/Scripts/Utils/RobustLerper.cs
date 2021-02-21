@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+[Obsolete("Use an animator")]
 public class RobustLerper : MonoBehaviour {
 
     public enum LoopType {

@@ -25,9 +25,10 @@ namespace G4AW2.Combat {
 
 		public Action<int, ElementalType> OnDamageTaken;
 		public Action<int, ElementalType> OnAttack;
-		
+		public Action<EnemyData, bool> OnDeath;
 
-        [Header("Misc References")]
+
+		[Header("Misc References")]
 	    public TextMeshProUGUI EnemyInfo;
 	    
         [Header("Settings")]
@@ -206,13 +207,23 @@ namespace G4AW2.Combat {
             }
         }
 
+		public void Stop()
+        {
+			StopAllCoroutines();
+        }
+
         private void Die(bool suicide) {
 	        EnemyState = State.Dead;
             Image.color = Color.white;
 	        StopAllCoroutines();
-	        InteractionController.Instance.EnemyDeath(Enemy, suicide);
+			OnDeath?.Invoke(Enemy, suicide);
 
 	        MyAnimator.SetTrigger("Death");
+        }
+
+		public void DebugKill()
+        {
+			OnHit(999999999999, null);
         }
 
 #if UNITY_EDITOR

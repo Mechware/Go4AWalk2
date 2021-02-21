@@ -146,8 +146,9 @@ public class Game : MonoBehaviour
         Load();
         _events.OnAfterLoad.Invoke();
 
-        _gameWorld.Initialize(_inventory);
+        _gameWorld.Initialize(_inventory, _player);
         _gameUI.Initialize(_player, _inventory, _events);
+        _interactions.Initialize();
     }
 
     // Update is called once per frame

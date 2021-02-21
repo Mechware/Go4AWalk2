@@ -58,6 +58,11 @@ public class InteractionController : MonoBehaviour {
     void Update() {
     }
     
+    public void Initialize()
+    {
+        _enemy.OnDeath += EnemyDeath;
+    }
+
     public void StartBossFight(BossQuest bossQuest) {
 
         StartCoroutine(_StartBossFight());
@@ -261,19 +266,17 @@ public class InteractionController : MonoBehaviour {
         
         // Set death thing to active
         DeathCover.gameObject.SetActive(true);
-
+        _enemy.Stop(); 
         OnPlayerDeath?.Invoke();
 
-        //Lerp
         DeathCover.StartLerping(() => {
             Fighting = false;
-
+            _enemy.gameObject.SetActive(false);
             OnPlayerDeathReset?.Invoke();
 
             // Disable enemy fighter
             _playerAnims.SpinDone(1);
             _playerAnims.StopAllCoroutines();
-            _playerAnims.gameObject.SetActive(false);
 
             // Reverse this lerp
             DeathCover.StartReverseLerp(() => {

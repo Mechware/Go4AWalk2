@@ -33,14 +33,15 @@ public class GameController : MonoBehaviour
 
     [SerializeField] private RuntimeSetFollowerData _followers;
 
-    [SerializeField] private Player _player;
     [SerializeField] private PlayerAnimations _playerAnims;
 
     private Inventory _inventory;
+    private Player _player;
 
-    public void Initialize(Inventory i)
+    public void Initialize(Inventory i, Player p)
     {
         _inventory = i;
+        _player = p;
         
         // Background events
         {
