@@ -11,7 +11,7 @@ using UnityEngine.UI;
 namespace G4AW2.UI.Areas {
 	public class AreaManager : MonoBehaviour {
 
-		public static AreaManager Instance;
+		[Obsolete("Singleton")] public static AreaManager Instance;
 		
 		public Area Area;
 

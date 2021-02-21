@@ -13635,7 +13635,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 701840140}
-  - component: {fileID: 701840142}
   - component: {fileID: 701840139}
   - component: {fileID: 701840145}
   - component: {fileID: 701840141}
@@ -13722,6 +13721,7 @@ MonoBehaviour:
   _questWatcher: {fileID: 244994214}
   _mining: {fileID: 1201876788}
   _tutorial: {fileID: 1155954841}
+  _statTracker: {fileID: 413173347}
   _achievements: {fileID: 413173348}
   _quests: {fileID: 701840145}
   _passiveQuests: {fileID: 319248498}
@@ -13733,19 +13733,6 @@ MonoBehaviour:
   _consumables: {fileID: 1623730302}
   _gameWorld: {fileID: 951186434}
   _gameUI: {fileID: 1381393129}
---- !u!114 &701840142
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 701840138}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e9812ec7a224b74ba640935883ff6e4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LoadMode: 0
 --- !u!114 &701840145
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16991,10 +16978,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Inventory: {fileID: 11400000, guid: 26cb67b184c39ce41a042b44d325797c, type: 2}
-  PlayerWeapon:
-    UseConstant: 0
-    ConstantValue: {fileID: 0}
-    Variable: {fileID: 11400000, guid: ddec0eaf5ab10b542b2cca79d5614413, type: 2}
+  Player: {fileID: 0}
+  WeaponUI: {fileID: 1186125109}
   Weapon: {fileID: 170653550}
   Enchanter: {fileID: 1462626083}
   Result: {fileID: 982086823}
@@ -17002,7 +16987,6 @@ MonoBehaviour:
   EnchantButton: {fileID: 718965111}
   NumberOfEnchantedWeapons: {fileID: 11400000, guid: 7d8fe6d2e7f33864b90fbc69e833b4c2,
     type: 2}
-  WeaponUI: {fileID: 1186125109}
 --- !u!1 &935102087
 GameObject:
   m_ObjectHideFlags: 0
@@ -21871,6 +21855,8 @@ MonoBehaviour:
   LevelNameDAMText: {fileID: 1936317006}
   DescriptionText: {fileID: 1369039292}
   SellAmountText: {fileID: 838079171}
+  ItemViewer: {fileID: 1243540567}
+  PlayerWeapon: {fileID: 11400000, guid: ddec0eaf5ab10b542b2cca79d5614413, type: 2}
   Inventory: {fileID: 11400000, guid: 26cb67b184c39ce41a042b44d325797c, type: 2}
   OpenLerper:
     EndBehaviour: 0
@@ -21931,8 +21917,6 @@ MonoBehaviour:
   CompareToLevelProgress: {fileID: 712561845}
   CompareToMasteryText: {fileID: 1886189759}
   CompareToSellAmountText: {fileID: 1305075570}
-  ItemViewer: {fileID: 1243540567}
-  PlayerWeapon: {fileID: 11400000, guid: ddec0eaf5ab10b542b2cca79d5614413, type: 2}
 --- !u!1 &1195228114
 GameObject:
   m_ObjectHideFlags: 0

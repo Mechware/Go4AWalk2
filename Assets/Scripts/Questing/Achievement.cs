@@ -13,7 +13,7 @@ namespace G4AW2.Data {
         [Multiline]
         public string AchievementCompletedText;
         public int NumberToReach;
-        public IntVariable Number;
+        [Obsolete("Gonna have to figure out how to do these achievements without int vars")] public IntVariable Number;
         public Action<Achievement> OnComplete;
 
         public void AchievementInit() {

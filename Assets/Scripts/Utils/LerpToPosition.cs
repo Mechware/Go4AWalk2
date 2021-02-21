@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+[Obsolete("Replace with animator")]
 [RequireComponent(typeof(RectTransform))]
 public class LerpToPosition : MonoBehaviour {
 

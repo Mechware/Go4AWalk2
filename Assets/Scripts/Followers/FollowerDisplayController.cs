@@ -15,10 +15,13 @@ namespace G4AW2.Followers {
 	public class FollowerDisplayController : MonoBehaviour {
 
         [Header("Misc References")]
-        public RuntimeSetFollowerData ListOfCurrentFollowers;
+        [Obsolete("Get this information through initializaion from controller")] public RuntimeSetFollowerData ListOfCurrentFollowers;
 	    public FollowerDisplay DisplayPrefab;
-	    public LerpToPosition WorldCameraLerper;
-	    public Transform EnemyArrowPosition;
+
+		[Obsolete("Move to interaction controller")]
+		public LerpToPosition WorldCameraLerper;
+	    
+		public Transform EnemyArrowPosition;
 
         [Header("Shop")]
 	    public LerpToPosition ShopperWalk;
@@ -106,7 +109,6 @@ Elemental Damage: <color={elemColor}>{elemDmg}</color>";
 					    },
                         () => { }});
 				} else if (fd.Data is QuestGiver) {
-
 				    WorldCameraLerper.StartLerping(() => {
 					    PlayerAnimations.Instance.Spin();
                         QuestGiver.SetData(fd.Data);

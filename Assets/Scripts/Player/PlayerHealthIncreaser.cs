@@ -7,12 +7,12 @@ using UnityEngine;
 
 public class PlayerHealthIncreaser : MonoBehaviour {
 
+    [Obsolete("Just get a reference to player")]
     public IntVariable PlayerHealth;
     public IntVariable PlayerMaxHealth;
 
     public void OnGameStateLoaded() {
 
-        // Fin
         DateTime lastTimePlayedUTC = SaveManager.LastTimePlayedUTC;
         TimeSpan TimeSinceLastPlayed = DateTime.UtcNow - lastTimePlayedUTC;
         double secondsSinceLastPlayed = TimeSinceLastPlayed.TotalSeconds;
@@ -40,7 +40,6 @@ public class PlayerHealthIncreaser : MonoBehaviour {
         if (focus) {
             // Played
             if (PauseTime == DateTime.MaxValue) {
-                Debug.LogWarning("Just played without pausing");
                 return;
             }
 

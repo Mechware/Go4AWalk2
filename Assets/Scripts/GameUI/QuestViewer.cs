@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using CustomEvents;
@@ -9,7 +10,7 @@ public class QuestViewer : MonoBehaviour {
 
     public TextMeshProUGUI Title;
 
-    public ActiveQuestBaseVariable Quest;
+    [Obsolete("Pass in when initialized/when updated")] public ActiveQuestBaseVariable Quest;
 
     public Dialogue StartQuestDialogueBox;
 

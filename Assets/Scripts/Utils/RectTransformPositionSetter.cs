@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Obsolete("Use an animator")]
 [RequireComponent(typeof(RectTransform))]
 public class RectTransformPositionSetter : MonoBehaviour {
 

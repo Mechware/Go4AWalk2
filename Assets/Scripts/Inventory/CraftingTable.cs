@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+[Obsolete("Move this into a controller")]
 [CreateAssetMenu(menuName = "Data/CraftingTable")]
 public class CraftingTable : ScriptableObject {
 

@@ -9,7 +9,7 @@ using UnityEngine.Events;
 [RequireComponent(typeof(Animator))]
 public class PlayerAnimations : MonoBehaviour {
 
-    public static PlayerAnimations Instance;
+    [Obsolete("Singleton")] public static PlayerAnimations Instance;
     public Animator animator;
     public Animator armAnimator;
     public Animator armourAnimator;

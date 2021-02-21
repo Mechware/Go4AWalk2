@@ -8,9 +8,9 @@ using Items;
 using UnityEditor;
 using UnityEngine;
 
-// TODO: Figure out wtf this class is for
+[Obsolete("Move this into the game ui class. Renamed the functions, they aren't processing anything, they're letting the user decide what to do with equipment")]
 public class EquipItemProcessor : MonoBehaviour {
-    public static EquipItemProcessor Instance;
+    [Obsolete("Singleton")] public static EquipItemProcessor Instance;
 
     public Inventory Inventory => DataManager.Instance.Inventory;
     public Player Player => DataManager.Instance.Player;

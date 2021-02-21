@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using G4AW2.Data;
 using UnityEngine;
 
+[Obsolete("Not used, plz delete")]
 public static class GlobalFollowerDrops {
     public static List<FollowerDrop> GlobalDrops = new List<FollowerDrop>();
 }

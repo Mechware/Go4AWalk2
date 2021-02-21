@@ -15,7 +15,7 @@ public class PlayerClickController : MonoBehaviour {
     public ArmorReference ArmorReference;
     public WeaponReference WeaponReference;
 
-    public static PlayerClickController Instance;
+    [Obsolete("Singleton")] public static PlayerClickController Instance;
 
     public InteractionController _controller;
 

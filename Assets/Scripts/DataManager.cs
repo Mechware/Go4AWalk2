@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -5,6 +6,7 @@ using CustomEvents;
 using G4AW2.Combat;
 using UnityEngine;
 
+[Obsolete("This whole thing is real smelly. The game class should deal with configs from a scriptable object and any component should have what ever data it requires passed into it")]
 public class DataManager : MonoBehaviour {
 
     public static DataManager Instance; 

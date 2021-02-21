@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+[Obsolete("Use an animator")]
 [RequireComponent(typeof(Image))]
 public class SetImageAlpha : MonoBehaviour {
 

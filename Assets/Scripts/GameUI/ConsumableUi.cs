@@ -1,5 +1,6 @@
 ﻿using Items;
 using Scripts.DoubleJump;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ public class ConsumableUi : MonoBehaviour
     public RectTransform RegularConsumableParent;
     public RectTransform RegularConsumablePrefab;
 
-    public static ConsumableUi Instance;
+    [Obsolete("Singleton")] public static ConsumableUi Instance;
 
     void Awake()
     {

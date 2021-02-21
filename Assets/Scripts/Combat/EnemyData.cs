@@ -5,6 +5,7 @@ using G4AW2.Data.DropSystem;
 using UnityEngine;
 
 namespace G4AW2.Data.Combat {
+	[Obsolete("Contains both configs and live data. I think this should remain as configs and level/ISaveable should be moved into a new class")]
 	[CreateAssetMenu(menuName = "Data/Follower/Enemy")]
     public class EnemyData : FollowerData, ISaveable {
 

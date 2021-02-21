@@ -6,7 +6,7 @@ using UnityEngine;
 public class FollowerLayoutController : MonoBehaviour {
 
 
-    public static FollowerLayoutController Instance;
+    [Obsolete("Singleton")] public static FollowerLayoutController Instance;
     public FollowerDisplayController FollowerController;
     public float StartX = 16;
     public float StartY = 32;

@@ -9,7 +9,9 @@ using UnityEngine.EventSystems;
 
 public class ShopGiverDisplay : MonoBehaviour, IPointerClickHandler {
 
+    [Obsolete("Do this through events?")]
     public ShopUI Shop;
+
     public Action StartedWalking;
     public Action FinishInteraction;
 

@@ -13,9 +13,10 @@ using UnityEngine;
 using UnityEditor;
 #endif
 
+[Obsolete("Given there's only one of these, make it static but get configs from a scriptable object through intialization?")]
 public class StatTracker : MonoBehaviour {
 
-    public static StatTracker Instance; 
+    [Obsolete("Singleton")] public static StatTracker Instance; 
     
     [Serializable]
     public class EnemyCounter {
@@ -26,6 +27,7 @@ public class StatTracker : MonoBehaviour {
     public List<EnemyCounter> EnemyKillCount;
     private Dictionary<int, IntVariable> enemyDictionary;
 
+    [Obsolete("Save this as a regular list")]
     public RuntimeSetQuest CompletedQuests;
     
 
@@ -41,9 +43,6 @@ public class StatTracker : MonoBehaviour {
     void Awake() {
         Instance = this;
         
-        GameEventHandler.EnemyKilled += EnemyKilled;
-        GameEventHandler.LootObtained += LootObtained;
-
         itemDictionary = new Dictionary<int, IntVariable>();
         foreach(ItemCounter item in ItemObtainedCount) {
             itemDictionary.Add(item.Item.ID, item.Count);
@@ -53,6 +52,12 @@ public class StatTracker : MonoBehaviour {
         foreach(EnemyCounter monster in EnemyKillCount) {
             enemyDictionary.Add(monster.Enemy.ID, monster.Count);
         }
+    }
+
+    public void Initialize(GameEvents events)
+    {
+        events.EnemyKilled += EnemyKilled;
+        events.LootObtained += LootObtained;
     }
 
     private void LootObtained(Item item) {

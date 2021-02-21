@@ -84,7 +84,7 @@ namespace G4AW2.Saving {
             return (false, false);
         }
 
-        // TODO: Rework all of this to go through another script. Isolate saving and loading.
+        [Obsolete("Isolate saving and loading away from rest of game.")]
         private void ShowErrorPopUp() {
             PopUp.SetPopUp("Could not load save data. Try closing the game and reopening. If the problem persists please contact support.", new[] { "Ok", "Other" },
                 new Action[] {

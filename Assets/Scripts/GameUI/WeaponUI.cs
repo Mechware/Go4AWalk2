@@ -21,7 +21,7 @@ DAM {4}+<color=#{1}>{5}</color>";
 DAM {2}";
 
 
-    public static WeaponUI Instance;
+    [Obsolete("Singleton")] public static WeaponUI Instance;
     
     public Button Button1;
     public Button Button2;
@@ -34,12 +34,15 @@ DAM {2}";
     public TextMeshProUGUI DescriptionText;
     public TextMeshProUGUI SellAmountText;
 
+    public ItemViewer ItemViewer;
+    [Obsolete("Just have a reference to player")] public WeaponVariable PlayerWeapon;
+
     public struct ButtonAction {
         public string Title;
         public Action OnClick;
     }
 
-    public Inventory Inventory;
+    [Obsolete("pass in at initialization")] public Inventory Inventory;
 
     public RobustLerperSerialized OpenLerper;
     private enum State { LerpingOpen, LerpingClosed, Open, Closed }
@@ -209,8 +212,7 @@ DAM {2}";
         //ItemViewer.Close();
     }
 
-    public ItemViewer ItemViewer;
-    public WeaponVariable PlayerWeapon;
+
 
     public void SwapWeapon() {
         ItemViewer.ShowItemsFromInventory<Weapon>("Weapon To Compare", false, false, w => { SetCompare(w); ItemViewer.Close(); });

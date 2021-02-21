@@ -17,6 +17,7 @@ namespace G4AW2.Data.DropSystem
         Mythical = 5
     }
 
+    [Obsolete("Split into config and instance")]
     [CreateAssetMenu(menuName = "Data/Items/Item")]
     public class Item : ScriptableObject, IID {
 

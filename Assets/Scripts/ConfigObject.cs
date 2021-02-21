@@ -5,6 +5,7 @@ using System.Linq;
 using G4AW2.Data.DropSystem;
 using UnityEngine;
 
+[Obsolete("Make this not singleton and give game.cs a reference to it")]
 [CreateAssetMenu(menuName = "Data/Config Settings")]
 public class ConfigObject : ScriptableObject {
 

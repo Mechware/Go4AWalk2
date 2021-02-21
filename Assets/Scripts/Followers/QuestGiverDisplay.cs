@@ -61,7 +61,10 @@ public class QuestGiverDisplay : MonoBehaviour, IPointerClickHandler {
         GetComponent<Animator>().SetBool("Giving", true);
     }
 
+    [Obsolete("Move to controller")]
     public RuntimeSetFollowerData ListOfCurrentFollowers;
+
+    [Obsolete("Pass this in via initialization")]
     public RuntimeSetQuest ListOfOpenQuests;
 
     public GameObject DismissButton;

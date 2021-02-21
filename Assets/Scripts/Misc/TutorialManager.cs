@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using CustomEvents;
@@ -6,6 +7,7 @@ using UnityEngine;
 
 public class TutorialManager : MonoBehaviour {
 
+    [Obsolete("Singleton")]
     public static TutorialManager Instance;
     
     public BoolVariable ShowParryAndBlockColor;

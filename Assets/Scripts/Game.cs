@@ -28,6 +28,8 @@ public class Game : MonoBehaviour
     [SerializeField] private MiningPoints _mining;
     [SerializeField] private TutorialManager _tutorial;
 
+    [SerializeField] private StatTracker _statTracker;
+
     [SerializeField] private AchievementManager _achievements;
     [SerializeField] private QuestManager _quests;
     [SerializeField] private PassiveQuestManager _passiveQuests;
@@ -149,6 +151,7 @@ public class Game : MonoBehaviour
         _gameWorld.Initialize(_inventory, _player);
         _gameUI.Initialize(_player, _inventory, _events);
         _interactions.Initialize();
+        _statTracker.Initialize(_events);
     }
 
     // Update is called once per frame

@@ -12,7 +12,7 @@ using Random = UnityEngine.Random;
 namespace G4AW2.Followers {
 	public class FollowerSpawner : MonoBehaviour {
 
-		public static FollowerSpawner Instance;
+		[Obsolete("Singleton")] public static FollowerSpawner Instance;
 		
         public RuntimeSetFollowerData CurrentFollowers;
 	    public ActiveQuestBaseVariable CurrentQuest;

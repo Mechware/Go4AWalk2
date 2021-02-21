@@ -8,7 +8,7 @@ namespace Items {
     public class ConsumableManager : MonoBehaviour {
     
         [NonSerialized] public List<ConsumableSaveData> SaveData = new List<ConsumableSaveData>();
-        public static ConsumableManager Instance;
+        [Obsolete("Singleton")] public static ConsumableManager Instance;
 
 
         private void Awake() {

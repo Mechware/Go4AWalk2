@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using G4AW2.Data.DropSystem;
 using UnityEngine;
 
+[System.Obsolete("Idk what this is but it seems smelly. please remove it D:")]
 public static class ItemDropManager {
 
     public static List<ItemAndRarity> Items = new List<ItemAndRarity>();

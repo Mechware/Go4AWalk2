@@ -1,15 +1,18 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using CustomEvents;
+using G4AW2.Combat;
 using G4AW2.Data.DropSystem;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class EnchantUI : MonoBehaviour {
 
-    public Inventory Inventory;
-    public WeaponReference PlayerWeapon;
+    [Obsolete("Pass this in through initialization")] public Inventory Inventory;
+    [Obsolete("Just have a reference to player")] public Player Player;
+    public WeaponUI WeaponUI;
 
     public IconWithTextController Weapon;
     public IconWithTextController Enchanter;
@@ -19,7 +22,7 @@ public class EnchantUI : MonoBehaviour {
 
     public Button EnchantButton;
 
-    public IntVariable NumberOfEnchantedWeapons;
+    [Obsolete("Move this to the stat tracker")] public IntVariable NumberOfEnchantedWeapons;
 
     // Use this for initialization
     void Start () {
@@ -31,8 +34,8 @@ public class EnchantUI : MonoBehaviour {
 
     void WeaponViewerClicked() {
         ItemViewer.ShowItemsFromInventoryWhere<Weapon>("Enchantable Weapons", ie => !((Weapon)ie.Item).IsEnchanted && !((Weapon) ie.Item).IsTrash(), false, WeaponClicked);
-        if(!PlayerWeapon.Value.IsEnchanted)
-            ItemViewer.Add<Weapon>(PlayerWeapon, 0, WeaponClicked);
+        if(!Player.Weapon.Value.IsEnchanted)
+            ItemViewer.Add<Weapon>(Player.Weapon, 0, WeaponClicked);
     }
 
     void WeaponClicked(Weapon w) {
@@ -53,7 +56,6 @@ public class EnchantUI : MonoBehaviour {
         ItemViewer.Close();
     }
 
-    public WeaponUI WeaponUI;
 
     public void Enchant() {
         Weapon w = Weapon.Item.Item as Weapon;

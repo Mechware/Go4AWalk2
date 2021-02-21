@@ -6,10 +6,11 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class EnemyArrowIndicator : MonoBehaviour {
 
-    public RuntimeSetFollowerData Followers;
+    [Obsolete("Pass this in during initialization")] public RuntimeSetFollowerData Followers;
     public Image Arrow;
     public TextMeshProUGUI NumberofFollowersText;
 

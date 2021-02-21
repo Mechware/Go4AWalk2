@@ -10,7 +10,7 @@ using UnityEngine.UI;
 
 public class QuestingStatWatcher : MonoBehaviour {
 
-    public static QuestingStatWatcher Instance;
+    [Obsolete("Singleton")] public static QuestingStatWatcher Instance;
     
     public TextMeshProUGUI QuestTitle;
     public TextMeshProUGUI ProgressText;

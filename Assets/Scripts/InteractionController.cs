@@ -11,7 +11,7 @@ using UnityEngine;
 
 public class InteractionController : MonoBehaviour {
 
-    public static InteractionController Instance;
+    [Obsolete("Singleton")] public static InteractionController Instance;
 
     public bool Fighting { private set; get; }
 

@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class DeadEnemyController : MonoBehaviour {
 
-    public static DeadEnemyController Instance;
+    [Obsolete("Singleton")] public static DeadEnemyController Instance;
     
     public int EndingPosition = -527;
 

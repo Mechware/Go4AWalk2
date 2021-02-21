@@ -10,7 +10,7 @@ using Material = G4AW2.Data.DropSystem.Material;
 
 public class ItemViewer : MonoBehaviour {
 
-    public static ItemViewer Instance;
+    [Obsolete("Singleton")] public static ItemViewer Instance;
     public GameObject ItemDisplayPrefab;
 
     public GameObject Content;
