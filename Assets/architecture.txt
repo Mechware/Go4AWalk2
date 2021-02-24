@@ -1,10 +1,21 @@
 The architecture of this game:
-    Game is the entry point
-        GameController controls the main world of the game
-        UIController controls the UI of the game
-        GameEvents handles important events that occur in the game
+    Game is the entry point of the game
+        
+        Save data is all the state in the game
 
-Thoughts while rewriting architecture:        
-    Controllers are used to control components. They generally emit events for other controllers to listen to (normally world controllers emit events that UI listens to, but occasionally the other way happens).
-    Regular components should only emit events (that the controllers listen to) and read/write to data (that may trigger other events)
-    Things that are just data should be passed through initializers on controllers/components. This way they can be easily switched from Unity objects to pure C# or be passed in test data.
+        Managers read/write the save data and are the gate to the save data. Managers post events about the save data changing
+
+        GameEvents handles important events that occur in the game that managers may need to react to and controllers may use to communicate
+        
+        Controllers control the game and what is actually happening
+            WorldController controls the main world of the game
+                MiningPointController controls the mining points in the game
+                AreaController controls displaying the areas in the game
+            UIController controls the UI of the game
+                MenuController controls the menus of the game
+                etc
+
+        Coordinators are things that are responsible for making certain sequences of events to occur like entering a battle, dying in a battle, completing a quest, encountering a quest giver, etc.
+
+        Things without these postfixs/catagories are components and shouldn't know about the rest of the game. They should take in data through an initialization function and post events for the game code.
+

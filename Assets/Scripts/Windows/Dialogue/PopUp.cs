@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace G4AW2.Dialogue {
+namespace G4AW2.Component.UI {
 	public class PopUp : MonoBehaviour {
 
 		public TextMeshProUGUI Text;

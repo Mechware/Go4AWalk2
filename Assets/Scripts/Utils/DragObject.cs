@@ -1,12 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using G4AW2.Utils;
-using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.EventSystems;
-using CustomEvents;
-using UnityEngine.UI;
 using System;
+using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class DragObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler {
 
@@ -24,10 +19,9 @@ public class DragObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
     public Action OnReset;
     public GameObject slider;
 
-   // public GameEvent moving;
-   // public GameEvent stopped;
+    public bool ScrollingEnabled => _scrollingEnabled1 && _scrollingEnabled2;
 
-	private RectTransform _rt;
+    private RectTransform _rt;
 
 	private RectTransform rt {
 		get {
@@ -38,38 +32,38 @@ public class DragObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 	private Vector3 deltaPosition;
 	private Vector3 position;
 
-    private bool scrollingEnabled2 = true;
+    private bool _scrollingEnabled1 = true;
+    private bool _scrollingEnabled2 = true;
 
     public void Disable2() {
-        scrollingEnabled2 = false;
+        _scrollingEnabled2 = false;
     }
 
     public void Enable2() {
-        scrollingEnabled2 = true;
+        _scrollingEnabled2 = true;
 	    CheckReset();
     }
 
-    private bool scrollingEnabled = true;
 
 	public void Disable() {
-		scrollingEnabled = false;
+		_scrollingEnabled1 = false;
 	}
 
 	public void Enable() {
-		scrollingEnabled = true;
+		_scrollingEnabled1 = true;
 	    CheckReset();
 
 	}
 
     private void CheckReset() {
-        if(scrollingEnabled && scrollingEnabled2 && IsAtEnd())
+        if(_scrollingEnabled1 && _scrollingEnabled2 && IsAtEnd())
             OnReset.Invoke();
     }
 
     private bool startedScrolling = false;
 
 	public void OnBeginDrag(PointerEventData eventData) {
-	    if (!scrollingEnabled || !scrollingEnabled2) {
+	    if (!_scrollingEnabled1 || !_scrollingEnabled2) {
 	        startedScrolling = false;
 	        return;
 	    }
@@ -81,7 +75,7 @@ public class DragObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 	}
 
 	public void OnDrag(PointerEventData eventData) {
-	    if (!scrollingEnabled || !scrollingEnabled2 || !startedScrolling) {
+	    if (!_scrollingEnabled1 || !_scrollingEnabled2 || !startedScrolling) {
 	        startedScrolling = false;
 			return;
         }
@@ -124,7 +118,7 @@ public class DragObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 
 	public void OnEndDrag(PointerEventData eventData) {
 	    startedScrolling = false;
-		if (!scrollingEnabled || !scrollingEnabled2)
+		if (!_scrollingEnabled1 || !_scrollingEnabled2)
 			return;
 
 		if (IsAtEnd()) {
@@ -134,7 +128,7 @@ public class DragObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 		eventData.Use();
 	}
 
-    bool IsAtEnd() {
+    public bool IsAtEnd() {
         return rt.localPosition.x.Near(MinBounds.x, 0.5f) && rt.localPosition.y.Near(MaxBounds.y, 0.5f);
     }
 

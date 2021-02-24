@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class SetImageFromItem : MonoBehaviour {
 
-	public void SetImage(Item a)
+	public void SetImage(ItemConfig a)
     {
         GetComponent<Image>().sprite = a.Image;
         GetComponent<Image>().SetNativeSize();

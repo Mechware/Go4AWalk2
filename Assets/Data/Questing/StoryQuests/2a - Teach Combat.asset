@@ -9,37 +9,34 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57c0be4fcee030147a69fac0bb634505, type: 3}
+  m_Script: {fileID: 11500000, guid: ee10126d9cee7da4fa524ad35982edd6, type: 3}
   m_Name: 2a - Teach Combat
   m_EditorClassIdentifier: 
-  ID: 12
-  DisplayName: Carl's Ghost
-  Level: 10
-  NextQuest: {fileID: 11400000, guid: 34332a3094c776547ab733c1126f5bc8, type: 2}
+  Id: 0
+  DisplayName: 
+  Description: 
+  NextQuestConfig: {fileID: 11400000, guid: 34332a3094c776547ab733c1126f5bc8, type: 2}
   StartConversation:
-    Text: 'Welp. It looks like Carl has come back from the dead and want his revenge.
-
-
-      Teach him a lesson and send his salmonella ass back to hell where it belongs.
-
-
-      Also trying blocking and parrying to avoid damage. Swipe backwards when he is
-      blue to block. Swipe forwards when he is red to parry. Easy peasy right?'
-    Speaker: {fileID: 21300000, guid: c27605eebf83392428128ddf89b5bd1f, type: 3}
+    Text: 
+    Speaker: {fileID: 0}
   EndConversation:
-    Text: "Good riddance! You might not be as bright as I thought so the enemies will
-      continue to glow blue or red for the next few quests to allow you to practice,
-      but after that you'll be on your own. \n\n"
-    Speaker: {fileID: 21300000, guid: c27605eebf83392428128ddf89b5bd1f, type: 3}
-  MinEnemyDropTime: 60
-  MaxEnemyDropTime: 180
-  Area: {fileID: 11400000, guid: 5e4d1ba5949749b44bc3427231ca82f2, type: 2}
-  MiningPoints: []
-  Enemies:
+    Text: 
+    Speaker: {fileID: 0}
+  MinEnemyDropTime: 240
+  MaxEnemyDropTime: 480
+  Area: {fileID: 11400000, guid: 60879555d9500764f8ce37f4fb6fa0f1, type: 2}
+  MiningPoints:
+  - MinDistanceBetween: 54
+    MaxDistanceBetween: 1080
+    Image: {fileID: 21300000, guid: 23ff33e35320e59418f02b19c8bbb0f6, type: 3}
     Drops:
-    - Follower: {fileID: 11400000, guid: 51d3cce514427d448a622c4b31127522, type: 2}
-      MinLevel: 1
-      MaxLevel: 1
-      DropChance: 1
+      Items:
+      - ItemConfig: {fileID: 11400000, guid: 0304f5a168938d84ca86376587ce5bbb, type: 2}
+        dropChance: 1
+  Enemies:
+    Drops: []
   QuestRewards: []
-  Enemy: {fileID: 11400000, guid: 1b66009fee8697e49adee1bbb71ffac3, type: 2}
+  QuestType: 0
+  QuestParam: {fileID: 11400000, guid: f9cb20d3635f5ec40935188217f021cd, type: 2}
+  ValueToReach: 5
+  Level: 5

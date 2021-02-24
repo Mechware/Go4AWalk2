@@ -5,7 +5,7 @@ using System.Linq;
 using UnityEngine;
 
 [Serializable]
-public class ElementalWeakness {
+public class ElementalWeakness : ScriptableObject {
 
     [Serializable]
     public struct Weakness {

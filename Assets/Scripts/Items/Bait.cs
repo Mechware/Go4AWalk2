@@ -5,7 +5,7 @@ using G4AW2.Data;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Data/Items/Bait")]
-public class Bait : Consumable
+public class Bait : ConsumableConfig
 {
     public List<Drop> DropChances;
     public float MinDropTime;
@@ -21,7 +21,7 @@ public class Bait : Consumable
 
 [Serializable]
 public class Drop {
-    public FollowerData Data;
+    public FollowerConfig Config;
     public int Chance;
 }
 

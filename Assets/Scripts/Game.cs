@@ -1,75 +1,44 @@
-﻿using CustomEvents;
-using G4AW2.Combat;
+﻿using G4AW2;
+using G4AW2.Controller;
 using G4AW2.Data;
 using G4AW2.Data.DropSystem;
-using G4AW2.Followers;
-using G4AW2.Saving;
-using G4AW2.UI.Areas;
+using G4AW2.Managers;
 using Items;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Game : MonoBehaviour
 {
-    // TODO: Move these into player?
-    [SerializeField] private Player _player;
-    [SerializeField] private WeaponVariable _playerWeapon;
-    [SerializeField] private ArmorVariable _playerArmor;
+    // Data
+    [SerializeField] private SaveGame _saveGame;
 
     [SerializeField] private GameEvents _events;
-    [SerializeField] private SaveManager[] _saveManagers;
-    [SerializeField] private Inventory _inventory;
-    [SerializeField] private ConfigObject _configs;
-    [SerializeField] private MasteryLevels _masteryLevels;
-    [SerializeField] private AreaManager _areaManager;
-    [SerializeField] private QuestingStatWatcher _questWatcher;
-    [SerializeField] private MiningPoints _mining;
-    [SerializeField] private TutorialManager _tutorial;
 
-    [SerializeField] private StatTracker _statTracker;
-
+    // Managers - talk with the data and post events
     [SerializeField] private AchievementManager _achievements;
+    [SerializeField] private TutorialManager _tutorial;
     [SerializeField] private QuestManager _quests;
-    [SerializeField] private PassiveQuestManager _passiveQuests;
-
-    // Move to follower display class
-    [SerializeField] private FollowerDisplayController _followerDisplay;
-    [SerializeField] private FollowerSpawner _followerSpawner;
-
-    // Move into player display class
-    [SerializeField] private PlayerHealthIncreaser _playerHealthIncreaser;
-
-    // Move into combat controller type thing
-    [SerializeField] private InteractionController _interactions;
-
-
-    [SerializeField] private BaitBuffController _bait;
+    [SerializeField] private FollowerManager _followers;
+    [SerializeField] private BaitBuffManager _bait;
     [SerializeField] private ConsumableManager _consumables;
+    [SerializeField] private PlayerManager _player;
+    [SerializeField] private ItemManager _inventory;
+    [SerializeField] private RecipeManager _crafting;
 
-    [SerializeField] private GameController _gameWorld;
+    // Coordinators controls the flow of complex interactions
+    [SerializeField] private InteractionCoordinator _interactions;
+
+    // Controllers control the game and are kind of heirarchical by nature
+    [SerializeField] private WorldController _gameWorld;
     [SerializeField] private UIController _gameUI;
 
+    public WeaponConfig StartWeapon;
+    public ArmorConfig StartArmor;
+    public QuestConfig StartQuest;
 
     private bool _allowedToSave = true;
-
     private void Awake()
     {
-        // TODO: Look into why this is required
-        _configs.RegisterChanges();
-        _masteryLevels.Register();
-
-        _events.OnNewGame += OnNewGame;
-        _events.OnNewGame += _masteryLevels.OnNewGame;
-
         // Does this need to be an event?
-        _events.OnAfterLoad += _followerDisplay.AfterLoadEvent;
-        _events.OnAfterLoad += _followerSpawner.LoadFinished;
-        _events.OnAfterLoad += _achievements.InitAchievements;
-        _events.OnAfterLoad += _quests.Initialize;
-        _events.OnAfterLoad += _passiveQuests.Initialize;
-        _events.OnAfterLoad += _playerHealthIncreaser.OnGameStateLoaded;
         _events.OnAfterLoad += _consumables.OnLoad;
 
         _events.OnSceneExitEvent += Save;
@@ -81,66 +50,48 @@ public class Game : MonoBehaviour
         {
             // TODO: Pass the event manager into these objects and let these items deal with this 
             // themselves
-            _areaManager.SetArea(q.Area);
-            _questWatcher.SetQuest(q);
-            _mining.QuestChanged(q); // Could probably go into a background owner type thing
-            _tutorial.QuestUpdated(q);
+            _tutorial.SetQuest(q.Config);
+            _followers.SetQuest(q.Config);
         };
 
         _interactions.OnEnemyDeathFinished += _events.OnEnemyKilled;
-        _inventory.OnLootObtained += _events.OnLootObtained;
+        _inventory.OnItemObtained += _events.OnLootObtained;
 
         _achievements.OnAchievementObtained += _events.OnAchievementObtained;
+        _crafting.RecipeUnlocked += _events.OnRecipeUnlocked;
     }
 
     public void OnNewGame()
     {
-        Weapon original = _playerWeapon.Value;
-        _playerWeapon.Value = Instantiate(original);
-        _playerWeapon.Value.CreatedFromOriginal = true;
-        _playerWeapon.Value.Level = 1;
-        _playerWeapon.Value.TapsWithWeapon.Value = 0;
-        _playerWeapon.Value.Random = 30;
-        _playerWeapon.Value.SetValuesBasedOnRandom();
+        _player.Weapon = new WeaponInstance(StartWeapon, 1);
+        _player.Weapon.SaveData.Level = 1;
+        _player.Weapon.SaveData.Random = 30;
 
-        Armor originalArmor = _playerArmor;
-        _playerArmor.Value = Instantiate(originalArmor);
-        _playerArmor.Value.CreatedFromOriginal = true;
-        _playerArmor.Value.Level = 1;
-        _playerArmor.Value.Random = 50;
-        _playerArmor.Value.SetValuesBasedOnRandom();
+        _player.Armor = new ArmorInstance(StartArmor, 1);
+        _player.Armor.SaveData.Level = 1;
+        _player.Armor.SaveData.Random = 50;
+
+        SaveGame.SaveData.CurrentQuests.Add((new QuestInstance(StartQuest, true)).SaveData);
     }
 
     public void Save()
     {
         if (!_allowedToSave) return;
 
-        foreach(var manager in _saveManagers)
-        {
-            manager.Save();
-        }
+        _saveGame.Save();
     }
 
     public void Load()
     {
-        bool newGame = true;
-        bool failed = false;
-        foreach (var manager in _saveManagers)
-        {
-            var res = manager.Load();
-            newGame &= res.noFile;
-            failed |= res.failed; 
-        }
-        if(failed)
-        {
-            _allowedToSave = false;
-            return;
-        }
+        bool newGame = _saveGame.Load();
         if(newGame)
         {
+            OnNewGame();
             _events.OnNewGame?.Invoke();
         }
     }
+
+    bool _successfulInitialization = false;
 
     // Start is called before the first frame update
     void Start()
@@ -148,21 +99,29 @@ public class Game : MonoBehaviour
         Load();
         _events.OnAfterLoad.Invoke();
 
-        _gameWorld.Initialize(_inventory, _player);
-        _gameUI.Initialize(_player, _inventory, _events);
+        _quests.Initialize(_events, _inventory);
+        _followers.Initialize(_events, _quests);
+        _player.Initialize();
+        _inventory.Initialize();
+
         _interactions.Initialize();
-        _statTracker.Initialize(_events);
+
+        _gameWorld.Initialize(_inventory, _player, _followers, _events);
+        _gameUI.Initialize(_player, _inventory, _events, _quests);
+        _interactions.Initialize();
+
+        _quests.Initialize(_events, _inventory);
+        _followers.Initialize(_events, _quests);
+        _player.Initialize();
+        _successfulInitialization = true;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!_successfulInitialization) return;
         _bait.MyUpdate();
+        _gameUI.GameUpdate(Time.deltaTime);
+        _gameWorld.GameUpdate(Time.deltaTime);
     }
-}
-
-
-public class Pipes
-{
-    public Action<Achievement> OnAchievementObtained;
 }

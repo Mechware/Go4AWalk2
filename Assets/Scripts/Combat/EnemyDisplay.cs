@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 using CustomEvents;
 using G4AW2.Data.DropSystem;
-using G4AW2.Events;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -25,7 +24,7 @@ namespace G4AW2.Combat {
 
 		public Action<int, ElementalType> OnDamageTaken;
 		public Action<int, ElementalType> OnAttack;
-		public Action<EnemyData, bool> OnDeath;
+		public Action<EnemyInstance, bool> OnDeath;
 
 
 		[Header("Misc References")]
@@ -34,13 +33,12 @@ namespace G4AW2.Combat {
         [Header("Settings")]
         public FloatReference StunDuration;
 	    public Color BaseDamageColor;
-	    public BoolReference ShowParryAndBlockColors;
 	    public Color ParryColor;
 	    public Color BlockColor;
 
         [Header("Data")]
 		public State EnemyState;
-		public EnemyData Enemy;
+		public EnemyInstance Enemy;
 
         [Header("Readable Data")]
 		public IntReference MaxHealth;
@@ -73,22 +71,22 @@ namespace G4AW2.Combat {
 			gameObject.SetActive(false);
         }
 
-		public void SetEnemy( EnemyData data) {
+		public void SetEnemy( EnemyInstance instance) {
 			EnemyState = State.Idle;
-			Enemy = data;
+			Enemy = instance;
             
-			MaxHealth.Value = data.MaxHealth;
+			MaxHealth.Value = instance.MaxHealth;
 			CurrentHealth.Value = MaxHealth;
 
 			AnimatorOverrideController aoc = (AnimatorOverrideController)GetComponent<Animator>().runtimeAnimatorController;
-			aoc["Death"] = Enemy.Death;
-			aoc["Dead"] = Enemy.Dead;
-			aoc["Flinch"] = Enemy.Flinch;
-			aoc["BeforeAttack"] = Enemy.BeforeAttack;
-			aoc["AttackExecute"] = Enemy.AttackExecute;
-			aoc["AfterAttack"] = Enemy.AfterAttack;
-			aoc["Idle"] = Enemy.Idle;
-            aoc["Walking"] = Enemy.Walking;
+			aoc["Death"] = Enemy.Config.Death;
+			aoc["Dead"] = Enemy.Config.Dead;
+			aoc["Flinch"] = Enemy.Config.Flinch;
+			aoc["BeforeAttack"] = Enemy.Config.BeforeAttack;
+			aoc["AttackExecute"] = Enemy.Config.AttackExecute;
+			aoc["AfterAttack"] = Enemy.Config.AfterAttack;
+			aoc["Idle"] = Enemy.Config.Idle;
+            aoc["Walking"] = Enemy.Config.Walking;
 
 
             // TODO: Find a better way to do this
@@ -97,13 +95,13 @@ namespace G4AW2.Combat {
             transform.localPosition = pos;
 
 		    Vector2 r = RectTransform.sizeDelta;
-		    r.x = data.SizeOfSprite.x;
-		    r.y = data.SizeOfSprite.y;
+		    r.x = Enemy.Config.SizeOfSprite.x;
+		    r.y = Enemy.Config.SizeOfSprite.y;
 		    RectTransform.sizeDelta = r;
 
 		    Image.color = Color.white;
 
-		    EnemyInfo.text = $"{data.DisplayName}\nLevel {data.Level}";
+		    EnemyInfo.text = $"{Enemy.Config.DisplayName}\nLevel {Enemy.SaveData.Level}";
 		}
 
 		public void OnHit(float damage, ElementalType type)
@@ -166,39 +164,39 @@ namespace G4AW2.Combat {
 		public IEnumerator DoAttack(bool first = false) {
 			for (; ; ) {
 				EnemyState = State.Idle;
-                yield return new WaitForSeconds(first ? Enemy.TimeBetweenAttacks / 4 : Enemy.TimeBetweenAttacks);
+                yield return new WaitForSeconds(first ? Enemy.Config.TimeBetweenAttacks / 4 : Enemy.Config.TimeBetweenAttacks);
                 first = false;
 			    if (EnemyState == State.Dead) break;
 
 				EnemyState = State.BeforeAttack;
 			    MyAnimator.SetTrigger("AttackStart");
-			    if(ShowParryAndBlockColors) Image.color = BlockColor;
+			    if(SaveGame.SaveData.ShowParryAndBlockColors) Image.color = BlockColor;
 
 				// Wind up
-				yield return new WaitForSeconds(Enemy.AttackPrepTime);
+				yield return new WaitForSeconds(Enemy.Config.AttackPrepTime);
 			    if(EnemyState == State.Dead)
 			        break;
 
 
                 EnemyState = State.ExecuteAttack;
 			    MyAnimator.SetTrigger("AttackExecute");
-			    if(ShowParryAndBlockColors)
+			    if(SaveGame.SaveData.ShowParryAndBlockColors)
 			        Image.color = ParryColor;
 
                 // Perform the attack
-                yield return new WaitForSeconds(Enemy.AttackExecuteTime);
-			    if(ShowParryAndBlockColors)
+                yield return new WaitForSeconds(Enemy.Config.AttackExecuteTime);
+			    if(SaveGame.SaveData.ShowParryAndBlockColors)
 			        Image.color = Color.white;
 			    if(EnemyState == State.Dead)
 			        break;
 
                 EnemyState = State.AfterAttack;
 				OnAttack?.Invoke(Enemy.Damage, null);
-			    if (Enemy.HasElementalDamage) {
-					OnAttack?.Invoke(Enemy.ElementalDamage, Enemy.ElementalDamageType);
+			    if (Enemy.Config.HasElementalDamage) {
+					OnAttack?.Invoke(Enemy.ElementalDamage, Enemy.Config.ElementalDamageType);
 			    }
 
-                if (Enemy.OneAndDoneAttacker) {
+                if (Enemy.Config.OneAndDoneAttacker) {
 	                Die(true);
 			        break;
 			    }

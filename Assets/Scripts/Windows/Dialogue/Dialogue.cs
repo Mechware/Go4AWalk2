@@ -1,3 +1,4 @@
+using G4AW2.Data;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -5,7 +6,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace G4AW2.Dialogue {
+namespace G4AW2.Component.UI {
 	public class Dialogue : MonoBehaviour {
 
 		public Image Person;

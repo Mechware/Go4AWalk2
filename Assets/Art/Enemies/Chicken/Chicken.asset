@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92ed46357c010e84ea5a3394f3ad888d, type: 3}
   m_Name: Chicken
   m_EditorClassIdentifier: 
-  ID: 14
+  Id: 0
   DisplayName: Chicken
   Portrait: {fileID: 21300000, guid: c27605eebf83392428128ddf89b5bd1f, type: 3}
   SizeOfSprite: {x: 32, y: 32}
@@ -38,23 +38,19 @@ MonoBehaviour:
   HasElementalDamage: 0
   ElementalDamageAtLevel0: 0
   ElementalDamageType: {fileID: 0}
-  ElementalWeaknesses:
-    UseConstant: 1
-    ConstantValue:
-      Weaknesses: []
-    Variable: {fileID: 0}
+  ElementalWeaknesses: {fileID: 0}
   Drops:
     Items:
-    - item: {fileID: 11400000, guid: dc820a69f03cdd143ab25de0aeea35e5, type: 2}
+    - ItemConfig: {fileID: 11400000, guid: dc820a69f03cdd143ab25de0aeea35e5, type: 2}
       dropChance: 0.5
-    - item: {fileID: 11400000, guid: 3b3b3aae3ef904f4fa27af0aa93725d8, type: 2}
+    - ItemConfig: {fileID: 11400000, guid: dc820a69f03cdd143ab25de0aeea35e5, type: 2}
       dropChance: 0.2
-    - item: {fileID: 11400000, guid: fa96b3e9303ec5749a21f90630e57f59, type: 2}
+    - ItemConfig: {fileID: 11400000, guid: fa96b3e9303ec5749a21f90630e57f59, type: 2}
       dropChance: 0.01
-    - item: {fileID: 11400000, guid: dc820a69f03cdd143ab25de0aeea35e5, type: 2}
+    - ItemConfig: {fileID: 11400000, guid: 3b3b3aae3ef904f4fa27af0aa93725d8, type: 2}
       dropChance: 1
-    - item: {fileID: 11400000, guid: dc820a69f03cdd143ab25de0aeea35e5, type: 2}
+    - ItemConfig: {fileID: 11400000, guid: c95e6bfd76411ee4ba7c1167255243a9, type: 2}
       dropChance: 0.5
-    - item: {fileID: 11400000, guid: dc820a69f03cdd143ab25de0aeea35e5, type: 2}
+    - ItemConfig: {fileID: 11400000, guid: c95e6bfd76411ee4ba7c1167255243a9, type: 2}
       dropChance: 0.5
   OneAndDoneAttacker: 0

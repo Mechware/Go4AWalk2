@@ -16,17 +16,12 @@ public static class ItemDropManager {
         Items.Remove(Item);
     }
 
-    public static List<Item> GetRandomDrop() {
-        List<Item> droppedItems = new List<Item>();
+    public static List<ItemInstance> GetRandomDrop() {
+        List<ItemInstance> droppedItems = new List<ItemInstance>();
         foreach(var item in Items) {
             float value = Random.value;
             if(item.dropChance > value) {
-                Item itemThatGoesToInventory = item.item;
-                if (item.item.ShouldCreateNewInstanceWhenPlayerObtained()) {
-                    itemThatGoesToInventory = Object.Instantiate(item.item);
-                    itemThatGoesToInventory.OnAfterObtained();
-                }
-                droppedItems.Add(itemThatGoesToInventory);
+                droppedItems.Add(ItemFactory.GetInstance(item.ItemConfig, -1));
             }
         }
         return droppedItems;

@@ -1,13 +1,8 @@
-using System;
 using G4AW2.Combat;
-using System.Collections;
-using System.Collections.Generic;
-using CustomEvents;
-using G4AW2.Data.DropSystem;
+using G4AW2.Managers;
+using System;
 using UnityEngine;
 using UnityEngine.Events;
-using BlockState = G4AW2.Data.DropSystem.Armor.BlockState;
-using G4AW2.Dialogue;
 
 public class PlayerFighterDisplay : MonoBehaviour {
 
@@ -24,15 +19,16 @@ public class PlayerFighterDisplay : MonoBehaviour {
     [SerializeField] private float _failedParryStunTime = 1.25f;
     [SerializeField] private float _maxBlockDuration = 4f;
 
-    private BlockState _blockState = BlockState.None;
     private float _nextAttackTime = 0;
-    private bool _AbleToAttack => _blockState == Armor.BlockState.None && Time.time > _nextAttackTime;
-    private UpdateTimer _blockTimer = new UpdateTimer();
-    
-    private EnemyDisplay _enemy;
-    private Player _player;
 
-    public void Initialize(EnemyDisplay enemy, Player p)
+    private bool _AbleToAttack => _blockState == BlockState.None && Time.time > _nextAttackTime;
+    private UpdateTimer _blockTimer = new UpdateTimer();
+    private BlockState _blockState = BlockState.None;
+
+    private EnemyDisplay _enemy;
+    private PlayerManager _player;
+
+    public void Initialize(EnemyDisplay enemy, PlayerManager p)
     {
         _enemy = enemy;
         _player = p;
@@ -43,7 +39,7 @@ public class PlayerFighterDisplay : MonoBehaviour {
         float fdamage;
         if(type == null)
         {
-            fdamage = _player.Armor.Value.GetDamage(damage, _blockState);
+            fdamage = _player.Armor.GetDamage(damage, _blockState);
 
             if (_blockState == BlockState.Blocking || _blockState == BlockState.PerfectlyBlocking)
             {
@@ -57,7 +53,7 @@ public class PlayerFighterDisplay : MonoBehaviour {
         } 
         else
         {
-            fdamage = _player.Armor.Value.ElementalWeakness.Value[type] * damage;
+            fdamage = _player.Armor.Config.ElementalWeakness[type] * damage;
         }
 
         damage = Mathf.RoundToInt(fdamage);
@@ -70,10 +66,10 @@ public class PlayerFighterDisplay : MonoBehaviour {
         _nextAttackTime = Time.time + 1f / _player.GetAttackSpeed();
 
         OnHit?.Invoke(_player.GetLightDamage(), null);
-        if(_player.Weapon.Value.IsEnchanted)
-            OnHit?.Invoke(_player.GetElementalDamage(), _player.Weapon.Value.Enchantment.Type);
+        if(_player.Weapon.IsEnchanted)
+            OnHit?.Invoke(_player.GetElementalDamage(), _player.Weapon.Enchantment.Config.Type);
 
-        _player.Weapon.Value.TapsWithWeapon.Value++;
+        _player.Weapon.IncrementTaps();
     }
 
 	public void PlayerScreenSwipe( Vector3[] swipe ) {
@@ -96,15 +92,14 @@ public class PlayerFighterDisplay : MonoBehaviour {
     }
 
 	public void PlayerBlocked() {
-        _blockState = Armor.BlockState.Blocking;
 
 	    _blockTimer.Start(_maxBlockDuration, () => {
-            _blockState = Armor.BlockState.None;
+            _blockState = BlockState.None;
 	        OnBlockEnd.Invoke();
 	    }, null);
 
         if (_enemy.EnemyState == EnemyDisplay.State.BeforeAttack) {
-            _blockState = Armor.BlockState.PerfectlyBlocking;
+            _blockState = BlockState.PerfectlyBlocking;
         }
         OnBlockStart.Invoke();
 	}
@@ -114,12 +109,12 @@ public class PlayerFighterDisplay : MonoBehaviour {
 
         if (!success)
         {
-            _blockState = Armor.BlockState.BadParry;
+            _blockState = BlockState.BadParry;
             OnFailedParry.Invoke();
             Timer.StartTimer(_failedParryStunTime, () =>
             {
                 OnFailedParryDone.Invoke();
-                _blockState = Armor.BlockState.None;
+                _blockState = BlockState.None;
             }, this);
         } else
         {

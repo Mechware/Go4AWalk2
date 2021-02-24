@@ -1,17 +1,11 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using CustomEvents;
 using G4AW2.Data.Crafting;
-using G4AW2.Data.DropSystem;
-using G4AW2.Dialogue;
+using G4AW2.Managers;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class CraftingMenu : MonoBehaviour {
 
-    public CraftingTable CT;
+    public RecipeManager CT;
     public GameObject ItemPrefab;
     public Transform ParentOfItems;
 
@@ -26,14 +20,14 @@ public class CraftingMenu : MonoBehaviour {
 
         Children.Clear();
 
-        foreach (var r in CT.Recipes) {
+        foreach (var r in Configs.Instance.Recipes) {
             var go = Instantiate(ItemPrefab, ParentOfItems.transform);
             Children.Add(go);
             
             var holder = go.GetComponent<IconWithTextController>();
             SetItem(holder, r);
             
-            if (!r.IsCraftable(CT.Inventory)) {
+            if (!r.IsCraftable()) {
                 AlphaOfAllChildren.SetAlphaOfAllChildren(go, 1, Color.gray);
             }
         }
@@ -41,25 +35,25 @@ public class CraftingMenu : MonoBehaviour {
 
     private void SetItem(IconWithTextController holder, CraftingRecipe recipe) {
 
-        if (CraftingRecipesMade.RecipesMade.Contains(recipe.ID)) {
-            string text = $"{recipe.Result.Item.GetName()}\n<size=50%>";
+        if (SaveGame.SaveData.CraftingRecipesMade.Contains(recipe.Id)) {
+            string text = $"{recipe.Result.Item.Name}\n<size=50%>";
             foreach (var r in recipe.Components) {
-                text += $"{r.Item.GetName()} - {CT.Inventory.GetAmountOf(r.Item)} / {r.Amount}\n";
+                text += $"{r.Item.Name} - {ItemManager.Instance.GetAmountOf(r.Item)} / {r.Amount}\n";
             }
 
-            holder.SetData(recipe.Result.Item, 1, text, () => {
+            holder.SetDataConfig(recipe.Result.Item, 1, text, () => {
                 MakeRecipe(recipe);
             }, showText:false);
         }
         else {
             string text = $"???\n<size=50%>";
             foreach(var r in recipe.Components) {
-                text += $"{r.Item.GetName()} - {CT.Inventory.GetAmountOf(r.Item)} / {r.Amount}\n";
+                text += $"{r.Item.Name} - {ItemManager.Instance.GetAmountOf(r.Item)} / {r.Amount}\n";
             }
 
-            holder.SetData(recipe.Result.Item, 1, text, () => {
+            holder.SetDataConfig(recipe.Result.Item, 1, text, () => {
                 if (MakeRecipe(recipe)) {
-                    CraftingRecipesMade.RecipesMade.Add(recipe.ID);
+                    SaveGame.SaveData.CraftingRecipesMade.Add(recipe.Id);
                     RefreshList();
                 }
             }, QuestionMark, false);
@@ -70,8 +64,8 @@ public class CraftingMenu : MonoBehaviour {
     //public QuickPopUp PopUp;
 
     private bool MakeRecipe(CraftingRecipe cr) {
-        Item it = CT.Make(cr);
-        if (it == null) return false;
+        var its = CT.Make(cr);
+        if (its == null) return false;
 
         /*
         string desc = "";
@@ -85,7 +79,7 @@ public class CraftingMenu : MonoBehaviour {
 
         //PopUp.ShowSprite(cr.Result.Item.Image, $"<size=150%>Crafted!</size>\nYou successfully crafted a {it.GetName()}!{PostText}");
 
-        EquipItemProcessor.Instance.ProcessItem(it, null);
+        EquipItemProcessor.Instance.ProcessItem(its, null);
         RefreshList();
 
         return true;

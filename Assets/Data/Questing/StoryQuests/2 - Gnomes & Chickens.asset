@@ -9,46 +9,34 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ada0d5cb92b2c864bacdd24744b16c27, type: 3}
+  m_Script: {fileID: 11500000, guid: ee10126d9cee7da4fa524ad35982edd6, type: 3}
   m_Name: 2 - Gnomes & Chickens
   m_EditorClassIdentifier: 
-  ID: 2
-  DisplayName: Defeat 2 Gnomes
-  Level: 2
-  NextQuest: {fileID: 11400000, guid: 1813d7e0e7b53e14ea74a03ff6e2ceee, type: 2}
+  Id: 0
+  DisplayName: 
+  Description: 
+  NextQuestConfig: {fileID: 11400000, guid: 1813d7e0e7b53e14ea74a03ff6e2ceee, type: 2}
   StartConversation:
-    Text: 'K, so here''s the thing. These two gnomes have been walking around going
-      off about the dualist nature of the mind and body and whether or not consiousness
-      can arise from the physical brain or if it is a non-physical phenomena.
-
-
-      Anyway, its getting real annoying. Kill them for me.'
-    Speaker: {fileID: 21300000, guid: c27605eebf83392428128ddf89b5bd1f, type: 3}
+    Text: 
+    Speaker: {fileID: 0}
   EndConversation:
-    Text: 'Wow, you actually just killed those gnomes for no reason other than I found
-      them annoying. Congrats, you''re a monster.
-
-
-      Also they were both wrong cause we''re all just living in a simulation anyway.'
-    Speaker: {fileID: 21300000, guid: c27605eebf83392428128ddf89b5bd1f, type: 3}
-  MinEnemyDropTime: 10
-  MaxEnemyDropTime: 30
-  Area: {fileID: 11400000, guid: 5e4d1ba5949749b44bc3427231ca82f2, type: 2}
+    Text: 
+    Speaker: {fileID: 0}
+  MinEnemyDropTime: 240
+  MaxEnemyDropTime: 480
+  Area: {fileID: 11400000, guid: 60879555d9500764f8ce37f4fb6fa0f1, type: 2}
   MiningPoints:
   - MinDistanceBetween: 54
-    MaxDistanceBetween: 70
-    Image: {fileID: 21300000, guid: dfd16260fe78d094ca5b6fa32592a98f, type: 3}
+    MaxDistanceBetween: 1080
+    Image: {fileID: 21300000, guid: 23ff33e35320e59418f02b19c8bbb0f6, type: 3}
     Drops:
       Items:
-      - item: {fileID: 11400000, guid: 37922c7fca4096e48a04b7094a8a3449, type: 2}
-        dropChance: 0.8
+      - ItemConfig: {fileID: 11400000, guid: 0304f5a168938d84ca86376587ce5bbb, type: 2}
+        dropChance: 1
   Enemies:
-    Drops:
-    - Follower: {fileID: 11400000, guid: 396482660d9279a4294f369245325131, type: 2}
-      MinLevel: 1
-      MaxLevel: 4
-      DropChance: 1
+    Drops: []
   QuestRewards: []
-  TotalAmount: {fileID: 11400000, guid: 233c7adc1a8771f4a8095f340b465260, type: 2}
-  AmountToReach: 2
-  AmountSoFar: {fileID: 11400000, guid: 66d427283c1651346a2bb795dcaa50b7, type: 2}
+  QuestType: 0
+  QuestParam: {fileID: 11400000, guid: f9cb20d3635f5ec40935188217f021cd, type: 2}
+  ValueToReach: 5
+  Level: 5

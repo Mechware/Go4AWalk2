@@ -10,69 +10,65 @@ using UnityEngine.UI;
 
 public class InventoryItemDisplay : MonoBehaviour, IPointerClickHandler {
 
-	public Item Item;
+	public ItemInstance CurrentItem { private set; get; }
 
-	public Image Background;
-	public Image ItemSprite;
-	public TextMeshProUGUI AmountText;
-    public TextMeshProUGUI LevelText;
-    public TextMeshProUGUI DamageText;
+	[SerializeField] private Image Background;
+    [SerializeField] private Image ItemSprite;
+    [SerializeField] private TextMeshProUGUI AmountText;
+    [SerializeField] private TextMeshProUGUI LevelText;
+    [SerializeField] private TextMeshProUGUI DamageText;
 
     private Action<InventoryItemDisplay> OnClick;
 
-	public void SetData( Item item, int amount, 
+	public void SetDataInstance( ItemInstance obj, 
+        int amount, 
         Action<InventoryItemDisplay> onclick = null, 
         Sprite spriteOverride = null,
         bool showText = true) {
 
+        CurrentItem = obj;
+
+        ItemConfig item = obj.Config;
+        
+        if (obj is WeaponInstance w) {
+            DamageText.text = $"<size=50%>DAM</size>\n<color=#c42c36>{w.RawDamage}</color>";
+            DamageText.gameObject.SetActive(true);
+        } else if (obj is ArmorInstance a) {
+            DamageText.text = $"<size=50%>ARM</size>\n<color=#13b2f2>{a.ArmValue}</color>";
+            DamageText.gameObject.SetActive(true);
+        } else if (obj is HeadgearInstance h) {
+            DamageText.text = $"<size=50%>HP</size>\n<color=#7bcf5c>{h.ExtraHealth}</color>";
+            DamageText.gameObject.SetActive(true);
+        }
+
+        SetDataConfig(obj.Config, amount, onclick, spriteOverride, showText);
+	}
+    
+    public void SetDataConfig( ItemConfig obj, 
+        int amount, 
+        Action<InventoryItemDisplay> onclick = null, 
+        Sprite spriteOverride = null,
+        bool showText = true) {
+
+        CurrentItem = null;
 	    ItemSprite.color = Color.white;
 
         LevelText.gameObject.SetActive(false);
         DamageText.gameObject.SetActive(false);
 
-        Item = item;
+        
+        ItemConfig item = obj;
+        
         if(item == null) {
             ItemSprite.color = Color.clear;
             ItemSprite.sprite = null;
             AmountText.gameObject.SetActive(false);
         } else {
-            if(item.Rarity == Rarity.Common) {
-                Background.color = ConfigObject.GetColorFromRarity(Rarity.Common);
-            }
-            else if (item.Rarity == Rarity.Uncommon) {
-                Background.color = ConfigObject.GetColorFromRarity(Rarity.Uncommon);
-            } 
-            else if (item.Rarity == Rarity.Rare) {
-                Background.color = ConfigObject.GetColorFromRarity(Rarity.Rare);
-            } 
-            else if (item.Rarity == Rarity.VeryRare) {
-                Background.color = ConfigObject.GetColorFromRarity(Rarity.VeryRare);
-            } 
-            else if (item.Rarity == Rarity.Legendary) {
-                Background.color = ConfigObject.GetColorFromRarity(Rarity.Legendary);
-            } 
-            else if (item.Rarity == Rarity. Mythical) {
-                Background.color = ConfigObject.GetColorFromRarity(Rarity.Mythical);
-            }
+            Background.color = RarityDefines.Instance.GetColorFromRarity(item.Rarity);
 
             ItemSprite.sprite = spriteOverride ?? item.Image;
             AmountText.text = "x" +amount.ToString();
             AmountText.gameObject.SetActive(amount > 1);
-            if(item is Weapon) {
-                Weapon w = (Weapon)item;
-                DamageText.text = $"<size=50%>DAM</size>\n<color=#c42c36>{w.RawDamage}</color>";
-                DamageText.gameObject.SetActive(true);
-            }
-            if (item is Armor) {
-                Armor a = (Armor)item;
-                DamageText.text = $"<size=50%>ARM</size>\n<color=#13b2f2>{a.ARMValue}</color>";
-                DamageText.gameObject.SetActive(true);
-            }
-            if(item is Headgear) {
-                Headgear hg = (Headgear) item;
-                DamageText.text = $"<size=50%>HP</size>\n<color=#7bcf5c>{hg.ExtraHealth}</color>";
-                DamageText.gameObject.SetActive(true);
-            }
         }
 
 	    if (!showText) {
@@ -83,19 +79,6 @@ public class InventoryItemDisplay : MonoBehaviour, IPointerClickHandler {
 
         OnClick = onclick;
 	}
-
-#if UNITY_EDITOR
-    /// <summary>
-    /// For testing ONLY.
-    /// </summary>
-	[ContextMenu("SetItem")]
-	public void SetItem() {
-		if (Item == null) {
-			throw new Exception("There's no item to set to...");
-		}
-		SetData(Item, 1, (it) => { });
-	}
-#endif
 
     public void OnPointerClick(PointerEventData eventData) {
         OnClick?.Invoke(this);

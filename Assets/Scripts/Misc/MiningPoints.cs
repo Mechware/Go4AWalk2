@@ -1,11 +1,7 @@
+using G4AW2.Component.UI;
+using G4AW2.Data;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using CustomEvents;
-using G4AW2.Data.Area;
-using G4AW2.Data.DropSystem;
-using G4AW2.Dialogue;
-using G4AW2.Questing;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -19,7 +15,7 @@ public class MiningPoints : MonoBehaviour {
 
     [SerializeField] private bool IsScrolling;
 
-    public Action<Item> OnItemReceived;
+    public Action<ItemInstance> OnItemReceived;
 
     private ObjectPrefabPool Pool;
 
@@ -28,7 +24,7 @@ public class MiningPoints : MonoBehaviour {
 
     private Area currentArea;
 
-    public void QuestChanged(ActiveQuestBase a) {
+    public void SetQuest(QuestConfig a) {
         if (currentArea != a.Area) {
             currentArea = a.Area;
             Pool.Reset();
@@ -84,10 +80,10 @@ public class MiningPoints : MonoBehaviour {
         cr.MouseClick2D.RemoveAllListeners();
         cr.MouseClick2D.AddListener((v) => {
 
-            if(InteractionController.Instance.Fighting)
+            if(InteractionCoordinator.Instance.Fighting)
                 return;
 
-            var items = point.Drops.GetItems(false);
+            var items = point.Drops.GetItems(false, 0);
             string itemText = "";
             foreach (var item in items) {
                 itemText += $"A {item.GetName()}\n";

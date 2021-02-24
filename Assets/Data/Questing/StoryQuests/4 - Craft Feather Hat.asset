@@ -9,40 +9,34 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b2c329e95bdfd747b5a9a4dce04670b, type: 3}
+  m_Script: {fileID: 11500000, guid: ee10126d9cee7da4fa524ad35982edd6, type: 3}
   m_Name: 4 - Craft Feather Hat
   m_EditorClassIdentifier: 
-  ID: 8
-  DisplayName: Craft Feathered Hat
-  Level: 4
-  NextQuest: {fileID: 11400000, guid: 3bdbfb305ca5b514fbfb60ae208f0bdc, type: 2}
+  Id: 0
+  DisplayName: 
+  Description: 
+  NextQuestConfig: {fileID: 0}
   StartConversation:
-    Text: 'Man I can''t get over those annoying gnomes. They have those stupid little
-      hats to try and look smart.
-
-
-      Kill gnomes until they drop a hat so you can wear it as a sick, grisly trophy
-      to rub in their stupid know-it-all faces. Better yet put a feather in it to
-      show them how much cooler it could look.'
-    Speaker: {fileID: 21300000, guid: c27605eebf83392428128ddf89b5bd1f, type: 3}
+    Text: 
+    Speaker: {fileID: 0}
   EndConversation:
-    Text: Not bad! You can equip that hat through the journal (top right boHey, not
-      bad! Make sure you equip it!
-    Speaker: {fileID: 21300000, guid: c27605eebf83392428128ddf89b5bd1f, type: 3}
-  MinEnemyDropTime: 30
-  MaxEnemyDropTime: 60
-  Area: {fileID: 11400000, guid: 5e4d1ba5949749b44bc3427231ca82f2, type: 2}
-  MiningPoints: []
-  Enemies:
+    Text: 
+    Speaker: {fileID: 0}
+  MinEnemyDropTime: 240
+  MaxEnemyDropTime: 480
+  Area: {fileID: 11400000, guid: 60879555d9500764f8ce37f4fb6fa0f1, type: 2}
+  MiningPoints:
+  - MinDistanceBetween: 54
+    MaxDistanceBetween: 1080
+    Image: {fileID: 21300000, guid: 23ff33e35320e59418f02b19c8bbb0f6, type: 3}
     Drops:
-    - Follower: {fileID: 11400000, guid: 396482660d9279a4294f369245325131, type: 2}
-      MinLevel: 5
-      MaxLevel: 10
-      DropChance: 4
-    - Follower: {fileID: 11400000, guid: f9cb20d3635f5ec40935188217f021cd, type: 2}
-      MinLevel: 5
-      MaxLevel: 10
-      DropChance: 1
+      Items:
+      - ItemConfig: {fileID: 11400000, guid: 0304f5a168938d84ca86376587ce5bbb, type: 2}
+        dropChance: 1
+  Enemies:
+    Drops: []
   QuestRewards: []
-  TotalAmount: {fileID: 11400000, guid: be36c9fe256f2e943ba7565f6c48e8fa, type: 2}
-  AmountToReach: 1
+  QuestType: 0
+  QuestParam: {fileID: 11400000, guid: f9cb20d3635f5ec40935188217f021cd, type: 2}
+  ValueToReach: 5
+  Level: 5

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using CustomEvents;
+using G4AW2;
 using G4AW2.Data.Combat;
 using UnityEngine;
 using UnityEngine.UI;
@@ -22,20 +23,25 @@ public class DeadEnemyController : MonoBehaviour {
         DeadEnemies = new ObjectPrefabPool(DeadEnemyPrefab, DeadEnemyParent);
     }
 
+    public void Initialize(GameEvents events)
+    {
+        events.AreaChanged += a => ClearEnemies();
+    }
+
     public void ClearEnemies() {
         StopAllCoroutines();
         DeadEnemies.Reset();
     }
 
-    public void AddDeadEnemy(float x, float y, EnemyData s) {
+    public void AddDeadEnemy(float x, float y, EnemyInstance s) {
 
         GameObject go = DeadEnemies.GetObject();
 
-        go.GetComponent<Image>().sprite = s.DeadSprite;
+        go.GetComponent<Image>().sprite = s.Config.DeadSprite;
         RectTransform rt = ((RectTransform) go.transform);
         Vector2 r = rt.sizeDelta;
-        r.x = s.SizeOfSprite.x;
-        r.y = s.SizeOfSprite.y;
+        r.x = s.Config.SizeOfSprite.x;
+        r.y = s.Config.SizeOfSprite.y;
         rt.sizeDelta = r;
 
         Vector3 pos = rt.anchoredPosition;

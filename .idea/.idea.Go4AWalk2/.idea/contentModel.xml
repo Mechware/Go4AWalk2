@@ -8,6 +8,40 @@
       <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
+        <e p="Demigiant" t="Include">
+          <e p="DemiLib" t="Include">
+            <e p="Core" t="Include">
+              <e p="DemiLib.xml" t="Include" />
+              <e p="Editor" t="Include">
+                <e p="DemiEditor.xml" t="Include" />
+              </e>
+            </e>
+          </e>
+          <e p="DOTween" t="Include">
+            <e p="Modules" t="Include">
+              <e p="DOTweenModuleAudio.cs" t="Include" />
+              <e p="DOTweenModulePhysics.cs" t="Include" />
+              <e p="DOTweenModulePhysics2D.cs" t="Include" />
+              <e p="DOTweenModuleSprite.cs" t="Include" />
+              <e p="DOTweenModuleUI.cs" t="Include" />
+              <e p="DOTweenModuleUnityVersion.cs" t="Include" />
+              <e p="DOTweenModuleUtils.cs" t="Include" />
+            </e>
+            <e p="readme.txt" t="Include" />
+          </e>
+          <e p="DOTweenPro" t="Include">
+            <e p="DOTweenAnimation.cs" t="Include" />
+            <e p="DOTweenProShortcuts.cs" t="Include" />
+            <e p="DOTweenTextMeshPro.cs" t="Include" />
+            <e p="DOTweenTk2d.cs" t="Include" />
+            <e p="Editor" t="Include">
+              <e p="DOTweenAnimationInspector.cs" t="Include" />
+              <e p="DOTweenPreviewManager.cs" t="Include" />
+            </e>
+            <e p="readme.txt" t="Include" />
+          </e>
+          <e p="readme_DOTweenPro.txt" t="Include" />
+        </e>
         <e p="Plugins" t="Include">
           <e p="DTCompileTimeTracker" t="Include">
             <e p="CompileTimeTracker" t="Include">
@@ -28,28 +62,45 @@
               </e>
             </e>
           </e>
+          <e p="Sirenix" t="Include">
+            <e p="Odin Inspector" t="Include">
+              <e p="Scripts" t="Include">
+                <e p="Editor" t="Include">
+                  <e p="AssemblyImportSettingsAutomation.cs" t="Include" />
+                  <e p="BuildAOTAutomation.cs" t="Include" />
+                  <e p="EnsureOdinInspectorDefine.cs" t="Include" />
+                  <e p="FixBrokenUnityObjectWrapperDrawer.cs" t="Include" />
+                  <e p="Sirenix.OdinInspector.CompatibilityLayer.Editor.asmdef" t="Include" />
+                  <e p="SyncListDrawer.cs" t="Include" />
+                  <e p="SyncVarAttributeDrawer.cs" t="Include" />
+                  <e p="Vector2IntMinMaxAttributeDrawer.cs" t="Include" />
+                  <e p="VectorIntDrawers.cs" t="Include" />
+                  <e p="VectorIntPropertyResolvers.cs" t="Include" />
+                </e>
+                <e p="SerializedNetworkBehaviour.cs" t="Include" />
+                <e p="Sirenix.OdinInspector.CompatibilityLayer.asmdef" t="Include" />
+                <e p="VectorIntFormatters.cs" t="Include" />
+              </e>
+            </e>
+          </e>
         </e>
         <e p="Scripts" t="Include">
           <e p="Areas" t="Include">
             <e p="Area.cs" t="Include" />
-            <e p="AreaManager.cs" t="Include" />
           </e>
+          <e p="BaitBuffController.cs" t="Include" />
           <e p="Combat" t="Include">
             <e p="AttackArea.cs" t="Include" />
             <e p="ElementalType.cs" t="Include" />
             <e p="ElementalWeakness.cs" t="Include" />
-            <e p="EnemyData.cs" t="Include" />
+            <e p="EnemyConfig.cs" t="Include" />
             <e p="EnemyDisplay.cs" t="Include" />
             <e p="PlayerFightingLogic.cs" t="Include" />
-            <e p="PowerMonitor.cs" t="Include" />
-            <e p="SpellData.cs" t="Include" />
             <e p="Swiping" t="Include">
               <e p="SwipeDrawer.cs" t="Include" />
             </e>
           </e>
           <e p="ConfigObject.cs" t="Include" />
-          <e p="CraftingRecipesMade.cs" t="Include" />
-          <e p="DataManager.cs" t="Include" />
           <e p="Editor" t="Include">
             <e p="AnimationCreator.cs" t="Include" />
             <e p="DrawIfPropertyDrawer.cs" t="Include" />
@@ -73,19 +124,6 @@
                   <e p="Vector3ArrayPropertyDrawer.cs" t="Include" />
                   <e p="Vector3PropertyDrawer.cs" t="Include" />
                 </e>
-                <e p="Specific" t="Include">
-                  <e p="ActiveQuestBasePropertyDrawer.cs" t="Include" />
-                  <e p="ArmorPropertyDrawer.cs" t="Include" />
-                  <e p="CraftingRecipePropertyDrawer.cs" t="Include" />
-                  <e p="ElementalWeaknessPropertyDrawer.cs" t="Include" />
-                  <e p="FollowerDataPropertyDrawer.cs" t="Include" />
-                  <e p="HeadgearPropertyDrawer.cs" t="Include" />
-                  <e p="InstrumentDataPropertyDrawer.cs" t="Include" />
-                  <e p="ItemPropertyDrawer.cs" t="Include" />
-                  <e p="PassiveQuestPropertyDrawer.cs" t="Include" />
-                  <e p="SongDataPropertyDrawer.cs" t="Include" />
-                  <e p="WeaponPropertyDrawer.cs" t="Include" />
-                </e>
               </e>
             </e>
             <e p="GameEventListeners" t="Include">
@@ -101,18 +139,6 @@
                 <e p="GameEventListenerVector3.cs" t="Include" />
                 <e p="GameEventListenerVector3Array.cs" t="Include" />
               </e>
-              <e p="Specific" t="Include">
-                <e p="GameEventListenerActiveQuestBase.cs" t="Include" />
-                <e p="GameEventListenerArmor.cs" t="Include" />
-                <e p="GameEventListenerCraftingRecipe.cs" t="Include" />
-                <e p="GameEventListenerFollowerData.cs" t="Include" />
-                <e p="GameEventListenerHeadgear.cs" t="Include" />
-                <e p="GameEventListenerItem.cs" t="Include" />
-                <e p="GameEventListenerPassiveQuest.cs" t="Include" />
-                <e p="GameEventListenerQuest.cs" t="Include" />
-                <e p="GameEventListenerSongData.cs" t="Include" />
-                <e p="GameEventListenerWeapon.cs" t="Include" />
-              </e>
             </e>
             <e p="GameEvents" t="Include">
               <e p="General" t="Include">
@@ -127,18 +153,6 @@
                 <e p="GameEventVector2Array.cs" t="Include" />
                 <e p="GameEventVector3.cs" t="Include" />
                 <e p="GameEventVector3Array.cs" t="Include" />
-              </e>
-              <e p="Specific" t="Include">
-                <e p="GameEventActiveQuestBase.cs" t="Include" />
-                <e p="GameEventArmor.cs" t="Include" />
-                <e p="GameEventCraftingRecipe.cs" t="Include" />
-                <e p="GameEventFollowerData.cs" t="Include" />
-                <e p="GameEventHeadgear.cs" t="Include" />
-                <e p="GameEventItem.cs" t="Include" />
-                <e p="GameEventPassiveQuest.cs" t="Include" />
-                <e p="GameEventQuest.cs" t="Include" />
-                <e p="GameEventSongData.cs" t="Include" />
-                <e p="GameEventWeapon.cs" t="Include" />
               </e>
             </e>
             <e p="Generics" t="Include">
@@ -156,15 +170,6 @@
                 <e p="PersistentSetInt.cs" t="Include" />
                 <e p="PersistentSetVector3.cs" t="Include" />
               </e>
-              <e p="Specific" t="Include">
-                <e p="PersistentSetActiveQuestBase.cs" t="Include" />
-                <e p="PersistentSetCraftingRecipe.cs" t="Include" />
-                <e p="PersistentSetFollowerData.cs" t="Include" />
-                <e p="PersistentSetItem.cs" t="Include" />
-                <e p="PersistentSetPassiveQuest.cs" t="Include" />
-                <e p="PersistentSetQuest.cs" t="Include" />
-                <e p="PersistentSetSongData.cs" t="Include" />
-              </e>
             </e>
             <e p="References" t="Include">
               <e p="General" t="Include">
@@ -177,32 +182,10 @@
                 <e p="Vector3ArrayReference.cs" t="Include" />
                 <e p="Vector3Reference.cs" t="Include" />
               </e>
-              <e p="Specific" t="Include">
-                <e p="ActiveQuestBaseReference.cs" t="Include" />
-                <e p="ArmorReference.cs" t="Include" />
-                <e p="CraftingRecipeReference.cs" t="Include" />
-                <e p="ElementalWeaknessReference.cs" t="Include" />
-                <e p="FollowerDataReference.cs" t="Include" />
-                <e p="HeadgearReference.cs" t="Include" />
-                <e p="InstrumentDataReference.cs" t="Include" />
-                <e p="ItemReference.cs" t="Include" />
-                <e p="PassiveQuestReference.cs" t="Include" />
-                <e p="SongDataReference.cs" t="Include" />
-                <e p="WeaponReference.cs" t="Include" />
-              </e>
             </e>
             <e p="RuntimeSets" t="Include">
               <e p="General" t="Include">
                 <e p="RuntimeSetInt.cs" t="Include" />
-              </e>
-              <e p="Specific" t="Include">
-                <e p="RuntimeSetActiveQuestBase.cs" t="Include" />
-                <e p="RuntimeSetCraftingRecipe.cs" t="Include" />
-                <e p="RuntimeSetFollowerData.cs" t="Include" />
-                <e p="RuntimeSetItem.cs" t="Include" />
-                <e p="RuntimeSetPassiveQuest.cs" t="Include" />
-                <e p="RuntimeSetQuest.cs" t="Include" />
-                <e p="RuntimeSetSongData.cs" t="Include" />
               </e>
             </e>
             <e p="UnityEvents" t="Include">
@@ -216,22 +199,6 @@
                 <e p="UnityEventVector3.cs" t="Include" />
                 <e p="UnityEventVector3Array.cs" t="Include" />
               </e>
-              <e p="Specific" t="Include">
-                <e p="UnityEventActiveQuestBase.cs" t="Include" />
-                <e p="UnityEventArmor.cs" t="Include" />
-                <e p="UnityEventCraftingRecipe.cs" t="Include" />
-                <e p="UnityEventElementalWeakness.cs" t="Include" />
-                <e p="UnityEventEnemyData.cs" t="Include" />
-                <e p="UnityEventFollowerData.cs" t="Include" />
-                <e p="UnityEventHeadgear.cs" t="Include" />
-                <e p="UnityEventIEnumerableLoot.cs" t="Include" />
-                <e p="UnityEventInstrumentData.cs" t="Include" />
-                <e p="UnityEventItem.cs" t="Include" />
-                <e p="UnityEventPassiveQuest.cs" t="Include" />
-                <e p="UnityEventQuest.cs" t="Include" />
-                <e p="UnityEventSongData.cs" t="Include" />
-                <e p="UnityEventWeapon.cs" t="Include" />
-              </e>
             </e>
             <e p="Variables" t="Include">
               <e p="General" t="Include">
@@ -244,123 +211,97 @@
                 <e p="Vector3ArrayVariable.cs" t="Include" />
                 <e p="Vector3Variable.cs" t="Include" />
               </e>
-              <e p="Specific" t="Include">
-                <e p="ActiveQuestBaseVariable.cs" t="Include" />
-                <e p="ArmorVariable.cs" t="Include" />
-                <e p="CraftingRecipeVariable.cs" t="Include" />
-                <e p="ElementalWeaknessVariable.cs" t="Include" />
-                <e p="FollowerDataVariable.cs" t="Include" />
-                <e p="HeadgearVariable.cs" t="Include" />
-                <e p="InstrumentDataVariable.cs" t="Include" />
-                <e p="ItemVariable.cs" t="Include" />
-                <e p="PassiveQuestVariable.cs" t="Include" />
-                <e p="SongDataVariable.cs" t="Include" />
-                <e p="WeaponVariable.cs" t="Include" />
-              </e>
             </e>
           </e>
           <e p="FluteController.cs" t="Include" />
           <e p="Followers" t="Include">
             <e p="DeadEnemyController.cs" t="Include" />
-            <e p="EncounterManager.cs" t="Include" />
-            <e p="FollowerData.cs" t="Include" />
+            <e p="EnemyInstance.cs" t="Include" />
+            <e p="FollowerConfig.cs" t="Include" />
             <e p="FollowerDisplay.cs" t="Include" />
             <e p="FollowerDisplayController.cs" t="Include" />
             <e p="FollowerDropData.cs" t="Include" />
+            <e p="FollowerFactory.cs" t="Include" />
+            <e p="FollowerInstance.cs" t="Include" />
             <e p="FollowerLayoutController.cs" t="Include" />
-            <e p="FollowerPopulator.cs" t="Include" />
-            <e p="FollowerSpawner.cs" t="Include" />
             <e p="GlobalFollowerDrops.cs" t="Include" />
-            <e p="QuestGiver.cs" t="Include" />
+            <e p="QuestGiverConfig.cs" t="Include" />
             <e p="QuestGiverDisplay.cs" t="Include" />
-            <e p="ShopGiverDisplay.cs" t="Include" />
+            <e p="QuestGiverInstance.cs" t="Include" />
+            <e p="ShopFollowerInstance.cs" t="Include" />
+            <e p="ShopKeeperDisplay.cs" t="Include" />
           </e>
+          <e p="Game.cs" t="Include" />
           <e p="GameEventHandler.cs" t="Include" />
-          <e p="GameStats" t="Include">
-            <e p="StatTracker.cs" t="Include" />
-          </e>
           <e p="GameUI" t="Include">
+            <e p="ConsumableUi.cs" t="Include" />
             <e p="CraftingMenu.cs" t="Include" />
             <e p="DebugMenu.cs" t="Include" />
             <e p="EnchantUI.cs" t="Include" />
-            <e p="EnemyArrowIndicator.cs" t="Include" />
             <e p="MainUI.cs" t="Include" />
             <e p="PlayerClickController.cs" t="Include" />
             <e p="QuestViewer.cs" t="Include" />
             <e p="WeaponUI.cs" t="Include" />
           </e>
-          <e p="InstrumentData.cs" t="Include" />
           <e p="InteractionController.cs" t="Include" />
           <e p="Inventory" t="Include">
             <e p="CraftingTable.cs" t="Include" />
-            <e p="Inventory.cs" t="Include" />
-            <e p="InventoryEntry.cs" t="Include" />
             <e p="InventoryItemDisplay.cs" t="Include" />
           </e>
           <e p="Items" t="Include">
-            <e p="Armor.cs" t="Include" />
+            <e p="ArmorConfig.cs" t="Include" />
+            <e p="ArmorInstance.cs" t="Include" />
             <e p="Bait.cs" t="Include" />
-            <e p="Consumable.cs" t="Include" />
-            <e p="ConsumableManager.cs" t="Include" />
+            <e p="Configs.cs" t="Include" />
+            <e p="ConsumableConfig.cs" t="Include" />
             <e p="CraftingRecipe.cs" t="Include" />
-            <e p="Enchanter.cs" t="Include" />
-            <e p="Headgear.cs" t="Include" />
-            <e p="Item.cs" t="Include" />
+            <e p="EnchanterConfig.cs" t="Include" />
+            <e p="EnchanterInstance.cs" t="Include" />
+            <e p="HeadgearConfig.cs" t="Include" />
+            <e p="HeadgearInstance.cs" t="Include" />
+            <e p="Inventory.cs" t="Include" />
             <e p="ItemAndRarity.cs" t="Include" />
+            <e p="ItemConfig.cs" t="Include" />
             <e p="ItemDropBubble.cs" t="Include" />
             <e p="ItemDropBubbleManager.cs" t="Include" />
             <e p="ItemDropManager.cs" t="Include" />
             <e p="ItemDropper.cs" t="Include" />
-            <e p="ItemFilter.cs" t="Include" />
+            <e p="ItemFactory.cs" t="Include" />
+            <e p="ItemInstance.cs" t="Include" />
             <e p="ItemViewer.cs" t="Include" />
-            <e p="ITrashable.cs" t="Include" />
             <e p="Material.cs" t="Include" />
             <e p="ModRoll.cs" t="Include" />
-            <e p="Weapon.cs" t="Include" />
+            <e p="WeaponConfig.cs" t="Include" />
+            <e p="WeaponInstance.cs" t="Include" />
           </e>
-          <e p="MasteryLevels.cs" t="Include" />
+          <e p="Managers" t="Include">
+            <e p="AchievementManager.cs" t="Include" />
+            <e p="AreaManager.cs" t="Include" />
+            <e p="ConsumableManager.cs" t="Include" />
+            <e p="FollowerManager.cs" t="Include" />
+            <e p="QuestManager.cs" t="Include" />
+            <e p="TutorialManager.cs" t="Include" />
+          </e>
           <e p="Misc" t="Include">
             <e p="MiningPoint.cs" t="Include" />
             <e p="MiningPoints.cs" t="Include" />
-            <e p="TutorialManager.cs" t="Include" />
+            <e p="Slice.cs" t="Include" />
           </e>
           <e p="Player" t="Include">
-            <e p="CritFormula.cs" t="Include" />
             <e p="Player.cs" t="Include" />
             <e p="PlayerAnimations.cs" t="Include" />
-            <e p="PlayerHealthIncreaser.cs" t="Include" />
           </e>
-          <e p="PostNewGameEventHandling.cs" t="Include" />
           <e p="Questing" t="Include">
             <e p="Achievement.cs" t="Include" />
-            <e p="AchievementManager.cs" t="Include" />
-            <e p="ActiveEnemySlayerQuest.cs" t="Include" />
-            <e p="ActiveItemCollectQuest.cs" t="Include" />
-            <e p="ActiveQuest.cs" t="Include" />
-            <e p="ActiveQuestBase.cs" t="Include" />
-            <e p="ActiveWalkingQuest.cs" t="Include" />
-            <e p="BossQuest.cs" t="Include" />
-            <e p="CollectItemQuest.cs" t="Include" />
-            <e p="EnemySlayerQuest.cs" t="Include" />
-            <e p="PassiveQuest.cs" t="Include" />
-            <e p="PassiveQuestManager.cs" t="Include" />
-            <e p="Quest.cs" t="Include" />
+            <e p="QuestConfig.cs" t="Include" />
             <e p="QuestingStatWatcher.cs" t="Include" />
+            <e p="QuestInstance.cs" t="Include" />
             <e p="QuestListUI.cs" t="Include" />
-            <e p="QuestManager.cs" t="Include" />
-            <e p="ReachValueQuest.cs" t="Include" />
             <e p="SideQuestCreator.cs" t="Include" />
           </e>
           <e p="SavingAndLoading" t="Include">
-            <e p="ISaveable.cs" t="Include" />
-            <e p="RuntimeSetGenericSaveableWithIID.cs" t="Include" />
-            <e p="RuntimeSetGenericSaveableWithSaveable.cs" t="Include" />
-            <e p="RuntimeSetGenericSaveableWithSaveableAndIID.cs" t="Include" />
-            <e p="SaveableVariableWithIID.cs" t="Include" />
-            <e p="SaveableVariableWithSaveable.cs" t="Include" />
-            <e p="SaveManager.cs" t="Include" />
+            <e p="SaveGame.cs" t="Include" />
           </e>
-          <e p="SongBuffController.cs" t="Include" />
           <e p="SongData.cs" t="Include" />
           <e p="SoundManager.cs" t="Include" />
           <e p="Testing" t="Include">
@@ -383,7 +324,6 @@
             <e p="HyperlinkOpener.cs" t="Include" />
             <e p="IconWithTextController.cs" t="Include" />
             <e p="InventoryDisplay.cs" t="Include" />
-            <e p="ItemHolderWithText.cs" t="Include" />
             <e p="MoveObject.cs" t="Include" />
             <e p="MyButton.cs" t="Include" />
             <e p="ProgressBarController.cs" t="Include" />
@@ -397,11 +337,9 @@
             <e p="TextPopulatorInt.cs" t="Include" />
           </e>
           <e p="Utils" t="Include">
-            <e p="CustomTap.cs" t="Include" />
             <e p="DebugScriptableObject.cs" t="Include" />
             <e p="DragObject.cs" t="Include" />
             <e p="Formulas.cs" t="Include" />
-            <e p="GameEventsManager.cs" t="Include" />
             <e p="GenericPool.cs" t="Include" />
             <e p="IDUtils.cs" t="Include" />
             <e p="IID.cs" t="Include" />
@@ -425,6 +363,7 @@
             <e p="Timer.cs" t="Include" />
             <e p="ToggleActive.cs" t="Include" />
             <e p="TransformToCanvas.cs" t="Include" />
+            <e p="UiRef.cs" t="Include" />
             <e p="UpdateTimer.cs" t="Include" />
             <e p="VectorUtils.cs" t="Include" />
           </e>
@@ -440,10 +379,9 @@
               <e p="HelpMenuPopUp.cs" t="Include" />
             </e>
             <e p="Shop" t="Include">
-              <e p="ShopFollower.cs" t="Include" />
+              <e p="ShopFollowerConfig.cs" t="Include" />
               <e p="ShopUI.cs" t="Include" />
             </e>
-            <e p="SongMenu.cs" t="Include" />
           </e>
         </e>
         <e p="TextMesh Pro" t="Include">
@@ -475,6 +413,8 @@
       <e p="Go4AWalk2.sln" t="IncludeFlat" />
       <e p="obj" t="ExcludeRecursive" />
       <e p="packages" t="ExcludeRecursive" />
+      <e p="Sirenix.OdinInspector.CompatibilityLayer.csproj" t="IncludeRecursive" />
+      <e p="Sirenix.OdinInspector.CompatibilityLayer.Editor.csproj" t="IncludeRecursive" />
       <e p="Temp\bin" t="ExcludeRecursive" />
     </e>
   </component>

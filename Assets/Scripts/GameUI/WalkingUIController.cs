@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using G4AW2.Combat;
-using G4AW2.Data.DropSystem;
+﻿using DG.Tweening;
+using G4AW2.Controller;
+using G4AW2.Managers;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WalkingUIController : MonoBehaviour {
 
-    [Obsolete("Singleton")]
-    public static WalkingUIController Instance;
-
+    public RectTransform PlayerHealthFill;
+    public TextMeshProUGUI PlayerHealthText;
     public RectTransform MasteryFill;
     public TextMeshProUGUI MasteryText;
 
@@ -20,13 +18,24 @@ public class WalkingUIController : MonoBehaviour {
     public InventoryItemDisplay Weapon;
     public InventoryItemDisplay Armor;
     public InventoryItemDisplay Headgear;
-
     [SerializeField] private Animator animator;
     private static readonly int ShowHash = Animator.StringToHash("Showing");
+    [SerializeField] private InteractionCoordinator _interactionController;
+    public ClickReceiver ArrowReceiver;
+    public Image Arrow;
+    public TextMeshProUGUI NumberOfFollowersText;
 
-    [SerializeField] private InteractionController _interactionController;
+    [SerializeField] private WorldController _gameController;
+
     void Awake() {
-        Instance = this;
+        ItemViewer.Init();
+        WeaponViewer.Init();
+        Arrow.rectTransform.anchoredPosition = Arrow.rectTransform.anchoredPosition.SetX(9);
+        Arrow.rectTransform.DOAnchorPosX(13, 1).SetLoops(-1, LoopType.Yoyo);
+
+        ArrowReceiver.MouseClick2D.AddListener(a => {
+            _gameController.ScrollToEnemies();
+        });
     }
     
     public void Show()
@@ -63,7 +72,8 @@ public class WalkingUIController : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        var weapon = DataManager.Instance.Player.Weapon.Value;
+        PlayerManager p = PlayerManager.Instance;
+        var weapon = p.Weapon;
         
         float currentDamage = weapon.RawDamage;
         
@@ -77,10 +87,20 @@ public class WalkingUIController : MonoBehaviour {
             float nextLevelDamage = weapon.GetDamage(mastery: weapon.Mastery+1);
             MasteryFill.anchorMax = MasteryFill.anchorMax.SetX(masteryProgress);
         }
+
+        float playerHealth = Mathf.Clamp01(p.Health / (float) p.MaxHealth);
+        PlayerHealthFill.anchorMax = PlayerHealthFill.anchorMax.SetX(playerHealth);
+        PlayerHealthText.text = $"{p.Health} / {p.MaxHealth}";        
         
-        Weapon.SetData(DataManager.Instance.Player.Weapon.Value, 0, ChangeWeapon, null, true);
-        Armor.SetData(DataManager.Instance.Player.Armor.Value, 0, ChangeArmor, null, true);
-        Headgear.SetData(DataManager.Instance.Player.Headgear.Value, 0, ChangeHeadgear, null, true);
+        Weapon.SetDataInstance(p.Weapon, 0, ChangeWeapon, null, true);
+        Armor.SetDataInstance(p.Armor, 0, ChangeArmor, null, true);
+        if(p.Headgear != null) Headgear.SetDataInstance(p.Headgear, 0, ChangeHeadgear, null, true);
+        
+        
+        bool HasFollowers = FollowerManager.Instance.Followers.Count > 0;
+
+        NumberOfFollowersText.text = $"x{FollowerManager.Instance.Followers.Count}";
+        Arrow.gameObject.SetActive(_gameController.CanScroll && HasFollowers);
     }
 
     public void ChangeWeapon(InventoryItemDisplay it) {

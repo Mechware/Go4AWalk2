@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections;
+﻿using G4AW2.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using CustomEvents;
-using G4AW2.Data;
-using G4AW2.Data.Combat;
-using G4AW2.Data.DropSystem;
-using G4AW2.Questing;
 using UnityEngine;
-using Random = System.Random;
 
 [CreateAssetMenu(menuName = "Data/Song")]
 public class SongData : ScriptableObject {
@@ -20,9 +14,9 @@ public class SongData : ScriptableObject {
 	public List<NoteData> BottomNotes;
 
 
-	public ActiveQuestBase QuestToUnlock;
+	public QuestConfig QuestConfigToUnlock;
 
-	public bool IsUnlocked => QuestToUnlock == null || StatTracker.Instance.CompletedQuests.Any(q => q.ID == QuestToUnlock.ID);
+	public bool IsUnlocked => QuestConfigToUnlock == null || SaveGame.SaveData.CompletedQuests.Any(id => id.Id == QuestConfigToUnlock.Id);
 
 	[Header("Buff")]
 	public float BuffDuration;

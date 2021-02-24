@@ -145,10 +145,10 @@ namespace G4AW2.Tools {
 				bool loadedData = true;
 				string EnemyDataPath = Path.Combine(Path.GetDirectoryName(path), EnemyName + ".asset");
 
-				EnemyData enemyScriptableObject = AssetDatabase.LoadAssetAtPath<EnemyData>(EnemyDataPath);
+				EnemyConfig enemyScriptableObject = AssetDatabase.LoadAssetAtPath<EnemyConfig>(EnemyDataPath);
 
 				if (enemyScriptableObject == null) {
-					enemyScriptableObject = CreateInstance<EnemyData>();
+					enemyScriptableObject = CreateInstance<EnemyConfig>();
 					loadedData = false;
 				}
 

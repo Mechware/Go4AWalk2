@@ -1,8 +1,8 @@
-﻿using G4AW2.Combat;
-using G4AW2.Dialogue;
+﻿using G4AW2;
+using G4AW2.Combat;
+using G4AW2.Component.UI;
+using G4AW2.Managers;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class UIController : MonoBehaviour
@@ -15,25 +15,28 @@ public class UIController : MonoBehaviour
     [Obsolete("Create a battle ui class that deals with this")] [SerializeField] private DamageNumberSpawner _enemyDamageNumberSpawner;
     [SerializeField] private QuickPopUp[] _quickPopUps;
     [SerializeField] private QuickPopUp _mainQuickPopUp;
-    [SerializeField] private EnemyArrowIndicator _arrowIndicator;
 
     [Obsolete("Create a battle ui class that deals with this")] [SerializeField] private Animator _battleAnim;
     private static readonly int ShowHash = Animator.StringToHash("Showing");
 
     [SerializeField] private Sprite _questionMark;
     [SerializeField] private SmoothPopUpManager _smoothPopUps;
-    [SerializeField] private InteractionController _interactionController;
+    [SerializeField] private InteractionCoordinator _interactionController;
     [SerializeField] private WalkingUIController _walkingController;
 
-    private Player _player;
-    private Inventory _inventory;
-    private GameEvents _events;
+    [SerializeField] private QuestingStatWatcher _questStats;
 
-    public void Initialize(Player player, Inventory inventory, GameEvents events)
+    private PlayerManager _player;
+    private ItemManager _inventory;
+    private GameEvents _events;
+    private QuestManager _quests;
+
+    public void Initialize(PlayerManager player, ItemManager inventory, GameEvents events, QuestManager quests)
     {
         _player = player;
         _inventory = inventory;
         _events = events;
+        _quests = quests;
 
         _interactionController.OnPlayerDeathDone += lost =>
         {
@@ -56,7 +59,7 @@ public class UIController : MonoBehaviour
             _quickPopUps.ForEach(q => q.Disable());
         };
 
-        _interactionController.OnFightEnter += _arrowIndicator.Disable;
+        //_interactionController.OnFightEnter += _arrowIndicator.Disable;
 
         _battleAnim.SetBool(ShowHash, false);
         _interactionController.OnFightStart += () =>
@@ -77,13 +80,14 @@ public class UIController : MonoBehaviour
             _battleAnim.SetBool(ShowHash, false);
         };
 
-        _inventory.OnNewRecipeCraftable += recipe =>
+
+        _events.CraftingRecipeUnlocked += recipe =>
         {
             string postText = "";
             foreach (var component in recipe.Components)
             {
                 postText +=
-                    $"{component.Amount} {component.Item.GetName()}{(component.Amount > 1 ? "s" : "")}\n";
+                    $"{component.Amount} {component.Item.Name}{(component.Amount > 1 ? "s" : "")}\n";
             }
             _mainQuickPopUp.Show(_questionMark, $"<size=150%>New Craftable Recipe!</size>\nA new recipe is now craftable!\nRequires:{postText}");
         };
@@ -93,6 +97,14 @@ public class UIController : MonoBehaviour
             _mainQuickPopUp.Show(a.AchievementIcon, "<size=150%>Achievement!</size>\n" + a.AchievementCompletedText);
         };
 
+        _events.OnQuestSet += _questStats.SetQuest;
+
         _walkingController.Initialize();
+        _questStats.SetQuest(_quests.CurrentQuest);
+    }
+
+    public void GameUpdate(float time)
+    {
+        _questStats.GameUpdate(time);
     }
 }

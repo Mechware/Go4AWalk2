@@ -1,88 +1,115 @@
 using G4AW2.Data;
-using G4AW2.Data.Combat;
-using G4AW2.Data.DropSystem;
-using G4AW2.Questing;
+using G4AW2.Data.Crafting;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
-public class GameEvents : MonoBehaviour {
+namespace G4AW2
+{
+	public class GameEvents : MonoBehaviour
+	{
 
-	public Action OnStart;
-	public Action OnAfterLoad;
-	public Action OnPause;
-	public Action OnQuit;
-	public Action OnSceneExitEvent;
-	public Action OnFocus;
-	public Action OnUnFocus;
-	public Action OnPlay;
+		public Action OnStart;
+		public Action OnAfterLoad;
+		public Action OnPause;
+		public Action OnQuit;
+		public Action OnSceneExitEvent;
+		public Action OnFocus;
+		public Action OnUnFocus;
+		public Action OnPlay;
 
-	public Action OnNewGame;
+		public Action OnNewGame;
 
-	public Action<ActiveQuestBase> OnQuestSet;
-	public Action<ActiveQuestBase> QuestChanged;
-	public Action<EnemyData> EnemyKilled;
-	public Action<Item> LootObtained;
-	public Action<Achievement> AchievementObtained;
+		public Action<QuestInstance> OnQuestSet;
+		public Action<EnemyInstance> EnemyKilled;
+		public Action<ItemInstance> LootObtained;
+		public Action<Achievement> AchievementObtained;
+		public Action<CraftingRecipe> CraftingRecipeUnlocked;
+		public Action<Area> AreaChanged;
+		public Action<FollowerInstance> FollowerAdded;
 
-	void Start () {
-        OnStart?.Invoke();
-		SceneManager.sceneUnloaded += SceneManager_sceneUnloaded;
-	}
-
-	private void SceneManager_sceneUnloaded( Scene arg0 ) {
-		OnSceneExitEvent?.Invoke();
-	}
-
-	private void OnApplicationFocus( bool focus ) {
-		if (focus) {
-			OnFocus?.Invoke();
+		void Start()
+		{
+			OnStart?.Invoke();
+			SceneManager.sceneUnloaded += SceneManager_sceneUnloaded;
 		}
-		else {
-			OnUnFocus?.Invoke();
+
+		private void SceneManager_sceneUnloaded(Scene arg0)
+		{
+			OnSceneExitEvent?.Invoke();
+		}
+
+		private void OnApplicationFocus(bool focus)
+		{
+			if (focus)
+			{
+				OnFocus?.Invoke();
+			}
+			else
+			{
+				OnUnFocus?.Invoke();
+			}
+		}
+
+		private void OnApplicationPause(bool pause)
+		{
+			if (pause)
+			{
+				OnPause?.Invoke();
+			}
+			else
+			{
+				OnPlay?.Invoke();
+			}
+		}
+
+		private void OnApplicationQuit()
+		{
+			OnQuit?.Invoke();
+		}
+
+		public void OnQuestChanged(QuestInstance quest)
+		{
+			OnQuestSet?.Invoke(quest);
+		}
+
+		public void OnEnemyKilled(EnemyInstance ed)
+		{
+			EnemyKilled?.Invoke(ed);
+		}
+
+		public void OnAchievementObtained(Achievement a) => AchievementObtained?.Invoke(a);
+
+		public void OnLootObtained(IEnumerable<ItemInstance> its)
+		{
+			foreach (var it in its) OnLootObtained(it);
+		}
+
+		public void OnLootObtained(ItemInstance it)
+		{
+			LootObtained?.Invoke(it);
+		}
+
+		public void OnLootObtained(ItemInstance it, int amount)
+		{
+			for (int i = 0; i < amount; i++) LootObtained?.Invoke(it);
+		}
+
+		public void OnRecipeUnlocked(CraftingRecipe recipe)
+		{
+			CraftingRecipeUnlocked?.Invoke(recipe);
+		}
+
+		public void OnAreaChanged(Area area)
+		{
+			AreaChanged?.Invoke(area);
+		}
+
+		public void OnFollowerAdded(FollowerInstance fi)
+		{
+			FollowerAdded?.Invoke(fi);
 		}
 	}
 
-	private void OnApplicationPause( bool pause ) {
-		if (pause) {
-			OnPause?.Invoke();
-		}
-		else {
-			OnPlay?.Invoke();
-		}
-	}
-
-	private void OnApplicationQuit() {
-		OnQuit?.Invoke();
-	}
-
-	public void OnQuestChanged(ActiveQuestBase quest)
-	{
-		QuestChanged?.Invoke(quest);
-	}
-
-	public void OnEnemyKilled(EnemyData ed)
-	{
-		EnemyKilled?.Invoke(ed);
-	}
-
-	public void OnAchievementObtained(Achievement a) => AchievementObtained?.Invoke(a);
-
-	public void OnLootObtained(IEnumerable<Item> its)
-	{
-		foreach (var it in its) OnLootObtained(it);
-	}
-
-	public void OnLootObtained(Item it)
-	{
-		LootObtained?.Invoke(it);
-	}
-
-	public void OnLootObtained(Item it, int amount)
-	{
-		for (int i = 0; i < amount; i++) LootObtained?.Invoke(it);
-	}
 }

@@ -1,4 +1,5 @@
 using G4AW2.Combat;
+using G4AW2.Managers;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -17,7 +18,7 @@ public class PlayerAnimations : MonoBehaviour {
 
     private Action celebrationFinished;
 
-    private Player _player;
+    private PlayerManager _player;
 
     // Use this for initialization
     void Awake () {
@@ -25,7 +26,7 @@ public class PlayerAnimations : MonoBehaviour {
         animator = GetComponent<Animator>();
 	}
 
-    public void Initialize(Player p)
+    public void Initialize(PlayerManager p)
     {
         _player = p;
     }

@@ -1,5 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
+<<<<<<< HEAD:Assets/Scripts/Game.cs.meta
 guid: e5aaca0f67c2c5444bddaee77c6ac67e
+=======
+guid: b766d08851589514b97afb23c6f30a70
+>>>>>>> refactor:Assets/Demigiant/DOTween/Modules/DOTweenModuleAudio.cs.meta
+=======
+guid: e5aaca0f67c2c5444bddaee77c6ac67e
+>>>>>>> refactor
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

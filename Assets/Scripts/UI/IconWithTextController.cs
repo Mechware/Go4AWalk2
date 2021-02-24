@@ -14,8 +14,14 @@ public class IconWithTextController : MonoBehaviour, IPointerClickHandler {
 
     private Action onClick;
 
-    public void SetData(Item s, int amount, string text, Action onClick, Sprite overrideSprite = null, bool showText = true) {
-        Item.SetData(s, amount, i => onClick(), overrideSprite, showText);
+    public void SetDataInstance(ItemInstance s, int amount, string text, Action onClick, Sprite overrideSprite = null, bool showText = true) {
+        Item.SetDataInstance(s, amount, i => onClick(), overrideSprite, showText);
+        Text.text = text;
+        this.onClick = onClick;
+    }
+    
+    public void SetDataConfig(ItemConfig s, int amount, string text, Action onClick, Sprite overrideSprite = null, bool showText = false) {
+        Item.SetDataConfig(s, amount, i => onClick(), overrideSprite, showText);
         Text.text = text;
         this.onClick = onClick;
     }

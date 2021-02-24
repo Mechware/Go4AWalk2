@@ -1,6 +1,6 @@
 using CustomEvents;
 using G4AW2.Data.Combat;
-using G4AW2.Questing;
+using G4AW2.Data;
 using System;
 using UnityEngine;
 
@@ -8,7 +8,7 @@ namespace G4AW2.Data {
     [CreateAssetMenu(menuName = "Data/Achievement")]
     public class Achievement : ScriptableObject, IID {
 
-        public int ID;
+        public int Id;
         public Sprite AchievementIcon;
         [Multiline]
         public string AchievementCompletedText;
@@ -35,11 +35,11 @@ namespace G4AW2.Data {
 #if UNITY_EDITOR
         [ContextMenu("Pick ID")]
         public void PickID() {
-            ID = IDUtils.PickID<Achievement>();
+            Id = IDUtils.PickID<Achievement>();
         }
 #endif
         public int GetID() {
-            return ID;
+            return Id;
         }
     }
 }
