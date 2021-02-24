@@ -16,7 +16,7 @@ namespace Items {
             Instance = this;
         }
 
-        public void OnLoad() {
+        public void Initialize() {
             for (int index = 0; index < SaveGame.SaveData.Consumables.Count; index++) {
                 var consumeable = SaveGame.SaveData.Consumables[index];
                 if (RandomUtils.GetTime() < consumeable.EndTime) {
@@ -84,7 +84,7 @@ namespace Items {
     
         public void UseHealthPotion(ConsumableConfig c) {
             var player = PlayerManager.Instance;
-            player.Health = Mathf.Min(player.Health + (int)c.Affect, player.MaxHealth);
+            player.GiveHealth((int)c.Affect);
         }
 
         public void UseDamagePotion(ConsumableConfig c) {

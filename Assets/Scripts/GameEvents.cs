@@ -19,15 +19,12 @@ namespace G4AW2
 		public Action OnUnFocus;
 		public Action OnPlay;
 
-		public Action OnNewGame;
-
 		public Action<QuestInstance> OnQuestSet;
 		public Action<EnemyInstance> EnemyKilled;
 		public Action<ItemInstance> LootObtained;
 		public Action<Achievement> AchievementObtained;
 		public Action<CraftingRecipe> CraftingRecipeUnlocked;
 		public Action<Area> AreaChanged;
-		public Action<FollowerInstance> FollowerAdded;
 
 		void Start()
 		{
@@ -104,11 +101,6 @@ namespace G4AW2
 		public void OnAreaChanged(Area area)
 		{
 			AreaChanged?.Invoke(area);
-		}
-
-		public void OnFollowerAdded(FollowerInstance fi)
-		{
-			FollowerAdded?.Invoke(fi);
 		}
 	}
 

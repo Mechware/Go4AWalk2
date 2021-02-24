@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using G4AW2.Data;
 using System.Linq;
-using G4AW2.Data.Combat;
-using G4AW2.Data.DropSystem;
-using G4AW2.Data;
-using UnityEngine;
 
 public class QuestInstance {
     public QuestConfig Config;
@@ -24,6 +18,6 @@ public class QuestInstance {
     }
 
     public bool IsFinished() {
-        return Config.ValueToReach >= SaveData.Progress;
+        return Config.ValueToReach <= SaveData.Progress;
     }
 }

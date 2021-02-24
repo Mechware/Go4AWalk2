@@ -10,9 +10,9 @@ namespace G4AW2.Managers
 		public static PlayerManager Instance;
 
 
-		[NonSerialized] public int MaxHealth;
+		[NonSerialized] public int MaxHealth = 2000;
 
-		[NonSerialized] public int Health;
+		public int Health { private set; get; }
 		[NonSerialized] public int Gold;
         public Action<float> OnDeath;
         public Action<int, ElementalType> OnDamageTaken;
@@ -87,7 +87,10 @@ namespace G4AW2.Managers
             OnDeath?.Invoke(oldAmount - newAmount);
         }
 
-
+        public void NewGame()
+        {
+            Health = MaxHealth;
+        }
 
         public int GetLightDamage() {
             return Mathf.RoundToInt(Weapon.RawDamage * DamageMultiplier + DamageAdditive);
@@ -111,8 +114,13 @@ namespace G4AW2.Managers
 	        }
         }
 
+        public void GiveHealth(int amount)
+        {
+            Health = Mathf.Min(Health + amount, MaxHealth);
+        }
+
         public void IncreaseHealthByTime(float time) {
-	        Health = Mathf.Min(Mathf.RoundToInt(Health + time * HealthPerSecond), MaxHealth);
+            GiveHealth(Mathf.RoundToInt(Health + time * HealthPerSecond));
         }
 
         private DateTime PauseTime = DateTime.MaxValue;

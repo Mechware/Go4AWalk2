@@ -109,8 +109,6 @@ namespace G4AW2.Controller
                 }
             }
 
-            _events.FollowerAdded += _followerDisplay.OnFollowerAdded;
-
             // Initialization
             {
                 _playerDisplay.Initialize(_enemy, _player);

@@ -39,8 +39,6 @@ public class Game : MonoBehaviour
     private void Awake()
     {
         // Does this need to be an event?
-        _events.OnAfterLoad += _consumables.OnLoad;
-
         _events.OnSceneExitEvent += Save;
         _events.OnPause += Save;
         _events.OnQuit += Save;
@@ -72,6 +70,8 @@ public class Game : MonoBehaviour
         _player.Armor.SaveData.Random = 50;
 
         SaveGame.SaveData.CurrentQuests.Add((new QuestInstance(StartQuest, true)).SaveData);
+
+        _player.NewGame();
     }
 
     public void Save()
@@ -87,7 +87,6 @@ public class Game : MonoBehaviour
         if(newGame)
         {
             OnNewGame();
-            _events.OnNewGame?.Invoke();
         }
     }
 
@@ -97,12 +96,12 @@ public class Game : MonoBehaviour
     void Start()
     {
         Load();
-        _events.OnAfterLoad.Invoke();
 
-        _quests.Initialize(_events, _inventory);
-        _followers.Initialize(_events, _quests);
         _player.Initialize();
         _inventory.Initialize();
+        _quests.Initialize(_events, _inventory);
+        _followers.Initialize(_events, _quests);
+        _consumables.Initialize();
 
         _interactions.Initialize();
 
@@ -110,9 +109,6 @@ public class Game : MonoBehaviour
         _gameUI.Initialize(_player, _inventory, _events, _quests);
         _interactions.Initialize();
 
-        _quests.Initialize(_events, _inventory);
-        _followers.Initialize(_events, _quests);
-        _player.Initialize();
         _successfulInitialization = true;
     }
 

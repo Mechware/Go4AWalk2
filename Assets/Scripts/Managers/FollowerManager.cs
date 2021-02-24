@@ -28,8 +28,6 @@ namespace G4AW2.Managers {
 
 	    public void Initialize(GameEvents events, QuestManager quests) {
 
-			FollowerAdded += events.FollowerAdded;
-
 			events.OnQuestSet += q => SetQuest(q.Config);
 			SetQuest(quests.CurrentQuest.Config);
 			events.AreaChanged += a => ClearFollowers();

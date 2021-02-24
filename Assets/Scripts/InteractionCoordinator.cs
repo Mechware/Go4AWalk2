@@ -1,15 +1,10 @@
-﻿using System;
+﻿using G4AW2.Combat;
+using G4AW2.Data.Combat;
+using G4AW2.Managers;
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using CustomEvents;
-using G4AW2.Combat;
-using G4AW2.Data.Combat;
-using G4AW2.Data.DropSystem;
-using G4AW2.Followers;
-using G4AW2.Data;
 using UnityEngine;
-using G4AW2.Managers;
 
 public class InteractionCoordinator : MonoBehaviour {
 

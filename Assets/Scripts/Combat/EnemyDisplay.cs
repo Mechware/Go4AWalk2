@@ -74,7 +74,7 @@ namespace G4AW2.Combat {
 		public void SetEnemy( EnemyInstance instance) {
 			EnemyState = State.Idle;
 			Enemy = instance;
-            
+
 			MaxHealth.Value = instance.MaxHealth;
 			CurrentHealth.Value = MaxHealth;
 
