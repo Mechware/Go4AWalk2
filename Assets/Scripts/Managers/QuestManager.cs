@@ -1,6 +1,8 @@
 using G4AW2.Data;
 using G4AW2.Data.DropSystem;
+using G4AW2.Utils;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace G4AW2.Managers
@@ -19,6 +21,13 @@ namespace G4AW2.Managers
         public Action<QuestInstance> QuestFinished;
         public Action<Area> AreaChanged;
 
+        public List<QuestConfig> AllQuests;
+        [ContextMenu("Add all Quests in project")]
+        private void SearchForAllItems()
+        {
+            EditorUtils.AddAllOfType(AllQuests);
+        }
+
         public void Initialize(bool newGame)
         {
             if(newGame)
@@ -31,17 +40,18 @@ namespace G4AW2.Managers
                 CurrentQuest = new QuestInstance(StartQuest, true);
             }
 
-            _followers.FollowerRemoved += (res) => {
+            _followers.FollowerRemoved += (follower) => {
                 if (CurrentQuest.Config.QuestType != QuestType.Boss &&
                     CurrentQuest.Config.QuestType != QuestType.EnemySlaying)
                 {
                     return;
                 }
 
-                var (follower, suicide) = res;
                 if (follower.Config != CurrentQuest.Config.QuestParam) return;
 
-                if (!suicide)
+                var enemy = (EnemyInstance)follower; 
+
+                if (!enemy.Suicide)
                 {
                     CurrentQuest.SaveData.Progress += 1;
                 }

@@ -22,7 +22,7 @@ public class EquipItemProcessor : MonoBehaviour {
                 () => {
                     if(_player.Weapon != null)
                         _items.Add(_player.Weapon);
-                    _player.Weapon = w;
+                    _player.EquipWeapon(w);
                     _items.Remove(w);
                     onDone?.Invoke();
                 },
@@ -42,7 +42,7 @@ public class EquipItemProcessor : MonoBehaviour {
                 () => {
                     if(_player.Armor != null)
                         _items.Add(_player.Armor);
-                    _player.Armor = a;
+                    _player.EquipArmor(a);
                     _items.Remove(a);
                     onDone?.Invoke();
                 },
@@ -63,7 +63,7 @@ public class EquipItemProcessor : MonoBehaviour {
                 () => {
                     if(_player.Headgear != null)
                         _items.Add(_player.Headgear);
-                    _player.Headgear = h;
+                    _player.EquipHeadgear(h);
                     _items.Remove(h);
                     onDone?.Invoke();
                 },

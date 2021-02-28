@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee10126d9cee7da4fa524ad35982edd6, type: 3}
   m_Name: 6b - Kill 5 Dirt Snakes
   m_EditorClassIdentifier: 
-  Id: 0
+  Id: 9
   DisplayName: 
   Description: 
   NextQuestConfig: {fileID: 0}

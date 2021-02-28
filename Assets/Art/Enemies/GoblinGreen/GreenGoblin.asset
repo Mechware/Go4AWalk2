@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92ed46357c010e84ea5a3394f3ad888d, type: 3}
   m_Name: GreenGoblin
   m_EditorClassIdentifier: 
-  ID: 2
+  Id: 0
   DisplayName: Goblin
   Portrait: {fileID: 21300000, guid: 03250a6a4c96e00478de458191be07fb, type: 3}
   SizeOfSprite: {x: 64, y: 64}
@@ -38,21 +38,15 @@ MonoBehaviour:
   HasElementalDamage: 0
   ElementalDamageAtLevel0: 0
   ElementalDamageType: {fileID: 0}
-  ElementalWeaknesses:
-    UseConstant: 0
-    ConstantValue:
-      Weaknesses:
-      - ElementalType: {fileID: 0}
-        DamageMultiplier: 0
-    Variable: {fileID: 0}
+  ElementalWeaknesses: {fileID: 0}
   Drops:
     Items:
-    - item: {fileID: 11400000, guid: 2da6b9adf5d871c4a8c481d49c4b2092, type: 2}
+    - ItemConfig: {fileID: 11400000, guid: f02a4360ffd63e2499d1222a338cd414, type: 2}
       dropChance: 0.1
-    - item: {fileID: 11400000, guid: f02a4360ffd63e2499d1222a338cd414, type: 2}
-      dropChance: 0.7
-    - item: {fileID: 11400000, guid: c95e6bfd76411ee4ba7c1167255243a9, type: 2}
+    - ItemConfig: {fileID: 11400000, guid: 3b3b3aae3ef904f4fa27af0aa93725d8, type: 2}
       dropChance: 0.5
-    - item: {fileID: 11400000, guid: f02a4360ffd63e2499d1222a338cd414, type: 2}
+    - ItemConfig: {fileID: 11400000, guid: c95e6bfd76411ee4ba7c1167255243a9, type: 2}
       dropChance: 0.3
+    - ItemConfig: {fileID: 11400000, guid: fd886c20d53e5f64bac06680e5b49012, type: 2}
+      dropChance: 0.1
   OneAndDoneAttacker: 0

@@ -91,7 +91,7 @@ public class MiningPoints : MonoBehaviour {
             if(InteractionCoordinator.Instance.Fighting)
                 return;
 
-            var items = point.Drops.GetItems(false, 0);
+            var items = point.Drops.GetItems(0, _items);
             string itemText = "";
             foreach (var item in items) {
                 itemText += $"A {item.GetName()}\n";

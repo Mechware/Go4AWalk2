@@ -41,7 +41,12 @@ public class Game : MonoBehaviour
 
         _player.Initialize(newGame);
         _quests.Initialize(newGame);
-        _followers.Initialize(); // Must be initialized after quests
+        _followers.Initialize(newGame); // Must be initialized after quests
+    }
+
+    private void Update()
+    {
+        _followers.CheckSpawns(Time.deltaTime);
     }
 
     private void OnApplicationPause(bool pause)

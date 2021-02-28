@@ -32,28 +32,13 @@ public class WalkingUIController : MonoBehaviour {
     [SerializeField] private PlayerClickController _playerArmorView;
 
     void Awake() {
-        ItemViewer.Init();
-        WeaponViewer.Init();
         Arrow.rectTransform.anchoredPosition = Arrow.rectTransform.anchoredPosition.SetX(9);
         Arrow.rectTransform.DOAnchorPosX(13, 1).SetLoops(-1, LoopType.Yoyo);
 
         ArrowReceiver.MouseClick2D.AddListener(a => {
             _gameController.ScrollToEnemies();
         });
-    }
-    
-    public void Show()
-    {
-        animator.SetBool(ShowHash, true);
-    }
 
-    public void Hide()
-    {
-        animator.SetBool(ShowHash, false);
-    }
-
-    public void Initialize()
-    {
         Show();
         _interactionController.OnFightStart += () =>
         {
@@ -70,8 +55,24 @@ public class WalkingUIController : MonoBehaviour {
             Show();
         };
 
-        ItemViewer.Init();
-        WeaponViewer.Init();
+        _player.WeaponChanged += UpdateGear;
+        _player.ArmorChanged += UpdateGear;
+        _player.HeadgearChanged += UpdateGear;
+    }
+
+    private void Start()
+    {
+        UpdateGear();
+    }
+
+    public void Show()
+    {
+        animator.SetBool(ShowHash, true);
+    }
+
+    public void Hide()
+    {
+        animator.SetBool(ShowHash, false);
     }
 
     // Update is called once per frame
@@ -95,15 +96,17 @@ public class WalkingUIController : MonoBehaviour {
         PlayerHealthFill.anchorMax = PlayerHealthFill.anchorMax.SetX(playerHealth);
         PlayerHealthText.text = $"{_player.Health} / {_player.MaxHealth}";        
         
+        bool HasFollowers = _followers.Count() > 0;
+
+        NumberOfFollowersText.text = $"x{_followers.Count()}";
+        Arrow.gameObject.SetActive(_gameController.CanScroll && HasFollowers);
+    }
+
+    public void UpdateGear()
+    {
         Weapon.SetDataInstance(_player.Weapon, 0, ChangeWeapon, null, true);
         Armor.SetDataInstance(_player.Armor, 0, ChangeArmor, null, true);
-        if(_player.Headgear != null) Headgear.SetDataInstance(_player.Headgear, 0, ChangeHeadgear, null, true);
-        
-        
-        bool HasFollowers = _followers.Followers.Count > 0;
-
-        NumberOfFollowersText.text = $"x{FollowerManager.Instance.Followers.Count}";
-        Arrow.gameObject.SetActive(_gameController.CanScroll && HasFollowers);
+        if (_player.Headgear != null) Headgear.SetDataInstance(_player.Headgear, 0, ChangeHeadgear, null, true);
     }
 
     public void ChangeWeapon(InventoryItemDisplay it) {

@@ -67,23 +67,8 @@ public class QuestGiverDisplay : MonoBehaviour, IPointerClickHandler {
 
         _popUp.SetPopUpNew("Accept quest from quest giver? Title: " + follower.QuestToGive.DisplayName, new[] { "Yes", "No" }, new Action[] {
             () => {
-                _quests.GiveQuest(follower.QuestToGive);                
-                _followers.Followers.Remove(follower);
-
-                // Flip Giver
-                RectTransform rt = (RectTransform) transform;
-                Vector3 scale = rt.localScale;
-                scale.x = -1;
-                rt.localScale = scale;
-
-                Vector2 pivot = rt.pivot;
-                pivot.x = 0;
-                rt.pivot = pivot;
-
-                FinishInteraction.Invoke();
-
-                StartCoroutine(WalkOffScreen());
-
+                _quests.GiveQuest(follower.QuestToGive);
+                Dismiss();
             }, () => {
                 DismissButton.SetActive(true);
             } });
@@ -92,7 +77,7 @@ public class QuestGiverDisplay : MonoBehaviour, IPointerClickHandler {
 
     public void Dismiss() {
         FinishInteraction.Invoke();
-        _followers.Followers.Remove(follower);
+        _followers.Remove(follower);
         StartCoroutine(WalkOffScreen());
     }
 
@@ -112,10 +97,17 @@ public class QuestGiverDisplay : MonoBehaviour, IPointerClickHandler {
 
     IEnumerator WalkOffScreen() {
 
+        RectTransform rt = (RectTransform)transform;
+        Vector3 scale = rt.localScale;
+        scale.x = -1;
+        rt.localScale = scale;
+
+        Vector2 pivot = rt.pivot;
+        pivot.x = 0;
+        rt.pivot = pivot;
+
         GetComponent<Animator>().SetBool("Giving", false);
         GetComponent<Animator>().SetBool("Walking", true);
-
-        RectTransform rt = (RectTransform) transform;
 
         _walkingOff = true;
         while(true) {

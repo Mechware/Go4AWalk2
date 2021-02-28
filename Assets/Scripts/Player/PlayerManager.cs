@@ -14,16 +14,17 @@ namespace G4AW2.Managers
         [NonSerialized] public int Gold;
         [NonSerialized] public int Level;
         [NonSerialized] public int Experience;
-        public int Health { 
-            private set; 
-            get; }
+        public int Health { private set; get; }
 
         public Action<float> OnDeath;
         public Action<int, ElementalType> OnDamageTaken;
+        public Action WeaponChanged;
+        public Action ArmorChanged;
+        public Action HeadgearChanged;
 
-        public WeaponInstance Weapon;
-        public ArmorInstance Armor;
-        public HeadgearInstance Headgear;
+        public WeaponInstance Weapon { private set; get; }
+        public ArmorInstance Armor { private set; get; }
+        public HeadgearInstance Headgear { private set; get; }
 
 
         [SerializeField] private WeaponConfig StartWeapon;
@@ -37,6 +38,7 @@ namespace G4AW2.Managers
             if(newGame)
             {
                 Health = MaxHealth;
+
                 Weapon = new WeaponInstance(StartWeapon, 1);
                 Weapon.SaveData.Level = 1;
                 Weapon.SaveData.Random = 30;
@@ -61,7 +63,21 @@ namespace G4AW2.Managers
 			
 			if(Headgear != null) 
 				MaxHealth += Headgear.ExtraHealth;
+
+            HeadgearChanged?.Invoke();
 		}
+
+        public void EquipWeapon(WeaponInstance weapon)
+        {
+            Weapon = weapon;
+            WeaponChanged?.Invoke();
+        }
+
+        public void EquipArmor(ArmorInstance armor)
+        {
+            Armor = armor;
+            ArmorChanged?.Invoke();
+        }
 
         public void DamagePlayer(float dmg, ElementalType type)
         {

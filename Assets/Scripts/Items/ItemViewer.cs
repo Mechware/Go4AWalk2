@@ -18,7 +18,7 @@ public class ItemViewer : MonoBehaviour {
 
     [SerializeField] private ItemManager _items;
 
-    public void Init() {
+    void Awake() {
         Instance = this;
     }
 

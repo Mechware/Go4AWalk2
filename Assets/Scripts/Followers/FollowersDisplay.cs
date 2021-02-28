@@ -34,6 +34,7 @@ namespace G4AW2.Followers
 
 		public void Awake() {
 			_followers.FollowerAdded += OnFollowerAdded;
+			_followers.FollowerRemoved += OnFollowerRemoved;
 			_followerPool = new ObjectPrefabPool(DisplayPrefab.gameObject, transform);
 			ResetFollowers();
         }
@@ -43,11 +44,15 @@ namespace G4AW2.Followers
             ResetFollowers();
         }
 
+		public void OnFollowerRemoved(FollowerInstance f)
+        {
+			ResetFollowers();
+        }
+
 		private void ResetFollowers() {
 			_followerPool.Reset();
 
-			for (int i = 0; i < _followers.Followers.Count; i++) {
-				FollowerInstance fd = _followers.Followers[i];
+			foreach(var fd in _followers.GetFollowers()) { 
 			    GameObject go = _followerPool.GetObject();
 			    FollowerDisplay d = go.GetComponent<FollowerDisplay>();
 				AddDisplay(d, fd);
@@ -71,7 +76,7 @@ namespace G4AW2.Followers
 		public void FollowerClicked(FollowerDisplay fd) {
 			// Show some info on them.
 			
-			if (FollowerManager.Instance.Followers[0] == fd.Instance) {
+			if (_followers.GetFollowers().ElementAt(0) == fd.Instance) {
 				if (fd.Instance is EnemyInstance) {
 					EnemyInstance ed = (EnemyInstance) fd.Instance;
 

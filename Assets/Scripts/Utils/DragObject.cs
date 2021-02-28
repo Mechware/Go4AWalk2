@@ -56,8 +56,8 @@ public class DragObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 	}
 
     private void CheckReset() {
-        if(_scrollingEnabled1 && _scrollingEnabled2 && IsAtEnd())
-            OnReset.Invoke();
+        if (_scrollingEnabled1 && _scrollingEnabled2 && IsAtEnd())
+            ResetScrolling();
     }
 
     private bool startedScrolling = false;
@@ -122,22 +122,22 @@ public class DragObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 			return;
 
 		if (IsAtEnd()) {
-            OnReset.Invoke();
+            ResetScrolling();
 	    }
 
 		eventData.Use();
 	}
 
     public bool IsAtEnd() {
-        return rt.localPosition.x.Near(MinBounds.x, 0.5f) && rt.localPosition.y.Near(MaxBounds.y, 0.5f);
+        return rt.localPosition.x.Near(MinBounds.x, 2f) && rt.localPosition.y.Near(MaxBounds.y, 0.5f);
     }
 
     public void InvokeDragEvent() {
         OnDragEvent.Invoke();
     }
 
-    public void ResetScrolling()
-    {
+    public void ResetScrolling() {
+        rt.localPosition = new Vector2(MinBounds.x, MaxBounds.y);
         OnReset.Invoke();
     }
 

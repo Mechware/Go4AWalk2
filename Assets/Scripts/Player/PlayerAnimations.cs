@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Animator))]
 public class PlayerAnimations : MonoBehaviour {
@@ -20,11 +21,41 @@ public class PlayerAnimations : MonoBehaviour {
 
     [SerializeField] private PlayerManager _player;
 
+    [SerializeField] private Image _armour;
+    [SerializeField] private Image _weapon;
+    [SerializeField] private Image _headgear;
+
+
     // Use this for initialization
     void Awake () {
         Instance = this;
         animator = GetComponent<Animator>();
 	}
+
+    private void Start()
+    {
+        RefreshGear();
+
+        _player.WeaponChanged += RefreshGear;
+        _player.ArmorChanged += RefreshGear;
+        _player.HeadgearChanged += RefreshGear;
+
+    }
+
+    private void RefreshGear()
+    {
+        _weapon.color = Color.white;
+        _armour.color = Color.white;
+        _headgear.color = Color.white;
+
+        if (_player.Weapon?.Config.Image == null) _weapon.color = Color.clear;
+        if (_player.Armor?.Config.Image == null) _armour.color = Color.clear;
+        if (_player.Headgear?.Config.Image == null) _headgear.color = Color.clear;
+
+        _weapon.sprite = _player.Weapon?.Config.Image;
+        _armour.sprite = _player.Armor?.Config.Image;
+        _headgear.sprite = _player.Headgear?.Config.Image;
+    }
 
     [ContextMenu("StartWalking")]
 	public void StartWalking()

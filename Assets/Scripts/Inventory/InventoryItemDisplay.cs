@@ -20,65 +20,74 @@ public class InventoryItemDisplay : MonoBehaviour, IPointerClickHandler {
 
     private Action<InventoryItemDisplay> OnClick;
 
-	public void SetDataInstance( ItemInstance obj, 
+	public void SetDataInstance( ItemInstance instance, 
         int amount, 
         Action<InventoryItemDisplay> onclick = null, 
         Sprite spriteOverride = null,
         bool showText = true) {
 
-        CurrentItem = obj;
+        CurrentItem = instance;
 
-        ItemConfig item = obj.Config;
-        
-        if (obj is WeaponInstance w) {
+        if (instance is WeaponInstance w) {
             DamageText.text = $"<size=50%>DAM</size>\n<color=#c42c36>{w.RawDamage}</color>";
             DamageText.gameObject.SetActive(true);
-        } else if (obj is ArmorInstance a) {
+        } else if (instance is ArmorInstance a) {
             DamageText.text = $"<size=50%>ARM</size>\n<color=#13b2f2>{a.ArmValue}</color>";
             DamageText.gameObject.SetActive(true);
-        } else if (obj is HeadgearInstance h) {
+        } else if (instance is HeadgearInstance h) {
             DamageText.text = $"<size=50%>HP</size>\n<color=#7bcf5c>{h.ExtraHealth}</color>";
             DamageText.gameObject.SetActive(true);
         }
 
-        SetDataConfig(obj.Config, amount, onclick, spriteOverride, showText);
+        SetData(instance?.Config, amount, onclick, spriteOverride, showText);
 	}
     
-    public void SetDataConfig( ItemConfig obj, 
+    public void SetDataConfig( ItemConfig config, 
         int amount, 
         Action<InventoryItemDisplay> onclick = null, 
         Sprite spriteOverride = null,
         bool showText = true) {
 
         CurrentItem = null;
-	    ItemSprite.color = Color.white;
+
+        SetData(config, amount, onclick, spriteOverride, showText);
+	}
+
+    private void SetData(ItemConfig item,
+        int amount,
+        Action<InventoryItemDisplay> onclick,
+        Sprite spriteOverride,
+        bool showText)
+    {
+        ItemSprite.color = Color.white;
 
         LevelText.gameObject.SetActive(false);
         DamageText.gameObject.SetActive(false);
 
-        
-        ItemConfig item = obj;
-        
-        if(item == null) {
+        if (item == null)
+        {
             ItemSprite.color = Color.clear;
             ItemSprite.sprite = null;
             AmountText.gameObject.SetActive(false);
-        } else {
+        }
+        else
+        {
             Background.color = RarityDefines.Instance.GetColorFromRarity(item.Rarity);
 
             ItemSprite.sprite = spriteOverride ?? item.Image;
-            AmountText.text = "x" +amount.ToString();
+            AmountText.text = "x" + amount.ToString();
             AmountText.gameObject.SetActive(amount > 1);
         }
 
-	    if (!showText) {
-	        AmountText.gameObject.SetActive(false);
-	        DamageText.gameObject.SetActive(false);
-	        LevelText.gameObject.SetActive(false);
+        if (!showText)
+        {
+            AmountText.gameObject.SetActive(false);
+            DamageText.gameObject.SetActive(false);
+            LevelText.gameObject.SetActive(false);
         }
 
         OnClick = onclick;
-	}
+    }
 
     public void OnPointerClick(PointerEventData eventData) {
         OnClick?.Invoke(this);

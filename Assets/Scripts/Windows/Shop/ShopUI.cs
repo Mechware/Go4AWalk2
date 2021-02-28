@@ -32,6 +32,7 @@ public class ShopUI : MonoBehaviour {
     private Action actionOnSendAway;
 
     [SerializeField] private ItemManager _items;
+    [SerializeField] private FollowerManager _followers;
 
     public void OpenShop(ShopFollowerInstance shopKeep, Action actionOnSendAway) {
         this.actionOnSendAway = actionOnSendAway;
@@ -45,7 +46,7 @@ public class ShopUI : MonoBehaviour {
 
     public void Finish() {
         actionOnSendAway?.Invoke();
-        FollowerManager.Instance.Followers.Remove(shopKeep);
+        _followers.Remove(shopKeep);
         GetComponent<RobustLerper>().StartReverseLerp();
         OnFinish.Invoke();
     }

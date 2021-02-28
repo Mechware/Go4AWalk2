@@ -86,7 +86,5 @@ public class UIController : MonoBehaviour
             }
             _mainQuickPopUp.Show(_questionMark, $"<size=150%>New Craftable Recipe!</size>\nA new recipe is now craftable!\nRequires:{postText}");
         };
-
-        _walkingController.Initialize();
     }
 }

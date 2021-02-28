@@ -25,15 +25,15 @@ public class WeaponInstance : ItemInstance {
     public string NameMod => ModRoll.GetName(SaveData.Random);
 
 
-    public WeaponInstance(WeaponSaveData saveData) {
-        base.Config = Configs.Instance.Items.First(w => w.Id == saveData.Id);
+    public WeaponInstance(WeaponSaveData saveData, WeaponConfig config, IEnumerable<EnchanterConfig> enchanters) {
+        base.Config = config;
         base.SaveData = saveData;
 
         if (saveData.EnchanterId > 0) {
             Enchantment = new EnchanterInstance(new EnchanterSaveData() {
                 Id = saveData.EnchanterId,
                 Random = saveData.EnchanterRandom
-            });
+            }, enchanters.First(e => e.Id == saveData.EnchanterId));
         }
     }
 

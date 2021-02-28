@@ -19,9 +19,9 @@ public class QuestGiverInstance : FollowerInstance {
 
     }
 
-    public QuestGiverInstance(QuestGiverSaveData savedata) {
+    public QuestGiverInstance(QuestGiverSaveData savedata, QuestGiverConfig config) {
         base.SaveData = savedata;
-        base.Config = (QuestGiverConfig) Configs.Instance.Followers.First(f => f.Id == savedata.Id);
+        base.Config = config;
     }
 
 }

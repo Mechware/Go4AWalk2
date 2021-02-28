@@ -9,8 +9,8 @@ public class EnchanterInstance : ItemInstance {
     private const float DAMAGE_SCALING = 2.5F;
 
     
-    public EnchanterInstance(EnchanterSaveData saveData) {
-        base.Config = Configs.Instance.Items.First(w => w.Id == saveData.Id);
+    public EnchanterInstance(EnchanterSaveData saveData, EnchanterConfig config) {
+        base.Config = config;
         base.SaveData = saveData;
     }
 

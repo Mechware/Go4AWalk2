@@ -13,7 +13,7 @@ using Material = G4AW2.Data.DropSystem.Material;
 namespace G4AW2.Data.Crafting
 {
     [CreateAssetMenu(menuName = "Data/Crafting Recipe")]
-    public class CraftingRecipe : ScriptableObject {
+    public class RecipeConfig : ScriptableObject {
         public int Id = 0;
         public List<RecipeComponent> Components;
         public RecipeComponent Result;
@@ -26,7 +26,7 @@ namespace G4AW2.Data.Crafting
                 paths[i] = AssetDatabase.GUIDToAssetPath(paths[i]);
             }
 
-            List<int> ids = paths.Select(AssetDatabase.LoadAssetAtPath<CraftingRecipe>).Select(q => q.Id).ToList();
+            List<int> ids = paths.Select(AssetDatabase.LoadAssetAtPath<RecipeConfig>).Select(q => q.Id).ToList();
 
             for (int i = 1; i < paths.Length + 1; i++) {
                 if (!ids.Contains(i)) {

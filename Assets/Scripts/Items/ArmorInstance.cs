@@ -12,8 +12,8 @@ public class ArmorInstance : ItemInstance {
     public string NameMod => ModRoll.GetName(SaveData.Random);
 
     
-    public ArmorInstance(ArmorSaveData saveData) {
-        base.Config = Configs.Instance.Items.First(w => w.Id == saveData.Id);
+    public ArmorInstance(ArmorSaveData saveData, ArmorConfig config) {
+        base.Config = config;
         base.SaveData = saveData;
     }
 

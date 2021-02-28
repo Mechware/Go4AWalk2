@@ -52,7 +52,7 @@ public class InteractionCoordinator : MonoBehaviour {
     public Action<EnemyInstance> OnEnemyDeathFinished;
     public Action OnFightEnter;
     public Action OnFightStart;
-    public Action<(EnemyInstance enemy, bool suicide)> OnEnemyDeath;
+    public Action<EnemyInstance> OnEnemyDeath;
     public Action OnPlayerDeath;
     public Action OnPlayerDeathReset;
     public Action<float> OnPlayerDeathDone;
@@ -240,7 +240,7 @@ public class InteractionCoordinator : MonoBehaviour {
     }
 
 
-    public void EnemyDeath(EnemyInstance data, bool suicide = false) {
+    public void EnemyDeath(EnemyInstance data) {
 
         StartCoroutine(_EnemyDeath());
         
@@ -248,13 +248,13 @@ public class InteractionCoordinator : MonoBehaviour {
 
             _attackArea.gameObject.SetActive(false);
 
-            OnEnemyDeath?.Invoke((data, suicide));
+            OnEnemyDeath?.Invoke(data);
 
             if (_player.Health <= 0) {
                 yield break;    
             }
             
-            if (data.Config.OneAndDoneAttacker && suicide) {
+            if (data.Config.OneAndDoneAttacker && data.Suicide) {
                 _playerAnims.ResetAttack();
                 
                 yield return new WaitForSeconds(1); // Wait for suicide animation to complete
@@ -269,7 +269,7 @@ public class InteractionCoordinator : MonoBehaviour {
             bool celebrateDone = false;
             bool bubblesDone = false;
         
-            List<ItemInstance> items = data.Config.Drops.GetItems(true, data.SaveData.Level);
+            List<ItemInstance> items = data.Config.Drops.GetItems(data.SaveData.Level, _items);
 
             // Wait for player celebration to be done and all items to be picked up
             _playerAnims.ResetAttack();
@@ -295,7 +295,7 @@ public class InteractionCoordinator : MonoBehaviour {
                 _enemy.gameObject.SetActive(false);
             
                 OnEnemyDeathFinished?.Invoke(data);
-                _followers.RemoveFollower(data);
+                _followers.Remove(data);
                 _dragger.Enable();
                 items.ForEach(_items.Add);
                 Fighting = false;
@@ -312,7 +312,8 @@ public class InteractionCoordinator : MonoBehaviour {
             foreach (var reward in config.QuestRewards)
             {
                 ItemConfig it = reward.it;
-                var instance = ItemFactory.GetInstance(it, reward.Level, reward.RandomRoll);
+                var instance = _items.CreateInstance(it, reward.Level, reward.RandomRoll);
+                _items.Add(instance);
                 todrops.Add(instance);
             }
 
@@ -327,11 +328,7 @@ public class InteractionCoordinator : MonoBehaviour {
 
                 ItemDropBubbleManager.Instance.AddItems(todrops, null, () => {
                     _dragger.Enable2();
-
-
                     _TryAdvanceQuest();
-
-                    todrops.ForEach(_items.Add);
                 });
             }
         });

@@ -16,9 +16,9 @@ public class ItemInstance {
         SaveData = new ItemSaveData();
     }
 
-    public ItemInstance(ItemSaveData save) {
+    public ItemInstance(ItemSaveData save, ItemConfig config) {
         SaveData = save;
-        Config = Configs.Instance.Items.FirstOrDefault(i => i.Id == SaveData.Id);
+        Config = config;
         if (Config == null) {
             Debug.LogError("Could not find config for id: " + save.Id);
         }

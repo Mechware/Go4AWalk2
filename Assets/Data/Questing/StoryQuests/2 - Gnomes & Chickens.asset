@@ -12,16 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee10126d9cee7da4fa524ad35982edd6, type: 3}
   m_Name: 2 - Gnomes & Chickens
   m_EditorClassIdentifier: 
-  Id: 0
-  DisplayName: 
+  Id: 2
+  DisplayName: Gnomes and Chickens
   Description: 
   NextQuestConfig: {fileID: 11400000, guid: 1813d7e0e7b53e14ea74a03ff6e2ceee, type: 2}
   StartConversation:
-    Text: 
-    Speaker: {fileID: 0}
+    Text: Now that you've got the basics, smack a chicken!
+    Speaker: {fileID: 21300000, guid: c27605eebf83392428128ddf89b5bd1f, type: 3}
   EndConversation:
-    Text: 
-    Speaker: {fileID: 0}
+    Text: Nice smacking! Here's some ore
+    Speaker: {fileID: 21300000, guid: c27605eebf83392428128ddf89b5bd1f, type: 3}
   MinEnemyDropTime: 1
   MaxEnemyDropTime: 10
   Area: {fileID: 11400000, guid: 60879555d9500764f8ce37f4fb6fa0f1, type: 2}
@@ -31,15 +31,22 @@ MonoBehaviour:
     Image: {fileID: 21300000, guid: 23ff33e35320e59418f02b19c8bbb0f6, type: 3}
     Drops:
       Items:
-      - ItemConfig: {fileID: 11400000, guid: 0304f5a168938d84ca86376587ce5bbb, type: 2}
-        dropChance: 1
+      - ItemConfig: {fileID: 11400000, guid: 614ab21de69c9b94884b5eefdfe78e16, type: 2}
+        dropChance: 0.5
   Enemies:
     Drops:
     - Follower: {fileID: 11400000, guid: f9cb20d3635f5ec40935188217f021cd, type: 2}
       MinLevel: 1
       MaxLevel: 3
       DropChance: 1
-  QuestRewards: []
+    - Follower: {fileID: 11400000, guid: 396482660d9279a4294f369245325131, type: 2}
+      MinLevel: 1
+      MaxLevel: 3
+      DropChance: 1
+  QuestRewards:
+  - it: {fileID: 11400000, guid: 4c5e23e2eafdd084e85f629307646260, type: 2}
+    Level: -1
+    RandomRoll: -1
   QuestType: 0
   QuestParam: {fileID: 11400000, guid: f9cb20d3635f5ec40935188217f021cd, type: 2}
   ValueToReach: 5

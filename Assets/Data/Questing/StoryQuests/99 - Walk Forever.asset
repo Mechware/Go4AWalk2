@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee10126d9cee7da4fa524ad35982edd6, type: 3}
   m_Name: 99 - Walk Forever
   m_EditorClassIdentifier: 
-  Id: 0
+  Id: 14
   DisplayName: 
   Description: 
   NextQuestConfig: {fileID: 0}

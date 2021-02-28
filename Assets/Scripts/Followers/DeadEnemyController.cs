@@ -34,7 +34,7 @@ public class DeadEnemyController : MonoBehaviour {
         {
             AddDeadEnemy(_enemy.RectTransform.anchoredPosition.x,
                          _enemy.RectTransform.anchoredPosition.y,
-                         (EnemyInstance) e.follower);
+                         (EnemyInstance) e);
         };
     }
 

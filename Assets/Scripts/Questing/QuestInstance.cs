@@ -13,9 +13,9 @@ public class QuestInstance {
         SaveData.Active = active;
     }
     
-    public QuestInstance(QuestSaveData saveData) {
+    public QuestInstance(QuestConfig config, QuestSaveData saveData) {
         SaveData = saveData;
-        Config = Configs.Instance.Quests.First(q => q.Id == saveData.Id);
+        Config = config;
     }
 
     public bool IsFinished() {

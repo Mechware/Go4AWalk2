@@ -3,6 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
+using System.Linq;
+
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 namespace G4AW2.Utils
 {
@@ -64,5 +69,33 @@ namespace G4AW2.Utils
         }
     }
 
+
+    public static class EditorUtils
+    {
+#if UNITY_EDITOR
+        public static void AddAllOfType<T>(List<T> list) where T : UnityEngine.Object
+        {
+            list.Clear();
+            string[] paths = AssetDatabase.FindAssets("t:" + typeof(T).Name);
+            for (int i = 0; i < paths.Length; i++)
+            {
+                paths[i] = AssetDatabase.GUIDToAssetPath(paths[i]);
+            }
+
+            paths.Select(AssetDatabase.LoadAssetAtPath<T>).ForEach(list.Add);
+
+            while (list.Contains(null))
+            {
+                list.Remove(null);
+                Debug.LogError("Null!");
+            }
+        }
+#else
+        public static void AddAllOfType<T>(List<T> list) where T : UnityEngine.Object
+        {
+            
+        }
+#endif
+    }
 }
 

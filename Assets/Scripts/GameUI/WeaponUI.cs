@@ -50,7 +50,7 @@ DAM {2}";
     private enum State { LerpingOpen, LerpingClosed, Open, Closed }
     private State state = State.Closed;
 
-    public void Init() {
+    public void Awake() {
         Instance = this;
     }
     
@@ -63,7 +63,7 @@ DAM {2}";
                     if (_player.Weapon == w) return;
 
                     _items.Add(_player.Weapon);
-                    _player.Weapon = w;
+                    _player.EquipWeapon(w);
                     _items.Remove(w);
                     onfinish?.Invoke();
                 }

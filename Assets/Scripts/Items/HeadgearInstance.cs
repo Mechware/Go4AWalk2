@@ -11,14 +11,15 @@ public class HeadgearInstance : ItemInstance{
     public string NameMod => ModRoll.GetName(SaveData.Random);
 
 
-    public HeadgearInstance(HeadgearSaveData saveData) {
-        base.Config = Configs.Instance.Items.First(w => w.Id == saveData.Id);
+    public HeadgearInstance(HeadgearSaveData saveData, HeadgearConfig config) {
+        base.Config = config;
         base.SaveData = saveData;
     }
 
     public HeadgearInstance(HeadgearConfig config, int level) {
         
         base.SaveData = new HeadgearSaveData();
+        base.Config = config;
         SaveData.Id = config.Id;
         SaveData.Random = UnityEngine.Random.Range(0, 101);
     }

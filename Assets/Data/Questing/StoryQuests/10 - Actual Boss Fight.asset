@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee10126d9cee7da4fa524ad35982edd6, type: 3}
   m_Name: 10 - Actual Boss Fight
   m_EditorClassIdentifier: 
-  Id: 0
+  Id: 13
   DisplayName: 
   Description: 
   NextQuestConfig: {fileID: 0}

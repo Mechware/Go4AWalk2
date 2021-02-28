@@ -20,16 +20,15 @@ public class QuestListUI : MonoBehaviour {
 
     public void RefreshList() {
         Clear();
-        SaveGame.SaveData.CurrentQuests.ForEach(AddItem);
+        AddItem(_quests.CurrentQuest);
     }
 
-	public void AddItem(QuestSaveData info) {
+	public void AddItem(QuestInstance instance) {
 		var gameobject = GameObject.Instantiate(ListItemPrefab);
 		gameobject.transform.SetParent(ListParent.transform, false);
 
 		questItems.Add(gameobject);
 		gameobject.GetComponent<Button>().onClick.RemoveAllListeners();
-        var instance = new QuestInstance(info);
         gameobject.GetComponent<Button>().onClick.AddListener(() =>
         {
             var q = instance;

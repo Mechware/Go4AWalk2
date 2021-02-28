@@ -24,7 +24,7 @@ namespace G4AW2.Combat {
 
 		public Action<int, ElementalType> OnDamageTaken;
 		public Action<int, ElementalType> OnAttack;
-		public Action<EnemyInstance, bool> OnDeath;
+		public Action<EnemyInstance> OnDeath;
 
 
 		[Header("Misc References")]
@@ -214,7 +214,8 @@ namespace G4AW2.Combat {
 	        EnemyState = State.Dead;
             Image.color = Color.white;
 	        StopAllCoroutines();
-			OnDeath?.Invoke(Enemy, suicide);
+			Enemy.Suicide = suicide;
+			OnDeath?.Invoke(Enemy);
 
 	        MyAnimator.SetTrigger("Death");
         }

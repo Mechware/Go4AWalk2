@@ -12,16 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee10126d9cee7da4fa524ad35982edd6, type: 3}
   m_Name: 4 - Craft Feather Hat
   m_EditorClassIdentifier: 
-  Id: 0
-  DisplayName: 
+  Id: 5
+  DisplayName: Nice Feathered Hat
   Description: 
-  NextQuestConfig: {fileID: 0}
+  NextQuestConfig: {fileID: 11400000, guid: 3bdbfb305ca5b514fbfb60ae208f0bdc, type: 2}
   StartConversation:
-    Text: 
-    Speaker: {fileID: 0}
+    Text: You're going to want to craft a gnome hat! You need to get a gnome hat
+      and chicken feathers
+    Speaker: {fileID: 21300000, guid: c27605eebf83392428128ddf89b5bd1f, type: 3}
   EndConversation:
-    Text: 
-    Speaker: {fileID: 0}
+    Text: You look splendid, now lets get you some armour!
+    Speaker: {fileID: 21300000, guid: c27605eebf83392428128ddf89b5bd1f, type: 3}
   MinEnemyDropTime: 1
   MaxEnemyDropTime: 10
   Area: {fileID: 11400000, guid: 60879555d9500764f8ce37f4fb6fa0f1, type: 2}
@@ -38,9 +39,17 @@ MonoBehaviour:
     - Follower: {fileID: 11400000, guid: f9cb20d3635f5ec40935188217f021cd, type: 2}
       MinLevel: 1
       MaxLevel: 3
-      DropChance: 1
+      DropChance: 2
+    - Follower: {fileID: 11400000, guid: 396482660d9279a4294f369245325131, type: 2}
+      MinLevel: 1
+      MaxLevel: 3
+      DropChance: 2
+    - Follower: {fileID: 11400000, guid: 51d3cce514427d448a622c4b31127522, type: 2}
+      MinLevel: 1
+      MaxLevel: 3
+      DropChance: 2
   QuestRewards: []
-  QuestType: 0
-  QuestParam: {fileID: 11400000, guid: f9cb20d3635f5ec40935188217f021cd, type: 2}
+  QuestType: 1
+  QuestParam: {fileID: 11400000, guid: 5dbeaf9deb25d984a9f9d45d7bb0df10, type: 2}
   ValueToReach: 5
   Level: 5

@@ -4,14 +4,15 @@
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 92ed46357c010e84ea5a3394f3ad888d, type: 3}
   m_Name: Gnome Chompy
   m_EditorClassIdentifier: 
-  ID: 5
+  Id: 0
   DisplayName: Gnome Chompy
   Portrait: {fileID: 21300000, guid: e0be62ea78b407d4a88f12efea2ca7d4, type: 3}
   SizeOfSprite: {x: 64, y: 64}
@@ -37,19 +38,15 @@ MonoBehaviour:
   HasElementalDamage: 0
   ElementalDamageAtLevel0: 0
   ElementalDamageType: {fileID: 0}
-  ElementalWeaknesses:
-    UseConstant: 1
-    ConstantValue:
-      Weaknesses: []
-    Variable: {fileID: 0}
+  ElementalWeaknesses: {fileID: 0}
   Drops:
     Items:
-    - item: {fileID: 11400000, guid: 212b5a7b5274ba54eafbf973b21ed3f8, type: 2}
-      dropChance: 0.25
-    - item: {fileID: 11400000, guid: 3b3b3aae3ef904f4fa27af0aa93725d8, type: 2}
-      dropChance: 0.6
-    - item: {fileID: 11400000, guid: c95e6bfd76411ee4ba7c1167255243a9, type: 2}
+    - ItemConfig: {fileID: 11400000, guid: 212b5a7b5274ba54eafbf973b21ed3f8, type: 2}
+      dropChance: 1
+    - ItemConfig: {fileID: 11400000, guid: aadd84ecb64a69d438a811a67a041056, type: 2}
+      dropChance: 0.234
+    - ItemConfig: {fileID: 11400000, guid: fd886c20d53e5f64bac06680e5b49012, type: 2}
       dropChance: 0.1
-    - item: {fileID: 11400000, guid: aadd84ecb64a69d438a811a67a041056, type: 2}
+    - ItemConfig: {fileID: 11400000, guid: 3b3b3aae3ef904f4fa27af0aa93725d8, type: 2}
       dropChance: 0.5
   OneAndDoneAttacker: 0

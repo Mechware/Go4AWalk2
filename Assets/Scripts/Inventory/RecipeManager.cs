@@ -6,6 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using G4AW2.Utils;
 
 namespace G4AW2.Managers
 {
@@ -15,20 +16,28 @@ namespace G4AW2.Managers
         [SerializeField] private QuestManager _quests;
         [SerializeField] private ItemManager _items;
 
-        public Action<CraftingRecipe> RecipeUnlocked;
-        private List<CraftingRecipe> currentRecipes = null;
+        public Action<RecipeConfig> RecipeUnlocked;
+        private List<RecipeConfig> currentRecipes = null;
 
-        public List<CraftingRecipe> GetPossibleRecipes()
+        public List<RecipeConfig> AllRecipes;
+
+        [ContextMenu("Add all recipes in project")]
+        private void SearchForAllItems()
+        {
+            EditorUtils.AddAllOfType(AllRecipes);
+        }
+
+        public List<RecipeConfig> GetPossibleRecipes()
         {
             return GetPossibleRecipesWhereResultIs<ItemConfig>();
         }
 
-        public List<CraftingRecipe> GetPossibleRecipesWhereResultIs<T>() where T : ItemConfig
+        public List<RecipeConfig> GetPossibleRecipesWhereResultIs<T>() where T : ItemConfig
         {
 
-            List<CraftingRecipe> recipes = new List<CraftingRecipe>();
+            List<RecipeConfig> recipes = new List<RecipeConfig>();
 
-            foreach (var recipe in Configs.Instance.Recipes)
+            foreach (var recipe in AllRecipes)
             {
                 if (!(recipe.Result.Item is T))
                     continue;
@@ -51,7 +60,7 @@ namespace G4AW2.Managers
             return recipes;
         }
 
-        public List<ItemInstance> Make(CraftingRecipe cr)
+        public List<ItemInstance> Make(RecipeConfig cr)
         {
             if (cr.Components.Any(comp => !_items.Contains(comp.Item)))
             {
@@ -65,7 +74,7 @@ namespace G4AW2.Managers
                 var item = comp.Item;
                 while (amount > 0)
                 {
-                    if (!_items.Remove(item.Id))
+                    if (!_items.Remove(item))
                     {
                         Debug.LogError("Tried to remove item from inventory but was unable to. id: " + item.Id);
                         return null;
@@ -77,7 +86,7 @@ namespace G4AW2.Managers
             List<ItemInstance> items = new List<ItemInstance>();
             for (int i = 0; i < cr.Result.Amount; i++)
             {
-                ItemInstance it = ItemFactory.GetInstance(cr.Result.Item, _quests.CurrentQuest.Config.Level);
+                ItemInstance it = _items.CreateInstance(cr.Result.Item, _quests.CurrentQuest.Config.Level);
                 _items.Add(it);
                 items.Add(it);
             }
@@ -94,7 +103,7 @@ namespace G4AW2.Managers
             }
             else
             {
-                List<CraftingRecipe> recipes = GetPossibleRecipes();
+                List<RecipeConfig> recipes = GetPossibleRecipes();
                 foreach (var recipe in recipes)
                 {
                     if (!currentRecipes.Contains(recipe) && !SaveGame.SaveData.CraftingRecipesMade.Contains(recipe.Id))

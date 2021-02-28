@@ -1,31 +1,33 @@
 using G4AW2;
 using G4AW2.Data.Crafting;
 using G4AW2.Managers;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class CraftingMenu : MonoBehaviour {
 
     [SerializeField] private ItemManager _items;
+    [SerializeField] private RecipeManager _recipes;
 
-    public RecipeManager CT;
-    public GameObject ItemPrefab;
-    public Transform ParentOfItems;
+    [SerializeField] private GameObject ItemPrefab;
+    [SerializeField] private Transform ParentOfItems;
 
-    public List<GameObject> Children;
+    [SerializeField] private Sprite QuestionMark;
 
-    public Sprite QuestionMark;
+
+    private List<GameObject> _children = new List<GameObject>();
 
     public void RefreshList() {
-        foreach (GameObject child in Children) {
+        foreach (GameObject child in _children) {
             Destroy(child);
         }
 
-        Children.Clear();
+        _children.Clear();
 
-        foreach (var r in Configs.Instance.Recipes) {
+        foreach (var r in _recipes.AllRecipes) {
             var go = Instantiate(ItemPrefab, ParentOfItems.transform);
-            Children.Add(go);
+            _children.Add(go);
             
             var holder = go.GetComponent<IconWithTextController>();
             SetItem(holder, r);
@@ -36,7 +38,7 @@ public class CraftingMenu : MonoBehaviour {
         }
     }
 
-    private void SetItem(IconWithTextController holder, CraftingRecipe recipe) {
+    private void SetItem(IconWithTextController holder, RecipeConfig recipe) {
 
         if (SaveGame.SaveData.CraftingRecipesMade.Contains(recipe.Id)) {
             string text = $"{recipe.Result.Item.Name}\n<size=50%>";
@@ -66,8 +68,8 @@ public class CraftingMenu : MonoBehaviour {
 
     //public QuickPopUp PopUp;
 
-    private bool MakeRecipe(CraftingRecipe cr) {
-        var its = CT.Make(cr);
+    private bool MakeRecipe(RecipeConfig cr) {
+        var its = _recipes.Make(cr);
         if (its == null) return false;
 
         /*
