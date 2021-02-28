@@ -2,25 +2,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using G4AW2.Data.Crafting;
 using G4AW2.Data.DropSystem;
 using UnityEngine;
 
 namespace G4AW2.Managers {
-    public class ItemManager : MonoBehaviour, IEnumerable<ItemInstance>
+    [CreateAssetMenu(menuName = "Managers/Items")]
+    public class ItemManager : ScriptableObject, IEnumerable<ItemInstance>
     {
         private List<ItemInstance> items = new List<ItemInstance>();
 
         public Action<ItemInstance> OnItemObtained;
 
-        public static ItemManager Instance;
-
-        private void Awake()
+        public bool IsCraftable(CraftingRecipe crafting)
         {
-            Instance = this;
-        }
-
-        public void Initialize()
-        {
+            return crafting.Components.All(component => GetAmountOf(component.Item) >= component.Amount);
         }
 
         public void Add(ItemInstance item)

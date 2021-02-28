@@ -1,4 +1,5 @@
-﻿using G4AW2.Data;
+﻿using G4AW2;
+using G4AW2.Data;
 using System.Linq;
 
 public class QuestInstance {

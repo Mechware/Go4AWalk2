@@ -31,6 +31,8 @@ public class ShopUI : MonoBehaviour {
 
     private Action actionOnSendAway;
 
+    [SerializeField] private ItemManager _items;
+
     public void OpenShop(ShopFollowerInstance shopKeep, Action actionOnSendAway) {
         this.actionOnSendAway = actionOnSendAway;
         this.shopKeep = shopKeep;
@@ -59,7 +61,7 @@ public class ShopUI : MonoBehaviour {
 
     private int GetTrashSum() {
         int sum = 0;
-        foreach(ItemInstance i in ItemManager.Instance) {
+        foreach(ItemInstance i in _items) {
 
             if(i.SaveData.MarkedAsTrash || i.Config.SellWithTrash) {
                 sum += Mathf.RoundToInt(i.GetValue() * (shopKeep.Config.SellingPriceMultiplier));
@@ -70,14 +72,14 @@ public class ShopUI : MonoBehaviour {
 
     public void SellTrash() {
         List<ItemInstance> toRemove = new List<ItemInstance>();
-        foreach(var i in ItemManager.Instance) {
+        foreach(var i in _items) {
             if(i.SaveData.MarkedAsTrash || i.Config.SellWithTrash) {
                 toRemove.Add(i);
             }
         }
 
         GoldAmount.Value += GetTrashSum();
-        toRemove.ForEach(i => ItemManager.Instance.Remove(i));
+        toRemove.ForEach(i => _items.Remove(i));
 
         SetSellingTab();
     }
@@ -121,7 +123,7 @@ public class ShopUI : MonoBehaviour {
             new Action[] {
                 () => {
                     GoldAmount.Value -= price;
-                    ItemManager.Instance.Add(it);
+                    _items.Add(it);
                     shopKeep.Items.Remove(it);
                     RefreshBuyingList();
                 },
@@ -139,7 +141,7 @@ public class ShopUI : MonoBehaviour {
         sellingItems.ForEach(Destroy);
         sellingItems.Clear();
 
-        foreach(var item in ItemManager.Instance) {
+        foreach(var item in _items) {
             var go = Instantiate(IconWithTextPrefab, SellingScrollPanelContent.transform);
             var itemDisplay = go.GetComponent<IconWithTextController>();
             SetDataSelling(itemDisplay, item);
@@ -166,7 +168,7 @@ public class ShopUI : MonoBehaviour {
            new Action[] {
             () => {
                 GoldAmount.Value += price;
-                ItemManager.Instance.Remove(it);
+                _items.Remove(it);
                 RefreshSellingList();
                 },
             () => {

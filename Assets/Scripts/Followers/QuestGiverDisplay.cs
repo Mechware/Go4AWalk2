@@ -7,9 +7,13 @@ using UnityEngine.EventSystems;
 
 public class QuestGiverDisplay : MonoBehaviour, IPointerClickHandler {
 
+    [SerializeField] private QuestManager _quests;
+    [SerializeField] private FollowerManager _followers;
+    [SerializeField] private PopUp _popUp;
+
     public Action StartedWalking;
     public Action FinishInteraction;
-
+    
     private QuestGiverInstance follower;
 
     public void SetData(QuestGiverInstance follower) {
@@ -61,10 +65,10 @@ public class QuestGiverDisplay : MonoBehaviour, IPointerClickHandler {
 
     public void OnPointerClick(PointerEventData eventData) {
 
-        PopUp.SetPopUp("Accept quest from quest giver? Title: " + follower.QuestToGive.DisplayName, new[] { "Yes", "No" }, new Action[] {
+        _popUp.SetPopUpNew("Accept quest from quest giver? Title: " + follower.QuestToGive.DisplayName, new[] { "Yes", "No" }, new Action[] {
             () => {
-                QuestManager.Instance.GiveQuest(follower.QuestToGive);                
-                FollowerManager.Instance.Followers.Remove(follower);
+                _quests.GiveQuest(follower.QuestToGive);                
+                _followers.Followers.Remove(follower);
 
                 // Flip Giver
                 RectTransform rt = (RectTransform) transform;
@@ -88,7 +92,7 @@ public class QuestGiverDisplay : MonoBehaviour, IPointerClickHandler {
 
     public void Dismiss() {
         FinishInteraction.Invoke();
-        FollowerManager.Instance.Followers.Remove(follower);
+        _followers.Followers.Remove(follower);
         StartCoroutine(WalkOffScreen());
     }
 

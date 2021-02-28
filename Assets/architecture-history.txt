@@ -1,0 +1,31 @@
+The architecture of this game started out by implementing and using the tools described in this video https://www.youtube.com/watch?v=raQ3iHhE_Kk
+
+I found this spread the state out across the game and I couldn't tell what was really going on. Lots of bugs arose that were difficult to diagnose because they had no concernable stack trace.
+This could've been fixed by more debugging tools, but given I wasn't actually getting anything out of using this architecture (I was both the designer and the programmer) I decided to scrap it.
+
+To achieve this I did a large rewrite that removed most of the references to this type of architecture.
+	I removed most Unity events and scriptable object events and just hardcoded them or moved them to actions
+		This made stack traces easier to follow and the flow of the program easier to follow
+	I entirely moved all the save data into a save data class so I could see all the data that actually exists during the lifetime of a game. 
+		I'm mixed about this. On one hand it's nice having a monolithic save data class because this is a small project, but I know it's not extensible.
+
+	After this, all game configs were still in scriptable objects, but the program flow was in regular C#.
+
+This current rewrite tried to impose a heirarchical layout to the code where the entry point for the game was Game.cs and it contained references to all managers (which are essentially gates for the data, they raise events and impose restrictions when changing save data) and main components in the game.
+	Game would initialize all the managers and components and pass the neccessary managers to the components. I thought this was good because the managers could go into pure C# and the game had a nice heirarchical structure.
+	I had an events object that components could subscribe to events from which completely decoupled managers and components in some instances.
+	After this was done I thought "what have I gained?"
+		Managers being gates for data was nice because components would know about managers and basically nothing else in the game (because the managers handled the events) 
+		The heirarchical structure gave me an initialize function, but it made it more difficult to make changes. If a component at the bottom of the heirarchy suddenly needed a manager then all the parents would need to change, meaning what should be a single change was now a change to many classes.
+		The events rarely decoupled classes completely and they'd be listening to events through the event object yet still have a reference to the manager.
+
+	I didn't like this so I disassembled the heirarchy, deleted the events object, and started giving the components references to the managers when they need it, which is what unity is specifically built for.
+		Issues with this: 
+			Decoupling components from their managers for testing could be difficult
+			Objects that need to be initialized after the game is loaded will need to listen to an "SaveDataLoaded" type event
+				Or the save game loading goes into a different scene so that the save data + managers are guaranteed to be initialized on awake or start
+		
+Moving foward: 
+	Remove all references to gameobjects from managers and move managers to scriptable objects so they have no concept of being in a scene and prefabs can reference them
+	Come up with a better separation between regular gameplay and character interactions/combat, right now the transition between the two is what creates the most complexity (by far) in the game.
+	Try to write as simple code as possible. This is what I've learned through these architecture cycles.

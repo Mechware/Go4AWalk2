@@ -3,7 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using CustomEvents;
 using G4AW2;
+using G4AW2.Combat;
 using G4AW2.Data.Combat;
+using G4AW2.Managers;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,14 +20,26 @@ public class DeadEnemyController : MonoBehaviour {
 
     private ObjectPrefabPool DeadEnemies;
 
+    [SerializeField] private FollowerManager _followers;
+    [SerializeField] private QuestManager _quests;
+    [SerializeField] private ScrollingImages _backgroundImages;
+    [SerializeField] private EnemyDisplay _enemy;
+
     void Awake() {
         Instance = this;
         DeadEnemies = new ObjectPrefabPool(DeadEnemyPrefab, DeadEnemyParent);
+        _quests.AreaChanged += a => ClearEnemies();
+        _backgroundImages.OnScrolled += Scroll;
+        _followers.FollowerRemoved += e =>
+        {
+            AddDeadEnemy(_enemy.RectTransform.anchoredPosition.x,
+                         _enemy.RectTransform.anchoredPosition.y,
+                         (EnemyInstance) e.follower);
+        };
     }
 
-    public void Initialize(GameEvents events)
+    public void Initialize()
     {
-        events.AreaChanged += a => ClearEnemies();
     }
 
     public void ClearEnemies() {

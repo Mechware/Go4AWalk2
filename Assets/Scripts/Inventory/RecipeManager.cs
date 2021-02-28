@@ -11,6 +11,8 @@ namespace G4AW2.Managers
 {
     public class RecipeManager : MonoBehaviour
     {
+        [SerializeField] private QuestManager _quests;
+        [SerializeField] private ItemManager _items;
 
         public Action<CraftingRecipe> RecipeUnlocked;
         private List<CraftingRecipe> currentRecipes = null;
@@ -34,7 +36,7 @@ namespace G4AW2.Managers
 
                 foreach (var component in recipe.Components)
                 {
-                    var amt = ItemManager.Instance.GetAmountOf(component.Item);
+                    var amt = _items.GetAmountOf(component.Item);
                     if (amt < component.Amount)
                     {
                         canMake = false;
@@ -50,7 +52,7 @@ namespace G4AW2.Managers
 
         public List<ItemInstance> Make(CraftingRecipe cr)
         {
-            if (cr.Components.Any(comp => !ItemManager.Instance.Contains(comp.Item)))
+            if (cr.Components.Any(comp => !_items.Contains(comp.Item)))
             {
                 Debug.LogError("Tried to craft something you could not make");
                 return null;
@@ -62,7 +64,7 @@ namespace G4AW2.Managers
                 var item = comp.Item;
                 while (amount > 0)
                 {
-                    if (!ItemManager.Instance.Remove(item.Id))
+                    if (!_items.Remove(item.Id))
                     {
                         Debug.LogError("Tried to remove item from inventory but was unable to. id: " + item.Id);
                         return null;
@@ -74,8 +76,8 @@ namespace G4AW2.Managers
             List<ItemInstance> items = new List<ItemInstance>();
             for (int i = 0; i < cr.Result.Amount; i++)
             {
-                ItemInstance it = ItemFactory.GetInstance(cr.Result.Item, QuestManager.Instance.CurrentQuest.Config.Level);
-                ItemManager.Instance.Add(it);
+                ItemInstance it = ItemFactory.GetInstance(cr.Result.Item, _quests.CurrentQuest.Config.Level);
+                _items.Add(it);
                 items.Add(it);
             }
 

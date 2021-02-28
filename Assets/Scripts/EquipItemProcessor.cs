@@ -7,23 +7,23 @@ using UnityEngine;
 public class EquipItemProcessor : MonoBehaviour {
     [Obsolete("Singleton")] public static EquipItemProcessor Instance;
 
-    
+    [SerializeField] private PlayerManager _player;
+    [SerializeField] private ItemManager _items;
+    [SerializeField] private PopUp _popUp;
+
     void Awake() {
         Instance = this;
     }
 
     public bool ProcessItem(object it, Action onDone) {
 
-        PlayerManager p = PlayerManager.Instance;
-        ItemManager i = ItemManager.Instance;
-        
         if (it is WeaponInstance w) {
-            PopUp.SetPopUp($"{w.GetName(true, true)}\n{w.GetDescription()}", new string[] {"Equip", w.SaveData.MarkedAsTrash ? "Untrash" : "Trash", "Cancel"}, new Action[] {
+            _popUp.SetPopUpNew($"{w.GetName(true, true)}\n{w.GetDescription()}", new string[] {"Equip", w.SaveData.MarkedAsTrash ? "Untrash" : "Trash", "Cancel"}, new Action[] {
                 () => {
-                    if(p.Weapon != null)
-                        i.Add(p.Weapon);
-                    p.Weapon = w;
-                    i.Remove(w);
+                    if(_player.Weapon != null)
+                        _items.Add(_player.Weapon);
+                    _player.Weapon = w;
+                    _items.Remove(w);
                     onDone?.Invoke();
                 },
                 () => {
@@ -38,12 +38,12 @@ public class EquipItemProcessor : MonoBehaviour {
         } 
         
         if (it is ArmorInstance a) {
-            PopUp.SetPopUp($"{a.GetName()}\n{a.GetDescription()}", new string[] {"Equip", a.SaveData.MarkedAsTrash ? "Untrash" : "Trash", "Cancel"}, new Action[] {
+            _popUp.SetPopUpNew($"{a.GetName()}\n{a.GetDescription()}", new string[] {"Equip", a.SaveData.MarkedAsTrash ? "Untrash" : "Trash", "Cancel"}, new Action[] {
                 () => {
-                    if(p.Armor != null)
-                        i.Add(p.Armor);
-                    p.Armor = a;
-                    i.Remove(a);
+                    if(_player.Armor != null)
+                        _items.Add(_player.Armor);
+                    _player.Armor = a;
+                    _items.Remove(a);
                     onDone?.Invoke();
                 },
                 () => {
@@ -59,12 +59,12 @@ public class EquipItemProcessor : MonoBehaviour {
         } 
         
         if (it is HeadgearInstance h) {
-            PopUp.SetPopUp($"{h.GetName()}\n{h.GetDescription()}", new string[] {"Equip", h.SaveData.MarkedAsTrash ? "Untrash" : "Trash", "Cancel"}, new Action[] {
+            _popUp.SetPopUpNew($"{h.GetName()}\n{h.GetDescription()}", new string[] {"Equip", h.SaveData.MarkedAsTrash ? "Untrash" : "Trash", "Cancel"}, new Action[] {
                 () => {
-                    if(p.Headgear != null)
-                        i.Add(p.Headgear);
-                    p.Headgear = h;
-                    i.Remove(h);
+                    if(_player.Headgear != null)
+                        _items.Add(_player.Headgear);
+                    _player.Headgear = h;
+                    _items.Remove(h);
                     onDone?.Invoke();
                 },
                 () => {

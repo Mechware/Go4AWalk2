@@ -4,17 +4,35 @@ using CustomEvents;
 using G4AW2.Data;
 using UnityEngine;
 
-public class TutorialManager : MonoBehaviour {
+namespace G4AW2.Managers {
+    [CreateAssetMenu(menuName = "Managers/TutorialManager")]
+    public class TutorialManager : ScriptableObject
+    {
+        public QuestConfig BlockingAndParryingTutorialStart;
+        public QuestConfig BlockingAndParryingTutorialEnd;
+        [SerializeField] private QuestManager _quests;
 
-    public QuestConfig BlockingAndParryingTutorialStart;
-    public QuestConfig BlockingAndParryingTutorialEnd;
-
-    public void SetQuest(QuestConfig questConfig) {
-        if (questConfig == BlockingAndParryingTutorialStart) {
-            SaveGame.SaveData.ShowParryAndBlockColors = true;
+        private void OnEnable()
+        {
+            _quests.QuestStarted += q => SetQuest(q.Config);
         }
-        if (questConfig == BlockingAndParryingTutorialEnd) {
-            SaveGame.SaveData.ShowParryAndBlockColors = false;
+
+        private void OnDisable()
+        {
+            _quests.QuestStarted -= q => SetQuest(q.Config);
+        }
+
+        public void SetQuest(QuestConfig questConfig)
+        {
+            if (questConfig == BlockingAndParryingTutorialStart)
+            {
+                SaveGame.SaveData.ShowParryAndBlockColors = true;
+            }
+            if (questConfig == BlockingAndParryingTutorialEnd)
+            {
+                SaveGame.SaveData.ShowParryAndBlockColors = false;
+            }
         }
     }
+
 }

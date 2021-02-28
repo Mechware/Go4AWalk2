@@ -1,3 +1,5 @@
+using G4AW2.Data;
+using G4AW2.Data.DropSystem;
 using System;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
@@ -5,39 +7,45 @@ using Debug = UnityEngine.Debug;
 namespace G4AW2.Managers
 {
 
-    public class PlayerManager : MonoBehaviour {
-
-		public static PlayerManager Instance;
-
+    [CreateAssetMenu(menuName = "Managers/Player")]
+    public class PlayerManager : ScriptableObject {
 
 		[NonSerialized] public int MaxHealth = 2000;
+        [NonSerialized] public int Gold;
+        [NonSerialized] public int Level;
+        [NonSerialized] public int Experience;
+        public int Health { 
+            private set; 
+            get; }
 
-		public int Health { private set; get; }
-		[NonSerialized] public int Gold;
         public Action<float> OnDeath;
         public Action<int, ElementalType> OnDamageTaken;
-
-		[NonSerialized] public int Level;
-		[NonSerialized] public int Experience;
 
         public WeaponInstance Weapon;
         public ArmorInstance Armor;
         public HeadgearInstance Headgear;
-        
-        [NonSerialized] public float DamageMultiplier = 1f;
-        [NonSerialized] public float DamageAdditive = 0f;
 
-        [NonSerialized] public float SpeedMultiplier = 1f;
-        [NonSerialized] public float SpeedAdditive = 0f;
-        
+
+        [SerializeField] private WeaponConfig StartWeapon;
+        [SerializeField] private ArmorConfig StartArmor;
+
         public int HealthPerSecond = 1;
         private float updateTime = 1f;
         
-        private void Awake() {
-	        Instance = this;
-        }
-        
-        public void Initialize() {
+        public void Initialize(bool newGame) {
+
+            if(newGame)
+            {
+                Health = MaxHealth;
+                Debug.Log($"health: {Health}");
+                Weapon = new WeaponInstance(StartWeapon, 1);
+                Weapon.SaveData.Level = 1;
+                Weapon.SaveData.Random = 30;
+
+                Armor = new ArmorInstance(StartArmor, 1);
+                Armor.SaveData.Level = 1;
+                Armor.SaveData.Random = 50;
+            }
 
 	        // Fin
 	        DateTime lastTimePlayedUTC = SaveGame.SaveData.LastTimePlayedUTC;
@@ -74,6 +82,7 @@ namespace G4AW2.Managers
             else {
                 Health -= damage;
             }
+            Debug.Log($"health: {Health}");
         }
 
         public void Die()
@@ -87,13 +96,8 @@ namespace G4AW2.Managers
             OnDeath?.Invoke(oldAmount - newAmount);
         }
 
-        public void NewGame()
-        {
-            Health = MaxHealth;
-        }
-
         public int GetLightDamage() {
-            return Mathf.RoundToInt(Weapon.RawDamage * DamageMultiplier + DamageAdditive);
+            return Mathf.RoundToInt(Weapon.RawDamage);
 		}
 
 	    public int GetElementalDamage() {
@@ -101,7 +105,7 @@ namespace G4AW2.Managers
 	    }
 
         public float GetAttackSpeed() {
-            return Weapon.Config.TapSpeed * SpeedMultiplier + SpeedAdditive;
+            return Weapon.Config.TapSpeed;
         }
 
         
@@ -117,9 +121,15 @@ namespace G4AW2.Managers
         public void GiveHealth(int amount)
         {
             Health = Mathf.Min(Health + amount, MaxHealth);
+            Debug.Log($"health: {Health}");
         }
 
         public void IncreaseHealthByTime(float time) {
+            if (time < 0 || time > int.MaxValue)
+            {
+                Health = MaxHealth;
+                return;
+            }
             GiveHealth(Mathf.RoundToInt(Health + time * HealthPerSecond));
         }
 
@@ -127,12 +137,6 @@ namespace G4AW2.Managers
 
         private void OnApplicationFocus(bool focus) {
 	        if (focus) {
-		        // Played
-		        if (PauseTime == DateTime.MaxValue) {
-			        Debug.LogWarning("Just played without pausing");
-			        return;
-		        }
-
 		        TimeSpan diff = DateTime.Now - PauseTime;
 		        IncreaseHealthByTime((float)diff.TotalSeconds);
 	        }

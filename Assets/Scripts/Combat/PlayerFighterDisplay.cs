@@ -25,14 +25,8 @@ public class PlayerFighterDisplay : MonoBehaviour {
     private UpdateTimer _blockTimer = new UpdateTimer();
     private BlockState _blockState = BlockState.None;
 
-    private EnemyDisplay _enemy;
-    private PlayerManager _player;
-
-    public void Initialize(EnemyDisplay enemy, PlayerManager p)
-    {
-        _enemy = enemy;
-        _player = p;
-    }
+    [SerializeField] private EnemyDisplay _enemy;
+    [SerializeField] private PlayerManager _player;
 
     public void Hit(int damage, ElementalType type) {
 

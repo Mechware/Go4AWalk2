@@ -11,11 +11,17 @@ public class EnchantUI : MonoBehaviour {
     public IconWithTextController Enchanter;
     public IconWithTextController Result;
 
-    public ItemViewer ItemViewer;
 
     public Button EnchantButton;
 
     [Obsolete("Move this to the stat tracker")] public IntVariable NumberOfEnchantedWeapons;
+
+    [SerializeField] private ItemManager _items;
+    [SerializeField] private PlayerManager _player;
+    
+    [SerializeField] private EquipItemProcessor _itemUI;
+    [SerializeField] private WeaponUI _weaponUI;
+    [SerializeField] private ItemViewer _itemViewer;
 
     // Use this for initialization
     void Start () {
@@ -26,11 +32,10 @@ public class EnchantUI : MonoBehaviour {
     }
 
     void WeaponViewerClicked() {
-        ItemViewer.ShowItems("Enchantable Weapons", ItemManager.Instance.Where(w => w is WeaponInstance instance && !instance.IsEnchanted), WeaponClicked, false);
+        _itemViewer.ShowItems("Enchantable Weapons", _items.Where(w => w is WeaponInstance instance && !instance.IsEnchanted), WeaponClicked, false);
         
-        if(!PlayerManager.Instance.Weapon.IsEnchanted)
-            ItemViewer.Add(PlayerManager.Instance.Weapon, 0, WeaponClicked);
-
+        if(!_player.Weapon.IsEnchanted)
+            _itemViewer.Add(_player.Weapon, 0, WeaponClicked);
     }
 
     void WeaponClicked(ItemInstance o ) {
@@ -38,11 +43,11 @@ public class EnchantUI : MonoBehaviour {
         EnchantButton.interactable = Enchanter.Item.CurrentItem != null;
         Weapon.SetDataInstance(w, 1, $"{w.GetName(true, true)}\nDAM: {w.GetDamage()}", WeaponViewerClicked);
 		Result.SetDataConfig(null, 0, "Result of enchantment goes here.", () => {});
-        ItemViewer.Close();
+        _itemViewer.Close();
     }
 
     void EnchantViewerClicked() {
-        ItemViewer.ShowItems("Enchantments", ItemManager.Instance, EnchantClicked, false);
+        _itemViewer.ShowItems("Enchantments", _items, EnchantClicked, false);
     }
 
     void EnchantClicked(ItemInstance o) {
@@ -50,7 +55,7 @@ public class EnchantUI : MonoBehaviour {
         EnchantButton.interactable = Weapon.Item.CurrentItem != null;
         Enchanter.SetDataInstance(e, 1, $"{e.GetName()}\n{e.GetDescription()}", EnchantViewerClicked);
 		Result.SetDataConfig(null, 0, "Result of enchantment goes here.", () => {});
-        ItemViewer.Close();
+        _itemViewer.Close();
     }
 
 
@@ -62,12 +67,12 @@ public class EnchantUI : MonoBehaviour {
 
         NumberOfEnchantedWeapons.Value++;
 
-        ItemManager.Instance.Remove(e);
+        _items.Remove(e);
         w.Enchant(e);
 
         Start();
 
-        Result.SetDataInstance(w, 1, "Enchant Damage: " + w.GetEnchantDamage(), () => { WeaponUI.Instance.SetWeaponWithDefaults(w); });
-        EquipItemProcessor.Instance.ProcessItem(w, null);
+        Result.SetDataInstance(w, 1, "Enchant Damage: " + w.GetEnchantDamage(), () => { _weaponUI.SetWeaponWithDefaults(w); });
+        _itemUI.ProcessItem(w, null);
     }
 }

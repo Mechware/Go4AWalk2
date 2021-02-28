@@ -1,6 +1,11 @@
-﻿using G4AW2.Combat;
+﻿using G4AW2;
+using G4AW2.Combat;
+using G4AW2.Component.UI;
+using G4AW2.Data;
 using G4AW2.Data.Combat;
+using G4AW2.Data.DropSystem;
 using G4AW2.Managers;
+using G4AW2.UI.Areas;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,11 +17,6 @@ public class InteractionCoordinator : MonoBehaviour {
 
     public bool Fighting { private set; get; }
 
-    public PlayerManager Player;
-    public ItemManager Inventory;
-    public DragObject World;
-    public ScrollingImages BackgroundImages;
-
     public LerpToPosition LerperToBattleArea;
     public LerpToPosition EnemyPositionLerper;
     public RobustLerper DeathCover;
@@ -25,6 +25,15 @@ public class InteractionCoordinator : MonoBehaviour {
     [SerializeField] private ScrollingImages _backgroundImages;
     [SerializeField] private PlayerAnimations _playerAnims;
     [SerializeField] private ItemDropBubbleManager _itemDropper;
+    [SerializeField] private AttackArea _attackArea;
+    [SerializeField] private DragObject _dragger;
+    [SerializeField] private Dialogue _questDialog;
+    [SerializeField] private PopUp _popUp;
+
+    [SerializeField] private PlayerManager _player;
+    [SerializeField] private ItemManager _items;
+    [SerializeField] private QuestManager _quests;
+    [SerializeField] private FollowerManager _followers;
 
     [Header("Boss References")]
     public Transform BossStartPosition;
@@ -41,25 +50,76 @@ public class InteractionCoordinator : MonoBehaviour {
     public float EnemyAndPlayerWalkSpeed;
 
     public Action<EnemyInstance> OnEnemyDeathFinished;
-    public Action OnBossFightStarted;
     public Action OnFightEnter;
     public Action OnFightStart;
     public Action<(EnemyInstance enemy, bool suicide)> OnEnemyDeath;
     public Action OnPlayerDeath;
     public Action OnPlayerDeathReset;
     public Action<float> OnPlayerDeathDone;
+    public Action<Area> AreaChanged;
+
+    public GameObject AreaChangeAndFadeObject;
+    public RobustLerperSerialized AreaChangeInterpolater;
 
     private void Awake() {
         Instance = this;
+
+        // TODO: Unsub
+        _player.OnDeath += PlayerDied;
+        _enemy.OnDeath += EnemyDeath;
+        _quests.QuestFinished += FinishQuest;
+        _quests.QuestStarted += (quest) =>
+        {
+            if (quest.Config.Area != AreaDisplay.Instance.CurrentArea)
+            {
+                AreaChangeAndFadeObject.SetActive(true);
+                AreaChangeInterpolater.StartLerping(() => {
+
+                    AreaChanged?.Invoke(quest.Config.Area);
+
+                    AreaChangeInterpolater.StartReverseLerp(() => {
+
+                        AreaChangeAndFadeObject.SetActive(false);
+
+                        _questDialog.SetConversation(quest.Config.StartConversation, () => 
+                        {
+                            if (quest.Config.QuestType == QuestType.Boss)
+                            {
+                                StartBossFight(quest);
+                            }
+                        });
+
+                    });
+                });
+            }
+            else
+            {
+                _questDialog.SetConversation(quest.Config.StartConversation, () =>
+                {
+                    if (quest.Config.QuestType == QuestType.Boss)
+                    {
+                        StartBossFight(quest);
+                    }
+                });
+            }
+        };
     }
 
-    void Update() {
-    }
-    
-    public void Initialize()
+    void Update()
     {
-        _enemy.OnDeath += EnemyDeath;
+        AreaChangeInterpolater.Update(Time.deltaTime);
     }
+
+    public void QuestGiverEnterance()
+    {
+
+    }
+
+    public void StartInteraction() {
+        _dragger.Disable();
+        _playerAnims.StopWalking();
+    }
+
 
     public void StartBossFight(QuestInstance bossQuest) {
 
@@ -68,7 +128,7 @@ public class InteractionCoordinator : MonoBehaviour {
         IEnumerator _StartBossFight() {
             Fighting = true;
             OnFightEnter?.Invoke();
-            OnBossFightStarted?.Invoke();
+            StartInteraction();
 
             // Put boss where they should be
             EnemyConfig bossConfig = (EnemyConfig)bossQuest.Config.QuestParam;
@@ -151,12 +211,14 @@ public class InteractionCoordinator : MonoBehaviour {
             
             // Once boss and player show up in proper places, start the fight like regular.
             _enemy.StartAttacking();
+            _attackArea.gameObject.SetActive(true);
             OnFightStart?.Invoke();
         }
     }
     
     public void EnemyFight(EnemyInstance enemy) {
         OnFightEnter?.Invoke();
+        StartInteraction();
         
         // Scroll to fight area
         LerperToBattleArea.StartLerping(() => {
@@ -182,9 +244,11 @@ public class InteractionCoordinator : MonoBehaviour {
         
         IEnumerator _EnemyDeath() {
 
+            _attackArea.gameObject.SetActive(false);
+
             OnEnemyDeath?.Invoke((data, suicide));
 
-            if (Player.Health <= 0) {
+            if (_player.Health <= 0) {
                 yield break;    
             }
             
@@ -229,14 +293,16 @@ public class InteractionCoordinator : MonoBehaviour {
                 _enemy.gameObject.SetActive(false);
             
                 OnEnemyDeathFinished?.Invoke(data);
-                items.ForEach(Inventory.Add);
+                _followers.RemoveFollower(data);
+                _dragger.Enable();
+                items.ForEach(_items.Add);
 
                 // Note: If the boss quest is to fight a chicken and you kill any chicken (not just the boss) then the quest gets completed
                 foreach(var quest in SaveGame.SaveData.CurrentQuests)
                 {
-                    if(QuestManager.Instance.CurrentQuest.Config.QuestParam == data.Config)
+                    if(_quests.CurrentQuest.Config.QuestParam == data.Config)
                     {
-                        QuestManager.Instance.FinishCurrentQuest();
+                        FinishQuest(_quests.CurrentQuest);
                     }
                 }
 
@@ -245,16 +311,73 @@ public class InteractionCoordinator : MonoBehaviour {
         }
     }
 
+    public void FinishQuest(QuestInstance q)
+    {
+        var config = q.Config;
+        _questDialog.SetConversation(config.EndConversation, () => {
+
+            List<ItemInstance> todrops = new List<ItemInstance>();
+            foreach (var reward in config.QuestRewards)
+            {
+                ItemConfig it = reward.it;
+                var instance = ItemFactory.GetInstance(it, reward.Level, reward.RandomRoll);
+                todrops.Add(instance);
+            }
+
+            if (todrops.Count == 0)
+            {
+                _TryAdvanceQuest();
+            }
+            else
+            {
+
+                _dragger.Disable2();
+
+                ItemDropBubbleManager.Instance.AddItems(todrops, null, () => {
+                    _dragger.Enable2();
+
+
+                    _TryAdvanceQuest();
+
+                    todrops.ForEach(_items.Add);
+                });
+            }
+        });
+
+
+        void _TryAdvanceQuest()
+        {
+
+            _quests.CurrentQuest.SaveData.Complete = true;
+
+            if (config.NextQuestConfig == null)
+            {
+                _popUp.SetPopUpNew(
+                    "You finished the quest! You may either continue in this area or switch quests using the quest book on your screen.",
+                    new[] { "ok" }, new Action[] {
+                        () => { }
+                    });
+            }
+            else
+            {
+                _quests.SetCurrentQuest(new QuestInstance(_quests.CurrentQuest.Config.NextQuestConfig, true));
+            }
+        }
+    }
+
     public void PlayerDied(float goldLoss) {
         
         // Set death thing to active
         DeathCover.gameObject.SetActive(true);
-        _enemy.Stop(); 
+        _enemy.Stop();
+        _attackArea.gameObject.SetActive(false);
+
         OnPlayerDeath?.Invoke();
 
         DeathCover.StartLerping(() => {
             Fighting = false;
             _enemy.gameObject.SetActive(false);
+            _dragger.ResetScrolling();
             OnPlayerDeathReset?.Invoke();
 
             // Disable enemy fighter
@@ -263,7 +386,7 @@ public class InteractionCoordinator : MonoBehaviour {
 
             // Reverse this lerp
             DeathCover.StartReverseLerp(() => {
-                // Player.DeathFinished
+                _dragger.Enable();
                 OnPlayerDeathDone?.Invoke(goldLoss);
             });
         });

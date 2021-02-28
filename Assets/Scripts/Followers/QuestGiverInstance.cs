@@ -1,10 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using G4AW2.Followers;
+﻿using G4AW2;
 using G4AW2.Data;
+using G4AW2.Followers;
 using G4AW2.Utils;
-using UnityEngine;
+using System.Linq;
 
 public class QuestGiverInstance : FollowerInstance {
     public new QuestGiverConfig Config => (QuestGiverConfig) base.Config;

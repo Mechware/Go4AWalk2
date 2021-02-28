@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using CustomEvents;
 using G4AW2.Data;
+using G4AW2.Managers;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -16,27 +17,33 @@ public class QuestingStatWatcher : MonoBehaviour {
     [SerializeField] private SmoothPopUpManager PopUps;
     [SerializeField] private Transform SpawnPointOfNumberIncreasePopUp;
 
+    [SerializeField] private QuestManager _quests;
+
     private int prevVal = -1;
-    private QuestInstance _quest;
+
+    private void Awake()
+    {
+        _quests.QuestStarted += SetQuest;
+    }
 
     public void SetQuest(QuestInstance q)
     {
-        _quest = q;
+        prevVal = _quests.CurrentQuest.SaveData.Progress;
     }
 
-    public void GameUpdate(float time)
+    public void Update()
     {
-        int current = _quest.SaveData.Progress;
-        int max = _quest.Config.ValueToReach;
+        int current = _quests.CurrentQuest.SaveData.Progress;
+        int max = _quests.CurrentQuest.Config.ValueToReach;
 
         ProgressText.text = $"{current} / {max}";
         ProgressFill.rectTransform.anchorMax =
             ProgressFill.rectTransform.anchorMax.SetX(Mathf.Clamp01((float)(current / max)));
-        QuestTitle.text = _quest.Config.DisplayName;
+        QuestTitle.text = _quests.CurrentQuest.Config.DisplayName;
 
         if (prevVal != -1 && current > prevVal)
         {
-            SmoothPopUpManager.ShowPopUp(SpawnPointOfNumberIncreasePopUp.position, "+" + (current - prevVal), Color.green, true);
+            PopUps.ShowPopUpNew(SpawnPointOfNumberIncreasePopUp.position, "+" + (current - prevVal), Color.green, true);
             prevVal = current;
         }
     }

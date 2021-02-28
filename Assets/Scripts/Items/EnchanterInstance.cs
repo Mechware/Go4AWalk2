@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using G4AW2;
 using System.Linq;
-using G4AW2.Data.DropSystem;
 using UnityEngine;
 
 public class EnchanterInstance : ItemInstance {

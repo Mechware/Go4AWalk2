@@ -23,6 +23,8 @@ public class InventoryDisplay : MonoBehaviour {
         }
     }
 
+    [SerializeField] private ItemManager _items;
+
     private void OnEnable() {
         Refresh();
     }
@@ -30,7 +32,7 @@ public class InventoryDisplay : MonoBehaviour {
     public void Refresh() {
         pool.Reset();
 
-        foreach(var item in ItemManager.Instance) {
+        foreach(var item in _items) {
             var go = pool.GetObject();
             var id = go.GetComponent<InventoryItemDisplay>();
             id.SetDataInstance(item, 1, ItemClicked);

@@ -9,15 +9,17 @@ public class QuestViewer : MonoBehaviour {
 
     public Dialogue StartQuestDialogueBox;
 
+    [SerializeField] private QuestManager _quests;
+
     void Awake() {
     }
 
 
     public void Update() {
-        Title.text = QuestManager.Instance.CurrentQuest.Config.DisplayName;
+        Title.text = _quests.CurrentQuest.Config.DisplayName;
     }
 
     public void ViewBeginningText() {
-        StartQuestDialogueBox.SetConversation(QuestManager.Instance.CurrentQuest.Config.StartConversation, () => { });
+        StartQuestDialogueBox.SetConversation(_quests.CurrentQuest.Config.StartConversation, () => { });
     }
 }

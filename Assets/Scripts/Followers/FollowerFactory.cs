@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using G4AW2;
 using G4AW2.Data;
 using G4AW2.Data.Combat;
 using G4AW2.Followers;

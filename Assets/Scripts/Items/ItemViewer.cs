@@ -15,7 +15,9 @@ public class ItemViewer : MonoBehaviour {
     private List<GameObject> items = new List<GameObject>();
 
     public TextMeshProUGUI Title;
-    
+
+    [SerializeField] private ItemManager _items;
+
     public void Init() {
         Instance = this;
     }
@@ -26,7 +28,7 @@ public class ItemViewer : MonoBehaviour {
 
     public void ShowItemsFromInventory<T>(string title, Action<ItemInstance> onClick, bool showAmount,
         bool showNull = false) where T : ItemInstance {
-        ShowItems(title, ItemManager.Instance.OfType<T>(), onClick, showAmount, showNull);
+        ShowItems(title, _items.OfType<T>(), onClick, showAmount, showNull);
     }
     
     public void ShowItems(string title, IEnumerable<ItemInstance> itemsToAdd, Action<ItemInstance> onClick, bool showAmount, bool showNull = false) {

@@ -23,21 +23,16 @@ public class UIController : MonoBehaviour
     [SerializeField] private SmoothPopUpManager _smoothPopUps;
     [SerializeField] private InteractionCoordinator _interactionController;
     [SerializeField] private WalkingUIController _walkingController;
+    [SerializeField] private RecipeManager _recipes;
 
     [SerializeField] private QuestingStatWatcher _questStats;
 
-    private PlayerManager _player;
-    private ItemManager _inventory;
-    private GameEvents _events;
-    private QuestManager _quests;
+    [SerializeField] private PlayerManager _player;
+    [SerializeField] private ItemManager _inventory;
+    [SerializeField] private QuestManager _quests;
 
-    public void Initialize(PlayerManager player, ItemManager inventory, GameEvents events, QuestManager quests)
+    public void Awake()
     {
-        _player = player;
-        _inventory = inventory;
-        _events = events;
-        _quests = quests;
-
         _interactionController.OnPlayerDeathDone += lost =>
         {
             _deathPopUp.SetPopUpNew($"You died! You lost: {lost} gold.", new string[] { "Ok" }, new Action[] { () => { } });
@@ -81,7 +76,7 @@ public class UIController : MonoBehaviour
         };
 
 
-        _events.CraftingRecipeUnlocked += recipe =>
+        _recipes.RecipeUnlocked += recipe =>
         {
             string postText = "";
             foreach (var component in recipe.Components)
@@ -92,19 +87,6 @@ public class UIController : MonoBehaviour
             _mainQuickPopUp.Show(_questionMark, $"<size=150%>New Craftable Recipe!</size>\nA new recipe is now craftable!\nRequires:{postText}");
         };
 
-        _events.AchievementObtained += a =>
-        {
-            _mainQuickPopUp.Show(a.AchievementIcon, "<size=150%>Achievement!</size>\n" + a.AchievementCompletedText);
-        };
-
-        _events.OnQuestSet += _questStats.SetQuest;
-
         _walkingController.Initialize();
-        _questStats.SetQuest(_quests.CurrentQuest);
-    }
-
-    public void GameUpdate(float time)
-    {
-        _questStats.GameUpdate(time);
     }
 }

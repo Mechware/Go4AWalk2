@@ -6,10 +6,12 @@ public class PlayerClickController : MonoBehaviour {
     public MyButton PlayerArmor;
     public MyButton PlayerWeapon;
 
-    [Obsolete("Singleton")] public static PlayerClickController Instance;
-    public InteractionCoordinator _controller;
+    [SerializeField] private InteractionCoordinator _controller;
+    [SerializeField] private ItemViewer _itemViewer;
+    [SerializeField] private EquipItemProcessor _equipItemProcessor;
+
+
     void Awake() {
-        Instance = this;
         _controller.OnFightEnter += () => SetEnabled(false);
         _controller.OnEnemyDeathFinished += (e) => SetEnabled(true);
     }
@@ -24,26 +26,26 @@ public class PlayerClickController : MonoBehaviour {
         PlayerWeapon.onClick.AddListener(ChangePlayerWeapon);
     }
 
-    public static void ChangePlayerHeadgear() {
-        ItemViewer.Instance.ShowItemsFromInventory<HeadgearInstance>("Equip Headgear", it => {
-            EquipItemProcessor.Instance.ProcessItem(it, () => {
-                ItemViewer.Instance.Close();
+    public void ChangePlayerHeadgear() {
+        _itemViewer.ShowItemsFromInventory<HeadgearInstance>("Equip Headgear", it => {
+            _equipItemProcessor.ProcessItem(it, () => {
+                _itemViewer.Close();
             });
         }, false); 
     }
 
-    public static void ChangePlayerArmor() {
-        ItemViewer.Instance.ShowItemsFromInventory<ArmorInstance>("Equip Armor", it => {
-            EquipItemProcessor.Instance.ProcessItem(it, () => {
-                ItemViewer.Instance.Close();
+    public void ChangePlayerArmor() {
+        _itemViewer.ShowItemsFromInventory<ArmorInstance>("Equip Armor", it => {
+            _equipItemProcessor.ProcessItem(it, () => {
+                _itemViewer.Close();
             });
         }, false); 
     }
 
-    public static void ChangePlayerWeapon() {
-        ItemViewer.Instance.ShowItemsFromInventory<WeaponInstance>("Equip Weapon", it => {
-            EquipItemProcessor.Instance.ProcessItem(it, () => {
-                ItemViewer.Instance.Close();
+    public void ChangePlayerWeapon() {
+        _itemViewer.ShowItemsFromInventory<WeaponInstance>("Equip Weapon", it => {
+            _equipItemProcessor.ProcessItem(it, () => {
+                _itemViewer.Close();
             });
         }, false, false);
     }

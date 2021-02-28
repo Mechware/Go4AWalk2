@@ -30,11 +30,10 @@ namespace G4AW2.Followers
 		[SerializeField] private SmoothPopUpManager _smoothPopUp;
 		[SerializeField] private FollowerLayoutController _layout;
 		[SerializeField] private PopUp _popUp;
-		private FollowerManager _followerManager;
+		[SerializeField] private FollowerManager _followers;
 
-		public void Initialize(FollowerManager followerManager) {
-			_followerManager = followerManager;
-			followerManager.FollowerAdded += OnFollowerAdded;
+		public void Awake() {
+			_followers.FollowerAdded += OnFollowerAdded;
 			_followerPool = new ObjectPrefabPool(DisplayPrefab.gameObject, transform);
 			ResetFollowers();
         }
@@ -47,8 +46,8 @@ namespace G4AW2.Followers
 		private void ResetFollowers() {
 			_followerPool.Reset();
 
-			for (int i = 0; i < _followerManager.Followers.Count; i++) {
-				FollowerInstance fd = _followerManager.Followers[i];
+			for (int i = 0; i < _followers.Followers.Count; i++) {
+				FollowerInstance fd = _followers.Followers[i];
 			    GameObject go = _followerPool.GetObject();
 			    FollowerDisplay d = go.GetComponent<FollowerDisplay>();
 				AddDisplay(d, fd);

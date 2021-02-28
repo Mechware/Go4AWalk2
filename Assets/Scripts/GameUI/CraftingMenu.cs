@@ -1,9 +1,12 @@
+using G4AW2;
 using G4AW2.Data.Crafting;
 using G4AW2.Managers;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class CraftingMenu : MonoBehaviour {
+
+    [SerializeField] private ItemManager _items;
 
     public RecipeManager CT;
     public GameObject ItemPrefab;
@@ -27,7 +30,7 @@ public class CraftingMenu : MonoBehaviour {
             var holder = go.GetComponent<IconWithTextController>();
             SetItem(holder, r);
             
-            if (!r.IsCraftable()) {
+            if (!_items.IsCraftable(r)) {
                 AlphaOfAllChildren.SetAlphaOfAllChildren(go, 1, Color.gray);
             }
         }
@@ -38,7 +41,7 @@ public class CraftingMenu : MonoBehaviour {
         if (SaveGame.SaveData.CraftingRecipesMade.Contains(recipe.Id)) {
             string text = $"{recipe.Result.Item.Name}\n<size=50%>";
             foreach (var r in recipe.Components) {
-                text += $"{r.Item.Name} - {ItemManager.Instance.GetAmountOf(r.Item)} / {r.Amount}\n";
+                text += $"{r.Item.Name} - {_items.GetAmountOf(r.Item)} / {r.Amount}\n";
             }
 
             holder.SetDataConfig(recipe.Result.Item, 1, text, () => {
@@ -48,7 +51,7 @@ public class CraftingMenu : MonoBehaviour {
         else {
             string text = $"???\n<size=50%>";
             foreach(var r in recipe.Components) {
-                text += $"{r.Item.Name} - {ItemManager.Instance.GetAmountOf(r.Item)} / {r.Amount}\n";
+                text += $"{r.Item.Name} - {_items.GetAmountOf(r.Item)} / {r.Amount}\n";
             }
 
             holder.SetDataConfig(recipe.Result.Item, 1, text, () => {

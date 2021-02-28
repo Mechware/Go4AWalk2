@@ -6,33 +6,34 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace G4AW2.Managers {
-	public class FollowerManager : MonoBehaviour {
+	[CreateAssetMenu(menuName ="Managers/Followers")]
+	public class FollowerManager : ScriptableObject {
 
-		public static FollowerManager Instance;
+		[Obsolete("Singleton")] public static FollowerManager Instance;
 		
         [NonSerialized] public List<FollowerInstance> Followers = new List<FollowerInstance>();
+		[SerializeField] private QuestManager _quests;
 
         public Action<FollowerInstance> FollowerAdded;
-        
+        public Action<(FollowerInstance follower, bool suicide)> FollowerRemoved;
+
 		private float currentTimeToReach;
 		private float currentTime;
 
 		public int MAX_QUEUE_SIZE = 5;
 
-		private QuestConfig _currentQuest;
+		private QuestConfig _lastQuest;
 
-		void Awake() {
+		void OnEnable() {
 			Instance = this;
-            Random.InitState(Mathf.RoundToInt(Time.deltaTime));
+            Random.InitState(Mathf.RoundToInt(DateTime.Now.Ticks % int.MaxValue));
+			_quests.QuestStarted += q => SetQuest(q.Config);
 		}
 
-	    public void Initialize(GameEvents events, QuestManager quests) {
-
-			events.OnQuestSet += q => SetQuest(q.Config);
-			SetQuest(quests.CurrentQuest.Config);
-			events.AreaChanged += a => ClearFollowers();
-
-	        DateTime lastTimePlayedUTC = SaveGame.SaveData.LastTimePlayedUTC;
+	    public void Initialize() {
+			_lastQuest = _quests.CurrentQuest.Config;
+			
+			DateTime lastTimePlayedUTC = SaveGame.SaveData.LastTimePlayedUTC;
 	        TimeSpan TimeSinceLastPlayed = DateTime.UtcNow - lastTimePlayedUTC;
 	        double secondsSinceLastPlayed = TimeSinceLastPlayed.TotalSeconds;
 
@@ -42,14 +43,17 @@ namespace G4AW2.Managers {
                 Followers.Add(FollowerFactory.GetInstance(sd));
             }
 
-            // If you have no followers and you were idling away, add a new follower (???)
             if (secondsSinceLastPlayed > 5 * 60 && !Followers.Any()) {
 	            AddRandomFollower();
             }
+
 	    }
 
 	    public void SetQuest(QuestConfig questConfig) {
-			_currentQuest = questConfig;
+			if (_lastQuest.Area != questConfig.Area)
+				ClearFollowers();
+
+			_lastQuest = questConfig;
 			currentTime = 0;
 	        currentTimeToReach = Random.Range(questConfig.MinEnemyDropTime, questConfig.MaxEnemyDropTime);
         }
@@ -62,7 +66,7 @@ namespace G4AW2.Managers {
 		private void CheckSpawns() {
 			if (currentTime > currentTimeToReach) {
 				currentTime -= currentTimeToReach;
-				currentTimeToReach = Random.Range(_currentQuest.MinEnemyDropTime, _currentQuest.MaxEnemyDropTime);
+				currentTimeToReach = Random.Range(_quests.CurrentQuest.Config.MinEnemyDropTime, _quests.CurrentQuest.Config.MaxEnemyDropTime);
                 AddRandomFollower();
 				CheckSpawns();
 			}
@@ -70,12 +74,12 @@ namespace G4AW2.Managers {
 
 	    [ContextMenu("Add Follower")]
 		public void AddRandomFollower() {
-	        FollowerInstance follower = _currentQuest.Enemies.GetRandomFollower();
+	        FollowerInstance follower = _quests.CurrentQuest.Config.Enemies.GetRandomFollower();
 			AddFollower(follower);
         }
 
 		public void AddFollower(FollowerConfig config) {
-			var follower = _currentQuest.Enemies.GetFollower(config);
+			var follower = _quests.CurrentQuest.Config.Enemies.GetFollower(config);
 			AddFollower(follower);
 		}
 
@@ -86,6 +90,16 @@ namespace G4AW2.Managers {
 			Followers.Add(follower);
 			SaveGame.SaveData.CurrentFollowers.Add(follower.SaveData);
 			FollowerAdded?.Invoke(follower);
+		}
+
+		public bool RemoveFollower(FollowerInstance follower)
+        {
+			if(SaveGame.SaveData.CurrentFollowers.Remove(follower.SaveData))
+            {
+				FollowerRemoved?.Invoke((follower, false));
+				return true;
+            }
+			return false;
 		}
 
 #if UNITY_EDITOR

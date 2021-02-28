@@ -1,9 +1,7 @@
-﻿using System.Collections;
+﻿using G4AW2;
+using G4AW2.Data;
 using System.Collections.Generic;
 using System.Linq;
-using G4AW2.Data;
-using G4AW2.Data.DropSystem;
-using UnityEngine;
 
 public class ShopFollowerInstance : FollowerInstance {
 

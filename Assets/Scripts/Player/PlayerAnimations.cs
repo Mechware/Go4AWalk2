@@ -18,7 +18,7 @@ public class PlayerAnimations : MonoBehaviour {
 
     private Action celebrationFinished;
 
-    private PlayerManager _player;
+    [SerializeField] private PlayerManager _player;
 
     // Use this for initialization
     void Awake () {
@@ -26,11 +26,6 @@ public class PlayerAnimations : MonoBehaviour {
         animator = GetComponent<Animator>();
 	}
 
-    public void Initialize(PlayerManager p)
-    {
-        _player = p;
-    }
-	
     [ContextMenu("StartWalking")]
 	public void StartWalking()
     {

@@ -18,10 +18,6 @@ namespace G4AW2.Data.Crafting
         public List<RecipeComponent> Components;
         public RecipeComponent Result;
 
-        public bool IsCraftable() {
-            return Components.All(component => ItemManager.Instance.GetAmountOf(component.Item) >= component.Amount);
-        }
-
 #if UNITY_EDITOR
         [ContextMenu("Pick ID")]
         public int PickID() {

@@ -43,7 +43,8 @@ DAM {2}";
         public Action OnClick;
     }
 
-    [Obsolete("pass in at initialization")] public ItemManager Inventory;
+    [SerializeField] private ItemManager _items;
+    [SerializeField] private PlayerManager _player;
 
     public RobustLerperSerialized OpenLerper;
     private enum State { LerpingOpen, LerpingClosed, Open, Closed }
@@ -59,11 +60,11 @@ DAM {2}";
             new ButtonAction() {
                 Title ="Equip",
                 OnClick = () => {
-                    if (PlayerManager.Instance.Weapon == w) return;
+                    if (_player.Weapon == w) return;
 
-                    ItemManager.Instance.Add(PlayerManager.Instance.Weapon);
-                    PlayerManager.Instance.Weapon = w;
-                    ItemManager.Instance.Remove(w);
+                    _items.Add(_player.Weapon);
+                    _player.Weapon = w;
+                    _items.Remove(w);
                     onfinish?.Invoke();
                 }
             },
@@ -148,7 +149,7 @@ DAM {2}";
         Button2.onClick.AddListener(Close);
         Button3.onClick.AddListener(Close);
 
-        SetCompare(PlayerManager.Instance.Weapon);
+        SetCompare(_player.Weapon);
     }
 
     public void Open() {
@@ -215,6 +216,6 @@ DAM {2}";
 
     public void SwapWeapon() {
         ItemViewer.ShowItemsFromInventory<WeaponInstance>("Weapon To Compare", w => { SetCompare((WeaponInstance)w); ItemViewer.Close(); }, false);
-        ItemViewer.Add(PlayerManager.Instance.Weapon, 0, w => { SetCompare((WeaponInstance)w); ItemViewer.Close(); });
+        ItemViewer.Add(_player.Weapon, 0, w => { SetCompare((WeaponInstance)w); ItemViewer.Close(); });
     }
 }

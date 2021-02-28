@@ -27,6 +27,10 @@ public class WalkingUIController : MonoBehaviour {
 
     [SerializeField] private WorldController _gameController;
 
+    [SerializeField] private PlayerManager _player;
+    [SerializeField] private FollowerManager _followers;
+    [SerializeField] private PlayerClickController _playerArmorView;
+
     void Awake() {
         ItemViewer.Init();
         WeaponViewer.Init();
@@ -72,8 +76,7 @@ public class WalkingUIController : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        PlayerManager p = PlayerManager.Instance;
-        var weapon = p.Weapon;
+        var weapon = _player.Weapon;
         
         float currentDamage = weapon.RawDamage;
         
@@ -88,31 +91,31 @@ public class WalkingUIController : MonoBehaviour {
             MasteryFill.anchorMax = MasteryFill.anchorMax.SetX(masteryProgress);
         }
 
-        float playerHealth = Mathf.Clamp01(p.Health / (float) p.MaxHealth);
+        float playerHealth = Mathf.Clamp01(_player.Health / (float) _player.MaxHealth);
         PlayerHealthFill.anchorMax = PlayerHealthFill.anchorMax.SetX(playerHealth);
-        PlayerHealthText.text = $"{p.Health} / {p.MaxHealth}";        
+        PlayerHealthText.text = $"{_player.Health} / {_player.MaxHealth}";        
         
-        Weapon.SetDataInstance(p.Weapon, 0, ChangeWeapon, null, true);
-        Armor.SetDataInstance(p.Armor, 0, ChangeArmor, null, true);
-        if(p.Headgear != null) Headgear.SetDataInstance(p.Headgear, 0, ChangeHeadgear, null, true);
+        Weapon.SetDataInstance(_player.Weapon, 0, ChangeWeapon, null, true);
+        Armor.SetDataInstance(_player.Armor, 0, ChangeArmor, null, true);
+        if(_player.Headgear != null) Headgear.SetDataInstance(_player.Headgear, 0, ChangeHeadgear, null, true);
         
         
-        bool HasFollowers = FollowerManager.Instance.Followers.Count > 0;
+        bool HasFollowers = _followers.Followers.Count > 0;
 
         NumberOfFollowersText.text = $"x{FollowerManager.Instance.Followers.Count}";
         Arrow.gameObject.SetActive(_gameController.CanScroll && HasFollowers);
     }
 
     public void ChangeWeapon(InventoryItemDisplay it) {
-        PlayerClickController.ChangePlayerWeapon();
+        _playerArmorView.ChangePlayerWeapon();
     }
     
     public void ChangeArmor(InventoryItemDisplay it) {
-        PlayerClickController.ChangePlayerArmor();
+        _playerArmorView.ChangePlayerArmor();
     }
     
     public void ChangeHeadgear(InventoryItemDisplay it) {
-        PlayerClickController.ChangePlayerHeadgear();
+        _playerArmorView.ChangePlayerHeadgear();
     }
 
     public RobustLerper MasteryPopUpLerp;

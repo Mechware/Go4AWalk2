@@ -1,5 +1,6 @@
 using System;
 using G4AW2.Data;
+using G4AW2.Managers;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,8 +19,12 @@ namespace G4AW2.UI.Areas
 		
 		public Area CurrentArea { get; private set; }
 
+		[SerializeField] private QuestManager _quests;
+
 		private void Awake() {
 			Instance = this;
+
+			_quests.QuestStarted += q => SetArea(q.Config.Area);
 		}
 
 		public void SetArea( Area area ) {

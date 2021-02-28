@@ -1,5 +1,6 @@
 using G4AW2.Component.UI;
 using G4AW2.Data;
+using G4AW2.Managers;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,6 +15,10 @@ public class MiningPoints : MonoBehaviour {
     [SerializeField] private Transform Parent;
 
     [SerializeField] private bool IsScrolling;
+
+    [SerializeField] private QuestManager _quests;
+    [SerializeField] private ItemManager _items;
+    [SerializeField] private ScrollingImages _backgroundImages;
 
     public Action<ItemInstance> OnItemReceived;
 
@@ -39,6 +44,9 @@ public class MiningPoints : MonoBehaviour {
 
     void Awake() {
         Pool = new ObjectPrefabPool(PointPrefab, Parent, 3);
+        _quests.QuestStarted += q => SetQuest(q.Config);
+        _backgroundImages.OnScrolled += Scroll;
+        OnItemReceived += _items.OnItemObtained;
     }
 
     public void Scroll(float distance)
