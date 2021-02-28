@@ -9,7 +9,8 @@ using UnityEngine;
 
 namespace G4AW2.Managers
 {
-    public class RecipeManager : MonoBehaviour
+    [CreateAssetMenu(menuName = "Managers/Recipes")]
+    public class RecipeManager : ScriptableObject
     {
         [SerializeField] private QuestManager _quests;
         [SerializeField] private ItemManager _items;

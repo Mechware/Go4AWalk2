@@ -27,7 +27,11 @@ MonoBehaviour:
   Area: {fileID: 11400000, guid: 60879555d9500764f8ce37f4fb6fa0f1, type: 2}
   MiningPoints: []
   Enemies:
-    Drops: []
+    Drops:
+    - Follower: {fileID: 11400000, guid: f9cb20d3635f5ec40935188217f021cd, type: 2}
+      MinLevel: 1
+      MaxLevel: 1
+      DropChance: 1
   QuestRewards: []
   QuestType: 3
   QuestParam: {fileID: 11400000, guid: f9cb20d3635f5ec40935188217f021cd, type: 2}

@@ -78,28 +78,26 @@ namespace G4AW2.Managers {
 			AddFollower(follower);
         }
 
-		public void AddFollower(FollowerConfig config) {
-			var follower = _quests.CurrentQuest.Config.Enemies.GetFollower(config);
-			AddFollower(follower);
+		public bool AddFollower(FollowerConfig config, out FollowerInstance follower) {
+			follower = _quests.CurrentQuest.Config.Enemies.GetFollower(config);
+			return AddFollower(follower);
 		}
 
-		private void AddFollower(FollowerInstance follower)
+		private bool AddFollower(FollowerInstance follower)
         {
-			if (Followers.Count >= MAX_QUEUE_SIZE || follower == null) return;
+			if (Followers.Count >= MAX_QUEUE_SIZE || follower == null) return false;
 
 			Followers.Add(follower);
 			SaveGame.SaveData.CurrentFollowers.Add(follower.SaveData);
 			FollowerAdded?.Invoke(follower);
+			return true;
 		}
 
 		public bool RemoveFollower(FollowerInstance follower)
         {
-			if(SaveGame.SaveData.CurrentFollowers.Remove(follower.SaveData))
-            {
-				FollowerRemoved?.Invoke((follower, false));
-				return true;
-            }
-			return false;
+			bool successfullyRemoved = SaveGame.SaveData.CurrentFollowers.Remove(follower.SaveData);
+			FollowerRemoved?.Invoke((follower, false)); 
+			return successfullyRemoved;
 		}
 
 #if UNITY_EDITOR

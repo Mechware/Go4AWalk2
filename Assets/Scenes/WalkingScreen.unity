@@ -5890,7 +5890,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 333959405}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -11939,7 +11939,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _items: {fileID: 0}
-  CT: {fileID: 11400000, guid: e7cc1f445aad6fa4393b27bf6c2bcb89, type: 2}
+  CT: {fileID: 0}
   ItemPrefab: {fileID: 1929706737343030, guid: c504a1b86105a28498ed63009741eac9, type: 3}
   ParentOfItems: {fileID: 1958790811}
   Children: []
@@ -23484,7 +23484,7 @@ MonoBehaviour:
   _smoothPopUps: {fileID: 1686129831}
   _interactionController: {fileID: 1995099795}
   _walkingController: {fileID: 1821739199}
-  _recipes: {fileID: 11400000, guid: e7cc1f445aad6fa4393b27bf6c2bcb89, type: 2}
+  _recipes: {fileID: 11400000, guid: 0d03686e98ae348439c978bd2b3121f0, type: 2}
   _questStats: {fileID: 244994214}
   _player: {fileID: 11400000, guid: 243ecf8942f3dd64fb9b4c5b4abeed14, type: 2}
   _inventory: {fileID: 11400000, guid: a0ad4238c51336240a52097b5e722013, type: 2}

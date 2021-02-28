@@ -37,7 +37,6 @@ namespace G4AW2.Managers
             if(newGame)
             {
                 Health = MaxHealth;
-                Debug.Log($"health: {Health}");
                 Weapon = new WeaponInstance(StartWeapon, 1);
                 Weapon.SaveData.Level = 1;
                 Weapon.SaveData.Random = 30;

@@ -132,8 +132,9 @@ public class InteractionCoordinator : MonoBehaviour {
 
             // Put boss where they should be
             EnemyConfig bossConfig = (EnemyConfig)bossQuest.Config.QuestParam;
-            EnemyInstance boss = new EnemyInstance(bossConfig, bossQuest.Config.Level);
-            
+            _followers.AddFollower(bossConfig, out var bossFollower);
+            EnemyInstance boss = (EnemyInstance)bossFollower;
+
             _enemy.gameObject.SetActive(true);
             _enemy.SetEnemy(boss);
             
@@ -232,6 +233,7 @@ public class InteractionCoordinator : MonoBehaviour {
                 // Start Combat
                 _enemy.StopWalking();
                 _enemy.StartAttacking();
+                _attackArea.gameObject.SetActive(true);
                 OnFightStart?.Invoke();
             });
         });
@@ -296,16 +298,6 @@ public class InteractionCoordinator : MonoBehaviour {
                 _followers.RemoveFollower(data);
                 _dragger.Enable();
                 items.ForEach(_items.Add);
-
-                // Note: If the boss quest is to fight a chicken and you kill any chicken (not just the boss) then the quest gets completed
-                foreach(var quest in SaveGame.SaveData.CurrentQuests)
-                {
-                    if(_quests.CurrentQuest.Config.QuestParam == data.Config)
-                    {
-                        FinishQuest(_quests.CurrentQuest);
-                    }
-                }
-
                 Fighting = false;
             });
         }
