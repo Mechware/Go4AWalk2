@@ -16,10 +16,10 @@ public class QuestViewer : MonoBehaviour {
 
 
     public void Update() {
-        Title.text = _quests.CurrentQuest.Config.DisplayName;
+        Title.text = _quests._currentQuest.Config.DisplayName;
     }
 
     public void ViewBeginningText() {
-        StartQuestDialogueBox.SetConversation(_quests.CurrentQuest.Config.StartConversation, () => { });
+        StartQuestDialogueBox.SetConversation(_quests._currentQuest.Config.StartConversation, () => { });
     }
 }

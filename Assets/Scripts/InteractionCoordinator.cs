@@ -337,7 +337,7 @@ public class InteractionCoordinator : MonoBehaviour {
         void _TryAdvanceQuest()
         {
 
-            _quests.CurrentQuest.SaveData.Complete = true;
+            _quests._currentQuest.SaveData.Complete = true;
 
             if (config.NextQuestConfig == null)
             {
@@ -349,7 +349,7 @@ public class InteractionCoordinator : MonoBehaviour {
             }
             else
             {
-                _quests.SetCurrentQuest(new QuestInstance(_quests.CurrentQuest.Config.NextQuestConfig, true));
+                _quests.SetCurrentQuest(new QuestInstance(_quests._currentQuest.Config.NextQuestConfig, true));
             }
         }
     }

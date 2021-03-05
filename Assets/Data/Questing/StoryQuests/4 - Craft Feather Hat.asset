@@ -51,5 +51,5 @@ MonoBehaviour:
   QuestRewards: []
   QuestType: 1
   QuestParam: {fileID: 11400000, guid: 5dbeaf9deb25d984a9f9d45d7bb0df10, type: 2}
-  ValueToReach: 5
+  ValueToReach: 1
   Level: 5

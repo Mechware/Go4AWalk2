@@ -50,7 +50,7 @@ namespace G4AW2.Managers {
         }
 
 	    public void Initialize(bool newGame) {
-			_lastQuest = _quests.CurrentQuest.Config;
+			_lastQuest = _quests._currentQuest.Config;
 
             foreach(var sd in SaveGame.SaveData.CurrentFollowers) {
                 _followers.Add(GetInstance(sd));
@@ -69,7 +69,7 @@ namespace G4AW2.Managers {
 	    }
 
 	    public void SetQuest(QuestConfig questConfig) {
-			if (_lastQuest.Area != questConfig.Area)
+			if (_lastQuest?.Area != questConfig.Area)
 				ClearFollowers();
 
 			_lastQuest = questConfig;
@@ -82,19 +82,19 @@ namespace G4AW2.Managers {
 			if (currentTime < currentTimeToReach) return; 
 		
 			currentTime -= currentTimeToReach;
-			currentTimeToReach = Random.Range(_quests.CurrentQuest.Config.MinEnemyDropTime, _quests.CurrentQuest.Config.MaxEnemyDropTime);
+			currentTimeToReach = Random.Range(_quests._currentQuest.Config.MinEnemyDropTime, _quests._currentQuest.Config.MaxEnemyDropTime);
             AddRandomFollower();
 			CheckSpawns(0);
 		}
 
 	    [ContextMenu("Add Follower")]
 		public void AddRandomFollower() {
-			FollowerInstance follower = GetRandomFollower(_quests.CurrentQuest.Config.Enemies.Drops);
+			FollowerInstance follower = GetRandomFollower(_quests._currentQuest.Config.Enemies.Drops);
 			AddFollower(follower);
         }
 
 		public bool AddFollower(FollowerConfig config, out FollowerInstance follower) {
-			follower = GetFollower(config, _quests.CurrentQuest.Config.Enemies.Drops);
+			follower = GetFollower(config, _quests._currentQuest.Config.Enemies.Drops);
 			return AddFollower(follower);
 		}
 

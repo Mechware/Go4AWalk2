@@ -28,18 +28,18 @@ public class QuestingStatWatcher : MonoBehaviour {
 
     public void SetQuest(QuestInstance q)
     {
-        prevVal = _quests.CurrentQuest.SaveData.Progress;
+        prevVal = _quests._currentQuest.SaveData.Progress;
     }
 
     public void Update()
     {
-        int current = _quests.CurrentQuest.SaveData.Progress;
-        int max = _quests.CurrentQuest.Config.ValueToReach;
+        int current = _quests._currentQuest.SaveData.Progress;
+        int max = _quests._currentQuest.Config.ValueToReach;
 
         ProgressText.text = $"{current} / {max}";
         ProgressFill.rectTransform.anchorMax =
             ProgressFill.rectTransform.anchorMax.SetX(Mathf.Clamp01((float)(current / max)));
-        QuestTitle.text = _quests.CurrentQuest.Config.DisplayName;
+        QuestTitle.text = _quests._currentQuest.Config.DisplayName;
 
         if (prevVal != -1 && current > prevVal)
         {

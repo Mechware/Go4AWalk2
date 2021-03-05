@@ -21,6 +21,9 @@ namespace G4AW2.Managers
 
         public List<RecipeConfig> AllRecipes;
 
+
+        public List<int> MadeRecipes => SaveGame.SaveData.CraftingRecipesMade;
+
         [ContextMenu("Add all recipes in project")]
         private void SearchForAllItems()
         {
@@ -86,7 +89,7 @@ namespace G4AW2.Managers
             List<ItemInstance> items = new List<ItemInstance>();
             for (int i = 0; i < cr.Result.Amount; i++)
             {
-                ItemInstance it = _items.CreateInstance(cr.Result.Item, _quests.CurrentQuest.Config.Level);
+                ItemInstance it = _items.CreateInstance(cr.Result.Item, _quests._currentQuest.Config.Level);
                 _items.Add(it);
                 items.Add(it);
             }

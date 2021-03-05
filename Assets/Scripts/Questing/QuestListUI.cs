@@ -20,7 +20,7 @@ public class QuestListUI : MonoBehaviour {
 
     public void RefreshList() {
         Clear();
-        AddItem(_quests.CurrentQuest);
+        AddItem(_quests._currentQuest);
     }
 
 	public void AddItem(QuestInstance instance) {
@@ -36,7 +36,7 @@ public class QuestListUI : MonoBehaviour {
                     new Action[] {
                 () => {
                     // Set Active
-                    if (!_quests.CurrentQuest.SaveData.Complete) {
+                    if (!_quests._currentQuest.SaveData.Complete) {
                         _popUp.SetPopUpNew(
                             "Are you sure you want to switch quests? You will lose all progress in this one.",
                             new[] {"Yep", "Nope"}, new Action[] {
@@ -55,7 +55,7 @@ public class QuestListUI : MonoBehaviour {
                 },
                 () => {
                     // Remove
-                    SaveGame.SaveData.CurrentQuests.Remove(q.SaveData);
+                    _quests._currentQuests.Remove(q);
                 },
                 () => {
                     // Cancel

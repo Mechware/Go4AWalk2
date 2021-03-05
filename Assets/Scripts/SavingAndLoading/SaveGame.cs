@@ -11,69 +11,78 @@ namespace G4AW2
     public class SaveGame : ScriptableObject
     {
         public static SaveData SaveData = new SaveData();
-        public Dictionary<string, string> SaveDict = new Dictionary<string, string>();
-
-        private static string _savePath;
-
-        private void OnEnable()
-        {
-            _savePath = Application.persistentDataPath + "G4AW2Save.dat";
-        }
-
-        [ContextMenu("Print Data")]
-        public void PrintSaveDict()
-        {
-            Debug.Log("Print!");
-            SaveDict.ForEach(kvp => Debug.Log(kvp));
-            Debug.Log("End Print!");
-        }
-
-        [ContextMenu("Clear")]
-        public void Clear()
-        {
-            SaveDict.Clear();
-        }
         
-        [ContextMenu("Save")]
-        public bool Save()
+        private Dictionary<string, Func<object>> GetSaveDataFunctions = new Dictionary<string, Func<object>>();
+
+        public void RegisterSaveFunction(string saveFile, Func<object> getSaveDataFunction)
         {
-            var bytes = Serialization.SerializeValue(SaveDict, DataFormat.JSON);
-            File.WriteAllBytes(_savePath, bytes);
-            return true;
+            GetSaveDataFunctions[saveFile] = getSaveDataFunction;
         }
 
-        [ContextMenu("Load")]
-        public bool Load()
+        public void Save(string savePath)
         {
-            if (!File.Exists(_savePath)) return true;
-            var bytes = File.ReadAllBytes(_savePath);
-            SaveDict = Serialization.DeserializeValue<Dictionary<string, string>>(bytes, DataFormat.JSON);
-            return false;
+            Dictionary<string, object> saveData = new Dictionary<string, object>();
+            foreach(var kvp in GetSaveDataFunctions)
+            {
+                saveData.Add(kvp.Key, kvp.Value());
+            }
+
+            var bytes = Serialization.SerializeValue(saveData, DataFormat.JSON);
+            File.WriteAllBytes(savePath, bytes);
+        }
+
+        public Dictionary<string, object> Load(string savePath)
+        {
+            if (!File.Exists(savePath)) return null;
+            var bytes = File.ReadAllBytes(savePath);
+            var saveDict = Serialization.DeserializeValue<Dictionary<string, object>>(bytes, DataFormat.JSON);
+            return saveDict;
+        }
+
+#if UNITY_EDITOR
+        [Serializable]
+        private class SaveDataTest
+        {
+            public bool Field0 = false;
+            public int Field1 = 1;
+            public string Field2 = "2";
+            public NestedTest Nest = new NestedTest();
+        }
+
+        [Serializable]
+        private class NestedTest
+        {
+            public string NestedValue3 = "3";
         }
 
         [ContextMenu("Run Test")]
         private void RunTest()
         {
-            Clear();
-            Debug.Assert(SaveDict.Count == 0, "Could not initialize to a cleared dict");
-            SaveDict.Add("Hello", "Ooogabooga");
-            SaveDict.Add("Hello5", "Ooogabooga5");
-            SaveDict.Add("Hello2", "Ooogabooga2");
-            SaveDict.Add("Hello3", "Ooogabooga3");
-            Clear();
-            Debug.Assert(SaveDict.Count == 0, "Could not clear dict");
-            SaveDict.Add("Hello", "Ooogabooga");
-            SaveDict.Add("Hello5", "Ooogabooga5");
-            SaveDict.Add("Hello2", "Ooogabooga2");
-            SaveDict.Add("Hello3", "Ooogabooga3");
-            Save();
-            Clear();
-            Load();
-            Debug.Assert(SaveDict["Hello"] == "Ooogabooga", "Save dict isn't right");
-            Debug.Assert(SaveDict["Hello5"] == "Ooogabooga5", "Save dict isn't right2");
-            Debug.Assert(SaveDict["Hello2"] == "Ooogabooga2", "Save dict isn't right3");
-            Debug.Assert(SaveDict["Hello3"] == "Ooogabooga3", "Save dict isn't right4");
+            GetSaveDataFunctions.Clear();
+            var sd = new SaveDataTest();
+            sd.Field0 = true;
+            sd.Field1 = 10;
+            sd.Field2 = "not 2 lol";
+            sd.Nest.NestedValue3 = "4";
+            RegisterSaveFunction("Hello", () => sd);
+            string saveFilePath = Application.persistentDataPath + "Test.json";
+            Debug.Log(saveFilePath);
+            Save(saveFilePath);
+            GetSaveDataFunctions.Clear();
+            var saveDict = Load(saveFilePath);
+            var sd2 = (SaveDataTest) saveDict["Hello"];
+            Debug.Assert(sd.Field0 == sd2.Field0);
+            Debug.Assert(sd.Field1 == sd2.Field1);
+            Debug.Assert(sd.Field2 == sd2.Field2);
+            Debug.Assert(sd.Nest.NestedValue3 == sd2.Nest.NestedValue3);
             Debug.Log("Pass!");
+        }
+#endif
+
+        public static T GetObject<T>(Dictionary<string, object> dict, string key)
+        {
+            if (dict == null) return default(T);
+            return dict.ContainsKey(key) ? (T) dict[key] : default(T);
         }
     }
 
@@ -89,9 +98,6 @@ namespace G4AW2
         public bool ShowParryAndBlockColors;
 
         // Questing
-        public List<QuestSaveData> CurrentQuests = new List<QuestSaveData>();
-        [Obsolete("Make a large lists of quests and filter them on start up")] public List<QuestSaveData> CompletedQuests = new List<QuestSaveData>();
-
         public int PlayerHealth;
         public int PlayerGold;
 

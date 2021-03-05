@@ -16,9 +16,13 @@ public class Game : MonoBehaviour
     [SerializeField] private FollowerManager _followers;
     [SerializeField] private PlayerManager _player;
 
+
+    private string SAVE_FILE_LOCATION;
+
     private bool _allowedToSave = true;
     private void Awake()
     {
+        SAVE_FILE_LOCATION = Application.persistentDataPath + "Save.json";
         SceneManager.sceneUnloaded += SceneManager_sceneUnloaded;
     }
 
@@ -30,18 +34,17 @@ public class Game : MonoBehaviour
     public void Save()
     {
         if (!_allowedToSave) return;
-        _saveGame.Save();
+        _saveGame.Save(SAVE_FILE_LOCATION);
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        //bool newGame = _saveGame.Load();
-        bool newGame = true;
+        var saveDict = _saveGame.Load(SAVE_FILE_LOCATION);
 
-        _player.Initialize(newGame);
-        _quests.Initialize(newGame);
-        _followers.Initialize(newGame); // Must be initialized after quests
+        _player.Initialize(true);
+        _quests.Initialize(saveDict);
+        _followers.Initialize(true); // Must be initialized after quests
     }
 
     private void Update()

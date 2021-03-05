@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _items: {fileID: 11400000, guid: a0ad4238c51336240a52097b5e722013, type: 2}
   _followers: {fileID: 11400000, guid: 149c9a0f199010346973cfb3a0554784, type: 2}
+  _saveManager: {fileID: 11400000, guid: e86f7488920c8024fab3b3017fb83302, type: 2}
   StartQuest: {fileID: 11400000, guid: fc18e94318e97394291c84a4249c3c18, type: 2}
   AllQuests:
   - {fileID: 11400000, guid: d0b1a45baf6b3d242a6af33d66b443b7, type: 2}
