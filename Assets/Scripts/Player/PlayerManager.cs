@@ -187,7 +187,6 @@ namespace G4AW2.Managers
         public void GiveHealth(int amount)
         {
             Health = Mathf.Min(Health + amount, MaxHealth);
-            Debug.Log($"health: {Health}");
         }
 
         public void IncreaseHealthByTime(float time) {

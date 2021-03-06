@@ -2851,7 +2851,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 164211337}
-  - component: {fileID: 164211340}
   m_Layer: 5
   m_Name: ItemMastery
   m_TagString: Untagged
@@ -2859,18 +2858,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &164211340
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 164211339}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1039f721cd16a594181eaa6504a62e3f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &170653550 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114430583052842046, guid: c504a1b86105a28498ed63009741eac9,
@@ -12421,6 +12408,7 @@ GameObject:
   - component: {fileID: 701840141}
   - component: {fileID: 701840146}
   - component: {fileID: 701840147}
+  - component: {fileID: 701840148}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -12713,6 +12701,23 @@ MonoBehaviour:
   - {fileID: 11400000, guid: def46f832889c3c438d6f853843dcb3b, type: 2}
   - {fileID: 11400000, guid: 40f078097944c434590c3daa4eaf6c7e, type: 2}
   - {fileID: 11400000, guid: 072e8c50f688c06488d21d9bc70ab89c, type: 2}
+--- !u!114 &701840148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 701840138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d739d1d029f8fe41a71e6b076d95c36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BlockingAndParryingTutorialStart: {fileID: 11400000, guid: 1813d7e0e7b53e14ea74a03ff6e2ceee,
+    type: 2}
+  BlockingAndParryingTutorialEnd: {fileID: 11400000, guid: fc18e94318e97394291c84a4249c3c18,
+    type: 2}
+  _quests: {fileID: 701840141}
 --- !u!1 &708668011
 GameObject:
   m_ObjectHideFlags: 0
@@ -12851,7 +12856,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 712561842}
-  - component: {fileID: 712561845}
   m_Layer: 5
   m_Name: EquippedMastery
   m_TagString: Untagged
@@ -12859,18 +12863,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &712561845
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 712561844}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1039f721cd16a594181eaa6504a62e3f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &718965109
 GameObject:
   m_ObjectHideFlags: 0
@@ -16987,7 +16979,6 @@ GameObject:
   - component: {fileID: 992349108}
   - component: {fileID: 992349111}
   - component: {fileID: 992349110}
-  - component: {fileID: 992349109}
   m_Layer: 5
   m_Name: Gold Amount
   m_TagString: Untagged
@@ -17014,18 +17005,6 @@ RectTransform:
   m_AnchoredPosition: {x: 22.3125, y: -28}
   m_SizeDelta: {x: 10.65, y: 6}
   m_Pivot: {x: 0, y: 1}
---- !u!114 &992349109
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 992349107}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4826cdbf251a32648853110fe3d38d42, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &992349110
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21423,6 +21402,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114633887884956374, guid: b07b7279b8533a743ac3ef8395402d78, type: 3}
+    - {fileID: 114065675548777134, guid: b07b7279b8533a743ac3ef8395402d78, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b07b7279b8533a743ac3ef8395402d78, type: 3}
 --- !u!1 &1262339006
 GameObject:
@@ -29068,7 +29048,6 @@ GameObject:
   - component: {fileID: 1490104172}
   - component: {fileID: 1490104175}
   - component: {fileID: 1490104174}
-  - component: {fileID: 1490104173}
   m_Layer: 5
   m_Name: Player Health
   m_TagString: Untagged
@@ -29095,18 +29074,6 @@ RectTransform:
   m_AnchoredPosition: {x: 3.5, y: 2.5}
   m_SizeDelta: {x: -9, y: -3}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1490104173
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1490104171}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4826cdbf251a32648853110fe3d38d42, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1490104174
 MonoBehaviour:
   m_ObjectHideFlags: 0

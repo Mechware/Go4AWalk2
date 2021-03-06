@@ -7,7 +7,6 @@ using Serialization = Sirenix.Serialization.SerializationUtility;
 
 namespace G4AW2
 {
-    [CreateAssetMenu(menuName = "Managers/SaveGame")]
     public class SaveManager : MonoBehaviour
     {
         private Dictionary<string, Func<object>> _getSaveDataFunctions = new Dictionary<string, Func<object>>();
