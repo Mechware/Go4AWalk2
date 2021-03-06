@@ -20,7 +20,7 @@ public class HeadgearInstance : ItemInstance{
         
         base.SaveData = new HeadgearSaveData();
         base.Config = config;
-        SaveData.Id = config.Id;
+        SaveData.Id = config.name;
         SaveData.Random = UnityEngine.Random.Range(0, 101);
     }
     

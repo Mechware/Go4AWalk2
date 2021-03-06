@@ -170,7 +170,7 @@ namespace G4AW2.Combat {
 
 				EnemyState = State.BeforeAttack;
 			    MyAnimator.SetTrigger("AttackStart");
-			    if(SaveGame.SaveData.ShowParryAndBlockColors) Image.color = BlockColor;
+			    if(GlobalSaveData.SaveData.ShowParryAndBlockColors) Image.color = BlockColor;
 
 				// Wind up
 				yield return new WaitForSeconds(Enemy.Config.AttackPrepTime);
@@ -180,12 +180,12 @@ namespace G4AW2.Combat {
 
                 EnemyState = State.ExecuteAttack;
 			    MyAnimator.SetTrigger("AttackExecute");
-			    if(SaveGame.SaveData.ShowParryAndBlockColors)
+			    if(GlobalSaveData.SaveData.ShowParryAndBlockColors)
 			        Image.color = ParryColor;
 
                 // Perform the attack
                 yield return new WaitForSeconds(Enemy.Config.AttackExecuteTime);
-			    if(SaveGame.SaveData.ShowParryAndBlockColors)
+			    if(GlobalSaveData.SaveData.ShowParryAndBlockColors)
 			        Image.color = Color.white;
 			    if(EnemyState == State.Dead)
 			        break;

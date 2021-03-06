@@ -9,12 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d44994aa9e84bc441a3969ce48951c1f, type: 3}
-  m_Name: GoldAmount
+  m_Script: {fileID: 11500000, guid: 4b848c4720572e84f85911eec10195ce, type: 3}
+  m_Name: GlobalSaveData
   m_EditorClassIdentifier: 
-  DeveloperDescription: Amount of gold user has
-  InitialValue: 0
-  OnChange:
-    m_PersistentCalls:
-      m_Calls: []
-  _value: 0
+  _saveManager: {fileID: 11400000, guid: e86f7488920c8024fab3b3017fb83302, type: 2}

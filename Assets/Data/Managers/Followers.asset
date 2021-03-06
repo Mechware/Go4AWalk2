@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _quests: {fileID: 11400000, guid: 47e37c2da2ca892469087f805bd7d3dc, type: 2}
   _items: {fileID: 11400000, guid: a0ad4238c51336240a52097b5e722013, type: 2}
+  _saveManager: {fileID: 11400000, guid: e86f7488920c8024fab3b3017fb83302, type: 2}
   MAX_QUEUE_SIZE: 5
   AllFollowers:
   - {fileID: 11400000, guid: 0fa793a270e17e94988ea8a538153bab, type: 2}

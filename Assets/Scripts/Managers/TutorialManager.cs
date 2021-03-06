@@ -26,11 +26,11 @@ namespace G4AW2.Managers {
         {
             if (questConfig == BlockingAndParryingTutorialStart)
             {
-                SaveGame.SaveData.ShowParryAndBlockColors = true;
+                GlobalSaveData.SaveData.ShowParryAndBlockColors = true;
             }
             if (questConfig == BlockingAndParryingTutorialEnd)
             {
-                SaveGame.SaveData.ShowParryAndBlockColors = false;
+                GlobalSaveData.SaveData.ShowParryAndBlockColors = false;
             }
         }
     }

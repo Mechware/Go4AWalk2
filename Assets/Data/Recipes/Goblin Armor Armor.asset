@@ -4,14 +4,15 @@
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a97f1898c302cd44b8adfe51accc35cd, type: 3}
   m_Name: Goblin Armor Armor
   m_EditorClassIdentifier: 
-  ID: 6
+  Id: 6
   Components:
   - Item: {fileID: 11400000, guid: f02a4360ffd63e2499d1222a338cd414, type: 2}
     Amount: 12

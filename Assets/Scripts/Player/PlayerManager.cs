@@ -10,11 +10,14 @@ namespace G4AW2.Managers
     [CreateAssetMenu(menuName = "Managers/Player")]
     public class PlayerManager : ScriptableObject {
 
-		[NonSerialized] public int MaxHealth = 2000;
-        [NonSerialized] public int Gold;
-        [NonSerialized] public int Level;
-        [NonSerialized] public int Experience;
+		public int MaxHealth { private set; get; } = 2000;
+        public int Gold { private set; get; }
+        public int Level { private set; get; }
+        public int Experience { private set; get; }
         public int Health { private set; get; }
+        public WeaponInstance Weapon { private set; get; }
+        public ArmorInstance Armor { private set; get; }
+        public HeadgearInstance Headgear { private set; get; }
 
         public Action<float> OnDeath;
         public Action<int, ElementalType> OnDamageTaken;
@@ -22,34 +25,72 @@ namespace G4AW2.Managers
         public Action ArmorChanged;
         public Action HeadgearChanged;
 
-        public WeaponInstance Weapon { private set; get; }
-        public ArmorInstance Armor { private set; get; }
-        public HeadgearInstance Headgear { private set; get; }
+        [SerializeField] private WeaponConfig _startWeapon;
+        [SerializeField] private ArmorConfig _startArmor;
+        [SerializeField] private SaveManager _saveManager;
+        [SerializeField] private ItemManager _itemManager;
+        [SerializeField] private int _healthPerUnitTime = 1;
+        [SerializeField] private float _unitTime = 1f;
 
+        private void OnEnable()
+        {
+            _saveManager.RegisterSaveFunction("Player", Save);
+            _saveManager.RegisterLoadFunction("Player", Load);
+        }
 
-        [SerializeField] private WeaponConfig StartWeapon;
-        [SerializeField] private ArmorConfig StartArmor;
+        private class SaveData
+        {
+            public int Gold;
+            public int Level;
+            public int Experience;
+            public int Health;
+            public WeaponSaveData Weapon;
+            public ArmorSaveData Armor;
+            public HeadgearSaveData Headgear;
+        }
 
-        public int HealthPerSecond = 1;
-        private float updateTime = 1f;
-        
-        public void Initialize(bool newGame) {
-
-            if(newGame)
+        private void Load(object o)
+        {
+            if(o == null)
             {
                 Health = MaxHealth;
 
-                Weapon = new WeaponInstance(StartWeapon, 1);
+                Weapon = new WeaponInstance(_startWeapon, 1);
                 Weapon.SaveData.Level = 1;
                 Weapon.SaveData.Random = 30;
 
-                Armor = new ArmorInstance(StartArmor, 1);
+                Armor = new ArmorInstance(_startArmor, 1);
                 Armor.SaveData.Level = 1;
                 Armor.SaveData.Random = 50;
+                return;
             }
 
-	        // Fin
-	        DateTime lastTimePlayedUTC = SaveGame.SaveData.LastTimePlayedUTC;
+            SaveData sd = (SaveData)o;
+            Gold = sd.Gold;
+            Level = sd.Level;
+            Experience = sd.Experience;
+            Health = sd.Health;
+            EquipWeapon((WeaponInstance)_itemManager.CreateInstance(sd.Weapon));
+            EquipArmor((ArmorInstance)_itemManager.CreateInstance(sd.Armor));
+            EquipHeadgear((HeadgearInstance)_itemManager.CreateInstance(sd.Headgear));
+        }
+
+        private object Save()
+        {
+            return new SaveData()
+            {
+                Gold = Gold,
+                Level = Level,
+                Experience = Experience,
+                Health = Health,
+                Weapon = Weapon?.SaveData,
+                Armor = Armor?.SaveData,
+                Headgear = Headgear?.SaveData
+            };
+        }
+
+        public void Initialize() {
+	        DateTime lastTimePlayedUTC = GlobalSaveData.SaveData.LastTimePlayedUTC;
 	        TimeSpan TimeSinceLastPlayed = DateTime.UtcNow - lastTimePlayedUTC;
 	        double secondsSinceLastPlayed = TimeSinceLastPlayed.TotalSeconds;
 	        IncreaseHealthByTime((int)secondsSinceLastPlayed);
@@ -123,13 +164,13 @@ namespace G4AW2.Managers
             return Weapon.Config.TapSpeed;
         }
 
-        
+        private float _updateTime = 0;
         // Update is called once per frame
         void Update () {
-	        updateTime -= Time.deltaTime;
-	        if (updateTime < 0) {
-		        updateTime = 1f;
-		        IncreaseHealthByTime(1);
+            _updateTime -= Time.deltaTime;
+	        if (_updateTime < 0) {
+                _updateTime = _unitTime;
+		        IncreaseHealthByTime(_healthPerUnitTime);
 	        }
         }
 
@@ -145,7 +186,7 @@ namespace G4AW2.Managers
                 Health = MaxHealth;
                 return;
             }
-            GiveHealth(Mathf.RoundToInt(Health + time * HealthPerSecond));
+            GiveHealth(Mathf.RoundToInt(Health + time * (_healthPerUnitTime / _unitTime)));
         }
 
         private DateTime PauseTime = DateTime.MaxValue;

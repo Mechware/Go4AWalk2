@@ -7,7 +7,6 @@ using UnityEngine;
 namespace G4AW2.Data {
     public class QuestConfig : ScriptableObject {
 
-        public int Id;
         public string DisplayName;
         public string Description;
         

@@ -40,7 +40,7 @@ public class CraftingMenu : MonoBehaviour {
 
     private void SetItem(IconWithTextController holder, RecipeConfig recipe) {
 
-        if (SaveGame.SaveData.CraftingRecipesMade.Contains(recipe.Id)) {
+        if (GlobalSaveData.SaveData.CraftingRecipesMade.Contains(recipe.name)) {
             string text = $"{recipe.Result.Item.Name}\n<size=50%>";
             foreach (var r in recipe.Components) {
                 text += $"{r.Item.Name} - {_items.GetAmountOf(r.Item)} / {r.Amount}\n";
@@ -58,7 +58,7 @@ public class CraftingMenu : MonoBehaviour {
 
             holder.SetDataConfig(recipe.Result.Item, 1, text, () => {
                 if (MakeRecipe(recipe)) {
-                    SaveGame.SaveData.CraftingRecipesMade.Add(recipe.Id);
+                    GlobalSaveData.SaveData.CraftingRecipesMade.Add(recipe.name);
                     RefreshList();
                 }
             }, QuestionMark, false);

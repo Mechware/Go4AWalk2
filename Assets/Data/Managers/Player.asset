@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe28381dc1f903a4a80caba2471126ea, type: 3}
   m_Name: Player
   m_EditorClassIdentifier: 
-  StartWeapon: {fileID: 11400000, guid: 1442b2dc470d7074b8258fe2a088e6e5, type: 2}
-  StartArmor: {fileID: 11400000, guid: 4e5da4bccb25c1e4c8b7eac00c00a99d, type: 2}
-  HealthPerSecond: 1
+  _startWeapon: {fileID: 11400000, guid: 37922c7fca4096e48a04b7094a8a3449, type: 2}
+  _startArmor: {fileID: 11400000, guid: 3cd3cc6eaa8df734db7ef0699c67d055, type: 2}
+  _saveManager: {fileID: 11400000, guid: e86f7488920c8024fab3b3017fb83302, type: 2}
+  _itemManager: {fileID: 11400000, guid: a0ad4238c51336240a52097b5e722013, type: 2}
+  _healthPerUnitTime: 1
+  _unitTime: 1

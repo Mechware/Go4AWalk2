@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 280be3d23cd56fd4ca62e864fc42339e, type: 3}
   m_Name: Items
   m_EditorClassIdentifier: 
+  _saveManager: {fileID: 11400000, guid: e86f7488920c8024fab3b3017fb83302, type: 2}
   AllItems:
   - {fileID: 11400000, guid: 4e5da4bccb25c1e4c8b7eac00c00a99d, type: 2}
   - {fileID: 11400000, guid: 0b6293aa8f7a5e04f9516f3a615032ae, type: 2}

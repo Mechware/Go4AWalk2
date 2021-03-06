@@ -15,8 +15,8 @@ public class WeaponInstance : ItemInstance {
     public new WeaponSaveData SaveData => (WeaponSaveData) base.SaveData;
     
     public int RawDamage => GetDamage();
-    public int Mastery => Mathf.FloorToInt(RarityDefines.Instance.GetLevel(Config.Rarity, SaveGame.SaveData.IdsToNumberOfTaps.GetOrInsertDefault(Config.Id, 0)));
-    public float RawMastery => RarityDefines.Instance.GetLevel(Config.Rarity, SaveGame.SaveData.IdsToNumberOfTaps.GetOrInsertDefault(Config.Id, 0));
+    public int Mastery => Mathf.FloorToInt(RarityDefines.Instance.GetLevel(Config.Rarity, GlobalSaveData.SaveData.IdsToNumberOfTaps.GetOrInsertDefault(Config.name, 0)));
+    public float RawMastery => RarityDefines.Instance.GetLevel(Config.Rarity, GlobalSaveData.SaveData.IdsToNumberOfTaps.GetOrInsertDefault(Config.name, 0));
     
     public bool IsEnchanted => Enchantment != null;
     public EnchanterInstance Enchantment { get; private set; }
@@ -29,18 +29,18 @@ public class WeaponInstance : ItemInstance {
         base.Config = config;
         base.SaveData = saveData;
 
-        if (saveData.EnchanterId > 0) {
+        if (saveData.EnchanterId != null) {
             Enchantment = new EnchanterInstance(new EnchanterSaveData() {
                 Id = saveData.EnchanterId,
                 Random = saveData.EnchanterRandom
-            }, enchanters.First(e => e.Id == saveData.EnchanterId));
+            }, enchanters.First(e => e.name == saveData.EnchanterId));
         }
     }
 
     public WeaponInstance(WeaponConfig config, int level) {
         base.Config = config;
         base.SaveData = new WeaponSaveData();
-        SaveData.Id = config.Id;
+        SaveData.Id = config.name;
         SaveData.Random = UnityEngine.Random.Range(0, 101);
         SaveData.Level = level;
     }
@@ -66,9 +66,9 @@ public class WeaponInstance : ItemInstance {
     public void IncrementTaps() {
 
         int lastLevel = Mastery;
-        
-        SaveGame.SaveData.IdsToNumberOfTaps.GetOrInsertDefault(Config.Id, 0);
-        SaveGame.SaveData.IdsToNumberOfTaps[Config.Id]++;
+
+        GlobalSaveData.SaveData.IdsToNumberOfTaps.GetOrInsertDefault(Config.name, 0);
+        GlobalSaveData.SaveData.IdsToNumberOfTaps[Config.name]++;
 
         if (Mastery != lastLevel) {
             

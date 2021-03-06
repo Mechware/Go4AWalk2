@@ -9,7 +9,7 @@ using UnityEngine.SceneManagement;
 public class Game : MonoBehaviour
 {
     // Data
-    [SerializeField] private SaveGame _saveGame;
+    [SerializeField] private SaveManager _saveGame;
 
     // Managers - talk with the data and post events
     [SerializeField] private QuestManager _quests;
@@ -40,10 +40,10 @@ public class Game : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        var saveDict = _saveGame.Load(SAVE_FILE_LOCATION);
+        _saveGame.Load(SAVE_FILE_LOCATION);
 
-        _player.Initialize(true);
-        _quests.Initialize(saveDict);
+        _player.Initialize();
+        _quests.Initialize();
         _followers.Initialize(true); // Must be initialized after quests
     }
 

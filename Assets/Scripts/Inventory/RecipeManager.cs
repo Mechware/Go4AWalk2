@@ -22,7 +22,7 @@ namespace G4AW2.Managers
         public List<RecipeConfig> AllRecipes;
 
 
-        public List<int> MadeRecipes => SaveGame.SaveData.CraftingRecipesMade;
+        public List<string> MadeRecipes => GlobalSaveData.SaveData.CraftingRecipesMade;
 
         [ContextMenu("Add all recipes in project")]
         private void SearchForAllItems()
@@ -79,7 +79,7 @@ namespace G4AW2.Managers
                 {
                     if (!_items.Remove(item))
                     {
-                        Debug.LogError("Tried to remove item from inventory but was unable to. id: " + item.Id);
+                        Debug.LogError("Tried to remove item from inventory but was unable to. id: " + item.name);
                         return null;
                     }
                     amount--;
@@ -109,7 +109,7 @@ namespace G4AW2.Managers
                 List<RecipeConfig> recipes = GetPossibleRecipes();
                 foreach (var recipe in recipes)
                 {
-                    if (!currentRecipes.Contains(recipe) && !SaveGame.SaveData.CraftingRecipesMade.Contains(recipe.Id))
+                    if (!currentRecipes.Contains(recipe) && !MadeRecipes.Contains(recipe.name))
                     {
                         RecipeUnlocked?.Invoke(recipe);
                     }

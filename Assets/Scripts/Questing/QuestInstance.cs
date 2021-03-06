@@ -9,7 +9,7 @@ public class QuestInstance {
     public QuestInstance(QuestConfig config, bool active) {
         Config = config;
         SaveData = new QuestSaveData();
-        SaveData.Id = config.Id;
+        SaveData.Id = config.name;
         SaveData.Active = active;
     }
     

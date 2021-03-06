@@ -13,7 +13,7 @@ namespace G4AW2.Managers
     {
         [SerializeField] private ItemManager _items;
         [SerializeField] private FollowerManager _followers;
-        [SerializeField] private SaveGame _saveManager;
+        [SerializeField] private SaveManager _saveManager;
 
         [SerializeField] private QuestConfig StartQuest;
 
@@ -32,19 +32,10 @@ namespace G4AW2.Managers
             EditorUtils.AddAllOfType(AllQuests);
         }
 
-        public void Initialize(Dictionary<string, object> savedObjects)
+        private void OnEnable()
         {
-            SaveData sd = SaveGame.GetObject<SaveData>(savedObjects, "QuestManager");
-
-            if(sd == null)
-            {
-                _currentQuest = new QuestInstance(StartQuest, true);
-                SetQuest(_currentQuest);
-            } 
-            else
-            {
-                Load(sd);
-            }
+            _saveManager.RegisterLoadFunction("QuestManager", Load);
+            _saveManager.RegisterSaveFunction("QuestManager", Save);
 
             _followers.FollowerRemoved += (follower) => {
                 if (_currentQuest.Config.QuestType != QuestType.Boss &&
@@ -55,7 +46,7 @@ namespace G4AW2.Managers
 
                 if (follower.Config != _currentQuest.Config.QuestParam) return;
 
-                var enemy = (EnemyInstance)follower; 
+                var enemy = (EnemyInstance)follower;
 
                 if (!enemy.Suicide)
                 {
@@ -87,8 +78,15 @@ namespace G4AW2.Managers
                         _items.GetAmountOf((ItemConfig)_currentQuest.Config.QuestParam);
                 }
             };
+        }
 
-            _saveManager.RegisterSaveFunction("QuestManager", Save);
+        public void Initialize()
+        {
+            if(_currentQuest == null)
+            {
+                _currentQuest = new QuestInstance(StartQuest, true);
+                SetQuest(_currentQuest);
+            }
         }
 
         [Serializable]
@@ -109,11 +107,14 @@ namespace G4AW2.Managers
             };
         }
 
-        private void Load(SaveData data)
+        private void Load(object o)
         {
-            _currentQuest = new QuestInstance(AllQuests.First(q => q.Id == data.CurrentQuest.Id), data.CurrentQuest);
-            _currentQuests = data.CurrentQuests.Select(q => new QuestInstance(AllQuests.First(config => q.Id == config.Id), q)).ToList();
-            _completedQuests = data.CompletedQuests.Select(q => new QuestInstance(AllQuests.First(config => q.Id == config.Id), q)).ToList();
+            if (o == null) return;
+
+            var data = (SaveData)o;
+            _currentQuest = new QuestInstance(AllQuests.First(q => q.name == data.CurrentQuest.Id), data.CurrentQuest);
+            _currentQuests = data.CurrentQuests.Select(q => new QuestInstance(AllQuests.First(config => q.Id == config.name), q)).ToList();
+            _completedQuests = data.CompletedQuests.Select(q => new QuestInstance(AllQuests.First(config => q.Id == config.name), q)).ToList();
         }
 
         public void GiveQuest(QuestConfig config)

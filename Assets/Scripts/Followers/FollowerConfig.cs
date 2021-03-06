@@ -1,20 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using CustomEvents;
-using G4AW2.Data.Combat;
-using G4AW2.Data;
 using UnityEngine;
 
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
+namespace G4AW2.Data
+{
 
-namespace G4AW2.Data {
+    public abstract class FollowerConfig : ScriptableObject {
 
-	public abstract class FollowerConfig : ScriptableObject {
-
-		public int Id;
 	    public string DisplayName;
 	    public Sprite Portrait;
 

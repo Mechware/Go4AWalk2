@@ -17,7 +17,7 @@ public class EnchanterInstance : ItemInstance {
     public EnchanterInstance(EnchanterConfig config) {
         
         base.SaveData = new EnchanterSaveData();
-        SaveData.Id = config.Id;
+        SaveData.Id = config.name;
         SaveData.Random = UnityEngine.Random.Range(0, 101);
     }
 

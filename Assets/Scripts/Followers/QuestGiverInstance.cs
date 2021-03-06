@@ -15,7 +15,7 @@ public class QuestGiverInstance : FollowerInstance {
         base.Config = c;
         QuestToGive = c.QuestConfigToGive.GetRandom();
         base.SaveData = new QuestGiverSaveData();
-        SaveData.QuestToGiveId = QuestToGive.Id;
+        SaveData.QuestToGiveId = QuestToGive.name;
 
     }
 

@@ -8,6 +8,7 @@ using G4AW2.Data.Combat;
 using G4AW2.Followers;
 using G4AW2.Data.DropSystem;
 using G4AW2.Utils;
+using UnityEditor;
 
 namespace G4AW2.Managers {
 	[CreateAssetMenu(menuName ="Managers/Followers")]
@@ -16,6 +17,7 @@ namespace G4AW2.Managers {
         [NonSerialized] private List<FollowerInstance> _followers = new List<FollowerInstance>();
 		[SerializeField] private QuestManager _quests;
 		[SerializeField] private ItemManager _items;
+		[SerializeField] private SaveManager _saveManager;
 
 		public Action<FollowerInstance> FollowerAdded;
         public Action<FollowerInstance> FollowerRemoved;
@@ -30,7 +32,31 @@ namespace G4AW2.Managers {
 		void OnEnable() {
             Random.InitState(Mathf.RoundToInt(DateTime.Now.Ticks % int.MaxValue));
 			_quests.QuestStarted += q => SetQuest(q.Config);
+			_saveManager.RegisterSaveFunction("FollowerData", GetSaveData);
+			_saveManager.RegisterLoadFunction("FollowerData", LoadSaveData);
 		}
+
+		private class SaveData
+        {
+			public List<FollowerSaveData> _followerData;
+        }
+
+		private void LoadSaveData(object data)
+        {
+			if (data == null) return;
+
+			var saveData = (SaveData)data;
+
+			_followers = saveData._followerData.Select(f => GetInstance(f)).ToList();
+        }
+
+		private object GetSaveData()
+        {
+			return new SaveData()
+			{
+				_followerData = _followers.Select(f => f.SaveData).ToList()
+			};
+        }
 
 		public List<FollowerConfig> AllFollowers;
 		[ContextMenu("Add all followers in project")]
@@ -52,13 +78,9 @@ namespace G4AW2.Managers {
 	    public void Initialize(bool newGame) {
 			_lastQuest = _quests._currentQuest.Config;
 
-            foreach(var sd in SaveGame.SaveData.CurrentFollowers) {
-                _followers.Add(GetInstance(sd));
-            }
-
 			if(!newGame)
             {
-				DateTime lastTimePlayedUTC = SaveGame.SaveData.LastTimePlayedUTC;
+				DateTime lastTimePlayedUTC = GlobalSaveData.SaveData.LastTimePlayedUTC;
 				TimeSpan TimeSinceLastPlayed = DateTime.UtcNow - lastTimePlayedUTC;
 				double secondsSinceLastPlayed = TimeSinceLastPlayed.TotalSeconds;
 
@@ -100,21 +122,18 @@ namespace G4AW2.Managers {
 
 		public bool Remove(FollowerInstance follower)
 		{
-			bool successfullyRemoved = SaveGame.SaveData.CurrentFollowers.Remove(follower.SaveData);
+			if (!_followers.Remove(follower)) return false;
+
 			Debug.Log($"Follower removed: {follower.SaveData.Id}");
-			_followers.Remove(follower);
 			FollowerRemoved?.Invoke(follower);
-			return successfullyRemoved;
+
+			return true;
 		}
-
-		
-
 		private bool AddFollower(FollowerInstance follower)
         {
 			if (_followers.Count >= MAX_QUEUE_SIZE || follower == null) return false;
 
 			Debug.Log($"Follower added: {follower.Config.DisplayName}");
-			SaveGame.SaveData.CurrentFollowers.Add(follower.SaveData);
 			_followers.Add(follower);
 			FollowerAdded?.Invoke(follower);
 			return true;
@@ -139,7 +158,7 @@ namespace G4AW2.Managers {
 			} 
 			else
             {
-				Debug.LogError("Tried to create a follower instance from config: " + config.Id);
+				Debug.LogError("Tried to create a follower instance from config: " + config.name);
 				return new FollowerInstance();
 			}
 
@@ -149,7 +168,7 @@ namespace G4AW2.Managers {
 		private FollowerInstance GetInstance(FollowerSaveData saveData)
 		{
 			FollowerInstance val;
-			var config = AllFollowers.First(follower => follower.Id == saveData.Id);
+			var config = AllFollowers.First(follower => follower.name == saveData.Id);
 			if (saveData is EnemySaveData e)
 			{
 				val = new EnemyInstance(e, (EnemyConfig)config);
