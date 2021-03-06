@@ -25,7 +25,11 @@ This current rewrite tried to impose a heirarchical layout to the code where the
 			Objects that need to be initialized after the game is loaded will need to listen to an "SaveDataLoaded" type event
 				Or the save game loading goes into a different scene so that the save data + managers are guaranteed to be initialized on awake or start
 		
-Moving foward: 
-	Remove all references to gameobjects from managers and move managers to scriptable objects so they have no concept of being in a scene and prefabs can reference them
+For next steps I removed all references to gameobjects from managers and movef managers to scriptable objects so they have no concept of being in a scene and prefabs can reference them
+
+This was a mistake because scriptable objects hold state between runtime sessions. Since managers use events heavily, lots of events were subscribed to multiple times and data that was expected to be cleared was not cleared. 
+
+Future work:
 	Come up with a better separation between regular gameplay and character interactions/combat, right now the transition between the two is what creates the most complexity (by far) in the game.
-	Try to write as simple code as possible. This is what I've learned through these architecture cycles.
+	Remove all warnings
+	Fix the things I've broken by removing game event architecture

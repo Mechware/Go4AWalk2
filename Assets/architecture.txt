@@ -1,11 +1,7 @@
 The architecture of this game:
     Game is the entry point of the game
         
-        Save data is all the state in the game
-
-        Managers read/write the save data and are the gate to the save data. Managers post events about the save data changing
-
-        GameEvents handles important events that occur in the game that managers may need to react to and controllers may use to communicate
+        Managers contain most core game data and post events about the data changing
         
         Controllers control the game and what is actually happening
             WorldController controls the main world of the game
@@ -17,5 +13,5 @@ The architecture of this game:
 
         Coordinators are things that are responsible for making certain sequences of events to occur like entering a battle, dying in a battle, completing a quest, encountering a quest giver, etc.
 
-        Things without these postfixs/catagories are components and shouldn't know about the rest of the game. They should take in data through an initialization function and post events for the game code.
+        Things without these postfixs/catagories are components and shouldn't know about the rest of the game. They should take in data through an initialization function and post events for the controller code.
 
