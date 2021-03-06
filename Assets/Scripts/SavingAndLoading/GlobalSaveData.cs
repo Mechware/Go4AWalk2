@@ -5,8 +5,7 @@ using UnityEngine;
 
 namespace G4AW2
 {
-    [CreateAssetMenu(menuName = "GlobalSaveData")]
-    public class GlobalSaveData : ScriptableObject
+    public class GlobalSaveData : MonoBehaviour
     {
         public static MiscSaveData SaveData = new MiscSaveData();
         [SerializeField] private SaveManager _saveManager;
@@ -15,7 +14,6 @@ namespace G4AW2
         {
             _saveManager.RegisterSaveFunction("GenericSaveData", Save);
             _saveManager.RegisterLoadFunction("GenericSaveData", Load);
-
         }
 
         private object Save()

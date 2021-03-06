@@ -8,13 +8,15 @@ using Serialization = Sirenix.Serialization.SerializationUtility;
 namespace G4AW2
 {
     [CreateAssetMenu(menuName = "Managers/SaveGame")]
-    public class SaveManager : ScriptableObject
+    public class SaveManager : MonoBehaviour
     {
         private Dictionary<string, Func<object>> _getSaveDataFunctions = new Dictionary<string, Func<object>>();
         private Dictionary<string, Action<object>> _loadDataFunctions = new Dictionary<string, Action<object>>();
 
         public void RegisterSaveFunction(string saveFile, Func<object> getSaveDataFunction)
         {
+
+            if(_getSaveDataFunctions.ContainsKey(saveFile)) Debug.Log("reregistering save function" + saveFile);
             _getSaveDataFunctions[saveFile] = getSaveDataFunction;
         }
 

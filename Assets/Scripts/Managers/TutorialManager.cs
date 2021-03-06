@@ -3,19 +3,18 @@ using UnityEngine;
 
 namespace G4AW2.Managers
 {
-    [CreateAssetMenu(menuName = "Managers/TutorialManager")]
-    public class TutorialManager : ScriptableObject
+    public class TutorialManager : MonoBehaviour
     {
         public QuestConfig BlockingAndParryingTutorialStart;
         public QuestConfig BlockingAndParryingTutorialEnd;
         [SerializeField] private QuestManager _quests;
 
-        private void OnEnable()
+        private void Awake()
         {
             _quests.QuestStarted += q => SetQuest(q.Config);
         }
 
-        private void OnDisable()
+        private void OnDestroy()
         {
             _quests.QuestStarted -= q => SetQuest(q.Config);
         }

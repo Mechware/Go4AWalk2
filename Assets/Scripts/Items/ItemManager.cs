@@ -6,14 +6,10 @@ using G4AW2.Data;
 using G4AW2.Data.Crafting;
 using G4AW2.Data.DropSystem;
 using G4AW2.Utils;
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
 using UnityEngine;
 
 namespace G4AW2.Managers {
-    [CreateAssetMenu(menuName = "Managers/Items")]
-    public class ItemManager : ScriptableObject, IEnumerable<ItemInstance>
+    public class ItemManager : MonoBehaviour, IEnumerable<ItemInstance>
     {
         public Action<ItemInstance> OnItemObtained;
 
@@ -29,7 +25,7 @@ namespace G4AW2.Managers {
             EditorUtils.AddAllOfType(AllItems);
         }
 
-        void OnEnable()
+        void Awake()
         {
             _saveManager.RegisterSaveFunction("ItemManager", Save);
             _saveManager.RegisterLoadFunction("ItemManager", Load);

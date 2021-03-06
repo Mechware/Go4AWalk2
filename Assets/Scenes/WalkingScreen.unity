@@ -2871,15 +2871,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1039f721cd16a594181eaa6504a62e3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Max:
-    UseConstant: 1
-    ConstantValue: 0
-    Variable: {fileID: 0}
-  Current:
-    UseConstant: 1
-    ConstantValue: 1
-    Variable: {fileID: 0}
-  ProgressBarFill: {fileID: 164211338}
 --- !u!114 &170653550 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114430583052842046, guid: c504a1b86105a28498ed63009741eac9,
@@ -3241,8 +3232,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47eed13b8c7d4144c913fc70245d9bf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 11400000, guid: 243ecf8942f3dd64fb9b4c5b4abeed14, type: 2}
-  _items: {fileID: 11400000, guid: a0ad4238c51336240a52097b5e722013, type: 2}
+  _player: {fileID: 701840143}
+  _items: {fileID: 701840144}
   _popUp: {fileID: 1589775613}
 --- !u!1 &216300481
 GameObject:
@@ -4369,7 +4360,7 @@ MonoBehaviour:
   ProgressFill: {fileID: 2034811313}
   PopUps: {fileID: 1686129831}
   SpawnPointOfNumberIncreasePopUp: {fileID: 1544893565}
-  _quests: {fileID: 11400000, guid: 47e37c2da2ca892469087f805bd7d3dc, type: 2}
+  _quests: {fileID: 701840141}
 --- !u!1 &255464010
 GameObject:
   m_ObjectHideFlags: 0
@@ -4944,7 +4935,7 @@ MonoBehaviour:
   _smoothPopUp: {fileID: 1686129831}
   _layout: {fileID: 300978733}
   _popUp: {fileID: 1589775613}
-  _followers: {fileID: 11400000, guid: 149c9a0f199010346973cfb3a0554784, type: 2}
+  _followers: {fileID: 701840145}
 --- !u!1 &302137431
 GameObject:
   m_ObjectHideFlags: 0
@@ -9096,7 +9087,7 @@ MonoBehaviour:
   ItemPrefab: {fileID: 1833409186414204, guid: 443b0094fc267f64bbf4b08d4837ff39, type: 3}
   ItemDisplay: {fileID: 625248385}
   ItemText: {fileID: 300319891}
-  _items: {fileID: 11400000, guid: a0ad4238c51336240a52097b5e722013, type: 2}
+  _items: {fileID: 701840144}
 --- !u!1 &525882828
 GameObject:
   m_ObjectHideFlags: 0
@@ -9959,7 +9950,6 @@ GameObject:
   - component: {fileID: 552008586}
   - component: {fileID: 552008591}
   - component: {fileID: 552008590}
-  - component: {fileID: 552008587}
   m_Layer: 5
   m_Name: Headgear
   m_TagString: Untagged
@@ -9986,18 +9976,6 @@ RectTransform:
   m_AnchoredPosition: {x: -11, y: 0}
   m_SizeDelta: {x: 24, y: 24}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &552008587
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 552008585}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e80a0fb7ea10e944badaf8e505ad1825, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &552008590
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11779,8 +11757,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3456d07bfd300a498ba0cae36e197f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _items: {fileID: 11400000, guid: a0ad4238c51336240a52097b5e722013, type: 2}
-  _recipes: {fileID: 11400000, guid: 0d03686e98ae348439c978bd2b3121f0, type: 2}
+  _items: {fileID: 701840144}
+  _recipes: {fileID: 701840147}
   ItemPrefab: {fileID: 1929706737343030, guid: c504a1b86105a28498ed63009741eac9, type: 3}
   ParentOfItems: {fileID: 1958790811}
   QuestionMark: {fileID: 21300000, guid: afcffb3aa82f3b147b7df77048db2a74, type: 3}
@@ -12436,6 +12414,13 @@ GameObject:
   m_Component:
   - component: {fileID: 701840140}
   - component: {fileID: 701840142}
+  - component: {fileID: 701840139}
+  - component: {fileID: 701840145}
+  - component: {fileID: 701840144}
+  - component: {fileID: 701840143}
+  - component: {fileID: 701840141}
+  - component: {fileID: 701840146}
+  - component: {fileID: 701840147}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -12443,6 +12428,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &701840139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 701840138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b848c4720572e84f85911eec10195ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _saveManager: {fileID: 701840146}
 --- !u!4 &701840140
 Transform:
   m_ObjectHideFlags: 0
@@ -12462,6 +12460,37 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &701840141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 701840138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47c88f692059e204c955c5a70baa8f18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _items: {fileID: 701840144}
+  _followers: {fileID: 701840145}
+  _saveManager: {fileID: 701840146}
+  StartQuest: {fileID: 11400000, guid: d0b1a45baf6b3d242a6af33d66b443b7, type: 2}
+  AllQuests:
+  - {fileID: 11400000, guid: d0b1a45baf6b3d242a6af33d66b443b7, type: 2}
+  - {fileID: 11400000, guid: 7772697f7dd01f34b9f246fc0cdf5cbd, type: 2}
+  - {fileID: 11400000, guid: 1813d7e0e7b53e14ea74a03ff6e2ceee, type: 2}
+  - {fileID: 11400000, guid: 34332a3094c776547ab733c1126f5bc8, type: 2}
+  - {fileID: 11400000, guid: fc18e94318e97394291c84a4249c3c18, type: 2}
+  - {fileID: 11400000, guid: 3bdbfb305ca5b514fbfb60ae208f0bdc, type: 2}
+  - {fileID: 11400000, guid: 9bb92d304139bd443a17fa212d7c7469, type: 2}
+  - {fileID: 11400000, guid: d7da656351c83b446bdb11c78e5cc95e, type: 2}
+  - {fileID: 11400000, guid: e6732cf1f57b23945b8c87e0d545c131, type: 2}
+  - {fileID: 11400000, guid: 68904e00581c0b14b86a002773fbf51b, type: 2}
+  - {fileID: 11400000, guid: a1f342b0db0f6874081902b4d25ca172, type: 2}
+  - {fileID: 11400000, guid: d5a3181b25c7d8647bf8f2b64851bbe5, type: 2}
+  - {fileID: 11400000, guid: bf90e00dcd90ed34ca7f414c4f654636, type: 2}
+  - {fileID: 11400000, guid: 5a8fb4e0461e96b418512cc266283e09, type: 2}
 --- !u!114 &701840142
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12474,10 +12503,216 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5aaca0f67c2c5444bddaee77c6ac67e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _saveGame: {fileID: 11400000, guid: e86f7488920c8024fab3b3017fb83302, type: 2}
-  _quests: {fileID: 11400000, guid: 47e37c2da2ca892469087f805bd7d3dc, type: 2}
-  _followers: {fileID: 11400000, guid: 149c9a0f199010346973cfb3a0554784, type: 2}
-  _player: {fileID: 11400000, guid: 243ecf8942f3dd64fb9b4c5b4abeed14, type: 2}
+  _saveGame: {fileID: 701840146}
+  _quests: {fileID: 701840141}
+  _followers: {fileID: 701840145}
+  _player: {fileID: 701840143}
+--- !u!114 &701840143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 701840138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe28381dc1f903a4a80caba2471126ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _startWeapon: {fileID: 11400000, guid: 37922c7fca4096e48a04b7094a8a3449, type: 2}
+  _startArmor: {fileID: 11400000, guid: 3cd3cc6eaa8df734db7ef0699c67d055, type: 2}
+  _saveManager: {fileID: 701840146}
+  _itemManager: {fileID: 701840144}
+  _healthPerUnitTime: 1
+  _unitTime: 1
+  _startMaxHealth: 2000
+--- !u!114 &701840144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 701840138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 280be3d23cd56fd4ca62e864fc42339e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _saveManager: {fileID: 701840146}
+  AllItems:
+  - {fileID: 11400000, guid: 4e5da4bccb25c1e4c8b7eac00c00a99d, type: 2}
+  - {fileID: 11400000, guid: 0b6293aa8f7a5e04f9516f3a615032ae, type: 2}
+  - {fileID: 11400000, guid: 93a734356920da24caaee99393399534, type: 2}
+  - {fileID: 11400000, guid: 8b252922b67ac8d49ae55e5b68c1d8e8, type: 2}
+  - {fileID: 11400000, guid: 3cd3cc6eaa8df734db7ef0699c67d055, type: 2}
+  - {fileID: 11400000, guid: c95db40fef0530548972ce5e8819e0e3, type: 2}
+  - {fileID: 11400000, guid: f9ce8a3957c5c404bac197dc677cb6dd, type: 2}
+  - {fileID: 11400000, guid: f06fc87a2d638a1459b130947b24059e, type: 2}
+  - {fileID: 11400000, guid: e07390ddb28996449a4e0c9f645c4e5e, type: 2}
+  - {fileID: 11400000, guid: 11fbe90a2780405449ad82a1ae93b06e, type: 2}
+  - {fileID: 11400000, guid: e8ac2ee84af3a8a49a66b87904d008d6, type: 2}
+  - {fileID: 11400000, guid: fd886c20d53e5f64bac06680e5b49012, type: 2}
+  - {fileID: 11400000, guid: c95e6bfd76411ee4ba7c1167255243a9, type: 2}
+  - {fileID: 11400000, guid: 3b3b3aae3ef904f4fa27af0aa93725d8, type: 2}
+  - {fileID: 11400000, guid: 889c85b04c6825d4f9d5a09342506e45, type: 2}
+  - {fileID: 11400000, guid: c20ab2832a61eba47b68b5650049b9cf, type: 2}
+  - {fileID: 11400000, guid: 5dbeaf9deb25d984a9f9d45d7bb0df10, type: 2}
+  - {fileID: 11400000, guid: 212b5a7b5274ba54eafbf973b21ed3f8, type: 2}
+  - {fileID: 11400000, guid: 7b22c1e553a75054cb665fc7da06324c, type: 2}
+  - {fileID: 11400000, guid: 6db684d341d796241afdf8ed903cfaec, type: 2}
+  - {fileID: 11400000, guid: cc1f49edd82ca8e45a1fe6cd2440d676, type: 2}
+  - {fileID: 11400000, guid: 48e9f629903268947a3892b88645bad6, type: 2}
+  - {fileID: 11400000, guid: dcad32ca3f8515641b6dcbb27b130edf, type: 2}
+  - {fileID: 11400000, guid: dfdbef5619962ee459fd1d0deacc5bc0, type: 2}
+  - {fileID: 11400000, guid: 49a395b3e2e7c7b4aa598c53811f7e7d, type: 2}
+  - {fileID: 11400000, guid: d8b9e342a823b224798d3b1d7d6bdf71, type: 2}
+  - {fileID: 11400000, guid: 4d391139bcead144f8607a63bc321fee, type: 2}
+  - {fileID: 11400000, guid: d08d0756c736c2a4ab0d0954542e7fed, type: 2}
+  - {fileID: 11400000, guid: 833b0d247a0cc7641ae66f37c76ba899, type: 2}
+  - {fileID: 11400000, guid: c6659dc48446fec46bae08827825a9a9, type: 2}
+  - {fileID: 11400000, guid: f7ac10c6c6808c04081796324e6eaba5, type: 2}
+  - {fileID: 11400000, guid: 8a79e6122ddf3ca4eb1cc1f6511d081c, type: 2}
+  - {fileID: 11400000, guid: bd5bf7658c5d3a64ebb5582322e34161, type: 2}
+  - {fileID: 11400000, guid: a464ae4e3daf624418d389df8584622f, type: 2}
+  - {fileID: 11400000, guid: e49f5dd06a30be34a89ba3cfe20cd5f1, type: 2}
+  - {fileID: 11400000, guid: 492bd27deea319a49b2cb368355b815e, type: 2}
+  - {fileID: 11400000, guid: a774e612aec67b740aa55df3e3e3ff17, type: 2}
+  - {fileID: 11400000, guid: 4ef056b8210cf334c823e8b11fb4d3af, type: 2}
+  - {fileID: 11400000, guid: cca3b4ab4ef63d5448382ac5a3f35c50, type: 2}
+  - {fileID: 11400000, guid: 6cc9b6f53e24aec4c8334a6e06045db7, type: 2}
+  - {fileID: 11400000, guid: 81ec107920144b74a96b6e8ed74afb66, type: 2}
+  - {fileID: 11400000, guid: 4c5e23e2eafdd084e85f629307646260, type: 2}
+  - {fileID: 11400000, guid: 614ab21de69c9b94884b5eefdfe78e16, type: 2}
+  - {fileID: 11400000, guid: 0304f5a168938d84ca86376587ce5bbb, type: 2}
+  - {fileID: 11400000, guid: dc820a69f03cdd143ab25de0aeea35e5, type: 2}
+  - {fileID: 11400000, guid: fa96b3e9303ec5749a21f90630e57f59, type: 2}
+  - {fileID: 11400000, guid: aadd84ecb64a69d438a811a67a041056, type: 2}
+  - {fileID: 11400000, guid: f02a4360ffd63e2499d1222a338cd414, type: 2}
+  - {fileID: 11400000, guid: 39600ae6efc82fb43ab14a937a81a4a1, type: 2}
+  - {fileID: 11400000, guid: bfc13541347b32d42a02758e57778329, type: 2}
+  - {fileID: 11400000, guid: 6b9584ef9e8e3814faf69e9f1efe1e8b, type: 2}
+  - {fileID: 11400000, guid: 10f87211d9f03ba468a8554aae870c84, type: 2}
+  - {fileID: 11400000, guid: 1442b2dc470d7074b8258fe2a088e6e5, type: 2}
+  - {fileID: 11400000, guid: 0ad535ea489ac67408922f7ad87a90cc, type: 2}
+  - {fileID: 11400000, guid: 1af2a214dc94bd644b379c4e893b37a2, type: 2}
+  - {fileID: 11400000, guid: 435d784ea3afa354ea9f9655b874a367, type: 2}
+  - {fileID: 11400000, guid: ba92bfbe31d8b4d46940761c4dc95fc4, type: 2}
+  - {fileID: 11400000, guid: 1fedd65bee70a4642803c28e693ec31f, type: 2}
+  - {fileID: 11400000, guid: 2e9186a42ba81104c9354db697b23fd5, type: 2}
+  - {fileID: 11400000, guid: d4a043ad9fdbd5347b161651a42c52b0, type: 2}
+  - {fileID: 11400000, guid: 1a804971af98ebc4cbf6dda1c9b80054, type: 2}
+  - {fileID: 11400000, guid: d0971b98c3d07cf4a95550532fb5d46e, type: 2}
+  - {fileID: 11400000, guid: 2da6b9adf5d871c4a8c481d49c4b2092, type: 2}
+  - {fileID: 11400000, guid: 158141b3e2bc1ca439234c4acf5cd71d, type: 2}
+  - {fileID: 11400000, guid: a1bae974b4903be4ab94566370f05d52, type: 2}
+  - {fileID: 11400000, guid: 890d3d3a441ca0043a666fed93a16876, type: 2}
+  - {fileID: 11400000, guid: 39f4c3f276e202644a84b77086bba784, type: 2}
+  - {fileID: 11400000, guid: 358a083fd27f0aa45b5e80af96fbd175, type: 2}
+  - {fileID: 11400000, guid: b333cf7fecaebf742bf8e228d7678d5e, type: 2}
+  - {fileID: 11400000, guid: 4175e8c690e58f944b474453684e36aa, type: 2}
+  - {fileID: 11400000, guid: e569c822608e91343ad176ae5b1f744f, type: 2}
+  - {fileID: 11400000, guid: c36dbb75125d93a4db25d2c3da690bf9, type: 2}
+  - {fileID: 11400000, guid: 5afaa37fa3a07a94db5652e209ba0401, type: 2}
+  - {fileID: 11400000, guid: 115a34ff6b210674c95ecf61b466f765, type: 2}
+  - {fileID: 11400000, guid: 3812f7270bee1a541ac27c0c08cecbfc, type: 2}
+  - {fileID: 11400000, guid: fa5c84f7737283d4cb2fa199f12336f3, type: 2}
+  - {fileID: 11400000, guid: ab14e80ca34e84f4aae0b9a4551fa39b, type: 2}
+  - {fileID: 11400000, guid: edcbea15740520d4e852997aaf1bd49f, type: 2}
+  - {fileID: 11400000, guid: 6cbbf53b8ea1d7e4782f0caa1144aeb6, type: 2}
+  - {fileID: 11400000, guid: b1f98cb5e8d222642b4203a14f7d6549, type: 2}
+  - {fileID: 11400000, guid: aee6ce122f9bb2f4dbd0297d65812a2b, type: 2}
+  - {fileID: 11400000, guid: 37922c7fca4096e48a04b7094a8a3449, type: 2}
+  - {fileID: 11400000, guid: 6246a40d9001d144e83b43a25b75c9b6, type: 2}
+  - {fileID: 11400000, guid: 2fd6f953e2882b84f8e82d6133f3c766, type: 2}
+  - {fileID: 11400000, guid: 1f43a006405b55d40bf7e1a47ed7ced1, type: 2}
+  - {fileID: 11400000, guid: 6881e132fa648604ebef24fa4f4f977e, type: 2}
+  - {fileID: 11400000, guid: 45011a63ea1484741ba8e8d5f50ecc5d, type: 2}
+  - {fileID: 11400000, guid: d138635bc5b52cb42af404429ba71ab4, type: 2}
+  - {fileID: 11400000, guid: d053d65b8f09c264983e32e3a535f101, type: 2}
+--- !u!114 &701840145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 701840138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c194123519c7ae440900526a95d41a24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _quests: {fileID: 701840141}
+  _items: {fileID: 701840144}
+  _saveManager: {fileID: 701840146}
+  MAX_QUEUE_SIZE: 5
+  AllFollowers:
+  - {fileID: 11400000, guid: 0fa793a270e17e94988ea8a538153bab, type: 2}
+  - {fileID: 11400000, guid: f9cb20d3635f5ec40935188217f021cd, type: 2}
+  - {fileID: 11400000, guid: 1b66009fee8697e49adee1bbb71ffac3, type: 2}
+  - {fileID: 11400000, guid: 7783ad179c921cd43bf23290bc4f3051, type: 2}
+  - {fileID: 11400000, guid: 24dcc537a71658e4e9fbf5e0d5fc124a, type: 2}
+  - {fileID: 11400000, guid: 5b64378297fe9da4881ccb7b22ca3909, type: 2}
+  - {fileID: 11400000, guid: 396482660d9279a4294f369245325131, type: 2}
+  - {fileID: 11400000, guid: 1661ac05f43e068448b3f2960ac1d57f, type: 2}
+  - {fileID: 11400000, guid: 122dbbbf58a55ed4ea26d6db1f754cbb, type: 2}
+  - {fileID: 11400000, guid: cda96108237db6e4d84dd6f435cc0239, type: 2}
+  - {fileID: 11400000, guid: 51d3cce514427d448a622c4b31127522, type: 2}
+  - {fileID: 11400000, guid: e75340b3bcfa1db4bae6e3c12eb51d0b, type: 2}
+  - {fileID: 11400000, guid: 7c3e61303c6798748b00b115c31a54f4, type: 2}
+  - {fileID: 11400000, guid: 581f3693b61c6534881558b338b2fc3f, type: 2}
+  - {fileID: 11400000, guid: 27b54859f6122f94fa2569cd958da847, type: 2}
+  - {fileID: 11400000, guid: 6c8f3c7d1db4f8d4c8f328fecf3daa82, type: 2}
+  - {fileID: 11400000, guid: b9128b39a35b6774995edaeac41aee56, type: 2}
+  - {fileID: 11400000, guid: 22746ebe0f237cd4fb8f33599478aab2, type: 2}
+  - {fileID: 11400000, guid: bab6c5ae11e85b84e93f622b614ade7c, type: 2}
+  - {fileID: 11400000, guid: ddee636582497854889c3ed5085dffe5, type: 2}
+  - {fileID: 11400000, guid: ae440f5c2b096e24e8fb41f791a0ec9e, type: 2}
+  - {fileID: 11400000, guid: 377b2c16d74dec949a65d1a1801a6990, type: 2}
+  - {fileID: 11400000, guid: ded08c89b255409499576e626cb15960, type: 2}
+  - {fileID: 11400000, guid: 2e192900fc69cce47bbdd742701c4d63, type: 2}
+  - {fileID: 11400000, guid: e2ea2a9bb3cb6454fb68c82a76f56fa3, type: 2}
+  - {fileID: 11400000, guid: e90a0a3db47957740b6326a2485c456b, type: 2}
+  - {fileID: 11400000, guid: ad9b8d87849cbb443985f26909b572f2, type: 2}
+--- !u!114 &701840146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 701840138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa79826a657c45342af8769d16a06bad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &701840147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 701840138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1aead6a38a3fcaa469634eee4d8a191f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _quests: {fileID: 701840141}
+  _items: {fileID: 701840144}
+  AllRecipes:
+  - {fileID: 11400000, guid: 128b157d035595440a47f7a3c180ed5f, type: 2}
+  - {fileID: 11400000, guid: 1f38a8f2ab5462e4c8094957fa6b55d7, type: 2}
+  - {fileID: 11400000, guid: daef55885666f33488304f39111816b6, type: 2}
+  - {fileID: 11400000, guid: 680518cb458edd6468add539c52f80f6, type: 2}
+  - {fileID: 11400000, guid: b6022d09d71f2eb48bca80462bf9fbf0, type: 2}
+  - {fileID: 11400000, guid: a9c40887ed0f2104ba31522faf2d5e52, type: 2}
+  - {fileID: 11400000, guid: fd8fb0930082e514cb183b60ddfe17b6, type: 2}
+  - {fileID: 11400000, guid: 4e242135ba3c1fd4f95bb292e287aa82, type: 2}
+  - {fileID: 11400000, guid: 50b2708768728e34a85fc2346e74790a, type: 2}
+  - {fileID: 11400000, guid: 355bd553debe8f848b42c7e465d33c56, type: 2}
+  - {fileID: 11400000, guid: def46f832889c3c438d6f853843dcb3b, type: 2}
+  - {fileID: 11400000, guid: 40f078097944c434590c3daa4eaf6c7e, type: 2}
+  - {fileID: 11400000, guid: 072e8c50f688c06488d21d9bc70ab89c, type: 2}
 --- !u!1 &708668011
 GameObject:
   m_ObjectHideFlags: 0
@@ -12636,15 +12871,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1039f721cd16a594181eaa6504a62e3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Max:
-    UseConstant: 1
-    ConstantValue: 0
-    Variable: {fileID: 0}
-  Current:
-    UseConstant: 1
-    ConstantValue: 1
-    Variable: {fileID: 0}
-  ProgressBarFill: {fileID: 712561843}
 --- !u!1 &718965109
 GameObject:
   m_ObjectHideFlags: 0
@@ -14383,8 +14609,8 @@ MonoBehaviour:
   DeadEnemyPrefab: {fileID: 1285678961603886, guid: ca49dedaaeffb1347bdc96ae6fb1272f,
     type: 3}
   DeadEnemyParent: {fileID: 842532800}
-  _followers: {fileID: 11400000, guid: 149c9a0f199010346973cfb3a0554784, type: 2}
-  _quests: {fileID: 11400000, guid: 47e37c2da2ca892469087f805bd7d3dc, type: 2}
+  _followers: {fileID: 701840145}
+  _quests: {fileID: 701840141}
   _backgroundImages: {fileID: 2094348963}
   _enemy: {fileID: 999456374}
   _minGray: 0.6
@@ -15384,8 +15610,8 @@ MonoBehaviour:
   Enchanter: {fileID: 1462626083}
   Result: {fileID: 982086823}
   EnchantButton: {fileID: 718965111}
-  _items: {fileID: 0}
-  _player: {fileID: 0}
+  _items: {fileID: 701840144}
+  _player: {fileID: 701840143}
   _itemUI: {fileID: 213645165}
   _weaponUI: {fileID: 1186125109}
   _itemViewer: {fileID: 1243540567}
@@ -16036,8 +16262,8 @@ MonoBehaviour:
   _shop: {fileID: 405046110}
   _followerDisplay: {fileID: 300978734}
   _interactionController: {fileID: 1995099795}
-  _quests: {fileID: 0}
-  _followers: {fileID: 0}
+  _quests: {fileID: 701840141}
+  _followers: {fileID: 701840145}
 --- !u!1 &953969038
 GameObject:
   m_ObjectHideFlags: 0
@@ -16800,10 +17026,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4826cdbf251a32648853110fe3d38d42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DisplayText: '{0}'
-  Reference:
-  - {fileID: 11400000, guid: 270540f0df2b56e4086493e3e7066ace, type: 2}
-  Text: {fileID: 0}
 --- !u!114 &992349110
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19123,7 +19345,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 037a72c43c6dc034abf4576420b44f7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
+  _player: {fileID: 701840143}
   IconWithTextPrefab: {fileID: 1929706737343030, guid: c504a1b86105a28498ed63009741eac9,
     type: 3}
   BuyingScrollPanelContent: {fileID: 1895855099}
@@ -19144,9 +19366,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  _items: {fileID: 0}
-  _followers: {fileID: 0}
-  _popUp: {fileID: 0}
+  _items: {fileID: 701840144}
+  _followers: {fileID: 701840145}
+  _popUp: {fileID: 1589775613}
 --- !u!1 &1125036878
 GameObject:
   m_ObjectHideFlags: 0
@@ -20245,13 +20467,13 @@ MonoBehaviour:
   Button3: {fileID: 1572828344}
   WeaponDisplay: {fileID: 2085344040}
   MasteryString: {fileID: 994579976}
-  MasteryProgressBar: {fileID: 164211340}
+  MasteryProgressBar: {fileID: 712561843}
   LevelNameDAMText: {fileID: 1936317006}
   DescriptionText: {fileID: 1369039292}
   SellAmountText: {fileID: 838079171}
   ItemViewer: {fileID: 1243540567}
-  _items: {fileID: 11400000, guid: a0ad4238c51336240a52097b5e722013, type: 2}
-  _player: {fileID: 11400000, guid: 243ecf8942f3dd64fb9b4c5b4abeed14, type: 2}
+  _items: {fileID: 701840144}
+  _player: {fileID: 701840143}
   OpenLerper:
     EndBehaviour: 0
     LerpDuration: 0.25
@@ -20284,7 +20506,7 @@ MonoBehaviour:
         m_PersistentCalls:
           m_Calls: []
   CompareToDescriptionText: {fileID: 239834758}
-  CompareToLevelProgress: {fileID: 712561845}
+  CompareToLevelProgress: {fileID: 164211338}
   CompareToMasteryText: {fileID: 1886189759}
   CompareToSellAmountText: {fileID: 1305075570}
 --- !u!1 &1201876786
@@ -20340,8 +20562,8 @@ MonoBehaviour:
     type: 3}
   Parent: {fileID: 1201876787}
   IsScrolling: 0
-  _quests: {fileID: 11400000, guid: 47e37c2da2ca892469087f805bd7d3dc, type: 2}
-  _items: {fileID: 11400000, guid: a0ad4238c51336240a52097b5e722013, type: 2}
+  _quests: {fileID: 701840141}
+  _items: {fileID: 701840144}
   _backgroundImages: {fileID: 2094348963}
   _interactions: {fileID: 1995099795}
   _popUp: {fileID: 1589775613}
@@ -21199,7 +21421,8 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114633887884956374, guid: b07b7279b8533a743ac3ef8395402d78, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b07b7279b8533a743ac3ef8395402d78, type: 3}
 --- !u!1 &1262339006
 GameObject:
@@ -21780,7 +22003,7 @@ MonoBehaviour:
   - {fileID: 1214435378}
   - {fileID: 743468792}
   - {fileID: 1089084261}
-  _quests: {fileID: 11400000, guid: 47e37c2da2ca892469087f805bd7d3dc, type: 2}
+  _quests: {fileID: 701840141}
   _debugArea: {fileID: 0}
 --- !u!1 &1335768053
 GameObject:
@@ -22598,9 +22821,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40ab152c023b7944d832d4da469c6dd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _quests: {fileID: 0}
-  _followers: {fileID: 0}
-  _popUp: {fileID: 0}
+  _quests: {fileID: 701840141}
+  _followers: {fileID: 701840145}
+  _popUp: {fileID: 1589775613}
   DismissButton: {fileID: 57825706}
   End: -527
   WalkOffSpeed: 10
@@ -22852,11 +23075,11 @@ MonoBehaviour:
   _smoothPopUps: {fileID: 1686129831}
   _interactionController: {fileID: 1995099795}
   _walkingController: {fileID: 1821739199}
-  _recipes: {fileID: 11400000, guid: 0d03686e98ae348439c978bd2b3121f0, type: 2}
+  _recipes: {fileID: 701840147}
   _questStats: {fileID: 244994214}
-  _player: {fileID: 11400000, guid: 243ecf8942f3dd64fb9b4c5b4abeed14, type: 2}
-  _inventory: {fileID: 11400000, guid: a0ad4238c51336240a52097b5e722013, type: 2}
-  _quests: {fileID: 11400000, guid: 47e37c2da2ca892469087f805bd7d3dc, type: 2}
+  _player: {fileID: 701840143}
+  _inventory: {fileID: 701840144}
+  _quests: {fileID: 701840141}
 --- !u!1 &1395125817
 GameObject:
   m_ObjectHideFlags: 0
@@ -28884,11 +29107,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4826cdbf251a32648853110fe3d38d42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DisplayText: '{0} / {1}'
-  Reference:
-  - {fileID: 11400000, guid: a4c7e2533c2cad14ebf607c110bd26cc, type: 2}
-  - {fileID: 11400000, guid: a37ba8729f1e7d54ebb1c88796a9c0ce, type: 2}
-  Text: {fileID: 0}
 --- !u!114 &1490104174
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29042,7 +29260,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Title: {fileID: 1066884603}
   StartQuestDialogueBox: {fileID: 1907137927}
-  _quests: {fileID: 11400000, guid: 47e37c2da2ca892469087f805bd7d3dc, type: 2}
+  _quests: {fileID: 701840141}
 --- !u!224 &1497022281 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 224465032064407226, guid: 1c1c5654baf9b674d98643e199750762,
@@ -30294,7 +30512,7 @@ MonoBehaviour:
   _maxBlockDuration: 4
   _attackArea: {fileID: 794008229}
   _enemy: {fileID: 999456374}
-  _player: {fileID: 11400000, guid: 243ecf8942f3dd64fb9b4c5b4abeed14, type: 2}
+  _player: {fileID: 701840143}
 --- !u!114 &1550784727
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30311,7 +30529,7 @@ MonoBehaviour:
   armAnimator: {fileID: 430088777}
   armourAnimator: {fileID: 961437828}
   weaponAnimator: {fileID: 1933517929}
-  _player: {fileID: 11400000, guid: 243ecf8942f3dd64fb9b4c5b4abeed14, type: 2}
+  _player: {fileID: 701840143}
   _armour: {fileID: 961437829}
   _weapon: {fileID: 1933517927}
   _headgear: {fileID: 552008590}
@@ -31481,8 +31699,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _items
       value: 
-      objectReference: {fileID: 11400000, guid: a0ad4238c51336240a52097b5e722013,
-        type: 2}
+      objectReference: {fileID: 701840144}
     - target: {fileID: 114123212110939996, guid: 622cc16dd4201ae408b9bcd243bd0f6e,
         type: 3}
       propertyPath: OpenLerper.Lerpers.Array.data[0].Values.m_Curve.Array.data[0].value
@@ -34355,8 +34572,8 @@ MonoBehaviour:
   Arrow: {fileID: 333959409}
   NumberOfFollowersText: {fileID: 838795934}
   _gameController: {fileID: 951186434}
-  _player: {fileID: 11400000, guid: 243ecf8942f3dd64fb9b4c5b4abeed14, type: 2}
-  _followers: {fileID: 11400000, guid: 149c9a0f199010346973cfb3a0554784, type: 2}
+  _player: {fileID: 701840143}
+  _followers: {fileID: 701840145}
   _playerArmorView: {fileID: 1550784729}
   MasteryPopUpLerp: {fileID: 884530010}
   MasteryPopUpText: {fileID: 70712742}
@@ -35962,7 +36179,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1987686140}
-  - component: {fileID: 1987686141}
   m_Layer: 5
   m_Name: EnemyHealth
   m_TagString: Untagged
@@ -35992,28 +36208,6 @@ RectTransform:
   m_AnchoredPosition: {x: 25, y: 50}
   m_SizeDelta: {x: 45, y: 6}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1987686141
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1987686139}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e781fdf416c793749a0b72d171fae025, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Max:
-    UseConstant: 0
-    ConstantValue: 0
-    Variable: {fileID: 11400000, guid: a37ba8729f1e7d54ebb1c88796a9c0ce, type: 2}
-  Current:
-    UseConstant: 0
-    ConstantValue: 0
-    Variable: {fileID: 11400000, guid: a4c7e2533c2cad14ebf607c110bd26cc, type: 2}
-  ProgressBarFill: {fileID: 1544815334}
-  TimeToCompleteLerp: 0.2
 --- !u!1 &1995099793
 GameObject:
   m_ObjectHideFlags: 0
@@ -36068,10 +36262,10 @@ MonoBehaviour:
   _dragger: {fileID: 1324188856}
   _questDialog: {fileID: 1907137927}
   _popUp: {fileID: 1589775613}
-  _player: {fileID: 11400000, guid: 243ecf8942f3dd64fb9b4c5b4abeed14, type: 2}
-  _items: {fileID: 11400000, guid: a0ad4238c51336240a52097b5e722013, type: 2}
-  _quests: {fileID: 11400000, guid: 47e37c2da2ca892469087f805bd7d3dc, type: 2}
-  _followers: {fileID: 11400000, guid: 149c9a0f199010346973cfb3a0554784, type: 2}
+  _player: {fileID: 701840143}
+  _items: {fileID: 701840144}
+  _quests: {fileID: 701840141}
+  _followers: {fileID: 701840145}
   BossStartPosition: {fileID: 1564121474}
   BossEndPosition: {fileID: 686834990}
   ScrollSpeed: 10
@@ -38654,7 +38848,7 @@ MonoBehaviour:
   ListItemPrefab: {fileID: 1015030544596834, guid: d99bdc69af1586944a7a3531d3cf1a56,
     type: 3}
   ListParent: {fileID: 898273072}
-  _quests: {fileID: 11400000, guid: 47e37c2da2ca892469087f805bd7d3dc, type: 2}
+  _quests: {fileID: 701840141}
   _popUp: {fileID: 1589775613}
   Journal: {fileID: 1901185153}
 --- !u!114 &2131450116

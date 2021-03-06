@@ -6,9 +6,7 @@ using Debug = UnityEngine.Debug;
 
 namespace G4AW2.Managers
 {
-
-    [CreateAssetMenu(menuName = "Managers/Player")]
-    public class PlayerManager : ScriptableObject {
+    public class PlayerManager : MonoBehaviour {
 
 		public int MaxHealth { private set; get; } = 2000;
         public int Gold { private set; get; }
@@ -31,8 +29,9 @@ namespace G4AW2.Managers
         [SerializeField] private ItemManager _itemManager;
         [SerializeField] private int _healthPerUnitTime = 1;
         [SerializeField] private float _unitTime = 1f;
+        [SerializeField] private int _startMaxHealth = 2000;
 
-        private void OnEnable()
+        private void Awake()
         {
             _saveManager.RegisterSaveFunction("Player", Save);
             _saveManager.RegisterLoadFunction("Player", Load);
@@ -51,7 +50,9 @@ namespace G4AW2.Managers
 
         private void Load(object o)
         {
-            if(o == null)
+            MaxHealth = _startMaxHealth;
+
+            if (o == null)
             {
                 Health = MaxHealth;
 

@@ -8,8 +8,7 @@ using UnityEngine;
 
 namespace G4AW2.Managers
 {
-    [CreateAssetMenu(menuName = "Managers/Quests")]
-    public class QuestManager : ScriptableObject
+    public class QuestManager : MonoBehaviour
     {
         [SerializeField] private ItemManager _items;
         [SerializeField] private FollowerManager _followers;
@@ -32,7 +31,7 @@ namespace G4AW2.Managers
             EditorUtils.AddAllOfType(AllQuests);
         }
 
-        private void OnEnable()
+        private void Awake()
         {
             _saveManager.RegisterLoadFunction("QuestManager", Load);
             _saveManager.RegisterSaveFunction("QuestManager", Save);

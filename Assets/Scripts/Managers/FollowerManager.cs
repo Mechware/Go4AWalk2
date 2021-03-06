@@ -11,8 +11,7 @@ using G4AW2.Utils;
 using UnityEditor;
 
 namespace G4AW2.Managers {
-	[CreateAssetMenu(menuName ="Managers/Followers")]
-	public class FollowerManager : ScriptableObject {
+	public class FollowerManager : MonoBehaviour {
 
         [NonSerialized] private List<FollowerInstance> _followers = new List<FollowerInstance>();
 		[SerializeField] private QuestManager _quests;
@@ -31,7 +30,7 @@ namespace G4AW2.Managers {
 
 		private QuestConfig _lastQuest;
 
-		void OnEnable() {
+		void Awake() {
             Random.InitState(Mathf.RoundToInt(DateTime.Now.Ticks % int.MaxValue));
 			_quests.QuestStarted += q => SetQuest(q.Config);
 			_saveManager.RegisterSaveFunction("FollowerData", GetSaveData);
