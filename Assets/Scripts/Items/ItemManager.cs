@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using G4AW2.Data;
 using G4AW2.Data.Crafting;
 using G4AW2.Data.DropSystem;
 using G4AW2.Utils;
@@ -133,7 +134,11 @@ namespace G4AW2.Managers {
 
         public ItemInstance CreateInstance(ItemSaveData saveData)
         {
-            var config = AllItems.First(item => item.name == saveData.Id);
+            var config = AllItems.FirstOrDefault(item => item.name == saveData.Id);
+            if(config == null)
+            {
+                throw new Exception($"Could not find config id to match {saveData.Id}");
+            }
 
             if (saveData is WeaponSaveData w)
             {

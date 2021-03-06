@@ -1,14 +1,9 @@
+using G4AW2.Managers;
 using System;
-using G4AW2.Data.DropSystem;
-using System.Collections;
-using System.Collections.Generic;
-using CustomEvents;
-using G4AW2.Combat;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
-using G4AW2.Managers;
 
 public class WeaponUI : MonoBehaviour {
 
@@ -31,7 +26,7 @@ DAM {2}";
 
     public InventoryItemDisplay WeaponDisplay;
     public TextMeshProUGUI MasteryString;
-    public ProgressBarControllerFloat MasteryProgressBar;
+    public Image MasteryProgressBar;
     public TextMeshProUGUI LevelNameDAMText;
     public TextMeshProUGUI DescriptionText;
     public TextMeshProUGUI SellAmountText;
@@ -82,8 +77,7 @@ DAM {2}";
         WeaponDisplay.SetDataInstance(w, 1, null, null, false);
         MasteryString.text = "M" + w.Mastery;
 
-        MasteryProgressBar.SetMax(1);
-        MasteryProgressBar.SetCurrent(w.RawMastery - Mathf.Floor(w.RawMastery));
+        MasteryProgressBar.rectTransform.anchorMax = new Vector2(1 / (w.RawMastery - Mathf.Floor(w.RawMastery)), 1);
 
         if (w.IsEnchanted) {
             LevelNameDAMText.text = string.Format(
@@ -179,7 +173,7 @@ DAM {2}";
     }
 
     public TextMeshProUGUI CompareToDescriptionText;
-    public ProgressBarControllerFloat CompareToLevelProgress;
+    public Image CompareToLevelProgress;
     public TextMeshProUGUI CompareToMasteryText;
     public TextMeshProUGUI CompareToSellAmountText;
 
@@ -204,8 +198,7 @@ DAM {2}";
             );
         }
 
-        CompareToLevelProgress.SetMax(1);
-        CompareToLevelProgress.SetCurrent(w.RawMastery - Mathf.Floor(w.RawMastery));
+        CompareToLevelProgress.rectTransform.anchorMax = new Vector2(1f/(w.RawMastery - Mathf.Floor(w.RawMastery)), 1);
 
         CompareToMasteryText.text = "M" + w.Mastery;
 

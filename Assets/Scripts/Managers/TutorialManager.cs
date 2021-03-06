@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
-using CustomEvents;
 using G4AW2.Data;
 using UnityEngine;
 
-namespace G4AW2.Managers {
+namespace G4AW2.Managers
+{
     [CreateAssetMenu(menuName = "Managers/TutorialManager")]
     public class TutorialManager : ScriptableObject
     {

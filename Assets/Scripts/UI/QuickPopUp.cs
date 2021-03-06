@@ -1,7 +1,4 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using CustomEvents;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -33,7 +30,7 @@ public class QuickPopUp : MonoBehaviour {
 
     private void Awake()
     {
-        Button.MouseClick2D.AddListener(_ =>
+        Button.MouseClick.AddListener(() =>
         {
             animator.SetTrigger(TappedHash);
         });

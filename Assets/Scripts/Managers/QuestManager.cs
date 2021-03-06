@@ -80,9 +80,9 @@ namespace G4AW2.Managers
             };
         }
 
-        public void Initialize()
+        public void Initialize(bool newGame)
         {
-            if(_currentQuest == null)
+            if(newGame)
             {
                 _currentQuest = new QuestInstance(StartQuest, true);
                 SetQuest(_currentQuest);

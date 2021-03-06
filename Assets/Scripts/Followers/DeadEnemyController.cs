@@ -1,11 +1,8 @@
+using G4AW2.Combat;
+using G4AW2.Managers;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using CustomEvents;
-using G4AW2;
-using G4AW2.Combat;
-using G4AW2.Data.Combat;
-using G4AW2.Managers;
 using UnityEngine;
 using UnityEngine.UI;
 

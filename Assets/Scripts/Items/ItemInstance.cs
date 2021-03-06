@@ -13,12 +13,13 @@ public class ItemInstance {
     
     public ItemInstance(ItemConfig c) {
         Config = c;
-        SaveData = new ItemSaveData();
+        SaveData = new ItemSaveData(c.name);
     }
 
     public ItemInstance(ItemSaveData save, ItemConfig config) {
         SaveData = save;
         Config = config;
+
         if (Config == null) {
             Debug.LogError("Could not find config for id: " + save.Id);
         }

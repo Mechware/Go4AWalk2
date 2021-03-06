@@ -35,9 +35,7 @@ public class WalkingUIController : MonoBehaviour {
         Arrow.rectTransform.anchoredPosition = Arrow.rectTransform.anchoredPosition.SetX(9);
         Arrow.rectTransform.DOAnchorPosX(13, 1).SetLoops(-1, LoopType.Yoyo);
 
-        ArrowReceiver.MouseClick2D.AddListener(a => {
-            _gameController.ScrollToEnemies();
-        });
+        ArrowReceiver.MouseClick.AddListener(_gameController.ScrollToEnemies);
 
         Show();
         _interactionController.OnFightStart += () =>

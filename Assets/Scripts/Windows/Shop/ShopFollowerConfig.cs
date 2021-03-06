@@ -1,14 +1,10 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using CustomEvents;
-using G4AW2.Data;
 using G4AW2.Data.DropSystem;
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
-namespace G4AW2.Data {
+namespace G4AW2.Data
+{
     [CreateAssetMenu(menuName = "Data/Follower/Shop Follower")]
     public class ShopFollowerConfig : FollowerConfig {
         public AnimationClip WalkingAnimation;

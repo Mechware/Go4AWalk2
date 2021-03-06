@@ -1,16 +1,13 @@
 using System;
-using CustomEvents;
-using G4AW2.Data;
-using G4AW2.Data.Combat;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
-namespace G4AW2.Followers {
+namespace G4AW2.Followers
+{
 
-	[RequireComponent(typeof(Animator))]
+    [RequireComponent(typeof(Animator))]
 	public class FollowerDisplay : MonoBehaviour, IPointerClickHandler {
 		[NonSerialized] public FollowerInstance Instance;
 

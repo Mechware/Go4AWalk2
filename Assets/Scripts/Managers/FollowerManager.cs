@@ -19,6 +19,8 @@ namespace G4AW2.Managers {
 		[SerializeField] private ItemManager _items;
 		[SerializeField] private SaveManager _saveManager;
 
+		public Action Loaded;
+
 		public Action<FollowerInstance> FollowerAdded;
         public Action<FollowerInstance> FollowerRemoved;
 
@@ -43,12 +45,17 @@ namespace G4AW2.Managers {
 
 		private void LoadSaveData(object data)
         {
-			if (data == null) return;
+			if (data == null)
+			{
+				Loaded?.Invoke();
+				return;
+			}
 
 			var saveData = (SaveData)data;
 
 			_followers = saveData._followerData.Select(f => GetInstance(f)).ToList();
-        }
+			Loaded?.Invoke();
+		}
 
 		private object GetSaveData()
         {
@@ -80,9 +87,7 @@ namespace G4AW2.Managers {
 
 			if(!newGame)
             {
-				DateTime lastTimePlayedUTC = GlobalSaveData.SaveData.LastTimePlayedUTC;
-				TimeSpan TimeSinceLastPlayed = DateTime.UtcNow - lastTimePlayedUTC;
-				double secondsSinceLastPlayed = TimeSinceLastPlayed.TotalSeconds;
+				double secondsSinceLastPlayed = GlobalSaveData.SaveData.GetTimeSinceLastPlayed();
 
 				Debug.Log("Time since last play: " + secondsSinceLastPlayed);
 
@@ -101,11 +106,15 @@ namespace G4AW2.Managers {
 
 		public void CheckSpawns(double timeDelta) {
 			currentTime += timeDelta;
-			if (currentTime < currentTimeToReach) return; 
-		
+			if (currentTime < currentTimeToReach) return;
 			currentTime -= currentTimeToReach;
 			currentTimeToReach = Random.Range(_quests._currentQuest.Config.MinEnemyDropTime, _quests._currentQuest.Config.MaxEnemyDropTime);
-            AddRandomFollower();
+			if (_followers.Count == MAX_QUEUE_SIZE)
+			{
+				currentTime = 0;
+				return;
+			}
+			AddRandomFollower();
 			CheckSpawns(0);
 		}
 

@@ -15,10 +15,8 @@ public class EnemyInstance : FollowerInstance {
     public int ElementalDamage => Mathf.RoundToInt(Config.ElementalDamageAtLevel0 * (1 + SaveData.Level / 10f));
 
     public EnemyInstance(EnemyConfig config, int level) {
-        base.SaveData = new EnemySaveData();
+        base.SaveData = new EnemySaveData(config.name, level);
         base.Config = config;
-        SaveData.Id = Config.name;
-        SaveData.Level = level;
     } 
 
     public EnemyInstance(EnemySaveData saveData, EnemyConfig config) {

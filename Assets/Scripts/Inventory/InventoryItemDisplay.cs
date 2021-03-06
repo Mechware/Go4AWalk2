@@ -1,8 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using CustomEvents;
 using G4AW2.Data.DropSystem;
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;

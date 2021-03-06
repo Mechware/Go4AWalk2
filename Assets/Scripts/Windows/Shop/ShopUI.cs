@@ -1,20 +1,14 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using CustomEvents;
 using G4AW2.Component.UI;
-using G4AW2.Data;
-using G4AW2.Data.DropSystem;
-using G4AW2.Followers;
 using G4AW2.Managers;
+using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class ShopUI : MonoBehaviour {
 
-    public IntReference GoldAmount;
+    [SerializeField] private PlayerManager _player;
 
     public GameObject IconWithTextPrefab;
     public GameObject BuyingScrollPanelContent;
@@ -33,6 +27,7 @@ public class ShopUI : MonoBehaviour {
 
     [SerializeField] private ItemManager _items;
     [SerializeField] private FollowerManager _followers;
+    [SerializeField] private PopUp _popUp;
 
     public void OpenShop(ShopFollowerInstance shopKeep, Action actionOnSendAway) {
         this.actionOnSendAway = actionOnSendAway;
@@ -79,7 +74,7 @@ public class ShopUI : MonoBehaviour {
             }
         }
 
-        GoldAmount.Value += GetTrashSum();
+        _player.GiveGold(GetTrashSum());
         toRemove.ForEach(i => _items.Remove(i));
 
         SetSellingTab();
@@ -112,7 +107,7 @@ public class ShopUI : MonoBehaviour {
     private void ItemClickedBuying(ItemInstance it) {
         int price = GetBuyingPrice(it);
 
-        if (GoldAmount.Value < price) {
+        if (_player.Gold < price) {
             PopUp.SetPopUp("Not Enough Gold.", new[] {":(", "):"}, new Action[] {() => { }, () => { }});
             return;
         }
@@ -120,10 +115,10 @@ public class ShopUI : MonoBehaviour {
         string title =
             $"Would you like to buy a {it.GetName()} for {price} gold?\n{it.GetDescription()}";
 
-        PopUp.SetPopUp(title, new [] { "Buy", "Cancel" },
+        _popUp.SetPopUpNew(title, new [] { "Buy", "Cancel" },
             new Action[] {
                 () => {
-                    GoldAmount.Value -= price;
+                    _player.TakeGold(price);
                     _items.Add(it);
                     shopKeep.Items.Remove(it);
                     RefreshBuyingList();
@@ -165,10 +160,10 @@ public class ShopUI : MonoBehaviour {
         
         string title = string.Format($"Confirm sale of {it.GetName()} for {price} gold?\n{it.GetDescription()}");
 
-        PopUp.SetPopUp(title, new string[] { "Sell", "Cancel" },
+        _popUp.SetPopUpNew(title, new string[] { "Sell", "Cancel" },
            new Action[] {
             () => {
-                GoldAmount.Value += price;
+                _player.GiveGold(price);
                 _items.Remove(it);
                 RefreshSellingList();
                 },

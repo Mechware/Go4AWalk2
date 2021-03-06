@@ -413,19 +413,7 @@ MonoBehaviour:
       m_RotationOrder: 4
     OnUpdate:
       m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 2006833396}
-          m_TargetAssemblyTypeName: 
-          m_MethodName: SetAlpha
-          m_Mode: 0
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+        m_Calls: []
 --- !u!1 &25163868
 GameObject:
   m_ObjectHideFlags: 0
@@ -2298,19 +2286,7 @@ MonoBehaviour:
       m_RotationOrder: 4
     OnUpdate:
       m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1706160526}
-          m_TargetAssemblyTypeName: 
-          m_MethodName: SetAlphaOfAllChildren
-          m_Mode: 0
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+        m_Calls: []
 --- !u!224 &118109457
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2811,19 +2787,7 @@ MonoBehaviour:
       m_RotationOrder: 4
     OnUpdate:
       m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 326756920}
-          m_TargetAssemblyTypeName: 
-          m_MethodName: SetAlpha
-          m_Mode: 0
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+        m_Calls: []
 --- !u!224 &164211337
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4255,19 +4219,7 @@ MonoBehaviour:
       m_RotationOrder: 4
     OnUpdate:
       m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1044899495}
-          m_TargetAssemblyTypeName: 
-          m_MethodName: SetAlpha
-          m_Mode: 0
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+        m_Calls: []
 --- !u!224 &242714630
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5870,19 +5822,7 @@ MonoBehaviour:
       m_RotationOrder: 4
     OnUpdate:
       m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: 
-          m_MethodName: SetX
-          m_Mode: 0
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+        m_Calls: []
 --- !u!114 &333959409
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5933,28 +5873,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18318c13d842c2443b51c9232b88419c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MouseClick3D:
+  MouseClick:
     m_PersistentCalls:
       m_Calls: []
-  MouseClick2D:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 503513819}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: StartLerping
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  MouseDown2D:
+  MouseDown:
     m_PersistentCalls:
       m_Calls: []
-  MouseUp2D:
+  MouseUp:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &337027419
@@ -6772,19 +6697,7 @@ MonoBehaviour:
       m_RotationOrder: 4
     OnUpdate:
       m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 759798908}
-          m_TargetAssemblyTypeName: 
-          m_MethodName: SetAlpha
-          m_Mode: 0
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+        m_Calls: []
 --- !u!1 &402803371
 GameObject:
   m_ObjectHideFlags: 0
@@ -8052,19 +7965,7 @@ MonoBehaviour:
       m_RotationOrder: 4
     OnUpdate:
       m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 827154605}
-          m_TargetAssemblyTypeName: 
-          m_MethodName: SetAlpha
-          m_Mode: 0
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+        m_Calls: []
 --- !u!1 &460107504
 GameObject:
   m_ObjectHideFlags: 0
@@ -8250,10 +8151,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lr: {fileID: 331780576}
   DelayBeforeDeath: 0
-  MinSwipingDistance:
-    UseConstant: 0
-    ConstantValue: 0
-    Variable: {fileID: 11400000, guid: db9a167cbd9a72e438e6d302c360dfc3, type: 2}
+  MinSwipingDistance: 0
   BlockColor: {r: 0, g: 0.73424315, b: 1, a: 0}
   ParryColor: {r: 1, g: 0, b: 0, a: 0}
 --- !u!1 &471963648
@@ -8777,19 +8675,7 @@ MonoBehaviour:
       m_RotationOrder: 4
     OnUpdate:
       m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: 
-          m_MethodName: SetX
-          m_Mode: 0
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+        m_Calls: []
 --- !u!1 &503923647
 GameObject:
   m_ObjectHideFlags: 0
@@ -8840,28 +8726,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18318c13d842c2443b51c9232b88419c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MouseClick3D:
+  MouseClick:
     m_PersistentCalls:
       m_Calls: []
-  MouseClick2D:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 175561636}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  MouseDown2D:
+  MouseDown:
     m_PersistentCalls:
       m_Calls: []
-  MouseUp2D:
+  MouseUp:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &503923650
@@ -10922,28 +10793,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18318c13d842c2443b51c9232b88419c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MouseClick3D:
+  MouseClick:
     m_PersistentCalls:
       m_Calls: []
-  MouseClick2D:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1122872032}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: StartReverseLerp
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  MouseDown2D:
+  MouseDown:
     m_PersistentCalls:
       m_Calls: []
-  MouseUp2D:
+  MouseUp:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &596217742
@@ -11148,19 +11004,7 @@ MonoBehaviour:
       m_RotationOrder: 4
     OnUpdate:
       m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 648253982}
-          m_TargetAssemblyTypeName: 
-          m_MethodName: SetY
-          m_Mode: 0
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+        m_Calls: []
 --- !u!224 &605882690
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11827,16 +11671,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18318c13d842c2443b51c9232b88419c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MouseClick3D:
+  MouseClick:
     m_PersistentCalls:
       m_Calls: []
-  MouseClick2D:
+  MouseDown:
     m_PersistentCalls:
       m_Calls: []
-  MouseDown2D:
-    m_PersistentCalls:
-      m_Calls: []
-  MouseUp2D:
+  MouseUp:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &648253982
@@ -13714,58 +13555,6 @@ MonoBehaviour:
   m_Color: {r: 0, g: 0, b: 0, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  OnTap:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1550784726}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: PlayerAttemptToHitEnemy
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1409775900}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: set_position
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1409775902}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: Emit
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 7
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1720511489}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: PlaySoundHalfVolume
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 8300000, guid: 312c5d050c8486140bd00c63ac21e14b,
-            type: 3}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
   OnSwipeStart:
     m_PersistentCalls:
       m_Calls:
@@ -13777,88 +13566,6 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnSwipeFinished:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1550784726}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: PlayerScreenSwipe
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 463656370}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: OnDone
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1720511489}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: PlaySoundHalfVolume
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 8300000, guid: f254ee91e7b2c9f4e9ca5685b62e4434,
-            type: 3}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnSwipingDistanceChange:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 463656370}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: DrawVector
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnSwiping:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1409775900}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: set_position
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1409775902}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: Emit
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -14007,6 +13714,18 @@ RectTransform:
   m_AnchoredPosition: {x: -11.810009, y: 6.8599014}
   m_SizeDelta: {x: -29.62, y: -19.72}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &804719971 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114760575369985968, guid: 622cc16dd4201ae408b9bcd243bd0f6e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1622750876}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18318c13d842c2443b51c9232b88419c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &817201423
 GameObject:
   m_ObjectHideFlags: 0
@@ -14916,78 +14635,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &860766374
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 860766376}
-  - component: {fileID: 860766377}
-  - component: {fileID: 860766378}
-  m_Layer: 0
-  m_Name: Tester
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &860766376
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 860766374}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 140.08263, y: 248.88722, z: 67.34543}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &860766377
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 860766374}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39deb1f5d7faf704e9eb3775ea5fdc0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &860766378
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 860766374}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37214b9ff77eec848bb424b3c87be97f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 999456374}
-        m_TargetAssemblyTypeName: G4AW2.Combat.EnemyDisplay, Assembly-CSharp
-        m_MethodName: DebugKill
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 90000
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  valueToInvokeWith: 0
 --- !u!1001 &876765477
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15737,7 +15384,6 @@ MonoBehaviour:
   Enchanter: {fileID: 1462626083}
   Result: {fileID: 982086823}
   EnchantButton: {fileID: 718965111}
-  NumberOfEnchantedWeapons: {fileID: 0}
   _items: {fileID: 0}
   _player: {fileID: 0}
   _itemUI: {fileID: 213645165}
@@ -17157,6 +16803,7 @@ MonoBehaviour:
   DisplayText: '{0}'
   Reference:
   - {fileID: 11400000, guid: 270540f0df2b56e4086493e3e7066ace, type: 2}
+  Text: {fileID: 0}
 --- !u!114 &992349110
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17657,19 +17304,7 @@ MonoBehaviour:
       m_RotationOrder: 4
     OnUpdate:
       m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1863842787}
-          m_TargetAssemblyTypeName: 
-          m_MethodName: SetAlpha
-          m_Mode: 0
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+        m_Calls: []
 --- !u!1 &999456372
 GameObject:
   m_ObjectHideFlags: 0
@@ -17725,22 +17360,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _stunnedDamageMultiplier: 1.15
   EnemyInfo: {fileID: 480560836}
-  StunDuration:
-    UseConstant: 1
-    ConstantValue: 1.5
-    Variable: {fileID: 0}
+  StunDuration: 0
   BaseDamageColor: {r: 1, g: 1, b: 1, a: 1}
   ParryColor: {r: 1, g: 0, b: 0, a: 1}
   BlockColor: {r: 0, g: 1, b: 0.97979045, a: 1}
   EnemyState: 0
-  MaxHealth:
-    UseConstant: 0
-    ConstantValue: 0
-    Variable: {fileID: 11400000, guid: a37ba8729f1e7d54ebb1c88796a9c0ce, type: 2}
-  CurrentHealth:
-    UseConstant: 0
-    ConstantValue: 0
-    Variable: {fileID: 11400000, guid: a4c7e2533c2cad14ebf607c110bd26cc, type: 2}
+  CurrentHealth: 0
 --- !u!95 &999456375
 Animator:
   serializedVersion: 3
@@ -19085,28 +18710,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18318c13d842c2443b51c9232b88419c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MouseClick3D:
+  MouseClick:
     m_PersistentCalls:
       m_Calls: []
-  MouseClick2D:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 964513052}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  MouseDown2D:
+  MouseDown:
     m_PersistentCalls:
       m_Calls: []
-  MouseUp2D:
+  MouseUp:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &1103800385
@@ -19488,31 +19098,7 @@ MonoBehaviour:
       m_RotationOrder: 4
     OnUpdate:
       m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1122872033}
-          m_TargetAssemblyTypeName: 
-          m_MethodName: SetScaleX
-          m_Mode: 0
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 1122872033}
-          m_TargetAssemblyTypeName: 
-          m_MethodName: SetScaleY
-          m_Mode: 0
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+        m_Calls: []
 --- !u!114 &1122872033
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19537,10 +19123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 037a72c43c6dc034abf4576420b44f7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GoldAmount:
-    UseConstant: 0
-    ConstantValue: 0
-    Variable: {fileID: 11400000, guid: 270540f0df2b56e4086493e3e7066ace, type: 2}
+  _player: {fileID: 0}
   IconWithTextPrefab: {fileID: 1929706737343030, guid: c504a1b86105a28498ed63009741eac9,
     type: 3}
   BuyingScrollPanelContent: {fileID: 1895855099}
@@ -19563,6 +19146,7 @@ MonoBehaviour:
         m_CallState: 2
   _items: {fileID: 0}
   _followers: {fileID: 0}
+  _popUp: {fileID: 0}
 --- !u!1 &1125036878
 GameObject:
   m_ObjectHideFlags: 0
@@ -19648,14 +19232,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18318c13d842c2443b51c9232b88419c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MouseClick3D:
-    m_PersistentCalls:
-      m_Calls: []
-  MouseClick2D:
+  MouseClick:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1901185155}
-        m_TargetAssemblyTypeName: 
+        m_TargetAssemblyTypeName: RobustLerper, Assembly-CSharp
         m_MethodName: StartReverseLerp
         m_Mode: 1
         m_Arguments:
@@ -19666,10 +19247,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  MouseDown2D:
+  MouseDown:
     m_PersistentCalls:
       m_Calls: []
-  MouseUp2D:
+  MouseUp:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &1128244357
@@ -20221,16 +19802,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18318c13d842c2443b51c9232b88419c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MouseClick3D:
+  MouseClick:
     m_PersistentCalls:
       m_Calls: []
-  MouseClick2D:
+  MouseDown:
     m_PersistentCalls:
       m_Calls: []
-  MouseDown2D:
-    m_PersistentCalls:
-      m_Calls: []
-  MouseUp2D:
+  MouseUp:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &1160199345
@@ -20704,31 +20282,7 @@ MonoBehaviour:
         m_RotationOrder: 4
       OnUpdate:
         m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 624037511}
-            m_TargetAssemblyTypeName: 
-            m_MethodName: SetScaleX
-            m_Mode: 0
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-          - m_Target: {fileID: 624037511}
-            m_TargetAssemblyTypeName: 
-            m_MethodName: SetScaleY
-            m_Mode: 0
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
+          m_Calls: []
   CompareToDescriptionText: {fileID: 239834758}
   CompareToLevelProgress: {fileID: 712561845}
   CompareToMasteryText: {fileID: 1886189759}
@@ -20789,6 +20343,8 @@ MonoBehaviour:
   _quests: {fileID: 11400000, guid: 47e37c2da2ca892469087f805bd7d3dc, type: 2}
   _items: {fileID: 11400000, guid: a0ad4238c51336240a52097b5e722013, type: 2}
   _backgroundImages: {fileID: 2094348963}
+  _interactions: {fileID: 1995099795}
+  _popUp: {fileID: 1589775613}
 --- !u!1 &1205135991
 GameObject:
   m_ObjectHideFlags: 0
@@ -22943,28 +22499,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18318c13d842c2443b51c9232b88419c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MouseClick3D:
+  MouseClick:
     m_PersistentCalls:
       m_Calls: []
-  MouseClick2D:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1149501967}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  MouseDown2D:
+  MouseDown:
     m_PersistentCalls:
       m_Calls: []
-  MouseUp2D:
+  MouseUp:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &1375110981
@@ -29347,6 +28888,7 @@ MonoBehaviour:
   Reference:
   - {fileID: 11400000, guid: a4c7e2533c2cad14ebf607c110bd26cc, type: 2}
   - {fileID: 11400000, guid: a37ba8729f1e7d54ebb1c88796a9c0ce, type: 2}
+  Text: {fileID: 0}
 --- !u!114 &1490104174
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30750,6 +30292,7 @@ MonoBehaviour:
   _minSwipeDistance: 3
   _failedParryStunTime: 1.25
   _maxBlockDuration: 4
+  _attackArea: {fileID: 794008229}
   _enemy: {fileID: 999456374}
   _player: {fileID: 11400000, guid: 243ecf8942f3dd64fb9b4c5b4abeed14, type: 2}
 --- !u!114 &1550784727
@@ -31294,31 +30837,7 @@ MonoBehaviour:
         m_RotationOrder: 4
       OnUpdate:
         m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 2019024950}
-            m_TargetAssemblyTypeName: 
-            m_MethodName: SetScaleX
-            m_Mode: 0
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-          - m_Target: {fileID: 2019024950}
-            m_TargetAssemblyTypeName: 
-            m_MethodName: SetScaleY
-            m_Mode: 0
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
+          m_Calls: []
   PaperFlip: {fileID: 8300000, guid: 8357b161e03cc7e4694407b817c6bd80, type: 3}
 --- !u!1 &1597597534
 GameObject:
@@ -31953,6 +31472,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114123212110939996, guid: 622cc16dd4201ae408b9bcd243bd0f6e,
+        type: 3}
+      propertyPath: _bg
+      value: 
+      objectReference: {fileID: 804719971}
     - target: {fileID: 114123212110939996, guid: 622cc16dd4201ae408b9bcd243bd0f6e,
         type: 3}
       propertyPath: _items
@@ -33589,28 +33113,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18318c13d842c2443b51c9232b88419c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MouseClick3D:
+  MouseClick:
     m_PersistentCalls:
       m_Calls: []
-  MouseClick2D:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1186125109}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: Close
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  MouseDown2D:
+  MouseDown:
     m_PersistentCalls:
       m_Calls: []
-  MouseUp2D:
+  MouseUp:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &1706075656
@@ -33975,31 +33484,7 @@ MonoBehaviour:
       m_RotationOrder: 4
     OnUpdate:
       m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1709589737}
-          m_TargetAssemblyTypeName: 
-          m_MethodName: SetScaleX
-          m_Mode: 0
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 1709589737}
-          m_TargetAssemblyTypeName: 
-          m_MethodName: SetScaleY
-          m_Mode: 0
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+        m_Calls: []
 --- !u!114 &1709589735
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35530,19 +35015,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1901185156}
-          m_TargetAssemblyTypeName: 
-          m_MethodName: SetScaleX
-          m_Mode: 0
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 1901185156}
-          m_TargetAssemblyTypeName: 
+          m_TargetAssemblyTypeName: RectTransformPositionSetter, Assembly-CSharp
           m_MethodName: SetScaleY
           m_Mode: 0
           m_Arguments:
@@ -35652,19 +35125,7 @@ MonoBehaviour:
         m_PersistentCalls:
           m_Calls:
           - m_Target: {fileID: 1907137928}
-            m_TargetAssemblyTypeName: 
-            m_MethodName: SetScaleX
-            m_Mode: 0
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-          - m_Target: {fileID: 1907137928}
-            m_TargetAssemblyTypeName: 
+            m_TargetAssemblyTypeName: RectTransformPositionSetter, Assembly-CSharp
             m_MethodName: SetScaleY
             m_Mode: 0
             m_Arguments:
@@ -36650,19 +36111,7 @@ MonoBehaviour:
         m_RotationOrder: 4
       OnUpdate:
         m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 361289739}
-            m_TargetAssemblyTypeName: 
-            m_MethodName: SetAlpha
-            m_Mode: 0
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
+          m_Calls: []
 --- !u!1 &2006833395
 GameObject:
   m_ObjectHideFlags: 0
@@ -38650,14 +38099,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18318c13d842c2443b51c9232b88419c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MouseClick3D:
-    m_PersistentCalls:
-      m_Calls: []
-  MouseClick2D:
+  MouseClick:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 664400801}
-        m_TargetAssemblyTypeName: 
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
         m_Arguments:
@@ -38668,10 +38114,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  MouseDown2D:
+  MouseDown:
     m_PersistentCalls:
       m_Calls: []
-  MouseUp2D:
+  MouseUp:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &2097642369

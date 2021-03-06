@@ -1,10 +1,6 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using CustomEvents;
-using G4AW2.Data;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
 public class ShopKeeperDisplay : MonoBehaviour, IPointerClickHandler {

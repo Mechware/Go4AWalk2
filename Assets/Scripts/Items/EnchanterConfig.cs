@@ -1,9 +1,4 @@
-using CustomEvents;
 using G4AW2.Data.DropSystem;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Data/Items/Enchanter")]

@@ -1,4 +1,3 @@
-using CustomEvents;
 using G4AW2.Managers;
 using System;
 using System.Linq;
@@ -13,8 +12,6 @@ public class EnchantUI : MonoBehaviour {
 
 
     public Button EnchantButton;
-
-    [Obsolete("Move this to the stat tracker")] public IntVariable NumberOfEnchantedWeapons;
 
     [SerializeField] private ItemManager _items;
     [SerializeField] private PlayerManager _player;
@@ -64,8 +61,6 @@ public class EnchantUI : MonoBehaviour {
         EnchanterInstance e = Enchanter.Item.CurrentItem as EnchanterInstance;
 
         if (w == null || e == null) return;
-
-        NumberOfEnchantedWeapons.Value++;
 
         _items.Remove(e);
         w.Enchant(e);

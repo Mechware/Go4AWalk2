@@ -19,6 +19,8 @@ public class MiningPoints : MonoBehaviour {
     [SerializeField] private QuestManager _quests;
     [SerializeField] private ItemManager _items;
     [SerializeField] private ScrollingImages _backgroundImages;
+    [SerializeField] private InteractionCoordinator _interactions;
+    [SerializeField] private PopUp _popUp;
 
     public Action<ItemInstance> OnItemReceived;
 
@@ -85,10 +87,10 @@ public class MiningPoints : MonoBehaviour {
     }
 
     void AddListener(ClickReceiver cr, MiningPoint point) {
-        cr.MouseClick2D.RemoveAllListeners();
-        cr.MouseClick2D.AddListener((v) => {
+        cr.MouseClick = null;
+        cr.MouseClick.AddListener(() => {
 
-            if(InteractionCoordinator.Instance.Fighting)
+            if(_interactions.Fighting)
                 return;
 
             var items = point.Drops.GetItems(0, _items);
@@ -98,9 +100,9 @@ public class MiningPoints : MonoBehaviour {
                 OnItemReceived?.Invoke(item);
             }
             if (items.Count == 0) {
-                PopUp.SetPopUp("The mining point breaks apart and you get nothing :(", new[] {"Shucks!"}, new Action[] {() => { }});
+                _popUp.SetPopUpNew("The mining point breaks apart and you get nothing :(", new[] {"Shucks!"}, new Action[] {() => { }});
             } else {
-                PopUp.SetPopUp("You got: " + itemText, new[] {"Awesome!"}, new Action[] {() => { }});
+                _popUp.SetPopUpNew("You got: " + itemText, new[] {"Awesome!"}, new Action[] {() => { }});
             }
             Pool.Return(cr.gameObject);
         });

@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using CustomEvents;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -11,7 +8,7 @@ public class Checkbox : MonoBehaviour, IPointerDownHandler {
     public Sprite NormalImage;
     public Sprite SelectedImage;
 
-    public BoolReference Selected;
+    public bool Selected;
 
     private Image im;
 
@@ -26,7 +23,7 @@ public class Checkbox : MonoBehaviour, IPointerDownHandler {
     }
 
     public void OnPointerDown(PointerEventData eventData) {
-        Selected.Value = !Selected.Value;
+        Selected = !Selected;
         im.sprite = Selected ? SelectedImage : NormalImage;
     }
 }

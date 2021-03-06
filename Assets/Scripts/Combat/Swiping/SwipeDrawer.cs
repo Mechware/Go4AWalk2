@@ -1,13 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
-using CustomEvents;
 using UnityEngine;
 
 public class SwipeDrawer : MonoBehaviour {
 
     public LineRenderer lr;
     public float DelayBeforeDeath;
-    public FloatReference MinSwipingDistance;
+    public float MinSwipingDistance;
 
     public Color BlockColor;
     public Color ParryColor;

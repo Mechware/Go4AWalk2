@@ -1,12 +1,6 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using CustomEvents;
-using G4AW2.Data;
 using G4AW2.Managers;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class QuestingStatWatcher : MonoBehaviour {

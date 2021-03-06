@@ -90,4 +90,10 @@ public static class MiscExtensions {
         dict[key] = Default;
         return dict[key];
     }
+
+    public static long SecondsSinceEpoch(this DateTime dt)
+    {
+        TimeSpan t = dt - new DateTime(1970, 1, 1);
+        return (long)t.TotalSeconds;
+    }
 }

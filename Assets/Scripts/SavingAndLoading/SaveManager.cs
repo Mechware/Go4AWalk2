@@ -35,12 +35,14 @@ namespace G4AW2
             File.WriteAllBytes(savePath, bytes);
         }
 
-        public void Load(string savePath)
+        public bool Load(string savePath)
         {
+            bool newGame = true;
             List<string> calledBack = new List<string>();
 
             if (File.Exists(savePath))
             {
+                newGame = false;
                 var bytes = File.ReadAllBytes(savePath);
                 var saveDict = Serialization.DeserializeValue<Dictionary<string, object>>(bytes, DataFormat.JSON);
 
@@ -63,6 +65,8 @@ namespace G4AW2
 
                 _loadDataFunctions[kvp.Key](null);
             }
+
+            return newGame;
         }
 
 #if UNITY_EDITOR

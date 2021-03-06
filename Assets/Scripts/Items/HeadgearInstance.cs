@@ -18,10 +18,9 @@ public class HeadgearInstance : ItemInstance{
 
     public HeadgearInstance(HeadgearConfig config, int level) {
         
-        base.SaveData = new HeadgearSaveData();
+        base.SaveData = new HeadgearSaveData(config.name, Random.Range(0, 101), level);
         base.Config = config;
         SaveData.Id = config.name;
-        SaveData.Random = UnityEngine.Random.Range(0, 101);
     }
     
     public override string GetDescription() {

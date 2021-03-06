@@ -19,10 +19,7 @@ public class ArmorInstance : ItemInstance {
 
     public ArmorInstance(ArmorConfig config, int level) {
         base.Config = config;
-        base.SaveData = new ArmorSaveData();
-        SaveData.Id = config.name;
-        SaveData.Random = UnityEngine.Random.Range(0, 101);
-        SaveData.Level = level;
+        base.SaveData = new ArmorSaveData(config.name, Random.Range(0, 101), level);
     }
     
     

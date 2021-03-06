@@ -1,11 +1,9 @@
-using System;
-using System.Linq;
-using CustomEvents;
 using G4AW2.Data.DropSystem;
 using UnityEngine;
 
-namespace G4AW2.Data.Combat {
-	[CreateAssetMenu(menuName = "Data/Follower/Enemy")]
+namespace G4AW2.Data.Combat
+{
+    [CreateAssetMenu(menuName = "Data/Follower/Enemy")]
     public class EnemyConfig : FollowerConfig {
 
 		[Header("Animations")]

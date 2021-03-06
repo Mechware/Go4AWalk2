@@ -3,7 +3,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using CustomEvents;
 using G4AW2.Data.DropSystem;
 using TMPro;
 using UnityEngine;
@@ -31,7 +30,7 @@ namespace G4AW2.Combat {
 	    public TextMeshProUGUI EnemyInfo;
 	    
         [Header("Settings")]
-        public FloatReference StunDuration;
+        public float StunDuration;
 	    public Color BaseDamageColor;
 	    public Color ParryColor;
 	    public Color BlockColor;
@@ -40,9 +39,7 @@ namespace G4AW2.Combat {
 		public State EnemyState;
 		public EnemyInstance Enemy;
 
-        [Header("Readable Data")]
-		public IntReference MaxHealth;
-	    public IntReference CurrentHealth;
+	    public int CurrentHealth;
 
         private Animator MyAnimator;
 
@@ -75,8 +72,7 @@ namespace G4AW2.Combat {
 			EnemyState = State.Idle;
 			Enemy = instance;
 
-			MaxHealth.Value = instance.MaxHealth;
-			CurrentHealth.Value = MaxHealth;
+			CurrentHealth = instance.MaxHealth;
 
 			AnimatorOverrideController aoc = (AnimatorOverrideController)GetComponent<Animator>().runtimeAnimatorController;
 			aoc["Death"] = Enemy.Config.Death;
@@ -123,8 +119,8 @@ namespace G4AW2.Combat {
 
 			OnDamageTaken?.Invoke(amount, type);
 
-			CurrentHealth.Value -= amount;
-			if (CurrentHealth.Value <= 0)
+			CurrentHealth -= amount;
+			if (CurrentHealth <= 0)
 			{
 				Die(false);
 			}

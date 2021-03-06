@@ -1,9 +1,6 @@
-using CustomEvents;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 [Obsolete("Use an animator")]
 [Serializable]

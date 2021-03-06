@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections;
+﻿using G4AW2;
+using G4AW2.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using CustomEvents;
-using G4AW2;
-using G4AW2.Data.DropSystem;
-using G4AW2.Utils;
 using UnityEngine;
-using Random = System.Random;
 
 public class WeaponInstance : ItemInstance {
     
@@ -29,20 +25,14 @@ public class WeaponInstance : ItemInstance {
         base.Config = config;
         base.SaveData = saveData;
 
-        if (saveData.EnchanterId != null) {
-            Enchantment = new EnchanterInstance(new EnchanterSaveData() {
-                Id = saveData.EnchanterId,
-                Random = saveData.EnchanterRandom
-            }, enchanters.First(e => e.name == saveData.EnchanterId));
+        if (saveData.EnchanterData != null) {
+            Enchantment = new EnchanterInstance(saveData.EnchanterData, enchanters.First(e => e.name == saveData.EnchanterData.Id));
         }
     }
 
     public WeaponInstance(WeaponConfig config, int level) {
         base.Config = config;
-        base.SaveData = new WeaponSaveData();
-        SaveData.Id = config.name;
-        SaveData.Random = UnityEngine.Random.Range(0, 101);
-        SaveData.Level = level;
+        base.SaveData = new WeaponSaveData(config.name, UnityEngine.Random.Range(0, 101), level);
     }
     
     public int GetDamage(int? mastery = null, float? damageAtLevel0 = null, int? level = null, float? mod = null, float? additiveDamage = null, float? damageMultiple = null) {

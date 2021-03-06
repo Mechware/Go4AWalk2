@@ -17,9 +17,11 @@ public class ItemViewer : MonoBehaviour {
     public TextMeshProUGUI Title;
 
     [SerializeField] private ItemManager _items;
+    [SerializeField] private ClickReceiver _bg;
 
     void Awake() {
         Instance = this;
+        _bg.MouseClick.AddListener(Close);
     }
 
     public void Clear() {

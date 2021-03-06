@@ -70,9 +70,9 @@ namespace G4AW2.Managers
             Level = sd.Level;
             Experience = sd.Experience;
             Health = sd.Health;
-            EquipWeapon((WeaponInstance)_itemManager.CreateInstance(sd.Weapon));
-            EquipArmor((ArmorInstance)_itemManager.CreateInstance(sd.Armor));
-            EquipHeadgear((HeadgearInstance)_itemManager.CreateInstance(sd.Headgear));
+            if (sd.Weapon != null) EquipWeapon((WeaponInstance)_itemManager.CreateInstance(sd.Weapon));
+            if (sd.Armor != null) EquipArmor((ArmorInstance)_itemManager.CreateInstance(sd.Armor));
+            if(sd.Headgear != null) EquipHeadgear((HeadgearInstance)_itemManager.CreateInstance(sd.Headgear));
         }
 
         private object Save()
@@ -89,11 +89,12 @@ namespace G4AW2.Managers
             };
         }
 
-        public void Initialize() {
-	        DateTime lastTimePlayedUTC = GlobalSaveData.SaveData.LastTimePlayedUTC;
-	        TimeSpan TimeSinceLastPlayed = DateTime.UtcNow - lastTimePlayedUTC;
-	        double secondsSinceLastPlayed = TimeSinceLastPlayed.TotalSeconds;
-	        IncreaseHealthByTime((int)secondsSinceLastPlayed);
+        public void Initialize(bool newGame) {
+            if(!newGame)
+            {
+                var secondsSinceLastPlayed = GlobalSaveData.SaveData.GetTimeSinceLastPlayed();
+                IncreaseHealthByTime((int)secondsSinceLastPlayed);
+            }
         }
         
 		public void EquipHeadgear(HeadgearInstance headgear) {
@@ -143,13 +144,11 @@ namespace G4AW2.Managers
 
         public void Die()
         {
-            int oldAmount = Gold;
-            int newAmount = oldAmount - Mathf.RoundToInt(oldAmount * 0.2f);
-            newAmount = Mathf.Max(newAmount, 0);
-            Gold = newAmount;
+            int reduceAmount = Mathf.RoundToInt(Gold * 0.2f);
+            TakeGold(reduceAmount);
 
             Health = MaxHealth;
-            OnDeath?.Invoke(oldAmount - newAmount);
+            OnDeath?.Invoke(reduceAmount);
         }
 
         public int GetLightDamage() {
@@ -172,6 +171,16 @@ namespace G4AW2.Managers
                 _updateTime = _unitTime;
 		        IncreaseHealthByTime(_healthPerUnitTime);
 	        }
+        }
+
+        public void GiveGold(int amount)
+        {
+            Gold += amount;
+        }
+
+        public void TakeGold(int amount)
+        {
+            Gold -= amount;
         }
 
         public void GiveHealth(int amount)

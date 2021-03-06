@@ -3,6 +3,8 @@ using G4AW2.Controller;
 using G4AW2.Data;
 using G4AW2.Data.DropSystem;
 using G4AW2.Managers;
+using System;
+using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -15,7 +17,6 @@ public class Game : MonoBehaviour
     [SerializeField] private QuestManager _quests;
     [SerializeField] private FollowerManager _followers;
     [SerializeField] private PlayerManager _player;
-
 
     private string SAVE_FILE_LOCATION;
 
@@ -40,11 +41,18 @@ public class Game : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _saveGame.Load(SAVE_FILE_LOCATION);
+        bool newGame = _saveGame.Load(SAVE_FILE_LOCATION);
 
-        _player.Initialize();
-        _quests.Initialize();
-        _followers.Initialize(true); // Must be initialized after quests
+        _player.Initialize(newGame);
+        _quests.Initialize(newGame);
+        _followers.Initialize(newGame); // Must be initialized after quests
+    }
+
+    [ContextMenu("Clear Save Game")]
+    private void ClearSaveGame()
+    {
+        SAVE_FILE_LOCATION = Application.persistentDataPath + "Save.json";
+        File.Delete(SAVE_FILE_LOCATION);
     }
 
     private void Update()

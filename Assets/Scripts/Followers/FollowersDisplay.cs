@@ -35,6 +35,7 @@ namespace G4AW2.Followers
 		public void Awake() {
 			_followers.FollowerAdded += OnFollowerAdded;
 			_followers.FollowerRemoved += OnFollowerRemoved;
+			_followers.Loaded += ResetFollowers;
 			_followerPool = new ObjectPrefabPool(DisplayPrefab.gameObject, transform);
 			ResetFollowers();
         }

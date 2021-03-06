@@ -18,6 +18,7 @@ public class PlayerFighterDisplay : MonoBehaviour {
     [SerializeField] private float _minSwipeDistance = 3f;
     [SerializeField] private float _failedParryStunTime = 1.25f;
     [SerializeField] private float _maxBlockDuration = 4f;
+    [SerializeField] private AttackArea _attackArea;
 
     private float _nextAttackTime = 0;
 
@@ -27,6 +28,12 @@ public class PlayerFighterDisplay : MonoBehaviour {
 
     [SerializeField] private EnemyDisplay _enemy;
     [SerializeField] private PlayerManager _player;
+
+    private void Awake()
+    {
+        _attackArea.OnTap += PlayerAttemptToHitEnemy;
+        _attackArea.OnSwipeFinished += PlayerScreenSwipe;
+    }
 
     public void Hit(int damage, ElementalType type) {
 

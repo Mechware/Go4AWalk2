@@ -1,8 +1,6 @@
-﻿using G4AW2.Data.DropSystem;
-using System.Collections;
-using System.Collections.Generic;
+﻿using G4AW2.Data;
+using G4AW2.Data.DropSystem;
 using UnityEngine;
-using UnityEngine.Events;
 
 [CreateAssetMenu(menuName ="Data/Items/Consumable")]
 public class ConsumableConfig : ItemConfig {
